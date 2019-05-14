@@ -1,19 +1,20 @@
-import React, { Fragment } from 'react';
-
-import Layout from '../components/layout';
+import React, { Fragment } from 'react'
+import Head from '../components/head'
+import Layout from '../components/layout'
 
 const LandingPage = () => (
-  <Fragment>
-    <h1>Landing</h1>
-    <p>
-      The Landing Page is open to everyone, even though the user isn't
-      signed in.
-    </p>
-  </Fragment>
-);
+    <Fragment>
+        <Head title="Landing" />
+        <h1>Landing</h1>
+        <p>
+            The Landing Page is open to everyone, even though the user isn't
+            signed in.
+        </p>
+    </Fragment>
+)
 
 export default () => (
-  <Layout>
-    <LandingPage />
-  </Layout>
-);
+    <Layout>
+        <LandingPage />
+    </Layout>
+)

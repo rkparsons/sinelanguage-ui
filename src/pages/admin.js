@@ -1,33 +1,31 @@
-import React, { Fragment } from 'react';
-import { compose } from 'recompose';
+import React, { Fragment } from 'react'
+import { compose } from 'recompose'
+import Head from '../components/head'
 
-import Layout from '../components/layout';
-import {
-  withAuthorization,
-  withEmailVerification,
-} from '../components/Session';
-import { UserList } from '../components/Users';
-import * as ROLES from '../constants/roles';
+import Layout from '../components/layout'
+import { withAuthorization, withEmailVerification } from '../components/Session'
+import { UserList } from '../components/Users'
+import * as ROLES from '../constants/roles'
 
 const AdminPageBase = () => (
-  <Fragment>
-    <h1>Admin</h1>
-    <p>The Admin Page is accessible by every signed in admin user.</p>
+    <Fragment>
+        <Head title="Admin" />
+        <h1>Admin</h1>
+        <p>The Admin Page is accessible by every signed in admin user.</p>
 
-    <UserList />
-  </Fragment>
-);
+        <UserList />
+    </Fragment>
+)
 
-const condition = authUser =>
-  authUser && !!authUser.roles[ROLES.ADMIN];
+const condition = authUser => authUser && !!authUser.roles[ROLES.ADMIN]
 
 const AdminPage = compose(
-  withEmailVerification,
-  withAuthorization(condition),
-)(AdminPageBase);
+    withEmailVerification,
+    withAuthorization(condition)
+)(AdminPageBase)
 
 export default () => (
-  <Layout>
-    <AdminPage />
-  </Layout>
-);
+    <Layout>
+        <AdminPage />
+    </Layout>
+)
