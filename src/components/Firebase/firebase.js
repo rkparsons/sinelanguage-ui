@@ -9,6 +9,7 @@ const config = {
 
 class Firebase {
     constructor(app) {
+        console.log('API_KEY', process.env.REACT_APP_API_KEY)
         app.initializeApp(config)
 
         /* Helper */
