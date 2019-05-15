@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import Head from '../components/head'
+import Head from '../components/Head'
 import Layout from '../components/layout'
 
 const LandingPage = () => (

@@ -1,18 +1,17 @@
 import React, { Fragment } from 'react'
 import Head from '../components/Head'
 import Layout from '../components/layout'
-import SignUpForm from '../components/SignUp'
 
-const SignUpPage = () => (
+const BlogPage = () => (
     <Fragment>
-        <Head title="Sign Up" />
-        <h1>SignUp</h1>
-        <SignUpForm />
+        <Head title="Blog" />
+        <h1>Blog</h1>
+        <p>Posts will show up here later on</p>
     </Fragment>
 )
 
 export default () => (
     <Layout>
-        <SignUpPage />
+        <BlogPage />
     </Layout>
 )

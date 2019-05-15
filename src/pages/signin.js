@@ -1,28 +1,30 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from 'react'
 
-import Layout from '../components/layout';
+import Layout from '../components/layout'
+import Head from '../components/Head'
 import SignInForm, {
-  SignInGoogle,
-  SignInFacebook,
-  SignInTwitter,
-} from '../components/SignIn';
-import { SignUpLink } from '../components/SignUp';
-import { PasswordForgetLink } from '../components/PasswordForget';
+    SignInGoogle,
+    SignInFacebook,
+    SignInTwitter,
+} from '../components/SignIn'
+import { SignUpLink } from '../components/SignUp'
+import { PasswordForgetLink } from '../components/PasswordForget'
 
 const SignInPage = () => (
-  <Fragment>
-    <h1>SignIn</h1>
-    <SignInForm />
-    <SignInGoogle />
-    <SignInFacebook />
-    <SignInTwitter />
-    <PasswordForgetLink />
-    <SignUpLink />
-  </Fragment>
-);
+    <Fragment>
+        <Head title="Sign In" />
+        <h1>SignIn</h1>
+        <SignInForm />
+        <SignInGoogle />
+        <SignInFacebook />
+        <SignInTwitter />
+        <PasswordForgetLink />
+        <SignUpLink />
+    </Fragment>
+)
 
 export default () => (
-  <Layout>
-    <SignInPage />
-  </Layout>
-);
+    <Layout>
+        <SignInPage />
+    </Layout>
+)

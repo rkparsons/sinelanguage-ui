@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { compose } from 'recompose'
-import Head from '../components/head'
+import Head from '../components/Head'
 import Layout from '../components/layout'
 import {
     AuthUserContext,
