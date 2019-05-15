@@ -3,5 +3,5 @@ module.exports = {
         title: 'Sine Language Records',
         author: 'Richard Parsons',
     },
-    plugins: ['gatsby-plugin-react-helmet'],
+    plugins: ['gatsby-plugin-react-helmet', 'gatsby-plugin-sass'],
 }

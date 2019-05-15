@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 
-import Layout from '../components/layout'
+import Layout from '../components/Layout'
 import Head from '../components/Head'
 import SignInForm, {
     SignInGoogle,

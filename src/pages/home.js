@@ -1,7 +1,7 @@
 import React from 'react'
 import { compose } from 'recompose'
 import Head from '../components/Head'
-import Layout from '../components/layout'
+import Layout from '../components/Layout'
 import { withAuthorization, withEmailVerification } from '../components/Session'
 import Messages from '../components/Messages'
 

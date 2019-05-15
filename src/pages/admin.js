@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { compose } from 'recompose'
 import Head from '../components/Head'
 
-import Layout from '../components/layout'
+import Layout from '../components/Layout'
 import { withAuthorization, withEmailVerification } from '../components/Session'
 import { UserList } from '../components/Users'
 import * as ROLES from '../constants/roles'
