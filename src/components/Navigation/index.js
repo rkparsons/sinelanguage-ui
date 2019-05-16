@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'gatsby'
-
 import { AuthUserContext } from '../Session'
 import SignOutButton from '../SignOut'
 import * as ROUTES from '../../constants/routes'
 import * as ROLES from '../../constants/roles'
+import headerStyles from './index.module.scss'
 
 const Navigation = () => (
     <AuthUserContext.Consumer>
@@ -21,20 +21,30 @@ const Navigation = () => (
 const NavigationAuth = ({ authUser }) => (
     <ul>
         <li>
-            <Link to={ROUTES.LANDING}>Landing</Link>
+            <Link className={headerStyles.link} to={ROUTES.LANDING}>
+                Landing
+            </Link>
         </li>
         <li>
-            <Link to={ROUTES.HOME}>Home</Link>
+            <Link className={headerStyles.link} to={ROUTES.HOME}>
+                Home
+            </Link>
         </li>
         <li>
-            <Link to={ROUTES.BLOG}>Blog</Link>
+            <Link className={headerStyles.link} to={ROUTES.BLOG}>
+                Blog
+            </Link>
         </li>
         <li>
-            <Link to={ROUTES.ACCOUNT}>Account</Link>
+            <Link className={headerStyles.link} to={ROUTES.ACCOUNT}>
+                Account
+            </Link>
         </li>
         {!!authUser.roles[ROLES.ADMIN] && (
             <li>
-                <Link to={ROUTES.ADMIN}>Admin</Link>
+                <Link className={headerStyles.link} to={ROUTES.ADMIN}>
+                    Admin
+                </Link>
             </li>
         )}
         <li>
@@ -46,10 +56,14 @@ const NavigationAuth = ({ authUser }) => (
 const NavigationNonAuth = () => (
     <ul>
         <li>
-            <Link to={ROUTES.LANDING}>Landing</Link>
+            <Link className={headerStyles.link} to={ROUTES.LANDING}>
+                Landing
+            </Link>
         </li>
         <li>
-            <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+            <Link className={headerStyles.link} to={ROUTES.SIGN_IN}>
+                Sign In
+            </Link>
         </li>
     </ul>
 )

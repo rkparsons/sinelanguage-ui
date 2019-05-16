@@ -14,7 +14,10 @@ const Footer = () => {
 
     return (
         <footer>
-            <p>Created by {data.site.siteMetadata.author}, © 2019</p>
+            <p>
+                Created by {data.site.siteMetadata.author}, © 2019{' '}
+                <a href="www.twitter.com">twitter</a>
+            </p>
         </footer>
     )
 }
