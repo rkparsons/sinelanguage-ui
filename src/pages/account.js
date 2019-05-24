@@ -10,6 +10,7 @@ import {
 import PasswordForgetForm from '../components/PasswordForget'
 import PasswordChangeForm from '../components/PasswordChange'
 import LoginManagement from '../components/LoginManagement'
+import Messages from '../components/Messages'
 
 const AccountPageBase = () => (
     <Fragment>
@@ -37,5 +38,7 @@ const AccountPage = compose(
 export default () => (
     <Layout>
         <AccountPage />
+        <hr />
+        <Messages />
     </Layout>
 )

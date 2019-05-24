@@ -1,9 +1,10 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import Footer from '../Footer'
 import Navigation from '../Navigation'
 import getFirebase, { FirebaseContext } from '../Firebase'
 import withAuthentication from '../Session/withAuthentication'
 import '../../styles/index.scss'
+import layoutStyles from './index.module.scss'
 
 class Layout extends Component {
     state = {
@@ -32,12 +33,14 @@ class Layout extends Component {
 }
 
 const AppWithAuthentication = withAuthentication(({ children }) => (
-    <Fragment>
-        <Navigation />
-        <hr />
-        {children}
+    <div className={layoutStyles.container}>
+        <div className={layoutStyles.content}>
+            <Navigation />
+            <hr />
+            {children}
+        </div>
         <Footer />
-    </Fragment>
+    </div>
 ))
 
 export default Layout
