@@ -7,6 +7,7 @@ import {
     withAuthorization,
     withEmailVerification,
 } from '../components/Session'
+import { FirebaseContext } from '../components/Firebase'
 import PasswordForgetForm from '../components/PasswordForget'
 import PasswordChangeForm from '../components/PasswordChange'
 import LoginManagement from '../components/LoginManagement'
@@ -15,16 +16,40 @@ import Messages from '../components/Messages'
 const AccountPageBase = () => (
     <Fragment>
         <Head title="Account" />
-        <AuthUserContext.Consumer>
-            {authUser => (
-                <div>
-                    <h1>Account: {authUser.email}</h1>
-                    <PasswordForgetForm />
-                    <PasswordChangeForm />
-                    <LoginManagement authUser={authUser} />
-                </div>
+        <FirebaseContext.Consumer>
+            {firebase => (
+                <AuthUserContext.Consumer>
+                    {authUser => (
+                        <div>
+                            <h1>Account: {authUser.email}</h1>
+                            <PasswordForgetForm />
+                            <PasswordChangeForm />
+                            <LoginManagement authUser={authUser} />
+                            <button
+                                onClick={() => {
+                                    firebase.auth.currentUser
+                                        .getIdToken(true)
+                                        .then(function(idToken) {
+                                            return fetch(
+                                                '/.netlify/functions/hello',
+                                                {
+                                                    headers: {
+                                                        Authorization: `Bearer ${idToken}`,
+                                                    },
+                                                }
+                                            )
+                                        })
+                                        .then(response => console.log(response))
+                                        .catch(error => console.error(error))
+                                }}
+                            >
+                                Call Lambda
+                            </button>
+                        </div>
+                    )}
+                </AuthUserContext.Consumer>
             )}
-        </AuthUserContext.Consumer>
+        </FirebaseContext.Consumer>
     </Fragment>
 )
 
