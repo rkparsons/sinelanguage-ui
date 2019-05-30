@@ -5,6 +5,7 @@ import SignOutButton from '../SignOut'
 import * as ROUTES from '../../constants/routes'
 import * as ROLES from '../../constants/roles'
 import headerStyles from './index.module.scss'
+import Logo from '../Logo'
 
 const Navigation = () => (
     <div className={headerStyles.header}>
@@ -12,6 +13,7 @@ const Navigation = () => (
             <Link className={headerStyles.title} to={ROUTES.LANDING}>
                 Sine Language Records
             </Link>
+            <Logo />
         </h1>
         <ul className={headerStyles.navList}>
             <li>
