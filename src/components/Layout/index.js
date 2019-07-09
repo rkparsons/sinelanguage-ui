@@ -26,6 +26,7 @@ class Layout extends Component {
     render() {
         return (
             <FirebaseContext.Provider value={this.state.firebase}>
+                <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" />
                 <AppWithAuthentication {...this.props} />
             </FirebaseContext.Provider>
         )
