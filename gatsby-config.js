@@ -19,6 +19,12 @@ module.exports = {
         author: 'Richard Parsons',
     },
     plugins: [
+        {
+            resolve: `gatsby-plugin-netlify-cms`,
+            options: {
+                enableIdentityWidget: true,
+            },
+        },
         'gatsby-plugin-react-helmet',
         {
             resolve: `gatsby-plugin-sass`,
