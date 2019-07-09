@@ -25,12 +25,20 @@ module.exports = {
                 enableIdentityWidget: true,
             },
         },
-        'gatsby-plugin-react-helmet',
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                name: `markdown-pages`,
+                path: `${__dirname}/src/markdown`,
+            },
+        },
+        `gatsby-transformer-remark`,
+        `gatsby-plugin-react-helmet`,
         {
             resolve: `gatsby-plugin-sass`,
             options: {
-                data: '@import "src/styles/base/_settings.scss";',
-                includePaths: ['src/components'],
+                data: `@import "src/styles/base/_settings.scss";`,
+                includePaths: [`src/components`],
             },
         },
     ],
