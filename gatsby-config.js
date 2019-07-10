@@ -28,11 +28,19 @@ module.exports = {
         {
             resolve: `gatsby-source-filesystem`,
             options: {
-                name: `markdown`,
-                path: `${__dirname}/src/markdown`,
+                name: `pages`,
+                path: `${__dirname}/src/pages/`,
             },
         },
-        `gatsby-transformer-remark`,
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                name: `data`,
+                path: `${__dirname}/src/data/`,
+                ignore: [`**/\.*`],
+            },
+        },
+        `gatsby-transformer-json`,
         `gatsby-plugin-react-helmet`,
         {
             resolve: `gatsby-plugin-sass`,
