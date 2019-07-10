@@ -29,6 +29,15 @@ const Navigation = () => (
                 <Link
                     className={headerStyles.navItem}
                     activeClassName={headerStyles.activeNavItem}
+                    to={ROUTES.ARTISTS}
+                >
+                    Artists
+                </Link>
+            </li>
+            <li>
+                <Link
+                    className={headerStyles.navItem}
+                    activeClassName={headerStyles.activeNavItem}
                     to={ROUTES.BLOG}
                 >
                     Blog
@@ -45,11 +54,7 @@ const Navigation = () => (
             </li>
             <AuthUserContext.Consumer>
                 {authUser =>
-                    authUser ? (
-                        <NavigationAuth authUser={authUser} />
-                    ) : (
-                        <NavigationNonAuth />
-                    )
+                    authUser ? <NavigationAuth authUser={authUser} /> : <NavigationNonAuth />
                 }
             </AuthUserContext.Consumer>
         </ul>
