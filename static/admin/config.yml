@@ -15,12 +15,7 @@ collections:
       create: true
       slug: '{{slug}}'
       fields:
-          - {
-                label: 'Layout',
-                name: 'layout',
-                widget: 'hidden',
-                default: 'artist',
-            }
+          - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'artist' }
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
           - { label: 'Biography', name: 'body', widget: 'markdown' }
