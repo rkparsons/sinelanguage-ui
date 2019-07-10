@@ -1,5 +1,13 @@
 const proxy = require('http-proxy-middleware')
 
+let activeEnv = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development'
+
+console.log(`Using environment config: ${activeEnv}`)
+
+require('dotenv').config({
+    path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
     // for avoiding CORS while developing Netlify Functions locally
     // read more: https://www.gatsbyjs.org/docs/api-proxy/#advanced-proxying
