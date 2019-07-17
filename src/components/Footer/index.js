@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import MailChimp from '../MailChimp'
 
 const Footer = () => {
     const data = useStaticQuery(graphql`
@@ -18,6 +19,7 @@ const Footer = () => {
                 Created by {data.site.siteMetadata.author}, © 2019{' '}
                 <a href="www.twitter.com">twitter</a>
             </p>
+            <MailChimp />
         </footer>
     )
 }

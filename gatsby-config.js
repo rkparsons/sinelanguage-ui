@@ -57,5 +57,12 @@ module.exports = {
                 includePaths: [`src/components`],
             },
         },
+        {
+            resolve: 'gatsby-plugin-mailchimp',
+            options: {
+                endpoint:
+                    'https://sinelanguage.us3.list-manage.com/subscribe/post?u=51b15e2b803b2c4e70392c5f9&amp;id=b5b38d278a',
+            },
+        },
     ],
 }

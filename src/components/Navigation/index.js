@@ -5,7 +5,6 @@ import SignOutButton from '../SignOut'
 import * as ROUTES from '../../constants/routes'
 import * as ROLES from '../../constants/roles'
 import headerStyles from './index.module.scss'
-import Logo from '../Logo'
 
 const Navigation = () => (
     <div className={headerStyles.header}>
