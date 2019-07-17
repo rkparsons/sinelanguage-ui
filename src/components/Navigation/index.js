@@ -13,7 +13,6 @@ const Navigation = () => (
             <Link className={headerStyles.title} to={ROUTES.LANDING}>
                 Sine Language Records
             </Link>
-            <Logo />
         </h1>
         <ul className={headerStyles.navList}>
             <li>
