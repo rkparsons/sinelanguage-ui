@@ -1,22 +1,18 @@
 import React from 'react'
 import Head from '../components/Head'
 import Layout from '../components/Layout'
+import DashboardItem from '../components/DashboardItem'
 import { graphql } from 'gatsby'
 
 export default data => (
     <Layout>
         <div>
             <Head title="Artists" />
-            <h1>Artists</h1>
-            <ol>
+            <div>
                 {data.data.allArtistJson.edges.map(edge => {
-                    return (
-                        <li>
-                            <h2>{edge.node.title}</h2>
-                        </li>
-                    )
+                    return <DashboardItem key={edge.node.title} {...edge.node} />
                 })}
-            </ol>
+            </div>
         </div>
     </Layout>
 )
