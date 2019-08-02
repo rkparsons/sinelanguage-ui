@@ -5,12 +5,12 @@ import Layout from '../components/Layout'
 import DashboardItem from '../components/DashboardItem'
 import { graphql } from 'gatsby'
 
-export default data => (
+export default ({ data }) => (
     <Layout>
         <div>
             <Head title="Artists" />
             <div className={styles.container}>
-                {data.data.allArtistJson.edges.map(edge => {
+                {data.allArtistJson.edges.map(edge => {
                     return <DashboardItem key={edge.node.title} {...edge.node} />
                 })}
             </div>
