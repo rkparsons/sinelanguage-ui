@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from '../../assets/logo.gif'
 import logoStatic from '../../assets/logo.jpg'
-import logoStyles from './index.module.scss'
+import styles from './index.module.scss'
 
 class Logo extends React.Component {
     constructor(props) {
@@ -23,11 +23,7 @@ class Logo extends React.Component {
     render() {
         return (
             <div>
-                <img
-                    className={logoStyles.logo}
-                    src={this.state.loaded}
-                    alt="Logo"
-                />
+                <img className={styles.logo} src={this.state.loaded} alt="Logo" />
             </div>
         )
     }

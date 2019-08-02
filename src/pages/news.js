@@ -1,17 +1,33 @@
 import React from 'react'
+import styles from './artists.module.scss'
 import Head from '../components/Head'
 import Layout from '../components/Layout'
+import DashboardItem from '../components/DashboardItem'
+import { graphql } from 'gatsby'
 
-const NewsPage = () => (
-    <div>
-        <Head title="News" />
-        <h1>News Page</h1>
-        <p>The News Page is accessible by everyone.</p>
-    </div>
-)
-
-export default () => (
+export default data => (
     <Layout>
-        <NewsPage />
+        <div>
+            <Head title="News" />
+            <div className={styles.container}>
+                {data.data.allArtistJson.edges.map(edge => {
+                    return <DashboardItem key={edge.node.title} {...edge.node} />
+                })}
+            </div>
+        </div>
     </Layout>
 )
+
+export const query = graphql`
+    {
+        allArtistJson {
+            edges {
+                node {
+                    title
+                    thumbnail
+                    body
+                }
+            }
+        }
+    }
+`

@@ -4,7 +4,7 @@ import Navigation from '../Navigation'
 import getFirebase, { FirebaseContext } from '../Firebase'
 import withAuthentication from '../Session/withAuthentication'
 import '../../styles/index.scss'
-import layoutStyles from './index.module.scss'
+import styles from './index.module.scss'
 
 class Layout extends Component {
     state = {
@@ -34,8 +34,8 @@ class Layout extends Component {
 }
 
 const AppWithAuthentication = withAuthentication(({ children }) => (
-    <div className={layoutStyles.container}>
-        <div className={layoutStyles.content}>
+    <div className={styles.container}>
+        <div className={styles.content}>
             <Navigation />
             <hr />
             {children}
