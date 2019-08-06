@@ -3,7 +3,7 @@ import styles from './index.module.scss'
 
 const DashboardItem = ({ title, thumbnail }) => (
     <div>
-        <img src={thumbnail} className={styles.thumbnail} />
+        <img src={thumbnail} alt={title} className={styles.thumbnail} />
         <h4>{title}</h4>
     </div>
 )

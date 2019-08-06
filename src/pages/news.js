@@ -5,12 +5,12 @@ import Layout from '../components/Layout'
 import DashboardItem from '../components/DashboardItem'
 import { graphql } from 'gatsby'
 
-export default data => (
+export default ({ data }) => (
     <Layout>
         <div>
             <Head title="News" />
             <div className={styles.container}>
-                {data.data.allArtistJson.edges.map(edge => {
+                {data.allPodcastJson.edges.concat(data.allArtistJson.edges).map(edge => {
                     return <DashboardItem key={edge.node.title} {...edge.node} />
                 })}
             </div>
@@ -25,7 +25,14 @@ export const query = graphql`
                 node {
                     title
                     thumbnail
-                    body
+                }
+            }
+        }
+        allPodcastJson {
+            edges {
+                node {
+                    title
+                    thumbnail
                 }
             }
         }
