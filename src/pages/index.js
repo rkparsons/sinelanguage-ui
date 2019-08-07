@@ -1,17 +1,40 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+import styles from './artists.module.scss'
 import Head from '../components/Head'
 import Layout from '../components/Layout'
+import DashboardItem from '../components/DashboardItem'
+import { graphql } from 'gatsby'
 
-const LandingPage = () => (
-    <Fragment>
-        <Head title="Landing" />
-        <h1>Landing</h1>
-        <p>The Landing Page is open to everyone, even though the user isn't signed in.</p>
-    </Fragment>
-)
-
-export default () => (
+export default ({ data }) => (
     <Layout>
-        <LandingPage />
+        <div>
+            <Head title="News" />
+            <div className={styles.container}>
+                {data.allPodcastJson.edges.concat(data.allArtistJson.edges).map(edge => {
+                    return <DashboardItem key={edge.node.title} {...edge.node} />
+                })}
+            </div>
+        </div>
     </Layout>
 )
+
+export const query = graphql`
+    {
+        allArtistJson {
+            edges {
+                node {
+                    title
+                    thumbnail
+                }
+            }
+        }
+        allPodcastJson {
+            edges {
+                node {
+                    title
+                    thumbnail
+                }
+            }
+        }
+    }
+`

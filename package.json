@@ -17,6 +17,7 @@
         "build:lambda": "netlify-lambda build src/lambda"
     },
     "dependencies": {
+        "auth0-js": "^9.11.3",
         "core-js": "^2.6.5",
         "dotenv": "^8.0.0",
         "firebase": "^6.0.2",

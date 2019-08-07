@@ -1,15 +1,15 @@
 import React, { Fragment } from 'react'
 import { Link } from 'gatsby'
-import { AuthUserContext } from '../Session'
-import SignOutButton from '../SignOut'
+import SignInButton from '../SignInButton'
+import SignOutButton from '../SignOutButton'
 import * as ROUTES from '../../constants/routes'
-import * as ROLES from '../../constants/roles'
 import headerStyles from './index.module.scss'
+import { isAuthenticated } from '../../utils/auth'
 
 const Navigation = () => (
     <div className={headerStyles.header}>
         <h1>
-            <Link className={headerStyles.title} to={ROUTES.LANDING}>
+            <Link className={headerStyles.title} to={ROUTES.NEWS}>
                 Sine Language Records
             </Link>
         </h1>
@@ -36,30 +36,17 @@ const Navigation = () => (
                 <Link
                     className={headerStyles.navItem}
                     activeClassName={headerStyles.activeNavItem}
-                    to={ROUTES.BLOG}
-                >
-                    Blog
-                </Link>
-            </li>
-            <li>
-                <Link
-                    className={headerStyles.navItem}
-                    activeClassName={headerStyles.activeNavItem}
                     to={ROUTES.CONTACT}
                 >
                     Contact
                 </Link>
             </li>
-            <AuthUserContext.Consumer>
-                {authUser =>
-                    authUser ? <NavigationAuth authUser={authUser} /> : <NavigationNonAuth />
-                }
-            </AuthUserContext.Consumer>
+            {isAuthenticated() ? <NavigationAuth /> : <NavigationNonAuth />}
         </ul>
     </div>
 )
 
-const NavigationAuth = ({ authUser }) => (
+const NavigationAuth = () => (
     <Fragment>
         <li>
             <Link
@@ -70,17 +57,6 @@ const NavigationAuth = ({ authUser }) => (
                 Account
             </Link>
         </li>
-        {!!authUser.roles[ROLES.ADMIN] && (
-            <li>
-                <Link
-                    className={headerStyles.navItem}
-                    activeClassName={headerStyles.activeNavItem}
-                    to={ROUTES.ADMIN}
-                >
-                    Admin
-                </Link>
-            </li>
-        )}
         <li>
             <SignOutButton />
         </li>
@@ -90,13 +66,7 @@ const NavigationAuth = ({ authUser }) => (
 const NavigationNonAuth = () => (
     <Fragment>
         <li>
-            <Link
-                className={headerStyles.navItem}
-                activeClassName={headerStyles.activeNavItem}
-                to={ROUTES.SIGN_IN}
-            >
-                Sign In
-            </Link>
+            <SignInButton />
         </li>
     </Fragment>
 )
