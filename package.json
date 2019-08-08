@@ -14,12 +14,14 @@
         "start:lambda": "netlify-lambda serve src/lambda",
         "build": "run-p build:**",
         "build:app": "gatsby build",
-        "build:lambda": "netlify-lambda build src/lambda"
+        "build:lambda": "netlify-lambda build src/lambda",
+        "bootstrap": "node ./database/bootstrap.js"
     },
     "dependencies": {
         "auth0-js": "^9.11.3",
         "core-js": "^2.6.5",
         "dotenv": "^8.0.0",
+        "faunadb": "^2.7.0",
         "firebase": "^6.0.2",
         "firebase-admin": "^8.0.0",
         "gatsby": "^2.4.3",
