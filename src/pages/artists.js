@@ -1,19 +1,14 @@
 import React from 'react'
-import styles from './artists.module.scss'
 import Head from '../components/Head'
 import Layout from '../components/Layout'
-import DashboardItem from '../components/DashboardItem'
+import Dashboard from '../components/Dashboard'
 import { graphql } from 'gatsby'
 
 export default ({ data }) => (
     <Layout>
         <div>
             <Head title="Artists" />
-            <div className={styles.container}>
-                {data.allArtistJson.edges.map(edge => {
-                    return <DashboardItem key={edge.node.title} {...edge.node} />
-                })}
-            </div>
+            <Dashboard edges={data.allArtistJson.edges} />
         </div>
     </Layout>
 )
@@ -25,7 +20,6 @@ export const query = graphql`
                 node {
                     title
                     thumbnail
-                    body
                 }
             }
         }
