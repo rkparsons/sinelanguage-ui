@@ -32,16 +32,20 @@ collections:
     - label: 'Blog in English'
       name: 'english_posts'
       folder: '_posts'
+      create: true
       filter: { field: 'language', value: 'en' }
       fields:
           - { label: 'Language', name: 'language', widget: 'select', options: ['en', 'es'] }
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Content', name: 'body', widget: 'markdown' }
+          - { label: 'Tagline', name: 'tagline', widget: 'string' }
     - label: 'Blog en Español'
       name: 'spanish_posts'
       folder: '_posts'
+      create: true
       filter: { field: 'language', value: 'es' }
       fields:
           - { label: 'Lenguaje', name: 'language', widget: 'select', options: ['en', 'es'] }
           - { label: 'Titulo', name: 'title', widget: 'string' }
           - { label: 'Contenido', name: 'body', widget: 'markdown' }
+          - { label: 'DifferentField', name: 'differentField', widget: 'string' }
