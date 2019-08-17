@@ -15,7 +15,7 @@ export default ({ data }) => (
 
 export const query = graphql`
     {
-        allDataJson {
+        allDataJson(sort: { fields: [date], order: DESC }) {
             edges {
                 node {
                     title
@@ -25,14 +25,3 @@ export const query = graphql`
         }
     }
 `
-// query {
-//     allPostJson(
-//       filter: { language: { eq: "en" } }
-//     ) {
-//       edges {
-//         node {
-//           title
-//         }
-//       }
-//     }
-//   }
