@@ -11,7 +11,7 @@ class Layout extends Component {
         return (
             <Location>
                 {({ location }) => (
-                    <Flipper flipKey={location.pathname}>
+                    <Flipper flipKey={location.pathname} spring="veryGentle">
                         <App {...this.props} />
                     </Flipper>
                 )}
