@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import Footer from '../Footer'
-import Navigation from '../Navigation'
+import Footer from '../components/Footer'
+import Navigation from '../components/Navigation'
 import { Location } from '@reach/router'
-import '../../styles/index.scss'
+import '../styles/index.scss'
 import styles from './index.module.scss'
 import { Flipper } from 'react-flip-toolkit'
 

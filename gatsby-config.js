@@ -64,11 +64,6 @@ module.exports = {
                     'https://sinelanguage.us3.list-manage.com/subscribe/post?u=51b15e2b803b2c4e70392c5f9&amp;id=b5b38d278a',
             },
         },
-        {
-            resolve: `gatsby-plugin-layout`,
-            options: {
-                component: `./src/components/Layout`,
-            },
-        },
+        `gatsby-plugin-layout`,
     ],
 }

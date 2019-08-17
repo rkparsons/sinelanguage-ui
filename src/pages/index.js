@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from '../components/Head'
 import Dashboard from '../components/Dashboard'
-import { graphql, formatString } from 'gatsby'
+import { graphql } from 'gatsby'
 
 export default ({ data }) => (
     <div>
