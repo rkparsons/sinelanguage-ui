@@ -67,7 +67,7 @@ module.exports = {
         {
             resolve: `gatsby-plugin-layout`,
             options: {
-                component: `${__dirname}/src/components/layout`,
+                component: `./src/components/Layout`,
             },
         },
     ],
