@@ -1,16 +1,13 @@
 import React from 'react'
 import Head from '../components/Head'
-import Layout from '../components/Layout'
 import Dashboard from '../components/Dashboard'
 import { graphql } from 'gatsby'
 
 export default ({ data }) => (
-    <Layout>
-        <div>
-            <Head title="Artists" />
-            <Dashboard data={data} />
-        </div>
-    </Layout>
+    <div>
+        <Head title="Artists" />
+        <Dashboard data={data} isBig={true} />
+    </div>
 )
 
 export const query = graphql`

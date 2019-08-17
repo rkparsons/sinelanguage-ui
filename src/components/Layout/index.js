@@ -1,15 +1,21 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import Footer from '../Footer'
 import Navigation from '../Navigation'
+import { Location } from '@reach/router'
 import '../../styles/index.scss'
 import styles from './index.module.scss'
+import { Flipper } from 'react-flip-toolkit'
 
 class Layout extends Component {
     render() {
         return (
-            <Fragment>
-                <App {...this.props} />
-            </Fragment>
+            <Location>
+                {({ location }) => (
+                    <Flipper flipKey={location.pathname}>
+                        <App {...this.props} />
+                    </Flipper>
+                )}
+            </Location>
         )
     }
 }
