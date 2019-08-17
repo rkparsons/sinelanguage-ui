@@ -11,43 +11,25 @@ collections:
     - name: 'artist'
       extension: json
       label: 'Artist'
-      folder: 'src/data/artist'
+      folder: 'src/data'
       create: true
-      slug: '{{slug}}'
+      filter: { field: 'layout', value: 'artist' }
+      slug: '{{layout}}_{{slug}}'
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'artist' }
           - { label: 'Title', name: 'title', widget: 'string' }
+          - { label: 'Publish Date', name: 'date', widget: 'datetime' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
           - { label: 'Biography', name: 'body', widget: 'markdown' }
     - name: 'podcast'
       extension: json
       label: 'Podcast'
-      folder: 'src/data/podcast'
+      folder: 'src/data'
       create: true
-      slug: '{{slug}}'
+      filter: { field: 'layout', value: 'podcast' }
+      slug: '{{layout}}_{{slug}}'
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'podcast' }
           - { label: 'Title', name: 'title', widget: 'string' }
+          - { label: 'Publish Date', name: 'date', widget: 'datetime' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
-    - label: 'Blog in English'
-      extension: json
-      name: 'english_posts'
-      folder: 'src/data/post'
-      create: true
-      filter: { field: 'language', value: 'en' }
-      fields:
-          - { label: 'Language', name: 'language', widget: 'select', options: ['en', 'es'] }
-          - { label: 'Title', name: 'title', widget: 'string' }
-          - { label: 'Content', name: 'body', widget: 'markdown' }
-          - { label: 'Tagline', name: 'tagline', widget: 'string' }
-    - label: 'Blog en Español'
-      extension: json
-      name: 'spanish_posts'
-      folder: 'src/data/post'
-      create: true
-      filter: { field: 'language', value: 'es' }
-      fields:
-          - { label: 'Lenguaje', name: 'language', widget: 'select', options: ['en', 'es'] }
-          - { label: 'Titulo', name: 'title', widget: 'string' }
-          - { label: 'Contenido', name: 'body', widget: 'markdown' }
-          - { label: 'DifferentField', name: 'differentField', widget: 'string' }

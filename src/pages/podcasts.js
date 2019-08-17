@@ -7,7 +7,7 @@ import { graphql } from 'gatsby'
 export default ({ data }) => (
     <Layout>
         <div>
-            <Head title="News" />
+            <Head title="Podcasts" />
             <Dashboard data={data} />
         </div>
     </Layout>
@@ -15,7 +15,7 @@ export default ({ data }) => (
 
 export const query = graphql`
     {
-        allDataJson {
+        allDataJson(filter: { layout: { eq: "podcast" } }) {
             edges {
                 node {
                     title
@@ -25,14 +25,3 @@ export const query = graphql`
         }
     }
 `
-// query {
-//     allPostJson(
-//       filter: { language: { eq: "en" } }
-//     ) {
-//       edges {
-//         node {
-//           title
-//         }
-//       }
-//     }
-//   }

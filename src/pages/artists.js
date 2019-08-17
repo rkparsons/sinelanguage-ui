@@ -8,14 +8,14 @@ export default ({ data }) => (
     <Layout>
         <div>
             <Head title="Artists" />
-            <Dashboard edges={data.allArtistJson.edges} />
+            <Dashboard data={data} />
         </div>
     </Layout>
 )
 
 export const query = graphql`
     {
-        allArtistJson {
+        allDataJson(filter: { layout: { eq: "artist" } }) {
             edges {
                 node {
                     title
