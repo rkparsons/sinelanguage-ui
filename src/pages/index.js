@@ -6,7 +6,7 @@ import { graphql } from 'gatsby'
 export default ({ data }) => (
     <div>
         <Head title="News" />
-        <Dashboard data={data} isBig={false} />
+        <Dashboard data={data} />
     </div>
 )
 
@@ -15,6 +15,7 @@ export const query = graphql`
         allDataJson(sort: { fields: [date], order: DESC }) {
             edges {
                 node {
+                    id
                     title
                     thumbnail
                 }

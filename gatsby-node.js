@@ -1,3 +1,9 @@
+exports.onCreateNode = ({ node }) => {
+    if (node.internal.type === `DataJson`) {
+        console.log(node.internal.type)
+    }
+}
+
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
     if (stage === 'build-html') {
         /*
