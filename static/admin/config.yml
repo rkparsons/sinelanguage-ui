@@ -33,3 +33,15 @@ collections:
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Publish Date', name: 'date', widget: 'date' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
+    - name: 'release'
+      extension: json
+      label: 'Release'
+      folder: 'src/data'
+      create: true
+      filter: { field: 'layout', value: 'release' }
+      slug: '{{layout}}_{{slug}}'
+      fields:
+          - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'release' }
+          - { label: 'Title', name: 'title', widget: 'string' }
+          - { label: 'Publish Date', name: 'date', widget: 'date' }
+          - { label: 'Image', name: 'thumbnail', widget: 'image' }
