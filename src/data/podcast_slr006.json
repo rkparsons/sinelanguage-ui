@@ -1,6 +1,7 @@
 {
-  "layout": "podcast",
-  "title": "SLR006",
-  "date": "2019-07-02T16:16:54.202Z",
-  "thumbnail": "/images/uploads/slr_006.jpg"
+    "layout": "podcast",
+    "id": "slr006",
+    "title": "Cursor Miner",
+    "date": "2019-07-02T16:16:54.202Z",
+    "thumbnail": "/images/uploads/slr_006.jpg"
 }
