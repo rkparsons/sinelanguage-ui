@@ -6,7 +6,7 @@ import { graphql } from 'gatsby'
 export default ({ data }) => (
     <div>
         <Head title="Artists" />
-        <Dashboard data={data} isBig={true} />
+        <Dashboard data={data} />
     </div>
 )
 
@@ -15,6 +15,7 @@ export const query = graphql`
         allDataJson(filter: { layout: { eq: "artist" } }) {
             edges {
                 node {
+                    id
                     title
                     thumbnail
                 }

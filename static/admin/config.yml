@@ -17,6 +17,7 @@ collections:
       slug: '{{layout}}_{{slug}}'
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'artist' }
+          - { label: 'Url', name: 'url', widget: 'hidden', default: 'artists/{{id}}' }
           - { label: 'Unique Id (No spaces)', name: 'id', widget: 'string' }
           - { label: 'Name', name: 'title', widget: 'string' }
           - { label: 'Publish Date', name: 'date', widget: 'date' }
@@ -31,6 +32,7 @@ collections:
       slug: '{{layout}}_{{slug}}'
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'podcast' }
+          - { label: 'Url', name: 'url', widget: 'hidden', default: 'podcasts/{{id}}' }
           - { label: 'Catalog Number (SLRXXX)', name: 'id', widget: 'string' }
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Publish Date', name: 'date', widget: 'date' }
@@ -44,6 +46,7 @@ collections:
       slug: '{{layout}}_{{slug}}'
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'release' }
+          - { label: 'Url', name: 'url', widget: 'hidden', default: 'releases/{{id}}' }
           - { label: 'Catalog Number (SINEXXX)', name: 'id', widget: 'string' }
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Publish Date', name: 'date', widget: 'date' }
