@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 import styles from './index.module.scss'
 import { Flipped } from 'react-flip-toolkit'
 

@@ -14,7 +14,7 @@ collections:
       folder: 'src/data'
       create: true
       filter: { field: 'layout', value: 'artist' }
-      slug: '{{layout}}_{{slug}}'
+      slug: '{{layout}}_{{id}}'
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'artist' }
           - { label: 'Url', name: 'url', widget: 'hidden', default: 'artists/{{id}}' }
@@ -29,7 +29,7 @@ collections:
       folder: 'src/data'
       create: true
       filter: { field: 'layout', value: 'podcast' }
-      slug: '{{layout}}_{{slug}}'
+      slug: '{{layout}}_{{id}}'
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'podcast' }
           - { label: 'Url', name: 'url', widget: 'hidden', default: 'podcasts/{{id}}' }
@@ -43,7 +43,7 @@ collections:
       folder: 'src/data'
       create: true
       filter: { field: 'layout', value: 'release' }
-      slug: '{{layout}}_{{slug}}'
+      slug: '{{layout}}_{{id}}'
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'release' }
           - { label: 'Url', name: 'url', widget: 'hidden', default: 'releases/{{id}}' }
