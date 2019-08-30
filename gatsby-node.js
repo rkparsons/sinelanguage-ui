@@ -23,6 +23,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 edges {
                     node {
                         id
+                        url
                     }
                 }
             }
@@ -30,10 +31,10 @@ exports.createPages = async ({ graphql, actions }) => {
     `)
     result.data.allDataJson.edges.forEach(({ node }) => {
         createPage({
-            path: `artist/${node.id}`,
+            path: `${node.url}`,
             component: path.resolve(`./src/templates/artist.js`),
             context: {
-                slug: node.id,
+                id: node.id,
             },
         })
     })

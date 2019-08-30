@@ -27,6 +27,7 @@ const Navigation = () => (
                 <Link
                     className={headerStyles.navItem}
                     activeClassName={headerStyles.activeNavItem}
+                    partiallyActive={true}
                     to={ROUTES.ARTISTS}
                 >
                     Artists
@@ -36,6 +37,7 @@ const Navigation = () => (
                 <Link
                     className={headerStyles.navItem}
                     activeClassName={headerStyles.activeNavItem}
+                    partiallyActive={true}
                     to={ROUTES.PODCASTS}
                 >
                     Podcasts
