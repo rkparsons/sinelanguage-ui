@@ -1,0 +1,8 @@
+{
+  "layout": "event",
+  "url": "events/{{id}}",
+  "id": "{{date}}",
+  "title": "Ose, Hanzo, A'Bear + Support",
+  "date": "2019-10-18T17:27:36.236Z",
+  "thumbnail": "/images/uploads/fb_profile.jpg"
+}
