@@ -11,7 +11,7 @@ require('dotenv').config({
     path: `.env.${activeEnv}`,
 })
 
-if (!process.env.FAUNADB_SERVER_SECRET) {
+if (!process.env.GATSBY_FAUNADB_SERVER_SECRET) {
     console.log('No FAUNADB_SERVER_SECRET found')
     console.log('Please run `netlify addons:create fauna-staging` and redeploy')
     return false
@@ -19,7 +19,7 @@ if (!process.env.FAUNADB_SERVER_SECRET) {
 
 console.log(chalk.cyan('Creating your FaunaDB Database...\n'))
 
-createFaunaDB(process.env.FAUNADB_SERVER_SECRET).then(() => {
+createFaunaDB(process.env.GATSBY_FAUNADB_SERVER_SECRET).then(() => {
     console.log('Database created')
 })
 
