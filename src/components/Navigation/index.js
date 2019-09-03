@@ -57,6 +57,16 @@ const Navigation = () => (
                 <Link
                     className={headerStyles.navItem}
                     activeClassName={headerStyles.activeNavItem}
+                    partiallyActive={true}
+                    to={ROUTES.EVENTS}
+                >
+                    Events
+                </Link>
+            </li>
+            <li>
+                <Link
+                    className={headerStyles.navItem}
+                    activeClassName={headerStyles.activeNavItem}
                     to={ROUTES.CONTACT}
                 >
                     Contact

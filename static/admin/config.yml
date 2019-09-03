@@ -23,6 +23,20 @@ collections:
           - { label: 'Publish Date', name: 'date', widget: 'date' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
           - { label: 'Biography', name: 'body', widget: 'markdown' }
+    - name: 'release'
+      extension: json
+      label: 'Release'
+      folder: 'src/data'
+      create: true
+      filter: { field: 'layout', value: 'release' }
+      slug: '{{layout}}_{{slug}}'
+      fields:
+          - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'release' }
+          - { label: 'Url', name: 'url', widget: 'hidden', default: 'releases/{{id}}' }
+          - { label: 'Catalog Number (SINEXXX)', name: 'id', widget: 'string' }
+          - { label: 'Title', name: 'title', widget: 'string' }
+          - { label: 'Publish Date', name: 'date', widget: 'date' }
+          - { label: 'Image', name: 'thumbnail', widget: 'image' }
     - name: 'podcast'
       extension: json
       label: 'Podcast'
@@ -37,17 +51,17 @@ collections:
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Publish Date', name: 'date', widget: 'date' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
-    - name: 'release'
+    - name: 'event'
       extension: json
-      label: 'Release'
+      label: 'Event'
       folder: 'src/data'
       create: true
-      filter: { field: 'layout', value: 'release' }
+      filter: { field: 'layout', value: 'event' }
       slug: '{{layout}}_{{slug}}'
       fields:
-          - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'release' }
-          - { label: 'Url', name: 'url', widget: 'hidden', default: 'releases/{{id}}' }
-          - { label: 'Catalog Number (SINEXXX)', name: 'id', widget: 'string' }
+          - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'event' }
+          - { label: 'Url', name: 'url', widget: 'hidden', default: 'events/{{id}}' }
+          - { label: 'Id', widget: 'hidden', name: 'id', , default: '{{date}}'}
           - { label: 'Title', name: 'title', widget: 'string' }
-          - { label: 'Publish Date', name: 'date', widget: 'date' }
+          - { label: 'Date', name: 'date', widget: 'date' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
