@@ -38,6 +38,16 @@ const Navigation = () => (
                     className={headerStyles.navItem}
                     activeClassName={headerStyles.activeNavItem}
                     partiallyActive={true}
+                    to={ROUTES.RELEASES}
+                >
+                    Releases
+                </Link>
+            </li>
+            <li>
+                <Link
+                    className={headerStyles.navItem}
+                    activeClassName={headerStyles.activeNavItem}
+                    partiallyActive={true}
                     to={ROUTES.PODCASTS}
                 >
                     Podcasts
