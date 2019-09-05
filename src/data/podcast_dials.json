@@ -1,0 +1,8 @@
+{
+  "layout": "podcast",
+  "id": "slr001",
+  "url": "podcasts/{{id}}",
+  "title": "Dials",
+  "date": "2018-06-21T16:51:37.775Z",
+  "thumbnail": "/images/uploads/slr_001.jpg"
+}
