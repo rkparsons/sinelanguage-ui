@@ -66,6 +66,7 @@ collections:
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'event' }
           - { label: 'Url', name: 'url', widget: 'hidden', default: 'events/{{id}}' }
+          - { label: 'Catalog Number', name: 'id', widget: 'string' }
           - { label: 'Title', name: 'title', widget: 'string' }
-          - { label: 'Date', name: 'id', widget: 'date', format: 'YYMMDD' }
+          - { label: 'Date', name: 'date', widget: 'date', format: 'YYMMDD' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }

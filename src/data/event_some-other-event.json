@@ -1,8 +1,0 @@
-{
-  "layout": "event",
-  "url": "events/{{id}}",
-  "id": "12345",
-  "title": "some other event",
-  "date": "190920",
-  "thumbnail": "/images/uploads/fb_profile.jpg"
-}
