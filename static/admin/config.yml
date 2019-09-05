@@ -68,5 +68,5 @@ collections:
           - { label: 'Url', name: 'url', widget: 'hidden', default: 'events/{{id}}' }
           - { label: 'Id', name: 'id', widget: 'hidden', default: '{{date}}' }
           - { label: 'Title', name: 'title', widget: 'string' }
-          - { label: 'Date', name: 'date', widget: 'date', format: 'MMM Do YY' }
+          - { label: 'Date', name: 'date', widget: 'date', format: 'YYMMDD' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
