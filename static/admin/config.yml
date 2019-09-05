@@ -17,8 +17,8 @@ collections:
       slug: '{{layout}}_{{slug}}'
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'artist' }
-          - { label: 'Url', name: 'url', widget: 'hidden', default: 'artists/{{id}}' }
           - { label: 'Unique Id (No spaces)', name: 'id', widget: 'string' }
+          - { label: 'Url', name: 'url', widget: 'hidden', default: 'artists/{{id}}' }
           - { label: 'Name', name: 'title', widget: 'string' }
           - { label: 'Publish Date', name: 'date', widget: 'date' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
@@ -32,13 +32,13 @@ collections:
       slug: '{{layout}}_{{slug}}'
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'release' }
-          - { label: 'Url', name: 'url', widget: 'hidden', default: 'releases/{{id}}' }
           - {
                 label: 'Catalog Number',
                 hint: 'Use the format SINEXXX',
                 name: 'id',
                 widget: 'string',
             }
+          - { label: 'Url', name: 'url', widget: 'hidden', default: 'releases/{{id}}' }
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Publish Date', name: 'date', widget: 'date' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
@@ -51,8 +51,8 @@ collections:
       slug: '{{layout}}_{{slug}}'
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'podcast' }
-          - { label: 'Url', name: 'url', widget: 'hidden', default: 'podcasts/{{id}}' }
           - { label: 'Catalog Number', hint: 'Use the format SLRXXX', name: 'id', widget: 'string' }
+          - { label: 'Url', name: 'url', widget: 'hidden', default: 'podcasts/{{id}}' }
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Publish Date', name: 'date', widget: 'date' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }

@@ -1,8 +1,0 @@
-{
-  "layout": "podcast",
-  "url": "podcasts/{{id}}",
-  "id": "12345",
-  "title": "another",
-  "date": "2019-09-05T16:27:44.261Z",
-  "thumbnail": "/images/uploads/fb_profile.jpg"
-}
