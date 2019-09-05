@@ -33,7 +33,12 @@ collections:
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'release' }
           - { label: 'Url', name: 'url', widget: 'hidden', default: 'releases/{{id}}' }
-          - { label: 'Catalog Number', hint: 'SINEXXX', name: 'id', widget: 'string' }
+          - {
+                label: 'Catalog Number',
+                hint: 'Use the format SINEXXX',
+                name: 'id',
+                widget: 'string',
+            }
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Publish Date', name: 'date', widget: 'date' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
@@ -47,7 +52,7 @@ collections:
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'podcast' }
           - { label: 'Url', name: 'url', widget: 'hidden', default: 'podcasts/{{id}}' }
-          - { label: 'Catalog Number', hint: 'SLRXXX', name: 'id', widget: 'string' }
+          - { label: 'Catalog Number', hint: 'Use the format SLRXXX', name: 'id', widget: 'string' }
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Publish Date', name: 'date', widget: 'date' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
@@ -63,5 +68,5 @@ collections:
           - { label: 'Url', name: 'url', widget: 'hidden', default: 'events/{{id}}' }
           - { label: 'Id', name: 'id', widget: 'hidden', default: '{{date}}' }
           - { label: 'Title', name: 'title', widget: 'string' }
-          - { label: 'Date', name: 'date', widget: 'date' }
+          - { label: 'Date', name: 'date', widget: 'date', format: 'MMM Do YY' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
