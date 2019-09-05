@@ -1,0 +1,8 @@
+{
+  "layout": "event",
+  "url": "events/{{id}}",
+  "id": "{{date}}",
+  "title": "test evebnt",
+  "date": "190913",
+  "thumbnail": "/images/uploads/fb_profile.jpg"
+}
