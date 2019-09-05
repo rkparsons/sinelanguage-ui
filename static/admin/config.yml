@@ -28,17 +28,13 @@ collections:
       label: 'Release'
       folder: 'src/data'
       create: true
+      identifier_field: code
       filter: { field: 'layout', value: 'release' }
       slug: '{{layout}}_{{slug}}'
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'release' }
-          - {
-                label: 'Catalog Number',
-                hint: 'Use the format SINEXXX',
-                name: 'id',
-                widget: 'string',
-            }
-          - { label: 'Url', name: 'url', widget: 'hidden', default: 'releases/{{id}}' }
+          - { label: 'Code', name: 'code', hint: 'e.g. SLRXXX', widget: 'string' }
+          - { label: 'Url', name: 'url', widget: 'hidden', default: 'releases/{{code}}' }
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Publish Date', name: 'date', widget: 'date' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
@@ -51,7 +47,7 @@ collections:
       slug: '{{layout}}_{{slug}}'
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'podcast' }
-          - { label: 'Catalog Number', hint: 'Use the format SLRXXX', name: 'id', widget: 'string' }
+          - { label: 'Catalog Number', hint: 'e.g. SLRXXX', name: 'id', widget: 'string' }
           - { label: 'Url', name: 'url', widget: 'hidden', default: 'podcasts/{{id}}' }
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Publish Date', name: 'date', widget: 'date' }
