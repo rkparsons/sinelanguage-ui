@@ -57,13 +57,8 @@ collections:
       filter: { field: 'layout', value: 'event' }
       slug: '{{layout}}_{{slug}}'
       fields:
-          - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'event' }
-          - {
-                label: 'Id',
-                name: 'id',
-                widget: 'hidden',
-                default: '{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}',
-            }
-          - { label: 'Title', name: 'title', widget: 'string' }
-          - { label: 'Date', name: 'date', widget: 'date', format: 'YYMMDD' }
-          - { label: 'Image', name: 'thumbnail', widget: 'image' }
+          - label: 'Layout', name: 'layout', widget: 'hidden', default: 'event' 
+          - label: 'Id', name: 'id', widget: 'hidden', default: '{{year}}'         
+          - label: 'Title', name: 'title', widget: 'string' 
+          - label: 'Date', name: 'date', widget: 'date', format: 'YYMMDD' 
+          - label: 'Image', name: 'thumbnail', widget: 'image' 

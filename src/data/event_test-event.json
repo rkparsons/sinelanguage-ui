@@ -1,7 +1,0 @@
-{
-  "layout": "event",
-  "id": "{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}",
-  "title": "test event",
-  "date": "190920",
-  "thumbnail": "/images/uploads/fb_profile.jpg"
-}
