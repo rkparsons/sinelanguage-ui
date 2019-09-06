@@ -50,7 +50,7 @@ collections:
           - { label: 'Publish Date', name: 'date', widget: 'date' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
     - name: 'event'
-      extension: json
+      extension: yml
       label: 'Event'
       folder: 'src/data'
       create: true
@@ -58,7 +58,8 @@ collections:
       slug: '{{layout}}_{{slug}}'
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'event' }
-          - { label: 'Catalog Number', name: 'id', widget: 'string' }
+          #prettier-ignore
+          - { label: 'Id', name: 'id', widget: 'hidden', default: "{{date}}" }
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Date', name: 'date', widget: 'date', format: 'YYMMDD' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
