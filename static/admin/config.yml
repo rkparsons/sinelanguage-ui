@@ -61,5 +61,5 @@ collections:
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'event' }
           - { label: 'Title', name: 'title', widget: 'string' }
-          - { label: 'Date', name: 'date', widget: 'date', format: 'YYMMDD' }
+          - { label: 'Date', name: 'date', widget: 'date', format: 'YYYY-MM-DD' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
