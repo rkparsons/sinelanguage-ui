@@ -18,8 +18,7 @@ collections:
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'artist' }
           - { label: 'Name', name: 'title', widget: 'string' }
-          # fix date format
-          - { label: 'Publish Date', name: 'date', widget: 'date' }
+          - { label: 'Publish Date', name: 'date', widget: 'date', format: 'YYYY-MM-DD' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
           - { label: 'Biography', name: 'body', widget: 'markdown' }
     - name: 'release'
@@ -34,7 +33,7 @@ collections:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'release' }
           - { label: 'Code', name: 'code', hint: 'e.g. SINEXXX', widget: 'string' }
           - { label: 'Title', name: 'title', widget: 'string' }
-          - { label: 'Publish Date', name: 'date', widget: 'date' }
+          - { label: 'Publish Date', name: 'date', format: 'YYYY-MM-DD', widget: 'date' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
     - name: 'podcast'
       extension: json
@@ -48,7 +47,7 @@ collections:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'release' }
           - { label: 'Code', name: 'code', hint: 'e.g. SINEXXX', widget: 'string' }
           - { label: 'Title', name: 'title', widget: 'string' }
-          - { label: 'Publish Date', name: 'date', widget: 'date' }
+          - { label: 'Publish Date', name: 'date', format: 'YYYY-MM-DD', widget: 'date' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
     - name: 'event'
       extension: json
