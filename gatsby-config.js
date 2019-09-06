@@ -24,7 +24,8 @@ module.exports = {
     },
     siteMetadata: {
         title: 'Sine Language Records',
-        author: 'Richard Parsons',
+        description:
+            'Sine Language Records is an independent label specialising in electronica and left-field dance music.',
     },
     plugins: [
         {
