@@ -32,7 +32,7 @@ collections:
       slug: '{{layout}}_{{slug}}'
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'release' }
-          - { label: 'Code', name: 'code', hint: 'e.g. SINEXXX', widget: 'string' }
+          - { label: 'Code', name: 'id', hint: 'e.g. SINEXXX', widget: 'string' }
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Publish Date', name: 'date', widget: 'date' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
@@ -45,7 +45,7 @@ collections:
       slug: '{{layout}}_{{slug}}'
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'release' }
-          - { label: 'Code', name: 'code', hint: 'e.g. SINEXXX', widget: 'string' }
+          - { label: 'Code', name: 'id', hint: 'e.g. SINEXXX', widget: 'string' }
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Publish Date', name: 'date', widget: 'date' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
@@ -58,7 +58,12 @@ collections:
       slug: '{{layout}}_{{slug}}'
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'event' }
+          - {
+                label: 'Id',
+                name: 'id',
+                widget: 'hidden',
+                default: '{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}',
+            }
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Date', name: 'date', widget: 'date', format: 'YYMMDD' }
-          - { label: 'Id', name: 'id', widget: 'date', format: 'YYMMDD', default: '{{date}}' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
