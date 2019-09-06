@@ -24,7 +24,6 @@ exports.createPages = async ({ graphql, actions }) => {
                     node {
                         id
                         layout
-                        url
                     }
                 }
             }
@@ -32,7 +31,7 @@ exports.createPages = async ({ graphql, actions }) => {
     `)
     result.data.allDataJson.edges.forEach(({ node }) => {
         createPage({
-            path: `${node.url}`,
+            path: `${node.layout}s/${node.id}`,
             component: path.resolve(`./src/templates/${node.layout}.js`),
             context: {
                 id: node.id,

@@ -1,9 +1,0 @@
-{
-  "layout": "artist",
-  "id": "{{slug}}",
-  "url": "artists/{{id}}",
-  "title": "Test Artist",
-  "date": "2019-09-18T07:38:11.193Z",
-  "thumbnail": "/images/uploads/fb_profile.jpg",
-  "body": "testing"
-}

@@ -16,7 +16,7 @@ export const query = graphql`
             edges {
                 node {
                     id
-                    url
+                    layout
                     title
                     thumbnail
                 }
