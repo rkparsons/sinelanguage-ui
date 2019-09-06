@@ -46,7 +46,7 @@ collections:
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'release' }
           - { label: 'Code', name: 'code', hint: 'e.g. SINEXXX', widget: 'string' }
-          - { label: 'Title', name: 'title', widget: 'string' }
+          - { label: 'Artist', name: 'artist', widget: 'string' }
           - { label: 'Publish Date', name: 'date', format: 'YYYY-MM-DD', widget: 'date' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
     - name: 'event'

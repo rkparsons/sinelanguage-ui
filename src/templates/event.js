@@ -7,7 +7,7 @@ export default ({ data }) => {
 
     return (
         <div>
-            <Head title="Event" />
+            <Head title={title} />
             <h1>{title}</h1>
         </div>
     )

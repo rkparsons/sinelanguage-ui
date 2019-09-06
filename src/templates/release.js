@@ -7,7 +7,7 @@ export default ({ data }) => {
 
     return (
         <div>
-            <Head title="Release" />
+            <Head title={title} />
             <h1>{title}</h1>
             <img src={thumbnail} alt={title} />
         </div>
