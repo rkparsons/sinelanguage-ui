@@ -17,8 +17,8 @@ collections:
       slug: '{{layout}}_{{slug}}'
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'artist' }
-          - { label: 'Unique Id (No spaces)', name: 'id', widget: 'string' }
           - { label: 'Name', name: 'title', widget: 'string' }
+          # fix date format
           - { label: 'Publish Date', name: 'date', widget: 'date' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
           - { label: 'Biography', name: 'body', widget: 'markdown' }
@@ -32,7 +32,7 @@ collections:
       slug: '{{layout}}_{{slug}}'
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'release' }
-          - { label: 'Code', name: 'id', hint: 'e.g. SINEXXX', widget: 'string' }
+          - { label: 'Code', name: 'code', hint: 'e.g. SINEXXX', widget: 'string' }
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Publish Date', name: 'date', widget: 'date' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
@@ -41,11 +41,12 @@ collections:
       label: 'Podcast'
       folder: 'src/data'
       create: true
+      identifier_field: code
       filter: { field: 'layout', value: 'podcast' }
       slug: '{{layout}}_{{slug}}'
       fields:
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'release' }
-          - { label: 'Code', name: 'id', hint: 'e.g. SINEXXX', widget: 'string' }
+          - { label: 'Code', name: 'code', hint: 'e.g. SINEXXX', widget: 'string' }
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Publish Date', name: 'date', widget: 'date' }
           - { label: 'Image', name: 'thumbnail', widget: 'image' }
@@ -54,24 +55,11 @@ collections:
       label: 'Event'
       folder: 'src/data'
       create: true
+      identifier_field: date
       filter: { field: 'layout', value: 'event' }
       slug: '{{layout}}_{{slug}}'
       fields:
-          - label: 'Layout'
-            name: 'layout'
-            widget: 'hidden'
-            default: 'event'
-          - label: 'Id'
-            name: 'id'
-            widget: 'hidden'
-            default: '{{year}}'
-          - label: 'Title'
-            name: 'title'
-            widget: 'string'
-          - label: 'Date'
-            name: 'date'
-            widget: 'date'
-            format: 'YYMMDD'
-          - label: 'Image'
-            name: 'thumbnail'
-            widget: 'image'
+          - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'event' }
+          - { label: 'Title', name: 'title', widget: 'string' }
+          - { label: 'Date', name: 'date', widget: 'date', format: 'YYMMDD' }
+          - { label: 'Image', name: 'thumbnail', widget: 'image' }

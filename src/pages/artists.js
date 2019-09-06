@@ -15,8 +15,10 @@ export const query = graphql`
         allDataJson(filter: { layout: { eq: "artist" } }) {
             edges {
                 node {
-                    id
-                    layout
+                    fields {
+                        id
+                        url
+                    }
                     title
                     thumbnail
                 }

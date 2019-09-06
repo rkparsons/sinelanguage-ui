@@ -15,7 +15,7 @@ export default ({ data }) => {
 
 export const query = graphql`
     query($id: String!) {
-        dataJson(id: { eq: $id }) {
+        dataJson(fields: { id: { eq: $id } }) {
             title
         }
     }

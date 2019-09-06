@@ -15,8 +15,10 @@ export const query = graphql`
         allDataJson(filter: { layout: { eq: "event" } }, sort: { fields: [date], order: DESC }) {
             edges {
                 node {
-                    id
-                    layout
+                    fields {
+                        id
+                        url
+                    }
                     title
                     thumbnail
                 }

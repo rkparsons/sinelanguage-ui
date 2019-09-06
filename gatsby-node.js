@@ -1,4 +1,5 @@
 const path = require(`path`)
+const { createFilePath } = require('gatsby-source-filesystem')
 
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
     if (stage === 'build-html') {
@@ -15,6 +16,25 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
     }
 }
 
+exports.onCreateNode = ({ node, getNode, actions }) => {
+    const { createNodeField } = actions
+    if (node.internal.type === `DataJson`) {
+        const slug = createFilePath({ node, getNode }).slice(1, -1)
+        const urlParts = slug.split('_')
+
+        createNodeField({
+            node,
+            name: `id`,
+            value: slug,
+        })
+        createNodeField({
+            node,
+            name: `url`,
+            value: `${urlParts[0]}s/${urlParts[1]}`,
+        })
+    }
+}
+
 exports.createPages = async ({ graphql, actions }) => {
     const { createPage } = actions
     const result = await graphql(`
@@ -22,7 +42,10 @@ exports.createPages = async ({ graphql, actions }) => {
             allDataJson {
                 edges {
                     node {
-                        id
+                        fields {
+                            id
+                            url
+                        }
                         layout
                     }
                 }
@@ -31,10 +54,10 @@ exports.createPages = async ({ graphql, actions }) => {
     `)
     result.data.allDataJson.edges.forEach(({ node }) => {
         createPage({
-            path: `${node.layout}s/${node.id}`,
+            path: `${node.fields.url}`,
             component: path.resolve(`./src/templates/${node.layout}.js`),
             context: {
-                id: node.id,
+                id: node.fields.id,
             },
         })
     })
