@@ -5,7 +5,7 @@ import DashboardItem from '../DashboardItem'
 export default ({ data }) => (
     <div className={styles.container}>
         {data.allDataJson.edges.map(edge => (
-            <DashboardItem key={edge.node.id} {...edge.node} />
+            <DashboardItem key={edge.node.fields.id} {...edge.node} />
         ))}
     </div>
 )
