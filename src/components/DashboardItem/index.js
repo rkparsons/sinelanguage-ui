@@ -18,6 +18,7 @@ export default ({ fields, title }) => {
         </Flipped>
     )
 }
+
 export const dashboardItemFragment = graphql`
     fragment dashboardItemFragment on DataJson {
         fields {
@@ -26,7 +27,7 @@ export const dashboardItemFragment = graphql`
             responsiveThumbnail {
                 childImageSharp {
                     fluid {
-                        ...GatsbyImageSharpFluid
+                        ...GatsbyImageSharpFluid_tracedSVG
                     }
                 }
             }
