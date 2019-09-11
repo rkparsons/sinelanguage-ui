@@ -1,18 +1,14 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import { Flipped } from 'react-flip-toolkit'
-import Img from 'gatsby-image'
-import styles from './index.module.scss'
+import SquareImage from '../SquareImage'
 import { graphql } from 'gatsby'
 
 export default ({ fields, title }) => {
     return (
         <Flipped flipId={fields.id}>
             <Link to={`/${fields.url}`}>
-                <Img
-                    fluid={fields.responsiveThumbnail.childImageSharp.fluid}
-                    className={styles.thumbnail}
-                />
+                <SquareImage fields={fields} />
                 <h4>{title}</h4>
             </Link>
         </Flipped>

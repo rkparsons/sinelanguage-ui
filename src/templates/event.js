@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Head from '../components/Head'
-import Img from 'gatsby-image'
+import SquareImage from '../components/SquareImage'
 
 export default ({ data }) => {
     var { fields, title } = data.dataJson
@@ -10,7 +10,7 @@ export default ({ data }) => {
         <div>
             <Head title={title} />
             <h1>{title}</h1>
-            <Img fluid={fields.responsiveThumbnail.childImageSharp.fluid} />
+            <SquareImage fields={fields} />
         </div>
     )
 }
