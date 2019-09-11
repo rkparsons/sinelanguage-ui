@@ -26,7 +26,7 @@ export const dashboardItemFragment = graphql`
             responsiveThumbnail {
                 childImageSharp {
                     fluid {
-                        ...GatsbyImageSharpFluid
+                        ...GatsbyImageSharpFluid_tracedSVG
                     }
                 }
             }
