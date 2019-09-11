@@ -11,7 +11,17 @@ class Layout extends Component {
         return (
             <Location>
                 {({ location }) => (
-                    <Flipper flipKey={location.pathname} spring="veryGentle">
+                    <Flipper
+                        flipKey={location.pathname}
+                        spring="veryGentle"
+                        decisionData
+                        staggerConfig={{
+                            default: {
+                                speed: 0.5,
+                            },
+                            namedStagger: { speed: 0.2 },
+                        }}
+                    >
                         <App {...this.props} />
                     </Flipper>
                 )}

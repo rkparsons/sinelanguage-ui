@@ -6,13 +6,13 @@ import { graphql } from 'gatsby'
 export default ({ data }) => (
     <div>
         <Head title="Artists" />
-        <Dashboard data={data} />
+        <Dashboard data={data} filter="artist" />
     </div>
 )
 
 export const query = graphql`
     {
-        allDataJson(filter: { layout: { eq: "artist" } }) {
+        allDataJson(sort: { fields: [date], order: DESC }) {
             edges {
                 node {
                     ...dashboardItemFragment
