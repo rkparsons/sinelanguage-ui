@@ -13,7 +13,7 @@ CMS.init({
             repo: 'rkparsons/sinelanguage-ui',
             branch: 'master',
         },
-        media_folder: 'src/cms/media',
+        media_folder: 'static/images/uploads',
         public_folder: '/images/uploads',
         site_url: 'https://sinelanguage-ui.netlify.com',
         logo_url: 'https://sinelanguage-ui.netlify.com/images/logo.jpg',
