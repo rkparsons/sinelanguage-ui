@@ -15,19 +15,7 @@ export const query = graphql`
         allDataJson(filter: { layout: { eq: "artist" } }) {
             edges {
                 node {
-                    fields {
-                        id
-                        url
-                        responsiveThumbnail {
-                            childImageSharp {
-                                fluid(maxWidth: 1000) {
-                                    ...GatsbyImageSharpFluid_tracedSVG
-                                }
-                            }
-                        }
-                    }
-                    title
-                    thumbnail
+                    ...dashboardItemFragment
                 }
             }
         }

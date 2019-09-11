@@ -1,26 +1,36 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import styles from './index.module.scss'
 import { Flipped } from 'react-flip-toolkit'
 import Img from 'gatsby-image'
+import styles from './index.module.scss'
+import { graphql } from 'gatsby'
 
-const DashboardItem = ({ fields, title, thumbnail }) => {
-    console.log(fields.responsiveThumbnail)
+export default ({ fields, title }) => {
     return (
         <Flipped flipId={fields.id}>
             <Link to={`/${fields.url}`}>
-                {fields.responsiveThumbnail.childImageSharp ? (
-                    <Img
-                        fluid={fields.responsiveThumbnail.childImageSharp.fluid}
-                        className={styles.thumbnail}
-                    />
-                ) : (
-                    <img src={thumbnail} alt={title} className={styles.thumbnail} />
-                )}
+                <Img
+                    fluid={fields.responsiveThumbnail.childImageSharp.fluid}
+                    className={styles.thumbnail}
+                />
                 <h4>{title}</h4>
             </Link>
         </Flipped>
     )
 }
-
-export default DashboardItem
+export const dashboardItemFragment = graphql`
+    fragment dashboardItemFragment on DataJson {
+        fields {
+            id
+            url
+            responsiveThumbnail {
+                childImageSharp {
+                    fluid {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }
+        }
+        title
+    }
+`

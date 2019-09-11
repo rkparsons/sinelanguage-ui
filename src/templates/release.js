@@ -1,15 +1,16 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Head from '../components/Head'
+import Img from 'gatsby-image'
 
 export default ({ data }) => {
-    var { thumbnail, title } = data.dataJson
+    var { fields, title } = data.dataJson
 
     return (
         <div>
             <Head title={title} />
             <h1>{title}</h1>
-            <img src={thumbnail} alt={title} />
+            <Img fluid={fields.responsiveThumbnail.childImageSharp.fluid} />
         </div>
     )
 }
@@ -17,8 +18,7 @@ export default ({ data }) => {
 export const query = graphql`
     query($id: String!) {
         dataJson(fields: { id: { eq: $id } }) {
-            title
-            thumbnail
+            ...dashboardItemFragment
         }
     }
 `

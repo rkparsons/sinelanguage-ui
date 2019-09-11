@@ -15,19 +15,7 @@ export const query = graphql`
         allDataJson(sort: { fields: [date], order: DESC }) {
             edges {
                 node {
-                    fields {
-                        id
-                        url
-                        responsiveThumbnail {
-                            childImageSharp {
-                                fluid(maxWidth: 1000) {
-                                    ...GatsbyImageSharpFluid_tracedSVG
-                                }
-                            }
-                        }
-                    }
-                    title
-                    thumbnail
+                    ...dashboardItemFragment
                 }
             }
         }
