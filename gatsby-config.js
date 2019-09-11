@@ -29,6 +29,15 @@ module.exports = {
     },
     plugins: [
         {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                name: `images`,
+                path: `${__dirname}/static/images/uploads`,
+            },
+        },
+        `gatsby-transformer-sharp`,
+        `gatsby-plugin-sharp`,
+        {
             resolve: `gatsby-plugin-netlify-cms`,
             options: {
                 enableIdentityWidget: true,

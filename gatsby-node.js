@@ -18,6 +18,7 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
     const { createNodeField } = actions
+
     if (node.internal.type === `DataJson`) {
         const slug = createFilePath({ node, getNode }).slice(1, -1)
         const urlParts = slug.split('_')
@@ -31,6 +32,11 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
             node,
             name: `url`,
             value: `${urlParts[0]}s/${urlParts[1]}`,
+        })
+        createNodeField({
+            node,
+            name: `responsiveThumbnail`,
+            value: `../../static${node.thumbnail}`,
         })
     }
 }
