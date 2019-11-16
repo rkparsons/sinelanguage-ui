@@ -16,7 +16,9 @@
         "build:app": "gatsby build",
         "build:lambda": "netlify-lambda build src/lambda",
         "bootstrap": "node ./database/bootstrap.js",
+        "type-check": "tsc",
         "lint": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx",
+        "lint:fix": "npm run lint --fix",
         "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md|vue)\""
     },
     "eslintConfig": {
@@ -35,15 +37,20 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged"
+            "pre-commit": "npm run type-check && lint-staged"
         }
     },
     "lint-staged": {
-        "*.+(js|jsx)": [
-            "eslint --fix",
+        "*.{js,jsx,ts,tsx}": [
+            "npm run lint:fix",
             "git add"
         ],
-        "*.+(json|css|html|md)": [
+        "*.scss": [
+            "prettier --write",
+            "lint --fix",
+            "git add"
+        ],
+        "{*.{json,md}}": [
             "prettier --write",
             "git add"
         ]
