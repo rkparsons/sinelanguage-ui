@@ -15,17 +15,7 @@
         "build": "run-p build:**",
         "build:app": "gatsby build",
         "build:lambda": "netlify-lambda build src/lambda",
-        "bootstrap": "node ./database/bootstrap.js",
-        "type-check": "tsc",
-        "lint": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx",
-        "lint:fix": "npm run lint --fix",
-        "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md|vue)\""
-    },
-    "eslintConfig": {
-        "extends": [
-            "react-app",
-            "plugin:prettier/recommended"
-        ]
+        "bootstrap": "node ./database/bootstrap.js"
     },
     "prettier": {
         "endOfLine": "auto",
@@ -35,28 +25,7 @@
         "trailingComma": "es5",
         "printWidth": 100
     },
-    "husky": {
-        "hooks": {
-            "pre-commit": "npm run type-check && lint-staged"
-        }
-    },
-    "lint-staged": {
-        "*.{js,jsx,ts,tsx}": [
-            "npm run lint:fix",
-            "git add"
-        ],
-        "*.scss": [
-            "prettier --write",
-            "lint --fix",
-            "git add"
-        ],
-        "{*.{json,md}}": [
-            "prettier --write",
-            "git add"
-        ]
-    },
     "dependencies": {
-        "@types/auth0-js": "^9.10.6",
         "auth0-js": "^9.11.3",
         "dotenv": "^8.1.0",
         "faunadb": "^2.8.0",
@@ -69,6 +38,7 @@
         "gatsby-plugin-sass": "^2.1.13",
         "gatsby-plugin-sharp": "^2.2.21",
         "gatsby-plugin-typescript": "^2.1.18",
+        "gatsby-plugin-typescript-checker": "^1.1.1",
         "gatsby-source-filesystem": "^2.1.21",
         "gatsby-transformer-json": "^2.2.7",
         "gatsby-transformer-sharp": "^2.2.14",
@@ -80,28 +50,14 @@
         "react-helmet": "^5.2.1"
     },
     "devDependencies": {
+        "@types/auth0-js": "^9.10.6",
+        "@types/node": "^12.12.8",
         "@types/react": "^16.9.11",
         "@types/react-dom": "^16.9.4",
-        "@typescript-eslint/eslint-plugin": "^2.7.0",
-        "@typescript-eslint/parser": "^2.7.0",
-        "babel-eslint": "^10.0.3",
         "env-cmd": "^9.0.3",
-        "eslint": "^6.6.0",
-        "eslint-config-prettier": "^6.5.0",
-        "eslint-config-react-app": "^5.0.2",
-        "eslint-loader": "^3.0.2",
-        "eslint-plugin-flowtype": "^3.13.0",
-        "eslint-plugin-import": "^2.18.2",
-        "eslint-plugin-jsx-a11y": "^6.2.3",
-        "eslint-plugin-prettier": "^3.1.1",
-        "eslint-plugin-react": "^7.16.0",
-        "eslint-plugin-react-hooks": "^1.7.0",
-        "gatsby-plugin-eslint": "^2.0.8",
         "http-proxy-middleware": "^0.19.1",
-        "lint-staged": "^9.4.3",
         "netlify-lambda": "^1.4.13",
         "npm-run-all": "^4.1.5",
-        "prettier": "^1.19.1",
         "typescript": "^3.7.2"
     }
 }
