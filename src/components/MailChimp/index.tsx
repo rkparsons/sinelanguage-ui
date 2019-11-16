@@ -9,13 +9,13 @@ class MailChimp extends React.Component {
         msg: undefined,
     }
 
-    updateEmail = event => {
+    updateEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({ result: undefined })
         this.setState({ msg: undefined })
         this.setState({ email: event.target.value })
     }
 
-    handleSubmit = async e => {
+    handleSubmit = async (e: React.FormEvent<HTMLInputElement>) => {
         e.preventDefault()
         const { result, msg } = await addToMailchimp(this.state.email, this.state.listFields)
 
