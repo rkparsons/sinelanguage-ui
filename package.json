@@ -15,7 +15,8 @@
         "build": "run-p build:**",
         "build:app": "gatsby build",
         "build:lambda": "netlify-lambda build src/lambda",
-        "bootstrap": "node ./database/bootstrap.js"
+        "bootstrap": "node ./database/bootstrap.js",
+        "lint": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx"
     },
     "dependencies": {
         "auth0-js": "^9.11.3",
@@ -29,6 +30,7 @@
         "gatsby-plugin-react-helmet": "^3.1.6",
         "gatsby-plugin-sass": "^2.1.13",
         "gatsby-plugin-sharp": "^2.2.21",
+        "gatsby-plugin-typescript": "^2.1.18",
         "gatsby-source-filesystem": "^2.1.21",
         "gatsby-transformer-json": "^2.2.7",
         "gatsby-transformer-sharp": "^2.2.14",
@@ -40,9 +42,26 @@
         "react-helmet": "^5.2.1"
     },
     "devDependencies": {
+        "@types/react": "^16.9.11",
+        "@types/react-dom": "^16.9.4",
+        "@typescript-eslint/eslint-plugin": "^2.7.0",
+        "@typescript-eslint/parser": "^2.7.0",
+        "babel-eslint": "^10.0.3",
         "env-cmd": "^9.0.3",
+        "eslint": "^6.6.0",
+        "eslint-config-prettier": "^6.5.0",
+        "eslint-config-react-app": "^5.0.2",
+        "eslint-plugin-flowtype": "^3.13.0",
+        "eslint-plugin-import": "^2.18.2",
+        "eslint-plugin-jsx-a11y": "^6.2.3",
+        "eslint-plugin-prettier": "^3.1.1",
+        "eslint-plugin-react": "^7.16.0",
+        "eslint-plugin-react-hooks": "^1.7.0",
+        "gatsby-plugin-eslint": "^2.0.8",
         "http-proxy-middleware": "^0.19.1",
         "netlify-lambda": "^1.4.13",
-        "npm-run-all": "^4.1.5"
+        "npm-run-all": "^4.1.5",
+        "prettier": "^1.19.1",
+        "typescript": "^3.7.2"
     }
 }

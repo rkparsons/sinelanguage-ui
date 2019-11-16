@@ -1,6 +1,6 @@
 const proxy = require('http-proxy-middleware')
 
-let activeEnv = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development'
+const activeEnv = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development'
 
 console.log(`Using environment config: ${activeEnv}`)
 
@@ -28,6 +28,8 @@ module.exports = {
             'Sine Language Records is an independent label specialising in electronica and left-field dance music.',
     },
     plugins: [
+        `gatsby-plugin-typescript`,
+        'gatsby-plugin-eslint',
         {
             resolve: `gatsby-source-filesystem`,
             options: {
@@ -57,7 +59,7 @@ module.exports = {
             options: {
                 name: `data`,
                 path: `${__dirname}/src/data/`,
-                ignore: [`**/\.*`],
+                ignore: [`**/.*`],
             },
         },
         `gatsby-transformer-json`,
