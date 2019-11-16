@@ -4,20 +4,20 @@ import { navigate } from 'gatsby'
 
 const isBrowser = typeof window !== 'undefined'
 
-const auth = isBrowser
+const auth: auth0.WebAuth | null = isBrowser
     ? new auth0.WebAuth({
-          domain: process.env.GATSBY_AUTH0_DOMAIN,
-          clientID: process.env.GATSBY_AUTH0_CLIENTID,
+          domain: process.env.GATSBY_AUTH0_DOMAIN!,
+          clientID: process.env.GATSBY_AUTH0_CLIENTID!,
           redirectUri: process.env.GATSBY_AUTH0_CALLBACK,
           responseType: 'token id_token',
           scope: 'openid profile email',
       })
-    : {}
+    : null
 
 const tokens = {
-    accessToken: false,
-    idToken: false,
-    expiresAt: false,
+    accessToken: null,
+    idToken: null,
+    expiresAt: null,
 }
 
 let user = {}
@@ -35,10 +35,13 @@ export const login = () => {
         return
     }
 
-    auth.authorize()
+    auth && auth.authorize()
 }
 
-const setSession = (cb = () => {}) => (err, authResult) => {
+const setSession = (cb = () => {}) => (
+    err: auth0.Auth0Error,
+    authResult: auth0.Auth0DecodedHash
+) => {
     if (err) {
         navigate('/')
         cb()
@@ -59,7 +62,7 @@ const setSession = (cb = () => {}) => (err, authResult) => {
 
 export const silentAuth = callback => {
     if (!isAuthenticated()) return callback()
-    auth.checkSession({}, setSession(callback))
+    auth && auth.checkSession({}, setSession(callback))
 }
 
 export const handleAuthentication = () => {
@@ -67,7 +70,7 @@ export const handleAuthentication = () => {
         return
     }
 
-    auth.parseHash(setSession())
+    auth && auth.parseHash(setSession())
 }
 
 export const getProfile = () => {
@@ -77,5 +80,5 @@ export const getProfile = () => {
 export const logout = returnUrl => {
     console.log(returnUrl)
     localStorage.setItem('isLoggedIn', false)
-    auth.logout({ returnTo: returnUrl })
+    auth && auth.logout({ returnTo: returnUrl })
 }
