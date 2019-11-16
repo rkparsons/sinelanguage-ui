@@ -15,7 +15,7 @@ class MailChimp extends React.Component {
         this.setState({ email: event.target.value })
     }
 
-    handleSubmit = async (e: React.FormEvent<HTMLInputElement>) => {
+    handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const { result, msg } = await addToMailchimp(this.state.email, this.state.listFields)
 
