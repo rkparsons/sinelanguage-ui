@@ -15,8 +15,7 @@
         "build": "run-p build:**",
         "build:app": "gatsby build",
         "build:lambda": "netlify-lambda build src/lambda",
-        "bootstrap": "node ./database/bootstrap.js",
-        "lint": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx"
+        "bootstrap": "node ./database/bootstrap.js"
     },
     "dependencies": {
         "auth0-js": "^9.11.3",
