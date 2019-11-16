@@ -29,7 +29,7 @@ module.exports = {
     },
     plugins: [
         `gatsby-plugin-typescript`,
-        'gatsby-plugin-eslint',
+        `gatsby-plugin-eslint`,
         {
             resolve: `gatsby-source-filesystem`,
             options: {
