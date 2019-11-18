@@ -4,9 +4,8 @@ import { Flipped } from 'react-flip-toolkit'
 import styles from './index.module.scss'
 import SquareImage from '../SquareImage'
 
-export default ({ type, name, uid, published_date, image }) => {
-    // const isVisible = !filter || filter === layout
-    const isVisible = true
+export default ({ type, name, uid, image, filter }) => {
+    const isVisible = !filter || filter === type
 
     return (
         <Flipped flipId={uid} stagger opacity translate={false}>

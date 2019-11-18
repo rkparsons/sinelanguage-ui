@@ -1,23 +1,11 @@
 import React from 'react'
-import Head from '../components/Head'
 import Dashboard from '../components/Dashboard'
 import { graphql } from 'gatsby'
 
-export default ({ data }) => (
-    <div>
-        <Head title="Events" />
-        <Dashboard data={data} filter="event" />
-    </div>
-)
+export default ({ data }) => <Dashboard {...data} filter="Event" />
 
-// export const query = graphql`
-//     {
-//         allDataJson(sort: { fields: [date], order: DESC }) {
-//             edges {
-//                 node {
-//                     ...dashboardItemFragment
-//                 }
-//             }
-//         }
-//     }
-// `
+export const query = graphql`
+    {
+        ...dashboardFragment
+    }
+`
