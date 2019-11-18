@@ -8,11 +8,6 @@ import { isAuthenticated } from '../../utils/auth'
 
 const Navigation = () => (
     <div className={headerStyles.header}>
-        <h1>
-            <Link className={headerStyles.title} to={ROUTES.NEWS}>
-                Sine Language Records
-            </Link>
-        </h1>
         <ul className={headerStyles.navList}>
             <li>
                 <Link
