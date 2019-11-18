@@ -14,11 +14,7 @@ const auth: auth0.WebAuth | null = isBrowser
       })
     : null
 
-const tokens = {
-    accessToken: null,
-    idToken: null,
-    expiresAt: null,
-}
+let accessToken: string, idToken: string, expiresAt: number
 
 let user = {}
 
@@ -38,10 +34,8 @@ export const login = () => {
     auth && auth.authorize()
 }
 
-const setSession = (cb = () => {}) => (
-    err: auth0.Auth0Error,
-    authResult: auth0.Auth0DecodedHash
-) => {
+// todo: remove any type
+const setSession = (cb = () => {}) => (err: any, authResult: any) => {
     if (err) {
         navigate('/')
         cb()
@@ -49,18 +43,18 @@ const setSession = (cb = () => {}) => (
     }
 
     if (authResult && authResult.accessToken && authResult.idToken) {
-        let expiresAt = authResult.expiresIn * 1000 + new Date().getTime()
-        tokens.accessToken = authResult.accessToken
-        tokens.idToken = authResult.idToken
-        tokens.expiresAt = expiresAt
+        let expiresAt = authResult.expiresIn! * 1000 + new Date().getTime()
+        accessToken = authResult.accessToken
+        idToken = authResult.idToken
+        expiresAt = expiresAt
         user = authResult.idTokenPayload
-        localStorage.setItem('isLoggedIn', true)
+        localStorage.setItem('isLoggedIn', 'true')
         navigate('/account')
         cb()
     }
 }
 
-export const silentAuth = callback => {
+export const silentAuth = (callback: () => void) => {
     if (!isAuthenticated()) return callback()
     auth && auth.checkSession({}, setSession(callback))
 }
@@ -77,8 +71,8 @@ export const getProfile = () => {
     return user
 }
 
-export const logout = returnUrl => {
+export const logout = (returnUrl: string) => {
     console.log(returnUrl)
-    localStorage.setItem('isLoggedIn', false)
+    localStorage.setItem('isLoggedIn', 'false')
     auth && auth.logout({ returnTo: returnUrl })
 }
