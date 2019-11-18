@@ -1,5 +1,4 @@
 const path = require(`path`)
-const { createFilePath } = require('gatsby-source-filesystem')
 
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
     if (stage === 'build-html') {
@@ -16,54 +15,32 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
     }
 }
 
-exports.onCreateNode = ({ node, getNode, actions }) => {
-    const { createNodeField } = actions
-
-    if (node.internal.type === `DataJson`) {
-        const slug = createFilePath({ node, getNode }).slice(1, -1)
-        const urlParts = slug.split('_')
-
-        createNodeField({
-            node,
-            name: `id`,
-            value: slug,
-        })
-        createNodeField({
-            node,
-            name: `url`,
-            value: `${urlParts[0]}s/${urlParts[1]}`,
-        })
-        createNodeField({
-            node,
-            name: `responsiveThumbnail`,
-            value: `../../static${node.thumbnail}`,
-        })
-    }
+exports.createPages = async ({ graphql, actions }) => {
+    await createPagesByType(graphql, actions, 'Artist')
+    await createPagesByType(graphql, actions, 'Release')
 }
 
-exports.createPages = async ({ graphql, actions }) => {
+const createPagesByType = async (graphql, actions, type) => {
     const { createPage } = actions
+    const queryType = `allPrismic${type}`
+    const lowerCaseType = type.toLowerCase()
     const result = await graphql(`
         query {
-            allDataJson {
+            ${queryType} {
                 edges {
                     node {
-                        fields {
-                            id
-                            url
-                        }
-                        layout
+                        uid
                     }
                 }
             }
         }
     `)
-    result.data.allDataJson.edges.forEach(({ node }) => {
+    result.data[queryType].edges.forEach(({ node }) => {
         createPage({
-            path: `${node.fields.url}`,
-            component: path.resolve(`./src/templates/${node.layout}.js`),
+            path: `${lowerCaseType}s/${node.uid}`,
+            component: path.resolve(`./src/templates/${lowerCaseType}.js`),
             context: {
-                id: node.fields.id,
+                uid: node.uid,
             },
         })
     })

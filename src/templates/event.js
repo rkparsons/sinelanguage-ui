@@ -15,10 +15,10 @@ export default ({ data }) => {
     )
 }
 
-export const query = graphql`
-    query($id: String!) {
-        dataJson(fields: { id: { eq: $id } }) {
-            ...dashboardItemFragment
-        }
-    }
-`
+// export const query = graphql`
+//     query($id: String!) {
+//         dataJson(fields: { id: { eq: $id } }) {
+//             ...dashboardItemFragment
+//         }
+//     }
+// `

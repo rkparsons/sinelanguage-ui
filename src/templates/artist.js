@@ -4,21 +4,40 @@ import Head from '../components/Head'
 import SquareImage from '../components/SquareImage'
 
 export default ({ data }) => {
-    var { fields, title } = data.dataJson
+    const { name, image } = data.prismicArtist.data
 
     return (
         <div>
-            <Head title={title} />
-            <h1>{title}</h1>
-            <SquareImage fields={fields} />
+            <Head title={name} />
+            <h1>{name}</h1>
+            <SquareImage image={image} />
         </div>
     )
 }
 
 export const query = graphql`
-    query($id: String!) {
-        dataJson(fields: { id: { eq: $id } }) {
-            ...dashboardItemFragment
+    query($uid: String!) {
+        prismicArtist(uid: { eq: $uid }) {
+            ...artistFragment
+        }
+    }
+`
+
+export const artistFragment = graphql`
+    fragment artistFragment on PrismicArtist {
+        uid
+        data {
+            name
+            published_date
+            image {
+                localFile {
+                    childImageSharp {
+                        fluid {
+                            ...GatsbyImageSharpFluid_withWebp
+                        }
+                    }
+                }
+            }
         }
     }
 `

@@ -31,38 +31,15 @@ module.exports = {
         `gatsby-plugin-typescript`,
         `gatsby-plugin-typescript-checker`,
         {
-            resolve: `gatsby-source-filesystem`,
+            resolve: 'gatsby-source-prismic',
             options: {
-                name: `images`,
-                path: `${__dirname}/static/images/uploads`,
+                repositoryName: `sinelanguage`,
+                accessToken: `${process.env.PRISMIC_ACCESS_TOKEN}`,
+                linkResolver: () => post => `/${post.uid}`,
             },
         },
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
-        {
-            resolve: `gatsby-plugin-netlify-cms`,
-            options: {
-                enableIdentityWidget: true,
-                modulePath: `${__dirname}/src/cms/cms.js`,
-                manualInit: true,
-            },
-        },
-        {
-            resolve: `gatsby-source-filesystem`,
-            options: {
-                name: `pages`,
-                path: `${__dirname}/src/pages/`,
-            },
-        },
-        {
-            resolve: `gatsby-source-filesystem`,
-            options: {
-                name: `data`,
-                path: `${__dirname}/src/data/`,
-                ignore: [`**/.*`],
-            },
-        },
-        `gatsby-transformer-json`,
         `gatsby-plugin-react-helmet`,
         {
             resolve: `gatsby-plugin-sass`,

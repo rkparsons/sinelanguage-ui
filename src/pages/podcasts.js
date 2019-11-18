@@ -10,14 +10,14 @@ export default ({ data }) => (
     </div>
 )
 
-export const query = graphql`
-    {
-        allDataJson(sort: { fields: [date], order: DESC }) {
-            edges {
-                node {
-                    ...dashboardItemFragment
-                }
-            }
-        }
-    }
-`
+// export const query = graphql`
+//     {
+//         allDataJson(sort: { fields: [date], order: DESC }) {
+//             edges {
+//                 node {
+//                     ...dashboardItemFragment
+//                 }
+//             }
+//         }
+//     }
+// `
