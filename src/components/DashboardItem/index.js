@@ -9,7 +9,10 @@ export default ({ type, name, uid, image, filter }) => {
 
     return (
         <Flipped flipId={uid} stagger opacity translate={false}>
-            <Link to={`/${type}s/${uid}`} className={isVisible ? styles.show : styles.hide}>
+            <Link
+                to={`/${type.toLowerCase()}s/${uid}`}
+                className={isVisible ? styles.show : styles.hide}
+            >
                 <SquareImage image={image} />
                 <h4>{name}</h4>
             </Link>
