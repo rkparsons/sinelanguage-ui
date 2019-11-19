@@ -2,7 +2,7 @@ import '../styles/index.scss'
 
 import React, { useEffect, useState } from 'react'
 
-import App from '../app'
+import App from '../components/app'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from '../styles/theme'

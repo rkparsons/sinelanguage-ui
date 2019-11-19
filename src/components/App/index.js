@@ -1,5 +1,5 @@
-import Footer from '../components/Footer'
-import Navigation from '../components/Navigation'
+import Footer from '../Footer'
+import Navigation from '../Navigation'
 import React from 'react'
 import styles from './index.module.scss'
 
