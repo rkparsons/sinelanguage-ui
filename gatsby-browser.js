@@ -1,5 +1,3 @@
-import './src/styles/global.scss'
-
 import React, { Fragment } from 'react'
 
 import { silentAuth } from './src/utils/auth'
