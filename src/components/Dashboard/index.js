@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react'
-import styles from './index.module.scss'
-import Head from '../Head'
+
 import DashboardItem from '../DashboardItem'
+import Head from '../Head'
+import { graphql } from 'gatsby'
+import styles from './index.module.scss'
 
 export default ({ allPrismicArtist, allPrismicRelease, filter }) => {
     const title = filter ? `${filter}s` : 'News'
