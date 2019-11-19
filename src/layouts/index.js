@@ -4,8 +4,6 @@ import Navigation from '../components/Navigation'
 import { Location } from '@reach/router'
 import '../styles/index.scss'
 import styles from './index.module.scss'
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
 import { Flipper } from 'react-flip-toolkit'
 
 class Layout extends Component {
