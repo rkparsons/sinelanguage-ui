@@ -1,8 +1,8 @@
-import React from 'react'
-import { Link } from 'gatsby'
 import { Flipped } from 'react-flip-toolkit'
-import styles from './index.module.scss'
+import { Link } from 'gatsby'
+import React from 'react'
 import SquareImage from '../SquareImage'
+import styles from './index.module.scss'
 
 export default ({ type, name, uid, image, filter }) => {
     const isVisible = !filter || filter === type
