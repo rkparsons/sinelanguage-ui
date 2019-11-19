@@ -53,7 +53,7 @@ module.exports = {
         {
             resolve: `gatsby-plugin-sass`,
             options: {
-                data: `@import "src/styles/base/_settings.scss";`,
+                data: `@import "src/styles/settings.scss";`,
                 includePaths: [`src/components`],
             },
         },
