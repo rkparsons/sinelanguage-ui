@@ -4,14 +4,14 @@ import Navigation from '../components/Navigation'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from '../styles/theme'
-import useDarkMode from '../hooks/useDarkMode'
+import useTheme from '../hooks/useTheme'
 import { Location } from '@reach/router'
 import '../styles/index.scss'
 import styles from './index.module.scss'
 import { Flipper } from 'react-flip-toolkit'
 
 const Layout = props => (
-    <ThemeProvider theme={useDarkMode(theme)}>
+    <ThemeProvider theme={useTheme(theme, true)}>
         <CssBaseline />
         <Location>
             {({ location }) => (
