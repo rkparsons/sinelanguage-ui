@@ -1,21 +1,16 @@
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
-const defaultTheme = createMuiTheme()
-const {
-    breakpoints,
-    typography: { pxToRem },
-} = defaultTheme
+import indigo from '@material-ui/core/colors/indigo'
+import pink from '@material-ui/core/colors/pink'
+import red from '@material-ui/core/colors/red'
 
 export default responsiveFontSizes(
     createMuiTheme({
-        overrides: {
-            MuiTypography: {
-                h1: {
-                    fontSize: '5rem',
-                    [breakpoints.down('xs')]: {
-                        fontSize: '3rem',
-                    },
-                },
-            },
+        palette: {
+            primary: indigo,
+            secondary: pink,
+            error: red,
+            contrastThreshold: 3,
+            tonalOffset: 0.2,
         },
     })
 )

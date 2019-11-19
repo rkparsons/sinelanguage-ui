@@ -7,6 +7,7 @@ const SignOutButton = () => (
     <Location>
         {({ location }) => (
             <Button
+                color="secondary"
                 onClick={e => {
                     logout(location.origin)
                     e.preventDefault()
