@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import Footer from '../components/Footer'
 import Navigation from '../components/Navigation'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import { ThemeProvider } from '@material-ui/core/styles'
+import theme from '../styles/theme'
 import { Location } from '@reach/router'
 import '../styles/index.scss'
 import styles from './index.module.scss'
@@ -9,23 +12,26 @@ import { Flipper } from 'react-flip-toolkit'
 class Layout extends Component {
     render() {
         return (
-            <Location>
-                {({ location }) => (
-                    <Flipper
-                        flipKey={location.pathname}
-                        spring="veryGentle"
-                        decisionData
-                        staggerConfig={{
-                            default: {
-                                speed: 0.5,
-                            },
-                            namedStagger: { speed: 0.2 },
-                        }}
-                    >
-                        <App {...this.props} />
-                    </Flipper>
-                )}
-            </Location>
+            <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <Location>
+                    {({ location }) => (
+                        <Flipper
+                            flipKey={location.pathname}
+                            spring="veryGentle"
+                            decisionData
+                            staggerConfig={{
+                                default: {
+                                    speed: 0.5,
+                                },
+                                namedStagger: { speed: 0.2 },
+                            }}
+                        >
+                            <App {...this.props} />
+                        </Flipper>
+                    )}
+                </Location>
+            </ThemeProvider>
         )
     }
 }
