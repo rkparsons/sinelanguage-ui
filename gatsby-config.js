@@ -48,12 +48,6 @@ module.exports = {
                 linkResolver: () => post => `/${post.uid}`,
             },
         },
-        {
-            resolve: 'gatsby-plugin-google-fonts',
-            options: {
-                fonts: ['material icons'],
-            },
-        },
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
         `gatsby-plugin-react-helmet`,
