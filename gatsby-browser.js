@@ -1,4 +1,7 @@
+import './src/styles/global.scss'
+
 import React, { Fragment } from 'react'
+
 import { silentAuth } from './src/utils/auth'
 
 class SessionCheck extends React.Component {
@@ -10,7 +13,6 @@ class SessionCheck extends React.Component {
     }
 
     handleCheckSession = () => {
-        // move this check to protected components only
         this.setState({ loading: false })
     }
 
