@@ -4,28 +4,37 @@ import Navigation from '../components/Navigation'
 import { Location } from '@reach/router'
 import '../styles/index.scss'
 import styles from './index.module.scss'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
 import { Flipper } from 'react-flip-toolkit'
 
 class Layout extends Component {
     render() {
+        const theme = createMuiTheme()
+
         return (
-            <Location>
-                {({ location }) => (
-                    <Flipper
-                        flipKey={location.pathname}
-                        spring="veryGentle"
-                        decisionData
-                        staggerConfig={{
-                            default: {
-                                speed: 0.5,
-                            },
-                            namedStagger: { speed: 0.2 },
-                        }}
-                    >
-                        <App {...this.props} />
-                    </Flipper>
-                )}
-            </Location>
+            <MuiThemeProvider theme={theme}>
+                <React.Fragment>
+                    <CssBaseline />
+                    <Location>
+                        {({ location }) => (
+                            <Flipper
+                                flipKey={location.pathname}
+                                spring="veryGentle"
+                                decisionData
+                                staggerConfig={{
+                                    default: {
+                                        speed: 0.5,
+                                    },
+                                    namedStagger: { speed: 0.2 },
+                                }}
+                            >
+                                <App {...this.props} />
+                            </Flipper>
+                        )}
+                    </Location>
+                </React.Fragment>
+            </MuiThemeProvider>
         )
     }
 }

@@ -1,10 +1,7 @@
 import React from 'react'
+import Button from '@material-ui/core/Button'
 import { login } from '../../utils/auth'
 
-const SignInButton = () => (
-    <button type="button" onClick={login}>
-        Sign In
-    </button>
-)
+const SignInButton = () => <Button onClick={login}>Sign In</Button>
 
 export default SignInButton

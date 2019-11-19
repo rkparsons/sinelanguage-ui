@@ -1,19 +1,19 @@
 import React from 'react'
 import { Location } from '@reach/router'
+import Button from '@material-ui/core/Button'
 import { logout } from '../../utils/auth'
 
 const SignOutButton = () => (
     <Location>
         {({ location }) => (
-            <button
-                type="button"
+            <Button
                 onClick={e => {
                     logout(location.origin)
                     e.preventDefault()
                 }}
             >
                 Sign Out
-            </button>
+            </Button>
         )}
     </Location>
 )

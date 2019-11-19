@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { Link } from 'gatsby'
 import SignInButton from '../SignInButton'
 import SignOutButton from '../SignOutButton'
+import Icon from '@material-ui/core/Icon'
 import * as ROUTES from '../../constants/routes'
 import headerStyles from './index.module.scss'
 import { isAuthenticated } from '../../utils/auth'
@@ -93,6 +94,7 @@ const NavigationNonAuth = () => (
     <Fragment>
         <li>
             <SignInButton />
+            <Icon>menu</Icon>
         </li>
     </Fragment>
 )

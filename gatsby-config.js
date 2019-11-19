@@ -31,11 +31,27 @@ module.exports = {
         `gatsby-plugin-typescript`,
         `gatsby-plugin-typescript-checker`,
         {
+            resolve: `gatsby-plugin-material-ui`,
+            options: {
+                stylesProvider: {
+                    injectFirst: true,
+                },
+            },
+        },
+        `gatsby-theme-material-ui`,
+        `gatsby-plugin-styled-components`,
+        {
             resolve: 'gatsby-source-prismic',
             options: {
                 repositoryName: `sinelanguage`,
                 accessToken: `${process.env.PRISMIC_ACCESS_TOKEN}`,
                 linkResolver: () => post => `/${post.uid}`,
+            },
+        },
+        {
+            resolve: 'gatsby-plugin-google-fonts',
+            options: {
+                fonts: ['material icons'],
             },
         },
         `gatsby-transformer-sharp`,
