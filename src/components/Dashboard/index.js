@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 
-import DashboardItem from '../dashboardItem'
+import DashboardItem from '../DashboardItem'
 import Head from '../head'
 import { graphql } from 'gatsby'
 import styles from './index.module.scss'

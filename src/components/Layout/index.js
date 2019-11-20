@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
 import CssBaseline from '@material-ui/core/CssBaseline'
-import Footer from '../footer'
-import Navigation from '../navigation'
+import Footer from '../Footer'
+import Navigation from '../Navigation'
 import { ThemeProvider } from '@material-ui/core/styles'
 import styles from './index.module.scss'
 import theme from '../../styles/theme'

@@ -4,8 +4,8 @@ import React, { Fragment } from 'react'
 
 import { Link } from 'gatsby'
 import MenuIcon from '@material-ui/icons/Menu'
-import SignInButton from '../signInButton'
-import SignOutButton from '../signOutButton'
+import SignInButton from '../SignInButton'
+import SignOutButton from '../SignOutButton'
 import headerStyles from './index.module.scss'
 import { isAuthenticated } from '../../utils/auth'
 
