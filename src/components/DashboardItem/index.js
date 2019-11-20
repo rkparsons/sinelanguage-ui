@@ -1,7 +1,7 @@
 import { Flipped } from 'react-flip-toolkit'
 import { Link } from 'gatsby'
 import React from 'react'
-import SquareImage from '../squareImage'
+import SquareImage from '../SquareImage'
 import styles from './index.module.scss'
 
 export default ({ type, name, uid, image, filter }) => {
