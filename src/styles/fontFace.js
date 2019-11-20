@@ -1,5 +1,5 @@
-import robotoWoff from '../fonts/Roboto.woff'
-import robotoWoff2 from '../fonts/Roboto.woff2'
+import robotoWoff from './fonts/Roboto.woff'
+import robotoWoff2 from './fonts/Roboto.woff2'
 
 export default {
     fontFamily: 'Roboto',
