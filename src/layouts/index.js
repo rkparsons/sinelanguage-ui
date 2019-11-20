@@ -1,5 +1,3 @@
-import './index.module.scss'
-
 import React, { useEffect, useState } from 'react'
 
 import App from '../components/app'
