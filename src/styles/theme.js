@@ -1,9 +1,9 @@
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
 
-import Roboto from '../fonts/Roboto.woff'
 import indigo from '@material-ui/core/colors/indigo'
 import pink from '@material-ui/core/colors/pink'
 import red from '@material-ui/core/colors/red'
+import robotoWoff from '../fonts/Roboto.woff'
 
 // @font-face {
 //     font-family: Roboto;
@@ -13,13 +13,13 @@ import red from '@material-ui/core/colors/red'
 //     unicode-range: U+000-5FF;
 // }
 
-const roboto = {
+const robotoFontFace = {
     fontFamily: 'Roboto',
     fontDisplay: 'block',
     src: `
     local('Roboto'),
     local('Roboto-Regular'),
-    url(${Roboto}) format('woff')
+    url(${robotoWoff}) format('woff')
   `,
     unicodeRange: 'U+000-5FF',
 }
@@ -41,7 +41,7 @@ export default (isDarkMode = false) =>
             overrides: {
                 MuiCssBaseline: {
                     '@global': {
-                        '@font-face': [roboto],
+                        '@font-face': [robotoFontFace],
                     },
                 },
             },
