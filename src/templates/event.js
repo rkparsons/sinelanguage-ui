@@ -1,7 +1,7 @@
+import Head from '../components/head'
 import React from 'react'
+import SquareImage from '../components/squareImage'
 import { graphql } from 'gatsby'
-import Head from '../components/Head'
-import SquareImage from '../components/SquareImage'
 
 export default ({ data }) => {
     var { fields, title } = data.dataJson
