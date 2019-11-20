@@ -4,14 +4,7 @@ import indigo from '@material-ui/core/colors/indigo'
 import pink from '@material-ui/core/colors/pink'
 import red from '@material-ui/core/colors/red'
 import robotoWoff from '../fonts/Roboto.woff'
-
-// @font-face {
-//     font-family: Roboto;
-//     font-display: block;
-//     src: local('Roboto'), local('Roboto-Regular'), url('../fonts/Roboto.woff2') format('woff2'),
-//         url('../fonts/Roboto.woff') format('woff');
-//     unicode-range: U+000-5FF;
-// }
+import robotoWoff2 from '../fonts/Roboto.woff2'
 
 const robotoFontFace = {
     fontFamily: 'Roboto',
@@ -19,9 +12,18 @@ const robotoFontFace = {
     src: `
     local('Roboto'),
     local('Roboto-Regular'),
+    url(${robotoWoff2}) format('woff2'),
     url(${robotoWoff}) format('woff')
   `,
     unicodeRange: 'U+000-5FF',
+}
+
+const palette = {
+    primary: indigo,
+    secondary: pink,
+    error: red,
+    contrastThreshold: 3,
+    tonalOffset: 0.2,
 }
 
 export default (isDarkMode = false) =>
@@ -29,14 +31,7 @@ export default (isDarkMode = false) =>
         createMuiTheme({
             palette: {
                 type: isDarkMode ? 'dark' : 'light',
-                primary: indigo,
-                secondary: pink,
-                error: red,
-                contrastThreshold: 3,
-                tonalOffset: 0.2,
-            },
-            typography: {
-                fontFamily: 'Roboto',
+                ...palette,
             },
             overrides: {
                 MuiCssBaseline: {
