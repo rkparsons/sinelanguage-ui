@@ -1,1 +1,1 @@
-export * from './SignOutButton.state.js'
+export { default } from './SignOutButton.state.js'

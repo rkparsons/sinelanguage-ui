@@ -3,7 +3,7 @@ import React from 'react'
 import { logout } from '../../utils/auth'
 import { muiButtonColour } from './SignOutButton.styles'
 
-const View = ({ location }) => (
+export default ({ location }) => (
     <Button
         color={muiButtonColour}
         onClick={e => {
@@ -14,5 +14,3 @@ const View = ({ location }) => (
         Sign Out
     </Button>
 )
-
-export { View }
