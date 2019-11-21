@@ -61,6 +61,7 @@
         "@types/node": "^12.12.8",
         "@types/react": "^16.9.11",
         "@types/react-dom": "^16.9.4",
+        "@types/react-helmet": "^5.0.14",
         "env-cmd": "^9.0.3",
         "http-proxy-middleware": "^0.19.1",
         "netlify-lambda": "^1.4.13",

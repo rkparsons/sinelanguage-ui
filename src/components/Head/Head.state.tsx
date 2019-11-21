@@ -3,12 +3,12 @@ import View from './Head.view'
 import { graphql } from 'gatsby'
 import { useStaticQuery } from 'gatsby'
 
-export default props => {
-    const data = useStaticQuery(graphql`
+export default (props: any) => {
+    const { site } = useStaticQuery(graphql`
         query {
             ...siteMetadataFragment
         }
     `)
 
-    return <View {...props} siteMetadata={data.site.siteMetadata} />
+    return <View {...props} siteTitle={site.siteMetadata.title} />
 }

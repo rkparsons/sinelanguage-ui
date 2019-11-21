@@ -1,8 +1,16 @@
 import { Helmet } from 'react-helmet'
 import React from 'react'
 
-export default ({ title, description, image, url, siteMetadata }) => {
-    const titleCombined = `${title} | ${siteMetadata.title}`
+interface Props {
+    title: string
+    description: string
+    image: string
+    url: string
+    siteTitle: string
+}
+
+export default ({ title, description, image, url, siteTitle }: Props) => {
+    const titleCombined = `${title} | ${siteTitle}`
 
     return (
         <Helmet>
