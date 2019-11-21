@@ -1,5 +1,7 @@
-import React from 'react'
 import { Location } from '@reach/router'
-import SignOutButton from './SignOutButton.view'
+import React from 'react'
+import { View } from './SignOutButton.view'
 
-export default () => <Location>{({ location }) => <SignOutButton location={location} />}</Location>
+const SignOutButton = () => <Location>{({ location }) => <View location={location} />}</Location>
+
+export { SignOutButton }

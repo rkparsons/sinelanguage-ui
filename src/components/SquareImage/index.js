@@ -1,1 +1,1 @@
-export { default } from './SquareImage.view.js'
+export * from './SquareImage.view.js'

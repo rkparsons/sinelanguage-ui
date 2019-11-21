@@ -1,6 +1,6 @@
 import Head from '../components/Head'
 import React from 'react'
-import SquareImage from '../components/SquareImage'
+import { SquareImage } from '../components/SquareImage'
 import { graphql } from 'gatsby'
 
 export default ({ data }) => {
