@@ -2,7 +2,6 @@ import React, { Fragment } from 'react'
 
 import DashboardItem from '../DashboardItem'
 import Head from '../Head'
-import { graphql } from 'gatsby'
 import styles from './index.module.scss'
 
 export default ({ allPrismicArtist, allPrismicRelease, filter }) => {
@@ -34,22 +33,3 @@ export default ({ allPrismicArtist, allPrismicRelease, filter }) => {
         </Fragment>
     )
 }
-
-export const dashboardFragment = graphql`
-    fragment dashboardFragment on Query {
-        allPrismicArtist {
-            edges {
-                node {
-                    ...artistFragment
-                }
-            }
-        }
-        allPrismicRelease {
-            edges {
-                node {
-                    ...releaseFragment
-                }
-            }
-        }
-    }
-`
