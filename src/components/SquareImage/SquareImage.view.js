@@ -1,4 +1,4 @@
-import CardImage from './SquareImage.styles'
+import CardImage from './SquareImage.style'
 import React from 'react'
 
 export default ({ image }) => (

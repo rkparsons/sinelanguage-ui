@@ -1,7 +1,7 @@
 import { Button } from '@material-ui/core'
 import React from 'react'
 import { logout } from '../../utils/auth'
-import { muiButtonColour } from './SignOutButton.styles'
+import { muiButtonColour } from './SignOutButton.style'
 
 export default ({ location }) => (
     <Button
