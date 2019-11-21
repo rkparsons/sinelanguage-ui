@@ -43,7 +43,7 @@ module.exports = {
             resolve: 'gatsby-source-prismic',
             options: {
                 repositoryName: `sinelanguage`,
-                accessToken: `${process.env.PRISMIC_ACCESS_TOKEN}`,
+                accessToken: `${process.env.GATSBY_PRISMIC_ACCESS_TOKEN}`,
                 linkResolver: () => post => `/${post.uid}`,
             },
         },
