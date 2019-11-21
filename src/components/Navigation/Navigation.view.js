@@ -1,10 +1,9 @@
 import * as ROUTES from '../../constants/routes'
 
-import React, { Fragment } from 'react'
-
 import MenuIcon from '@material-ui/icons/Menu'
 import NavItem from '../NavItem'
 import { NavList } from './Navigation.style'
+import React from 'react'
 import SignInButton from '../SignInButton'
 import SignOutButton from '../SignOutButton'
 import { isAuthenticated } from '../../utils/auth'
@@ -30,14 +29,14 @@ export default () => (
             <NavItem route={ROUTES.CONTACT} title="Contact" isPartial={true} />
         </li>
         {isAuthenticated() ? (
-            <Fragment>
+            <>
                 <li>
                     <NavItem route={ROUTES.ACCOUNT} title="Account" isPartial={true} />
                 </li>
                 <li>
                     <SignOutButton />
                 </li>
-            </Fragment>
+            </>
         ) : (
             <li>
                 <SignInButton />

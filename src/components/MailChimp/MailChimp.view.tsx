@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
 interface Props {
     email: string
@@ -11,10 +11,10 @@ export default ({ email, result, handleSubmit, updateEmail }: Props) => (
     <form onSubmit={handleSubmit}>
         {result === 'success' && <span>Thanks for subscribing!</span>}
         {result === 'success' || (
-            <Fragment>
+            <>
                 <input type="text" value={email} onChange={updateEmail} />
                 <button type="submit">Subscribe</button>
-            </Fragment>
+            </>
         )}
         {result === 'error' && (
             <p>

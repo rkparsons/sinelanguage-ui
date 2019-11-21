@@ -1,8 +1,7 @@
-import React, { Fragment } from 'react'
-
 import Container from './Dashboard.style.js'
 import DashboardItem from '../DashboardItem'
 import Head from '../Head'
+import React from 'react'
 
 export default ({ allPrismicArtist, allPrismicRelease, filter }) => {
     const title = filter ? `${filter}s` : 'News'
@@ -23,13 +22,13 @@ export default ({ allPrismicArtist, allPrismicRelease, filter }) => {
     })
 
     return (
-        <Fragment>
+        <>
             <Head title={title} />
             <Container>
                 {dashboardItems.map((item, i) => (
                     <DashboardItem key={i} {...item} filter={filter} />
                 ))}
             </Container>
-        </Fragment>
+        </>
     )
 }

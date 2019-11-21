@@ -1,5 +1,4 @@
-import React, { Fragment } from 'react'
-
+import React from 'react'
 import { silentAuth } from './src/utils/auth'
 
 class SessionCheck extends React.Component {
@@ -19,7 +18,7 @@ class SessionCheck extends React.Component {
     }
 
     render() {
-        return this.state.loading === false && <Fragment>{this.props.children}</Fragment>
+        return this.state.loading === false && <>{this.props.children}</>
     }
 }
 
