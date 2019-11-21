@@ -1,24 +1,22 @@
 import MailChimp from '../MailChimp'
 import React from 'react'
-import { SFC } from 'react'
 import Switch from '@material-ui/core/Switch'
+import { muiSwitchColour } from './Footer.style'
 
 interface FooterProps {
     isDarkMode: boolean
     setIsDarkMode: (isDarkMode: boolean) => void
 }
 
-const Footer: SFC<FooterProps> = ({ isDarkMode, setIsDarkMode }) => {
+export default ({ isDarkMode, setIsDarkMode }: FooterProps) => {
     return (
         <footer>
             <MailChimp />
             <Switch
-                color="secondary"
+                color={muiSwitchColour}
                 checked={isDarkMode}
                 onChange={() => setIsDarkMode(!isDarkMode)}
             />
         </footer>
     )
 }
-
-export default Footer
