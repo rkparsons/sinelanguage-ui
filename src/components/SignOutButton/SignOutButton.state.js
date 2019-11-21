@@ -1,5 +1,5 @@
 import { Location } from '@reach/router'
 import React from 'react'
-import SignOutButton from './SignOutButton.view'
+import View from './SignOutButton.view'
 
-export default () => <Location>{({ location }) => <SignOutButton location={location} />}</Location>
+export default () => <Location>{({ location }) => <View location={location} />}</Location>
