@@ -13,7 +13,7 @@
         "start:app": "npm run develop",
         "start:lambda": "netlify-lambda serve src/lambda",
         "build": "run-p build:**",
-        "build:app": "gatsby build",
+        "build:app": "gatsby clean && gatsby build",
         "build:lambda": "netlify-lambda build src/lambda",
         "bootstrap": "node ./database/bootstrap.js"
     },
