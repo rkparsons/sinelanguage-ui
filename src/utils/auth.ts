@@ -1,4 +1,5 @@
 // upgrade to latest spa sdk
+
 import auth0 from 'auth0-js'
 import { navigate } from 'gatsby'
 
@@ -72,7 +73,6 @@ export const getProfile = () => {
 }
 
 export const logout = (returnUrl: string) => {
-    console.log(returnUrl)
     localStorage.setItem('isLoggedIn', 'false')
     auth && auth.logout({ returnTo: returnUrl })
 }
