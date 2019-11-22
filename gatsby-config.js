@@ -71,5 +71,11 @@ module.exports = {
                 component: require.resolve(`./src/components/Layout`),
             },
         },
+        {
+            resolve: 'gatsby-plugin-generate-typings',
+            options: {
+                dest: './types/graphql.d.ts',
+            },
+        },
     ],
 }
