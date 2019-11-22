@@ -1,4 +1,4 @@
-import Container from './Dashboard.style.js'
+import Container from './Dashboard.style'
 import DashboardItem from '../DashboardItem'
 import Head from '../Head'
 import React from 'react'
