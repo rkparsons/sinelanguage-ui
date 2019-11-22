@@ -2,15 +2,15 @@ import { Helmet } from 'react-helmet'
 import React from 'react'
 import { SiteMetadataQuery } from 'types/graphql'
 
-interface Props {
+interface ViewProps {
     title: string
-    description: string
-    image: string
-    url: string
+    description?: string
+    image?: string
+    url?: string
     siteMetadata: SiteMetadataQuery
 }
 
-export default ({ title, description, image, url, siteMetadata }: Props) => {
+export default ({ title, description, image, url, siteMetadata }: ViewProps) => {
     const titleCombined = `${title} | ${siteMetadata!.site!.siteMetadata!.title}`
 
     return (

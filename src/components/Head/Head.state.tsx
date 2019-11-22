@@ -4,7 +4,9 @@ import View from './Head.view'
 import { graphql } from 'gatsby'
 import { useStaticQuery } from 'gatsby'
 
-export default (props: ComponentProps<typeof View>) => {
+type StateProps = Omit<ComponentProps<typeof View>, 'siteMetadata'>
+
+export default (props: StateProps) => {
     const siteMetadata = useStaticQuery(graphql`
         query SiteMetadata {
             ...siteMetadataFragment
