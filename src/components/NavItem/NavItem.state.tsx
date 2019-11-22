@@ -1,4 +1,3 @@
-import { LinkGetProps } from '@reach/router'
 import React from 'react'
 import View from './NavItem.view'
 
