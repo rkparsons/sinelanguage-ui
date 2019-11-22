@@ -1,7 +1,7 @@
+import React, { ComponentProps } from 'react'
 import { darkGrey, grey, lightGrey } from '../../styles/colours'
 
 import { Link } from 'gatsby'
-import React from 'react'
 import styled from 'styled-components'
 
 export default styled((props: any) => <Link {...props} activeStyle={{ color: darkGrey }} />)`

@@ -1,9 +1,7 @@
+import React, { ComponentProps } from 'react'
+
 import NavItem from './NavItem.style'
-import React from 'react'
 
-interface ViewProps {
-    route: string
-    title: string
-}
-
-export default ({ route, title }: ViewProps) => <NavItem to={route}>{title}</NavItem>
+export default ({ route, title }: ComponentProps<typeof NavItem>) => (
+    <NavItem to={route}>{title}</NavItem>
+)

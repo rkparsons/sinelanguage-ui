@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { ComponentProps } from 'react'
+
 import View from './Head.view'
 import { graphql } from 'gatsby'
 import { useStaticQuery } from 'gatsby'
 
-// todo: replace with React.Props<{}>
-export default (props: any) => {
+export default (props: ComponentProps<typeof View>) => {
     const staticQueryResult = useStaticQuery(graphql`
         query {
             ...siteMetadataFragment
