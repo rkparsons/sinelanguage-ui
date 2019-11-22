@@ -1,10 +1,10 @@
 import { darkGrey, grey, lightGrey } from '../../styles/colours'
 
 import { Link } from 'gatsby'
-import { LinkProps } from '@reach/router'
+import React from 'react'
 import styled from 'styled-components'
 
-export default styled(Link)`
+export default styled((props: any) => <Link {...props} activeStyle={{ color: darkGrey }} />)`
     font-size: 0.9rem;
     margin-right: 1.3rem;
     text-decoration: none;

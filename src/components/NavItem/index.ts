@@ -1,1 +1,1 @@
-export { default } from './NavItem.state'
+export { default } from './NavItem.view'
