@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby'
 
-export const query = graphql`
+export const dashboardFragment = graphql`
     fragment dashboardFragment on Query {
         allPrismicArtist {
             edges {

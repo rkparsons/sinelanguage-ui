@@ -2608,8 +2608,6 @@ export type StringQueryOperatorInput = {
   glob?: Maybe<Scalars['String']>,
 };
 
-export type DashboardFragmentFragment = { allPrismicArtist: { edges: Array<{ node: ArtistFragmentFragment }> }, allPrismicRelease: { edges: Array<{ node: ReleaseFragmentFragment }> } };
-
 export type SiteMetadataFragmentFragment = { site: Maybe<{ siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
 
 export type SiteMetadataQueryVariables = {};
@@ -2618,6 +2616,8 @@ export type SiteMetadataQueryVariables = {};
 export type SiteMetadataQuery = SiteMetadataFragmentFragment;
 
 export type ArtistFragmentFragment = (Pick<PrismicArtist, 'uid'> & { data: Maybe<(Pick<PrismicArtistData, 'name' | 'published_date'> & { image: Maybe<{ localFile: Maybe<{ childImageSharp: Maybe<{ fluid: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }> }> })> });
+
+export type DashboardFragmentFragment = { allPrismicArtist: { edges: Array<{ node: ArtistFragmentFragment }> }, allPrismicRelease: { edges: Array<{ node: ReleaseFragmentFragment }> } };
 
 export type ReleaseFragmentFragment = (Pick<PrismicRelease, 'uid'> & { data: Maybe<(Pick<PrismicReleaseData, 'name' | 'published_date'> & { image: Maybe<{ localFile: Maybe<{ childImageSharp: Maybe<{ fluid: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }> }> })> });
 

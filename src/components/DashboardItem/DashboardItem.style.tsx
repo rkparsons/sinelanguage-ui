@@ -1,6 +1,5 @@
-import React, { FC } from 'react'
-
 import { Link } from 'gatsby'
+import React from 'react'
 import styled from 'styled-components'
 
 export default styled(({ children, isVisible, ...rest }) => <Link {...rest}>{children}</Link>)`
