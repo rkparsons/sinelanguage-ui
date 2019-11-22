@@ -3,7 +3,7 @@ documents:
     - ./src/**/*.{ts,tsx}
     - ./node_modules/gatsby-*/**/*.js
 generates:
-    ./types/graphql-types.d.ts:
+    ./types/graphql.d.ts:
         plugins:
             - 'typescript'
             - 'typescript-document-nodes'

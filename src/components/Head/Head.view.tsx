@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet'
 import React from 'react'
-import { SiteMetadataQuery } from 'types/graphql-types'
+import { SiteMetadataQuery } from 'types/graphql'
 
 interface Props {
     title: string
