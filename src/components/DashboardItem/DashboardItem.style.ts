@@ -1,7 +1,11 @@
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 
-export default styled(Link)`
+type StyleProps = {
+    isVisible: boolean
+}
+
+export default styled(Link)<StyleProps>`
     display: ${({ isVisible }) => (isVisible ? 'block' : 'none')};
     opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
 `

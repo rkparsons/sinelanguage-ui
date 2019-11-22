@@ -1,9 +1,17 @@
+import React, { ComponentProps } from 'react'
+
 import { Flipped } from 'react-flip-toolkit'
 import LinkShowHide from './DashboardItem.style'
-import React from 'react'
 import SquareImage from '../SquareImage'
 
-export default ({ type, name, uid, image, filter }) => {
+type ViewProps = {
+    type: string
+    name: string
+    uid: string
+    filter: string
+} & ComponentProps<typeof SquareImage>
+
+export default ({ type, name, uid, image, filter }: ViewProps) => {
     return (
         <Flipped flipId={uid} stagger opacity translate={false}>
             <LinkShowHide

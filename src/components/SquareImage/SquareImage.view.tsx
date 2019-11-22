@@ -2,7 +2,7 @@ import CardImage from './SquareImage.style'
 import { FluidObject } from 'gatsby-image'
 import React from 'react'
 
-interface ViewProps {
+type ViewProps = {
     image: {
         localFile: {
             childImageSharp: {
