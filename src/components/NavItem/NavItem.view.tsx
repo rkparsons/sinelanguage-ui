@@ -6,12 +6,7 @@ import React from 'react'
 interface ViewProps {
     route: string
     title: string
-    getProps: (props: LinkGetProps) => {}
-    isActive: boolean
+    // getProps: (props: LinkGetProps) => {}
 }
 
-export default ({ route, title, getProps, isActive }: ViewProps) => (
-    <NavItem to={route} getProps={getProps} isActive={isActive}>
-        {title}
-    </NavItem>
-)
+export default ({ route, title }: ViewProps) => <NavItem to={route}>{title}</NavItem>

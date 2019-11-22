@@ -4,14 +4,16 @@ import View from './NavItem.view'
 
 interface StateProps {
     isPartial: boolean
+    route: string
+    title: string
 }
 
-export default (props: StateProps) => {
-    const getProps = ({ isCurrent, isPartiallyCurrent }: LinkGetProps) => {
-        return {
-            isActive: isCurrent || (props.isPartial && isPartiallyCurrent),
-        }
-    }
+export default ({ isPartial, route, title }: StateProps) => {
+    // const getProps = ({ isCurrent, isPartiallyCurrent }: LinkGetProps) => {
+    //     return {
+    //         isActive: isCurrent || (props.isPartial && isPartiallyCurrent),
+    //     }
+    // }
 
-    return <View getProps={getProps} />
+    return <View route={route} title={title} />
 }

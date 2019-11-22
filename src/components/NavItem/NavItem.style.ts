@@ -4,15 +4,11 @@ import { Link } from 'gatsby'
 import { LinkProps } from '@reach/router'
 import styled from 'styled-components'
 
-interface Props {
-    isActive: boolean
-}
-
-export default styled(Link)<Props & LinkProps<{}>>`
+export default styled(Link)`
     font-size: 0.9rem;
     margin-right: 1.3rem;
     text-decoration: none;
-    color: ${({ isActive }) => (isActive ? darkGrey : lightGrey)};
+    color: ${lightGrey};
 
     &:hover {
         color: ${grey};
