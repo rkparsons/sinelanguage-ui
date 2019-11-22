@@ -5,11 +5,11 @@ import { graphql } from 'gatsby'
 import { useStaticQuery } from 'gatsby'
 
 export default (props: ComponentProps<typeof View>) => {
-    const staticQueryResult = useStaticQuery(graphql`
-        query {
+    const siteMetadata = useStaticQuery(graphql`
+        query SiteMetadata {
             ...siteMetadataFragment
         }
     `)
 
-    return <View {...props} staticQueryResult={staticQueryResult} />
+    return <View {...props} siteMetadata={siteMetadata} />
 }

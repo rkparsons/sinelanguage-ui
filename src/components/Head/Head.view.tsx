@@ -1,26 +1,17 @@
 import { Helmet } from 'react-helmet'
 import React from 'react'
+import { SiteMetadata } from 'types/graphql'
 
 interface Props {
     title: string
     description: string
     image: string
     url: string
-    staticQueryResult: {
-        site: {
-            siteMetadata: {
-                title: string
-                description: string
-                author: {
-                    name: string
-                }
-            }
-        }
-    }
+    siteMetadata: SiteMetadata
 }
 
-export default ({ title, description, image, url, staticQueryResult }: Props) => {
-    const titleCombined = `${title} | ${staticQueryResult.site.siteMetadata.title}`
+export default ({ title, description, image, url, siteMetadata }: Props) => {
+    const titleCombined = `${title} | ${siteMetadata!.site!.siteMetadata!.title}`
 
     return (
         <Helmet>

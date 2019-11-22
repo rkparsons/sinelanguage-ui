@@ -16,7 +16,7 @@ export default ({ data }) => {
 }
 
 export const query = graphql`
-    query($uid: String!) {
+    query Release($uid: String!) {
         prismicRelease(uid: { eq: $uid }) {
             ...releaseFragment
         }
