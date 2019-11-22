@@ -2,6 +2,4 @@ import React, { ComponentProps } from 'react'
 
 import NavItem from './NavItem.style'
 
-export default ({ route, title }: ComponentProps<typeof NavItem>) => (
-    <NavItem to={route}>{title}</NavItem>
-)
+export default ({ to, title }: ComponentProps<typeof NavItem>) => <NavItem to={to}>{title}</NavItem>

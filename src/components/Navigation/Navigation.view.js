@@ -11,27 +11,27 @@ import { isAuthenticated } from '../../utils/auth'
 export default () => (
     <NavList>
         <li>
-            <NavItem route={ROUTES.NEWS} title="News" />
+            <NavItem to={ROUTES.NEWS} title="News" />
         </li>
         <li>
-            <NavItem route={ROUTES.ARTISTS} title="Artists" isPartial={true} />
+            <NavItem to={ROUTES.ARTISTS} title="Artists" partiallyActive={true} />
         </li>
         <li>
-            <NavItem route={ROUTES.RELEASES} title="Releases" isPartial={true} />
+            <NavItem to={ROUTES.RELEASES} title="Releases" partiallyActive={true} />
         </li>
         <li>
-            <NavItem route={ROUTES.PODCASTS} title="Podcasts" isPartial={true} />
+            <NavItem to={ROUTES.PODCASTS} title="Podcasts" partiallyActive={true} />
         </li>
         <li>
-            <NavItem route={ROUTES.EVENTS} title="Events" isPartial={true} />
+            <NavItem to={ROUTES.EVENTS} title="Events" partiallyActive={true} />
         </li>
         <li>
-            <NavItem route={ROUTES.CONTACT} title="Contact" isPartial={true} />
+            <NavItem to={ROUTES.CONTACT} title="Contact" partiallyActive={true} />
         </li>
         {isAuthenticated() ? (
             <>
                 <li>
-                    <NavItem route={ROUTES.ACCOUNT} title="Account" isPartial={true} />
+                    <NavItem to={ROUTES.ACCOUNT} title="Account" partiallyActive={true} />
                 </li>
                 <li>
                     <SignOutButton />
