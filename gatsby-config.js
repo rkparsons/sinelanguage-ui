@@ -71,13 +71,5 @@ module.exports = {
                 component: require.resolve(`./src/components/Layout`),
             },
         },
-        {
-            resolve: 'gatsby-plugin-codegen',
-            options: {
-                localSchemaFile: 'generated/graphql-schema.json',
-                output: 'types/graphql.d.ts',
-                outputFlat: true,
-            },
-        },
     ],
 }
