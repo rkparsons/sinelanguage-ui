@@ -6,11 +6,21 @@ interface Props {
     description: string
     image: string
     url: string
-    siteTitle: string
+    staticQueryResult: {
+        site: {
+            siteMetadata: {
+                title: string
+                description: string
+                author: {
+                    name: string
+                }
+            }
+        }
+    }
 }
 
-export default ({ title, description, image, url, siteTitle }: Props) => {
-    const titleCombined = `${title} | ${siteTitle}`
+export default ({ title, description, image, url, staticQueryResult }: Props) => {
+    const titleCombined = `${title} | ${staticQueryResult.site.siteMetadata.title}`
 
     return (
         <Helmet>
