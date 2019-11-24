@@ -1,9 +1,10 @@
+import React, { ComponentProps, ComponentType } from 'react'
+
 import { Flipper } from 'react-flip-toolkit'
 import { Location } from '@reach/router'
-import React from 'react'
 
-export default WrappedComponent => {
-    return props => {
+export default (WrappedComponent: ComponentType) => {
+    return (props: ComponentProps<typeof WrappedComponent>) => {
         return (
             <Location>
                 {({ location }) => (
