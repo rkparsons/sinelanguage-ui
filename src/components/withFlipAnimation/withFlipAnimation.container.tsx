@@ -1,28 +1,26 @@
-import React, { ComponentProps, ComponentType } from 'react'
+import React, { ComponentType } from 'react'
 
 import { Flipper } from 'react-flip-toolkit'
 import { Location } from '@reach/router'
 
-export default (WrappedComponent: ComponentType) => {
-    return (props: ComponentProps<typeof WrappedComponent>) => {
-        return (
-            <Location>
-                {({ location }) => (
-                    <Flipper
-                        flipKey={location.pathname}
-                        spring="veryGentle"
-                        decisionData
-                        staggerConfig={{
-                            default: {
-                                speed: 0.5,
-                            },
-                            namedStagger: { speed: 0.2 },
-                        }}
-                    >
-                        <WrappedComponent {...props} />
-                    </Flipper>
-                )}
-            </Location>
-        )
-    }
+export default <T extends any>(Component: ComponentType<T>) => {
+    return (props: T) => (
+        <Location>
+            {({ location }) => (
+                <Flipper
+                    flipKey={location.pathname}
+                    spring="veryGentle"
+                    decisionData
+                    staggerConfig={{
+                        default: {
+                            speed: 0.5,
+                        },
+                        namedStagger: { speed: 0.2 },
+                    }}
+                >
+                    <Component {...props} />
+                </Flipper>
+            )}
+        </Location>
+    )
 }

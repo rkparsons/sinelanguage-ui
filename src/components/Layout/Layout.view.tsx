@@ -1,14 +1,20 @@
 import { Container, Content } from './Layout.style'
+import React, { FC, ReactNode } from 'react'
 
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Footer from '../Footer'
 import Navigation from '../Navigation'
-import React from 'react'
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from '../../styles/theme'
 import withFlipAnimation from '../withFlipAnimation'
 
-export default withFlipAnimation(({ isDarkMode, setIsDarkMode, children }) => {
+type Props = {
+    isDarkMode: boolean
+    setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>
+    children: ReactNode
+}
+
+const Layout: FC<Props> = ({ isDarkMode, setIsDarkMode, children }: Props) => {
     return (
         <ThemeProvider theme={theme(isDarkMode)}>
             <CssBaseline />
@@ -23,4 +29,6 @@ export default withFlipAnimation(({ isDarkMode, setIsDarkMode, children }) => {
             </Container>
         </ThemeProvider>
     )
-})
+}
+
+export default withFlipAnimation(Layout)

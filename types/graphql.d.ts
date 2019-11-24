@@ -1938,12 +1938,12 @@ export type Query = {
   allSitePlugin: SitePluginConnection,
   site?: Maybe<Site>,
   allSite: SiteConnection,
+  prismicDashboard?: Maybe<PrismicDashboard>,
+  allPrismicDashboard: PrismicDashboardConnection,
   prismicArtist?: Maybe<PrismicArtist>,
   allPrismicArtist: PrismicArtistConnection,
   prismicRelease?: Maybe<PrismicRelease>,
   allPrismicRelease: PrismicReleaseConnection,
-  prismicDashboard?: Maybe<PrismicDashboard>,
-  allPrismicDashboard: PrismicDashboardConnection,
 };
 
 
@@ -2090,6 +2090,31 @@ export type QueryAllSiteArgs = {
 };
 
 
+export type QueryPrismicDashboardArgs = {
+  id?: Maybe<StringQueryOperatorInput>,
+  parent?: Maybe<NodeFilterInput>,
+  children?: Maybe<NodeFilterListInput>,
+  internal?: Maybe<InternalFilterInput>,
+  type?: Maybe<StringQueryOperatorInput>,
+  href?: Maybe<StringQueryOperatorInput>,
+  first_publication_date?: Maybe<DateQueryOperatorInput>,
+  last_publication_date?: Maybe<DateQueryOperatorInput>,
+  slugs?: Maybe<StringQueryOperatorInput>,
+  lang?: Maybe<StringQueryOperatorInput>,
+  data?: Maybe<PrismicDashboardDataFilterInput>,
+  prismicId?: Maybe<StringQueryOperatorInput>,
+  dataString?: Maybe<StringQueryOperatorInput>
+};
+
+
+export type QueryAllPrismicDashboardArgs = {
+  filter?: Maybe<PrismicDashboardFilterInput>,
+  sort?: Maybe<PrismicDashboardSortInput>,
+  skip?: Maybe<Scalars['Int']>,
+  limit?: Maybe<Scalars['Int']>
+};
+
+
 export type QueryPrismicArtistArgs = {
   id?: Maybe<StringQueryOperatorInput>,
   parent?: Maybe<NodeFilterInput>,
@@ -2137,31 +2162,6 @@ export type QueryPrismicReleaseArgs = {
 export type QueryAllPrismicReleaseArgs = {
   filter?: Maybe<PrismicReleaseFilterInput>,
   sort?: Maybe<PrismicReleaseSortInput>,
-  skip?: Maybe<Scalars['Int']>,
-  limit?: Maybe<Scalars['Int']>
-};
-
-
-export type QueryPrismicDashboardArgs = {
-  id?: Maybe<StringQueryOperatorInput>,
-  parent?: Maybe<NodeFilterInput>,
-  children?: Maybe<NodeFilterListInput>,
-  internal?: Maybe<InternalFilterInput>,
-  type?: Maybe<StringQueryOperatorInput>,
-  href?: Maybe<StringQueryOperatorInput>,
-  first_publication_date?: Maybe<DateQueryOperatorInput>,
-  last_publication_date?: Maybe<DateQueryOperatorInput>,
-  slugs?: Maybe<StringQueryOperatorInput>,
-  lang?: Maybe<StringQueryOperatorInput>,
-  data?: Maybe<PrismicDashboardDataFilterInput>,
-  prismicId?: Maybe<StringQueryOperatorInput>,
-  dataString?: Maybe<StringQueryOperatorInput>
-};
-
-
-export type QueryAllPrismicDashboardArgs = {
-  filter?: Maybe<PrismicDashboardFilterInput>,
-  sort?: Maybe<PrismicDashboardSortInput>,
   skip?: Maybe<Scalars['Int']>,
   limit?: Maybe<Scalars['Int']>
 };

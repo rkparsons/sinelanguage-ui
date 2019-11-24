@@ -1,3 +1,4 @@
+import { CSSProperties } from '@material-ui/styles'
 import robotoWoff from './fonts/Roboto.woff'
 import robotoWoff2 from './fonts/Roboto.woff2'
 
@@ -11,4 +12,4 @@ export default {
     url(${robotoWoff}) format('woff')
   `,
     unicodeRange: 'U+000-5FF',
-}
+} as CSSProperties
