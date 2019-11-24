@@ -1,7 +1,7 @@
-import { PrismicArtistConnection, PrismicReleaseConnection } from 'types/graphql'
+import { PrismicArtistConnection, PrismicReleaseConnection } from '~/types/graphql'
 
 import Container from './Dashboard.style'
-import DashboardItem from '../DashboardItem'
+import DashboardItem from '~/components/DashboardItem'
 import Head from '../Head'
 import React from 'react'
 

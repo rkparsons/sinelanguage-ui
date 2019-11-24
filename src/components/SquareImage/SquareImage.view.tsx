@@ -1,6 +1,6 @@
 import CardImage from './SquareImage.style'
 import { FluidObject } from 'gatsby-image'
-import { PrismicArtistDataImage } from 'types/graphql'
+import { PrismicArtistDataImage } from '~/types/graphql'
 import React from 'react'
 
 type ViewProps = {
