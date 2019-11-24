@@ -1305,8 +1305,272 @@ export type PrismicArtistGroupConnection = {
   fieldValue?: Maybe<Scalars['String']>,
 };
 
+export type PrismicArtistPrismicReleaseUnion = PrismicArtist | PrismicRelease;
+
 export type PrismicArtistSortInput = {
   fields?: Maybe<Array<Maybe<PrismicArtistFieldsEnum>>>,
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>,
+};
+
+export type PrismicDashboard = Node & {
+  id: Scalars['ID'],
+  parent?: Maybe<Node>,
+  children: Array<Node>,
+  internal: Internal,
+  type?: Maybe<Scalars['String']>,
+  href?: Maybe<Scalars['String']>,
+  first_publication_date?: Maybe<Scalars['Date']>,
+  last_publication_date?: Maybe<Scalars['Date']>,
+  slugs?: Maybe<Array<Maybe<Scalars['String']>>>,
+  lang?: Maybe<Scalars['String']>,
+  data?: Maybe<PrismicDashboardData>,
+  prismicId?: Maybe<Scalars['String']>,
+  dataString?: Maybe<Scalars['String']>,
+};
+
+
+export type PrismicDashboardFirst_Publication_DateArgs = {
+  formatString?: Maybe<Scalars['String']>,
+  fromNow?: Maybe<Scalars['Boolean']>,
+  difference?: Maybe<Scalars['String']>,
+  locale?: Maybe<Scalars['String']>
+};
+
+
+export type PrismicDashboardLast_Publication_DateArgs = {
+  formatString?: Maybe<Scalars['String']>,
+  fromNow?: Maybe<Scalars['Boolean']>,
+  difference?: Maybe<Scalars['String']>,
+  locale?: Maybe<Scalars['String']>
+};
+
+export type PrismicDashboardConnection = {
+  totalCount: Scalars['Int'],
+  edges: Array<PrismicDashboardEdge>,
+  nodes: Array<PrismicDashboard>,
+  pageInfo: PageInfo,
+  distinct: Array<Scalars['String']>,
+  group: Array<PrismicDashboardGroupConnection>,
+};
+
+
+export type PrismicDashboardConnectionDistinctArgs = {
+  field: PrismicDashboardFieldsEnum
+};
+
+
+export type PrismicDashboardConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>,
+  limit?: Maybe<Scalars['Int']>,
+  field: PrismicDashboardFieldsEnum
+};
+
+export type PrismicDashboardData = {
+  item?: Maybe<Array<Maybe<PrismicDashboardDataItem>>>,
+};
+
+export type PrismicDashboardDataFilterInput = {
+  item?: Maybe<PrismicDashboardDataItemFilterListInput>,
+};
+
+export type PrismicDashboardDataItem = {
+  content?: Maybe<PrismicDashboardDataItemContent>,
+};
+
+export type PrismicDashboardDataItemContent = {
+  id?: Maybe<Scalars['String']>,
+  type?: Maybe<Scalars['String']>,
+  slug?: Maybe<Scalars['String']>,
+  lang?: Maybe<Scalars['String']>,
+  uid?: Maybe<Scalars['String']>,
+  link_type?: Maybe<Scalars['String']>,
+  isBroken?: Maybe<Scalars['Boolean']>,
+  document?: Maybe<Array<Maybe<PrismicArtistPrismicReleaseUnion>>>,
+  url?: Maybe<Scalars['String']>,
+  target?: Maybe<Scalars['String']>,
+  raw?: Maybe<PrismicDashboardDataItemContentRaw>,
+};
+
+export type PrismicDashboardDataItemContentFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>,
+  type?: Maybe<StringQueryOperatorInput>,
+  slug?: Maybe<StringQueryOperatorInput>,
+  lang?: Maybe<StringQueryOperatorInput>,
+  uid?: Maybe<StringQueryOperatorInput>,
+  link_type?: Maybe<StringQueryOperatorInput>,
+  isBroken?: Maybe<BooleanQueryOperatorInput>,
+  url?: Maybe<StringQueryOperatorInput>,
+  target?: Maybe<StringQueryOperatorInput>,
+  raw?: Maybe<PrismicDashboardDataItemContentRawFilterInput>,
+};
+
+export type PrismicDashboardDataItemContentRaw = {
+  id?: Maybe<Scalars['String']>,
+  type?: Maybe<Scalars['String']>,
+  slug?: Maybe<Scalars['String']>,
+  lang?: Maybe<Scalars['String']>,
+  uid?: Maybe<Scalars['String']>,
+  link_type?: Maybe<Scalars['String']>,
+  isBroken?: Maybe<Scalars['Boolean']>,
+};
+
+export type PrismicDashboardDataItemContentRawFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>,
+  type?: Maybe<StringQueryOperatorInput>,
+  slug?: Maybe<StringQueryOperatorInput>,
+  lang?: Maybe<StringQueryOperatorInput>,
+  uid?: Maybe<StringQueryOperatorInput>,
+  link_type?: Maybe<StringQueryOperatorInput>,
+  isBroken?: Maybe<BooleanQueryOperatorInput>,
+};
+
+export type PrismicDashboardDataItemFilterInput = {
+  content?: Maybe<PrismicDashboardDataItemContentFilterInput>,
+};
+
+export type PrismicDashboardDataItemFilterListInput = {
+  elemMatch?: Maybe<PrismicDashboardDataItemFilterInput>,
+};
+
+export type PrismicDashboardEdge = {
+  next?: Maybe<PrismicDashboard>,
+  node: PrismicDashboard,
+  previous?: Maybe<PrismicDashboard>,
+};
+
+export type PrismicDashboardFieldsEnum = 
+  'id' |
+  'parent___id' |
+  'parent___parent___id' |
+  'parent___parent___parent___id' |
+  'parent___parent___parent___children' |
+  'parent___parent___children' |
+  'parent___parent___children___id' |
+  'parent___parent___children___children' |
+  'parent___parent___internal___content' |
+  'parent___parent___internal___contentDigest' |
+  'parent___parent___internal___description' |
+  'parent___parent___internal___fieldOwners' |
+  'parent___parent___internal___ignoreType' |
+  'parent___parent___internal___mediaType' |
+  'parent___parent___internal___owner' |
+  'parent___parent___internal___type' |
+  'parent___children' |
+  'parent___children___id' |
+  'parent___children___parent___id' |
+  'parent___children___parent___children' |
+  'parent___children___children' |
+  'parent___children___children___id' |
+  'parent___children___children___children' |
+  'parent___children___internal___content' |
+  'parent___children___internal___contentDigest' |
+  'parent___children___internal___description' |
+  'parent___children___internal___fieldOwners' |
+  'parent___children___internal___ignoreType' |
+  'parent___children___internal___mediaType' |
+  'parent___children___internal___owner' |
+  'parent___children___internal___type' |
+  'parent___internal___content' |
+  'parent___internal___contentDigest' |
+  'parent___internal___description' |
+  'parent___internal___fieldOwners' |
+  'parent___internal___ignoreType' |
+  'parent___internal___mediaType' |
+  'parent___internal___owner' |
+  'parent___internal___type' |
+  'children' |
+  'children___id' |
+  'children___parent___id' |
+  'children___parent___parent___id' |
+  'children___parent___parent___children' |
+  'children___parent___children' |
+  'children___parent___children___id' |
+  'children___parent___children___children' |
+  'children___parent___internal___content' |
+  'children___parent___internal___contentDigest' |
+  'children___parent___internal___description' |
+  'children___parent___internal___fieldOwners' |
+  'children___parent___internal___ignoreType' |
+  'children___parent___internal___mediaType' |
+  'children___parent___internal___owner' |
+  'children___parent___internal___type' |
+  'children___children' |
+  'children___children___id' |
+  'children___children___parent___id' |
+  'children___children___parent___children' |
+  'children___children___children' |
+  'children___children___children___id' |
+  'children___children___children___children' |
+  'children___children___internal___content' |
+  'children___children___internal___contentDigest' |
+  'children___children___internal___description' |
+  'children___children___internal___fieldOwners' |
+  'children___children___internal___ignoreType' |
+  'children___children___internal___mediaType' |
+  'children___children___internal___owner' |
+  'children___children___internal___type' |
+  'children___internal___content' |
+  'children___internal___contentDigest' |
+  'children___internal___description' |
+  'children___internal___fieldOwners' |
+  'children___internal___ignoreType' |
+  'children___internal___mediaType' |
+  'children___internal___owner' |
+  'children___internal___type' |
+  'internal___content' |
+  'internal___contentDigest' |
+  'internal___description' |
+  'internal___fieldOwners' |
+  'internal___ignoreType' |
+  'internal___mediaType' |
+  'internal___owner' |
+  'internal___type' |
+  'type' |
+  'href' |
+  'first_publication_date' |
+  'last_publication_date' |
+  'slugs' |
+  'lang' |
+  'data___item' |
+  'data___item___content___id' |
+  'data___item___content___type' |
+  'data___item___content___slug' |
+  'data___item___content___lang' |
+  'data___item___content___uid' |
+  'data___item___content___link_type' |
+  'data___item___content___isBroken' |
+  'data___item___content___url' |
+  'data___item___content___target' |
+  'prismicId' |
+  'dataString';
+
+export type PrismicDashboardFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>,
+  parent?: Maybe<NodeFilterInput>,
+  children?: Maybe<NodeFilterListInput>,
+  internal?: Maybe<InternalFilterInput>,
+  type?: Maybe<StringQueryOperatorInput>,
+  href?: Maybe<StringQueryOperatorInput>,
+  first_publication_date?: Maybe<DateQueryOperatorInput>,
+  last_publication_date?: Maybe<DateQueryOperatorInput>,
+  slugs?: Maybe<StringQueryOperatorInput>,
+  lang?: Maybe<StringQueryOperatorInput>,
+  data?: Maybe<PrismicDashboardDataFilterInput>,
+  prismicId?: Maybe<StringQueryOperatorInput>,
+  dataString?: Maybe<StringQueryOperatorInput>,
+};
+
+export type PrismicDashboardGroupConnection = {
+  totalCount: Scalars['Int'],
+  edges: Array<PrismicDashboardEdge>,
+  nodes: Array<PrismicDashboard>,
+  pageInfo: PageInfo,
+  field: Scalars['String'],
+  fieldValue?: Maybe<Scalars['String']>,
+};
+
+export type PrismicDashboardSortInput = {
+  fields?: Maybe<Array<Maybe<PrismicDashboardFieldsEnum>>>,
   order?: Maybe<Array<Maybe<SortOrderEnum>>>,
 };
 
@@ -1678,6 +1942,8 @@ export type Query = {
   allPrismicArtist: PrismicArtistConnection,
   prismicRelease?: Maybe<PrismicRelease>,
   allPrismicRelease: PrismicReleaseConnection,
+  prismicDashboard?: Maybe<PrismicDashboard>,
+  allPrismicDashboard: PrismicDashboardConnection,
 };
 
 
@@ -1871,6 +2137,31 @@ export type QueryPrismicReleaseArgs = {
 export type QueryAllPrismicReleaseArgs = {
   filter?: Maybe<PrismicReleaseFilterInput>,
   sort?: Maybe<PrismicReleaseSortInput>,
+  skip?: Maybe<Scalars['Int']>,
+  limit?: Maybe<Scalars['Int']>
+};
+
+
+export type QueryPrismicDashboardArgs = {
+  id?: Maybe<StringQueryOperatorInput>,
+  parent?: Maybe<NodeFilterInput>,
+  children?: Maybe<NodeFilterListInput>,
+  internal?: Maybe<InternalFilterInput>,
+  type?: Maybe<StringQueryOperatorInput>,
+  href?: Maybe<StringQueryOperatorInput>,
+  first_publication_date?: Maybe<DateQueryOperatorInput>,
+  last_publication_date?: Maybe<DateQueryOperatorInput>,
+  slugs?: Maybe<StringQueryOperatorInput>,
+  lang?: Maybe<StringQueryOperatorInput>,
+  data?: Maybe<PrismicDashboardDataFilterInput>,
+  prismicId?: Maybe<StringQueryOperatorInput>,
+  dataString?: Maybe<StringQueryOperatorInput>
+};
+
+
+export type QueryAllPrismicDashboardArgs = {
+  filter?: Maybe<PrismicDashboardFilterInput>,
+  sort?: Maybe<PrismicDashboardSortInput>,
   skip?: Maybe<Scalars['Int']>,
   limit?: Maybe<Scalars['Int']>
 };
