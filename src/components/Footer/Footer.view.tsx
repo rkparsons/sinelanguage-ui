@@ -1,4 +1,4 @@
-import MailChimp from '../MailChimp'
+import MailChimp from '~/components/MailChimp'
 import React from 'react'
 import Switch from '@material-ui/core/Switch'
 import { muiSwitchColour } from './Footer.style'

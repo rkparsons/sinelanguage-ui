@@ -1,6 +1,6 @@
 import { GatsbyLinkProps, Link } from 'gatsby'
 import React, { FC } from 'react'
-import { darkGrey, grey, lightGrey } from '../../styles/colours'
+import { darkGrey, grey, lightGrey } from '~/styles/colours'
 
 import styled from 'styled-components'
 

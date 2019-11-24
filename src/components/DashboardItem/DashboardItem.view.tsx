@@ -2,7 +2,7 @@ import React, { ComponentProps } from 'react'
 
 import { Flipped } from 'react-flip-toolkit'
 import LinkShowHide from './DashboardItem.style'
-import SquareImage from '../SquareImage'
+import SquareImage from '~/components/SquareImage'
 
 type ViewProps = {
     type: string

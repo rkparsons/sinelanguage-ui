@@ -2,11 +2,11 @@ import { Container, Content } from './Layout.style'
 import React, { FC, ReactNode } from 'react'
 
 import CssBaseline from '@material-ui/core/CssBaseline'
-import Footer from '../Footer'
-import Navigation from '../Navigation'
+import Footer from '~/components/Footer'
+import Navigation from '~/components/Navigation'
 import { ThemeProvider } from '@material-ui/core/styles'
-import theme from '../../styles/theme'
-import withFlipAnimation from '../withFlipAnimation'
+import theme from '~/styles/theme'
+import withFlipAnimation from '~/components/withFlipAnimation'
 
 type Props = {
     isDarkMode: boolean

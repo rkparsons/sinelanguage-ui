@@ -1,12 +1,12 @@
-import * as ROUTES from '../../constants/routes'
+import * as ROUTES from '~/constants/routes'
 
 import MenuIcon from '@material-ui/icons/Menu'
-import NavItem from '../NavItem'
+import NavItem from '~/components/NavItem'
 import { NavList } from './Navigation.style'
 import React from 'react'
-import SignInButton from '../SignInButton'
-import SignOutButton from '../SignOutButton'
-import { isAuthenticated } from '../../utils/auth'
+import SignInButton from '~/components/SignInButton'
+import SignOutButton from '~/components/SignOutButton'
+import { isAuthenticated } from '~/utils/auth'
 
 export default () => (
     <NavList>

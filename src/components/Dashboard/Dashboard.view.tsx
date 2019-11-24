@@ -2,7 +2,7 @@ import { PrismicArtistConnection, PrismicReleaseConnection } from '~/types/graph
 
 import Container from './Dashboard.style'
 import DashboardItem from '~/components/DashboardItem'
-import Head from '../Head'
+import Head from '~/components/Head'
 import React from 'react'
 
 type ViewProps = {
