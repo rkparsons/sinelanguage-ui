@@ -1,1 +1,1 @@
-export { default } from './withFlipAnimation.state'
+export { default } from './withFlipAnimation.container'
