@@ -1,8 +1,14 @@
+import Dashboard from '~/components/Dashboard'
 import React from 'react'
-import Dashboard from '../components/Dashboard'
 import { graphql } from 'gatsby'
+import useNewsQuery from '~/hooks/useNewsQuery'
 
-export default ({ data }) => <Dashboard {...data} />
+export default ({ data }) => {
+    const news = useNewsQuery()
+    console.log(news)
+
+    return <Dashboard {...data} />
+}
 
 export const query = graphql`
     {

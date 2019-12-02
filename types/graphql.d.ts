@@ -1574,6 +1574,703 @@ export type PrismicDashboardSortInput = {
   order?: Maybe<Array<Maybe<SortOrderEnum>>>,
 };
 
+export type PrismicNews = Node & {
+  id: Scalars['ID'],
+  parent?: Maybe<Node>,
+  children: Array<Node>,
+  internal: Internal,
+  type?: Maybe<Scalars['String']>,
+  href?: Maybe<Scalars['String']>,
+  first_publication_date?: Maybe<Scalars['Date']>,
+  last_publication_date?: Maybe<Scalars['Date']>,
+  slugs?: Maybe<Array<Maybe<Scalars['String']>>>,
+  lang?: Maybe<Scalars['String']>,
+  data?: Maybe<PrismicNewsData>,
+  prismicId?: Maybe<Scalars['String']>,
+  dataString?: Maybe<Scalars['String']>,
+};
+
+
+export type PrismicNewsFirst_Publication_DateArgs = {
+  formatString?: Maybe<Scalars['String']>,
+  fromNow?: Maybe<Scalars['Boolean']>,
+  difference?: Maybe<Scalars['String']>,
+  locale?: Maybe<Scalars['String']>
+};
+
+
+export type PrismicNewsLast_Publication_DateArgs = {
+  formatString?: Maybe<Scalars['String']>,
+  fromNow?: Maybe<Scalars['Boolean']>,
+  difference?: Maybe<Scalars['String']>,
+  locale?: Maybe<Scalars['String']>
+};
+
+export type PrismicNewsBodyArtist = Node & {
+  id: Scalars['ID'],
+  parent?: Maybe<Node>,
+  children: Array<Node>,
+  internal: Internal,
+  slice_type?: Maybe<Scalars['String']>,
+  primary?: Maybe<PrismicNewsBodyArtistPrimary>,
+  prismicId?: Maybe<Scalars['String']>,
+};
+
+export type PrismicNewsBodyArtistConnection = {
+  totalCount: Scalars['Int'],
+  edges: Array<PrismicNewsBodyArtistEdge>,
+  nodes: Array<PrismicNewsBodyArtist>,
+  pageInfo: PageInfo,
+  distinct: Array<Scalars['String']>,
+  group: Array<PrismicNewsBodyArtistGroupConnection>,
+};
+
+
+export type PrismicNewsBodyArtistConnectionDistinctArgs = {
+  field: PrismicNewsBodyArtistFieldsEnum
+};
+
+
+export type PrismicNewsBodyArtistConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>,
+  limit?: Maybe<Scalars['Int']>,
+  field: PrismicNewsBodyArtistFieldsEnum
+};
+
+export type PrismicNewsBodyArtistEdge = {
+  next?: Maybe<PrismicNewsBodyArtist>,
+  node: PrismicNewsBodyArtist,
+  previous?: Maybe<PrismicNewsBodyArtist>,
+};
+
+export type PrismicNewsBodyArtistFieldsEnum = 
+  'id' |
+  'parent___id' |
+  'parent___parent___id' |
+  'parent___parent___parent___id' |
+  'parent___parent___parent___children' |
+  'parent___parent___children' |
+  'parent___parent___children___id' |
+  'parent___parent___children___children' |
+  'parent___parent___internal___content' |
+  'parent___parent___internal___contentDigest' |
+  'parent___parent___internal___description' |
+  'parent___parent___internal___fieldOwners' |
+  'parent___parent___internal___ignoreType' |
+  'parent___parent___internal___mediaType' |
+  'parent___parent___internal___owner' |
+  'parent___parent___internal___type' |
+  'parent___children' |
+  'parent___children___id' |
+  'parent___children___parent___id' |
+  'parent___children___parent___children' |
+  'parent___children___children' |
+  'parent___children___children___id' |
+  'parent___children___children___children' |
+  'parent___children___internal___content' |
+  'parent___children___internal___contentDigest' |
+  'parent___children___internal___description' |
+  'parent___children___internal___fieldOwners' |
+  'parent___children___internal___ignoreType' |
+  'parent___children___internal___mediaType' |
+  'parent___children___internal___owner' |
+  'parent___children___internal___type' |
+  'parent___internal___content' |
+  'parent___internal___contentDigest' |
+  'parent___internal___description' |
+  'parent___internal___fieldOwners' |
+  'parent___internal___ignoreType' |
+  'parent___internal___mediaType' |
+  'parent___internal___owner' |
+  'parent___internal___type' |
+  'children' |
+  'children___id' |
+  'children___parent___id' |
+  'children___parent___parent___id' |
+  'children___parent___parent___children' |
+  'children___parent___children' |
+  'children___parent___children___id' |
+  'children___parent___children___children' |
+  'children___parent___internal___content' |
+  'children___parent___internal___contentDigest' |
+  'children___parent___internal___description' |
+  'children___parent___internal___fieldOwners' |
+  'children___parent___internal___ignoreType' |
+  'children___parent___internal___mediaType' |
+  'children___parent___internal___owner' |
+  'children___parent___internal___type' |
+  'children___children' |
+  'children___children___id' |
+  'children___children___parent___id' |
+  'children___children___parent___children' |
+  'children___children___children' |
+  'children___children___children___id' |
+  'children___children___children___children' |
+  'children___children___internal___content' |
+  'children___children___internal___contentDigest' |
+  'children___children___internal___description' |
+  'children___children___internal___fieldOwners' |
+  'children___children___internal___ignoreType' |
+  'children___children___internal___mediaType' |
+  'children___children___internal___owner' |
+  'children___children___internal___type' |
+  'children___internal___content' |
+  'children___internal___contentDigest' |
+  'children___internal___description' |
+  'children___internal___fieldOwners' |
+  'children___internal___ignoreType' |
+  'children___internal___mediaType' |
+  'children___internal___owner' |
+  'children___internal___type' |
+  'internal___content' |
+  'internal___contentDigest' |
+  'internal___description' |
+  'internal___fieldOwners' |
+  'internal___ignoreType' |
+  'internal___mediaType' |
+  'internal___owner' |
+  'internal___type' |
+  'slice_type' |
+  'primary___artist___id' |
+  'primary___artist___type' |
+  'primary___artist___slug' |
+  'primary___artist___lang' |
+  'primary___artist___uid' |
+  'primary___artist___link_type' |
+  'primary___artist___isBroken' |
+  'primary___artist___document' |
+  'primary___artist___document___id' |
+  'primary___artist___document___children' |
+  'primary___artist___document___uid' |
+  'primary___artist___document___type' |
+  'primary___artist___document___href' |
+  'primary___artist___document___first_publication_date' |
+  'primary___artist___document___last_publication_date' |
+  'primary___artist___document___slugs' |
+  'primary___artist___document___lang' |
+  'primary___artist___document___prismicId' |
+  'primary___artist___document___dataString' |
+  'primary___artist___url' |
+  'primary___artist___target' |
+  'primary___artist___raw___id' |
+  'primary___artist___raw___type' |
+  'primary___artist___raw___slug' |
+  'primary___artist___raw___lang' |
+  'primary___artist___raw___uid' |
+  'primary___artist___raw___link_type' |
+  'primary___artist___raw___isBroken' |
+  'prismicId';
+
+export type PrismicNewsBodyArtistFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>,
+  parent?: Maybe<NodeFilterInput>,
+  children?: Maybe<NodeFilterListInput>,
+  internal?: Maybe<InternalFilterInput>,
+  slice_type?: Maybe<StringQueryOperatorInput>,
+  primary?: Maybe<PrismicNewsBodyArtistPrimaryFilterInput>,
+  prismicId?: Maybe<StringQueryOperatorInput>,
+};
+
+export type PrismicNewsBodyArtistGroupConnection = {
+  totalCount: Scalars['Int'],
+  edges: Array<PrismicNewsBodyArtistEdge>,
+  nodes: Array<PrismicNewsBodyArtist>,
+  pageInfo: PageInfo,
+  field: Scalars['String'],
+  fieldValue?: Maybe<Scalars['String']>,
+};
+
+export type PrismicNewsBodyArtistPrimary = {
+  artist?: Maybe<PrismicNewsBodyArtistPrimaryArtist>,
+};
+
+export type PrismicNewsBodyArtistPrimaryArtist = {
+  id?: Maybe<Scalars['String']>,
+  type?: Maybe<Scalars['String']>,
+  slug?: Maybe<Scalars['String']>,
+  lang?: Maybe<Scalars['String']>,
+  uid?: Maybe<Scalars['String']>,
+  link_type?: Maybe<Scalars['String']>,
+  isBroken?: Maybe<Scalars['Boolean']>,
+  document?: Maybe<Array<Maybe<PrismicArtist>>>,
+  url?: Maybe<Scalars['String']>,
+  target?: Maybe<Scalars['String']>,
+  raw?: Maybe<PrismicNewsBodyArtistPrimaryArtistRaw>,
+};
+
+export type PrismicNewsBodyArtistPrimaryArtistFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>,
+  type?: Maybe<StringQueryOperatorInput>,
+  slug?: Maybe<StringQueryOperatorInput>,
+  lang?: Maybe<StringQueryOperatorInput>,
+  uid?: Maybe<StringQueryOperatorInput>,
+  link_type?: Maybe<StringQueryOperatorInput>,
+  isBroken?: Maybe<BooleanQueryOperatorInput>,
+  document?: Maybe<PrismicArtistFilterListInput>,
+  url?: Maybe<StringQueryOperatorInput>,
+  target?: Maybe<StringQueryOperatorInput>,
+  raw?: Maybe<PrismicNewsBodyArtistPrimaryArtistRawFilterInput>,
+};
+
+export type PrismicNewsBodyArtistPrimaryArtistRaw = {
+  id?: Maybe<Scalars['String']>,
+  type?: Maybe<Scalars['String']>,
+  slug?: Maybe<Scalars['String']>,
+  lang?: Maybe<Scalars['String']>,
+  uid?: Maybe<Scalars['String']>,
+  link_type?: Maybe<Scalars['String']>,
+  isBroken?: Maybe<Scalars['Boolean']>,
+};
+
+export type PrismicNewsBodyArtistPrimaryArtistRawFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>,
+  type?: Maybe<StringQueryOperatorInput>,
+  slug?: Maybe<StringQueryOperatorInput>,
+  lang?: Maybe<StringQueryOperatorInput>,
+  uid?: Maybe<StringQueryOperatorInput>,
+  link_type?: Maybe<StringQueryOperatorInput>,
+  isBroken?: Maybe<BooleanQueryOperatorInput>,
+};
+
+export type PrismicNewsBodyArtistPrimaryFilterInput = {
+  artist?: Maybe<PrismicNewsBodyArtistPrimaryArtistFilterInput>,
+};
+
+export type PrismicNewsBodyArtistPrismicNewsBodyReleaseUnion = PrismicNewsBodyArtist | PrismicNewsBodyRelease;
+
+export type PrismicNewsBodyArtistSortInput = {
+  fields?: Maybe<Array<Maybe<PrismicNewsBodyArtistFieldsEnum>>>,
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>,
+};
+
+export type PrismicNewsBodyRelease = Node & {
+  id: Scalars['ID'],
+  parent?: Maybe<Node>,
+  children: Array<Node>,
+  internal: Internal,
+  slice_type?: Maybe<Scalars['String']>,
+  primary?: Maybe<PrismicNewsBodyReleasePrimary>,
+  prismicId?: Maybe<Scalars['String']>,
+};
+
+export type PrismicNewsBodyReleaseConnection = {
+  totalCount: Scalars['Int'],
+  edges: Array<PrismicNewsBodyReleaseEdge>,
+  nodes: Array<PrismicNewsBodyRelease>,
+  pageInfo: PageInfo,
+  distinct: Array<Scalars['String']>,
+  group: Array<PrismicNewsBodyReleaseGroupConnection>,
+};
+
+
+export type PrismicNewsBodyReleaseConnectionDistinctArgs = {
+  field: PrismicNewsBodyReleaseFieldsEnum
+};
+
+
+export type PrismicNewsBodyReleaseConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>,
+  limit?: Maybe<Scalars['Int']>,
+  field: PrismicNewsBodyReleaseFieldsEnum
+};
+
+export type PrismicNewsBodyReleaseEdge = {
+  next?: Maybe<PrismicNewsBodyRelease>,
+  node: PrismicNewsBodyRelease,
+  previous?: Maybe<PrismicNewsBodyRelease>,
+};
+
+export type PrismicNewsBodyReleaseFieldsEnum = 
+  'id' |
+  'parent___id' |
+  'parent___parent___id' |
+  'parent___parent___parent___id' |
+  'parent___parent___parent___children' |
+  'parent___parent___children' |
+  'parent___parent___children___id' |
+  'parent___parent___children___children' |
+  'parent___parent___internal___content' |
+  'parent___parent___internal___contentDigest' |
+  'parent___parent___internal___description' |
+  'parent___parent___internal___fieldOwners' |
+  'parent___parent___internal___ignoreType' |
+  'parent___parent___internal___mediaType' |
+  'parent___parent___internal___owner' |
+  'parent___parent___internal___type' |
+  'parent___children' |
+  'parent___children___id' |
+  'parent___children___parent___id' |
+  'parent___children___parent___children' |
+  'parent___children___children' |
+  'parent___children___children___id' |
+  'parent___children___children___children' |
+  'parent___children___internal___content' |
+  'parent___children___internal___contentDigest' |
+  'parent___children___internal___description' |
+  'parent___children___internal___fieldOwners' |
+  'parent___children___internal___ignoreType' |
+  'parent___children___internal___mediaType' |
+  'parent___children___internal___owner' |
+  'parent___children___internal___type' |
+  'parent___internal___content' |
+  'parent___internal___contentDigest' |
+  'parent___internal___description' |
+  'parent___internal___fieldOwners' |
+  'parent___internal___ignoreType' |
+  'parent___internal___mediaType' |
+  'parent___internal___owner' |
+  'parent___internal___type' |
+  'children' |
+  'children___id' |
+  'children___parent___id' |
+  'children___parent___parent___id' |
+  'children___parent___parent___children' |
+  'children___parent___children' |
+  'children___parent___children___id' |
+  'children___parent___children___children' |
+  'children___parent___internal___content' |
+  'children___parent___internal___contentDigest' |
+  'children___parent___internal___description' |
+  'children___parent___internal___fieldOwners' |
+  'children___parent___internal___ignoreType' |
+  'children___parent___internal___mediaType' |
+  'children___parent___internal___owner' |
+  'children___parent___internal___type' |
+  'children___children' |
+  'children___children___id' |
+  'children___children___parent___id' |
+  'children___children___parent___children' |
+  'children___children___children' |
+  'children___children___children___id' |
+  'children___children___children___children' |
+  'children___children___internal___content' |
+  'children___children___internal___contentDigest' |
+  'children___children___internal___description' |
+  'children___children___internal___fieldOwners' |
+  'children___children___internal___ignoreType' |
+  'children___children___internal___mediaType' |
+  'children___children___internal___owner' |
+  'children___children___internal___type' |
+  'children___internal___content' |
+  'children___internal___contentDigest' |
+  'children___internal___description' |
+  'children___internal___fieldOwners' |
+  'children___internal___ignoreType' |
+  'children___internal___mediaType' |
+  'children___internal___owner' |
+  'children___internal___type' |
+  'internal___content' |
+  'internal___contentDigest' |
+  'internal___description' |
+  'internal___fieldOwners' |
+  'internal___ignoreType' |
+  'internal___mediaType' |
+  'internal___owner' |
+  'internal___type' |
+  'slice_type' |
+  'primary___release___id' |
+  'primary___release___type' |
+  'primary___release___slug' |
+  'primary___release___lang' |
+  'primary___release___uid' |
+  'primary___release___link_type' |
+  'primary___release___isBroken' |
+  'primary___release___document' |
+  'primary___release___document___id' |
+  'primary___release___document___children' |
+  'primary___release___document___uid' |
+  'primary___release___document___type' |
+  'primary___release___document___href' |
+  'primary___release___document___first_publication_date' |
+  'primary___release___document___last_publication_date' |
+  'primary___release___document___slugs' |
+  'primary___release___document___lang' |
+  'primary___release___document___prismicId' |
+  'primary___release___document___dataString' |
+  'primary___release___url' |
+  'primary___release___target' |
+  'primary___release___raw___id' |
+  'primary___release___raw___type' |
+  'primary___release___raw___slug' |
+  'primary___release___raw___lang' |
+  'primary___release___raw___uid' |
+  'primary___release___raw___link_type' |
+  'primary___release___raw___isBroken' |
+  'prismicId';
+
+export type PrismicNewsBodyReleaseFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>,
+  parent?: Maybe<NodeFilterInput>,
+  children?: Maybe<NodeFilterListInput>,
+  internal?: Maybe<InternalFilterInput>,
+  slice_type?: Maybe<StringQueryOperatorInput>,
+  primary?: Maybe<PrismicNewsBodyReleasePrimaryFilterInput>,
+  prismicId?: Maybe<StringQueryOperatorInput>,
+};
+
+export type PrismicNewsBodyReleaseGroupConnection = {
+  totalCount: Scalars['Int'],
+  edges: Array<PrismicNewsBodyReleaseEdge>,
+  nodes: Array<PrismicNewsBodyRelease>,
+  pageInfo: PageInfo,
+  field: Scalars['String'],
+  fieldValue?: Maybe<Scalars['String']>,
+};
+
+export type PrismicNewsBodyReleasePrimary = {
+  release?: Maybe<PrismicNewsBodyReleasePrimaryRelease>,
+};
+
+export type PrismicNewsBodyReleasePrimaryFilterInput = {
+  release?: Maybe<PrismicNewsBodyReleasePrimaryReleaseFilterInput>,
+};
+
+export type PrismicNewsBodyReleasePrimaryRelease = {
+  id?: Maybe<Scalars['String']>,
+  type?: Maybe<Scalars['String']>,
+  slug?: Maybe<Scalars['String']>,
+  lang?: Maybe<Scalars['String']>,
+  uid?: Maybe<Scalars['String']>,
+  link_type?: Maybe<Scalars['String']>,
+  isBroken?: Maybe<Scalars['Boolean']>,
+  document?: Maybe<Array<Maybe<PrismicRelease>>>,
+  url?: Maybe<Scalars['String']>,
+  target?: Maybe<Scalars['String']>,
+  raw?: Maybe<PrismicNewsBodyReleasePrimaryReleaseRaw>,
+};
+
+export type PrismicNewsBodyReleasePrimaryReleaseFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>,
+  type?: Maybe<StringQueryOperatorInput>,
+  slug?: Maybe<StringQueryOperatorInput>,
+  lang?: Maybe<StringQueryOperatorInput>,
+  uid?: Maybe<StringQueryOperatorInput>,
+  link_type?: Maybe<StringQueryOperatorInput>,
+  isBroken?: Maybe<BooleanQueryOperatorInput>,
+  document?: Maybe<PrismicReleaseFilterListInput>,
+  url?: Maybe<StringQueryOperatorInput>,
+  target?: Maybe<StringQueryOperatorInput>,
+  raw?: Maybe<PrismicNewsBodyReleasePrimaryReleaseRawFilterInput>,
+};
+
+export type PrismicNewsBodyReleasePrimaryReleaseRaw = {
+  id?: Maybe<Scalars['String']>,
+  type?: Maybe<Scalars['String']>,
+  slug?: Maybe<Scalars['String']>,
+  lang?: Maybe<Scalars['String']>,
+  uid?: Maybe<Scalars['String']>,
+  link_type?: Maybe<Scalars['String']>,
+  isBroken?: Maybe<Scalars['Boolean']>,
+};
+
+export type PrismicNewsBodyReleasePrimaryReleaseRawFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>,
+  type?: Maybe<StringQueryOperatorInput>,
+  slug?: Maybe<StringQueryOperatorInput>,
+  lang?: Maybe<StringQueryOperatorInput>,
+  uid?: Maybe<StringQueryOperatorInput>,
+  link_type?: Maybe<StringQueryOperatorInput>,
+  isBroken?: Maybe<BooleanQueryOperatorInput>,
+};
+
+export type PrismicNewsBodyReleaseSortInput = {
+  fields?: Maybe<Array<Maybe<PrismicNewsBodyReleaseFieldsEnum>>>,
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>,
+};
+
+export type PrismicNewsConnection = {
+  totalCount: Scalars['Int'],
+  edges: Array<PrismicNewsEdge>,
+  nodes: Array<PrismicNews>,
+  pageInfo: PageInfo,
+  distinct: Array<Scalars['String']>,
+  group: Array<PrismicNewsGroupConnection>,
+};
+
+
+export type PrismicNewsConnectionDistinctArgs = {
+  field: PrismicNewsFieldsEnum
+};
+
+
+export type PrismicNewsConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>,
+  limit?: Maybe<Scalars['Int']>,
+  field: PrismicNewsFieldsEnum
+};
+
+export type PrismicNewsData = {
+  title?: Maybe<PrismicNewsDataTitle>,
+  body?: Maybe<Array<Maybe<PrismicNewsBodyArtistPrismicNewsBodyReleaseUnion>>>,
+};
+
+export type PrismicNewsDataFilterInput = {
+  title?: Maybe<PrismicNewsDataTitleFilterInput>,
+};
+
+export type PrismicNewsDataTitle = {
+  html?: Maybe<Scalars['String']>,
+  text?: Maybe<Scalars['String']>,
+  raw?: Maybe<Array<Maybe<PrismicNewsDataTitleRaw>>>,
+};
+
+export type PrismicNewsDataTitleFilterInput = {
+  html?: Maybe<StringQueryOperatorInput>,
+  text?: Maybe<StringQueryOperatorInput>,
+  raw?: Maybe<PrismicNewsDataTitleRawFilterListInput>,
+};
+
+export type PrismicNewsDataTitleRaw = {
+  type?: Maybe<Scalars['String']>,
+  text?: Maybe<Scalars['String']>,
+};
+
+export type PrismicNewsDataTitleRawFilterInput = {
+  type?: Maybe<StringQueryOperatorInput>,
+  text?: Maybe<StringQueryOperatorInput>,
+};
+
+export type PrismicNewsDataTitleRawFilterListInput = {
+  elemMatch?: Maybe<PrismicNewsDataTitleRawFilterInput>,
+};
+
+export type PrismicNewsEdge = {
+  next?: Maybe<PrismicNews>,
+  node: PrismicNews,
+  previous?: Maybe<PrismicNews>,
+};
+
+export type PrismicNewsFieldsEnum = 
+  'id' |
+  'parent___id' |
+  'parent___parent___id' |
+  'parent___parent___parent___id' |
+  'parent___parent___parent___children' |
+  'parent___parent___children' |
+  'parent___parent___children___id' |
+  'parent___parent___children___children' |
+  'parent___parent___internal___content' |
+  'parent___parent___internal___contentDigest' |
+  'parent___parent___internal___description' |
+  'parent___parent___internal___fieldOwners' |
+  'parent___parent___internal___ignoreType' |
+  'parent___parent___internal___mediaType' |
+  'parent___parent___internal___owner' |
+  'parent___parent___internal___type' |
+  'parent___children' |
+  'parent___children___id' |
+  'parent___children___parent___id' |
+  'parent___children___parent___children' |
+  'parent___children___children' |
+  'parent___children___children___id' |
+  'parent___children___children___children' |
+  'parent___children___internal___content' |
+  'parent___children___internal___contentDigest' |
+  'parent___children___internal___description' |
+  'parent___children___internal___fieldOwners' |
+  'parent___children___internal___ignoreType' |
+  'parent___children___internal___mediaType' |
+  'parent___children___internal___owner' |
+  'parent___children___internal___type' |
+  'parent___internal___content' |
+  'parent___internal___contentDigest' |
+  'parent___internal___description' |
+  'parent___internal___fieldOwners' |
+  'parent___internal___ignoreType' |
+  'parent___internal___mediaType' |
+  'parent___internal___owner' |
+  'parent___internal___type' |
+  'children' |
+  'children___id' |
+  'children___parent___id' |
+  'children___parent___parent___id' |
+  'children___parent___parent___children' |
+  'children___parent___children' |
+  'children___parent___children___id' |
+  'children___parent___children___children' |
+  'children___parent___internal___content' |
+  'children___parent___internal___contentDigest' |
+  'children___parent___internal___description' |
+  'children___parent___internal___fieldOwners' |
+  'children___parent___internal___ignoreType' |
+  'children___parent___internal___mediaType' |
+  'children___parent___internal___owner' |
+  'children___parent___internal___type' |
+  'children___children' |
+  'children___children___id' |
+  'children___children___parent___id' |
+  'children___children___parent___children' |
+  'children___children___children' |
+  'children___children___children___id' |
+  'children___children___children___children' |
+  'children___children___internal___content' |
+  'children___children___internal___contentDigest' |
+  'children___children___internal___description' |
+  'children___children___internal___fieldOwners' |
+  'children___children___internal___ignoreType' |
+  'children___children___internal___mediaType' |
+  'children___children___internal___owner' |
+  'children___children___internal___type' |
+  'children___internal___content' |
+  'children___internal___contentDigest' |
+  'children___internal___description' |
+  'children___internal___fieldOwners' |
+  'children___internal___ignoreType' |
+  'children___internal___mediaType' |
+  'children___internal___owner' |
+  'children___internal___type' |
+  'internal___content' |
+  'internal___contentDigest' |
+  'internal___description' |
+  'internal___fieldOwners' |
+  'internal___ignoreType' |
+  'internal___mediaType' |
+  'internal___owner' |
+  'internal___type' |
+  'type' |
+  'href' |
+  'first_publication_date' |
+  'last_publication_date' |
+  'slugs' |
+  'lang' |
+  'data___title___html' |
+  'data___title___text' |
+  'data___title___raw' |
+  'data___title___raw___type' |
+  'data___title___raw___text' |
+  'prismicId' |
+  'dataString';
+
+export type PrismicNewsFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>,
+  parent?: Maybe<NodeFilterInput>,
+  children?: Maybe<NodeFilterListInput>,
+  internal?: Maybe<InternalFilterInput>,
+  type?: Maybe<StringQueryOperatorInput>,
+  href?: Maybe<StringQueryOperatorInput>,
+  first_publication_date?: Maybe<DateQueryOperatorInput>,
+  last_publication_date?: Maybe<DateQueryOperatorInput>,
+  slugs?: Maybe<StringQueryOperatorInput>,
+  lang?: Maybe<StringQueryOperatorInput>,
+  data?: Maybe<PrismicNewsDataFilterInput>,
+  prismicId?: Maybe<StringQueryOperatorInput>,
+  dataString?: Maybe<StringQueryOperatorInput>,
+};
+
+export type PrismicNewsGroupConnection = {
+  totalCount: Scalars['Int'],
+  edges: Array<PrismicNewsEdge>,
+  nodes: Array<PrismicNews>,
+  pageInfo: PageInfo,
+  field: Scalars['String'],
+  fieldValue?: Maybe<Scalars['String']>,
+};
+
+export type PrismicNewsSortInput = {
+  fields?: Maybe<Array<Maybe<PrismicNewsFieldsEnum>>>,
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>,
+};
+
 export type PrismicRelease = Node & {
   id: Scalars['ID'],
   parent?: Maybe<Node>,
@@ -1913,6 +2610,10 @@ export type PrismicReleaseFilterInput = {
   dataString?: Maybe<StringQueryOperatorInput>,
 };
 
+export type PrismicReleaseFilterListInput = {
+  elemMatch?: Maybe<PrismicReleaseFilterInput>,
+};
+
 export type PrismicReleaseGroupConnection = {
   totalCount: Scalars['Int'],
   edges: Array<PrismicReleaseEdge>,
@@ -1938,12 +2639,18 @@ export type Query = {
   allSitePlugin: SitePluginConnection,
   site?: Maybe<Site>,
   allSite: SiteConnection,
+  prismicNewsBodyArtist?: Maybe<PrismicNewsBodyArtist>,
+  allPrismicNewsBodyArtist: PrismicNewsBodyArtistConnection,
   prismicDashboard?: Maybe<PrismicDashboard>,
   allPrismicDashboard: PrismicDashboardConnection,
-  prismicRelease?: Maybe<PrismicRelease>,
-  allPrismicRelease: PrismicReleaseConnection,
+  prismicNewsBodyRelease?: Maybe<PrismicNewsBodyRelease>,
+  allPrismicNewsBodyRelease: PrismicNewsBodyReleaseConnection,
+  prismicNews?: Maybe<PrismicNews>,
+  allPrismicNews: PrismicNewsConnection,
   prismicArtist?: Maybe<PrismicArtist>,
   allPrismicArtist: PrismicArtistConnection,
+  prismicRelease?: Maybe<PrismicRelease>,
+  allPrismicRelease: PrismicReleaseConnection,
 };
 
 
@@ -2090,6 +2797,25 @@ export type QueryAllSiteArgs = {
 };
 
 
+export type QueryPrismicNewsBodyArtistArgs = {
+  id?: Maybe<StringQueryOperatorInput>,
+  parent?: Maybe<NodeFilterInput>,
+  children?: Maybe<NodeFilterListInput>,
+  internal?: Maybe<InternalFilterInput>,
+  slice_type?: Maybe<StringQueryOperatorInput>,
+  primary?: Maybe<PrismicNewsBodyArtistPrimaryFilterInput>,
+  prismicId?: Maybe<StringQueryOperatorInput>
+};
+
+
+export type QueryAllPrismicNewsBodyArtistArgs = {
+  filter?: Maybe<PrismicNewsBodyArtistFilterInput>,
+  sort?: Maybe<PrismicNewsBodyArtistSortInput>,
+  skip?: Maybe<Scalars['Int']>,
+  limit?: Maybe<Scalars['Int']>
+};
+
+
 export type QueryPrismicDashboardArgs = {
   id?: Maybe<StringQueryOperatorInput>,
   parent?: Maybe<NodeFilterInput>,
@@ -2115,27 +2841,45 @@ export type QueryAllPrismicDashboardArgs = {
 };
 
 
-export type QueryPrismicReleaseArgs = {
+export type QueryPrismicNewsBodyReleaseArgs = {
   id?: Maybe<StringQueryOperatorInput>,
   parent?: Maybe<NodeFilterInput>,
   children?: Maybe<NodeFilterListInput>,
   internal?: Maybe<InternalFilterInput>,
-  uid?: Maybe<StringQueryOperatorInput>,
+  slice_type?: Maybe<StringQueryOperatorInput>,
+  primary?: Maybe<PrismicNewsBodyReleasePrimaryFilterInput>,
+  prismicId?: Maybe<StringQueryOperatorInput>
+};
+
+
+export type QueryAllPrismicNewsBodyReleaseArgs = {
+  filter?: Maybe<PrismicNewsBodyReleaseFilterInput>,
+  sort?: Maybe<PrismicNewsBodyReleaseSortInput>,
+  skip?: Maybe<Scalars['Int']>,
+  limit?: Maybe<Scalars['Int']>
+};
+
+
+export type QueryPrismicNewsArgs = {
+  id?: Maybe<StringQueryOperatorInput>,
+  parent?: Maybe<NodeFilterInput>,
+  children?: Maybe<NodeFilterListInput>,
+  internal?: Maybe<InternalFilterInput>,
   type?: Maybe<StringQueryOperatorInput>,
   href?: Maybe<StringQueryOperatorInput>,
   first_publication_date?: Maybe<DateQueryOperatorInput>,
   last_publication_date?: Maybe<DateQueryOperatorInput>,
   slugs?: Maybe<StringQueryOperatorInput>,
   lang?: Maybe<StringQueryOperatorInput>,
-  data?: Maybe<PrismicReleaseDataFilterInput>,
+  data?: Maybe<PrismicNewsDataFilterInput>,
   prismicId?: Maybe<StringQueryOperatorInput>,
   dataString?: Maybe<StringQueryOperatorInput>
 };
 
 
-export type QueryAllPrismicReleaseArgs = {
-  filter?: Maybe<PrismicReleaseFilterInput>,
-  sort?: Maybe<PrismicReleaseSortInput>,
+export type QueryAllPrismicNewsArgs = {
+  filter?: Maybe<PrismicNewsFilterInput>,
+  sort?: Maybe<PrismicNewsSortInput>,
   skip?: Maybe<Scalars['Int']>,
   limit?: Maybe<Scalars['Int']>
 };
@@ -2162,6 +2906,32 @@ export type QueryPrismicArtistArgs = {
 export type QueryAllPrismicArtistArgs = {
   filter?: Maybe<PrismicArtistFilterInput>,
   sort?: Maybe<PrismicArtistSortInput>,
+  skip?: Maybe<Scalars['Int']>,
+  limit?: Maybe<Scalars['Int']>
+};
+
+
+export type QueryPrismicReleaseArgs = {
+  id?: Maybe<StringQueryOperatorInput>,
+  parent?: Maybe<NodeFilterInput>,
+  children?: Maybe<NodeFilterListInput>,
+  internal?: Maybe<InternalFilterInput>,
+  uid?: Maybe<StringQueryOperatorInput>,
+  type?: Maybe<StringQueryOperatorInput>,
+  href?: Maybe<StringQueryOperatorInput>,
+  first_publication_date?: Maybe<DateQueryOperatorInput>,
+  last_publication_date?: Maybe<DateQueryOperatorInput>,
+  slugs?: Maybe<StringQueryOperatorInput>,
+  lang?: Maybe<StringQueryOperatorInput>,
+  data?: Maybe<PrismicReleaseDataFilterInput>,
+  prismicId?: Maybe<StringQueryOperatorInput>,
+  dataString?: Maybe<StringQueryOperatorInput>
+};
+
+
+export type QueryAllPrismicReleaseArgs = {
+  filter?: Maybe<PrismicReleaseFilterInput>,
+  sort?: Maybe<PrismicReleaseSortInput>,
   skip?: Maybe<Scalars['Int']>,
   limit?: Maybe<Scalars['Int']>
 };
@@ -2903,9 +3673,16 @@ export type ArtistFragmentFragment = (Pick<PrismicArtist, 'uid'> & { data: Maybe
 
 export type DashboardFragmentFragment = { allPrismicArtist: { edges: Array<{ node: ArtistFragmentFragment }> }, allPrismicRelease: { edges: Array<{ node: ReleaseFragmentFragment }> } };
 
+export type NewsFragmentFragment = { prismicNews: Maybe<{ data: Maybe<{ body: Maybe<Array<Maybe<({ primary: Maybe<{ artist: Maybe<(Pick<PrismicNewsBodyArtistPrimaryArtist, 'uid'> & { document: Maybe<Array<Maybe<{ data: Maybe<(Pick<PrismicArtistData, 'name' | 'published_date'> & { image: Maybe<{ localFile: Maybe<{ childImageSharp: Maybe<{ fluid: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }> }> })> }>>> })> }> } | { primary: Maybe<{ release: Maybe<(Pick<PrismicNewsBodyReleasePrimaryRelease, 'uid'> & { document: Maybe<Array<Maybe<{ data: Maybe<(Pick<PrismicReleaseData, 'name' | 'published_date'> & { image: Maybe<{ localFile: Maybe<{ childImageSharp: Maybe<{ fluid: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }> }> })> }>>> })> }> })>>> }> }> };
+
 export type ReleaseFragmentFragment = (Pick<PrismicRelease, 'uid'> & { data: Maybe<(Pick<PrismicReleaseData, 'name' | 'published_date'> & { image: Maybe<{ localFile: Maybe<{ childImageSharp: Maybe<{ fluid: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }> }> })> });
 
 export type SiteMetadataFragmentFragment = { site: Maybe<{ siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
+
+export type NewsQueryVariables = {};
+
+
+export type NewsQuery = NewsFragmentFragment;
 
 export type SiteMetadataQueryVariables = {};
 
