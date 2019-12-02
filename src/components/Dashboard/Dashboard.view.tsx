@@ -8,7 +8,7 @@ import React from 'react'
 type ViewProps = {
     allPrismicArtist: PrismicArtistConnection
     allPrismicRelease: PrismicReleaseConnection
-    filter: string
+    filter?: string
 }
 
 export default ({ allPrismicArtist, allPrismicRelease, filter }: ViewProps) => {

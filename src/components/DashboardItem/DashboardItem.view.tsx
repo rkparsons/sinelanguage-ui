@@ -8,7 +8,7 @@ type ViewProps = {
     type: string
     name: string
     uid: string
-    filter: string
+    filter?: string
 } & ComponentProps<typeof SquareImage>
 
 export default ({ type, name, uid, image, filter }: ViewProps) => {

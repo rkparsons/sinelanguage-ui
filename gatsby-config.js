@@ -28,7 +28,13 @@ module.exports = {
             'Sine Language Records is an independent label specialising in electronica and left-field dance music.',
     },
     plugins: [
-        `gatsby-plugin-typescript`,
+        {
+            resolve: `gatsby-plugin-typescript`,
+            options: {
+                isTSX: true,
+                allExtensions: true,
+            },
+        },
         `gatsby-plugin-typescript-checker`,
         {
             resolve: `gatsby-plugin-material-ui`,

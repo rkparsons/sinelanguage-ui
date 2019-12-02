@@ -1674,10 +1674,10 @@ export type Query = {
   allSitePlugin: SitePluginConnection,
   site?: Maybe<Site>,
   allSite: SiteConnection,
-  prismicRelease?: Maybe<PrismicRelease>,
-  allPrismicRelease: PrismicReleaseConnection,
   prismicArtist?: Maybe<PrismicArtist>,
   allPrismicArtist: PrismicArtistConnection,
+  prismicRelease?: Maybe<PrismicRelease>,
+  allPrismicRelease: PrismicReleaseConnection,
 };
 
 
@@ -1824,32 +1824,6 @@ export type QueryAllSiteArgs = {
 };
 
 
-export type QueryPrismicReleaseArgs = {
-  id?: Maybe<StringQueryOperatorInput>,
-  parent?: Maybe<NodeFilterInput>,
-  children?: Maybe<NodeFilterListInput>,
-  internal?: Maybe<InternalFilterInput>,
-  uid?: Maybe<StringQueryOperatorInput>,
-  type?: Maybe<StringQueryOperatorInput>,
-  href?: Maybe<StringQueryOperatorInput>,
-  first_publication_date?: Maybe<DateQueryOperatorInput>,
-  last_publication_date?: Maybe<DateQueryOperatorInput>,
-  slugs?: Maybe<StringQueryOperatorInput>,
-  lang?: Maybe<StringQueryOperatorInput>,
-  data?: Maybe<PrismicReleaseDataFilterInput>,
-  prismicId?: Maybe<StringQueryOperatorInput>,
-  dataString?: Maybe<StringQueryOperatorInput>
-};
-
-
-export type QueryAllPrismicReleaseArgs = {
-  filter?: Maybe<PrismicReleaseFilterInput>,
-  sort?: Maybe<PrismicReleaseSortInput>,
-  skip?: Maybe<Scalars['Int']>,
-  limit?: Maybe<Scalars['Int']>
-};
-
-
 export type QueryPrismicArtistArgs = {
   id?: Maybe<StringQueryOperatorInput>,
   parent?: Maybe<NodeFilterInput>,
@@ -1871,6 +1845,32 @@ export type QueryPrismicArtistArgs = {
 export type QueryAllPrismicArtistArgs = {
   filter?: Maybe<PrismicArtistFilterInput>,
   sort?: Maybe<PrismicArtistSortInput>,
+  skip?: Maybe<Scalars['Int']>,
+  limit?: Maybe<Scalars['Int']>
+};
+
+
+export type QueryPrismicReleaseArgs = {
+  id?: Maybe<StringQueryOperatorInput>,
+  parent?: Maybe<NodeFilterInput>,
+  children?: Maybe<NodeFilterListInput>,
+  internal?: Maybe<InternalFilterInput>,
+  uid?: Maybe<StringQueryOperatorInput>,
+  type?: Maybe<StringQueryOperatorInput>,
+  href?: Maybe<StringQueryOperatorInput>,
+  first_publication_date?: Maybe<DateQueryOperatorInput>,
+  last_publication_date?: Maybe<DateQueryOperatorInput>,
+  slugs?: Maybe<StringQueryOperatorInput>,
+  lang?: Maybe<StringQueryOperatorInput>,
+  data?: Maybe<PrismicReleaseDataFilterInput>,
+  prismicId?: Maybe<StringQueryOperatorInput>,
+  dataString?: Maybe<StringQueryOperatorInput>
+};
+
+
+export type QueryAllPrismicReleaseArgs = {
+  filter?: Maybe<PrismicReleaseFilterInput>,
+  sort?: Maybe<PrismicReleaseSortInput>,
   skip?: Maybe<Scalars['Int']>,
   limit?: Maybe<Scalars['Int']>
 };
@@ -2225,6 +2225,8 @@ export type SitePageFieldsEnum =
   'pluginCreator___resolve' |
   'pluginCreator___name' |
   'pluginCreator___version' |
+  'pluginCreator___pluginOptions___isTSX' |
+  'pluginCreator___pluginOptions___allExtensions' |
   'pluginCreator___pluginOptions___stylesProvider___injectFirst' |
   'pluginCreator___pluginOptions___repositoryName' |
   'pluginCreator___pluginOptions___accessToken' |
@@ -2420,6 +2422,8 @@ export type SitePluginFieldsEnum =
   'resolve' |
   'name' |
   'version' |
+  'pluginOptions___isTSX' |
+  'pluginOptions___allExtensions' |
   'pluginOptions___stylesProvider___injectFirst' |
   'pluginOptions___repositoryName' |
   'pluginOptions___accessToken' |
@@ -2542,6 +2546,8 @@ export type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 };
 
 export type SitePluginPluginOptions = {
+  isTSX?: Maybe<Scalars['Boolean']>,
+  allExtensions?: Maybe<Scalars['Boolean']>,
   stylesProvider?: Maybe<SitePluginPluginOptionsStylesProvider>,
   repositoryName?: Maybe<Scalars['String']>,
   accessToken?: Maybe<Scalars['String']>,
@@ -2555,6 +2561,8 @@ export type SitePluginPluginOptions = {
 };
 
 export type SitePluginPluginOptionsFilterInput = {
+  isTSX?: Maybe<BooleanQueryOperatorInput>,
+  allExtensions?: Maybe<BooleanQueryOperatorInput>,
   stylesProvider?: Maybe<SitePluginPluginOptionsStylesProviderFilterInput>,
   repositoryName?: Maybe<StringQueryOperatorInput>,
   accessToken?: Maybe<StringQueryOperatorInput>,
@@ -2620,6 +2628,11 @@ export type SiteMetadataQueryVariables = {};
 
 
 export type SiteMetadataQuery = SiteMetadataFragmentFragment;
+
+export type Unnamed_1_QueryVariables = {};
+
+
+export type Unnamed_1_Query = DashboardFragmentFragment;
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
