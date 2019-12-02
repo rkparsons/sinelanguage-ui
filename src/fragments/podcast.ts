@@ -1,9 +1,7 @@
 import { graphql } from 'gatsby'
 
-// todo: reuse identical dashboard item fragments
-
-export const artistFragment = graphql`
-    fragment artistFragment on PrismicArtist {
+export const podcastFragment = graphql`
+    fragment podcastFragment on PrismicPodcast {
         uid
         data {
             name

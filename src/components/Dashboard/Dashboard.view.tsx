@@ -1,33 +1,65 @@
-import { PrismicArtistConnection, PrismicReleaseConnection } from '~/types/graphql'
+import {
+    PrismicArtistConnection,
+    PrismicEventConnection,
+    PrismicPodcastConnection,
+    PrismicReleaseConnection,
+} from '~/types/graphql'
 
 import Container from './Dashboard.style'
 import DashboardItem from '~/components/DashboardItem'
 import Head from '~/components/Head'
 import React from 'react'
+import { WindowLocation } from '@reach/router'
 
 type ViewProps = {
     allPrismicArtist: PrismicArtistConnection
     allPrismicRelease: PrismicReleaseConnection
-    filter?: string
+    allPrismicPodcast: PrismicPodcastConnection
+    allPrismicEvent: PrismicEventConnection
+    location: WindowLocation
 }
 
-export default ({ allPrismicArtist, allPrismicRelease, filter }: ViewProps) => {
-    const title = filter ? `${filter}s` : 'News'
+export default ({
+    allPrismicArtist,
+    allPrismicRelease,
+    allPrismicPodcast,
+    allPrismicEvent,
+}: ViewProps) => {
+    const filter = location.pathname.charAt(1).toUpperCase() + location.pathname.slice(2)
+    const title = filter || 'News'
+
     const artists = allPrismicArtist.edges.map(x => ({
-        type: 'Artist',
+        type: 'Artists',
         uid: x.node.uid!,
         name: x.node.data!.name!,
         image: x.node.data!.image!,
         published_date: x.node.data!.published_date!,
     }))
     const releases = allPrismicRelease.edges.map(x => ({
-        type: 'Release',
+        type: 'Releases',
         uid: x.node.uid!,
         name: x.node.data!.name!,
         image: x.node.data!.image!,
         published_date: x.node.data!.published_date!,
     }))
-    const dashboardItems = artists.concat(releases)
+    const podcasts = allPrismicPodcast.edges.map(x => ({
+        type: 'Podcasts',
+        uid: x.node.uid!,
+        name: x.node.data!.name!,
+        image: x.node.data!.image!,
+        published_date: x.node.data!.published_date!,
+    }))
+    const events = allPrismicEvent.edges.map(x => ({
+        type: 'Events',
+        uid: x.node.uid!,
+        name: x.node.data!.name!,
+        image: x.node.data!.image!,
+        published_date: x.node.data!.published_date!,
+    }))
+    const dashboardItems = artists
+        .concat(releases)
+        .concat(podcasts)
+        .concat(events)
 
     dashboardItems.sort(function(a, b) {
         return new Date(b.published_date).getTime() - new Date(a.published_date).getTime()

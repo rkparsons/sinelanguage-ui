@@ -16,5 +16,19 @@ export const dashboardFragment = graphql`
                 }
             }
         }
+        allPrismicPodcast {
+            edges {
+                node {
+                    ...podcastFragment
+                }
+            }
+        }
+        allPrismicEvent {
+            edges {
+                node {
+                    ...eventFragment
+                }
+            }
+        }
     }
 `

@@ -25,12 +25,20 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
 exports.createPages = async ({ graphql, actions }) => {
     await createPagesByType(graphql, actions, 'Artist')
     await createPagesByType(graphql, actions, 'Release')
+    await createPagesByType(graphql, actions, 'Podcast')
+    await createPagesByType(graphql, actions, 'Event')
 }
 
 const createPagesByType = async (graphql, actions, type) => {
     const { createPage } = actions
     const queryType = `allPrismic${type}`
     const lowerCaseType = type.toLowerCase()
+
+    createPage({
+        path: `${lowerCaseType}s`,
+        component: path.resolve(`./src/pages/index.tsx`),
+    })
+
     const result = await graphql(`
         query {
             ${queryType} {
