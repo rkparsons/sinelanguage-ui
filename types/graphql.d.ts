@@ -2905,10 +2905,12 @@ export type DashboardFragmentFragment = { allPrismicArtist: { edges: Array<{ nod
 
 export type ReleaseFragmentFragment = (Pick<PrismicRelease, 'uid'> & { data: Maybe<(Pick<PrismicReleaseData, 'name' | 'published_date'> & { image: Maybe<{ localFile: Maybe<{ childImageSharp: Maybe<{ fluid: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }> }> })> });
 
+export type SiteMetadataFragmentFragment = { site: Maybe<{ siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
+
 export type SiteMetadataQueryVariables = {};
 
 
-export type SiteMetadataQuery = { site: Maybe<{ siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
+export type SiteMetadataQuery = SiteMetadataFragmentFragment;
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
