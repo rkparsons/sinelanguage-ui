@@ -1,6 +1,7 @@
 // upgrade to latest spa sdk
 
-import auth0 from 'auth0-js'
+import auth0, { Auth0UserProfile } from 'auth0-js'
+
 import { navigate } from 'gatsby'
 
 const isBrowser = typeof window !== 'undefined'
@@ -17,7 +18,17 @@ const auth: auth0.WebAuth | null = isBrowser
 
 let accessToken: string, idToken: string, expiresAt: number
 
-let user = {}
+let user: Auth0UserProfile = {
+    name: '',
+    nickname: '',
+    picture: '',
+    user_id: '',
+    clientID: '',
+    created_at: '',
+    updated_at: '',
+    sub: '',
+    identities: [],
+}
 
 export const isAuthenticated = () => {
     if (!isBrowser) {
