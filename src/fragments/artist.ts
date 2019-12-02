@@ -5,6 +5,7 @@ import { graphql } from 'gatsby'
 export const artistFragment = graphql`
     fragment artistFragment on PrismicArtist {
         uid
+        type
         data {
             name
             published_date

@@ -15,7 +15,7 @@ export default ({ type, name, uid, image, filter }: ViewProps) => {
     return (
         <Flipped flipId={uid} stagger opacity translate={false}>
             <LinkShowHide
-                isVisible={!filter || type === filter}
+                isVisible={!filter || `${type}s` === filter}
                 to={`/${type.toLowerCase()}/${uid}`}
             >
                 <SquareImage image={image} />
