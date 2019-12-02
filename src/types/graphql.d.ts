@@ -2224,10 +2224,10 @@ export type Query = {
   allSitePlugin: SitePluginConnection,
   site?: Maybe<Site>,
   allSite: SiteConnection,
-  prismicRelease?: Maybe<PrismicRelease>,
-  allPrismicRelease: PrismicReleaseConnection,
   prismicArtist?: Maybe<PrismicArtist>,
   allPrismicArtist: PrismicArtistConnection,
+  prismicRelease?: Maybe<PrismicRelease>,
+  allPrismicRelease: PrismicReleaseConnection,
   prismicPodcast?: Maybe<PrismicPodcast>,
   allPrismicPodcast: PrismicPodcastConnection,
   prismicEvent?: Maybe<PrismicEvent>,
@@ -2378,32 +2378,6 @@ export type QueryAllSiteArgs = {
 };
 
 
-export type QueryPrismicReleaseArgs = {
-  id?: Maybe<StringQueryOperatorInput>,
-  parent?: Maybe<NodeFilterInput>,
-  children?: Maybe<NodeFilterListInput>,
-  internal?: Maybe<InternalFilterInput>,
-  uid?: Maybe<StringQueryOperatorInput>,
-  type?: Maybe<StringQueryOperatorInput>,
-  href?: Maybe<StringQueryOperatorInput>,
-  first_publication_date?: Maybe<DateQueryOperatorInput>,
-  last_publication_date?: Maybe<DateQueryOperatorInput>,
-  slugs?: Maybe<StringQueryOperatorInput>,
-  lang?: Maybe<StringQueryOperatorInput>,
-  data?: Maybe<PrismicReleaseDataFilterInput>,
-  prismicId?: Maybe<StringQueryOperatorInput>,
-  dataString?: Maybe<StringQueryOperatorInput>
-};
-
-
-export type QueryAllPrismicReleaseArgs = {
-  filter?: Maybe<PrismicReleaseFilterInput>,
-  sort?: Maybe<PrismicReleaseSortInput>,
-  skip?: Maybe<Scalars['Int']>,
-  limit?: Maybe<Scalars['Int']>
-};
-
-
 export type QueryPrismicArtistArgs = {
   id?: Maybe<StringQueryOperatorInput>,
   parent?: Maybe<NodeFilterInput>,
@@ -2425,6 +2399,32 @@ export type QueryPrismicArtistArgs = {
 export type QueryAllPrismicArtistArgs = {
   filter?: Maybe<PrismicArtistFilterInput>,
   sort?: Maybe<PrismicArtistSortInput>,
+  skip?: Maybe<Scalars['Int']>,
+  limit?: Maybe<Scalars['Int']>
+};
+
+
+export type QueryPrismicReleaseArgs = {
+  id?: Maybe<StringQueryOperatorInput>,
+  parent?: Maybe<NodeFilterInput>,
+  children?: Maybe<NodeFilterListInput>,
+  internal?: Maybe<InternalFilterInput>,
+  uid?: Maybe<StringQueryOperatorInput>,
+  type?: Maybe<StringQueryOperatorInput>,
+  href?: Maybe<StringQueryOperatorInput>,
+  first_publication_date?: Maybe<DateQueryOperatorInput>,
+  last_publication_date?: Maybe<DateQueryOperatorInput>,
+  slugs?: Maybe<StringQueryOperatorInput>,
+  lang?: Maybe<StringQueryOperatorInput>,
+  data?: Maybe<PrismicReleaseDataFilterInput>,
+  prismicId?: Maybe<StringQueryOperatorInput>,
+  dataString?: Maybe<StringQueryOperatorInput>
+};
+
+
+export type QueryAllPrismicReleaseArgs = {
+  filter?: Maybe<PrismicReleaseFilterInput>,
+  sort?: Maybe<PrismicReleaseSortInput>,
   skip?: Maybe<Scalars['Int']>,
   limit?: Maybe<Scalars['Int']>
 };
@@ -3222,15 +3222,15 @@ export type StringQueryOperatorInput = {
   glob?: Maybe<Scalars['String']>,
 };
 
-export type ArtistFragmentFragment = (Pick<PrismicArtist, 'uid'> & { data: Maybe<(Pick<PrismicArtistData, 'name' | 'published_date'> & { image: Maybe<{ localFile: Maybe<{ childImageSharp: Maybe<{ fluid: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }> }> })> });
+export type ArtistFragmentFragment = (Pick<PrismicArtist, 'uid' | 'type'> & { data: Maybe<(Pick<PrismicArtistData, 'name' | 'published_date'> & { image: Maybe<{ localFile: Maybe<{ childImageSharp: Maybe<{ fluid: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }> }> })> });
 
 export type DashboardFragmentFragment = { allPrismicArtist: { edges: Array<{ node: ArtistFragmentFragment }> }, allPrismicRelease: { edges: Array<{ node: ReleaseFragmentFragment }> }, allPrismicPodcast: { edges: Array<{ node: PodcastFragmentFragment }> }, allPrismicEvent: { edges: Array<{ node: EventFragmentFragment }> } };
 
-export type EventFragmentFragment = (Pick<PrismicEvent, 'uid'> & { data: Maybe<(Pick<PrismicEventData, 'name' | 'published_date'> & { image: Maybe<{ localFile: Maybe<{ childImageSharp: Maybe<{ fluid: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }> }> })> });
+export type EventFragmentFragment = (Pick<PrismicEvent, 'uid' | 'type'> & { data: Maybe<(Pick<PrismicEventData, 'name' | 'published_date'> & { image: Maybe<{ localFile: Maybe<{ childImageSharp: Maybe<{ fluid: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }> }> })> });
 
-export type PodcastFragmentFragment = (Pick<PrismicPodcast, 'uid'> & { data: Maybe<(Pick<PrismicPodcastData, 'name' | 'published_date'> & { image: Maybe<{ localFile: Maybe<{ childImageSharp: Maybe<{ fluid: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }> }> })> });
+export type PodcastFragmentFragment = (Pick<PrismicPodcast, 'uid' | 'type'> & { data: Maybe<(Pick<PrismicPodcastData, 'name' | 'published_date'> & { image: Maybe<{ localFile: Maybe<{ childImageSharp: Maybe<{ fluid: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }> }> })> });
 
-export type ReleaseFragmentFragment = (Pick<PrismicRelease, 'uid'> & { data: Maybe<(Pick<PrismicReleaseData, 'name' | 'published_date'> & { image: Maybe<{ localFile: Maybe<{ childImageSharp: Maybe<{ fluid: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }> }> })> });
+export type ReleaseFragmentFragment = (Pick<PrismicRelease, 'uid' | 'type'> & { data: Maybe<(Pick<PrismicReleaseData, 'name' | 'published_date'> & { image: Maybe<{ localFile: Maybe<{ childImageSharp: Maybe<{ fluid: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }> }> })> });
 
 export type SiteMetadataFragmentFragment = { site: Maybe<{ siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
 
@@ -3243,6 +3243,34 @@ export type Unnamed_1_QueryVariables = {};
 
 
 export type Unnamed_1_Query = DashboardFragmentFragment;
+
+export type Unnamed_2_QueryVariables = {
+  uid: Scalars['String']
+};
+
+
+export type Unnamed_2_Query = { prismicArtist: Maybe<ArtistFragmentFragment> };
+
+export type Unnamed_3_QueryVariables = {
+  uid: Scalars['String']
+};
+
+
+export type Unnamed_3_Query = { prismicEvent: Maybe<EventFragmentFragment> };
+
+export type Unnamed_4_QueryVariables = {
+  uid: Scalars['String']
+};
+
+
+export type Unnamed_4_Query = { prismicPodcast: Maybe<PodcastFragmentFragment> };
+
+export type ReleaseQueryVariables = {
+  uid: Scalars['String']
+};
+
+
+export type ReleaseQuery = { prismicRelease: Maybe<ReleaseFragmentFragment> };
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 

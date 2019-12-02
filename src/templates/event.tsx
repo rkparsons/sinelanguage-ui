@@ -1,16 +1,23 @@
 import Head from '../components/Head'
+import { PrismicEvent } from '~/types/graphql'
 import React from 'react'
 import SquareImage from '../components/SquareImage'
 import { graphql } from 'gatsby'
 
-export default ({ data }) => {
-    const { name, image } = data.prismicEvent.data
+type Props = {
+    data: {
+        prismicEvent: PrismicEvent
+    }
+}
+
+export default ({ data }: Props) => {
+    const { name, image } = data.prismicEvent.data!
 
     return (
         <div>
-            <Head title={name} />
+            <Head title={name!} />
             <h1>{name}</h1>
-            <SquareImage image={image} />
+            <SquareImage image={image!} />
         </div>
     )
 }

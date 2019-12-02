@@ -53,7 +53,7 @@ const createPagesByType = async (graphql, actions, type) => {
     result.data[queryType].edges.forEach(({ node }) => {
         createPage({
             path: `${lowerCaseType}s/${node.uid}`,
-            component: path.resolve(`./src/templates/${lowerCaseType}.js`),
+            component: path.resolve(`./src/templates/${lowerCaseType}.tsx`),
             context: {
                 uid: node.uid,
             },
