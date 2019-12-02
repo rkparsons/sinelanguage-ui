@@ -20,7 +20,7 @@ type ViewProps = {
 }
 
 export default ({ data }: ViewProps) => (
-    <Location>{({ location }) => <Dashboard {...data} location={location} />}</Location>
+    <Location>{({ location }) => <Dashboard data={data} location={location} />}</Location>
 )
 
 export const query = graphql`

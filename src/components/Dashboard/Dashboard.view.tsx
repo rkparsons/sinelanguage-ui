@@ -10,38 +10,22 @@ import DashboardItem from '~/components/DashboardItem'
 import Head from '~/components/Head'
 import React from 'react'
 import { WindowLocation } from '@reach/router'
-import flattenDashboardItem from '~/utils/flattenDashboardItem'
+import resolveDashboardItems from '~/utils/resolveDashboardItems'
 
 type ViewProps = {
-    allPrismicArtist: PrismicArtistConnection
-    allPrismicRelease: PrismicReleaseConnection
-    allPrismicPodcast: PrismicPodcastConnection
-    allPrismicEvent: PrismicEventConnection
+    data: {
+        allPrismicArtist: PrismicArtistConnection
+        allPrismicRelease: PrismicReleaseConnection
+        allPrismicPodcast: PrismicPodcastConnection
+        allPrismicEvent: PrismicEventConnection
+    }
     location: WindowLocation
 }
 
-export default ({
-    allPrismicArtist,
-    allPrismicRelease,
-    allPrismicPodcast,
-    allPrismicEvent,
-}: ViewProps) => {
+export default ({ data }: ViewProps) => {
     const filter = location.pathname.slice(1)
     const title = filter ? filter.charAt(0).toUpperCase() + filter.slice(1) : 'News'
-
-    const artists = allPrismicArtist.edges.map(x => flattenDashboardItem(x))
-    const releases = allPrismicRelease.edges.map(x => flattenDashboardItem(x))
-    const podcasts = allPrismicPodcast.edges.map(x => flattenDashboardItem(x))
-    const events = allPrismicEvent.edges.map(x => flattenDashboardItem(x))
-
-    const dashboardItems = artists
-        .concat(releases)
-        .concat(podcasts)
-        .concat(events)
-
-    dashboardItems.sort(function(a, b) {
-        return new Date(b.published_date).getTime() - new Date(a.published_date).getTime()
-    })
+    const dashboardItems = resolveDashboardItems(data)
 
     return (
         <>
