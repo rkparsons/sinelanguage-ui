@@ -2213,6 +2213,263 @@ export type PrismicReleaseSortInput = {
   order?: Maybe<Array<Maybe<SortOrderEnum>>>,
 };
 
+export type PrismicSiteMetadata = Node & {
+  id: Scalars['ID'],
+  parent?: Maybe<Node>,
+  children: Array<Node>,
+  internal: Internal,
+  type?: Maybe<Scalars['String']>,
+  href?: Maybe<Scalars['String']>,
+  first_publication_date?: Maybe<Scalars['Date']>,
+  last_publication_date?: Maybe<Scalars['Date']>,
+  slugs?: Maybe<Array<Maybe<Scalars['String']>>>,
+  lang?: Maybe<Scalars['String']>,
+  data?: Maybe<PrismicSiteMetadataData>,
+  prismicId?: Maybe<Scalars['String']>,
+  dataString?: Maybe<Scalars['String']>,
+};
+
+
+export type PrismicSiteMetadataFirst_Publication_DateArgs = {
+  formatString?: Maybe<Scalars['String']>,
+  fromNow?: Maybe<Scalars['Boolean']>,
+  difference?: Maybe<Scalars['String']>,
+  locale?: Maybe<Scalars['String']>
+};
+
+
+export type PrismicSiteMetadataLast_Publication_DateArgs = {
+  formatString?: Maybe<Scalars['String']>,
+  fromNow?: Maybe<Scalars['Boolean']>,
+  difference?: Maybe<Scalars['String']>,
+  locale?: Maybe<Scalars['String']>
+};
+
+export type PrismicSiteMetadataConnection = {
+  totalCount: Scalars['Int'],
+  edges: Array<PrismicSiteMetadataEdge>,
+  nodes: Array<PrismicSiteMetadata>,
+  pageInfo: PageInfo,
+  distinct: Array<Scalars['String']>,
+  group: Array<PrismicSiteMetadataGroupConnection>,
+};
+
+
+export type PrismicSiteMetadataConnectionDistinctArgs = {
+  field: PrismicSiteMetadataFieldsEnum
+};
+
+
+export type PrismicSiteMetadataConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>,
+  limit?: Maybe<Scalars['Int']>,
+  field: PrismicSiteMetadataFieldsEnum
+};
+
+export type PrismicSiteMetadataData = {
+  title?: Maybe<PrismicSiteMetadataDataTitle>,
+  description?: Maybe<PrismicSiteMetadataDataDescription>,
+};
+
+export type PrismicSiteMetadataDataDescription = {
+  html?: Maybe<Scalars['String']>,
+  text?: Maybe<Scalars['String']>,
+  raw?: Maybe<Array<Maybe<PrismicSiteMetadataDataDescriptionRaw>>>,
+};
+
+export type PrismicSiteMetadataDataDescriptionFilterInput = {
+  html?: Maybe<StringQueryOperatorInput>,
+  text?: Maybe<StringQueryOperatorInput>,
+  raw?: Maybe<PrismicSiteMetadataDataDescriptionRawFilterListInput>,
+};
+
+export type PrismicSiteMetadataDataDescriptionRaw = {
+  type?: Maybe<Scalars['String']>,
+  text?: Maybe<Scalars['String']>,
+};
+
+export type PrismicSiteMetadataDataDescriptionRawFilterInput = {
+  type?: Maybe<StringQueryOperatorInput>,
+  text?: Maybe<StringQueryOperatorInput>,
+};
+
+export type PrismicSiteMetadataDataDescriptionRawFilterListInput = {
+  elemMatch?: Maybe<PrismicSiteMetadataDataDescriptionRawFilterInput>,
+};
+
+export type PrismicSiteMetadataDataFilterInput = {
+  title?: Maybe<PrismicSiteMetadataDataTitleFilterInput>,
+  description?: Maybe<PrismicSiteMetadataDataDescriptionFilterInput>,
+};
+
+export type PrismicSiteMetadataDataTitle = {
+  html?: Maybe<Scalars['String']>,
+  text?: Maybe<Scalars['String']>,
+  raw?: Maybe<Array<Maybe<PrismicSiteMetadataDataTitleRaw>>>,
+};
+
+export type PrismicSiteMetadataDataTitleFilterInput = {
+  html?: Maybe<StringQueryOperatorInput>,
+  text?: Maybe<StringQueryOperatorInput>,
+  raw?: Maybe<PrismicSiteMetadataDataTitleRawFilterListInput>,
+};
+
+export type PrismicSiteMetadataDataTitleRaw = {
+  type?: Maybe<Scalars['String']>,
+  text?: Maybe<Scalars['String']>,
+};
+
+export type PrismicSiteMetadataDataTitleRawFilterInput = {
+  type?: Maybe<StringQueryOperatorInput>,
+  text?: Maybe<StringQueryOperatorInput>,
+};
+
+export type PrismicSiteMetadataDataTitleRawFilterListInput = {
+  elemMatch?: Maybe<PrismicSiteMetadataDataTitleRawFilterInput>,
+};
+
+export type PrismicSiteMetadataEdge = {
+  next?: Maybe<PrismicSiteMetadata>,
+  node: PrismicSiteMetadata,
+  previous?: Maybe<PrismicSiteMetadata>,
+};
+
+export type PrismicSiteMetadataFieldsEnum = 
+  'id' |
+  'parent___id' |
+  'parent___parent___id' |
+  'parent___parent___parent___id' |
+  'parent___parent___parent___children' |
+  'parent___parent___children' |
+  'parent___parent___children___id' |
+  'parent___parent___children___children' |
+  'parent___parent___internal___content' |
+  'parent___parent___internal___contentDigest' |
+  'parent___parent___internal___description' |
+  'parent___parent___internal___fieldOwners' |
+  'parent___parent___internal___ignoreType' |
+  'parent___parent___internal___mediaType' |
+  'parent___parent___internal___owner' |
+  'parent___parent___internal___type' |
+  'parent___children' |
+  'parent___children___id' |
+  'parent___children___parent___id' |
+  'parent___children___parent___children' |
+  'parent___children___children' |
+  'parent___children___children___id' |
+  'parent___children___children___children' |
+  'parent___children___internal___content' |
+  'parent___children___internal___contentDigest' |
+  'parent___children___internal___description' |
+  'parent___children___internal___fieldOwners' |
+  'parent___children___internal___ignoreType' |
+  'parent___children___internal___mediaType' |
+  'parent___children___internal___owner' |
+  'parent___children___internal___type' |
+  'parent___internal___content' |
+  'parent___internal___contentDigest' |
+  'parent___internal___description' |
+  'parent___internal___fieldOwners' |
+  'parent___internal___ignoreType' |
+  'parent___internal___mediaType' |
+  'parent___internal___owner' |
+  'parent___internal___type' |
+  'children' |
+  'children___id' |
+  'children___parent___id' |
+  'children___parent___parent___id' |
+  'children___parent___parent___children' |
+  'children___parent___children' |
+  'children___parent___children___id' |
+  'children___parent___children___children' |
+  'children___parent___internal___content' |
+  'children___parent___internal___contentDigest' |
+  'children___parent___internal___description' |
+  'children___parent___internal___fieldOwners' |
+  'children___parent___internal___ignoreType' |
+  'children___parent___internal___mediaType' |
+  'children___parent___internal___owner' |
+  'children___parent___internal___type' |
+  'children___children' |
+  'children___children___id' |
+  'children___children___parent___id' |
+  'children___children___parent___children' |
+  'children___children___children' |
+  'children___children___children___id' |
+  'children___children___children___children' |
+  'children___children___internal___content' |
+  'children___children___internal___contentDigest' |
+  'children___children___internal___description' |
+  'children___children___internal___fieldOwners' |
+  'children___children___internal___ignoreType' |
+  'children___children___internal___mediaType' |
+  'children___children___internal___owner' |
+  'children___children___internal___type' |
+  'children___internal___content' |
+  'children___internal___contentDigest' |
+  'children___internal___description' |
+  'children___internal___fieldOwners' |
+  'children___internal___ignoreType' |
+  'children___internal___mediaType' |
+  'children___internal___owner' |
+  'children___internal___type' |
+  'internal___content' |
+  'internal___contentDigest' |
+  'internal___description' |
+  'internal___fieldOwners' |
+  'internal___ignoreType' |
+  'internal___mediaType' |
+  'internal___owner' |
+  'internal___type' |
+  'type' |
+  'href' |
+  'first_publication_date' |
+  'last_publication_date' |
+  'slugs' |
+  'lang' |
+  'data___title___html' |
+  'data___title___text' |
+  'data___title___raw' |
+  'data___title___raw___type' |
+  'data___title___raw___text' |
+  'data___description___html' |
+  'data___description___text' |
+  'data___description___raw' |
+  'data___description___raw___type' |
+  'data___description___raw___text' |
+  'prismicId' |
+  'dataString';
+
+export type PrismicSiteMetadataFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>,
+  parent?: Maybe<NodeFilterInput>,
+  children?: Maybe<NodeFilterListInput>,
+  internal?: Maybe<InternalFilterInput>,
+  type?: Maybe<StringQueryOperatorInput>,
+  href?: Maybe<StringQueryOperatorInput>,
+  first_publication_date?: Maybe<DateQueryOperatorInput>,
+  last_publication_date?: Maybe<DateQueryOperatorInput>,
+  slugs?: Maybe<StringQueryOperatorInput>,
+  lang?: Maybe<StringQueryOperatorInput>,
+  data?: Maybe<PrismicSiteMetadataDataFilterInput>,
+  prismicId?: Maybe<StringQueryOperatorInput>,
+  dataString?: Maybe<StringQueryOperatorInput>,
+};
+
+export type PrismicSiteMetadataGroupConnection = {
+  totalCount: Scalars['Int'],
+  edges: Array<PrismicSiteMetadataEdge>,
+  nodes: Array<PrismicSiteMetadata>,
+  pageInfo: PageInfo,
+  field: Scalars['String'],
+  fieldValue?: Maybe<Scalars['String']>,
+};
+
+export type PrismicSiteMetadataSortInput = {
+  fields?: Maybe<Array<Maybe<PrismicSiteMetadataFieldsEnum>>>,
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>,
+};
+
 export type Query = {
   imageSharp?: Maybe<ImageSharp>,
   allImageSharp: ImageSharpConnection,
@@ -2232,6 +2489,8 @@ export type Query = {
   allPrismicPodcast: PrismicPodcastConnection,
   prismicEvent?: Maybe<PrismicEvent>,
   allPrismicEvent: PrismicEventConnection,
+  prismicSiteMetadata?: Maybe<PrismicSiteMetadata>,
+  allPrismicSiteMetadata: PrismicSiteMetadataConnection,
 };
 
 
@@ -2477,6 +2736,31 @@ export type QueryPrismicEventArgs = {
 export type QueryAllPrismicEventArgs = {
   filter?: Maybe<PrismicEventFilterInput>,
   sort?: Maybe<PrismicEventSortInput>,
+  skip?: Maybe<Scalars['Int']>,
+  limit?: Maybe<Scalars['Int']>
+};
+
+
+export type QueryPrismicSiteMetadataArgs = {
+  id?: Maybe<StringQueryOperatorInput>,
+  parent?: Maybe<NodeFilterInput>,
+  children?: Maybe<NodeFilterListInput>,
+  internal?: Maybe<InternalFilterInput>,
+  type?: Maybe<StringQueryOperatorInput>,
+  href?: Maybe<StringQueryOperatorInput>,
+  first_publication_date?: Maybe<DateQueryOperatorInput>,
+  last_publication_date?: Maybe<DateQueryOperatorInput>,
+  slugs?: Maybe<StringQueryOperatorInput>,
+  lang?: Maybe<StringQueryOperatorInput>,
+  data?: Maybe<PrismicSiteMetadataDataFilterInput>,
+  prismicId?: Maybe<StringQueryOperatorInput>,
+  dataString?: Maybe<StringQueryOperatorInput>
+};
+
+
+export type QueryAllPrismicSiteMetadataArgs = {
+  filter?: Maybe<PrismicSiteMetadataFilterInput>,
+  sort?: Maybe<PrismicSiteMetadataSortInput>,
   skip?: Maybe<Scalars['Int']>,
   limit?: Maybe<Scalars['Int']>
 };
@@ -3232,7 +3516,7 @@ export type PodcastFragmentFragment = (Pick<PrismicPodcast, 'uid' | 'type'> & { 
 
 export type ReleaseFragmentFragment = (Pick<PrismicRelease, 'uid' | 'type'> & { data: Maybe<(Pick<PrismicReleaseData, 'name' | 'published_date'> & { image: Maybe<{ localFile: Maybe<{ childImageSharp: Maybe<{ fluid: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }> }> })> });
 
-export type SiteMetadataFragmentFragment = { site: Maybe<{ siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
+export type SiteMetadataFragmentFragment = { prismicSiteMetadata: Maybe<{ data: Maybe<{ title: Maybe<Pick<PrismicSiteMetadataDataTitle, 'text'>>, description: Maybe<Pick<PrismicSiteMetadataDataDescription, 'text'>> }> }> };
 
 export type SiteMetadataQueryVariables = {};
 

@@ -2,9 +2,14 @@ import { graphql } from 'gatsby'
 
 export const siteMetadataFragment = graphql`
     fragment siteMetadataFragment on Query {
-        site {
-            siteMetadata {
-                title
+        prismicSiteMetadata {
+            data {
+                title {
+                    text
+                }
+                description {
+                    text
+                }
             }
         }
     }
