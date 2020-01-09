@@ -22,11 +22,6 @@ module.exports = {
             })
         )
     },
-    siteMetadata: {
-        title: 'Sine Language Records',
-        description:
-            'Sine Language Records is an independent label specialising in electronica and left-field dance music.',
-    },
     plugins: [
         {
             resolve: `gatsby-plugin-typescript`,

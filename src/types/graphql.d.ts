@@ -2481,6 +2481,8 @@ export type Query = {
   allSitePlugin: SitePluginConnection,
   site?: Maybe<Site>,
   allSite: SiteConnection,
+  prismicSiteMetadata?: Maybe<PrismicSiteMetadata>,
+  allPrismicSiteMetadata: PrismicSiteMetadataConnection,
   prismicRelease?: Maybe<PrismicRelease>,
   allPrismicRelease: PrismicReleaseConnection,
   prismicArtist?: Maybe<PrismicArtist>,
@@ -2489,8 +2491,6 @@ export type Query = {
   allPrismicPodcast: PrismicPodcastConnection,
   prismicEvent?: Maybe<PrismicEvent>,
   allPrismicEvent: PrismicEventConnection,
-  prismicSiteMetadata?: Maybe<PrismicSiteMetadata>,
-  allPrismicSiteMetadata: PrismicSiteMetadataConnection,
 };
 
 
@@ -2620,7 +2620,8 @@ export type QuerySiteArgs = {
   parent?: Maybe<NodeFilterInput>,
   children?: Maybe<NodeFilterListInput>,
   internal?: Maybe<InternalFilterInput>,
-  siteMetadata?: Maybe<SiteSiteMetadataFilterInput>,
+  port?: Maybe<IntQueryOperatorInput>,
+  host?: Maybe<StringQueryOperatorInput>,
   polyfill?: Maybe<BooleanQueryOperatorInput>,
   pathPrefix?: Maybe<StringQueryOperatorInput>,
   buildTime?: Maybe<DateQueryOperatorInput>
@@ -2630,6 +2631,31 @@ export type QuerySiteArgs = {
 export type QueryAllSiteArgs = {
   filter?: Maybe<SiteFilterInput>,
   sort?: Maybe<SiteSortInput>,
+  skip?: Maybe<Scalars['Int']>,
+  limit?: Maybe<Scalars['Int']>
+};
+
+
+export type QueryPrismicSiteMetadataArgs = {
+  id?: Maybe<StringQueryOperatorInput>,
+  parent?: Maybe<NodeFilterInput>,
+  children?: Maybe<NodeFilterListInput>,
+  internal?: Maybe<InternalFilterInput>,
+  type?: Maybe<StringQueryOperatorInput>,
+  href?: Maybe<StringQueryOperatorInput>,
+  first_publication_date?: Maybe<DateQueryOperatorInput>,
+  last_publication_date?: Maybe<DateQueryOperatorInput>,
+  slugs?: Maybe<StringQueryOperatorInput>,
+  lang?: Maybe<StringQueryOperatorInput>,
+  data?: Maybe<PrismicSiteMetadataDataFilterInput>,
+  prismicId?: Maybe<StringQueryOperatorInput>,
+  dataString?: Maybe<StringQueryOperatorInput>
+};
+
+
+export type QueryAllPrismicSiteMetadataArgs = {
+  filter?: Maybe<PrismicSiteMetadataFilterInput>,
+  sort?: Maybe<PrismicSiteMetadataSortInput>,
   skip?: Maybe<Scalars['Int']>,
   limit?: Maybe<Scalars['Int']>
 };
@@ -2738,37 +2764,13 @@ export type QueryAllPrismicEventArgs = {
   limit?: Maybe<Scalars['Int']>
 };
 
-
-export type QueryPrismicSiteMetadataArgs = {
-  id?: Maybe<StringQueryOperatorInput>,
-  parent?: Maybe<NodeFilterInput>,
-  children?: Maybe<NodeFilterListInput>,
-  internal?: Maybe<InternalFilterInput>,
-  type?: Maybe<StringQueryOperatorInput>,
-  href?: Maybe<StringQueryOperatorInput>,
-  first_publication_date?: Maybe<DateQueryOperatorInput>,
-  last_publication_date?: Maybe<DateQueryOperatorInput>,
-  slugs?: Maybe<StringQueryOperatorInput>,
-  lang?: Maybe<StringQueryOperatorInput>,
-  data?: Maybe<PrismicSiteMetadataDataFilterInput>,
-  prismicId?: Maybe<StringQueryOperatorInput>,
-  dataString?: Maybe<StringQueryOperatorInput>
-};
-
-
-export type QueryAllPrismicSiteMetadataArgs = {
-  filter?: Maybe<PrismicSiteMetadataFilterInput>,
-  sort?: Maybe<PrismicSiteMetadataSortInput>,
-  skip?: Maybe<Scalars['Int']>,
-  limit?: Maybe<Scalars['Int']>
-};
-
 export type Site = Node & {
   id: Scalars['ID'],
   parent?: Maybe<Node>,
   children: Array<Node>,
   internal: Internal,
-  siteMetadata?: Maybe<SiteSiteMetadata>,
+  port?: Maybe<Scalars['Int']>,
+  host?: Maybe<Scalars['String']>,
   polyfill?: Maybe<Scalars['Boolean']>,
   pathPrefix?: Maybe<Scalars['String']>,
   buildTime?: Maybe<Scalars['Date']>,
@@ -2896,8 +2898,8 @@ export type SiteFieldsEnum =
   'internal___mediaType' |
   'internal___owner' |
   'internal___type' |
-  'siteMetadata___title' |
-  'siteMetadata___description' |
+  'port' |
+  'host' |
   'polyfill' |
   'pathPrefix' |
   'buildTime';
@@ -2907,7 +2909,8 @@ export type SiteFilterInput = {
   parent?: Maybe<NodeFilterInput>,
   children?: Maybe<NodeFilterListInput>,
   internal?: Maybe<InternalFilterInput>,
-  siteMetadata?: Maybe<SiteSiteMetadataFilterInput>,
+  port?: Maybe<IntQueryOperatorInput>,
+  host?: Maybe<StringQueryOperatorInput>,
   polyfill?: Maybe<BooleanQueryOperatorInput>,
   pathPrefix?: Maybe<StringQueryOperatorInput>,
   buildTime?: Maybe<DateQueryOperatorInput>,
@@ -3468,16 +3471,6 @@ export type SitePluginPluginOptionsStylesProviderFilterInput = {
 export type SitePluginSortInput = {
   fields?: Maybe<Array<Maybe<SitePluginFieldsEnum>>>,
   order?: Maybe<Array<Maybe<SortOrderEnum>>>,
-};
-
-export type SiteSiteMetadata = {
-  title?: Maybe<Scalars['String']>,
-  description?: Maybe<Scalars['String']>,
-};
-
-export type SiteSiteMetadataFilterInput = {
-  title?: Maybe<StringQueryOperatorInput>,
-  description?: Maybe<StringQueryOperatorInput>,
 };
 
 export type SiteSortInput = {
