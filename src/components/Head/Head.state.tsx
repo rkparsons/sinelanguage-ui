@@ -1,7 +1,7 @@
 import React, { ComponentProps } from 'react'
 
 import View from './Head.view'
-import useSiteMetadata from '../../hooks/useSiteMetadata'
+import useSiteMetadata from '~/hooks/useSiteMetadata'
 
 type StateProps = Omit<ComponentProps<typeof View>, 'siteMetadata'>
 

@@ -1,7 +1,7 @@
-import Head from '../components/Head'
+import Head from '~/components/Head'
 import { PrismicEvent } from '~/types/graphql'
 import React from 'react'
-import SquareImage from '../components/SquareImage'
+import SquareImage from '~/components/SquareImage'
 import { graphql } from 'gatsby'
 
 type Props = {

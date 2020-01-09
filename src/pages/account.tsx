@@ -1,6 +1,6 @@
-import Head from '../components/Head'
+import Head from '~/components/Head'
 import React from 'react'
-import { getProfile } from '../utils/auth'
+import { getProfile } from '~/utils/auth'
 
 export default () => (
     <div>
