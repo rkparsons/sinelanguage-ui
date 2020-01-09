@@ -13,6 +13,7 @@ export const artistFragment = graphql`
             }
             published_date
             image {
+                url
                 localFile {
                     childImageSharp {
                         fluid {
