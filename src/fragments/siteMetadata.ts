@@ -10,6 +10,11 @@ export const siteMetadataFragment = graphql`
                 description {
                     text
                 }
+                image {
+                    localFile {
+                        url
+                    }
+                }
             }
         }
     }
