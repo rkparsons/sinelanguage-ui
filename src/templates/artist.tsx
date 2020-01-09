@@ -15,7 +15,7 @@ export default ({ data }: Props) => {
 
     return (
         <div>
-            <Head title={name!} description={description?.text!} image={image?.url!} />
+            <Head title={name!} description={description?.toString()} image={image?.url!} />
             <h1>{name}</h1>
             <SquareImage image={image!} />
         </div>

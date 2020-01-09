@@ -72,11 +72,12 @@ module.exports = {
                 component: require.resolve(`./src/components/Layout`),
             },
         },
-        {
-            resolve: 'gatsby-plugin-generate-typings',
-            options: {
-                dest: './src/types/graphql.d.ts',
-            },
-        },
+        // todo: awaiting fix for https://github.com/neugelb/gatsby-plugin-generate-typings/issues/1
+        // {
+        //     resolve: 'gatsby-plugin-generate-typings',
+        //     options: {
+        //         dest: './src/types/graphql.d.ts',
+        //     },
+        // },
     ],
 }
