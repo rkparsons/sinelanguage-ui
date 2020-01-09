@@ -8,6 +8,9 @@ export const artistFragment = graphql`
         type
         data {
             name
+            description {
+                text
+            }
             published_date
             image {
                 localFile {

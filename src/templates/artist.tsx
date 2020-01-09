@@ -11,11 +11,11 @@ type Props = {
 }
 
 export default ({ data }: Props) => {
-    const { name, image } = data.prismicArtist.data!
+    const { name, description, image } = data.prismicArtist.data!
 
     return (
         <div>
-            <Head title={name!} />
+            <Head title={name!} description={description?.text!} />
             <h1>{name}</h1>
             <SquareImage image={image!} />
         </div>
