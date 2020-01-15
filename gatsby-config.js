@@ -79,5 +79,20 @@ module.exports = {
         //         dest: './src/types/graphql.d.ts',
         //     },
         // },
+        {
+            resolve: 'gatsby-plugin-iubenda-cookie-footer',
+            options: {
+                iubendaOptions: {
+                    lang: 'en',
+                    siteId: `${process.env.GATSBY_IUBENDA_SITE_ID}`,
+                    cookiePolicyId: `${process.env.GATSBY_IUBENDA_COOKIE_POLICY_ID}`,
+                    banner: {
+                        acceptButtonDisplay: true,
+                        customizeButtonDisplay: true,
+                        position: 'bottom',
+                    },
+                },
+            },
+        },
     ],
 }
