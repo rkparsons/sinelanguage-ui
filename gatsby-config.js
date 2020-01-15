@@ -79,18 +79,5 @@ module.exports = {
         //         dest: './src/types/graphql.d.ts',
         //     },
         // },
-        {
-            resolve: `gatsby-plugin-cookiehub`,
-            options: {
-                // your cookiehub widget ID
-                cookihubId: `${process.env.GATSBY_COOKIEHUB_ID}`,
-                // your google analytics tracking id
-                trackingId: `${process.env.GATSBY_GOOGLE_ANALYTICS_ID}`,
-                // Puts tracking script in the head instead of the body
-                head: true,
-                // enable ip anonymization
-                anonymize: true,
-            },
-        },
     ],
 }
