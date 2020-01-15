@@ -35,6 +35,7 @@
         "faunadb": "^2.8.0",
         "gatsby": "^2.18.15",
         "gatsby-image": "^2.2.18",
+        "gatsby-plugin-cookiehub": "^1.0.0",
         "gatsby-plugin-generate-typings": "^0.9.8-r1",
         "gatsby-plugin-layout": "^1.1.6",
         "gatsby-plugin-mailchimp": "^5.1.2",
