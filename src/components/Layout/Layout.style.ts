@@ -1,4 +1,7 @@
+import { createGlobalStyle } from 'styled-components'
 import styled from 'styled-components'
+
+export const GlobalStyle = createGlobalStyle``
 
 export const Container = styled.div`
     margin: 0 auto;

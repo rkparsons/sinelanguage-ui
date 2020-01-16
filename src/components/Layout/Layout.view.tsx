@@ -1,4 +1,4 @@
-import { Container, Content } from './Layout.style'
+import { Container, Content, GlobalStyle } from './Layout.style'
 import React, { FC, ReactNode } from 'react'
 
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -18,7 +18,7 @@ const Layout: FC<Props> = ({ isDarkMode, setIsDarkMode, children }: Props) => {
     return (
         <ThemeProvider theme={theme(isDarkMode)}>
             <CssBaseline />
-
+            <GlobalStyle />
             <Container>
                 <Content>
                     <Navigation />
