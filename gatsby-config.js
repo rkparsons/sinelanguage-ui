@@ -24,6 +24,43 @@ module.exports = {
     },
     plugins: [
         {
+            resolve: 'gatsby-plugin-iubenda-cookie-footer',
+            options: {
+                iubendaOptions: {
+                    lang: 'en',
+                    siteId: `${process.env.GATSBY_IUBENDA_SITE_ID}`,
+                    cookiePolicyId: `${process.env.GATSBY_IUBENDA_COOKIE_POLICY_ID}`,
+                    banner: {
+                        acceptButtonDisplay: true,
+                        customizeButtonDisplay: true,
+                        position: 'bottom',
+                    },
+                },
+                googleTagManagerOptions: {
+                    eventName: 'cookies_accepted',
+                    dataLayerName: 'dataLayer',
+                },
+            },
+        },
+        {
+            resolve: 'gatsby-plugin-google-tagmanager',
+            options: {
+                id: `${process.env.GATSBY_GOOGLE_TAG_MANAGER_ID}`,
+                includeInDevelopment: true,
+                defaultDataLayer: { platform: 'gatsby' },
+                dataLayerName: 'dataLayer',
+            },
+        },
+        {
+            resolve: `gatsby-plugin-google-analytics`,
+            options: {
+                trackingId: `${process.env.GATSBY_GOOGLE_ANALYTICS_ID}`,
+                head: true,
+                anonymize: true,
+                respectDNT: true,
+            },
+        },
+        {
             resolve: `gatsby-plugin-typescript`,
             options: {
                 isTSX: true,
@@ -79,20 +116,5 @@ module.exports = {
         //         dest: './src/types/graphql.d.ts',
         //     },
         // },
-        {
-            resolve: 'gatsby-plugin-iubenda-cookie-footer',
-            options: {
-                iubendaOptions: {
-                    lang: 'en',
-                    siteId: `${process.env.GATSBY_IUBENDA_SITE_ID}`,
-                    cookiePolicyId: `${process.env.GATSBY_IUBENDA_COOKIE_POLICY_ID}`,
-                    banner: {
-                        acceptButtonDisplay: true,
-                        customizeButtonDisplay: true,
-                        position: 'bottom',
-                    },
-                },
-            },
-        },
     ],
 }
