@@ -1,4 +1,5 @@
 import MailChimp from '~/components/MailChimp'
+import PrivacyPolicy from '~/components/PrivacyPolicy'
 import React from 'react'
 import Switch from '@material-ui/core/Switch'
 import { muiSwitchColour } from './Footer.style'
@@ -17,6 +18,7 @@ export default ({ isDarkMode, setIsDarkMode }: Props) => {
                 checked={isDarkMode}
                 onChange={() => setIsDarkMode(!isDarkMode)}
             />
+            <PrivacyPolicy />
         </footer>
     )
 }
