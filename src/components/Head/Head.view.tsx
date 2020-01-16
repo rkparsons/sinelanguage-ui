@@ -31,10 +31,6 @@ export default ({ title, description, image, url, siteMetadata }: ViewProps) => 
             <meta property="twitter:title" content={seoTitle} />
             <meta property="twitter:description" content={seoDescription} />
             <meta property="twitter:image" content={seoImage} />
-            <script
-                defer
-                src="https://cmp.osano.com/16CID5RnjiBLj2cK0/c4c2a9ae-23d7-4429-b4c6-16d5dfe754c6/osano.js"
-            ></script>
         </Helmet>
     )
 }
