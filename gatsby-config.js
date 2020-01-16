@@ -37,7 +37,7 @@ module.exports = {
                     },
                 },
                 googleTagManagerOptions: {
-                    eventName: 'cookies_accepted',
+                    eventName: 'iubenda_consent_given',
                     dataLayerName: 'dataLayer',
                 },
             },
