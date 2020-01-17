@@ -24,9 +24,10 @@ export const initAnalytics = () => {
     const cookies = new Cookies()
 
     if (cookies.get('aa') && !cookies.get('_ga')) {
-        ReactGA.initialize('UA-156291521-1')
+        ReactGA.initialize(process.env.GATSBY_GOOGLE_ANALYTICS_ID!)
     }
-    // ReactPixel.init('245391766114752', undefined, {
+
+    // ReactPixel.init(process.env.GATSBY_FACEBOOK_PIXEL_ID!, undefined, {
     //     autoConfig: true,
     //     debug: true,
     // })
