@@ -1,1 +1,1 @@
-export { default } from './Preferences.view'
+export { default } from './Preferences.state'
