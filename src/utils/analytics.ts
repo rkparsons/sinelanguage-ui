@@ -2,8 +2,6 @@ import Cookies from 'universal-cookie'
 import ReactGA from 'react-ga'
 import ReactPixel from 'react-facebook-pixel'
 
-// todo: move everything to side component
-
 export const grantAnalyticsConsent = () => {
     const cookies = new Cookies()
 
@@ -27,7 +25,7 @@ export const initAnalytics = () => {
 
         ReactPixel.init(process.env.GATSBY_FACEBOOK_PIXEL_ID!, undefined, {
             autoConfig: true,
-            debug: true,
+            debug: false,
         })
     }
 }
