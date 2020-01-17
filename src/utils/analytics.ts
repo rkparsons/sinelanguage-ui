@@ -3,7 +3,6 @@ import ReactGA from 'react-ga'
 import ReactPixel from 'react-facebook-pixel'
 
 // todo: move everything to side component
-// todo: replace strings with env vars
 
 export const grantAnalyticsConsent = () => {
     const cookies = new Cookies()
