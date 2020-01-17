@@ -23,20 +23,21 @@ export const revokeAnalyticsConsent = () => {
 export const initAnalytics = () => {
     const cookies = new Cookies()
 
-    if (cookies.get('aa') && !cookies.get('_ga')) {
+    if (cookies.get('aa')) {
         ReactGA.initialize(process.env.GATSBY_GOOGLE_ANALYTICS_ID!)
-    }
 
-    // ReactPixel.init(process.env.GATSBY_FACEBOOK_PIXEL_ID!, undefined, {
-    //     autoConfig: true,
-    //     debug: true,
-    // })
+        ReactPixel.init(process.env.GATSBY_FACEBOOK_PIXEL_ID!, undefined, {
+            autoConfig: true,
+            debug: true,
+        })
+    }
 }
 
 export const trackPageView = (pathname: string) => {
     const cookies = new Cookies()
 
-    if (cookies.get('_ga')) {
+    if (cookies.get('aa')) {
         ReactGA.pageview(pathname)
+        ReactPixel.pageView()
     }
 }
