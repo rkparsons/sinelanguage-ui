@@ -17,12 +17,5 @@ export default (isDarkMode = false) =>
                     },
                 },
             },
-            // overrides: {
-            //     MuiCssBaseline: {
-            //         '@global': {
-            //             '@font-face': [fontFace],
-            //         },
-            //     },
-            // },
         })
     )

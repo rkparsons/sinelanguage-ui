@@ -6,6 +6,7 @@ import CookieConsent from 'react-cookie-consent'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Footer from '~/components/Footer'
 import Navigation from '~/components/Navigation'
+import Preferences from '~/components/Preferences'
 import ReactGA from 'react-ga'
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from '~/styles/theme'
@@ -42,6 +43,7 @@ const Layout: FC<Props> = ({
                     isAnalyticsEnabled={isAnalyticsEnabled}
                     setIsAnalyticsEnabled={setIsAnalyticsEnabled}
                 />
+                <Preferences />
                 <CookieConsent
                     onAccept={() => {
                         enableAnalytics()
