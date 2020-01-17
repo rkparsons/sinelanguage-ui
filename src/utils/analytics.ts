@@ -1,19 +1,19 @@
 import Cookies from 'universal-cookie'
 import ReactGA from 'react-ga'
 import ReactPixel from 'react-facebook-pixel'
+import moment from 'moment'
 
 export const isAnalyticsEnabled = () => new Cookies().get('aa') === 'true'
 
-export const enableAnalytics = () => new Cookies().set('aa', true, { path: '/' })
+export const enableAnalytics = () =>
+    new Cookies().set('aa', true, {
+        path: '/',
+        expires: moment()
+            .add(1, 'years')
+            .toDate(),
+    })
 
-export const disableAnalytics = () => {
-    const cookies = new Cookies()
-
-    cookies.set('aa', false, { path: '/' })
-    cookies.remove('_ga', { path: '/' })
-    cookies.remove('_gat', { path: '/' })
-    cookies.remove('_gid', { path: '/' })
-}
+export const disableAnalytics = () => new Cookies().set('aa', false, { path: '/' })
 
 export const initAnalytics = () => {
     ReactGA.initialize(process.env.GATSBY_GOOGLE_ANALYTICS_ID!)

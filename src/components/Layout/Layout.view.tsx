@@ -13,11 +13,19 @@ import withFlipAnimation from '~/components/withFlipAnimation'
 
 type Props = {
     isDarkMode: boolean
-    setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>
+    setIsDarkMode: (isDarkMode: boolean) => void
+    isAnalyticsEnabled: boolean
+    setIsAnalyticsEnabled: (isAnalyticsEnabled: boolean) => void
     children: ReactNode
 }
 
-const Layout: FC<Props> = ({ isDarkMode, setIsDarkMode, children }: Props) => {
+const Layout: FC<Props> = ({
+    isDarkMode,
+    setIsDarkMode,
+    isAnalyticsEnabled,
+    setIsAnalyticsEnabled,
+    children,
+}: Props) => {
     return (
         <ThemeProvider theme={theme(isDarkMode)}>
             <CssBaseline />
@@ -28,7 +36,12 @@ const Layout: FC<Props> = ({ isDarkMode, setIsDarkMode, children }: Props) => {
                     <hr />
                     {children}
                 </Content>
-                <Footer isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+                <Footer
+                    isDarkMode={isDarkMode}
+                    setIsDarkMode={setIsDarkMode}
+                    isAnalyticsEnabled={isAnalyticsEnabled}
+                    setIsAnalyticsEnabled={setIsAnalyticsEnabled}
+                />
                 <CookieConsent
                     onAccept={() => {
                         enableAnalytics()

@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { disableAnalytics, enableAnalytics, initAnalytics } from '~/utils/analytics'
 
-import Cookies from 'universal-cookie'
 import MailChimp from '~/components/MailChimp'
 import Switch from '@material-ui/core/Switch'
 import { muiSwitchColour } from './Footer.style'
@@ -9,34 +8,38 @@ import { muiSwitchColour } from './Footer.style'
 interface Props {
     isDarkMode: boolean
     setIsDarkMode: (isDarkMode: boolean) => void
+    isAnalyticsEnabled: boolean
+    setIsAnalyticsEnabled: (isAnalyticsEnabled: boolean) => void
 }
 
-export default ({ isDarkMode, setIsDarkMode }: Props) => {
-    const cookies = new Cookies()
-    const [isAnalyticsOn, setIsAnalyticsOn] = useState(cookies.get('aa') === 'true')
-
+export default ({
+    isDarkMode,
+    setIsDarkMode,
+    isAnalyticsEnabled,
+    setIsAnalyticsEnabled,
+}: Props) => {
     useEffect(() => {
-        if (isAnalyticsOn) {
+        if (isAnalyticsEnabled) {
             enableAnalytics()
             initAnalytics()
         } else {
             disableAnalytics()
         }
-    }, [isAnalyticsOn])
+    }, [isAnalyticsEnabled])
 
     return (
         <footer>
             <Switch
                 color={muiSwitchColour}
-                checked={isAnalyticsOn as boolean}
-                onChange={() => setIsAnalyticsOn(!isAnalyticsOn)}
+                checked={isAnalyticsEnabled}
+                onChange={() => setIsAnalyticsEnabled(!isAnalyticsEnabled)}
             />
             <MailChimp />
-            {/* <Switch
+            <Switch
                 color={muiSwitchColour}
                 checked={isDarkMode}
                 onChange={() => setIsDarkMode(!isDarkMode)}
-            /> */}
+            />
         </footer>
     )
 }
