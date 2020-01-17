@@ -1,21 +1,14 @@
-import Cookies from 'universal-cookie'
-import React from 'react'
-import ReactGA from 'react-ga'
-import ReactPixel from 'react-facebook-pixel'
-import { silentAuth } from './src/utils/auth'
+import { initAnalytics, trackPageView } from '~/utils/analytics'
 
-const cookies = new Cookies()
+import React from 'react'
+import { silentAuth } from '~/utils/auth'
 
 export const onClientEntry = () => {
-    if (cookies.get('CookieConsent') && !cookies.get('_ga')) {
-        ReactGA.initialize('UA-156291521-1')
-    }
+    initAnalytics()
 }
 
 export const onRouteUpdate = (state, page, pages) => {
-    if (cookies.get('_ga')) {
-        ReactGA.pageview(state.location.pathname)
-    }
+    trackPageView(state.location.pathname)
 }
 
 class SessionCheck extends React.Component {
