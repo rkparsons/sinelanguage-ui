@@ -1,14 +1,18 @@
-import { initAnalytics, trackPageView } from '~/utils/analytics'
+import { initAnalytics, isAnalyticsEnabled, trackPageView } from '~/utils/analytics'
 
 import React from 'react'
 import { silentAuth } from '~/utils/auth'
 
 export const onClientEntry = () => {
-    initAnalytics()
+    if (isAnalyticsEnabled()) {
+        initAnalytics()
+    }
 }
 
 export const onRouteUpdate = (state, page, pages) => {
-    trackPageView(state.location.pathname)
+    if (isAnalyticsEnabled()) {
+        trackPageView(state.location.pathname)
+    }
 }
 
 class SessionCheck extends React.Component {

@@ -1,6 +1,6 @@
 import { Container, Content, GlobalStyle } from './Layout.style'
 import React, { FC, ReactNode } from 'react'
-import { grantAnalyticsConsent, initAnalytics } from '~/utils/analytics'
+import { enableAnalytics, initAnalytics } from '~/utils/analytics'
 
 import CookieConsent from 'react-cookie-consent'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -31,7 +31,7 @@ const Layout: FC<Props> = ({ isDarkMode, setIsDarkMode, children }: Props) => {
                 <Footer isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
                 <CookieConsent
                     onAccept={() => {
-                        grantAnalyticsConsent()
+                        enableAnalytics()
                         initAnalytics()
                     }}
                 >

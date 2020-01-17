@@ -2,39 +2,29 @@ import Cookies from 'universal-cookie'
 import ReactGA from 'react-ga'
 import ReactPixel from 'react-facebook-pixel'
 
-export const grantAnalyticsConsent = () => {
+export const isAnalyticsEnabled = () => new Cookies().get('aa') === 'true'
+
+export const enableAnalytics = () => new Cookies().set('aa', true, { path: '/' })
+
+export const disableAnalytics = () => {
     const cookies = new Cookies()
 
-    cookies.set('aa', true)
-}
-
-export const revokeAnalyticsConsent = () => {
-    const cookies = new Cookies()
-
-    cookies.remove('aa')
-    cookies.remove('_ga')
-    cookies.remove('_gat')
-    cookies.remove('_gid')
+    cookies.set('aa', false, { path: '/' })
+    cookies.remove('_ga', { path: '/' })
+    cookies.remove('_gat', { path: '/' })
+    cookies.remove('_gid', { path: '/' })
 }
 
 export const initAnalytics = () => {
-    const cookies = new Cookies()
+    ReactGA.initialize(process.env.GATSBY_GOOGLE_ANALYTICS_ID!)
 
-    if (cookies.get('aa')) {
-        ReactGA.initialize(process.env.GATSBY_GOOGLE_ANALYTICS_ID!)
-
-        ReactPixel.init(process.env.GATSBY_FACEBOOK_PIXEL_ID!, undefined, {
-            autoConfig: true,
-            debug: false,
-        })
-    }
+    ReactPixel.init(process.env.GATSBY_FACEBOOK_PIXEL_ID!, undefined, {
+        autoConfig: true,
+        debug: false,
+    })
 }
 
 export const trackPageView = (pathname: string) => {
-    const cookies = new Cookies()
-
-    if (cookies.get('aa')) {
-        ReactGA.pageview(pathname)
-        ReactPixel.pageView()
-    }
+    ReactGA.pageview(pathname)
+    ReactPixel.pageView()
 }
