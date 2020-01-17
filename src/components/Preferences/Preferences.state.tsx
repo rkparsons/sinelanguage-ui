@@ -7,6 +7,7 @@ import View from './Preferences.view'
 export default () => {
     const cookies = new Cookies()
     const [isPolicyAccepted, setIsPolicyAccepted] = useState(cookies.get('pa') === 'true')
+    const [isPreferencesOpen, setIsPreferencesOpen] = useState(!isPolicyAccepted)
     const [isAnalyticsEnabled, setIsAnalyticsEnabled] = useState(new Cookies().get('aa') === 'true')
 
     useEffect(() => {
@@ -18,8 +19,9 @@ export default () => {
         }
     }, [isAnalyticsEnabled])
 
-    const onPolicyAccepted = (value: boolean) => {
-        setIsPolicyAccepted(value)
+    const onPolicyAccepted = () => {
+        setIsPolicyAccepted(true)
+        setIsPreferencesOpen(false)
         cookies.set('pa', true, { path: '/' })
     }
 
@@ -27,6 +29,8 @@ export default () => {
         <View
             isPolicyAccepted={isPolicyAccepted}
             onPolicyAccepted={onPolicyAccepted}
+            isPreferencesOpen={isPreferencesOpen}
+            setIsPreferencesOpen={setIsPreferencesOpen}
             isAnalyticsEnabled={isAnalyticsEnabled}
             setIsAnalyticsEnabled={setIsAnalyticsEnabled}
         />

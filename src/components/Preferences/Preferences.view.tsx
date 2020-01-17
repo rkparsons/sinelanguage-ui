@@ -1,4 +1,4 @@
-import { Button, FormControlLabel, IconButton, Switch } from '@material-ui/core'
+import { Button, Container, FormControlLabel, IconButton, Switch } from '@material-ui/core'
 import { Popup, Title, muiSwitchColour } from './Preferences.style'
 
 import PolicyIcon from '@material-ui/icons/Policy'
@@ -6,7 +6,9 @@ import React from 'react'
 
 type ViewProps = {
     isPolicyAccepted: boolean
-    onPolicyAccepted: (isPolicyAccepted: boolean) => void
+    onPolicyAccepted: () => void
+    isPreferencesOpen: boolean
+    setIsPreferencesOpen: (isPreferencesOpen: boolean) => void
     isAnalyticsEnabled: boolean
     setIsAnalyticsEnabled: (isAnalyticsEnabled: boolean) => void
 }
@@ -14,15 +16,17 @@ type ViewProps = {
 export default ({
     isPolicyAccepted,
     onPolicyAccepted,
+    isPreferencesOpen,
+    setIsPreferencesOpen,
     isAnalyticsEnabled,
     setIsAnalyticsEnabled,
 }: ViewProps) => {
     return (
         <>
-            <IconButton>
+            <IconButton onClick={() => setIsPreferencesOpen(!isPreferencesOpen)}>
                 <PolicyIcon />
             </IconButton>
-            {isPolicyAccepted || (
+            {isPreferencesOpen && (
                 <Popup>
                     <Title>
                         <PolicyIcon />
@@ -36,9 +40,10 @@ export default ({
                                 onChange={() => setIsAnalyticsEnabled(!isAnalyticsEnabled)}
                             />
                         }
-                        label="Secondary"
+                        label="Analytics"
                     />
-                    <Button onClick={() => onPolicyAccepted(true)}>Accept</Button>
+                    <Button onClick={() => onPolicyAccepted()}>Accept</Button>
+                    <Button onClick={() => setIsPreferencesOpen(false)}>Close</Button>
                 </Popup>
             )}
         </>
