@@ -5,8 +5,8 @@ export const muiSwitchColour = 'secondary'
 
 export const Popup = styled(Container)`
     position: fixed;
-    bottom: 1rem;
-    left: 1 rem;
+    bottom: 0;
+    left: 0;
     background-color: grey;
     width: 20rem;
     height: 10rem;
