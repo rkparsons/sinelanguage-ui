@@ -9,6 +9,7 @@ interface Props {
     setIsDarkMode: (isDarkMode: boolean) => void
 }
 
+// todo: use context api to avoid passing down through hierarchy
 export default ({ isDarkMode, setIsDarkMode }: Props) => {
     return (
         <IconButton onClick={() => setIsDarkMode(!isDarkMode)}>
