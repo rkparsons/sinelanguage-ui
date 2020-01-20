@@ -6,6 +6,7 @@ import View from './Preferences.view'
 
 export default () => {
     const cookies = new Cookies()
+    const [isConfigure, setIsConfigure] = useState(false)
     const [isPolicyAccepted, setIsPolicyAccepted] = useState(cookies.get('pa') === 'true')
     const [isPreferencesOpen, setIsPreferencesOpen] = useState(!isPolicyAccepted)
     const [isAnalyticsEnabled, setIsAnalyticsEnabled] = useState(new Cookies().get('aa') === 'true')
