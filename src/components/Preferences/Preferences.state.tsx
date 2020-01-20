@@ -28,6 +28,8 @@ export default () => {
 
     return (
         <View
+            isConfigure={isConfigure}
+            setIsConfigure={setIsConfigure}
             isPolicyAccepted={isPolicyAccepted}
             onPolicyAccepted={onPolicyAccepted}
             isPreferencesOpen={isPreferencesOpen}
