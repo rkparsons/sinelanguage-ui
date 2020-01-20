@@ -32,7 +32,7 @@ type ViewProps = {
 const PrivacyMessage = () => (
     <Message>
         This website uses cookies to provide a better browsing experience. Find out more about how
-        we use this data in our <Link to="/artists">privacy policy.</Link>
+        we use this data in our <Link to="/privacy">privacy policy.</Link>
     </Message>
 )
 
