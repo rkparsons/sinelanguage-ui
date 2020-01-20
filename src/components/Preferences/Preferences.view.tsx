@@ -12,6 +12,7 @@ import { Button, IconButton, Typography } from '@material-ui/core'
 
 import BarChartIcon from '@material-ui/icons/BarChart'
 import BuildIcon from '@material-ui/icons/Build'
+import { Link } from 'gatsby'
 import PersonIcon from '@material-ui/icons/Person'
 import PolicyIcon from '@material-ui/icons/Policy'
 import React from 'react'
@@ -27,6 +28,13 @@ type ViewProps = {
     isAnalyticsEnabled: boolean
     setIsAnalyticsEnabled: (isAnalyticsEnabled: boolean) => void
 }
+
+const PrivacyMessage = () => (
+    <Message>
+        This website uses cookies to provide a better browsing experience. Find out more about how
+        we use this data in our <Link to="/artists">privacy policy.</Link>
+    </Message>
+)
 
 export default ({
     isConfigure,
@@ -46,11 +54,8 @@ export default ({
             {isPreferencesOpen && !isConfigure && (
                 <PopupContainer>
                     <PopupContent>
-                        <Title>Privacy Notice</Title>
                         <Row>
-                            <Message>
-                                This website uses cookies to provide a better browsing experience.
-                            </Message>
+                            <PrivacyMessage />
                         </Row>
                         <Row>
                             <Button onClick={() => setIsConfigure(true)}>
@@ -65,11 +70,9 @@ export default ({
             {isPreferencesOpen && isConfigure && (
                 <PopupContainer>
                     <PopupContent>
-                        <Title>Privacy Notice</Title>
+                        <Title>Privacy Preferences</Title>
                         <Row>
-                            <Message>
-                                This website uses cookies to provide a better browsing experience.
-                            </Message>
+                            <PrivacyMessage />
                         </Row>
                         <Row>
                             <BuildIcon />

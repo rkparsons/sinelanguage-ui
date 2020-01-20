@@ -10,6 +10,7 @@ export const PopupContainer = styled(Container)`
     background-color: grey;
     width: 20rem;
     z-index: 1;
+    padding-top: 1rem;
     padding-bottom: 0.5rem;
 `
 
@@ -21,7 +22,7 @@ export const PopupContent = styled(({ children, ...rest }) => (
 
 export const Title = styled(({ children, ...rest }) => (
     <Grid container alignItems="center" justify="center" item xs={12} {...rest}>
-        <h3>{children}</h3>
+        <h3 style={{ marginTop: 0 }}>{children}</h3>
     </Grid>
 ))``
 
