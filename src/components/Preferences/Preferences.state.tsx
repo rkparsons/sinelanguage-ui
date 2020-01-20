@@ -1,34 +1,24 @@
 import React, { useEffect, useState } from 'react'
+import { applyAnalyticsSettings, getCookiePolicy } from '~/utils/cookies'
 
-import Cookies from 'universal-cookie'
 import View from './Preferences.view'
-import { applyAnalyticsSettings } from '~/utils/analytics'
 
 export default () => {
-    const cookies = new Cookies()
-
-    const [isPolicyAccepted, setIsPolicyAccepted] = useState(cookies.get('consent') === 'true')
-    const [isPreferencesOpen, setIsPreferencesOpen] = useState(!isPolicyAccepted)
+    const cookiePolicy = getCookiePolicy()
+    const [isPreferencesOpen, setIsPreferencesOpen] = useState(!cookiePolicy)
     const [isConfigure, setIsConfigure] = useState(false)
-
-    // todo: consolidate prefs inside consent cookie value
     const [isAnalyticsEnabled, setIsAnalyticsEnabled] = useState(
-        cookies.get('analytics') === 'true' || !cookies.get('analytics')
+        !cookiePolicy || (cookiePolicy.analytics as boolean)
     )
 
     useEffect(() => {
-        if (isPolicyAccepted) {
-            cookies.set('consent', true, { path: '/' })
-
-            setIsPreferencesOpen(false)
+        if (!isPreferencesOpen) {
             applyAnalyticsSettings(isAnalyticsEnabled)
         }
-    }, [isPolicyAccepted])
+    }, [isPreferencesOpen])
 
     return (
         <View
-            isPolicyAccepted={isPolicyAccepted}
-            setIsPolicyAccepted={setIsPolicyAccepted}
             isConfigure={isConfigure}
             setIsConfigure={setIsConfigure}
             isPreferencesOpen={isPreferencesOpen}

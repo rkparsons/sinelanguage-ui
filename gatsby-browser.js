@@ -1,4 +1,4 @@
-import { initAnalytics, isAnalyticsEnabled, trackPageView } from '~/utils/analytics'
+import { initAnalytics, isAnalyticsEnabled, trackPageView } from '~/utils/cookies'
 
 import React from 'react'
 import { silentAuth } from '~/utils/auth'

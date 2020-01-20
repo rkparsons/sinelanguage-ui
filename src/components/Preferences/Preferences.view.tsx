@@ -19,8 +19,6 @@ import React from 'react'
 import SettingsIcon from '@material-ui/icons/Settings'
 
 type ViewProps = {
-    isPolicyAccepted: boolean
-    setIsPolicyAccepted: (isPolicyAccepted: boolean) => void
     isConfigure: boolean
     setIsConfigure: (isConfigure: boolean) => void
     isPreferencesOpen: boolean
@@ -37,8 +35,6 @@ const PrivacyMessage = () => (
 )
 
 export default ({
-    isPolicyAccepted,
-    setIsPolicyAccepted,
     isConfigure,
     setIsConfigure,
     isPreferencesOpen,
@@ -62,7 +58,7 @@ export default ({
                                 <SettingsIcon />
                                 Configure
                             </Button>
-                            <AcceptButton onClick={() => setIsPolicyAccepted(true)}>
+                            <AcceptButton onClick={() => setIsPreferencesOpen(false)}>
                                 Accept
                             </AcceptButton>
                         </Row>
@@ -95,7 +91,7 @@ export default ({
                             />
                         </FinalRow>
                         <Row>
-                            <AcceptButton onClick={() => setIsPolicyAccepted(true)}>
+                            <AcceptButton onClick={() => setIsPreferencesOpen(false)}>
                                 Accept
                             </AcceptButton>
                         </Row>
