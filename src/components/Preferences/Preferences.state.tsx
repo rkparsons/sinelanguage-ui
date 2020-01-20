@@ -1,37 +1,36 @@
 import React, { useEffect, useState } from 'react'
-import { disableAnalytics, enableAnalytics, initAnalytics } from '~/utils/analytics'
 
 import Cookies from 'universal-cookie'
 import View from './Preferences.view'
+import { applyAnalyticsSettings } from '~/utils/analytics'
 
 export default () => {
     const cookies = new Cookies()
-    const [isConfigure, setIsConfigure] = useState(false)
-    const [isPolicyAccepted, setIsPolicyAccepted] = useState(cookies.get('pa') === 'true')
+
+    const [isPolicyAccepted, setIsPolicyAccepted] = useState(cookies.get('consent') === 'true')
     const [isPreferencesOpen, setIsPreferencesOpen] = useState(!isPolicyAccepted)
-    const [isAnalyticsEnabled, setIsAnalyticsEnabled] = useState(new Cookies().get('aa') === 'true')
+    const [isConfigure, setIsConfigure] = useState(false)
+
+    // todo: consolidate prefs inside consent cookie value
+    const [isAnalyticsEnabled, setIsAnalyticsEnabled] = useState(
+        cookies.get('analytics') === 'true' || !cookies.get('analytics')
+    )
 
     useEffect(() => {
-        if (isAnalyticsEnabled) {
-            enableAnalytics()
-            initAnalytics()
-        } else {
-            disableAnalytics()
-        }
-    }, [isAnalyticsEnabled])
+        if (isPolicyAccepted) {
+            cookies.set('consent', true, { path: '/' })
 
-    const onPolicyAccepted = () => {
-        setIsPolicyAccepted(true)
-        setIsPreferencesOpen(false)
-        cookies.set('pa', true, { path: '/' })
-    }
+            setIsPreferencesOpen(false)
+            applyAnalyticsSettings(isAnalyticsEnabled)
+        }
+    }, [isPolicyAccepted])
 
     return (
         <View
+            isPolicyAccepted={isPolicyAccepted}
+            setIsPolicyAccepted={setIsPolicyAccepted}
             isConfigure={isConfigure}
             setIsConfigure={setIsConfigure}
-            isPolicyAccepted={isPolicyAccepted}
-            onPolicyAccepted={onPolicyAccepted}
             isPreferencesOpen={isPreferencesOpen}
             setIsPreferencesOpen={setIsPreferencesOpen}
             isAnalyticsEnabled={isAnalyticsEnabled}
