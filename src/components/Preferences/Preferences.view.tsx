@@ -84,7 +84,7 @@ export default ({
                         <Row>
                             <PersonIcon />
                             <Typography>Preferences</Typography>
-                            <Toggle />
+                            <Toggle checked={true} />
                         </Row>
                         <FinalRow>
                             <BarChartIcon />
