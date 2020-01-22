@@ -15,7 +15,7 @@ export default () => (
                     .then(json => console.log(json))
             }}
         >
-            Call Lambda
+            Call Lambda Func
         </button>
     </div>
 )
