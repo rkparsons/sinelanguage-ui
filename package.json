@@ -26,6 +26,7 @@
         "printWidth": 100
     },
     "dependencies": {
+        "@contentful/rich-text-react-renderer": "^13.4.0",
         "@material-ui/core": "^4.6.1",
         "@material-ui/icons": "^4.5.1",
         "@material-ui/styles": "^4.6.0",
@@ -45,6 +46,7 @@
         "gatsby-plugin-styled-components": "^3.1.13",
         "gatsby-plugin-typescript": "^2.1.18",
         "gatsby-plugin-typescript-checker": "^1.1.1",
+        "gatsby-source-contentful": "^2.1.79",
         "gatsby-source-filesystem": "^2.1.21",
         "gatsby-source-prismic": "^2.3.0-alpha.3",
         "gatsby-transformer-json": "^2.2.7",
