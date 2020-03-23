@@ -1,24 +1,14 @@
 import { graphql } from 'gatsby'
 
-// todo: reuse identical dashboard item fragments
-
 export const artistFragment = graphql`
-    fragment artistFragment on PrismicArtist {
+    fragment artistFragment on ContentfulArtist {
         uid
-        type
-        data {
-            name
-            description
-            published_date
-            image {
-                url
-                localFile {
-                    childImageSharp {
-                        fluid {
-                            ...GatsbyImageSharpFluid_withWebp
-                        }
-                    }
-                }
+        title
+        description
+        date
+        image {
+            fluid(maxWidth: 2400, quality: 90) {
+                ...GatsbyContentfulFluid_withWebp
             }
         }
     }

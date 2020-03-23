@@ -24,14 +24,14 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
 
 exports.createPages = async ({ graphql, actions }) => {
     await createPagesByType(graphql, actions, 'Artist')
-    await createPagesByType(graphql, actions, 'Release')
-    await createPagesByType(graphql, actions, 'Podcast')
-    await createPagesByType(graphql, actions, 'Event')
+    // await createPagesByType(graphql, actions, 'Release')
+    // await createPagesByType(graphql, actions, 'Podcast')
+    // await createPagesByType(graphql, actions, 'Event')
 }
 
 const createPagesByType = async (graphql, actions, type) => {
     const { createPage } = actions
-    const queryType = `allPrismic${type}`
+    const queryType = `allContentful${type}`
     const lowerCaseType = type.toLowerCase()
 
     createPage({
@@ -42,15 +42,14 @@ const createPagesByType = async (graphql, actions, type) => {
     const result = await graphql(`
         query {
             ${queryType} {
-                edges {
-                    node {
-                        uid
-                    }
+                nodes {
+                    uid
                 }
             }
         }
     `)
-    result.data[queryType].edges.forEach(({ node }) => {
+
+    result.data[queryType].nodes.forEach(({ node }) => {
         createPage({
             path: `${lowerCaseType}s/${node.uid}`,
             component: path.resolve(`./src/templates/${lowerCaseType}.tsx`),

@@ -1,10 +1,4 @@
-import {
-    PrismicArtistConnection,
-    PrismicEventConnection,
-    PrismicPodcastConnection,
-    PrismicReleaseConnection,
-} from '~/types/graphql'
-
+import { Artist } from '~/types/artist'
 import Container from './Dashboard.style'
 import DashboardItem from '~/components/DashboardItem'
 import Head from '~/components/Head'
@@ -14,10 +8,9 @@ import resolveDashboardItems from '~/utils/resolveDashboardItems'
 
 type ViewProps = {
     data: {
-        allPrismicArtist: PrismicArtistConnection
-        allPrismicRelease: PrismicReleaseConnection
-        allPrismicPodcast: PrismicPodcastConnection
-        allPrismicEvent: PrismicEventConnection
+        allContentfulArtist: {
+            nodes: Artist[]
+        }
     }
     location: WindowLocation
 }
@@ -31,8 +24,8 @@ export default ({ data, location }: ViewProps) => {
         <>
             <Head title={title} />
             <Container>
-                {dashboardItems.map((item, i) => (
-                    <DashboardItem key={i} {...item} filter={filter} />
+                {dashboardItems.map((dashboardItem, index) => (
+                    <DashboardItem key={index} dashboardItem={dashboardItem} filter={filter} />
                 ))}
             </Container>
         </>

@@ -1,13 +1,14 @@
-import CardImage from './SquareImage.style'
 import { FluidObject } from 'gatsby-image'
-import { PrismicArtistDataImage } from '~/types/graphql'
+import Image from 'gatsby-image'
 import React from 'react'
 
 type ViewProps = {
-    image: PrismicArtistDataImage
+    title: string
+    image: {
+        fluid: FluidObject
+    }
 }
 
-export default ({ image }: ViewProps) => (
-    // replace with gatsby image if flickering issue fixed
-    <CardImage component="img" src={image.localFile!.childImageSharp!.fluid!.src!} />
+export default ({ title, image }: ViewProps) => (
+    <Image title={title} alt={title} sizes={{ ...image.fluid }} />
 )
