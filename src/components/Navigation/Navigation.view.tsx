@@ -1,5 +1,6 @@
 import * as ROUTES from '~/constants/routes'
 
+import { Link } from 'gatsby'
 import MenuIcon from '@material-ui/icons/Menu'
 import NavItem from '~/components/NavItem'
 import { NavList } from './Navigation.style'
