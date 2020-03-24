@@ -62,5 +62,6 @@
             "~/*": ["src/*"]
         }
     },
-    "include": ["./src", "src/types", "./cms"]
+    "exclude": ["node_modules", "public", ".cache"],
+    "include": ["src", "gatsby"]
 }

@@ -6,4 +6,4 @@ export default () =>
         query SiteMetadata {
             ...siteMetadataFragment
         }
-    `)
+    `).contentfulSiteMetadata

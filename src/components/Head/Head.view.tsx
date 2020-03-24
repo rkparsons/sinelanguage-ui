@@ -1,20 +1,19 @@
 import { Helmet } from 'react-helmet'
 import React from 'react'
-import { SiteMetadataQuery } from '~/types/graphql'
+import { SiteMetadata } from '~/types/siteMetadata'
 
 interface ViewProps {
     title: string
     description?: string
     image?: string
     url?: string
-    siteMetadata: SiteMetadataQuery
+    siteMetadata: SiteMetadata
 }
 
 export default ({ title, description, image, url, siteMetadata }: ViewProps) => {
-    const seoTitle = `${title} | ${siteMetadata.prismicSiteMetadata?.data?.title?.text}`
-    const seoDescription =
-        description || `${siteMetadata.prismicSiteMetadata?.data?.description?.text}`
-    const seoImage = image || `${siteMetadata.prismicSiteMetadata?.data?.image?.localFile?.url}`
+    const seoTitle = `${title} | ${siteMetadata.title}`
+    const seoDescription = description || `${siteMetadata.description.description}`
+    const seoImage = image || `${siteMetadata.image.file.url}`
 
     return (
         <Helmet>

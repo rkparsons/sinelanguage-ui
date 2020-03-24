@@ -5,10 +5,10 @@ import addToMailchimp from 'gatsby-plugin-mailchimp'
 
 export default () => {
     const [email, setEmail] = useState('')
-    const [result, setResult] = useState()
+    const [result, setResult] = useState('')
 
     const updateEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setResult(undefined)
+        setResult('')
         setEmail(e.target.value)
     }
 

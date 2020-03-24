@@ -43,16 +43,8 @@ module.exports = {
         {
             resolve: 'gatsby-source-contentful',
             options: {
-                spaceId: process.env.GATSBY_CONTENTFUL_SPACE_ID,
-                accessToken: process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN,
-            },
-        },
-        {
-            resolve: 'gatsby-source-prismic',
-            options: {
-                repositoryName: `sinelanguage`,
-                accessToken: `${process.env.GATSBY_PRISMIC_ACCESS_TOKEN}`,
-                linkResolver: () => post => `/${post.uid}`,
+                spaceId: process.env.GATSBY_CTF_SPACE_ID,
+                accessToken: process.env.GATSBY_CTF_ACCESS_TOKEN,
             },
         },
         `gatsby-transformer-sharp`,
@@ -79,12 +71,5 @@ module.exports = {
                 component: require.resolve(`./src/components/Layout`),
             },
         },
-        // todo: awaiting fix for https://github.com/neugelb/gatsby-plugin-generate-typings/issues/1
-        // {
-        //     resolve: 'gatsby-plugin-generate-typings',
-        //     options: {
-        //         dest: './src/types/graphql.d.ts',
-        //     },
-        // },
     ],
 }

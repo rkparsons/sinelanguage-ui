@@ -11,7 +11,6 @@ type ViewProps = {
 }
 
 export default ({ dashboardItem, filter }: ViewProps) => {
-    console.log(dashboardItem)
     const { type, title, uid, image } = dashboardItem
 
     return (

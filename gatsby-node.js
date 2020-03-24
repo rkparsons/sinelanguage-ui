@@ -23,25 +23,11 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
 }
 
 exports.createPages = async ({ graphql, actions }) => {
-    await createPagesByType(graphql, actions, 'Artist')
-    // await createPagesByType(graphql, actions, 'Release')
-    // await createPagesByType(graphql, actions, 'Podcast')
-    // await createPagesByType(graphql, actions, 'Event')
-}
-
-const createPagesByType = async (graphql, actions, type) => {
     const { createPage } = actions
-    const queryType = `allContentful${type}`
-    const lowerCaseType = type.toLowerCase()
-
-    createPage({
-        path: `${lowerCaseType}s`,
-        component: path.resolve(`./src/pages/index.tsx`),
-    })
 
     const result = await graphql(`
         query {
-            ${queryType} {
+            allContentfulArtist {
                 nodes {
                     uid
                 }
@@ -49,12 +35,18 @@ const createPagesByType = async (graphql, actions, type) => {
         }
     `)
 
-    result.data[queryType].nodes.forEach(({ node }) => {
+    createPage({
+        path: `artists`,
+        component: path.resolve(`./src/pages/index.tsx`),
+        context: {},
+    })
+
+    result.data.allContentfulArtist.nodes.forEach(({ uid }) => {
         createPage({
-            path: `${lowerCaseType}s/${node.uid}`,
-            component: path.resolve(`./src/templates/${lowerCaseType}.tsx`),
+            path: `artists/${uid}`,
+            component: path.resolve(`./src/templates/artist.tsx`),
             context: {
-                uid: node.uid,
+                uid,
             },
         })
     })
