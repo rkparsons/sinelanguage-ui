@@ -11,7 +11,7 @@ import { Typography } from '@material-ui/core'
 import { isAuthenticated } from '~/utils/auth'
 
 export default () => (
-    <>
+    <header>
         <Typography>SINE LANGUAGE RECORDS</Typography>
         <NavList>
             <li>
@@ -48,5 +48,5 @@ export default () => (
                 </li>
             )} */}
         </NavList>
-    </>
+    </header>
 )
