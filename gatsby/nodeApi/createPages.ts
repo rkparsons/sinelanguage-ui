@@ -22,6 +22,14 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
         }
     `)
 
+    if (result.errors) {
+        throw result.errors
+    }
+
+    if (!result.data) {
+        throw new Error('ERROR: Could not fetch content on build')
+    }
+
     createPage({
         path: `artists`,
         component: path.resolve(`./src/pages/index.tsx`),

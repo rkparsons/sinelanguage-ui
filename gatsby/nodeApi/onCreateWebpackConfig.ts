@@ -1,14 +1,7 @@
 import { CreateWebpackConfigArgs } from 'gatsby'
-
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 
 export const onCreateWebpackConfig = ({ stage, loaders, actions }: CreateWebpackConfigArgs) => {
-    actions.setWebpackConfig({
-        resolve: {
-            plugins: [new TsconfigPathsPlugin()],
-        },
-    })
-
     if (stage === 'build-html') {
         actions.setWebpackConfig({
             module: {
@@ -20,7 +13,9 @@ export const onCreateWebpackConfig = ({ stage, loaders, actions }: CreateWebpack
                 ],
             },
         })
-    } else if (stage.startsWith('develop')) {
+    }
+
+    if (stage.startsWith('develop')) {
         actions.setWebpackConfig({
             resolve: {
                 alias: {
@@ -29,4 +24,10 @@ export const onCreateWebpackConfig = ({ stage, loaders, actions }: CreateWebpack
             },
         })
     }
+
+    actions.setWebpackConfig({
+        resolve: {
+            plugins: [new TsconfigPathsPlugin()],
+        },
+    })
 }

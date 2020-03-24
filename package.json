@@ -69,6 +69,7 @@
         "universal-cookie": "^4.0.3"
     },
     "devDependencies": {
+        "@hot-loader/react-dom": "^16.9.0",
         "@types/auth0-js": "^9.10.6",
         "@types/dotenv-safe": "^8.1.0",
         "@types/material-ui": "^0.21.7",
