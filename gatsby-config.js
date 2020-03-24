@@ -1,3 +1,5 @@
-const { configAPI } = require('./gatsby')
+require('ts-node').register()
+
+const { configAPI } = require('./gatsby/configApi')
 
 module.exports = configAPI
