@@ -28,9 +28,6 @@ export default () => (
         <li>
             <NavItem to={ROUTES.CONTACT} title="Contact" partiallyActive={true} />
         </li>
-        <li>
-            <NavItem to={ROUTES.BLOG} title="Blog" partiallyActive={true} />
-        </li>
         {isAuthenticated() ? (
             <>
                 <li>
