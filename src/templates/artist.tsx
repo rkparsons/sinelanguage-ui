@@ -1,3 +1,5 @@
+import { Grid, Typography } from '@material-ui/core'
+
 import { Artist } from '~/types/artist'
 import Head from '~/components/Head'
 import React from 'react'
@@ -14,11 +16,13 @@ export default ({ data }: Props) => {
     const { title, description, image } = data.contentfulArtist
 
     return (
-        <div>
+        <>
             <Head title={title} description={description} image={image.fluid.src} />
-            <h1>{title}</h1>
-            <SquareImage title={title} image={image} />
-        </div>
+            <Grid container>
+                <Typography variant="h3">{title}</Typography>
+                <SquareImage title={title} image={image} />
+            </Grid>
+        </>
     )
 }
 

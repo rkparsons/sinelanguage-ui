@@ -1,6 +1,6 @@
 import { Artist } from '~/types/artist'
-import Container from './Dashboard.style'
 import DashboardItem from '~/components/DashboardItem'
+import { Grid } from '@material-ui/core'
 import Head from '~/components/Head'
 import React from 'react'
 import { WindowLocation } from '@reach/router'
@@ -23,11 +23,13 @@ export default ({ data, location }: ViewProps) => {
     return (
         <>
             <Head title={title} />
-            <Container>
+            <Grid container>
                 {dashboardItems.map((dashboardItem, index) => (
-                    <DashboardItem key={index} dashboardItem={dashboardItem} filter={filter} />
+                    <Grid item key={index}>
+                        <DashboardItem dashboardItem={dashboardItem} filter={filter} />
+                    </Grid>
                 ))}
-            </Container>
+            </Grid>
         </>
     )
 }
