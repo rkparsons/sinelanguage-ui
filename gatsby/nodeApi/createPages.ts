@@ -7,6 +7,11 @@ type QueryResult = {
             uid: string
         }[]
     }
+    allContentfulRelease: {
+        nodes: {
+            uid: string
+        }[]
+    }
 }
 
 export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
@@ -15,6 +20,11 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
     const result = await graphql<QueryResult>(`
         query {
             allContentfulArtist {
+                nodes {
+                    uid
+                }
+            }
+            allContentfulRelease {
                 nodes {
                     uid
                 }
@@ -36,10 +46,26 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
         context: {},
     })
 
+    createPage({
+        path: `releases`,
+        component: path.resolve(`./src/pages/index.tsx`),
+        context: {},
+    })
+
     result.data?.allContentfulArtist.nodes.forEach(({ uid }: { uid: string }) => {
         createPage({
             path: `artists/${uid}`,
             component: path.resolve(`./src/templates/artist.tsx`),
+            context: {
+                uid,
+            },
+        })
+    })
+
+    result.data?.allContentfulRelease.nodes.forEach(({ uid }: { uid: string }) => {
+        createPage({
+            path: `releases/${uid}`,
+            component: path.resolve(`./src/templates/release.tsx`),
             context: {
                 uid,
             },

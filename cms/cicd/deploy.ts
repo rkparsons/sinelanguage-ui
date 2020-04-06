@@ -8,6 +8,7 @@ import { Space } from 'contentful-management/typings/space'
 import artist from '../schema/artist'
 import { createClient } from 'contentful-management'
 import isDeepEqual from 'fast-deep-equal'
+import release from '../schema/release'
 import siteMetadata from '../schema/siteMetadata'
 
 const contentfulApi = createClient({
@@ -19,7 +20,7 @@ export const deployCMS = () => {
 
     return contentfulApi
         .getSpace(contentfulSpaceId)
-        .then((space) => deploySpace(space, 'sinelanguage.net', [siteMetadata, artist]))
+        .then((space) => deploySpace(space, 'sinelanguage.net', [siteMetadata, artist, release]))
         .catch((error) => console.log(`\nERROR: 'Could not deploy space\n`, error))
 }
 

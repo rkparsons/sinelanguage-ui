@@ -3,6 +3,7 @@ import DashboardItem from '~/components/DashboardItem'
 import { Grid } from '@material-ui/core'
 import Head from '~/components/Head'
 import React from 'react'
+import { Release } from '~/types/release'
 import { WindowLocation } from '@reach/router'
 import resolveDashboardItems from '~/utils/resolveDashboardItems'
 
@@ -10,6 +11,9 @@ type ViewProps = {
     data: {
         allContentfulArtist: {
             nodes: Artist[]
+        }
+        allContentfulRelease: {
+            nodes: Release[]
         }
     }
     location: WindowLocation

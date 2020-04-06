@@ -1,21 +1,17 @@
-// import { graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 
-// export const releaseFragment = graphql`
-//     fragment releaseFragment on PrismicRelease {
-//         uid
-//         type
-//         data {
-//             name
-//             published_date
-//             image {
-//                 localFile {
-//                     childImageSharp {
-//                         fluid {
-//                             ...GatsbyImageSharpFluid_withWebp
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// `
+export const releaseFragment = graphql`
+    fragment releaseFragment on ContentfulRelease {
+        uid
+        title
+        description {
+            description
+        }
+        image {
+            fluid(maxWidth: 2400, quality: 90) {
+                ...GatsbyContentfulFluid_withWebp
+            }
+        }
+        date
+    }
+`

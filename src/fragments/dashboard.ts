@@ -7,5 +7,10 @@ export const dashboardFragment = graphql`
                 ...artistFragment
             }
         }
+        allContentfulRelease {
+            nodes {
+                ...releaseFragment
+            }
+        }
     }
 `

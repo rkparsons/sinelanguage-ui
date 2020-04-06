@@ -1,31 +1,30 @@
-// import Head from '~/components/Head'
-// import { PrismicRelease } from '~/types/graphql'
-// import React from 'react'
-// import SquareImage from '~/components/SquareImage'
-// import { graphql } from 'gatsby'
+import Head from '~/components/Head'
+import React from 'react'
+import { Release } from '~/types/release'
+import SquareImage from '~/components/SquareImage'
+import { graphql } from 'gatsby'
 
-// type Props = {
-//     data: {
-//         prismicRelease: PrismicRelease
-//     }
-// }
+type Props = {
+    data: {
+        contentfulRelease: Release
+    }
+}
 
-// export default ({ data }: Props) => {
-//     const { name, image } = data.prismicRelease.data!
+export default ({ data }: Props) => {
+    const { title, description, image } = data.contentfulRelease
 
-//     return (
-//         <div>
-//             <Head title={name!} />
-//             <h1>{name}</h1>
-//             <SquareImage image={image!} />
-//         </div>
-//     )
-// }
+    return (
+        <>
+            <Head title={title} description={description.description} image={image.fluid.src} />
+            <SquareImage title={title} image={image} />
+        </>
+    )
+}
 
-// export const query = graphql`
-//     query Release($uid: String!) {
-//         prismicRelease(uid: { eq: $uid }) {
-//             ...releaseFragment
-//         }
-//     }
-// `
+export const query = graphql`
+    query($uid: String!) {
+        contentfulRelease(uid: { eq: $uid }) {
+            ...releaseFragment
+        }
+    }
+`
