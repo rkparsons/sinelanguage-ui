@@ -1,7 +1,6 @@
-import { Content, GlobalStyle } from './Layout.style'
+import { AppContainer, GlobalStyle } from './Layout.style'
 import React, { FC, ReactNode } from 'react'
 
-import { Container } from '@material-ui/core'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Footer from '~/components/Footer'
 import Navigation from '~/components/Navigation'
@@ -20,11 +19,11 @@ const Layout: FC<Props> = ({ isDarkMode, setIsDarkMode, children }: Props) => {
         <ThemeProvider theme={theme(isDarkMode)}>
             <CssBaseline />
             <GlobalStyle />
-            <Container>
+            <AppContainer>
                 <Navigation />
                 {children}
                 <Footer isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
-            </Container>
+            </AppContainer>
         </ThemeProvider>
     )
 }
