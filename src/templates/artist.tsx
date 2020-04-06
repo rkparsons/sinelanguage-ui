@@ -15,6 +15,8 @@ type Props = {
 export default ({ data }: Props) => {
     const { title, description, image } = data.contentfulArtist
 
+    console.log(image)
+
     return (
         <>
             <Head title={title} description={description} image={image.fluid.src} />

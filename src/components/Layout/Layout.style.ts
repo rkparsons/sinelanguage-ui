@@ -8,3 +8,5 @@ export const GlobalStyle = createGlobalStyle`
 export const AppContainer = styled(Container)`
     min-height: 100vh;
 `
+
+export const Main = styled.main``
