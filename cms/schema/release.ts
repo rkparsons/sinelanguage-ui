@@ -50,6 +50,23 @@ export default {
             linkType: 'Entry',
         },
         {
+            id: 'format',
+            name: 'Format',
+            type: 'Symbol',
+            localized: false,
+            required: true,
+            validations: [
+                {
+                    unique: true,
+                },
+                {
+                    in: ['Digital EP', 'Single', '12" Vinyl / Digital'],
+                },
+            ],
+            disabled: false,
+            omitted: false,
+        },
+        {
             id: 'description',
             name: 'Description',
             type: 'Text',

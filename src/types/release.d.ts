@@ -5,6 +5,7 @@ export type Release = {
     uid: string
     title: string
     artist: Artist
+    format: string
     description: {
         description: string
     }

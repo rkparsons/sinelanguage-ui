@@ -7,6 +7,7 @@ export const releaseFragment = graphql`
         artist {
             ...artistFragment
         }
+        format
         description {
             description
         }

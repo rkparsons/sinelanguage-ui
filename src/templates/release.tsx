@@ -12,13 +12,14 @@ type Props = {
 }
 
 export default ({ data }: Props) => {
-    const { title, artist, description, image } = data.contentfulRelease
+    const { title, artist, format, description, image } = data.contentfulRelease
 
     return (
         <>
             <Head title={title} description={description.description} image={image.fluid.src} />
             <SquareImage title={title} image={image} />
             <Typography>{artist.title}</Typography>
+            <Typography>{format}</Typography>
         </>
     )
 }
