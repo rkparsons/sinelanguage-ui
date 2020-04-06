@@ -60,7 +60,7 @@ export default {
                     unique: true,
                 },
                 {
-                    in: ['Digital EP', 'Single', '12" Vinyl / Digital'],
+                    in: ['Digital EP', 'Single', '12" Vinyl / Digital', 'Video'],
                 },
             ],
             disabled: false,
@@ -141,7 +141,7 @@ export default {
             widgetNamespace: 'builtin',
             widgetId: 'multipleLine',
             settings: {
-                helpText: 'SEO friendly description used when linking to this artist.',
+                helpText: 'SEO friendly description used when linking to this release.',
             },
         },
         {

@@ -34,8 +34,8 @@ export const plugins: Plugins = [
         resolve: 'gatsby-plugin-mailchimp',
         options: {
             endpoint:
-                // todo: move to env var
-                '',
+                // todo: move to env var and use new link
+                'https://sinelanguage.us3.list-manage.com/subscribe/post?u=51b15e2b803b2c4e70392c5f9&amp;id=b5b38d278a',
         },
     },
     {
