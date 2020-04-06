@@ -15,10 +15,7 @@
         "build": "run-p build:**",
         "build:app": "gatsby clean && gatsby build",
         "build:lambda": "netlify-lambda build src/lambda",
-        "bootstrap": "node ./database/bootstrap.js",
-        "generate-migration": "ts-node ./cms/generate-migration.ts",
-        "run-migration": "ts-node ./cms/run-migration.ts",
-        "update-schema": "ts-node ./cms/update-schema.ts"
+        "deploy-cms": "ts-node -e \"require('./cms/cicd/deploy').deployCMS()\""
     },
     "prettier": {
         "endOfLine": "auto",
@@ -69,6 +66,7 @@
         "universal-cookie": "^4.0.3"
     },
     "devDependencies": {
+        "@contentful/rich-text-types": "^14.1.0",
         "@hot-loader/react-dom": "^16.9.0",
         "@types/auth0-js": "^9.10.6",
         "@types/dotenv-safe": "^8.1.0",

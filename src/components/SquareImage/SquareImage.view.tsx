@@ -10,5 +10,5 @@ type ViewProps = {
 }
 
 export default ({ title, image }: ViewProps) => (
-    <Image title={title} alt={title} sizes={{ ...image.fluid }} />
+    <Image title={title} alt={title} sizes={{ ...image.fluid, aspectRatio: 1 }} />
 )

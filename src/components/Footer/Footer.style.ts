@@ -1,9 +1,6 @@
 import styled from 'styled-components'
 
-export const Footer = styled.footer`
-    position: absolute;
-    bottom: 0;
-`
+export const Footer = styled.footer``
 export const Logo = styled.img`
     display: block;
     height: 40px;

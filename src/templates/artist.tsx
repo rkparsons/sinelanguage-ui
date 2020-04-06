@@ -1,8 +1,7 @@
-import { Grid, Typography } from '@material-ui/core'
-
 import { Artist } from '~/types/artist'
 import Head from '~/components/Head'
 import React from 'react'
+import RichText from '~/components/RichText'
 import SquareImage from '~/components/SquareImage'
 import { graphql } from 'gatsby'
 
@@ -13,17 +12,13 @@ type Props = {
 }
 
 export default ({ data }: Props) => {
-    const { title, description, image } = data.contentfulArtist
-
-    console.log(image)
+    const { title, description, image, bio } = data.contentfulArtist
 
     return (
         <>
-            <Head title={title} description={description} image={image.fluid.src} />
-            <Grid container>
-                <Typography variant="h3">{title}</Typography>
-                <SquareImage title={title} image={image} />
-            </Grid>
+            <Head title={title} description={description.description} image={image.fluid.src} />
+            <SquareImage title={title} image={image} />
+            <RichText json={bio.json} />
         </>
     )
 }
