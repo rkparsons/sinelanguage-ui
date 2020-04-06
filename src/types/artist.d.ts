@@ -13,5 +13,6 @@ export type Artist = {
     bio: {
         json: Document
     }
+    socials: string[]
     date: Date
 }

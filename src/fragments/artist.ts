@@ -15,6 +15,7 @@ export const artistFragment = graphql`
         bio {
             json
         }
+        socials
         date
     }
 `

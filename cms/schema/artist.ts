@@ -87,6 +87,29 @@ export default {
             disabled: false,
             omitted: false,
         },
+        {
+            id: 'socials',
+            name: 'Socials',
+            type: 'Array',
+            localized: false,
+            required: false,
+            validations: [],
+            disabled: false,
+            omitted: false,
+            items: {
+                type: 'Symbol',
+                validations: [
+                    {
+                        regexp: {
+                            pattern:
+                                '^(ftp|http|https):\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-/]))?$',
+                            flags: '',
+                        },
+                        message: 'Must be a valid URL',
+                    },
+                ],
+            },
+        },
     ],
     controls: [
         {
@@ -109,6 +132,11 @@ export default {
             settings: {
                 format: 'dateonly',
             },
+        },
+        {
+            fieldId: 'socials',
+            widgetNamespace: 'builtin',
+            widgetId: 'tagEditor',
         },
     ],
 }
