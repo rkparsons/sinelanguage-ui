@@ -17,7 +17,7 @@ export default ({ dashboardItem, filter }: ViewProps) => {
         <Flipped flipId={uid} stagger opacity translate={false}>
             <LinkShowHide
                 isVisible={!filter || `${type}s` === filter}
-                to={`/${type.toLowerCase()}s/${uid}`}
+                to={`/${type}s/${uid}`.toLowerCase()}
             >
                 <SquareImage title={title} image={image} />
                 <Typography>{title}</Typography>

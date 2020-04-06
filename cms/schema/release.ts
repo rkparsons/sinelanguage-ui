@@ -22,7 +22,7 @@ export default {
         },
         {
             id: 'uid',
-            name: 'UID',
+            name: 'Catalog Number',
             type: 'Symbol',
             localized: false,
             required: true,
@@ -105,7 +105,10 @@ export default {
         {
             fieldId: 'uid',
             widgetNamespace: 'builtin',
-            widgetId: 'slugEditor',
+            widgetId: 'singleLine',
+            settings: {
+                helpText: 'Use format SINEXXX',
+            },
         },
         {
             fieldId: 'artist',

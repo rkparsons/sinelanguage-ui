@@ -54,7 +54,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
 
     result.data?.allContentfulArtist.nodes.forEach(({ uid }: { uid: string }) => {
         createPage({
-            path: `artists/${uid}`,
+            path: `artists/${uid}`.toLocaleLowerCase(),
             component: path.resolve(`./src/templates/artist.tsx`),
             context: {
                 uid,
@@ -64,7 +64,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
 
     result.data?.allContentfulRelease.nodes.forEach(({ uid }: { uid: string }) => {
         createPage({
-            path: `releases/${uid}`,
+            path: `releases/${uid}`.toLocaleLowerCase(),
             component: path.resolve(`./src/templates/release.tsx`),
             context: {
                 uid,
