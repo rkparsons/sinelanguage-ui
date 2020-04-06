@@ -20,8 +20,8 @@ export const deployCMS = () => {
 
     return contentfulApi
         .getSpace(contentfulSpaceId)
-        .then((space) => deploySpace(space, 'sinelanguage.net', [siteMetadata, artist, release]))
-        .catch((error) => console.log(`\nERROR: 'Could not deploy space\n`, error))
+        .then(space => deploySpace(space, 'sinelanguage.net', [siteMetadata, artist, release]))
+        .catch(error => console.log(`\nERROR: 'Could not deploy space\n`, error))
 }
 
 const deploySpace = (space: Space, name: string, contentTypeModels: ContentTypeModel[]) => {
@@ -29,14 +29,14 @@ const deploySpace = (space: Space, name: string, contentTypeModels: ContentTypeM
 
     return space
         .getEnvironment('master')
-        .then((environment) =>
-            environment.getContentTypes().then((contentTypes) => ({ contentTypes, environment }))
+        .then(environment =>
+            environment.getContentTypes().then(contentTypes => ({ contentTypes, environment }))
         )
         .then(({ contentTypes, environment }) =>
             Promise.all(
-                contentTypeModels.map((contentTypeModel) => {
+                contentTypeModels.map(contentTypeModel => {
                     const isNew = !contentTypes.items
-                        .map((x) => x.sys.id)
+                        .map(x => x.sys.id)
                         .includes(contentTypeModel.id)
 
                     return deployContentType(environment, name, contentTypeModel, isNew)
@@ -53,18 +53,19 @@ const deployContentType = (
     isNew: boolean
 ) =>
     getContentType(environment, contentTypeModel, isNew)
-        .then((contentType) => applyFieldOmissions(contentType, contentTypeModel))
-        .then((contentType) => contentType.publish())
-        .then((contentType) => applyFieldDeletions(contentType, contentTypeModel))
-        .then((contentType) => applyFieldUpdates(contentType, contentTypeModel))
-        .then((contentType) => applyEditorInterfaceUpdates(contentType, contentTypeModel))
-        .then((contentType) => contentType.publish())
-        .then((contentType) => {
+        .then(contentType => applyFieldOmissions(contentType, contentTypeModel))
+        .then(contentType => contentType.publish())
+        .then(contentType => applyFieldDeletions(contentType, contentTypeModel))
+        .then(contentType => applyFieldUpdates(contentType, contentTypeModel))
+        // todo: publish new field before updating interface
+        .then(contentType => applyEditorInterfaceUpdates(contentType, contentTypeModel))
+        .then(contentType => contentType.publish())
+        .then(contentType => {
             console.log(
                 `SUCCESS: '${contentTypeModel.name}' content type published in '${spaceName}' space`
             )
         })
-        .catch((error) =>
+        .catch(error =>
             console.log(
                 `ERROR: '${contentTypeModel.name}' content type could not be published in '${spaceName}' space`,
                 error
@@ -75,7 +76,7 @@ const applyEditorInterfaceUpdates = (
     contentType: ContentType,
     contentTypeModel: ContentTypeModel
 ) =>
-    contentType.getEditorInterface().then((editorInterface) => {
+    contentType.getEditorInterface().then(editorInterface => {
         editorInterface.controls = contentTypeModel.controls
         return editorInterface.update().then(() => Promise.resolve(contentType))
     })
@@ -112,7 +113,7 @@ const createContentType = (environment: Environment, contentTypeModel: ContentTy
 
 const applyFieldOmissions = (contentType: ContentType, contentTypeModel: ContentTypeModel) => {
     contentType.fields.forEach(
-        (field) => (field.omitted = shouldFieldBeDeleted(field, contentTypeModel))
+        field => (field.omitted = shouldFieldBeDeleted(field, contentTypeModel))
     )
 
     return contentType.update()
@@ -120,7 +121,7 @@ const applyFieldOmissions = (contentType: ContentType, contentTypeModel: Content
 
 const applyFieldDeletions = (contentType: ContentType, contentTypeModel: ContentTypeModel) => {
     contentType.fields = contentType.fields.filter(
-        (field) => !shouldFieldBeDeleted(field, contentTypeModel)
+        field => !shouldFieldBeDeleted(field, contentTypeModel)
     )
 
     return contentType.update()
@@ -128,7 +129,7 @@ const applyFieldDeletions = (contentType: ContentType, contentTypeModel: Content
 
 const shouldFieldBeDeleted = (field: ContentFields, contentTypeModel: ContentTypeModel) => {
     const matchingModelField = contentTypeModel.fields.find(
-        (modelField) => modelField.id === field.id
+        modelField => modelField.id === field.id
     )
 
     return !matchingModelField || matchingModelField.type != field.type

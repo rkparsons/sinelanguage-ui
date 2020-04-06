@@ -1,3 +1,4 @@
+import EmbeddedPlayer from '~/components/EmbeddedPlayer'
 import Head from '~/components/Head'
 import React from 'react'
 import { Release } from '~/types/release'
@@ -12,7 +13,16 @@ type Props = {
 }
 
 export default ({ data }: Props) => {
-    const { uid, title, artist, format, description, image, date } = data.contentfulRelease
+    const {
+        uid,
+        title,
+        artist,
+        format,
+        description,
+        image,
+        date,
+        embeddedPlayer,
+    } = data.contentfulRelease
 
     return (
         <>
@@ -20,6 +30,7 @@ export default ({ data }: Props) => {
             <SquareImage title={title} image={image} />
             <Typography>{artist.title}</Typography>
             <Typography>{format}</Typography>
+            <EmbeddedPlayer embeddedPlayer={embeddedPlayer.embeddedPlayer} />
             <Typography>
                 [{uid}] {date}
             </Typography>

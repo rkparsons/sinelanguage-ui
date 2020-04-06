@@ -13,4 +13,7 @@ export type Release = {
         fluid: FluidObject
     }
     date: Date
+    embeddedPlayer: {
+        embeddedPlayer: string
+    }
 }

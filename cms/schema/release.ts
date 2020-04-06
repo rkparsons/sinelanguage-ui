@@ -100,6 +100,27 @@ export default {
             disabled: false,
             omitted: false,
         },
+        {
+            id: 'embeddedPlayer',
+            name: 'Embedded Player',
+            type: 'Text',
+            localized: false,
+            required: false,
+            validations: [
+                {
+                    regexp: {
+                        pattern:
+                            // prettier-ignore
+                            '<iframe .*<\/iframe>$',
+                        flags: '',
+                    },
+                    message:
+                        'Should be valid HTML iframe tag with src attribute, e.g. <iframe src="https://example.com/embed/1234"></iframe>',
+                },
+            ],
+            disabled: false,
+            omitted: false,
+        },
     ],
     controls: [
         {
@@ -129,6 +150,14 @@ export default {
             widgetId: 'datePicker',
             settings: {
                 format: 'dateonly',
+            },
+        },
+        {
+            fieldId: 'embeddedPlayer',
+            widgetNamespace: 'builtin',
+            widgetId: 'multipleLine',
+            settings: {
+                helpText: 'Copy and paste the entire iframe tag for your embedded media',
             },
         },
     ],

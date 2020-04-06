@@ -17,5 +17,8 @@ export const releaseFragment = graphql`
             }
         }
         date
+        embeddedPlayer {
+            embeddedPlayer
+        }
     }
 `
