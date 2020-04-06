@@ -35,6 +35,21 @@ export default {
             omitted: false,
         },
         {
+            id: 'artist',
+            name: 'Artist',
+            type: 'Link',
+            localized: false,
+            required: true,
+            validations: [
+                {
+                    linkContentType: ['artist'],
+                },
+            ],
+            disabled: false,
+            omitted: false,
+            linkType: 'Entry',
+        },
+        {
             id: 'description',
             name: 'Description',
             type: 'Text',
@@ -74,6 +89,11 @@ export default {
             fieldId: 'uid',
             widgetNamespace: 'builtin',
             widgetId: 'slugEditor',
+        },
+        {
+            fieldId: 'artist',
+            widgetNamespace: 'builtin',
+            widgetId: 'entryCardEditor',
         },
         {
             fieldId: 'description',

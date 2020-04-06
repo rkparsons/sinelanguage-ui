@@ -4,6 +4,9 @@ export const releaseFragment = graphql`
     fragment releaseFragment on ContentfulRelease {
         uid
         title
+        artist {
+            ...artistFragment
+        }
         description {
             description
         }
