@@ -7,11 +7,12 @@ const fields = [
     new SymbolField({
         name: 'Title',
         validations: [unique],
-        widgetId: 'slugEditor',
     }),
     new SymbolField({
-        name: 'UID',
+        id: 'uid',
+        name: 'Unique ID',
         validations: [unique],
+        widgetId: 'slugEditor',
     }),
     new TextField({
         name: 'Description',
