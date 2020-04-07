@@ -1,7 +1,11 @@
 import Field from './field'
 import { SubFieldProps } from '../types/subFieldProps'
 
-export default class ImageField extends Field {
+type LinkFieldProps = SubFieldProps & {
+    linkId: string
+}
+
+export default class LinkField extends Field {
     linkType: string
 
     constructor({
@@ -15,7 +19,8 @@ export default class ImageField extends Field {
         widgetId,
         helpText,
         format,
-    }: SubFieldProps) {
+        linkId,
+    }: LinkFieldProps) {
         super({
             id,
             name,
@@ -29,9 +34,9 @@ export default class ImageField extends Field {
             helpText,
             format,
         })
-        this.linkType = 'Asset'
+        this.linkType = 'Entry'
         this.validations.push({
-            linkMimetypeGroup: ['image'],
+            linkContentType: [linkId],
         })
     }
 }

@@ -1,8 +1,9 @@
-import ArrayField from '../models/arrayField'
-import DateField from '../models/dateField'
+import ArrayField from './arrayField'
+import DateField from './dateField'
 import ImageField from '../models/imageField'
-import RichTextField from '../models/RichTextField'
+import LinkField from './linkField'
+import RichTextField from './richTextField'
 import SymbolField from '../models/symbolField'
-import TextField from '../models/textField'
+import TextField from './textField'
 
-export { ImageField, SymbolField, TextField, DateField, RichTextField, ArrayField }
+export { ImageField, SymbolField, TextField, DateField, RichTextField, ArrayField, LinkField }

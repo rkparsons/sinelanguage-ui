@@ -7,11 +7,7 @@ const fields = [
     new SymbolField({
         name: 'Title',
         validations: [unique],
-        control: {
-            fieldId: 'uid',
-            widgetNamespace: 'builtin',
-            widgetId: 'slugEditor',
-        },
+        widgetId: 'slugEditor',
     }),
     new SymbolField({
         name: 'UID',
@@ -19,14 +15,8 @@ const fields = [
     }),
     new TextField({
         name: 'Description',
-        control: {
-            fieldId: 'description',
-            widgetNamespace: 'builtin',
-            widgetId: 'multipleLine',
-            settings: {
-                helpText: 'SEO friendly description used when linking to this artist.',
-            },
-        },
+        widgetId: 'multipleLine',
+        helpText: 'SEO friendly description used when linking to this artist.',
     }),
     new ImageField({
         name: 'Image',
@@ -35,33 +25,19 @@ const fields = [
     new RichTextField({
         name: 'Bio',
         validations: [nodeTypes(['hyperlink']), marks(['italic'])],
-        control: {
-            fieldId: 'bio',
-            widgetNamespace: 'builtin',
-            widgetId: 'richTextEditor',
-        },
+        widgetId: 'richTextEditor',
     }),
     new DateField({
         name: 'Date',
-        control: {
-            fieldId: 'date',
-            widgetNamespace: 'builtin',
-            widgetId: 'datePicker',
-            settings: {
-                format: 'dateonly',
-            },
-        },
+        widgetId: 'datePicker',
+        format: 'dateonly',
     }),
     new ArrayField({
         name: 'Socials',
         required: false,
         itemType: 'Symbol',
         itemValidations: [url],
-        control: {
-            fieldId: 'socials',
-            widgetNamespace: 'builtin',
-            widgetId: 'tagEditor',
-        },
+        widgetId: 'tagEditor',
     }),
 ]
 

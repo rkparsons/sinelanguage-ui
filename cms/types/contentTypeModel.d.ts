@@ -1,11 +1,11 @@
-import { FieldProps } from './fieldProps'
 import { Control } from './control'
+import Field from '../models/field'
 
 export type ContentTypeModel = {
     name: string
     description: string
     displayField: string
-    fields: FieldProps[]
+    fields: Field[]
     id: string
     controls: Control[]
 }

@@ -18,7 +18,9 @@ export default class ArrayField extends Field {
         omitted,
         itemType,
         itemValidations,
-        control,
+        widgetId,
+        helpText,
+        format,
     }: SubFieldProps & ArrayProps) {
         const items = {
             type: itemType,
@@ -34,7 +36,9 @@ export default class ArrayField extends Field {
             disabled,
             omitted,
             items,
-            control,
+            widgetId,
+            helpText,
+            format,
         })
     }
 }

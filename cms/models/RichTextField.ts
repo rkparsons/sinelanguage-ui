@@ -10,7 +10,9 @@ export default class RichTextField extends Field {
         validations,
         disabled,
         omitted,
-        control,
+        widgetId,
+        helpText,
+        format,
     }: SubFieldProps) {
         super({
             id,
@@ -21,7 +23,9 @@ export default class RichTextField extends Field {
             validations,
             disabled,
             omitted,
-            control,
+            widgetId,
+            helpText,
+            format,
         })
     }
 }

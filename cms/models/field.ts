@@ -1,10 +1,10 @@
-import { Control } from 'contentful-management/typings/editorInterface'
+import { Control } from '../types/control'
 import { FieldItems } from '../types/fieldItems'
 import { FieldProps } from '../types/fieldProps'
 import { FieldValidation } from '../types/fieldValidation'
 
 export default class Field {
-    id?: string
+    id: string
     name: string
     type: string
     required?: boolean
@@ -25,9 +25,11 @@ export default class Field {
         omitted = false,
         validations = [],
         items,
-        control,
+        widgetId,
+        helpText,
+        format,
     }: FieldProps) {
-        this.id = id || name.replace(/ /g, '-').toLowerCase()
+        this.id = id || name.replace(/ /g, '').replace(/^\w/, c => c.toLowerCase())
         this.name = name
         this.type = type
         this.localized = localized
@@ -36,6 +38,17 @@ export default class Field {
         this.disabled = disabled
         this.omitted = omitted
         this.items = items
-        this.control = control
+
+        if (widgetId) {
+            this.control = {
+                fieldId: this.id,
+                widgetNamespace: 'builtin',
+                widgetId,
+                settings: {
+                    helpText,
+                    format,
+                },
+            }
+        }
     }
 }
