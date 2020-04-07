@@ -1,26 +1,21 @@
-import { contentfulManagementToken, contentfulSpaceId, environmentName } from '../../env-variables'
+import { contentfulManagementToken, contentfulSpaceId } from '../../env-variables'
 
 import { ContentFields } from 'contentful-management/typings/contentFields'
 import { ContentType } from 'contentful-management/typings/contentType'
 import { ContentTypeModel } from '../types/contentTypeModel'
 import { Environment } from 'contentful-management/typings/environment'
 import { Space } from 'contentful-management/typings/space'
-import artist from '../schema/artist'
 import { createClient } from 'contentful-management'
 import isDeepEqual from 'fast-deep-equal'
-import release from '../schema/release'
-import siteMetadata from '../schema/siteMetadata'
 
 const contentfulApi = createClient({
     accessToken: contentfulManagementToken,
 })
 
-export const deployCMS = () => {
-    console.log(`Deploying CMS schema: ${environmentName}`)
-
+export const deployCMS = (spaceName: string, contentTypeModels: ContentTypeModel[]) => {
     return contentfulApi
         .getSpace(contentfulSpaceId)
-        .then(space => deploySpace(space, 'sinelanguage.net', [siteMetadata, artist, release]))
+        .then(space => deploySpace(space, spaceName, contentTypeModels))
         .catch(error => console.log(`\nERROR: 'Could not deploy space\n`, error))
 }
 
