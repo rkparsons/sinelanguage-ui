@@ -1,4 +1,4 @@
-import { DateField, Field, ImageField, SymbolField, TextField } from '../models'
+import { DateField, Field, ImageField, RichTextField, SymbolField, TextField } from '../models'
 import { assetFileSize, marks, nodeTypes, unique } from '../validations'
 
 export default {
@@ -22,9 +22,8 @@ export default {
             name: 'Image',
             validations: [assetFileSize],
         }),
-        new Field({
+        new RichTextField({
             name: 'Bio',
-            type: 'RichText',
             validations: [nodeTypes(['hyperlink']), marks(['italic'])],
         }),
         new DateField({
