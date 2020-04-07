@@ -53,19 +53,21 @@ const deployContentType = (
     isNew: boolean
 ) =>
     getContentType(environment, contentTypeModel, isNew)
-        .then(contentType => applyFieldOmissions(contentType, contentTypeModel))
-        .then(contentType => contentType.publish())
-        .then(contentType => applyFieldDeletions(contentType, contentTypeModel))
-        .then(contentType => applyFieldUpdates(contentType, contentTypeModel))
+        .then((contentType: ContentType) => applyFieldOmissions(contentType, contentTypeModel))
+        .then((contentType: ContentType) => contentType.publish())
+        .then((contentType: ContentType) => applyFieldDeletions(contentType, contentTypeModel))
+        .then((contentType: ContentType) => applyFieldUpdates(contentType, contentTypeModel))
         // todo: publish new field before updating interface
-        .then(contentType => applyEditorInterfaceUpdates(contentType, contentTypeModel))
-        .then(contentType => contentType.publish())
-        .then(contentType => {
+        .then((contentType: ContentType) =>
+            applyEditorInterfaceUpdates(contentType, contentTypeModel)
+        )
+        .then((contentType: ContentType) => contentType.publish())
+        .then((contentType: ContentType) => {
             console.log(
                 `SUCCESS: '${contentTypeModel.name}' content type published in '${spaceName}' space`
             )
         })
-        .catch(error =>
+        .catch((error: Error) =>
             console.log(
                 `ERROR: '${contentTypeModel.name}' content type could not be published in '${spaceName}' space`,
                 error
@@ -97,7 +99,7 @@ const applyFieldUpdates = (contentType: ContentType, contentTypeModel: ContentTy
         contentType.name = contentTypeModel.name
         contentType.description = contentTypeModel.description
         contentType.displayField = contentTypeModel.displayField
-        contentType.fields = contentTypeModel.fields
+        contentType.fields = contentTypeModel.fields.map(x => x as ContentFields)
 
         return contentType.update()
     }
@@ -108,7 +110,7 @@ const createContentType = (environment: Environment, contentTypeModel: ContentTy
         name: contentTypeModel.name,
         description: contentTypeModel.description,
         displayField: contentTypeModel.displayField,
-        fields: contentTypeModel.fields,
+        fields: contentTypeModel.fields.map(x => x as ContentFields),
     })
 
 const applyFieldOmissions = (contentType: ContentType, contentTypeModel: ContentTypeModel) => {

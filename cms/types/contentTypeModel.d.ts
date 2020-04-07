@@ -1,7 +1,10 @@
-import { ContentTypeProps } from 'contentful-management/typings/contentType'
 import { EditorInterface } from './editorInterface'
+import { FieldProps } from './fieldProps'
 
-export type ContentTypeModel = ContentTypeProps &
-    EditorInterface & {
-        id: string
-    }
+export type ContentTypeModel = EditorInterface & {
+    name: string
+    description: string
+    displayField: string
+    fields: FieldProps[]
+    id: string
+}

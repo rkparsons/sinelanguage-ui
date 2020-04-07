@@ -1,4 +1,4 @@
-import { assetFileSize } from './validations/assetFileSize'
+import { assetFileSize } from '../validations/assetFileSize'
 
 export default {
     id: 'siteMetadata',

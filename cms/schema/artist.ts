@@ -1,4 +1,7 @@
-import { assetFileSize } from './validations/assetFileSize'
+import { assetFileSize, unique } from '../validations'
+
+import Field from '../models/field'
+import ImageField from '../models/imageField'
 
 export default {
     id: 'artist',
@@ -6,65 +9,34 @@ export default {
     description: '',
     displayField: 'title',
     fields: [
-        {
+        new Field({
             id: 'title',
             name: 'Title',
             type: 'Symbol',
-            localized: false,
-            required: true,
-            validations: [
-                {
-                    unique: true,
-                },
-            ],
-            disabled: false,
-            omitted: false,
-        },
-        {
+            validations: [unique],
+        }),
+        new Field({
             id: 'uid',
             name: 'UID',
             type: 'Symbol',
-            localized: false,
-            required: true,
-            validations: [
-                {
-                    unique: true,
-                },
-            ],
-            disabled: false,
-            omitted: false,
-        },
-        {
+            validations: [unique],
+        }),
+        new Field({
             id: 'description',
             name: 'Description',
             type: 'Text',
-            localized: false,
-            required: true,
-            disabled: false,
-            omitted: false,
-        },
-        {
+        }),
+        new ImageField({
             id: 'image',
             name: 'Image',
             type: 'Link',
-            localized: false,
-            required: true,
-            validations: [
-                {
-                    linkMimetypeGroup: ['image'],
-                },
-                assetFileSize,
-            ],
-            disabled: false,
-            omitted: false,
+            validations: [assetFileSize],
             linkType: 'Asset',
-        },
-        {
+        }),
+        new Field({
             id: 'bio',
             name: 'Bio',
             type: 'RichText',
-            localized: false,
-            required: true,
             validations: [
                 {
                     enabledNodeTypes: ['hyperlink'],
@@ -75,27 +47,17 @@ export default {
                     message: 'Only italic marks are allowed',
                 },
             ],
-            disabled: false,
-            omitted: false,
-        },
-        {
+        }),
+        new Field({
             id: 'date',
             name: 'Date',
             type: 'Date',
-            localized: false,
-            required: true,
-            disabled: false,
-            omitted: false,
-        },
-        {
+        }),
+        new Field({
             id: 'socials',
             name: 'Socials',
             type: 'Array',
-            localized: false,
             required: false,
-            validations: [],
-            disabled: false,
-            omitted: false,
             items: {
                 type: 'Symbol',
                 validations: [
@@ -109,7 +71,7 @@ export default {
                     },
                 ],
             },
-        },
+        }),
     ],
     controls: [
         {
