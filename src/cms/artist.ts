@@ -1,7 +1,14 @@
-import { ArrayField, DateField, ImageField, RichTextField, SymbolField, TextField } from '../models'
-import { assetFileSize, marks, nodeTypes, unique, url } from '../validations'
+import {
+    ArrayField,
+    DateField,
+    ImageField,
+    RichTextField,
+    SymbolField,
+    TextField,
+} from '../../cms/models'
+import { assetFileSize, marks, nodeTypes, unique, url } from '../../cms/validations'
 
-import { Control } from '../types/control'
+import { Control } from '../../cms/types/control'
 
 const fields = [
     new SymbolField({

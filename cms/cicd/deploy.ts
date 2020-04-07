@@ -34,7 +34,7 @@ const deploySpace = (space: Space, name: string, contentTypeModels: ContentTypeM
                         .map(x => x.sys.id)
                         .includes(contentTypeModel.id)
 
-                    return deployContentType(environment, name, contentTypeModel, isNew)
+                    return deployContentType(environment, contentTypeModel, isNew)
                 })
             )
         )
@@ -43,7 +43,6 @@ const deploySpace = (space: Space, name: string, contentTypeModels: ContentTypeM
 // todo: abstract with class
 const deployContentType = (
     environment: Environment,
-    spaceName: string,
     contentTypeModel: ContentTypeModel,
     isNew: boolean
 ) =>
@@ -58,13 +57,11 @@ const deployContentType = (
         )
         .then((contentType: ContentType) => contentType.publish())
         .then((contentType: ContentType) => {
-            console.log(
-                `SUCCESS: '${contentTypeModel.name}' content type published in '${spaceName}' space`
-            )
+            console.log(`SUCCESS: '${contentTypeModel.name}' content type published`)
         })
         .catch((error: Error) =>
             console.log(
-                `ERROR: '${contentTypeModel.name}' content type could not be published in '${spaceName}' space`,
+                `ERROR: '${contentTypeModel.name}' content type could not be published`,
                 error
             )
         )

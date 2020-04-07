@@ -1,4 +1,4 @@
-import { artist, release, siteMetadata } from './cms/schema'
+import { artist, release, siteMetadata } from './src/cms'
 
 import { deployCMS } from './cms/cicd/deploy'
 
