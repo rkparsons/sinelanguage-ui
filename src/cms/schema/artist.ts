@@ -5,10 +5,10 @@ import {
     RichTextField,
     SymbolField,
     TextField,
-} from '../../cms/models'
-import { assetFileSize, marks, nodeTypes, unique, url } from '../../cms/validations'
+} from '../../../cms/models'
+import { assetFileSize, marks, nodeTypes, unique, url } from '../../../cms/validations'
 
-import { Control } from '../../cms/types/control'
+import { Control } from '../../../cms/types/control'
 
 const fields = [
     new SymbolField({

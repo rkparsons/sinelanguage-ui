@@ -1,4 +1,4 @@
-import { DashboardItem } from '~/types/dashboardItem'
+import { DashboardItem } from '~/cms/types/dashboardItem'
 import { Flipped } from 'react-flip-toolkit'
 import { LinkShowHide } from './DashboardItem.style'
 import React from 'react'

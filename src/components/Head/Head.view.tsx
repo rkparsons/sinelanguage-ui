@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet'
 import React from 'react'
-import { SiteMetadata } from '~/types/siteMetadata'
+import { SiteMetadata } from '~/cms/types/siteMetadata'
 import TexgyreherosRegular from '~/styles/fonts/texgyreheroscn-regular.otf'
 
 interface ViewProps {

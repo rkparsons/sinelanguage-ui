@@ -1,4 +1,4 @@
-import { Artist } from '~/types/artist'
+import { Artist } from '~/cms/types/artist'
 
 export type DashboardItem = {
     type: string

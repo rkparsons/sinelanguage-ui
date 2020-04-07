@@ -1,7 +1,7 @@
 import EmbeddedPlayer from '~/components/EmbeddedPlayer'
 import Head from '~/components/Head'
 import React from 'react'
-import { Release } from '~/types/release'
+import { Release } from '~/cms/types/release'
 import SquareImage from '~/components/SquareImage'
 import { Typography } from '@material-ui/core'
 import { graphql } from 'gatsby'

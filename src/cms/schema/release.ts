@@ -1,7 +1,7 @@
-import { DateField, ImageField, LinkField, SymbolField, TextField } from '../../cms/models'
-import { assetFileSize, iframe, unique } from '../../cms/validations'
+import { DateField, ImageField, LinkField, SymbolField, TextField } from '../../../cms/models'
+import { assetFileSize, iframe, unique } from '../../../cms/validations'
 
-import { Control } from '../../cms/types/control'
+import { Control } from '../../../cms/types/control'
 
 const fields = [
     new SymbolField({

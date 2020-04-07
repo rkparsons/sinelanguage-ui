@@ -1,6 +1,6 @@
-import { Artist } from '~/types/artist'
-import { DashboardItem } from '~/types/dashboardItem'
-import { Release } from '~/types/release'
+import { Artist } from '~/cms/types/artist'
+import { DashboardItem } from '~/cms/types/dashboardItem'
+import { Release } from '~/cms/types/release'
 
 type Props = {
     allContentfulArtist: {
@@ -11,12 +11,12 @@ type Props = {
     }
 }
 export default ({ allContentfulArtist, allContentfulRelease }: Props) => {
-    const artists = allContentfulArtist.nodes.map((artist) => flatten(artist, 'artist'))
-    const releases = allContentfulRelease.nodes.map((release) => flatten(release, 'release'))
+    const artists = allContentfulArtist.nodes.map(artist => flatten(artist, 'artist'))
+    const releases = allContentfulRelease.nodes.map(release => flatten(release, 'release'))
 
     const dashboardItems = artists.concat(releases)
 
-    dashboardItems.sort(function (a, b) {
+    dashboardItems.sort(function(a, b) {
         return new Date(b.date).getTime() - new Date(a.date).getTime()
     })
 

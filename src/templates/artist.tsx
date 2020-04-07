@@ -1,4 +1,4 @@
-import { Artist } from '~/types/artist'
+import { Artist } from '~/cms/types/artist'
 import Head from '~/components/Head'
 import React from 'react'
 import RichText from '~/components/RichText'
@@ -22,7 +22,7 @@ export default ({ data }: Props) => {
             <SquareImage title={title} image={image} />
             <RichText json={bio.json} />
             <Typography variant="h3">
-                {socials.map((url) => (
+                {socials.map(url => (
                     <SocialLink url={url} />
                 ))}
             </Typography>
