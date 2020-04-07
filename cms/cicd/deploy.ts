@@ -99,7 +99,9 @@ const applyFieldUpdates = (contentType: ContentType, contentTypeModel: ContentTy
         contentType.name = contentTypeModel.name
         contentType.description = contentTypeModel.description
         contentType.displayField = contentTypeModel.displayField
-        contentType.fields = contentTypeModel.fields.map(x => x as ContentFields)
+        contentType.fields = contentTypeModel.fields.map(
+            ({ control, ...rest }) => ({ ...rest } as ContentFields)
+        )
 
         return contentType.update()
     }
@@ -110,7 +112,9 @@ const createContentType = (environment: Environment, contentTypeModel: ContentTy
         name: contentTypeModel.name,
         description: contentTypeModel.description,
         displayField: contentTypeModel.displayField,
-        fields: contentTypeModel.fields.map(x => x as ContentFields),
+        fields: contentTypeModel.fields.map(
+            ({ control, ...rest }) => ({ ...rest } as ContentFields)
+        ),
     })
 
 const applyFieldOmissions = (contentType: ContentType, contentTypeModel: ContentTypeModel) => {
@@ -141,4 +145,7 @@ const isContentTypeEqual = (contentType: ContentType, contentTypeModel: ContentT
     contentType.name === contentTypeModel.name &&
     contentType.description === contentTypeModel.description &&
     contentType.displayField === contentTypeModel.displayField &&
-    isDeepEqual(contentType.fields, contentTypeModel.fields)
+    isDeepEqual(
+        contentType.fields,
+        contentTypeModel.fields.map(({ control, ...rest }) => ({ ...rest } as ContentFields))
+    )

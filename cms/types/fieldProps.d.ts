@@ -1,5 +1,6 @@
 import { FieldValidation } from './fieldValidation'
 import { FieldItems } from './fieldItems'
+import { Control } from './control'
 
 export type FieldProps = {
     id?: string
@@ -11,4 +12,5 @@ export type FieldProps = {
     omitted?: boolean
     validations?: FieldValidation[]
     items?: FieldItems
+    control?: Control
 }

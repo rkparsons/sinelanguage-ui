@@ -1,3 +1,4 @@
+import { Control } from 'contentful-management/typings/editorInterface'
 import { FieldItems } from '../types/fieldItems'
 import { FieldProps } from '../types/fieldProps'
 import { FieldValidation } from '../types/fieldValidation'
@@ -12,6 +13,7 @@ export default class Field {
     omitted?: boolean
     validations: FieldValidation[]
     items?: FieldItems
+    control?: Control
 
     constructor({
         id,
@@ -23,6 +25,7 @@ export default class Field {
         omitted = false,
         validations = [],
         items,
+        control,
     }: FieldProps) {
         this.id = id || name.replace(/ /g, '-').toLowerCase()
         this.name = name
@@ -33,5 +36,6 @@ export default class Field {
         this.disabled = disabled
         this.omitted = omitted
         this.items = items
+        this.control = control
     }
 }
