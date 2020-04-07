@@ -2,6 +2,7 @@ import { assetFileSize, marks, nodeTypes, unique } from '../validations'
 
 import Field from '../models/field'
 import ImageField from '../models/imageField'
+import SymbolField from '../models/symbolField'
 
 export default {
     id: 'artist',
@@ -9,14 +10,12 @@ export default {
     description: '',
     displayField: 'title',
     fields: [
-        new Field({
+        new SymbolField({
             name: 'Title',
-            type: 'Symbol',
             validations: [unique],
         }),
-        new Field({
+        new SymbolField({
             name: 'UID',
-            type: 'Symbol',
             validations: [unique],
         }),
         new Field({
