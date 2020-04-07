@@ -10,40 +10,33 @@ export default {
     displayField: 'title',
     fields: [
         new Field({
-            id: 'title',
             name: 'Title',
             type: 'Symbol',
             validations: [unique],
         }),
         new Field({
-            id: 'uid',
             name: 'UID',
             type: 'Symbol',
             validations: [unique],
         }),
         new Field({
-            id: 'description',
             name: 'Description',
             type: 'Text',
         }),
         new ImageField({
-            id: 'image',
             name: 'Image',
             validations: [assetFileSize],
         }),
         new Field({
-            id: 'bio',
             name: 'Bio',
             type: 'RichText',
             validations: [nodeTypes(['hyperlink']), marks(['italic'])],
         }),
         new Field({
-            id: 'date',
             name: 'Date',
             type: 'Date',
         }),
         new Field({
-            id: 'socials',
             name: 'Socials',
             type: 'Array',
             required: false,

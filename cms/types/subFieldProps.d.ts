@@ -2,7 +2,7 @@ import { FieldValidation } from './fieldValidation'
 import { FieldItems } from './fieldItems'
 
 export type SubFieldProps = {
-    id: string
+    id?: string
     name: string
     required?: boolean
     localized?: boolean

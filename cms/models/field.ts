@@ -3,7 +3,7 @@ import { FieldProps } from '../types/fieldProps'
 import { FieldValidation } from '../types/fieldValidation'
 
 export default class Field {
-    id: string
+    id?: string
     name: string
     type: string
     required?: boolean
@@ -24,7 +24,7 @@ export default class Field {
         validations = [],
         items,
     }: FieldProps) {
-        this.id = id
+        this.id = id || name.replace(/ /g, '-').toLowerCase()
         this.name = name
         this.type = type
         this.localized = localized
