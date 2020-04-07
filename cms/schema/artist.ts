@@ -1,4 +1,4 @@
-import { assetFileSize, unique } from '../validations'
+import { assetFileSize, marks, nodeTypes, unique } from '../validations'
 
 import Field from '../models/field'
 import ImageField from '../models/imageField'
@@ -29,24 +29,13 @@ export default {
         new ImageField({
             id: 'image',
             name: 'Image',
-            type: 'Link',
             validations: [assetFileSize],
-            linkType: 'Asset',
         }),
         new Field({
             id: 'bio',
             name: 'Bio',
             type: 'RichText',
-            validations: [
-                {
-                    enabledNodeTypes: ['hyperlink'],
-                    message: 'Only link to Url nodes are allowed',
-                },
-                {
-                    enabledMarks: ['italic'],
-                    message: 'Only italic marks are allowed',
-                },
-            ],
+            validations: [nodeTypes(['hyperlink']), marks(['italic'])],
         }),
         new Field({
             id: 'date',

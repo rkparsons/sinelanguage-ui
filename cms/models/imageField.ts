@@ -1,23 +1,12 @@
 import Field from './field'
-import { FieldProps } from '../types/fieldProps'
-import { ImageFieldProps } from '../types/imageFieldProps'
+import { SubFieldProps } from '../types/subFieldProps'
 
 export default class ImageField extends Field {
     linkType: string
 
-    constructor({
-        id,
-        name,
-        type,
-        localized,
-        required,
-        validations,
-        disabled,
-        omitted,
-        linkType,
-    }: FieldProps & ImageFieldProps) {
-        super({ id, name, type, localized, required, validations, disabled, omitted })
-        this.linkType = linkType
+    constructor({ id, name, localized, required, validations, disabled, omitted }: SubFieldProps) {
+        super({ id, name, type: 'Link', localized, required, validations, disabled, omitted })
+        this.linkType = 'Asset'
         this.validations.push({
             linkMimetypeGroup: ['image'],
         })
