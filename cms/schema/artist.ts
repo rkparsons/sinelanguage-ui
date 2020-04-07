@@ -1,8 +1,5 @@
+import { DateField, Field, ImageField, SymbolField, TextField } from '../models'
 import { assetFileSize, marks, nodeTypes, unique } from '../validations'
-
-import Field from '../models/field'
-import ImageField from '../models/imageField'
-import SymbolField from '../models/symbolField'
 
 export default {
     id: 'artist',
@@ -18,9 +15,8 @@ export default {
             name: 'UID',
             validations: [unique],
         }),
-        new Field({
+        new TextField({
             name: 'Description',
-            type: 'Text',
         }),
         new ImageField({
             name: 'Image',
@@ -31,9 +27,8 @@ export default {
             type: 'RichText',
             validations: [nodeTypes(['hyperlink']), marks(['italic'])],
         }),
-        new Field({
+        new DateField({
             name: 'Date',
-            type: 'Date',
         }),
         new Field({
             name: 'Socials',
