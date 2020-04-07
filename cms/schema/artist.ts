@@ -1,5 +1,5 @@
-import { DateField, Field, ImageField, RichTextField, SymbolField, TextField } from '../models'
-import { assetFileSize, marks, nodeTypes, unique } from '../validations'
+import { ArrayField, DateField, ImageField, RichTextField, SymbolField, TextField } from '../models'
+import { assetFileSize, marks, nodeTypes, regexp, unique } from '../validations'
 
 export default {
     id: 'artist',
@@ -29,23 +29,16 @@ export default {
         new DateField({
             name: 'Date',
         }),
-        new Field({
+        new ArrayField({
             name: 'Socials',
-            type: 'Array',
             required: false,
-            items: {
-                type: 'Symbol',
-                validations: [
-                    {
-                        regexp: {
-                            pattern:
-                                '^(ftp|http|https):\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-/]))?$',
-                            flags: '',
-                        },
-                        message: 'Must be a valid URL',
-                    },
-                ],
-            },
+            itemType: 'Symbol',
+            itemValidations: [
+                regexp(
+                    '^(ftp|http|https):\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-/]))?$',
+                    'Must be a valid URL'
+                ),
+            ],
         }),
     ],
     controls: [
