@@ -1,5 +1,5 @@
 import { ArrayField, DateField, ImageField, RichTextField, SymbolField, TextField } from '../models'
-import { assetFileSize, marks, nodeTypes, regexp, unique } from '../validations'
+import { assetFileSize, marks, nodeTypes, unique, url } from '../validations'
 
 export default {
     id: 'artist',
@@ -33,12 +33,7 @@ export default {
             name: 'Socials',
             required: false,
             itemType: 'Symbol',
-            itemValidations: [
-                regexp(
-                    '^(ftp|http|https):\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-/]))?$',
-                    'Must be a valid URL'
-                ),
-            ],
+            itemValidations: [url],
         }),
     ],
     controls: [
