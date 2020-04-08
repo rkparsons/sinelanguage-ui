@@ -1,62 +1,62 @@
 import { graphql } from 'gatsby'
 
 export const artistFragment = graphql`
-    fragment artistFragment on ContentfulArtist {
-        __typename
-        title
-        uid
-        description {
+	fragment artistFragment on ContentfulArtist {
+		__typename
+		title
+		uid
+		description {
             description
         }
-        image {
+		image {
             fluid(maxWidth: 2400, quality: 90) {
                 ...GatsbyContentfulFluid_withWebp
             }
         }
-        bio {
+		bio {
             json
         }
-        date
-        socials
-    }
+		date
+		socials
+	}
 `
 
 export const releaseFragment = graphql`
-    fragment releaseFragment on ContentfulRelease {
-        __typename
-        title
-        uid
-        artist {
+	fragment releaseFragment on ContentfulRelease {
+		__typename
+		title
+		uid
+		artist {
             ...artistFragment
         }
-        format
-        description {
+		format
+		description {
             description
         }
-        image {
+		image {
             fluid(maxWidth: 2400, quality: 90) {
                 ...GatsbyContentfulFluid_withWebp
             }
         }
-        date
-        embeddedPlayer {
+		date
+		embeddedPlayer {
             embeddedPlayer
         }
-    }
+	}
 `
 
 export const siteMetadataFragment = graphql`
-    fragment siteMetadataFragment on ContentfulSiteMetadata {
-        __typename
-        title
-        url
-        description {
+	fragment siteMetadataFragment on ContentfulSiteMetadata {
+		__typename
+		title
+		url
+		description {
             description
         }
-        image {
+		image {
             file {
                 url
             }
         }
-    }
+	}
 `

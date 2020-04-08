@@ -2,8 +2,6 @@ import Field from './field'
 import { SubFieldProps } from '../types/subFieldProps'
 
 export default class ImageField extends Field {
-    linkType: string
-
     constructor({
         id,
         name,
@@ -29,8 +27,8 @@ export default class ImageField extends Field {
             helpText,
             format,
         })
-        this.linkType = 'Asset'
-        this.validations.push({
+        this.contentFields.linkType = 'Asset'
+        this.contentFields.validations!.push({
             linkMimetypeGroup: ['image'],
         })
     }
@@ -42,7 +40,7 @@ export default class ImageField extends Field {
     }`
 
     getFragment = () =>
-        `${this.id} {
+        `${this.contentFields.id} {
             file {
                 url
             }

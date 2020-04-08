@@ -4,6 +4,7 @@ import { ContentFields } from 'contentful-management/typings/contentFields'
 import { ContentType } from 'contentful-management/typings/contentType'
 import { ContentTypeModel } from '../types/contentTypeModel'
 import { Environment } from 'contentful-management/typings/environment'
+import Field from '../models/field'
 import { Space } from 'contentful-management/typings/space'
 import { createClient } from 'contentful-management'
 import isDeepEqual from 'fast-deep-equal'
@@ -91,9 +92,7 @@ const applyFieldUpdates = (contentType: ContentType, contentTypeModel: ContentTy
         contentType.name = contentTypeModel.name
         contentType.description = contentTypeModel.description
         contentType.displayField = contentTypeModel.displayField
-        contentType.fields = contentTypeModel.fields.map(
-            ({ control, ...rest }) => ({ ...rest } as ContentFields)
-        )
+        contentType.fields = contentTypeModel.fields.map(field => field.contentFields)
 
         return contentType.update()
     }
@@ -104,9 +103,7 @@ const createContentType = (environment: Environment, contentTypeModel: ContentTy
         name: contentTypeModel.name,
         description: contentTypeModel.description,
         displayField: contentTypeModel.displayField,
-        fields: contentTypeModel.fields.map(
-            ({ control, ...rest }) => ({ ...rest } as ContentFields)
-        ),
+        fields: contentTypeModel.fields.map(field => field.contentFields),
     })
 
 const applyFieldOmissions = (contentType: ContentType, contentTypeModel: ContentTypeModel) => {
@@ -127,10 +124,10 @@ const applyFieldDeletions = (contentType: ContentType, contentTypeModel: Content
 
 const shouldFieldBeDeleted = (field: ContentFields, contentTypeModel: ContentTypeModel) => {
     const matchingModelField = contentTypeModel.fields.find(
-        modelField => modelField.id === field.id
+        modelField => modelField.contentFields.id === field.id
     )
 
-    return !matchingModelField || matchingModelField.type != field.type
+    return !matchingModelField || matchingModelField.contentFields.type != field.type
 }
 
 const isContentTypeEqual = (contentType: ContentType, contentTypeModel: ContentTypeModel) =>
@@ -139,5 +136,5 @@ const isContentTypeEqual = (contentType: ContentType, contentTypeModel: ContentT
     contentType.displayField === contentTypeModel.displayField &&
     isDeepEqual(
         contentType.fields,
-        contentTypeModel.fields.map(({ control, ...rest }) => ({ ...rest } as ContentFields))
+        contentTypeModel.fields.map(field => field.contentFields)
     )

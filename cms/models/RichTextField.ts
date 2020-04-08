@@ -34,7 +34,7 @@ export default class RichTextField extends Field {
     }`
 
     getFragment = () =>
-        `${this.id} {
+        `${this.contentFields.id} {
             json
         }`
 }

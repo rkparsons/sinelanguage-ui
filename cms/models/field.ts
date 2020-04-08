@@ -1,18 +1,10 @@
+import { ContentFields } from 'contentful-management/typings/contentFields'
 import { Control } from '../types/control'
-import { FieldItems } from '../types/fieldItems'
 import { FieldProps } from '../types/fieldProps'
-import { FieldValidation } from '../types/fieldValidation'
 
 export default abstract class Field {
-    id: string
-    name: string
-    type: string
-    required?: boolean
-    localized?: boolean
-    disabled?: boolean
-    omitted?: boolean
-    validations: FieldValidation[]
-    items?: FieldItems
+    contentFields: ContentFields
+    // todo: replace with contentful control type
     control?: Control
 
     constructor({
@@ -29,19 +21,21 @@ export default abstract class Field {
         helpText,
         format,
     }: FieldProps) {
-        this.id = id || name.replace(/ /g, '').replace(/^\w/, c => c.toLowerCase())
-        this.name = name
-        this.type = type
-        this.localized = localized
-        this.required = required
-        this.validations = validations
-        this.disabled = disabled
-        this.omitted = omitted
-        this.items = items
+        this.contentFields = {
+            id: id || name.replace(/ /g, '').replace(/^\w/, c => c.toLowerCase()),
+            name,
+            type,
+            localized,
+            required,
+            validations,
+            disabled,
+            omitted,
+            items,
+        }
 
         if (widgetId) {
             this.control = {
-                fieldId: this.id,
+                fieldId: this.contentFields.id,
                 widgetNamespace: 'builtin',
                 widgetId,
                 settings: {
@@ -54,5 +48,5 @@ export default abstract class Field {
 
     abstract getTyping(): string
 
-    getFragment = () => this.id
+    getFragment = () => this.contentFields.id
 }

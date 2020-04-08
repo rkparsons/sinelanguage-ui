@@ -9,7 +9,6 @@ type FluidImageProps = SubFieldProps & {
 }
 
 export default class FluidImageField extends Field {
-    linkType: string
     maxWidth: number
     quality: number
     fluidImageType: FluidImageType
@@ -42,8 +41,8 @@ export default class FluidImageField extends Field {
             helpText,
             format,
         })
-        this.linkType = 'Asset'
-        this.validations.push({
+        this.contentFields.linkType = 'Asset'
+        this.contentFields.validations!.push({
             linkMimetypeGroup: ['image'],
         })
         this.maxWidth = maxWidth
@@ -56,7 +55,7 @@ export default class FluidImageField extends Field {
     }`
 
     getFragment = () =>
-        `${this.id} {
+        `${this.contentFields.id} {
             fluid(maxWidth: ${this.maxWidth}, quality: ${this.quality}) {
                 ...${this.fluidImageType}
             }

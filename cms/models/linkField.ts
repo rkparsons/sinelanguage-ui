@@ -6,8 +6,6 @@ type LinkFieldProps = SubFieldProps & {
 }
 
 export default class LinkField extends Field {
-    linkType: string
-
     constructor({
         id,
         name,
@@ -34,17 +32,17 @@ export default class LinkField extends Field {
             helpText,
             format,
         })
-        this.linkType = 'Entry'
-        this.validations.push({
+        this.contentFields.linkType = 'Entry'
+        this.contentFields.validations!.push({
             linkContentType: [linkId],
         })
     }
 
     // todo: link field should have ref to linked schema
-    getTyping = () => this.name
+    getTyping = () => this.contentFields.name
 
     getFragment = () =>
-        `${this.id} {
-            ...${this.id}Fragment
+        `${this.contentFields.id} {
+            ...${this.contentFields.id}Fragment
         }`
 }

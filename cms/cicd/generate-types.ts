@@ -48,7 +48,7 @@ function writeSchema(schema: ContentTypeModel) {
 }
 
 function writeField(field: Field) {
-    writeLineIndented(`${field.id}: ${field.getTyping()}`)
+    writeLineIndented(`${field.contentFields.id}: ${field.getTyping()}`)
 }
 
 function writeLine(line: string = '') {
