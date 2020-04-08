@@ -39,4 +39,7 @@ export default class LinkField extends Field {
             linkContentType: [linkId],
         })
     }
+
+    // todo: link field should have ref to linked schema
+    getTyping = () => this.name
 }

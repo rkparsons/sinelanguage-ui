@@ -1,9 +1,9 @@
-import { Artist } from '~/cms/types/artist'
+import { Artist, Release } from '~/cms/types'
+
 import DashboardItem from '~/components/DashboardItem'
 import { Grid } from '@material-ui/core'
 import Head from '~/components/Head'
 import React from 'react'
-import { Release } from '~/cms/types/release'
 import { WindowLocation } from '@reach/router'
 import resolveDashboardItems from '~/utils/resolveDashboardItems'
 

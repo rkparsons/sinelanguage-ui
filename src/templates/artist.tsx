@@ -1,4 +1,4 @@
-import { Artist } from '~/cms/types/artist'
+import { Artist } from '~/cms/types'
 import Head from '~/components/Head'
 import React from 'react'
 import RichText from '~/components/RichText'

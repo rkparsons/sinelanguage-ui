@@ -28,4 +28,8 @@ export default class RichTextField extends Field {
             format,
         })
     }
+
+    getTyping = () => `{
+        json: Document
+    }`
 }

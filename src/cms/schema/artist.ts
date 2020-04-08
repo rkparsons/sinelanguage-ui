@@ -1,8 +1,8 @@
 import {
-    ArrayField,
     DateField,
-    ImageField,
+    FluidImageField,
     RichTextField,
+    SymbolArrayField,
     SymbolField,
     TextField,
 } from '../../../cms/models'
@@ -26,7 +26,7 @@ const fields = [
         widgetId: 'multipleLine',
         helpText: 'SEO friendly description used when linking to this artist.',
     }),
-    new ImageField({
+    new FluidImageField({
         name: 'Image',
         validations: [assetFileSize],
     }),
@@ -40,7 +40,7 @@ const fields = [
         widgetId: 'datePicker',
         format: 'dateonly',
     }),
-    new ArrayField({
+    new SymbolArrayField({
         name: 'Socials',
         required: false,
         itemType: 'Symbol',

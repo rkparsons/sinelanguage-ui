@@ -1,13 +1,9 @@
 import Field from './field'
-import { FieldValidation } from '../types/fieldValidation'
 import { SubFieldProps } from '../types/subFieldProps'
 
-type ArrayProps = {
-    itemType: string
-    itemValidations?: FieldValidation[]
-}
+export default class FluidImageField extends Field {
+    linkType: string
 
-export default class ArrayField extends Field {
     constructor({
         id,
         name,
@@ -16,29 +12,30 @@ export default class ArrayField extends Field {
         validations,
         disabled,
         omitted,
-        itemType,
-        itemValidations,
         widgetId,
         helpText,
         format,
-    }: SubFieldProps & ArrayProps) {
-        const items = {
-            type: itemType,
-            validations: itemValidations,
-        }
+    }: SubFieldProps) {
         super({
             id,
             name,
-            type: 'Array',
+            type: 'Link',
             localized,
             required,
             validations,
             disabled,
             omitted,
-            items,
             widgetId,
             helpText,
             format,
         })
+        this.linkType = 'Asset'
+        this.validations.push({
+            linkMimetypeGroup: ['image'],
+        })
     }
+
+    getTyping = () => `{
+        fluid: FluidObject
+    }`
 }

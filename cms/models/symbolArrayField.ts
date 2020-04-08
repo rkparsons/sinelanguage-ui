@@ -1,7 +1,13 @@
 import Field from './field'
+import { FieldValidation } from '../types/fieldValidation'
 import { SubFieldProps } from '../types/subFieldProps'
 
-export default class DateField extends Field {
+type ArrayProps = {
+    itemType: string
+    itemValidations?: FieldValidation[]
+}
+
+export default class SymbolArrayField extends Field {
     constructor({
         id,
         name,
@@ -10,24 +16,30 @@ export default class DateField extends Field {
         validations,
         disabled,
         omitted,
+        itemType,
+        itemValidations,
         widgetId,
         helpText,
         format,
-    }: SubFieldProps) {
+    }: SubFieldProps & ArrayProps) {
         super({
             id,
             name,
-            type: 'Date',
+            type: 'Array',
             localized,
             required,
             validations,
             disabled,
             omitted,
+            items: {
+                type: itemType,
+                validations: itemValidations,
+            },
             widgetId,
             helpText,
             format,
         })
     }
 
-    getTyping = () => `Date`
+    getTyping = () => `string[]`
 }

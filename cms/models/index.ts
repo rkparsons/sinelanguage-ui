@@ -1,9 +1,19 @@
-import ArrayField from './arrayField'
 import DateField from './dateField'
-import ImageField from '../models/imageField'
+import FluidImageField from './fluidImageField'
+import ImageField from './imageField'
 import LinkField from './linkField'
 import RichTextField from './richTextField'
+import SymbolArrayField from './symbolArrayField'
 import SymbolField from '../models/symbolField'
 import TextField from './textField'
 
-export { ImageField, SymbolField, TextField, DateField, RichTextField, ArrayField, LinkField }
+export {
+    ImageField,
+    FluidImageField,
+    SymbolField,
+    TextField,
+    DateField,
+    RichTextField,
+    SymbolArrayField,
+    LinkField,
+}

@@ -34,4 +34,10 @@ export default class ImageField extends Field {
             linkMimetypeGroup: ['image'],
         })
     }
+
+    getTyping = () => `{
+        file: {
+            url: string
+        }
+    }`
 }

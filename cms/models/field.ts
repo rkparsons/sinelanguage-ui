@@ -3,7 +3,7 @@ import { FieldItems } from '../types/fieldItems'
 import { FieldProps } from '../types/fieldProps'
 import { FieldValidation } from '../types/fieldValidation'
 
-export default class Field {
+export default abstract class Field {
     id: string
     name: string
     type: string
@@ -51,4 +51,6 @@ export default class Field {
             }
         }
     }
+
+    abstract getTyping(): string
 }

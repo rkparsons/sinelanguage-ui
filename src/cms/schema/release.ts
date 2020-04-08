@@ -1,4 +1,4 @@
-import { DateField, ImageField, LinkField, SymbolField, TextField } from '../../../cms/models'
+import { DateField, FluidImageField, LinkField, SymbolField, TextField } from '../../../cms/models'
 import { assetFileSize, iframe, unique } from '../../../cms/validations'
 
 import { Control } from '../../../cms/types/control'
@@ -34,7 +34,7 @@ const fields = [
         widgetId: 'multipleLine',
         helpText: 'SEO friendly description used when linking to this release.',
     }),
-    new ImageField({
+    new FluidImageField({
         name: 'Image',
         validations: [assetFileSize],
     }),

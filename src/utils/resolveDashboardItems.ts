@@ -1,5 +1,4 @@
-import { Artist } from '~/cms/types/artist'
-import { Release } from '~/cms/types/release'
+import { Artist, Release } from '~/cms/types'
 
 type Props = {
     allContentfulArtist: {

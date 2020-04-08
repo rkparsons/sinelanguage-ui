@@ -28,4 +28,8 @@ export default class TextField extends Field {
             format,
         })
     }
+
+    getTyping = () => `{
+        ${this.id}: string
+    }`
 }
