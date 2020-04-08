@@ -8,7 +8,8 @@ import {
 } from '../../../cms/models'
 import { assetFileSize, marks, nodeTypes, unique, url } from '../../../cms/validations'
 
-import { Control } from '../../../cms/types/control'
+import { Control } from '../../../cms/types'
+import { FluidImageType } from '../../../cms/constants'
 
 const fields = [
     new SymbolField({
@@ -29,6 +30,9 @@ const fields = [
     new FluidImageField({
         name: 'Image',
         validations: [assetFileSize],
+        maxWidth: 2400,
+        quality: 90,
+        fluidImageType: FluidImageType.WEBP_BLUR_UP,
     }),
     new RichTextField({
         name: 'Bio',

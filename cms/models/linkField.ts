@@ -42,4 +42,9 @@ export default class LinkField extends Field {
 
     // todo: link field should have ref to linked schema
     getTyping = () => this.name
+
+    getFragment = () =>
+        `${this.id} {
+            ...${this.id}Fragment
+        }`
 }

@@ -53,4 +53,6 @@ export default abstract class Field {
     }
 
     abstract getTyping(): string
+
+    getFragment = () => this.id
 }

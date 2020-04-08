@@ -40,4 +40,11 @@ export default class ImageField extends Field {
             url: string
         }
     }`
+
+    getFragment = () =>
+        `${this.id} {
+            file {
+                url
+            }
+        }`
 }

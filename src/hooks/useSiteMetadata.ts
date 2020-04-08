@@ -4,6 +4,8 @@ import { useStaticQuery } from 'gatsby'
 export default () =>
     useStaticQuery(graphql`
         query SiteMetadata {
-            ...siteMetadataFragment
+            contentfulSiteMetadata {
+                ...siteMetadataFragment
+            }
         }
     `).contentfulSiteMetadata

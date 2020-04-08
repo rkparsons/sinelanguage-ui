@@ -32,4 +32,9 @@ export default class TextField extends Field {
     getTyping = () => `{
         ${this.id}: string
     }`
+
+    getFragment = () =>
+        `${this.id} {
+            ${this.id}
+        }`
 }

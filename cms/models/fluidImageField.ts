@@ -1,8 +1,18 @@
 import Field from './field'
+import FluidImageType from '../constants/fluidImageType'
 import { SubFieldProps } from '../types/subFieldProps'
+
+type FluidImageProps = SubFieldProps & {
+    maxWidth: number
+    quality: number
+    fluidImageType: FluidImageType
+}
 
 export default class FluidImageField extends Field {
     linkType: string
+    maxWidth: number
+    quality: number
+    fluidImageType: FluidImageType
 
     constructor({
         id,
@@ -15,7 +25,10 @@ export default class FluidImageField extends Field {
         widgetId,
         helpText,
         format,
-    }: SubFieldProps) {
+        maxWidth,
+        quality,
+        fluidImageType,
+    }: FluidImageProps) {
         super({
             id,
             name,
@@ -33,9 +46,19 @@ export default class FluidImageField extends Field {
         this.validations.push({
             linkMimetypeGroup: ['image'],
         })
+        this.maxWidth = maxWidth
+        this.quality = quality
+        this.fluidImageType = fluidImageType
     }
 
     getTyping = () => `{
         fluid: FluidObject
     }`
+
+    getFragment = () =>
+        `${this.id} {
+            fluid(maxWidth: ${this.maxWidth}, quality: ${this.quality}) {
+                ...${this.fluidImageType}
+            }
+        }`
 }

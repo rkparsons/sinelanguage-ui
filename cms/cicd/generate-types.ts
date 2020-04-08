@@ -31,9 +31,12 @@ function writeImports() {
 }
 
 function writeTypes(contentTypeModels: ContentTypeModel[]) {
-    contentTypeModels.forEach(contentTypeModel => {
+    contentTypeModels.forEach((contentTypeModel, index) => {
         writeSchema(contentTypeModel)
-        writeLine()
+
+        if (index < contentTypeModels.length - 1) {
+            writeLine()
+        }
     })
 }
 

@@ -32,4 +32,9 @@ export default class RichTextField extends Field {
     getTyping = () => `{
         json: Document
     }`
+
+    getFragment = () =>
+        `${this.id} {
+            json
+        }`
 }
