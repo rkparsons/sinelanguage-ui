@@ -33,6 +33,9 @@ export default class RichTextField extends Field {
         json: Document
     }`
 
+    getNode = (schemaName: string) =>
+        `${this.contentFields.id}: contentful${schemaName}${this.getNameNoSpace()}RichTextNode`
+
     getFragment = () =>
         `${this.contentFields.id} {
             json

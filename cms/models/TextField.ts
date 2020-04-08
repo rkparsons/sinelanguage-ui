@@ -33,6 +33,9 @@ export default class TextField extends Field {
         ${this.contentFields.id}: string
     }`
 
+    getNode = (schemaName: string) =>
+        `${this.contentFields.id}: contentful${schemaName}${this.getNameNoSpace()}TextNode`
+
     getFragment = () =>
         `${this.contentFields.id} {
             ${this.contentFields.id}

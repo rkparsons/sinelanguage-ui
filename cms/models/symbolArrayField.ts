@@ -42,4 +42,8 @@ export default class SymbolArrayField extends Field {
     }
 
     getTyping = () => `string[]`
+
+    getNode = () => `${this.contentFields.id}: [String]`
+
+    getFragment = () => this.contentFields.id
 }

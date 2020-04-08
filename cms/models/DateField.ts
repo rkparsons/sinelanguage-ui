@@ -30,4 +30,8 @@ export default class DateField extends Field {
     }
 
     getTyping = () => `Date`
+
+    getNode = () => `${this.contentFields.id}: Date`
+
+    getFragment = () => this.contentFields.id
 }
