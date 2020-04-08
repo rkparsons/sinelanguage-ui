@@ -22,6 +22,15 @@ export default ({ data }: ViewProps) => (
 
 export const query = graphql`
     {
-        ...dashboardFragment
+        allContentfulArtist {
+            nodes {
+                ...artistFragment
+            }
+        }
+        allContentfulRelease {
+            nodes {
+                ...releaseFragment
+            }
+        }
     }
 `
