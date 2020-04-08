@@ -2,6 +2,7 @@ import { graphql } from 'gatsby'
 
 export const releaseFragment = graphql`
     fragment releaseFragment on ContentfulRelease {
+        __typename
         uid
         title
         artist {

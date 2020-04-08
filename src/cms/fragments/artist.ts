@@ -2,6 +2,7 @@ import { graphql } from 'gatsby'
 
 export const artistFragment = graphql`
     fragment artistFragment on ContentfulArtist {
+        __typename
         uid
         title
         description {

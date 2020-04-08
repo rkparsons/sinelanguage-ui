@@ -2,6 +2,7 @@ import { FluidObject } from 'gatsby-image'
 import { Artist } from './artist'
 
 export type Release = {
+    __typename: string
     uid: string
     title: string
     artist: Artist
