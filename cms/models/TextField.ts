@@ -29,10 +29,9 @@ export default class TextField extends Field {
         })
     }
 
-    getTyping = () =>
-        `{
-            ${this.contentFields.id}: string
-        }`
+    getTyping = () => `{
+        ${this.contentFields.id}: string
+    }`
 
     getNode = (schemaName: string) =>
         `${this.contentFields.id}: contentful${schemaName}${this.getNameNoSpace()}TextNode`

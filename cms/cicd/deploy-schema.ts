@@ -2,7 +2,7 @@ import { contentfulManagementToken, contentfulSpaceId } from '../../env-variable
 
 import { ContentFields } from 'contentful-management/typings/contentFields'
 import { ContentType } from 'contentful-management/typings/contentType'
-import { ContentTypeModel } from '../types/contentTypeModel'
+import { ContentType as ContentTypeModel } from '../models'
 import { Environment } from 'contentful-management/typings/environment'
 import Field from '../models/field'
 import { Space } from 'contentful-management/typings/space'
