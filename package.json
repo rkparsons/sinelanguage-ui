@@ -16,9 +16,10 @@
         "build:app": "gatsby clean && gatsby build",
         "build:lambda": "netlify-lambda build src/lambda",
         "deploy-cms": "ts-node deploy-cms.ts",
-        "generate-types": "ts-node generate-types.ts",
-        "generate-fragments": "ts-node generate-fragments.ts",
-        "generate-nodes": "ts-node generate-nodes.ts"
+        "gen:types": "ts-node generate-types.ts",
+        "gen:fragments": "ts-node generate-fragments.ts",
+        "gen:nodes": "ts-node generate-nodes.ts",
+        "gen": "run-p gen:**"
     },
     "prettier": {
         "endOfLine": "auto",
