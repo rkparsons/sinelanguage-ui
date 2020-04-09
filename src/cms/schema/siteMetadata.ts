@@ -1,7 +1,7 @@
-import { ContentType, ImageField, SymbolField, TextField } from '../../../cms/models'
+import { ContentfulContentType, ImageField, SymbolField, TextField } from '../../../cms/models'
 import { assetFileSize, unique } from '../../../cms/validations'
 
-export default new ContentType({
+export default new ContentfulContentType({
     id: 'siteMetadata',
     name: 'Site Metadata',
     description: 'Metadata used for SEO and when linking to the site.',

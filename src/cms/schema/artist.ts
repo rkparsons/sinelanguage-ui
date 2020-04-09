@@ -1,5 +1,5 @@
 import {
-    ContentType,
+    ContentfulContentType,
     DateField,
     FluidImageField,
     RichTextField,
@@ -11,7 +11,7 @@ import { assetFileSize, marks, nodeTypes, unique, url } from '../../../cms/valid
 
 import { FluidImageType } from '../../../cms/constants'
 
-export default new ContentType({
+export default new ContentfulContentType({
     id: 'artist',
     name: 'Artist',
     description: '',

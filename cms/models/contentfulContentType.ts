@@ -9,7 +9,7 @@ type ContentTypeProps = {
     id: string
 }
 
-export default class ContentType {
+export default class ContentfulContentType {
     name: string
     nodeName: string
     description: string

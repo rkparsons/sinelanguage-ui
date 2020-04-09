@@ -1,12 +1,12 @@
 import { WriteStream, createWriteStream, writeFile } from 'fs'
 
-import { ContentType } from '../models'
+import { ContentfulContentType } from '../models'
 import Field from '../models/field'
 import os from 'os'
 
 let file: WriteStream
 
-export function generateTypes(filePath: string, contentTypeModels: ContentType[]) {
+export function generateTypes(filePath: string, contentTypeModels: ContentfulContentType[]) {
     clearFile(filePath)
     initFileWriter(filePath)
     writeImports()
@@ -30,7 +30,7 @@ function writeImports() {
     writeLine()
 }
 
-function writeTypes(contentTypeModels: ContentType[]) {
+function writeTypes(contentTypeModels: ContentfulContentType[]) {
     contentTypeModels.forEach((contentTypeModel, index) => {
         writeSchema(contentTypeModel)
 
@@ -40,7 +40,7 @@ function writeTypes(contentTypeModels: ContentType[]) {
     })
 }
 
-function writeSchema(schema: ContentType) {
+function writeSchema(schema: ContentfulContentType) {
     writeLine(`export type ${schema.name.replace(/ /g, '')} = {`)
     writeLineIndented(`__typename: string`)
     schema.fields.forEach(writeField)

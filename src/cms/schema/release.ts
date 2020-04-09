@@ -1,5 +1,5 @@
 import {
-    ContentType,
+    ContentfulContentType,
     DateField,
     FluidImageField,
     LinkField,
@@ -10,7 +10,7 @@ import { assetFileSize, iframe, unique } from '../../../cms/validations'
 
 import { FluidImageType } from '../../../cms/constants'
 
-export default new ContentType({
+export default new ContentfulContentType({
     id: 'release',
     name: 'Release',
     description: '',

@@ -1,4 +1,4 @@
-import ContentType from './contentType'
+import ContentfulContentType from './contentfulContentType'
 import DateField from './dateField'
 import Field from './field'
 import FluidImageField from './fluidImageField'
@@ -10,7 +10,7 @@ import SymbolField from '../models/symbolField'
 import TextField from './textField'
 
 export {
-    ContentType,
+    ContentfulContentType,
     Field,
     ImageField,
     FluidImageField,

@@ -2,7 +2,7 @@ import { contentfulManagementToken, contentfulSpaceId } from '../../env-variable
 
 import { ContentFields } from 'contentful-management/typings/contentFields'
 import { ContentType } from 'contentful-management/typings/contentType'
-import { ContentType as ContentTypeModel } from '../models'
+import { ContentfulContentType } from '../models'
 import { Environment } from 'contentful-management/typings/environment'
 import Field from '../models/field'
 import { Space } from 'contentful-management/typings/space'
@@ -13,14 +13,14 @@ const contentfulApi = createClient({
     accessToken: contentfulManagementToken,
 })
 
-export const deployCMS = (spaceName: string, contentTypeModels: ContentTypeModel[]) => {
+export const deployCMS = (spaceName: string, contentTypeModels: ContentfulContentType[]) => {
     return contentfulApi
         .getSpace(contentfulSpaceId)
         .then(space => deploySpace(space, spaceName, contentTypeModels))
         .catch(error => console.log(`\nERROR: 'Could not deploy space\n`, error))
 }
 
-const deploySpace = (space: Space, name: string, contentTypeModels: ContentTypeModel[]) => {
+const deploySpace = (space: Space, name: string, contentTypeModels: ContentfulContentType[]) => {
     console.log(`Deploying CMS space: ${name}`)
 
     return space
@@ -44,7 +44,7 @@ const deploySpace = (space: Space, name: string, contentTypeModels: ContentTypeM
 // todo: abstract with class
 const deployContentType = (
     environment: Environment,
-    contentTypeModel: ContentTypeModel,
+    contentTypeModel: ContentfulContentType,
     isNew: boolean
 ) =>
     getContentType(environment, contentTypeModel, isNew)
@@ -69,7 +69,7 @@ const deployContentType = (
 
 const applyEditorInterfaceUpdates = (
     contentType: ContentType,
-    contentTypeModel: ContentTypeModel
+    contentTypeModel: ContentfulContentType
 ) =>
     contentType.getEditorInterface().then(editorInterface => {
         editorInterface.controls = contentTypeModel.controls
@@ -78,14 +78,14 @@ const applyEditorInterfaceUpdates = (
 
 const getContentType = (
     environment: Environment,
-    contentTypeModel: ContentTypeModel,
+    contentTypeModel: ContentfulContentType,
     isNew: boolean
 ) =>
     isNew
         ? createContentType(environment, contentTypeModel)
         : environment.getContentType(contentTypeModel.id)
 
-const applyFieldUpdates = (contentType: ContentType, contentTypeModel: ContentTypeModel) => {
+const applyFieldUpdates = (contentType: ContentType, contentTypeModel: ContentfulContentType) => {
     if (isContentTypeEqual(contentType, contentTypeModel)) {
         return Promise.resolve(contentType)
     } else {
@@ -98,7 +98,7 @@ const applyFieldUpdates = (contentType: ContentType, contentTypeModel: ContentTy
     }
 }
 
-const createContentType = (environment: Environment, contentTypeModel: ContentTypeModel) =>
+const createContentType = (environment: Environment, contentTypeModel: ContentfulContentType) =>
     environment.createContentTypeWithId(contentTypeModel.id, {
         name: contentTypeModel.name,
         description: contentTypeModel.description,
@@ -106,7 +106,7 @@ const createContentType = (environment: Environment, contentTypeModel: ContentTy
         fields: contentTypeModel.fields.map(field => field.contentFields),
     })
 
-const applyFieldOmissions = (contentType: ContentType, contentTypeModel: ContentTypeModel) => {
+const applyFieldOmissions = (contentType: ContentType, contentTypeModel: ContentfulContentType) => {
     contentType.fields.forEach(
         field => (field.omitted = shouldFieldBeDeleted(field, contentTypeModel))
     )
@@ -114,7 +114,7 @@ const applyFieldOmissions = (contentType: ContentType, contentTypeModel: Content
     return contentType.update()
 }
 
-const applyFieldDeletions = (contentType: ContentType, contentTypeModel: ContentTypeModel) => {
+const applyFieldDeletions = (contentType: ContentType, contentTypeModel: ContentfulContentType) => {
     contentType.fields = contentType.fields.filter(
         field => !shouldFieldBeDeleted(field, contentTypeModel)
     )
@@ -122,7 +122,7 @@ const applyFieldDeletions = (contentType: ContentType, contentTypeModel: Content
     return contentType.update()
 }
 
-const shouldFieldBeDeleted = (field: ContentFields, contentTypeModel: ContentTypeModel) => {
+const shouldFieldBeDeleted = (field: ContentFields, contentTypeModel: ContentfulContentType) => {
     const matchingModelField = contentTypeModel.fields.find(
         modelField => modelField.contentFields.id === field.id
     )
@@ -130,7 +130,7 @@ const shouldFieldBeDeleted = (field: ContentFields, contentTypeModel: ContentTyp
     return !matchingModelField || matchingModelField.contentFields.type != field.type
 }
 
-const isContentTypeEqual = (contentType: ContentType, contentTypeModel: ContentTypeModel) =>
+const isContentTypeEqual = (contentType: ContentType, contentTypeModel: ContentfulContentType) =>
     contentType.name === contentTypeModel.name &&
     contentType.description === contentTypeModel.description &&
     contentType.displayField === contentTypeModel.displayField &&

@@ -1,12 +1,12 @@
 import { WriteStream, createWriteStream, writeFile } from 'fs'
 
-import { ContentType } from '../models'
+import { ContentfulContentType } from '../models'
 import Field from '../models/field'
 import os from 'os'
 
 let file: WriteStream
 
-export function generateFragments(filePath: string, contentTypeModels: ContentType[]) {
+export function generateFragments(filePath: string, contentTypeModels: ContentfulContentType[]) {
     clearFile(filePath)
     initFileWriter(filePath)
     writeImports()
@@ -29,7 +29,7 @@ function writeImports() {
     writeLine()
 }
 
-function writeFragments(contentTypeModels: ContentType[]) {
+function writeFragments(contentTypeModels: ContentfulContentType[]) {
     contentTypeModels.forEach((contentTypeModel, index) => {
         writeFragment(contentTypeModel)
 
@@ -39,7 +39,7 @@ function writeFragments(contentTypeModels: ContentType[]) {
     })
 }
 
-function writeFragment(schema: ContentType) {
+function writeFragment(schema: ContentfulContentType) {
     writeLine(`export const ${schema.id}Fragment = graphql\``)
     writeLineIndented(
         1,

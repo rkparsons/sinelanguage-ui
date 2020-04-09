@@ -1,12 +1,12 @@
 import { Field, RichTextField, TextField } from '../models'
 import { WriteStream, createWriteStream, writeFile } from 'fs'
 
-import { ContentType } from '../models'
+import { ContentfulContentType } from '../models'
 import os from 'os'
 
 let file: WriteStream
 
-export function generateNodes(filePath: string, contentTypeModels: ContentType[]) {
+export function generateNodes(filePath: string, contentTypeModels: ContentfulContentType[]) {
     clearFile(filePath)
     initFileWriter(filePath)
     writeLine(`export const typeDefs = \``)
@@ -25,7 +25,7 @@ function initFileWriter(filePath: string) {
     })
 }
 
-function writeNodes(contentTypeModels: ContentType[]) {
+function writeNodes(contentTypeModels: ContentfulContentType[]) {
     contentTypeModels.forEach((contentTypeModel, index) => {
         const schemaName = contentTypeModel.name.replace(/ /g, '')
 
@@ -38,7 +38,7 @@ function writeNodes(contentTypeModels: ContentType[]) {
     })
 }
 
-function writeLinkedNodes(schema: ContentType, schemaName: string) {
+function writeLinkedNodes(schema: ContentfulContentType, schemaName: string) {
     schema.fields
         .filter(field => field instanceof RichTextField || field instanceof TextField)
         .forEach(field => writeLinkedNode(field as RichTextField | TextField, schemaName))
@@ -49,7 +49,7 @@ function writeLinkedNode(field: RichTextField | TextField, schemaName: string) {
     writeLine()
 }
 
-function writeSchemaNode(schema: ContentType, schemaName: string) {
+function writeSchemaNode(schema: ContentfulContentType, schemaName: string) {
     writeLineIndented(1, `type Contentful${schemaName} implements Node {`)
     schema.fields.forEach(field => writeField(schemaName, field))
     writeLineIndented(1, '}')
