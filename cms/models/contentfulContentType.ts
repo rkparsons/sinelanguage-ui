@@ -1,27 +1,29 @@
+import ContentType from './contentType'
+import ContentfulField from './contentfulField'
 import { Control } from '../types/control'
-import Field from './field'
 import os from 'os'
 
-type ContentTypeProps = {
+type ContentfulContentTypeProps = {
     name: string
     description: string
     displayField: string
-    fields: Field[]
+    fields: ContentfulField[]
     id: string
 }
 
-export default class ContentfulContentType {
+export default class ContentfulContentType extends ContentType {
     name: string
     typeName: string
     nodeName: string
     description: string
     displayField: string
-    fields: Field[]
+    fields: ContentfulField[]
     id: string
     controls: Control[]
     stringWriter: string = ``
 
-    constructor({ name, description, displayField, fields, id }: ContentTypeProps) {
+    constructor({ name, description, displayField, fields, id }: ContentfulContentTypeProps) {
+        super({ fields })
         this.name = name
         this.typeName = name.replace(/ /g, '')
         this.nodeName = `Contentful${this.typeName}`

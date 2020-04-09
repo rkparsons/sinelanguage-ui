@@ -1,6 +1,6 @@
 import { FluidImageType, Import } from '../constants'
 
-import Field from './field'
+import ContentfulField from './contentfulField'
 import { SubFieldProps } from '../types'
 
 type FluidImageProps = SubFieldProps & {
@@ -9,7 +9,7 @@ type FluidImageProps = SubFieldProps & {
     fluidImageType: FluidImageType
 }
 
-export default class FluidImageField extends Field {
+export default class FluidImageField extends ContentfulField {
     maxWidth: number
     quality: number
     fluidImageType: FluidImageType

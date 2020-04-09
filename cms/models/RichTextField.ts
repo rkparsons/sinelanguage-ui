@@ -1,8 +1,8 @@
-import Field from './field'
+import ContentfulField from './contentfulField'
 import { Import } from '../constants'
 import { SubFieldProps } from '../types/subFieldProps'
 
-export default class RichTextField extends Field {
+export default class RichTextField extends ContentfulField {
     constructor({
         id,
         name,

@@ -1,13 +1,12 @@
 import { WriteStream, createWriteStream, writeFile } from 'fs'
 
-import { ContentfulContentType } from '../models'
-import Field from '../models/field'
+import { ContentType } from '../models'
 import flattenDeep from 'lodash.flattendeep'
 import os from 'os'
 
 let file: WriteStream
 
-export function generateTypes(filePath: string, contentTypeModels: ContentfulContentType[]) {
+export function generateTypes(filePath: string, contentTypeModels: ContentType[]) {
     clearFile(filePath)
     initFileWriter(filePath)
     writeImports(contentTypeModels)
@@ -25,7 +24,7 @@ function initFileWriter(filePath: string) {
     })
 }
 
-function writeImports(contentTypeModels: ContentfulContentType[]) {
+function writeImports(contentTypeModels: ContentType[]) {
     const imports = flattenDeep<string>(
         contentTypeModels.map(contentType =>
             contentType.fields.map(field => field.getTypeDefinitionImports())
@@ -38,8 +37,8 @@ function writeImports(contentTypeModels: ContentfulContentType[]) {
     writeLine()
 }
 
-function writeTypes(contentTypeModels: ContentfulContentType[]) {
-    contentTypeModels.forEach((contentTypeModel, index) => {
+function writeTypes(contentTypeModels: ContentType[]) {
+    contentTypeModels.forEach(contentTypeModel => {
         writeLine(contentTypeModel.getTypeDefinition())
     })
 }

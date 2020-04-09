@@ -1,7 +1,7 @@
 import { WriteStream, createWriteStream, writeFile } from 'fs'
 
 import { ContentfulContentType } from '../models'
-import Field from '../models/field'
+import ContentfulField from '../models/contentfulField'
 import os from 'os'
 
 let file: WriteStream
@@ -51,7 +51,7 @@ function writeFragment(schema: ContentfulContentType) {
     writeLine(`\``)
 }
 
-function writeField(field: Field) {
+function writeField(field: ContentfulField) {
     writeLineIndented(2, field.getFragment())
 }
 

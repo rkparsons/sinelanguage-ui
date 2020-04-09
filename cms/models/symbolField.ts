@@ -1,7 +1,7 @@
-import Field from './field'
+import ContentfulField from './contentfulField'
 import { SubFieldProps } from '../types/subFieldProps'
 
-export default class SymbolField extends Field {
+export default class SymbolField extends ContentfulField {
     constructor({
         id,
         name,

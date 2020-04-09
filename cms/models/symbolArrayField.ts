@@ -1,4 +1,4 @@
-import Field from './field'
+import ContentfulField from './contentfulField'
 import { FieldValidation } from '../types/fieldValidation'
 import { SubFieldProps } from '../types/subFieldProps'
 
@@ -7,7 +7,7 @@ type ArrayProps = {
     itemValidations?: FieldValidation[]
 }
 
-export default class SymbolArrayField extends Field {
+export default class SymbolArrayField extends ContentfulField {
     constructor({
         id,
         name,

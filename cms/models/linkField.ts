@@ -1,11 +1,11 @@
-import Field from './field'
+import ContentfulField from './contentfulField'
 import { SubFieldProps } from '../types/subFieldProps'
 
 type LinkFieldProps = SubFieldProps & {
     linkId: string
 }
 
-export default class LinkField extends Field {
+export default class LinkField extends ContentfulField {
     constructor({
         id,
         name,
