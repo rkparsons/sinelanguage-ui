@@ -29,12 +29,20 @@ export default class RichTextField extends Field {
         })
     }
 
-    getTyping = () => `{
-        json: Document
-    }`
+    getTyping = () =>
+        `{
+            json: Document
+        }`
 
     getNode = (schemaName: string) =>
         `${this.contentFields.id}: contentful${schemaName}${this.getNameNoSpace()}RichTextNode`
+
+    getLinkedNode = (
+        schemaName: string
+    ) => `type contentful${schemaName}${this.getNameNoSpace()}RichTextNode implements Node {
+        nodeType: String
+        json: JSON
+    }`
 
     getFragment = () =>
         `${this.contentFields.id} {

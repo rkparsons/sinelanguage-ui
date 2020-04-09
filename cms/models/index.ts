@@ -1,4 +1,5 @@
 import DateField from './dateField'
+import Field from './field'
 import FluidImageField from './fluidImageField'
 import ImageField from './imageField'
 import LinkField from './linkField'
@@ -8,6 +9,7 @@ import SymbolField from '../models/symbolField'
 import TextField from './textField'
 
 export {
+    Field,
     ImageField,
     FluidImageField,
     SymbolField,

@@ -1,7 +1,7 @@
+import { Field, RichTextField, TextField } from '../models'
 import { WriteStream, createWriteStream, writeFile } from 'fs'
 
 import { ContentTypeModel } from '../types/contentTypeModel'
-import Field from '../models/field'
 import os from 'os'
 
 let file: WriteStream
@@ -27,7 +27,10 @@ function initFileWriter(filePath: string) {
 
 function writeNodes(contentTypeModels: ContentTypeModel[]) {
     contentTypeModels.forEach((contentTypeModel, index) => {
-        writeNode(contentTypeModel)
+        const schemaName = contentTypeModel.name.replace(/ /g, '')
+
+        writeLinkedNodes(contentTypeModel, schemaName)
+        writeSchemaNode(contentTypeModel, schemaName)
 
         if (index < contentTypeModels.length - 1) {
             writeLine()
@@ -35,8 +38,18 @@ function writeNodes(contentTypeModels: ContentTypeModel[]) {
     })
 }
 
-function writeNode(schema: ContentTypeModel) {
-    const schemaName = schema.name.replace(/ /g, '')
+function writeLinkedNodes(schema: ContentTypeModel, schemaName: string) {
+    schema.fields
+        .filter(field => field instanceof RichTextField || field instanceof TextField)
+        .forEach(field => writeLinkedNode(field as RichTextField | TextField, schemaName))
+}
+
+function writeLinkedNode(field: RichTextField | TextField, schemaName: string) {
+    writeLineIndented(1, field.getLinkedNode(schemaName))
+    writeLine()
+}
+
+function writeSchemaNode(schema: ContentTypeModel, schemaName: string) {
     writeLineIndented(1, `type Contentful${schemaName} implements Node {`)
     schema.fields.forEach(field => writeField(schemaName, field))
     writeLineIndented(1, '}')
