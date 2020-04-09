@@ -48,7 +48,9 @@ export default abstract class Field {
 
     getNameNoSpace = () => this.contentFields.name.replace(/ /g, '')
 
-    abstract getTyping(): string
+    abstract getTypeDefinitionImports(): string[]
+
+    abstract getTypeDefinition(): string
 
     abstract getNode(schemaName: string): string
 

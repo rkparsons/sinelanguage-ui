@@ -1,6 +1,7 @@
+import { FluidImageType, Import } from '../constants'
+
 import Field from './field'
-import FluidImageType from '../constants/fluidImageType'
-import { SubFieldProps } from '../types/subFieldProps'
+import { SubFieldProps } from '../types'
 
 type FluidImageProps = SubFieldProps & {
     maxWidth: number
@@ -50,7 +51,9 @@ export default class FluidImageField extends Field {
         this.fluidImageType = fluidImageType
     }
 
-    getTyping = () => `{
+    getTypeDefinitionImports = () => [Import.FLUID_OBJECT]
+
+    getTypeDefinition = () => `${this.contentFields.id}: {
         fluid: FluidObject
     }`
 

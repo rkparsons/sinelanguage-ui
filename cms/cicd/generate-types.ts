@@ -2,6 +2,7 @@ import { WriteStream, createWriteStream, writeFile } from 'fs'
 
 import { ContentfulContentType } from '../models'
 import Field from '../models/field'
+import flattenDeep from 'lodash.flattendeep'
 import os from 'os'
 
 let file: WriteStream
@@ -9,7 +10,7 @@ let file: WriteStream
 export function generateTypes(filePath: string, contentTypeModels: ContentfulContentType[]) {
     clearFile(filePath)
     initFileWriter(filePath)
-    writeImports()
+    writeImports(contentTypeModels)
     writeTypes(contentTypeModels)
     console.log(`SUCCESS: types written to file ${filePath}`)
 }
@@ -24,37 +25,25 @@ function initFileWriter(filePath: string) {
     })
 }
 
-function writeImports() {
-    writeLine(`import { FluidObject } from 'gatsby-image'`)
-    writeLine(`import { Document } from '@contentful/rich-text-types/dist/types/types'`)
+function writeImports(contentTypeModels: ContentfulContentType[]) {
+    const imports = flattenDeep<string>(
+        contentTypeModels.map(contentType =>
+            contentType.fields.map(field => field.getTypeDefinitionImports())
+        )
+    )
+
+    const uniqueImports = [...new Set(imports)]
+
+    uniqueImports.forEach(writeLine)
     writeLine()
 }
 
 function writeTypes(contentTypeModels: ContentfulContentType[]) {
     contentTypeModels.forEach((contentTypeModel, index) => {
-        writeSchema(contentTypeModel)
-
-        if (index < contentTypeModels.length - 1) {
-            writeLine()
-        }
+        writeLine(contentTypeModel.getTypeDefinition())
     })
-}
-
-function writeSchema(schema: ContentfulContentType) {
-    writeLine(`export type ${schema.name.replace(/ /g, '')} = {`)
-    writeLineIndented(`__typename: string`)
-    schema.fields.forEach(writeField)
-    writeLine(`}`)
-}
-
-function writeField(field: Field) {
-    writeLineIndented(`${field.contentFields.id}: ${field.getTyping()}`)
 }
 
 function writeLine(line: string = '') {
     file.write(`${line}${os.EOL}`)
-}
-
-function writeLineIndented(line: string = '') {
-    writeLine(`\t${line}`)
 }

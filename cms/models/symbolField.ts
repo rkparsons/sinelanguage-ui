@@ -29,7 +29,9 @@ export default class SymbolField extends Field {
         })
     }
 
-    getTyping = () => `string`
+    getTypeDefinitionImports = () => []
+
+    getTypeDefinition = () => `${this.contentFields.id}: string`
 
     getNode = () => `${this.contentFields.id}: String`
 

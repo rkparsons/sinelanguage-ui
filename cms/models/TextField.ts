@@ -29,7 +29,9 @@ export default class TextField extends Field {
         })
     }
 
-    getTyping = () => `{
+    getTypeDefinitionImports = () => []
+
+    getTypeDefinition = () => `${this.contentFields.id}: {
         ${this.contentFields.id}: string
     }`
 

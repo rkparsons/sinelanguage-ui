@@ -29,7 +29,9 @@ export default class DateField extends Field {
         })
     }
 
-    getTyping = () => `Date`
+    getTypeDefinitionImports = () => []
+
+    getTypeDefinition = () => `${this.contentFields.id}: Date`
 
     getNode = () => `${this.contentFields.id}: Date @dateformat`
 

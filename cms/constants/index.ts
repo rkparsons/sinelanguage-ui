@@ -1,3 +1,4 @@
 import FluidImageType from './fluidImageType'
+import Import from './import'
 
-export { FluidImageType }
+export { FluidImageType, Import }

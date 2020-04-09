@@ -41,7 +41,9 @@ export default class SymbolArrayField extends Field {
         })
     }
 
-    getTyping = () => `string[]`
+    getTypeDefinitionImports = () => []
+
+    getTypeDefinition = () => `${this.contentFields.id}: string[]`
 
     getNode = () => `${this.contentFields.id}: [String]`
 

@@ -38,8 +38,9 @@ export default class LinkField extends Field {
         })
     }
 
+    getTypeDefinitionImports = () => []
     // todo: link field should have ref to linked schema
-    getTyping = () => this.contentFields.name
+    getTypeDefinition = () => `${this.contentFields.id}: ${this.contentFields.name}`
 
     getNode = () => `${this.contentFields.id}: Contentful${this.contentFields.name}`
 

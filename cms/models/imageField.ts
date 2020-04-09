@@ -33,7 +33,9 @@ export default class ImageField extends Field {
         })
     }
 
-    getTyping = () => `{
+    getTypeDefinitionImports = () => []
+
+    getTypeDefinition = () => `${this.contentFields.id}: {
         file: {
             url: string
         }

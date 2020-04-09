@@ -1,4 +1,5 @@
 import Field from './field'
+import { Import } from '../constants'
 import { SubFieldProps } from '../types/subFieldProps'
 
 export default class RichTextField extends Field {
@@ -29,7 +30,9 @@ export default class RichTextField extends Field {
         })
     }
 
-    getTyping = () => `{
+    getTypeDefinitionImports = () => [Import.DOCUMENT]
+
+    getTypeDefinition = () => `${this.contentFields.id}: {
         json: Document
     }`
 
