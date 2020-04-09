@@ -1,6 +1,6 @@
-import { ContentType, Field } from '../models'
 import { WriteStream, createWriteStream, writeFile } from 'fs'
 
+import { ContentType } from '../models'
 import { Import } from '../constants'
 import os from 'os'
 
