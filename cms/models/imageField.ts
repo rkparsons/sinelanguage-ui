@@ -43,9 +43,10 @@ export default class ImageField extends ContentfulField {
 
     getNode = () => `${this.contentFields.id}: ContentfulAsset`
 
-    getFragmentDefinition = () => `${this.contentFields.id} {
-        file {
-            url
-        }
-    }`
+    getFragmentDefinition = () =>
+        `${this.contentFields.id} {
+            file {
+                url
+            }
+        }`
 }
