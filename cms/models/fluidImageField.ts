@@ -59,7 +59,7 @@ export default class FluidImageField extends ContentfulField {
 
     getNode = () => `${this.contentFields.id}: ContentfulAsset`
 
-    getFragment = () =>
+    getFragmentDefinition = () =>
         `${this.contentFields.id} {
             fluid(maxWidth: ${this.maxWidth}, quality: ${this.quality}) {
                 ...${this.fluidImageType}

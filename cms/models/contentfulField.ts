@@ -24,7 +24,7 @@ export default abstract class ContentfulField extends Field {
     }: FieldProps) {
         super()
         this.contentFields = {
-            id: id || name.replace(/ /g, '').replace(/^\w/, c => c.toLowerCase()),
+            id: id || name.replace(/ /g, '').replace(/^\w/, (c) => c.toLowerCase()),
             name,
             type,
             localized,
@@ -56,5 +56,5 @@ export default abstract class ContentfulField extends Field {
 
     abstract getNode(schemaName: string): string
 
-    abstract getFragment(): string
+    abstract getFragmentDefinition(): string
 }

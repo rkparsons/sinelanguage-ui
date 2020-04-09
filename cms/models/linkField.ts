@@ -44,7 +44,7 @@ export default class LinkField extends ContentfulField {
 
     getNode = () => `${this.contentFields.id}: Contentful${this.contentFields.name}`
 
-    getFragment = () =>
+    getFragmentDefinition = () =>
         `${this.contentFields.id} {
             ...${this.contentFields.id}Fragment
         }`

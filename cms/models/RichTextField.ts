@@ -46,7 +46,7 @@ export default class RichTextField extends ContentfulField {
         json: JSON
     }`
 
-    getFragment = () =>
+    getFragmentDefinition = () =>
         `${this.contentFields.id} {
             json
         }`

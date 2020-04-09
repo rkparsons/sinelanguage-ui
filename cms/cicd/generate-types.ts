@@ -6,11 +6,11 @@ import os from 'os'
 
 let file: WriteStream
 
-export function generateTypes(filePath: string, contentTypeModels: ContentType[]) {
+export function generateTypes(filePath: string, contentTypes: ContentType[]) {
     clearFile(filePath)
     initFileWriter(filePath)
-    writeImports(contentTypeModels)
-    writeTypes(contentTypeModels)
+    writeImports(contentTypes)
+    writeTypes(contentTypes)
     console.log(`SUCCESS: types written to file ${filePath}`)
 }
 
@@ -24,9 +24,9 @@ function initFileWriter(filePath: string) {
     })
 }
 
-function writeImports(contentTypeModels: ContentType[]) {
+function writeImports(contentTypes: ContentType[]) {
     const imports = flattenDeep<string>(
-        contentTypeModels.map(contentType =>
+        contentTypes.map(contentType =>
             contentType.fields.map(field => field.getTypeDefinitionImports())
         )
     )
@@ -37,9 +37,9 @@ function writeImports(contentTypeModels: ContentType[]) {
     writeLine()
 }
 
-function writeTypes(contentTypeModels: ContentType[]) {
-    contentTypeModels.forEach(contentTypeModel => {
-        writeLine(contentTypeModel.getTypeDefinition())
+function writeTypes(contentTypes: ContentType[]) {
+    contentTypes.forEach(contentType => {
+        writeLine(contentType.getTypeDefinition())
     })
 }
 

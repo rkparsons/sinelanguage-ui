@@ -7,5 +7,5 @@ export default abstract class Field {
 
     abstract getNode(schemaName: string): string
 
-    abstract getFragment(): string
+    abstract getFragmentDefinition(): string
 }

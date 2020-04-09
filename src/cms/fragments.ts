@@ -2,7 +2,6 @@ import { graphql } from 'gatsby'
 
 export const artistFragment = graphql`
 	fragment artistFragment on ContentfulArtist {
-		__typename
 		title
 		uid
 		description {
@@ -23,7 +22,6 @@ export const artistFragment = graphql`
 
 export const releaseFragment = graphql`
 	fragment releaseFragment on ContentfulRelease {
-		__typename
 		title
 		uid
 		artist {
@@ -47,16 +45,16 @@ export const releaseFragment = graphql`
 
 export const siteMetadataFragment = graphql`
 	fragment siteMetadataFragment on ContentfulSiteMetadata {
-		__typename
 		title
 		url
 		description {
             description
         }
 		image {
-            file {
-                url
-            }
+        file {
+            url
         }
+    }
 	}
 `
+

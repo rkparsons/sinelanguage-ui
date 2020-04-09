@@ -12,4 +12,6 @@ export default abstract class ContentType {
     }
 
     abstract getTypeDefinition(): string
+
+    abstract getFragmentDefinition(): string
 }

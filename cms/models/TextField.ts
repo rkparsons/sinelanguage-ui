@@ -44,7 +44,7 @@ export default class TextField extends ContentfulField {
         ${this.contentFields.id}: String
     }`
 
-    getFragment = () =>
+    getFragmentDefinition = () =>
         `${this.contentFields.id} {
             ${this.contentFields.id}
         }`

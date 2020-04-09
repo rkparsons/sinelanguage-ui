@@ -35,5 +35,5 @@ export default class SymbolField extends ContentfulField {
 
     getNode = () => `${this.contentFields.id}: String`
 
-    getFragment = () => this.contentFields.id
+    getFragmentDefinition = () => this.contentFields.id
 }

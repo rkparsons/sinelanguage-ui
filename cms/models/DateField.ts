@@ -35,5 +35,5 @@ export default class DateField extends ContentfulField {
 
     getNode = () => `${this.contentFields.id}: Date @dateformat`
 
-    getFragment = () => this.contentFields.id
+    getFragmentDefinition = () => this.contentFields.id
 }

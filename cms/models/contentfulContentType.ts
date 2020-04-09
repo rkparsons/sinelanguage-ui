@@ -15,6 +15,7 @@ export default class ContentfulContentType extends ContentType {
     name: string
     typeName: string
     nodeName: string
+    fragmentName: string
     description: string
     displayField: string
     fields: ContentfulField[]
@@ -22,15 +23,16 @@ export default class ContentfulContentType extends ContentType {
     controls: Control[]
     stringWriter: string = ``
 
-    constructor({ name, description, displayField, fields, id }: ContentfulContentTypeProps) {
+    constructor({ id, name, description, displayField, fields }: ContentfulContentTypeProps) {
         super({ fields })
+        this.id = id
         this.name = name
         this.typeName = name.replace(/ /g, '')
         this.nodeName = `Contentful${this.typeName}`
+        this.fragmentName = `${this.id}Fragment`
         this.description = description
         this.displayField = displayField
         this.fields = fields
-        this.id = id
         this.controls = fields
             .map(x => x.control)
             .filter(control => control !== undefined) as Control[]
@@ -44,6 +46,19 @@ export default class ContentfulContentType extends ContentType {
             this.writeLine(field.getTypeDefinition(), 1)
         })
         this.writeLine(`}`)
+
+        return this.stringWriter
+    }
+
+    getFragmentDefinition() {
+        this.stringWriter = ``
+        this.writeLine(`export const ${this.fragmentName} = graphql\``)
+        this.writeLine(`fragment ${this.fragmentName} on ${this.nodeName} {`, 1)
+        this.fields.forEach(field => {
+            this.writeLine(field.getFragmentDefinition(), 2)
+        })
+        this.writeLine(`}`, 1)
+        this.writeLine(`\``)
 
         return this.stringWriter
     }
