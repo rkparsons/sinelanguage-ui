@@ -36,15 +36,15 @@ export default class RichTextField extends ContentfulField {
         json: Document
     }`
 
-    getNode = (schemaName: string) =>
-        `${this.contentFields.id}: contentful${schemaName}${this.getNameNoSpace()}RichTextNode`
-
-    getLinkedNode = (
+    getLinkedNodeDefinition = (
         schemaName: string
-    ) => `type contentful${schemaName}${this.getNameNoSpace()}RichTextNode implements Node {
+    ) => `type contentful${schemaName}${this.nameNoSpace}RichTextNode implements Node {
         nodeType: String
         json: JSON
     }`
+
+    getNodeDefinition = (schemaName: string) =>
+        `${this.contentFields.id}: contentful${schemaName}${this.nameNoSpace}RichTextNode`
 
     getFragmentDefinition = () =>
         `${this.contentFields.id} {

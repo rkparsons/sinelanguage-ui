@@ -35,14 +35,13 @@ export default class TextField extends ContentfulField {
         ${this.contentFields.id}: string
     }`
 
-    getNode = (schemaName: string) =>
-        `${this.contentFields.id}: contentful${schemaName}${this.getNameNoSpace()}TextNode`
-
-    getLinkedNode = (
-        schemaName: string
-    ) => `type contentful${schemaName}${this.getNameNoSpace()}TextNode implements Node {
+    getLinkedNodeDefinition = (schemaName: string) =>
+        `type contentful${schemaName}${this.nameNoSpace}TextNode implements Node {
         ${this.contentFields.id}: String
     }`
+
+    getNodeDefinition = (schemaName: string) =>
+        `${this.contentFields.id}: contentful${schemaName}${this.nameNoSpace}TextNode`
 
     getFragmentDefinition = () =>
         `${this.contentFields.id} {

@@ -42,7 +42,9 @@ export default class LinkField extends ContentfulField {
     // todo: link field should have ref to linked schema
     getTypeDefinition = () => `${this.contentFields.id}: ${this.contentFields.name}`
 
-    getNode = () => `${this.contentFields.id}: Contentful${this.contentFields.name}`
+    getLinkedNodeDefinition = () => undefined
+
+    getNodeDefinition = () => `${this.contentFields.id}: Contentful${this.contentFields.name}`
 
     getFragmentDefinition = () =>
         `${this.contentFields.id} {

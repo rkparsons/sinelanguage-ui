@@ -63,6 +63,26 @@ export default class ContentfulContentType extends ContentType {
         return this.stringWriter
     }
 
+    getNodeDefinition() {
+        this.stringWriter = ``
+
+        this.fields.forEach(field => {
+            const linkedNodeDefinition = field.getLinkedNodeDefinition(this.typeName)
+            if (linkedNodeDefinition) {
+                this.writeLine(linkedNodeDefinition, 1)
+                this.writeLine('')
+            }
+        })
+
+        this.writeLine(`type Contentful${this.typeName} implements Node {`, 1)
+        this.fields.forEach(field => {
+            this.writeLine(field.getNodeDefinition(this.typeName), 2)
+        })
+        this.writeLine('}', 1)
+
+        return this.stringWriter
+    }
+
     write(line: string, indents: number = 0) {
         this.stringWriter += `${'\t'.repeat(indents)}${line}`
     }

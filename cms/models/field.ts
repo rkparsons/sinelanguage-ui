@@ -5,7 +5,9 @@ export default abstract class Field {
 
     abstract getTypeDefinition(): string
 
-    abstract getNode(schemaName: string): string
+    abstract getLinkedNodeDefinition(schemaName: string): string | undefined
+
+    abstract getNodeDefinition(schemaName: string): string
 
     abstract getFragmentDefinition(): string
 }

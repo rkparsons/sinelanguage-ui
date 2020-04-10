@@ -47,4 +47,5 @@ export const typeDefs = `
 		description: contentfulSiteMetadataDescriptionTextNode
 		image: ContentfulAsset
 	}
+
 `

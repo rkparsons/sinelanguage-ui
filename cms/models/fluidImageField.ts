@@ -57,7 +57,9 @@ export default class FluidImageField extends ContentfulField {
         fluid: FluidObject
     }`
 
-    getNode = () => `${this.contentFields.id}: ContentfulAsset`
+    getLinkedNodeDefinition = () => undefined
+
+    getNodeDefinition = () => `${this.contentFields.id}: ContentfulAsset`
 
     getFragmentDefinition = () =>
         `${this.contentFields.id} {

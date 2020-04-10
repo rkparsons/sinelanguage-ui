@@ -33,7 +33,9 @@ export default class DateField extends ContentfulField {
 
     getTypeDefinition = () => `${this.contentFields.id}: Date`
 
-    getNode = () => `${this.contentFields.id}: Date @dateformat`
+    getLinkedNodeDefinition = () => undefined
+
+    getNodeDefinition = () => `${this.contentFields.id}: Date @dateformat`
 
     getFragmentDefinition = () => this.contentFields.id
 }

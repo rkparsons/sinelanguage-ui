@@ -45,7 +45,9 @@ export default class SymbolArrayField extends ContentfulField {
 
     getTypeDefinition = () => `${this.contentFields.id}: string[]`
 
-    getNode = () => `${this.contentFields.id}: [String]`
+    getLinkedNodeDefinition = () => undefined
+
+    getNodeDefinition = () => `${this.contentFields.id}: [String]`
 
     getFragmentDefinition = () => this.contentFields.id
 }
