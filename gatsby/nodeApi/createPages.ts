@@ -12,6 +12,11 @@ type QueryResult = {
             uid: string
         }[]
     }
+    allContentfulPodcast: {
+        nodes: {
+            uid: string
+        }[]
+    }
 }
 
 export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
@@ -25,6 +30,11 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
                 }
             }
             allContentfulRelease {
+                nodes {
+                    uid
+                }
+            }
+            allContentfulPodcast {
                 nodes {
                     uid
                 }
@@ -52,6 +62,12 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
         context: {},
     })
 
+    createPage({
+        path: `podcasts`,
+        component: path.resolve(`./src/pages/index.tsx`),
+        context: {},
+    })
+
     result.data?.allContentfulArtist.nodes.forEach(({ uid }: { uid: string }) => {
         createPage({
             path: `artists/${uid}`.toLocaleLowerCase(),
@@ -66,6 +82,16 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
         createPage({
             path: `releases/${uid}`.toLocaleLowerCase(),
             component: path.resolve(`./src/templates/release.tsx`),
+            context: {
+                uid,
+            },
+        })
+    })
+
+    result.data?.allContentfulPodcast.nodes.forEach(({ uid }: { uid: string }) => {
+        createPage({
+            path: `podcasts/${uid}`.toLocaleLowerCase(),
+            component: path.resolve(`./src/templates/podcast.tsx`),
             context: {
                 uid,
             },

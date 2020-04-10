@@ -1,4 +1,4 @@
-import { Artist, Release } from '~/cms/types'
+import { Artist, Podcast, Release } from '~/cms/types'
 
 import DashboardItem from '~/components/DashboardItem'
 import { Grid } from '@material-ui/core'
@@ -14,6 +14,9 @@ type ViewProps = {
         }
         allContentfulRelease: {
             nodes: Release[]
+        }
+        allContentfulPodcast: {
+            nodes: Podcast[]
         }
     }
     location: WindowLocation

@@ -1,4 +1,4 @@
-import { Artist, Release } from '~/cms/types'
+import { Artist, Podcast, Release } from '~/cms/types'
 
 import { Flipped } from 'react-flip-toolkit'
 import { LinkShowHide } from './DashboardItem.style'
@@ -7,7 +7,7 @@ import SquareImage from '~/components/SquareImage'
 import { Typography } from '@material-ui/core'
 
 type ViewProps = {
-    dashboardItem: Artist | Release
+    dashboardItem: Artist | Release | Podcast
     filter?: string
 }
 

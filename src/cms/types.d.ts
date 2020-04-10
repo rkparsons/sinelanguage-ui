@@ -18,6 +18,19 @@ export type Artist = {
 	socials: string[]
 }
 
+export type Podcast = {
+	__typename: string
+	title: string
+	uid: string
+	description: {
+        description: string
+    }
+	image: {
+        fluid: FluidObject
+    }
+	date: Date
+}
+
 export type Release = {
 	__typename: string
 	title: string

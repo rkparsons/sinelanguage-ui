@@ -21,6 +21,23 @@ export const artistFragment = graphql`
 	}
 `
 
+export const podcastFragment = graphql`
+	fragment podcastFragment on ContentfulPodcast {
+		__typename
+		title
+		uid
+		description {
+            description
+        }
+		image {
+            fluid(maxWidth: 2400, quality: 90) {
+                ...GatsbyContentfulFluid_withWebp
+            }
+        }
+		date
+	}
+`
+
 export const releaseFragment = graphql`
 	fragment releaseFragment on ContentfulRelease {
 		__typename

@@ -1,4 +1,4 @@
-import { Artist, Release } from '~/cms/types'
+import { Artist, Podcast, Release } from '~/cms/types'
 
 import Dashboard from '~/components/Dashboard'
 import { Location } from '@reach/router'
@@ -12,6 +12,9 @@ type ViewProps = {
         }
         allContentfulRelease: {
             nodes: Release[]
+        }
+        allContentfulPodcast: {
+            nodes: Podcast[]
         }
     }
 }
@@ -30,6 +33,11 @@ export const query = graphql`
         allContentfulRelease {
             nodes {
                 ...releaseFragment
+            }
+        }
+        allContentfulPodcast {
+            nodes {
+                ...podcastFragment
             }
         }
     }
