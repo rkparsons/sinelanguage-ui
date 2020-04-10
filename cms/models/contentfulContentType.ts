@@ -54,6 +54,7 @@ export default class ContentfulContentType extends ContentType {
         this.stringWriter = ``
         this.writeLine(`export const ${this.fragmentName} = graphql\``)
         this.writeLine(`fragment ${this.fragmentName} on ${this.nodeName} {`, 1)
+        this.writeLine(`__typename`, 2)
         this.fields.forEach(field => {
             this.writeLine(field.getFragmentDefinition(), 2)
         })
