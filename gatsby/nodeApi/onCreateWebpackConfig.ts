@@ -29,5 +29,9 @@ export const onCreateWebpackConfig = ({ stage, loaders, actions }: CreateWebpack
         resolve: {
             plugins: [new TsconfigPathsPlugin()],
         },
+
+        node: {
+            fs: 'empty',
+        },
     })
 }

@@ -1,3 +1,5 @@
 declare module 'gatsby-plugin-mailchimp'
 declare module 'js-cookie'
 declare module 'react-flip-toolkit'
+declare module '@dschoon/react-waves'
+declare module 'soundcloud'

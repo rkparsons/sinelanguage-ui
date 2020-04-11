@@ -3,6 +3,7 @@ import { Podcast } from '~/cms/types'
 import React from 'react'
 import SquareImage from '~/components/SquareImage'
 import { Typography } from '@material-ui/core'
+import Waveform from '~/components/Waveform'
 import { graphql } from 'gatsby'
 
 type Props = {
@@ -12,11 +13,12 @@ type Props = {
 }
 
 export default ({ data }: Props) => {
-    const { uid, title, description, image, date } = data.contentfulPodcast
+    const { uid, title, description, image, date, soundcloudTrackId } = data.contentfulPodcast
 
     return (
         <>
             <Head title={title} description={description.description} image={image.fluid.src} />
+            <Waveform soundcloudTrackId={soundcloudTrackId} />
             <SquareImage title={title} image={image} />
             <Typography>
                 [{uid}] {date}
