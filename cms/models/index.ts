@@ -5,8 +5,8 @@ import DateField from './dateField'
 import Field from './field'
 import FluidImageField from './fluidImageField'
 import ImageField from './imageField'
+import IntegerField from './integerField'
 import LinkField from './linkField'
-import NumberField from './numberField'
 import RichTextField from './richTextField'
 import SymbolArrayField from './symbolArrayField'
 import SymbolField from '../models/symbolField'
@@ -20,8 +20,8 @@ export {
     Field,
     FluidImageField,
     ImageField,
+    IntegerField,
     LinkField,
-    NumberField,
     RichTextField,
     SymbolArrayField,
     SymbolField,

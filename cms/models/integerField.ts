@@ -1,7 +1,7 @@
 import ContentfulField from './contentfulField'
 import { SubFieldProps } from '../types/subFieldProps'
 
-export default class NumberField extends ContentfulField {
+export default class IntegerField extends ContentfulField {
     constructor({
         id,
         name,
