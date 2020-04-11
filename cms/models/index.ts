@@ -6,22 +6,24 @@ import Field from './field'
 import FluidImageField from './fluidImageField'
 import ImageField from './imageField'
 import LinkField from './linkField'
+import NumberField from './numberField'
 import RichTextField from './richTextField'
 import SymbolArrayField from './symbolArrayField'
 import SymbolField from '../models/symbolField'
 import TextField from './textField'
 
 export {
-    ContentType,
-    Field,
     ContentfulContentType,
     ContentfulField,
-    ImageField,
-    FluidImageField,
-    SymbolField,
-    TextField,
+    ContentType,
     DateField,
+    Field,
+    FluidImageField,
+    ImageField,
+    LinkField,
+    NumberField,
     RichTextField,
     SymbolArrayField,
-    LinkField,
+    SymbolField,
+    TextField,
 }
