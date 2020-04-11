@@ -7,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
 
 export const AppContainer = styled(Container)`
     min-height: 100vh;
+    max-width: none;
 `
 
 export const Main = styled.main``

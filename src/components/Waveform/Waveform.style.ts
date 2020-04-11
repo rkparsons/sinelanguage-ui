@@ -15,7 +15,7 @@ export const Player = styled(Box)`
             cursor: pointer;
             pointer-events: all;
 
-            &:after {
+            /* &:after {
                 content: ' ';
                 background-color: ${theme.palette.background.default};
                 opacity: 0.3;
@@ -36,7 +36,7 @@ export const Player = styled(Box)`
                     content: ' ';
                     opacity: 0;
                 }
-            }
+            } */
         }     
         
     `}

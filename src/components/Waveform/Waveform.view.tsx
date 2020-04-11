@@ -61,7 +61,7 @@ export default ({ soundCloudTrackID }: ViewProps) => {
                             backend: 'MediaElement',
                             barHeight: 1,
                             cursorWidth: 0,
-                            height: 200,
+                            height: 100,
                             fillParent: true,
                             hideScrollbar: true,
                             progressColor: '#000000',

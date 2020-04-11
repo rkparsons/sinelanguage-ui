@@ -3,6 +3,7 @@ import 'font-awesome/css/font-awesome.css'
 import { AppContainer, GlobalStyle, Main } from './Layout.style'
 import React, { FC, ReactNode } from 'react'
 
+import AudioPlayer from '~/components/AudioPlayer'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Footer from '~/components/Footer'
 import { Grid } from '@material-ui/core'
@@ -37,6 +38,7 @@ const Layout: FC<Props> = ({ isDarkMode, setIsDarkMode, children }: Props) => {
                                 <Footer isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
                             </Grid>
                         </Grid>
+                        <AudioPlayer />
                     </AppContainer>
                 </>
             </ScThemeProvider>
