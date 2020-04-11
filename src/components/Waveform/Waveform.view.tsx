@@ -1,8 +1,8 @@
 import { Box, IconButton, Typography } from '@material-ui/core'
 import { PlayArrow, Stop } from '@material-ui/icons'
-import React, { Component, useEffect, useState } from 'react'
+import { Player, WaveContainer } from './Waveform.style'
+import React, { useEffect, useState } from 'react'
 
-import { Player } from './Waveform.style'
 import ReactWaves from '@dschoon/react-waves'
 import SC from 'soundcloud'
 
@@ -24,7 +24,6 @@ type ViewProps = {
 }
 
 export default ({ soundCloudTrackID }: ViewProps) => {
-    const [isHover, setIsHover] = useState<boolean>(false)
     const [samples, setSamples] = useState<number[]>()
     const [isPlaying, setIsPlaying] = useState(false)
 
@@ -52,14 +51,8 @@ export default ({ soundCloudTrackID }: ViewProps) => {
                 {isPlaying ? <Stop /> : <PlayArrow />}
             </IconButton>
 
-            <Typography>{isHover ? 'true' : 'false'}</Typography>
-
             {samples && (
-                <Box
-                    onMouseEnter={() => setIsHover(true)}
-                    onMouseLeave={() => setIsHover(false)}
-                    onClick={() => setIsPlaying(true)}
-                >
+                <WaveContainer onClick={() => setIsPlaying(true)}>
                     <ReactWaves
                         audioPeaks={samples}
                         audioFile={`https://api.soundcloud.com/tracks/${soundCloudTrackID}/stream?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
@@ -67,7 +60,6 @@ export default ({ soundCloudTrackID }: ViewProps) => {
                         options={{
                             backend: 'MediaElement',
                             barHeight: 1,
-                            barWidth: 10,
                             cursorWidth: 0,
                             height: 200,
                             fillParent: true,
@@ -80,7 +72,7 @@ export default ({ soundCloudTrackID }: ViewProps) => {
                         zoom={0.05}
                         playing={isPlaying}
                     />
-                </Box>
+                </WaveContainer>
             )}
         </Player>
     )
