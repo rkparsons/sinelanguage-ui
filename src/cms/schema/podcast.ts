@@ -2,11 +2,11 @@ import {
     ContentfulContentType,
     DateField,
     FluidImageField,
-    LinkField,
+    IntegerField,
     SymbolField,
     TextField,
 } from '../../../cms/models'
-import { assetFileSize, iframe, unique } from '../../../cms/validations'
+import { assetFileSize, unique } from '../../../cms/validations'
 
 import { FluidImageType } from '../../../cms/constants'
 
@@ -42,6 +42,11 @@ export default new ContentfulContentType({
         new DateField({
             name: 'Date',
             widgetId: 'datePicker',
+            format: 'dateonly',
+        }),
+        new IntegerField({
+            id: 'soundCloudTrackID',
+            name: 'SoundCloud Track ID',
             format: 'dateonly',
         }),
     ],

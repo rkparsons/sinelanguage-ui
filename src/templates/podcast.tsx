@@ -13,12 +13,12 @@ type Props = {
 }
 
 export default ({ data }: Props) => {
-    const { uid, title, description, image, date, soundcloudTrackId } = data.contentfulPodcast
+    const { uid, title, description, image, date, soundCloudTrackID } = data.contentfulPodcast
 
     return (
         <>
             <Head title={title} description={description.description} image={image.fluid.src} />
-            <Waveform soundcloudTrackId={soundcloudTrackId} />
+            <Waveform soundCloudTrackID={soundCloudTrackID} />
             <SquareImage title={title} image={image} />
             <Typography>
                 [{uid}] {date}

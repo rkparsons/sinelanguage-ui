@@ -28,6 +28,7 @@ export const typeDefs = `
 		description: contentfulPodcastDescriptionTextNode
 		image: ContentfulAsset
 		date: Date @dateformat
+		soundCloudTrackID: Int
 	}
 
 	type contentfulReleaseDescriptionTextNode implements Node {

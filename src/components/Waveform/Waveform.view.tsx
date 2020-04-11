@@ -20,17 +20,17 @@ type Waveform = {
 }
 
 type ViewProps = {
-    soundcloudTrackId: number
+    soundCloudTrackID: number
 }
 
-export default ({ soundcloudTrackId }: ViewProps) => {
+export default ({ soundCloudTrackID }: ViewProps) => {
     const [samples, setSamples] = useState<number[]>()
     const [isPlaying, setIsPlaying] = useState(false)
 
     // todo: do waveform fetching when creating nodes at build time
     useEffect(() => {
         SC.initialize({ client_id: 'c5a171200f3a0a73a523bba14a1e0a29' })
-        SC.get(`/tracks/${soundcloudTrackId}`).then((track: Track) => {
+        SC.get(`/tracks/${soundCloudTrackID}`).then((track: Track) => {
             fetch(track.waveform_url.replace('.png', '.json'))
                 .then((response) => response.json())
                 .then((waveform: Waveform) => {
@@ -54,7 +54,7 @@ export default ({ soundcloudTrackId }: ViewProps) => {
             {samples && (
                 <ReactWaves
                     audioPeaks={samples}
-                    audioFile={`https://api.soundcloud.com/tracks/${soundcloudTrackId}/stream?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
+                    audioFile={`https://api.soundcloud.com/tracks/${soundCloudTrackID}/stream?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
                     className={'react-waves'}
                     options={{
                         backend: 'MediaElement',
