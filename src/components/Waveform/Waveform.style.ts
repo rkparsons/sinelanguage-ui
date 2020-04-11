@@ -18,7 +18,7 @@ export const Player = styled(Box)`
             &:after {
                 content: ' ';
                 background-color: ${theme.palette.background.default};
-                opacity: 0.5;
+                opacity: 0.3;
                 position: absolute;
                 display: block;
                 width: 100%;
