@@ -1,11 +1,13 @@
+import React, { useContext } from 'react'
+
+import AudioContext from '~/contexts/AudioContext'
 import { AudioPlayer } from './AudioPlayer.style'
-import React from 'react'
 import Waveform from '~/components/Waveform'
 
 export default () => {
+    const audio = useContext(AudioContext)
+
     return (
-        <AudioPlayer>
-            <Waveform soundCloudTrackID={430927230} />
-        </AudioPlayer>
+        <AudioPlayer>{audio.trackId && <Waveform soundCloudTrackID={audio.trackId} />}</AudioPlayer>
     )
 }

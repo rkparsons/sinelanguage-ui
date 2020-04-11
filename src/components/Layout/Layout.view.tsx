@@ -1,9 +1,10 @@
 import 'font-awesome/css/font-awesome.css'
 
 import { AppContainer, GlobalStyle, Main } from './Layout.style'
-import React, { FC, ReactNode } from 'react'
+import React, { FC, ReactNode, useState } from 'react'
 
 import AudioPlayer from '~/components/AudioPlayer'
+import { AudioProvider } from '~/contexts/AudioContext'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Footer from '~/components/Footer'
 import { Grid } from '@material-ui/core'
@@ -20,6 +21,8 @@ type Props = {
 }
 
 const Layout: FC<Props> = ({ isDarkMode, setIsDarkMode, children }: Props) => {
+    const audio = { trackId: 430927230 }
+
     return (
         <MuiThemeProvider theme={theme(isDarkMode)}>
             <ScThemeProvider theme={theme(isDarkMode)}>
@@ -32,13 +35,17 @@ const Layout: FC<Props> = ({ isDarkMode, setIsDarkMode, children }: Props) => {
                                 <Header />
                             </Grid>
                             <Grid item>
-                                <Main>{children}</Main>
+                                <Main>
+                                    <AudioProvider value={audio}>
+                                        {children}
+                                        <AudioPlayer />
+                                    </AudioProvider>
+                                </Main>
                             </Grid>
                             <Grid item>
                                 <Footer isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
                             </Grid>
                         </Grid>
-                        <AudioPlayer />
                     </AppContainer>
                 </>
             </ScThemeProvider>
