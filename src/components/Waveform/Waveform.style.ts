@@ -6,5 +6,7 @@ export const Player = styled(Box)`
     .react-waves {
         width: 100%;
         padding: 0;
+        position: relative;
+        cursor: pointer;
     }
 `
