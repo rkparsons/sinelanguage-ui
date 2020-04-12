@@ -10,6 +10,7 @@ import Footer from '~/components/Footer'
 import { Grid } from '@material-ui/core'
 import Header from '~/components/Header'
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
+import { Podcast } from '~/cms/types'
 import { ThemeProvider as ScThemeProvider } from 'styled-components'
 import theme from '~/styles/theme'
 import withFlipAnimation from '~/components/withFlipAnimation'
@@ -21,12 +22,12 @@ type Props = {
 }
 
 const Layout: FC<Props> = ({ isDarkMode, setIsDarkMode, children }: Props) => {
-    const [trackId, setTrackId] = useState<number>()
+    const [audio, setAudio] = useState<Podcast>()
 
     return (
         <MuiThemeProvider theme={theme(isDarkMode)}>
             <ScThemeProvider theme={theme(isDarkMode)}>
-                <AudioContext.Provider value={{ trackId, setTrackId }}>
+                <AudioContext.Provider value={{ audio, setAudio }}>
                     <>
                         <CssBaseline />
                         <GlobalStyle />

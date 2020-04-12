@@ -1,27 +1,28 @@
+import { IconButton, Typography } from '@material-ui/core'
 import { PlayArrow, Stop } from '@material-ui/icons'
 import { Player, WaveContainer } from './Waveform.style'
 import React, { useEffect, useState } from 'react'
 import { SoundCloudAPI, Waveform } from '~/types'
 
-import { IconButton } from '@material-ui/core'
 import Loadable from '@loadable/component'
+import { Podcast } from '~/cms/types'
 
 const ReactWaves = Loadable<any>(() => import('@dschoon/react-waves'))
 
 type ViewProps = {
-    soundCloudTrackID: number
+    audio: Podcast
 }
 
-export default ({ soundCloudTrackID }: ViewProps) => {
+export default ({ audio }: ViewProps) => {
     const [samples, setSamples] = useState<number[]>()
     const [isPlaying, setIsPlaying] = useState(false)
     // todo: do waveform fetching when creating nodes at build time
 
-    const getSamples = async (soundCloudTrackID: number) => {
+    const getSamples = async () => {
         const SC: SoundCloudAPI = await import('soundcloud')
 
         SC.initialize({ client_id: 'c5a171200f3a0a73a523bba14a1e0a29' })
-        SC.get(`/tracks/${soundCloudTrackID}`)
+        SC.get(`/tracks/${audio.soundCloudTrackID}`)
             .then(track => fetch(track.waveform_url.replace('.png', '.json')))
             .then(response => response.json())
             .then((waveform: Waveform) => {
@@ -31,14 +32,15 @@ export default ({ soundCloudTrackID }: ViewProps) => {
             })
     }
 
-    useEffect(() => {})
-
     useEffect(() => {
-        getSamples(soundCloudTrackID)
-    }, [soundCloudTrackID])
+        getSamples()
+    }, [])
 
     return (
         <Player>
+            <Typography>
+                {audio.uid} - {audio.title}
+            </Typography>
             <IconButton
                 onClick={() => {
                     setIsPlaying(!isPlaying)
@@ -51,7 +53,7 @@ export default ({ soundCloudTrackID }: ViewProps) => {
                 <WaveContainer onClick={() => setIsPlaying(true)}>
                     <ReactWaves
                         audioPeaks={samples}
-                        audioFile={`https://api.soundcloud.com/tracks/${soundCloudTrackID}/stream?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
+                        audioFile={`https://api.soundcloud.com/tracks/${audio.soundCloudTrackID}/stream?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
                         className={'react-waves'}
                         options={{
                             backend: 'MediaElement',

@@ -28,10 +28,10 @@ export default ({ dashboardItem, filter }: ViewProps) => {
             </Flipped>{' '}
             {isVisible && dashboardItem.__typename === 'ContentfulPodcast' && (
                 <AudioContext.Consumer>
-                    {({ trackId, setTrackId }) => (
+                    {({ audio, setAudio }) => (
                         <IconButton
                             onClick={() => {
-                                setTrackId((dashboardItem as Podcast).soundCloudTrackID)
+                                setAudio(dashboardItem as Podcast)
                             }}
                         >
                             <PlayArrow />

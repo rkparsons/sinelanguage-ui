@@ -5,7 +5,7 @@ import { AudioPlayer } from './AudioPlayer.style'
 import Waveform from '~/components/Waveform'
 
 export default () => {
-    const { trackId, setTrackId } = useContext(AudioContext)
+    const { audio, setAudio } = useContext(AudioContext)
 
-    return <AudioPlayer>{trackId && <Waveform soundCloudTrackID={trackId} />}</AudioPlayer>
+    return <AudioPlayer>{audio && <Waveform audio={audio} />}</AudioPlayer>
 }

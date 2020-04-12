@@ -1,11 +1,12 @@
+import { Podcast } from '~/cms/types'
 import { createContext } from 'react'
 
 type Audio = {
-    trackId: number | undefined
-    setTrackId(trackId: number): void
+    audio: Podcast | undefined
+    setAudio(audio: Podcast): void
 }
 
 export const AudioContext = createContext<Audio>({
-    trackId: undefined,
-    setTrackId: () => {},
+    audio: undefined,
+    setAudio: () => {},
 })
