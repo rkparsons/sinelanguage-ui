@@ -8,9 +8,9 @@ export default () =>
             allSoundcloudtrack {
                 nodes {
                     soundcloud_id
-                    title
                     stream_url
                     waveform_url
+                    samples
                 }
             }
         }

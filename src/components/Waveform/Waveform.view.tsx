@@ -15,23 +15,7 @@ type ViewProps = {
 }
 
 export default ({ audio, track }: ViewProps) => {
-    const [samples, setSamples] = useState<number[]>()
     const [isPlaying, setIsPlaying] = useState(false)
-    // todo: do waveform fetching when creating nodes at build time
-
-    const getSamples = async () => {
-        fetch(track.waveform_url.replace('.png', '.json'))
-            .then(response => response.json())
-            .then((waveform: Waveform) => {
-                const maxValue = Math.max(...waveform.samples)
-                const normalizedSamples = waveform.samples.map(x => x / maxValue)
-                setSamples(normalizedSamples)
-            })
-    }
-
-    useEffect(() => {
-        getSamples()
-    }, [track.soundcloud_id])
 
     return (
         <Player>
@@ -48,7 +32,7 @@ export default ({ audio, track }: ViewProps) => {
 
             <WaveContainer onClick={() => setIsPlaying(true)}>
                 <ReactWaves
-                    audioPeaks={samples}
+                    audioPeaks={track.samples}
                     audioFile={`https://api.soundcloud.com/tracks/${audio.soundCloudTrackID}/stream?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
                     className={'react-waves'}
                     options={{
