@@ -18,7 +18,6 @@ export default ({ data }: Props) => {
     return (
         <>
             <Head title={title} description={description.description} image={image.fluid.src} />
-            <Waveform soundCloudTrackID={soundCloudTrackID} />
             <SquareImage title={title} image={image} />
             <Typography>
                 [{uid}] {date}
