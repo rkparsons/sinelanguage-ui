@@ -116,17 +116,9 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async ({
 
     try {
         // Fetch data
-        const userInfo = await fetchUserResource('', userID, clientID)
-        const playlists = await fetchUserResource('/playlists', userID, clientID)
         const tracks = await fetchUserResource('/tracks', userID, clientID)
 
-        const tracksFromPlaylists = playlists.data.reduce(collectTracksFromPlaylist, [])
-        const combinedTracks = tracksFromPlaylists.reduce(addIfUnique, tracks.data)
-
-        const users = [userInfo.data]
-        const combinedUsers = combinedTracks.reduce(addIfUnique, users)
-
-        const entities = linkNodes([...users, ...playlists.data, ...combinedTracks])
+        const entities = linkNodes([...tracks.data])
 
         // Process data into nodes.
         entities.forEach((entity: any) => createNode(processEntity(entity)))
