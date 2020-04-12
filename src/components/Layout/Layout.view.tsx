@@ -26,28 +26,28 @@ const Layout: FC<Props> = ({ isDarkMode, setIsDarkMode, children }: Props) => {
     return (
         <MuiThemeProvider theme={theme(isDarkMode)}>
             <ScThemeProvider theme={theme(isDarkMode)}>
-                <>
-                    <CssBaseline />
-                    <GlobalStyle />
-                    <AppContainer>
-                        <Grid container direction="column">
-                            <Grid item>
-                                <Header />
-                            </Grid>
-                            <Grid item>
-                                <Main>
-                                    <AudioProvider value={audio}>
+                <AudioProvider value={audio}>
+                    <>
+                        <CssBaseline />
+                        <GlobalStyle />
+                        <AppContainer>
+                            <Grid container direction="column">
+                                <Grid item>
+                                    <Header />
+                                </Grid>
+                                <Grid item>
+                                    <Main>
                                         {children}
                                         <AudioPlayer />
-                                    </AudioProvider>
-                                </Main>
+                                    </Main>
+                                </Grid>
+                                <Grid item>
+                                    <Footer isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+                                </Grid>
                             </Grid>
-                            <Grid item>
-                                <Footer isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
-                            </Grid>
-                        </Grid>
-                    </AppContainer>
-                </>
+                        </AppContainer>
+                    </>
+                </AudioProvider>
             </ScThemeProvider>
         </MuiThemeProvider>
     )
