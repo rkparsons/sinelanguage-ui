@@ -1,32 +1,15 @@
 import { PlayArrow, Stop } from '@material-ui/icons'
 import { Player, WaveContainer } from './Waveform.style'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { SoundCloudAPI, Waveform } from '~/types'
 
 import { IconButton } from '@material-ui/core'
 import Loadable from '@loadable/component'
 
 const ReactWaves = Loadable<any>(() => import('@dschoon/react-waves'))
 
-type Track = {
-    artwork_url: string
-    download_url: string
-    waveform_url: string
-    stream_url: string
-}
-
-type Waveform = {
-    width: number
-    height: number
-    samples: number[]
-}
-
 type ViewProps = {
     soundCloudTrackID: number
-}
-
-type SC = {
-    initialize({ client_id }: { client_id: string }): void
-    get(path: string): Promise<Track>
 }
 
 export default ({ soundCloudTrackID }: ViewProps) => {
@@ -35,7 +18,7 @@ export default ({ soundCloudTrackID }: ViewProps) => {
     // todo: do waveform fetching when creating nodes at build time
 
     const getSamples = async (soundCloudTrackID: number) => {
-        const SC: SC = await import('soundcloud')
+        const SC: SoundCloudAPI = await import('soundcloud')
 
         SC.initialize({ client_id: 'c5a171200f3a0a73a523bba14a1e0a29' })
         SC.get(`/tracks/${soundCloudTrackID}`)
