@@ -24,24 +24,31 @@ type ViewProps = {
     soundCloudTrackID: number
 }
 
+type SC = {
+    initialize({ client_id }: { client_id: string }): void
+    get(path: string): Promise<Track>
+}
+
 export default ({ soundCloudTrackID }: ViewProps) => {
     const [samples, setSamples] = useState<number[]>()
     const [isPlaying, setIsPlaying] = useState(false)
     // todo: do waveform fetching when creating nodes at build time
 
     const getSamples = async (soundCloudTrackID: number) => {
-        const SC = await import('soundcloud')
+        const SC: SC = await import('soundcloud')
 
         SC.initialize({ client_id: 'c5a171200f3a0a73a523bba14a1e0a29' })
         SC.get(`/tracks/${soundCloudTrackID}`)
-            .then((track: Track) => fetch(track.waveform_url.replace('.png', '.json')))
-            .then((response: Response) => response.json())
+            .then(track => fetch(track.waveform_url.replace('.png', '.json')))
+            .then(response => response.json())
             .then((waveform: Waveform) => {
                 const maxValue = Math.max(...waveform.samples)
                 const normalizedSamples = waveform.samples.map(x => x / maxValue)
                 setSamples(normalizedSamples)
             })
     }
+
+    useEffect(() => {})
 
     useEffect(() => {
         getSamples(soundCloudTrackID)
