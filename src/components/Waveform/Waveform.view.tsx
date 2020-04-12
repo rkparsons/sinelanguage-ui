@@ -1,10 +1,11 @@
-import { Box, IconButton, Typography } from '@material-ui/core'
 import { PlayArrow, Stop } from '@material-ui/icons'
 import { Player, WaveContainer } from './Waveform.style'
 import React, { useEffect, useState } from 'react'
 
-import ReactWaves from '@dschoon/react-waves'
-import SC from 'soundcloud'
+import { IconButton } from '@material-ui/core'
+import Loadable from '@loadable/component'
+
+const ReactWaves = Loadable<any>(() => import('@dschoon/react-waves'))
 
 type Track = {
     artwork_url: string
@@ -26,20 +27,22 @@ type ViewProps = {
 export default ({ soundCloudTrackID }: ViewProps) => {
     const [samples, setSamples] = useState<number[]>()
     const [isPlaying, setIsPlaying] = useState(false)
-
     // todo: do waveform fetching when creating nodes at build time
     useEffect(() => {
-        SC.initialize({ client_id: 'c5a171200f3a0a73a523bba14a1e0a29' })
-        SC.get(`/tracks/${soundCloudTrackID}`).then((track: Track) => {
-            fetch(track.waveform_url.replace('.png', '.json'))
-                .then((response) => response.json())
-                .then((waveform: Waveform) => {
-                    const maxValue = Math.max(...waveform.samples)
-                    const normalizedSamples = waveform.samples.map((x) => x / maxValue)
-                    setSamples(normalizedSamples)
-                })
+        import('soundcloud').then(SC => {
+            SC.initialize({ client_id: 'c5a171200f3a0a73a523bba14a1e0a29' })
+            SC.get(`/tracks/${soundCloudTrackID}`).then((track: Track) => {
+                fetch(track.waveform_url.replace('.png', '.json'))
+                    .then(response => response.json())
+                    .then((waveform: Waveform) => {
+                        const maxValue = Math.max(...waveform.samples)
+                        const normalizedSamples = waveform.samples.map(x => x / maxValue)
+                        setSamples(normalizedSamples)
+                        console.log(normalizedSamples)
+                    })
+            })
         })
-    }, [])
+    }, [soundCloudTrackID])
 
     return (
         <Player>

@@ -2,13 +2,10 @@ import { createContext } from 'react'
 
 type Audio = {
     trackId: number | undefined
+    setTrackId(trackId: number): void
 }
 
-const AudioContext = createContext<Audio>({
+export const AudioContext = createContext<Audio>({
     trackId: undefined,
+    setTrackId: () => {},
 })
-
-export const AudioProvider = AudioContext.Provider
-export const AudioConsumer = AudioContext.Consumer
-
-export default AudioContext
