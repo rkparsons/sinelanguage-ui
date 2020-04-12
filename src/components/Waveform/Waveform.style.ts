@@ -6,6 +6,8 @@ type PlayerProps = {
     theme: Theme
 }
 
+export const WaveContainer = styled(Box)``
+
 export const Player = styled(Box)`
     ${({ theme }: PlayerProps) => `      
         .react-waves {
@@ -14,32 +16,14 @@ export const Player = styled(Box)`
             position: relative;
             cursor: pointer;
             pointer-events: all;
-
-            /* &:after {
-                content: ' ';
-                background-color: ${theme.palette.background.default};
-                opacity: 0.3;
-                position: absolute;
-                display: block;
-                width: 100%;
-                top: 0;
-                left: 0;
-                height: 100%;
-                border-radius: 10px;
-                z-index: 10;
-                pointer-events: none;
-                transition: opacity 0.1s linear;
+            canvas {
+                opacity: 0.5;
             }
-
             &:hover {
-                &:after {
-                    content: ' ';
-                    opacity: 0;
+                canvas {
+                    opacity: 1;
                 }
-            } */
-        }     
-        
+            }
+        }  
     `}
 `
-
-export const WaveContainer = styled(Box)``
