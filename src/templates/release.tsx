@@ -1,10 +1,12 @@
-import EmbeddedPlayer from '~/components/EmbeddedPlayer'
 import Head from '~/components/Head'
+import Loadable from '@loadable/component'
 import React from 'react'
 import { Release } from '~/cms/types'
 import SquareImage from '~/components/SquareImage'
 import { Typography } from '@material-ui/core'
 import { graphql } from 'gatsby'
+
+const EmbeddedPlayer = Loadable(() => import('~/components/EmbeddedPlayer'))
 
 type Props = {
     data: {
