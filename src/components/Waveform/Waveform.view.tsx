@@ -2,7 +2,7 @@ import { IconButton, Typography } from '@material-ui/core'
 import { PlayArrow, Stop } from '@material-ui/icons'
 import { Player, WaveContainer } from './Waveform.style'
 import React, { useEffect, useState } from 'react'
-import { SoundCloudAPI, Waveform } from '~/types'
+import { Track, Waveform } from '~/types'
 
 import Loadable from '@loadable/component'
 import { Podcast } from '~/cms/types'
@@ -11,19 +11,16 @@ const ReactWaves = Loadable<any>(() => import('@dschoon/react-waves'))
 
 type ViewProps = {
     audio: Podcast
+    track: Track
 }
 
-export default ({ audio }: ViewProps) => {
+export default ({ audio, track }: ViewProps) => {
     const [samples, setSamples] = useState<number[]>()
     const [isPlaying, setIsPlaying] = useState(false)
     // todo: do waveform fetching when creating nodes at build time
 
     const getSamples = async () => {
-        const SC: SoundCloudAPI = await import('soundcloud')
-
-        SC.initialize({ client_id: 'c5a171200f3a0a73a523bba14a1e0a29' })
-        SC.get(`/tracks/${audio.soundCloudTrackID}`)
-            .then(track => fetch(track.waveform_url.replace('.png', '.json')))
+        fetch(track.waveform_url.replace('.png', '.json'))
             .then(response => response.json())
             .then((waveform: Waveform) => {
                 const maxValue = Math.max(...waveform.samples)

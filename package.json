@@ -57,6 +57,7 @@
         "gatsby-source-contentful": "^2.1.79",
         "gatsby-source-filesystem": "^2.1.21",
         "gatsby-source-prismic": "^2.3.0-alpha.3",
+        "gatsby-source-soundcloud": "^2.0.6",
         "gatsby-transformer-json": "^2.2.7",
         "gatsby-transformer-sharp": "^2.2.14",
         "lodash.flattendeep": "^4.4.0",
@@ -70,7 +71,6 @@
         "react-flip-toolkit": "^7.0.5",
         "react-ga": "^2.7.0",
         "react-helmet": "^5.2.1",
-        "soundcloud": "^3.3.2",
         "styled-components": "^4.4.1",
         "universal-cookie": "^4.0.3"
     },
