@@ -21,13 +21,6 @@ export const plugins: Plugins = [
     },
     `gatsby-plugin-styled-components`,
     {
-        resolve: `gatsby-source-soundcloud`,
-        options: {
-            userID: '273916891',
-            clientID: 'c5a171200f3a0a73a523bba14a1e0a29',
-        },
-    },
-    {
         resolve: 'gatsby-source-contentful',
         options: {
             spaceId: contentfulSpaceId,
