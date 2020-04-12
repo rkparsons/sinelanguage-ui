@@ -31,7 +31,7 @@ export default ({ audio, track }: ViewProps) => {
 
     useEffect(() => {
         getSamples()
-    }, [])
+    }, [track.soundcloud_id])
 
     return (
         <Player>
@@ -46,29 +46,27 @@ export default ({ audio, track }: ViewProps) => {
                 {isPlaying ? <Stop /> : <PlayArrow />}
             </IconButton>
 
-            {samples && (
-                <WaveContainer onClick={() => setIsPlaying(true)}>
-                    <ReactWaves
-                        audioPeaks={samples}
-                        audioFile={`https://api.soundcloud.com/tracks/${audio.soundCloudTrackID}/stream?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
-                        className={'react-waves'}
-                        options={{
-                            backend: 'MediaElement',
-                            barHeight: 1,
-                            cursorWidth: 0,
-                            height: 100,
-                            fillParent: true,
-                            hideScrollbar: true,
-                            progressColor: '#000000',
-                            responsive: true,
-                            waveColor: '#D1D6DA',
-                        }}
-                        volume={1}
-                        zoom={0.05}
-                        playing={isPlaying}
-                    />
-                </WaveContainer>
-            )}
+            <WaveContainer onClick={() => setIsPlaying(true)}>
+                <ReactWaves
+                    audioPeaks={samples}
+                    audioFile={`https://api.soundcloud.com/tracks/${audio.soundCloudTrackID}/stream?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
+                    className={'react-waves'}
+                    options={{
+                        backend: 'MediaElement',
+                        barHeight: 1,
+                        cursorWidth: 0,
+                        height: 100,
+                        fillParent: true,
+                        hideScrollbar: true,
+                        progressColor: '#000000',
+                        responsive: true,
+                        waveColor: '#D1D6DA',
+                    }}
+                    volume={1}
+                    zoom={0.05}
+                    playing={isPlaying}
+                />
+            </WaveContainer>
         </Player>
     )
 }
