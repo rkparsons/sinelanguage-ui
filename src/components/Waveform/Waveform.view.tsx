@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import moment, { Duration } from 'moment'
 
 import { Podcast } from '~/cms/types'
-import { SVG } from './WaveformBars.style'
+import { SVG } from './Waveform.style'
 import { Track } from '~/types'
 import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 import useWindowSize from '~/hooks/useWindowSize'
