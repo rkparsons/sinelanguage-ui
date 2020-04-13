@@ -1,3 +1,5 @@
+import Image, { GatsbyImageProps } from 'gatsby-image'
+
 import { Box } from '@material-ui/core'
 import React from 'react'
 import styled from 'styled-components'
@@ -26,20 +28,38 @@ export const ArtistRow = styled(Box)`
 `
 
 type FilterLayerProps = {
+    width: number
     height: number
     offset: number
 }
 
-export const FilterLayer = styled(({ height, offset, ...rest }: FilterLayerProps) => (
+export const FilterLayer = styled(({ width, height, offset, ...rest }: FilterLayerProps) => (
     <Box {...rest} />
 ))`
-    ${({ height, offset }: FilterLayerProps) => `
+    ${({ width, height, offset }: FilterLayerProps) => `
         position: fixed;
         z-index: 100;
-        width: 100%;
+        width: ${width}px;
         height: ${height}px;
         margin-top: ${offset}px;
         background-color: rgba(255, 255, 255, 0.15);
         backdrop-filter: blur(10px);
+    `}
+`
+
+type ArtistImageProps = GatsbyImageProps & {
+    height: number
+    offset: number
+}
+
+export const ArtistImage = styled(({ height, offset, ...rest }: ArtistImageProps) => (
+    <Image {...rest} />
+))`
+    ${({ height, offset }: ArtistImageProps) => `
+        position: absolute;
+        left: ${offset}px;
+        width: ${height}px;
+        height: ${height}px;
+        top: 0;
     `}
 `
