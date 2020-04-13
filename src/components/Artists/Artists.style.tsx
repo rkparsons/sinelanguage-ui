@@ -1,7 +1,7 @@
-import Image, { GatsbyImageProps } from 'gatsby-image'
+import React, { ReactNode } from 'react'
 
 import { Box } from '@material-ui/core'
-import React from 'react'
+import Image from 'gatsby-image'
 import styled from 'styled-components'
 
 export const Artists = styled(Box)`
@@ -47,16 +47,18 @@ export const FilterLayer = styled(({ width, height, offset, ...rest }: FilterLay
     `}
 `
 
-type ArtistImageProps = GatsbyImageProps & {
+type ArtistImageProps = {
     height: number
     offset: number
+    children: ReactNode
 }
 
-export const ArtistImage = styled(({ height, offset, ...rest }: ArtistImageProps) => (
-    <Image {...rest} />
+export const ArtistImage = styled(({ height, offset, children, ...rest }: ArtistImageProps) => (
+    <Box {...rest}>{children}</Box>
 ))`
     ${({ height, offset }: ArtistImageProps) => `
-        position: absolute;
+        position: fixed;
+        z-index: 100;
         left: ${offset}px;
         width: ${height}px;
         height: ${height}px;

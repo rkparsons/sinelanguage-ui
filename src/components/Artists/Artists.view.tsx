@@ -3,6 +3,7 @@ import { Grid, RootRef, Typography } from '@material-ui/core'
 import React, { useCallback, useRef, useState } from 'react'
 
 import { Artist } from '~/cms/types'
+import Image from 'gatsby-image'
 
 type ViewProps = {
     artists: Artist[]
@@ -65,15 +66,18 @@ export default ({ artists }: ViewProps) => {
                 height={window.innerHeight - verticalBreakpoints[1]}
                 offset={verticalBreakpoints[1]}
             ></FilterLayer>
-            {/* {activeArtist && (
+            {activeArtist && (
                 <ArtistImage
                     height={window.innerHeight}
                     offset={window.innerWidth - window.innerHeight}
-                    title={activeArtist.title}
-                    alt={activeArtist.title}
-                    sizes={{ ...activeArtist.image.fluid, aspectRatio: 1 }}
-                />
-            )} */}
+                >
+                    <Image
+                        title={activeArtist.title}
+                        alt={activeArtist.title}
+                        sizes={{ ...activeArtist.image.fluid, aspectRatio: 1 }}
+                    />
+                </ArtistImage>
+            )}
         </>
     )
 }
