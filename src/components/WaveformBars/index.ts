@@ -1,1 +1,1 @@
-export { default } from './Waveform.view'
+export { default } from './WaveformBars.view'

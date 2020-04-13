@@ -5,7 +5,7 @@ import { Track, Waveform } from '~/types'
 
 import Loadable from '@loadable/component'
 import { Podcast } from '~/cms/types'
-import { SVG } from './Waveform.style'
+import { SVG } from './WaveformBars.style'
 
 const ReactWaves = Loadable<any>(() => import('@dschoon/react-waves'))
 
@@ -20,32 +20,7 @@ export default ({ audio, track }: ViewProps) => {
     const [isPlaying, setIsPlaying] = useState(false)
 
     const lineHeight = 50,
-        lineSpacing = 4,
-        lineWidth = 2,
-        lineColour = '#000000'
-
-    useEffect(() => {
-        if (svgRef.current) {
-            svgRef.current.innerHTML = ''
-            const svgns = 'http://www.w3.org/2000/svg'
-
-            track.samples.forEach((sample, index) => {
-                const y1 = lineHeight
-                const y2 = (1 - sample) * lineHeight
-                const line = document.createElementNS(svgns, 'line')
-                const x = index * lineSpacing
-
-                line.setAttributeNS(null, 'x1', x.toString())
-                line.setAttributeNS(null, 'y1', y1.toString())
-                line.setAttributeNS(null, 'x2', x.toString())
-                line.setAttributeNS(null, 'y2', y2.toString())
-                line.setAttributeNS(null, 'stroke-width', lineWidth.toString())
-                line.setAttributeNS(null, 'stroke', lineColour)
-
-                svgRef.current!.appendChild(line)
-            })
-        }
-    }, [svgRef.current, track.samples])
+        lineSpacing = 4
 
     return (
         <>
@@ -62,7 +37,17 @@ export default ({ audio, track }: ViewProps) => {
                 preload="auto"
             ></audio>
 
-            <SVG ref={svgRef} xmlns="http://www.w3.org/2000/svg" height={lineHeight}></SVG>
+            <SVG ref={svgRef} height={lineHeight}>
+                {track.samples.map((sample, index) => (
+                    <line
+                        key={index}
+                        x1={(index + 1) * lineSpacing}
+                        y1={lineHeight}
+                        x2={(index + 1) * lineSpacing}
+                        y2={(1 - sample) * lineHeight}
+                    />
+                ))}
+            </SVG>
         </>
     )
 }
