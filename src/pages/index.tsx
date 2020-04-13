@@ -1,5 +1,6 @@
 import { Artist, Podcast, Release } from '~/cms/types'
 
+import Artists from '~/components/Artists'
 import Dashboard from '~/components/Dashboard'
 import { Location } from '@reach/router'
 import React from 'react'
@@ -20,7 +21,14 @@ type ViewProps = {
 }
 
 export default ({ data }: ViewProps) => (
-    <Location>{({ location }) => <Dashboard data={data} location={location} />}</Location>
+    <Location>
+        {({ location }) => (
+            <>
+                {location.pathname === '/artists' && <Artists />}
+                <Dashboard data={data} location={location} />
+            </>
+        )}
+    </Location>
 )
 
 export const query = graphql`
