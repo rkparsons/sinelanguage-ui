@@ -31,7 +31,7 @@ export default ({ audio, track }: ViewProps) => {
             setSvgWidth(pixelWidth)
 
             const noOfSamples = track.samples.length
-            const pixelsPerChunk = 10
+            const pixelsPerChunk = 5
             const numberOfChunks = pixelWidth / pixelsPerChunk
             const chunkSize = noOfSamples / numberOfChunks
             let chunks = []
