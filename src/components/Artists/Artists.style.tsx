@@ -19,7 +19,7 @@ export const ArtistRow = styled(Box)`
     text-transform: uppercase;
     &:hover {
         background-color: rgba(255, 255, 255, 0);
-        backdrop-filter: invert(100%);
+        backdrop-filter: blur(5px) invert(100%);
     }
 `
 
