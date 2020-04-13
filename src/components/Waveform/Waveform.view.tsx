@@ -1,10 +1,11 @@
-import { IconButton, Typography } from '@material-ui/core'
+import { Grid, IconButton, Typography } from '@material-ui/core'
 import { PlayArrow, Stop } from '@material-ui/icons'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import moment, { Duration } from 'moment'
 
 import { Podcast } from '~/cms/types'
 import { SVG } from './Waveform.style'
+import SquareImage from '~/components/SquareImage'
 import { Track } from '~/types'
 import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 import useWindowSize from '~/hooks/useWindowSize'
@@ -77,45 +78,56 @@ export default ({ audio, track }: ViewProps) => {
 
     return (
         <>
-            <Typography>
-                {audio.uid} - {audio.title}
-            </Typography>
-            <Typography>{timeStamp}</Typography>
-            <IconButton onClick={() => setIsPlaying(!isPlaying)}>
-                {isPlaying ? <Stop /> : <PlayArrow />}
-            </IconButton>
-
             <audio
                 ref={audioRef}
                 src={`${track.stream_url}?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
                 preload="auto"
             ></audio>
+            <Grid container alignItems="flex-end">
+                <Grid item xs={1}>
+                    <SquareImage title={audio.title} image={audio.image} />
+                    <IconButton onClick={() => setIsPlaying(!isPlaying)}>
+                        {isPlaying ? <Stop /> : <PlayArrow />}
+                    </IconButton>
+                </Grid>
+                <Grid item xs={11}>
+                    <Grid container direction="column">
+                        <Grid item xs={12}>
+                            <Typography>
+                                {audio.uid} - {audio.title}
+                            </Typography>
+                            <Typography>{timeStamp}</Typography>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <SVG
+                                ref={svgRef}
+                                height={lineHeight}
+                                onClick={handleWaveformClick}
+                                viewBox={`0 0 ${svgWidth} ${lineHeight}`}
+                                preserveAspectRatio="none"
+                            >
+                                {svgWidth &&
+                                    samples.map((sample, index) => {
+                                        const position = index / samples.length
+                                        const lineSpacing = svgWidth / (samples.length + 1)
 
-            <SVG
-                ref={svgRef}
-                height={lineHeight}
-                onClick={handleWaveformClick}
-                viewBox={`0 0 ${svgWidth} ${lineHeight}`}
-                preserveAspectRatio="none"
-            >
-                {svgWidth &&
-                    samples.map((sample, index) => {
-                        const position = index / samples.length
-                        const lineSpacing = svgWidth / (samples.length + 1)
-
-                        return (
-                            <line
-                                key={index}
-                                x1={(index + 1) * lineSpacing}
-                                y1={lineHeight}
-                                x2={(index + 1) * lineSpacing}
-                                y2={(1 - sample) * lineHeight}
-                                stroke={position < played ? 'red' : 'black'}
-                                strokeWidth={lineSpacing / 2}
-                            />
-                        )
-                    })}
-            </SVG>
+                                        return (
+                                            <line
+                                                key={index}
+                                                x1={(index + 1) * lineSpacing}
+                                                y1={lineHeight}
+                                                x2={(index + 1) * lineSpacing}
+                                                y2={(1 - sample) * lineHeight}
+                                                stroke={position < played ? 'red' : 'black'}
+                                                strokeWidth={lineSpacing / 2}
+                                            />
+                                        )
+                                    })}
+                            </SVG>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
         </>
     )
 }
