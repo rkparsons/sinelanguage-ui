@@ -3,7 +3,6 @@ import { Podcast } from '~/cms/types'
 import React from 'react'
 import SquareImage from '~/components/SquareImage'
 import { Typography } from '@material-ui/core'
-import Waveform from '~/components/Waveform'
 import { graphql } from 'gatsby'
 
 type Props = {

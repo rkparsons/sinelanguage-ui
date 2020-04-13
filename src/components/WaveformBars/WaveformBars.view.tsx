@@ -7,6 +7,7 @@ import { Podcast } from '~/cms/types'
 import { SVG } from './WaveformBars.style'
 import { Track } from '~/types'
 import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
+import useWindowSize from '~/hooks/useWindowSize'
 
 // todo: uninstall loadable components and react-waves
 type ViewProps = {
@@ -15,26 +16,37 @@ type ViewProps = {
 }
 
 export default ({ audio, track }: ViewProps) => {
+    const windowSize = useWindowSize()
     const [timeStamp, setTimeStamp] = useState<string>('00:00:00')
     const [played, setPlayed] = useState<number>(0)
     const audioRef = useRef<HTMLAudioElement>(null)
     const svgRef = useRef<SVGSVGElement>(null)
     const [isPlaying, setIsPlaying] = useState(false)
-    const [lineSpacing, setLineSpacing] = useState<number>()
-
+    const [svgWidth, setSvgWidth] = useState<number>()
     const lineHeight = 50
+    const samplesBinned = chunkArrayInGroups(track.samples, 9).map(
+        chunk => chunk.reduce((a, b) => a + b, 0) / chunk.length
+    )
 
     useEffect(() => {
         if (svgRef.current) {
-            setLineSpacing(svgRef.current.getBoundingClientRect().width / track.samples.length)
+            setSvgWidth(svgRef.current.getBoundingClientRect().width)
         }
-    }, [svgRef.current, track])
+    }, [windowSize, svgRef.current])
 
     useEffect(() => {
         if (audioRef.current) {
             isPlaying ? audioRef.current.play() : audioRef.current.pause()
         }
     }, [isPlaying, audioRef.current])
+
+    function chunkArrayInGroups(arr: number[], size: number) {
+        var chunks = []
+        for (var i = 0; i < arr.length; i += size) {
+            chunks.push(arr.slice(i, i + size))
+        }
+        return chunks
+    }
 
     const handleWaveformClick = useCallback(
         (event: React.MouseEvent) => {
@@ -75,10 +87,17 @@ export default ({ audio, track }: ViewProps) => {
                 preload="auto"
             ></audio>
 
-            <SVG ref={svgRef} height={lineHeight} onClick={handleWaveformClick}>
-                {lineSpacing &&
-                    track.samples.map((sample, index) => {
-                        const position = index / track.samples.length
+            <SVG
+                ref={svgRef}
+                height={lineHeight}
+                onClick={handleWaveformClick}
+                viewBox={`0 0 ${svgWidth} ${lineHeight}`}
+                preserveAspectRatio="none"
+            >
+                {svgWidth &&
+                    samplesBinned.map((sample, index) => {
+                        const position = index / samplesBinned.length
+                        const lineSpacing = svgWidth / (samplesBinned.length + 1)
 
                         return (
                             <line
@@ -88,6 +107,7 @@ export default ({ audio, track }: ViewProps) => {
                                 x2={(index + 1) * lineSpacing}
                                 y2={(1 - sample) * lineHeight}
                                 stroke={position < played ? 'red' : 'black'}
+                                strokeWidth={lineSpacing / 2}
                             />
                         )
                     })}
