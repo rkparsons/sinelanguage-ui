@@ -22,6 +22,12 @@ export default ({ audio, track }: ViewProps) => {
     const lineHeight = 50,
         lineSpacing = 4
 
+    useEffect(() => {
+        if (audioRef.current) {
+            isPlaying ? audioRef.current.play() : audioRef.current.pause()
+        }
+    }, [isPlaying, audioRef.current])
+
     return (
         <>
             <Typography>
@@ -37,7 +43,7 @@ export default ({ audio, track }: ViewProps) => {
                 preload="auto"
             ></audio>
 
-            <SVG ref={svgRef} height={lineHeight}>
+            <SVG ref={svgRef} height={lineHeight} onClick={() => setIsPlaying(true)}>
                 {track.samples.map((sample, index) => (
                     <line
                         key={index}
