@@ -22,14 +22,27 @@ export default ({ audio, track }: ViewProps) => {
     const svgRef = useRef<SVGSVGElement>(null)
     const [isPlaying, setIsPlaying] = useState(false)
     const [svgWidth, setSvgWidth] = useState<number>()
+    const [samples, setSamples] = useState<number[]>([])
     const lineHeight = 50
-    const samplesBinned = chunkArrayInGroups(track.samples, 9).map(
-        chunk => chunk.reduce((a, b) => a + b, 0) / chunk.length
-    )
 
     useEffect(() => {
         if (svgRef.current) {
-            setSvgWidth(svgRef.current.getBoundingClientRect().width)
+            const pixelWidth = svgRef.current.getBoundingClientRect().width
+            setSvgWidth(pixelWidth)
+
+            const noOfSamples = track.samples.length
+            const pixelsPerChunk = 10
+            const numberOfChunks = pixelWidth / pixelsPerChunk
+            const chunkSize = noOfSamples / numberOfChunks
+            let chunks = []
+            for (var i = 0; i < noOfSamples; i += chunkSize) {
+                chunks.push(track.samples.slice(i, i + chunkSize))
+            }
+            const chunksAveraged = chunks.map(
+                chunk => chunk.reduce((a, b) => a + b, 0) / chunk.length
+            )
+
+            setSamples(chunksAveraged)
         }
     }, [windowSize, svgRef.current])
 
@@ -38,14 +51,6 @@ export default ({ audio, track }: ViewProps) => {
             isPlaying ? audioRef.current.play() : audioRef.current.pause()
         }
     }, [isPlaying, audioRef.current])
-
-    function chunkArrayInGroups(arr: number[], size: number) {
-        var chunks = []
-        for (var i = 0; i < arr.length; i += size) {
-            chunks.push(arr.slice(i, i + size))
-        }
-        return chunks
-    }
 
     const handleWaveformClick = useCallback(
         (event: React.MouseEvent) => {
@@ -94,9 +99,9 @@ export default ({ audio, track }: ViewProps) => {
                 preserveAspectRatio="none"
             >
                 {svgWidth &&
-                    samplesBinned.map((sample, index) => {
-                        const position = index / samplesBinned.length
-                        const lineSpacing = svgWidth / (samplesBinned.length + 1)
+                    samples.map((sample, index) => {
+                        const position = index / samples.length
+                        const lineSpacing = svgWidth / (samples.length + 1)
 
                         return (
                             <line
