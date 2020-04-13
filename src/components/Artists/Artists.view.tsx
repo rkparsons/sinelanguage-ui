@@ -1,4 +1,4 @@
-import { ArtistImage, ArtistRow, Artists, FilterLayer } from './Artists.style'
+import { ArtistImage, ArtistRow, Artists, BlurLayer, InvertLayer } from './Artists.style'
 import { Grid, RootRef, Typography } from '@material-ui/core'
 import React, { useCallback, useRef, useState } from 'react'
 
@@ -35,11 +35,11 @@ export default ({ artists }: ViewProps) => {
 
     return (
         <>
-            <FilterLayer
+            <BlurLayer
                 width={activeArtist ? window.innerWidth - window.innerHeight : window.innerWidth}
                 height={verticalBreakpoints[0]}
                 offset={0}
-            ></FilterLayer>
+            ></BlurLayer>
             <Artists>
                 <Grid container direction="column">
                     {artists.map((artist, index) => (
@@ -52,20 +52,21 @@ export default ({ artists }: ViewProps) => {
                                 <ArtistRow
                                     onMouseEnter={() => highlightRow(artist, index)}
                                     onMouseLeave={() => highlightRow()}
-                                    width={window.innerWidth - window.innerHeight}
                                 >
-                                    <Typography variant="h2">{artist.title}</Typography>
+                                    <InvertLayer width={window.innerWidth - window.innerHeight}>
+                                        <Typography variant="h2">{artist.title}</Typography>
+                                    </InvertLayer>
                                 </ArtistRow>
                             </RootRef>
                         </Grid>
                     ))}
                 </Grid>
             </Artists>
-            <FilterLayer
+            <BlurLayer
                 width={activeArtist ? window.innerWidth - window.innerHeight : window.innerWidth}
                 height={window.innerHeight - verticalBreakpoints[1]}
                 offset={verticalBreakpoints[1]}
-            ></FilterLayer>
+            ></BlurLayer>
             {activeArtist && (
                 <ArtistImage
                     height={window.innerHeight}
