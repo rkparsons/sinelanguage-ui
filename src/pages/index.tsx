@@ -24,7 +24,9 @@ export default ({ data }: ViewProps) => (
     <Location>
         {({ location }) => (
             <>
-                {location.pathname === '/artists' && <Artists />}
+                {location.pathname === '/artists' && (
+                    <Artists artists={data.allContentfulArtist.nodes} />
+                )}
                 <Dashboard data={data} location={location} />
             </>
         )}
