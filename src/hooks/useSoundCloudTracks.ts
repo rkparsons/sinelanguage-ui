@@ -7,10 +7,11 @@ export default () =>
         {
             allSoundcloudtrack {
                 nodes {
+                    duration
+                    samples
                     soundcloud_id
                     stream_url
                     waveform_url
-                    samples
                 }
             }
         }
