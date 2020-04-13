@@ -19,13 +19,10 @@ export default ({ audio, track }: ViewProps) => {
     const svgRef = useRef<SVGSVGElement>(null)
     const [isPlaying, setIsPlaying] = useState(false)
 
-    const min_distance = 7,
-        max_distance = 22,
-        number_of_lines = 100,
-        line_height = 50,
-        line_spacing = 4,
-        line_width = 2,
-        line_color = '#000000'
+    const lineHeight = 50,
+        lineSpacing = 4,
+        lineWidth = 2,
+        lineColour = '#000000'
 
     useEffect(() => {
         if (svgRef.current) {
@@ -33,17 +30,17 @@ export default ({ audio, track }: ViewProps) => {
             const svgns = 'http://www.w3.org/2000/svg'
 
             track.samples.forEach((sample, index) => {
-                const y1 = line_height
-                const y2 = (1 - sample) * line_height
+                const y1 = lineHeight
+                const y2 = (1 - sample) * lineHeight
                 const line = document.createElementNS(svgns, 'line')
-                const x = index * line_spacing
+                const x = index * lineSpacing
 
                 line.setAttributeNS(null, 'x1', x.toString())
                 line.setAttributeNS(null, 'y1', y1.toString())
                 line.setAttributeNS(null, 'x2', x.toString())
                 line.setAttributeNS(null, 'y2', y2.toString())
-                line.setAttributeNS(null, 'stroke-width', line_width.toString())
-                line.setAttributeNS(null, 'stroke', line_color)
+                line.setAttributeNS(null, 'stroke-width', lineWidth.toString())
+                line.setAttributeNS(null, 'stroke', lineColour)
 
                 svgRef.current!.appendChild(line)
             })
@@ -65,7 +62,7 @@ export default ({ audio, track }: ViewProps) => {
                 preload="auto"
             ></audio>
 
-            <SVG ref={svgRef} xmlns="http://www.w3.org/2000/svg" height={line_height}></SVG>
+            <SVG ref={svgRef} xmlns="http://www.w3.org/2000/svg" height={lineHeight}></SVG>
         </>
     )
 }
