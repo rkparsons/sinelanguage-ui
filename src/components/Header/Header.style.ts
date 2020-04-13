@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
-export const NavList = styled.ul`
-    padding: 1rem 0 3rem;
-    display: flex;
-    list-style-type: none;
-    margin: 0;
+export const Header = styled.header`
+    position: fixed;
+    top: 0;
+    z-index: 1000;
 `

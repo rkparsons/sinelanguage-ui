@@ -5,6 +5,6 @@ import { Typography } from '@material-ui/core'
 
 export default ({ to, title, partiallyActive }: ComponentProps<typeof NavItem>) => (
     <NavItem to={to} partiallyActive={partiallyActive}>
-        <Typography>{title}</Typography>
+        <Typography variant="h1">{title}</Typography>
     </NavItem>
 )

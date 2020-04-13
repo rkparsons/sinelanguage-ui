@@ -1,38 +1,33 @@
 import * as ROUTES from '~/constants/routes'
 
-import { Link } from 'gatsby'
-import MenuIcon from '@material-ui/icons/Menu'
+import { Grid } from '@material-ui/core'
+import { Header } from './Header.style'
 import NavItem from '~/components/NavItem'
-import { NavList } from './Header.style'
 import React from 'react'
-import SignInButton from '~/components/SignInButton'
-import SignOutButton from '~/components/SignOutButton'
-import { Typography } from '@material-ui/core'
-import { isAuthenticated } from '~/utils/auth'
 
 export default () => (
-    <header>
-        <Typography>SINE LANGUAGE RECORDS</Typography>
-        <NavList>
-            <li>
-                <NavItem to={ROUTES.NEWS} title="News" />
-            </li>
-            <li>
-                <NavItem to={ROUTES.ARTISTS} title="Artists" partiallyActive={true} />
-            </li>
-            <li>
-                <NavItem to={ROUTES.RELEASES} title="Releases" partiallyActive={true} />
-            </li>
-            <li>
-                <NavItem to={ROUTES.PODCASTS} title="Podcasts" partiallyActive={true} />
-            </li>
-            <li>
-                <NavItem to={ROUTES.EVENTS} title="Events" partiallyActive={true} />
-            </li>
-            <li>
-                <NavItem to={ROUTES.CONTACT} title="Contact" partiallyActive={true} />
-            </li>
-            {/* {isAuthenticated() ? (
+    <Header>
+        <Grid container spacing={5}>
+            <Grid item>
+                <NavItem to={ROUTES.NEWS} title="SINE LANGUAGE RECORDS" />
+            </Grid>
+            <Grid item>
+                <NavItem to={ROUTES.ARTISTS} title="ARTISTS" partiallyActive={true} />
+            </Grid>
+            <Grid item>
+                <NavItem to={ROUTES.RELEASES} title="RELEASES" partiallyActive={true} />
+            </Grid>
+            <Grid item>
+                <NavItem to={ROUTES.PODCASTS} title="PODCASTS" partiallyActive={true} />
+            </Grid>
+            <Grid item>
+                <NavItem to={ROUTES.EVENTS} title="EVENTS" partiallyActive={true} />
+            </Grid>
+            <Grid item>
+                <NavItem to={ROUTES.CONTACT} title="CONTACT" partiallyActive={true} />
+            </Grid>
+        </Grid>
+        {/* {isAuthenticated() ? (
                 <>
                     <li>
                         <NavItem to={ROUTES.ACCOUNT} title="Account" partiallyActive={true} />
@@ -47,6 +42,5 @@ export default () => (
                     <MenuIcon />
                 </li>
             )} */}
-        </NavList>
-    </header>
+    </Header>
 )
