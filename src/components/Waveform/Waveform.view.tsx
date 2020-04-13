@@ -44,7 +44,7 @@ export default ({ audio, track }: ViewProps) => {
 
             setSamples(chunksAveraged)
         }
-    }, [windowSize, svgRef.current])
+    }, [windowSize, svgRef.current, track.soundcloud_id])
 
     useEffect(() => {
         if (audioRef.current) {
