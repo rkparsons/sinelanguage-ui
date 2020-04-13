@@ -9,7 +9,6 @@ import { Track } from '~/types'
 import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 import useWindowSize from '~/hooks/useWindowSize'
 
-// todo: uninstall loadable components and react-waves
 type ViewProps = {
     audio: Podcast
     track: Track
