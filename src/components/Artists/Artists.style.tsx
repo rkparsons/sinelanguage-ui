@@ -15,9 +15,11 @@ export const Artists = styled(Box)`
 `
 
 export const ArtistRow = styled(Box)`
+    color: white;
     cursor: pointer;
     text-transform: uppercase;
     &:hover {
+        color: black;
         background-color: rgba(255, 255, 255, 0);
         backdrop-filter: blur(5px) invert(100%);
     }
