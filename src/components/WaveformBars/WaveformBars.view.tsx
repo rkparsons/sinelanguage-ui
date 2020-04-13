@@ -16,13 +16,19 @@ type ViewProps = {
 
 export default ({ audio, track }: ViewProps) => {
     const [timeStamp, setTimeStamp] = useState<string>('00:00:00')
-    const [progress, setProgress] = useState(0)
+    const [played, setPlayed] = useState<number>(0)
     const audioRef = useRef<HTMLAudioElement>(null)
     const svgRef = useRef<SVGSVGElement>(null)
     const [isPlaying, setIsPlaying] = useState(false)
+    const [lineSpacing, setLineSpacing] = useState<number>()
 
-    const lineHeight = 50,
-        lineSpacing = 4
+    const lineHeight = 50
+
+    useEffect(() => {
+        if (svgRef.current) {
+            setLineSpacing(svgRef.current.getBoundingClientRect().width / track.samples.length)
+        }
+    }, [svgRef.current, track])
 
     useEffect(() => {
         if (audioRef.current) {
@@ -30,27 +36,24 @@ export default ({ audio, track }: ViewProps) => {
         }
     }, [isPlaying, audioRef.current])
 
-    const handleWaveformClick = useCallback((event: React.MouseEvent) => {
-        if (svgRef.current) {
-            const progressBar = svgRef.current.getBoundingClientRect()
-            const progress =
-                (event.clientX - progressBar.left) / (progressBar.right - progressBar.left)
+    const handleWaveformClick = useCallback(
+        (event: React.MouseEvent) => {
+            if (svgRef.current && audioRef.current) {
+                const progressBar = svgRef.current.getBoundingClientRect()
+                const progress =
+                    (event.clientX - progressBar.left) / (progressBar.right - progressBar.left)
 
-            setProgress(progress)
-            setIsPlaying(true)
-        }
-    }, [])
-
-    useEffect(() => {
-        if (audioRef.current) {
-            audioRef.current.currentTime = (progress * track.duration) / 1000
-            setIsPlaying(true)
-        }
-    }, [progress, audioRef.current])
+                audioRef.current.currentTime = (progress * track.duration) / 1000
+                // setIsPlaying(true)
+            }
+        },
+        [svgRef.current, audioRef.current]
+    )
 
     const updatePlayStatus = () => {
         if (audioRef.current) {
             setTimeStamp(moment.utc(audioRef.current.currentTime * 1000).format('HH:mm:ss'))
+            setPlayed((1000 * audioRef.current.currentTime) / track.duration)
         }
     }
 
@@ -73,15 +76,21 @@ export default ({ audio, track }: ViewProps) => {
             ></audio>
 
             <SVG ref={svgRef} height={lineHeight} onClick={handleWaveformClick}>
-                {track.samples.map((sample, index) => (
-                    <line
-                        key={index}
-                        x1={(index + 1) * lineSpacing}
-                        y1={lineHeight}
-                        x2={(index + 1) * lineSpacing}
-                        y2={(1 - sample) * lineHeight}
-                    />
-                ))}
+                {lineSpacing &&
+                    track.samples.map((sample, index) => {
+                        const position = index / track.samples.length
+
+                        return (
+                            <line
+                                key={index}
+                                x1={(index + 1) * lineSpacing}
+                                y1={lineHeight}
+                                x2={(index + 1) * lineSpacing}
+                                y2={(1 - sample) * lineHeight}
+                                stroke={position < played ? 'red' : 'black'}
+                            />
+                        )
+                    })}
             </SVG>
         </>
     )

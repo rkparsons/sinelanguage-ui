@@ -6,7 +6,6 @@ export const SVG = styled.svg`
     cursor: pointer;
 
     line {
-        stroke: black;
         stroke-width: 2;
         transition: all 1s linear;
     }
