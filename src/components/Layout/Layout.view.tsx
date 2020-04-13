@@ -13,7 +13,6 @@ import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
 import { Podcast } from '~/cms/types'
 import { ThemeProvider as ScThemeProvider } from 'styled-components'
 import theme from '~/styles/theme'
-import withFlipAnimation from '~/components/withFlipAnimation'
 
 type Props = {
     isDarkMode: boolean
@@ -54,4 +53,4 @@ const Layout: FC<Props> = ({ isDarkMode, setIsDarkMode, children }: Props) => {
     )
 }
 
-export default withFlipAnimation(Layout)
+export default Layout
