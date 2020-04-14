@@ -1,21 +1,22 @@
+import { Artist, Podcast, Release } from '~/cms/types'
 import { Grid, IconButton, Typography } from '@material-ui/core'
 import { PlayArrow, Stop } from '@material-ui/icons'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import moment, { Duration } from 'moment'
 
-import { Podcast } from '~/cms/types'
 import { SVG } from './Waveform.style'
 import SquareImage from '~/components/SquareImage'
 import { Track } from '~/types'
+import moment from 'moment'
 import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 import useWindowSize from '~/hooks/useWindowSize'
 
 type ViewProps = {
-    audio: Podcast
-    track: Track
+    selectedMedia: Podcast | Release | Artist
+    tracks: Track[]
 }
 
-export default ({ audio, track }: ViewProps) => {
+export default ({ selectedMedia, tracks }: ViewProps) => {
+    const [trackIndex, setTrackIndex] = useState(0)
     const windowSize = useWindowSize()
     const [timeStamp, setTimeStamp] = useState<string>('00:00:00')
     const [played, setPlayed] = useState<number>(0)
@@ -31,13 +32,13 @@ export default ({ audio, track }: ViewProps) => {
             const pixelWidth = svgRef.current.getBoundingClientRect().width
             setSvgWidth(pixelWidth)
 
-            const noOfSamples = track.samples.length
+            const noOfSamples = tracks[trackIndex].samples.length
             const pixelsPerChunk = 5
             const numberOfChunks = pixelWidth / pixelsPerChunk
             const chunkSize = noOfSamples / numberOfChunks
             let chunks = []
             for (var i = 0; i < noOfSamples; i += chunkSize) {
-                chunks.push(track.samples.slice(i, i + chunkSize))
+                chunks.push(tracks[trackIndex].samples.slice(i, i + chunkSize))
             }
             const chunksAveraged = chunks.map(
                 chunk => chunk.reduce((a, b) => a + b, 0) / chunk.length
@@ -45,7 +46,7 @@ export default ({ audio, track }: ViewProps) => {
 
             setSamples(chunksAveraged)
         }
-    }, [windowSize, svgRef.current, track.soundcloud_id])
+    }, [windowSize, svgRef.current, tracks[trackIndex].soundcloud_id])
 
     useEffect(() => {
         if (audioRef.current) {
@@ -60,7 +61,7 @@ export default ({ audio, track }: ViewProps) => {
                 const progress =
                     (event.clientX - progressBar.left) / (progressBar.right - progressBar.left)
 
-                audioRef.current.currentTime = (progress * track.duration) / 1000
+                audioRef.current.currentTime = (progress * tracks[trackIndex].duration) / 1000
                 // setIsPlaying(true)
             }
         },
@@ -70,7 +71,7 @@ export default ({ audio, track }: ViewProps) => {
     const updatePlayStatus = () => {
         if (audioRef.current) {
             setTimeStamp(moment.utc(audioRef.current.currentTime * 1000).format('H:mm:ss'))
-            setPlayed((1000 * audioRef.current.currentTime) / track.duration)
+            setPlayed((1000 * audioRef.current.currentTime) / tracks[trackIndex].duration)
         }
     }
 
@@ -80,12 +81,12 @@ export default ({ audio, track }: ViewProps) => {
         <>
             <audio
                 ref={audioRef}
-                src={`${track.stream_url}?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
+                src={`${tracks[trackIndex].stream_url}?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
                 preload="auto"
             ></audio>
             <Grid container alignItems="flex-end">
                 <Grid item xs={1}>
-                    <SquareImage title={audio.title} image={audio.image} />
+                    <SquareImage title={selectedMedia.title} image={selectedMedia.image} />
                     <IconButton onClick={() => setIsPlaying(!isPlaying)}>
                         {isPlaying ? <Stop /> : <PlayArrow />}
                     </IconButton>
@@ -94,7 +95,7 @@ export default ({ audio, track }: ViewProps) => {
                     <Grid container direction="column">
                         <Grid item xs={12}>
                             <Typography>
-                                {audio.uid} - {audio.title}
+                                {selectedMedia.uid} - {selectedMedia.title}
                             </Typography>
                             <Typography>{timeStamp}</Typography>
                         </Grid>

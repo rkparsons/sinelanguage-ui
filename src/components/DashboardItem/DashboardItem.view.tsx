@@ -1,10 +1,10 @@
 import { Artist, Podcast, Release } from '~/cms/types'
 import { IconButton, Typography } from '@material-ui/core'
 
-import { AudioContext } from '~/contexts/AudioContext'
 import { Link } from 'gatsby'
 import { PlayArrow } from '@material-ui/icons'
 import React from 'react'
+import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import SquareImage from '~/components/SquareImage'
 
 type ViewProps = {
@@ -21,18 +21,18 @@ export default ({ dashboardItem }: ViewProps) => {
                 <SquareImage title={title} image={image} />
                 <Typography>{title}</Typography>
             </Link>
-            {dashboardItem.__typename === 'ContentfulPodcast' && (
-                <AudioContext.Consumer>
-                    {({ audio, setAudio }) => (
+            {dashboardItem.__typename !== 'ContentfulEvent' && (
+                <SelectedMediaContext.Consumer>
+                    {({ setSelectedMedia }) => (
                         <IconButton
                             onClick={() => {
-                                setAudio(dashboardItem as Podcast)
+                                setSelectedMedia(dashboardItem)
                             }}
                         >
                             <PlayArrow />
                         </IconButton>
                     )}
-                </AudioContext.Consumer>
+                </SelectedMediaContext.Consumer>
             )}
         </>
     )
