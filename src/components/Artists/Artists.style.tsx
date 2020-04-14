@@ -53,12 +53,18 @@ export const InvertLayer = styled(({ width, children, ...rest }: InvertLayerProp
 ))`
     ${({ width }: InvertLayerProps) => `
         width: ${width}px;
-        &:hover {
+        ${ArtistRow}:hover & {
             color: black;
             background-color: rgba(255, 255, 255, 0);
-            backdrop-filter: blur(5px) invert(100%);
+            backdrop-filter: invert(100%);
         }
     `}
+`
+
+export const InvertBlurLayer = styled(InvertLayer)`
+    ${ArtistRow}:hover & {
+        backdrop-filter: blur(5px) invert(100%);
+    }
 `
 
 type ArtistImageProps = {

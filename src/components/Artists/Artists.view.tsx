@@ -1,4 +1,11 @@
-import { ArtistImage, ArtistRow, Artists, BlurLayer, InvertLayer } from './Artists.style'
+import {
+    ArtistImage,
+    ArtistRow,
+    Artists,
+    BlurLayer,
+    InvertBlurLayer,
+    InvertLayer,
+} from './Artists.style'
 import { Grid, RootRef, Typography } from '@material-ui/core'
 import React, { useCallback, useRef, useState } from 'react'
 
@@ -53,9 +60,20 @@ export default ({ artists }: ViewProps) => {
                                     onMouseEnter={() => highlightRow(artist, index)}
                                     onMouseLeave={() => highlightRow()}
                                 >
-                                    <InvertLayer width={window.innerWidth - window.innerHeight}>
-                                        <Typography variant="h2">{artist.title}</Typography>
-                                    </InvertLayer>
+                                    <Grid container>
+                                        <Grid item>
+                                            <InvertBlurLayer
+                                                width={window.innerWidth - window.innerHeight}
+                                            >
+                                                <Typography variant="h2">{artist.title}</Typography>
+                                            </InvertBlurLayer>
+                                        </Grid>
+                                        <Grid item>
+                                            <InvertLayer width={window.innerHeight}>
+                                                <Typography variant="h2">PLAY</Typography>
+                                            </InvertLayer>
+                                        </Grid>
+                                    </Grid>
                                 </ArtistRow>
                             </RootRef>
                         </Grid>
@@ -67,7 +85,7 @@ export default ({ artists }: ViewProps) => {
                 height={window.innerHeight - verticalBreakpoints[1]}
                 offset={verticalBreakpoints[1]}
             ></BlurLayer>
-            {activeArtist && (
+            {/* {activeArtist && (
                 <ArtistImage
                     height={window.innerHeight}
                     offset={window.innerWidth - window.innerHeight}
@@ -78,7 +96,7 @@ export default ({ artists }: ViewProps) => {
                         sizes={{ ...activeArtist.image.fluid, aspectRatio: 1 }}
                     />
                 </ArtistImage>
-            )}
+            )} */}
         </>
     )
 }
