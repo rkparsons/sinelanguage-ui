@@ -9,6 +9,7 @@ import {
 } from '../../../cms/models'
 import { assetFileSize, unique } from '../../../cms/validations'
 
+import Artist from './artist'
 import { FluidImageType } from '../../../cms/constants'
 import Track from './track'
 
@@ -32,7 +33,7 @@ export default new ContentfulContentType({
         new LinkField({
             name: 'Artist',
             widgetId: 'entryCardEditor',
-            linkId: 'artist',
+            link: Artist,
         }),
         new SymbolField({
             name: 'Format',

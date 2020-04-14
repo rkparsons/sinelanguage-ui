@@ -1,11 +1,14 @@
+import ContentfulContentType from './contentfulContentType'
 import ContentfulField from './contentfulField'
 import { SubFieldProps } from '../types/subFieldProps'
 
 type LinkFieldProps = SubFieldProps & {
-    linkId: string
+    link: ContentfulContentType
 }
 
 export default class LinkField extends ContentfulField {
+    link: ContentfulContentType
+
     constructor({
         id,
         name,
@@ -17,7 +20,7 @@ export default class LinkField extends ContentfulField {
         widgetId,
         helpText,
         format,
-        linkId,
+        link,
     }: LinkFieldProps) {
         super({
             id,
@@ -34,20 +37,21 @@ export default class LinkField extends ContentfulField {
         })
         this.contentFields.linkType = 'Entry'
         this.contentFields.validations!.push({
-            linkContentType: [linkId],
+            linkContentType: [link.id],
         })
+        this.link = link
     }
 
     getTypeDefinitionImports = () => []
-    // todo: link field should have ref to linked schema
-    getTypeDefinition = () => `${this.contentFields.id}: ${this.contentFields.name}`
+
+    getTypeDefinition = () => `${this.contentFields.id}: ${this.link.name}`
 
     getLinkedNodeDefinition = () => undefined
 
-    getNodeDefinition = () => `${this.contentFields.id}: Contentful${this.contentFields.name}`
+    getNodeDefinition = () => `${this.contentFields.id}: Contentful${this.link.name}`
 
     getFragmentDefinition = () =>
         `${this.contentFields.id} {
-            ...${this.contentFields.id}Fragment
+            ...${this.link.name}Fragment
         }`
 }
