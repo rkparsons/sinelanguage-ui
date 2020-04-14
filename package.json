@@ -19,7 +19,8 @@
         "gen:types": "ts-node generate-types.ts",
         "gen:fragments": "ts-node generate-fragments.ts",
         "gen:nodes": "ts-node generate-nodes.ts",
-        "gen": "run-p gen:**"
+        "gen": "run-p gen:**",
+        "query": "ts-node query.ts"
     },
     "prettier": {
         "endOfLine": "auto",

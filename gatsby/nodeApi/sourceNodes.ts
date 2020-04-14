@@ -1,6 +1,12 @@
 import { GatsbyNode, SourceNodesArgs } from 'gatsby'
+import {
+    contentfulManagementToken,
+    contentfulSpaceId,
+    soundCloudClientID,
+} from '../../env-variables'
 
 import { SoundCloudTrackMetadata } from '~/types'
+import { createClient } from 'contentful-management'
 import { typeDefs } from '../../src/cms/nodes'
 
 const axios = require('axios')
@@ -16,8 +22,10 @@ const createHash = (obj: object) =>
         .update(JSON.stringify(obj))
         .digest('hex')
 
-function fetchUserResource(resource: any, userID: number, clientID: string) {
-    const url = `https://api.soundcloud.com/users/${userID}${resource}?client_id=${clientID}`
+function fetchSoundCloudTracks(trackIDs: number[]) {
+    const url = `https://api.soundcloud.com/tracks?client_id=${soundCloudClientID}&ids=${trackIDs.join(
+        ','
+    )}`
     return axios.get(url)
 }
 
@@ -27,6 +35,16 @@ function linkNodes(nodes: any) {
         node.id = internalId(node.id, node.kind)
         return node
     })
+}
+
+function getSoundCloudTrackIDs() {
+    return createClient({
+        accessToken: contentfulManagementToken,
+    })
+        .getSpace(contentfulSpaceId)
+        .then(space => space.getEnvironment('master'))
+        .then(environment => environment.getEntries({ content_type: 'track' }))
+        .then(entries => entries.items.map(entry => entry.fields.soundCloudID['en-US'] as number))
 }
 
 export const sourceNodes: GatsbyNode['sourceNodes'] = async ({
@@ -39,12 +57,9 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async ({
 
     const { createNode } = boundActionCreators
 
-    // todo: replace with env vars & replace any types
-    const userID = 273916891
-    const clientID = 'c5a171200f3a0a73a523bba14a1e0a29'
-
     try {
-        const response = await fetchUserResource('/tracks', userID, clientID)
+        const trackIds = await getSoundCloudTrackIDs()
+        const response = await fetchSoundCloudTracks(trackIds)
 
         const tracksMetadata: SoundCloudTrackMetadata[] = await Promise.all(
             response.data.map(
