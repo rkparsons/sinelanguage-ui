@@ -12,11 +12,10 @@ export default () => {
     const trackMetadataLibrary = useSoundCloudTracks()
     const selectedTracksMetadata = []
 
-    // Wrap podcast track in same cms type
     if (selectedMedia?.__typename === 'ContentfulPodcast') {
         const podcast = selectedMedia as Podcast
         const podcastTrackMetadata = trackMetadataLibrary.find(
-            x => x.soundcloud_id === podcast.soundCloudTrackID
+            x => x.soundcloud_id === podcast.track.soundCloudID
         )
 
         if (podcastTrackMetadata) {

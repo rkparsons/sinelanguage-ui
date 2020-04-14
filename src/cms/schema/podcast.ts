@@ -46,11 +46,6 @@ export default new ContentfulContentType({
             widgetId: 'datePicker',
             format: 'dateonly',
         }),
-        new IntegerField({
-            id: 'soundCloudTrackID',
-            name: 'SoundCloud Track ID',
-            format: 'dateonly',
-        }),
         new LinkField({
             name: 'Track',
             link: Track,

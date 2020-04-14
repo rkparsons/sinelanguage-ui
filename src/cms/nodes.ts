@@ -28,7 +28,6 @@ export const typeDefs = `
 		description: contentfulPodcastDescriptionTextNode
 		image: ContentfulAsset
 		date: Date @dateformat
-		soundCloudTrackID: Int
 		track: ContentfulTrack
 	}
 

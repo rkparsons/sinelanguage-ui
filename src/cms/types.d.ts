@@ -29,7 +29,6 @@ export type Podcast = {
         fluid: FluidObject
     }
 	date: Date
-	soundCloudTrackID: number
 	track: Track
 }
 

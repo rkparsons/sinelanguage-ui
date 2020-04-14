@@ -12,7 +12,7 @@ type Props = {
 }
 
 export default ({ data }: Props) => {
-    const { uid, title, description, image, date, soundCloudTrackID } = data.contentfulPodcast
+    const { uid, title, description, image, date } = data.contentfulPodcast
 
     return (
         <>
