@@ -22,7 +22,7 @@ export default ({ selectedMedia, tracksMetadata }: ViewProps) => {
     const [played, setPlayed] = useState<number>(0)
     const audioRef = useRef<HTMLAudioElement>(null)
     const svgRef = useRef<SVGSVGElement>(null)
-    const [isPlaying, setIsPlaying] = useState(false)
+    const [isPlaying, setIsPlaying] = useState(true)
     const [svgWidth, setSvgWidth] = useState<number>()
     const [samples, setSamples] = useState<number[]>([])
     const lineHeight = 50
@@ -63,7 +63,7 @@ export default ({ selectedMedia, tracksMetadata }: ViewProps) => {
 
                 audioRef.current.currentTime =
                     (progress * tracksMetadata[trackIndex].duration) / 1000
-                // setIsPlaying(true)
+                setIsPlaying(true)
             }
         },
         [svgRef.current, audioRef.current]
