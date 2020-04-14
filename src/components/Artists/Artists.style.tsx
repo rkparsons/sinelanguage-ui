@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react'
 
 import { Box } from '@material-ui/core'
-import Image from 'gatsby-image'
 import styled from 'styled-components'
 
 export const Artists = styled(Box)`
@@ -39,7 +38,7 @@ export const BlurLayer = styled(({ width, height, offset, ...rest }: BlurLayerPr
         height: ${height}px;
         margin-top: ${offset}px;
         background-color: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(12px);
     `}
 `
 
@@ -65,7 +64,7 @@ export const InvertLayer = styled(({ width, children, ...rest }: InvertLayerProp
 export const InvertBlurLayer = styled(InvertLayer)`
     text-align: left;
     ${ArtistRow}:hover & {
-        backdrop-filter: blur(5px) invert(100%);
+        backdrop-filter: blur(7px) invert(100%);
     }
 `
 
