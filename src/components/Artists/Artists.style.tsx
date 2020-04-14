@@ -37,7 +37,7 @@ export const BlurLayer = styled(({ width, height, offset, ...rest }: BlurLayerPr
         width: ${width}px;
         height: ${height}px;
         margin-top: ${offset}px;
-        background-color: rgba(255, 255, 255, 0.15);
+        background-color: rgba(255, 255, 255, 0.13);
         backdrop-filter: blur(12px);
     `}
 `
