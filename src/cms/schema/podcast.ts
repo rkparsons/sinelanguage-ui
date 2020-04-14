@@ -3,12 +3,14 @@ import {
     DateField,
     FluidImageField,
     IntegerField,
+    LinkField,
     SymbolField,
     TextField,
 } from '../../../cms/models'
 import { assetFileSize, unique } from '../../../cms/validations'
 
 import { FluidImageType } from '../../../cms/constants'
+import Track from './track'
 
 export default new ContentfulContentType({
     id: 'podcast',
@@ -48,6 +50,10 @@ export default new ContentfulContentType({
             id: 'soundCloudTrackID',
             name: 'SoundCloud Track ID',
             format: 'dateonly',
+        }),
+        new LinkField({
+            name: 'Track',
+            link: Track,
         }),
     ],
 })

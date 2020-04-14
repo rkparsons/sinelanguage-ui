@@ -36,6 +36,9 @@ export const podcastFragment = graphql`
         }
 		date
 		soundCloudTrackID
+		track {
+            ...trackFragment
+        }
 	}
 `
 

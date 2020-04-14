@@ -30,6 +30,7 @@ export type Podcast = {
     }
 	date: Date
 	soundCloudTrackID: number
+	track: Track
 }
 
 export type Release = {
