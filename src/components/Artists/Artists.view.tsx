@@ -85,7 +85,7 @@ export default ({ artists }: ViewProps) => {
                 height={window.innerHeight - verticalBreakpoints[1]}
                 offset={verticalBreakpoints[1]}
             ></BlurLayer>
-            {/* {activeArtist && (
+            {activeArtist && (
                 <ArtistImage
                     height={window.innerHeight}
                     offset={window.innerWidth - window.innerHeight}
@@ -96,7 +96,7 @@ export default ({ artists }: ViewProps) => {
                         sizes={{ ...activeArtist.image.fluid, aspectRatio: 1 }}
                     />
                 </ArtistImage>
-            )} */}
+            )}
         </>
     )
 }
