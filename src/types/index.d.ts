@@ -1,4 +1,4 @@
-import { Track } from './track'
+import { SoundCloudTrackMetadata } from './soundCloudTrackMetadata'
 import { Waveform } from './waveform'
 
-export { Track, Waveform }
+export { SoundCloudTrackMetadata, Waveform }

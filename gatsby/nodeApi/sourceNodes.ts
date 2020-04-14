@@ -1,6 +1,6 @@
 import { GatsbyNode, SourceNodesArgs } from 'gatsby'
 
-import { Track } from '~/types'
+import { SoundCloudTrackMetadata } from '~/types'
 import { typeDefs } from '../../src/cms/nodes'
 
 const axios = require('axios')
@@ -46,23 +46,25 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async ({
     try {
         const response = await fetchUserResource('/tracks', userID, clientID)
 
-        const tracks: Track[] = await Promise.all(
+        const tracksMetadata: SoundCloudTrackMetadata[] = await Promise.all(
             response.data.map(
-                async (track: Track): Promise<Track> => {
-                    const samplesUrl = track.waveform_url.replace('.png', '.json')
+                async (
+                    trackMetadata: SoundCloudTrackMetadata
+                ): Promise<SoundCloudTrackMetadata> => {
+                    const samplesUrl = trackMetadata.waveform_url.replace('.png', '.json')
                     const samplesResponse = await axios.get(samplesUrl)
                     const maxValue = Math.max(...samplesResponse.data.samples)
                     const samples = samplesResponse.data.samples.map((x: number) => x / maxValue)
 
                     return {
-                        ...track,
+                        ...trackMetadata,
                         samples,
                     }
                 }
             )
         )
 
-        const entities = linkNodes([...tracks])
+        const entities = linkNodes([...tracksMetadata])
 
         entities.forEach((entity: any) =>
             createNode({

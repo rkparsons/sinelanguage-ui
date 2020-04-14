@@ -1,4 +1,4 @@
-import { Track } from '~/types'
+import { SoundCloudTrackMetadata } from '~/types'
 import { graphql } from 'gatsby'
 import { useStaticQuery } from 'gatsby'
 
@@ -15,4 +15,4 @@ export default () =>
                 }
             }
         }
-    `).allSoundcloudtrack.nodes as Track[]
+    `).allSoundcloudtrack.nodes as SoundCloudTrackMetadata[]

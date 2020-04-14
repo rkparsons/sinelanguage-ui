@@ -4,18 +4,18 @@ import { PlayArrow, Stop } from '@material-ui/icons'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 import { SVG } from './Waveform.style'
+import { SoundCloudTrackMetadata } from '~/types'
 import SquareImage from '~/components/SquareImage'
-import { Track } from '~/types'
 import moment from 'moment'
 import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 import useWindowSize from '~/hooks/useWindowSize'
 
 type ViewProps = {
     selectedMedia: Podcast | Release | Artist
-    tracks: Track[]
+    tracksMetadata: SoundCloudTrackMetadata[]
 }
 
-export default ({ selectedMedia, tracks }: ViewProps) => {
+export default ({ selectedMedia, tracksMetadata }: ViewProps) => {
     const [trackIndex, setTrackIndex] = useState(0)
     const windowSize = useWindowSize()
     const [timeStamp, setTimeStamp] = useState<string>('00:00:00')
@@ -32,13 +32,13 @@ export default ({ selectedMedia, tracks }: ViewProps) => {
             const pixelWidth = svgRef.current.getBoundingClientRect().width
             setSvgWidth(pixelWidth)
 
-            const noOfSamples = tracks[trackIndex].samples.length
+            const noOfSamples = tracksMetadata[trackIndex].samples.length
             const pixelsPerChunk = 5
             const numberOfChunks = pixelWidth / pixelsPerChunk
             const chunkSize = noOfSamples / numberOfChunks
             let chunks = []
             for (var i = 0; i < noOfSamples; i += chunkSize) {
-                chunks.push(tracks[trackIndex].samples.slice(i, i + chunkSize))
+                chunks.push(tracksMetadata[trackIndex].samples.slice(i, i + chunkSize))
             }
             const chunksAveraged = chunks.map(
                 chunk => chunk.reduce((a, b) => a + b, 0) / chunk.length
@@ -46,7 +46,7 @@ export default ({ selectedMedia, tracks }: ViewProps) => {
 
             setSamples(chunksAveraged)
         }
-    }, [windowSize, svgRef.current, tracks[trackIndex].soundcloud_id])
+    }, [windowSize, svgRef.current, tracksMetadata[trackIndex].soundcloud_id])
 
     useEffect(() => {
         if (audioRef.current) {
@@ -61,7 +61,8 @@ export default ({ selectedMedia, tracks }: ViewProps) => {
                 const progress =
                     (event.clientX - progressBar.left) / (progressBar.right - progressBar.left)
 
-                audioRef.current.currentTime = (progress * tracks[trackIndex].duration) / 1000
+                audioRef.current.currentTime =
+                    (progress * tracksMetadata[trackIndex].duration) / 1000
                 // setIsPlaying(true)
             }
         },
@@ -71,7 +72,7 @@ export default ({ selectedMedia, tracks }: ViewProps) => {
     const updatePlayStatus = () => {
         if (audioRef.current) {
             setTimeStamp(moment.utc(audioRef.current.currentTime * 1000).format('H:mm:ss'))
-            setPlayed((1000 * audioRef.current.currentTime) / tracks[trackIndex].duration)
+            setPlayed((1000 * audioRef.current.currentTime) / tracksMetadata[trackIndex].duration)
         }
     }
 
@@ -81,7 +82,7 @@ export default ({ selectedMedia, tracks }: ViewProps) => {
         <>
             <audio
                 ref={audioRef}
-                src={`${tracks[trackIndex].stream_url}?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
+                src={`${tracksMetadata[trackIndex].stream_url}?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
                 preload="auto"
             ></audio>
             <Grid container alignItems="flex-end">

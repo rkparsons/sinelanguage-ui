@@ -3,9 +3,8 @@ import React, { useContext } from 'react'
 
 import { AudioPlayer } from './AudioPlayer.style'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
-import { Track } from '~/types'
 import Waveform from '~/components/Waveform'
-import useSoundCloudTracks from '~/hooks/useSoundCloudTracks'
+import useSoundCloudTracks from '~/hooks/useSoundCloudMetadata'
 
 export default () => {
     const { selectedMedia } = useContext(SelectedMediaContext)
@@ -36,7 +35,7 @@ export default () => {
     if (selectedMedia && selectedTracksMetadata.length) {
         return (
             <AudioPlayer>
-                <Waveform selectedMedia={selectedMedia} tracks={selectedTracksMetadata} />
+                <Waveform selectedMedia={selectedMedia} tracksMetadata={selectedTracksMetadata} />
             </AudioPlayer>
         )
     } else {
