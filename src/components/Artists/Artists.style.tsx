@@ -52,6 +52,7 @@ export const InvertLayer = styled(({ width, children, ...rest }: InvertLayerProp
     <Box {...rest}>{children}</Box>
 ))`
     ${({ width }: InvertLayerProps) => `
+        text-align: right;
         width: ${width}px;
         ${ArtistRow}:hover & {
             color: black;
@@ -62,6 +63,7 @@ export const InvertLayer = styled(({ width, children, ...rest }: InvertLayerProp
 `
 
 export const InvertBlurLayer = styled(InvertLayer)`
+    text-align: left;
     ${ArtistRow}:hover & {
         backdrop-filter: blur(5px) invert(100%);
     }
