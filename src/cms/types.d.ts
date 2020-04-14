@@ -45,9 +45,7 @@ export type Release = {
         fluid: FluidObject
     }
 	date: Date
-	embeddedPlayer: {
-        embeddedPlayer: string
-    }
+	tracks: Track[]
 }
 
 export type SiteMetadata = {
@@ -62,5 +60,11 @@ export type SiteMetadata = {
             url: string
         }
     }
+}
+
+export type Track = {
+	__typename: string
+	title: string
+	soundCloudID: number
 }
 

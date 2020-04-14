@@ -6,6 +6,7 @@ import Field from './field'
 import FluidImageField from './fluidImageField'
 import ImageField from './imageField'
 import IntegerField from './integerField'
+import LinkArrayField from './linkArrayField'
 import LinkField from './linkField'
 import RichTextField from './richTextField'
 import SymbolArrayField from './symbolArrayField'
@@ -21,6 +22,7 @@ export {
     FluidImageField,
     ImageField,
     IntegerField,
+    LinkArrayField,
     LinkField,
     RichTextField,
     SymbolArrayField,

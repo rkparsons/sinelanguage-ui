@@ -12,16 +12,7 @@ type Props = {
 }
 
 export default ({ data }: Props) => {
-    const {
-        uid,
-        title,
-        artist,
-        format,
-        description,
-        image,
-        date,
-        embeddedPlayer,
-    } = data.contentfulRelease
+    const { uid, title, artist, format, description, image, date } = data.contentfulRelease
 
     return (
         <>

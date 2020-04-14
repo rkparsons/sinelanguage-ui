@@ -35,10 +35,6 @@ export const typeDefs = `
         description: String
     }
 
-	type contentfulReleaseEmbeddedPlayerTextNode implements Node {
-        embeddedPlayer: String
-    }
-
 	type ContentfulRelease implements Node {
 		title: String
 		uid: String
@@ -47,7 +43,7 @@ export const typeDefs = `
 		description: contentfulReleaseDescriptionTextNode
 		image: ContentfulAsset
 		date: Date @dateformat
-		embeddedPlayer: contentfulReleaseEmbeddedPlayerTextNode
+		tracks: [ContentfulTrack]
 	}
 
 	type contentfulSiteMetadataDescriptionTextNode implements Node {
@@ -59,6 +55,11 @@ export const typeDefs = `
 		url: String
 		description: contentfulSiteMetadataDescriptionTextNode
 		image: ContentfulAsset
+	}
+
+	type ContentfulTrack implements Node {
+		title: String
+		soundCloudID: Int
 	}
 
 `

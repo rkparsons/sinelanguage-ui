@@ -2,13 +2,15 @@ import {
     ContentfulContentType,
     DateField,
     FluidImageField,
+    LinkArrayField,
     LinkField,
     SymbolField,
     TextField,
 } from '../../../cms/models'
-import { assetFileSize, iframe, unique } from '../../../cms/validations'
+import { assetFileSize, unique } from '../../../cms/validations'
 
 import { FluidImageType } from '../../../cms/constants'
+import Track from './track'
 
 export default new ContentfulContentType({
     id: 'release',
@@ -58,12 +60,9 @@ export default new ContentfulContentType({
             widgetId: 'datePicker',
             format: 'dateonly',
         }),
-        new TextField({
-            name: 'Embedded Player',
-            required: false,
-            validations: [iframe],
-            widgetId: 'multipleLine',
-            helpText: 'Copy and paste the entire iframe tag for your embedded media',
+        new LinkArrayField({
+            name: 'Tracks',
+            link: Track,
         }),
     ],
 })
