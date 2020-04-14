@@ -69,7 +69,7 @@ export default ({ audio, track }: ViewProps) => {
 
     const updatePlayStatus = () => {
         if (audioRef.current) {
-            setTimeStamp(moment.utc(audioRef.current.currentTime * 1000).format('HH:mm:ss'))
+            setTimeStamp(moment.utc(audioRef.current.currentTime * 1000).format('H:mm:ss'))
             setPlayed((1000 * audioRef.current.currentTime) / track.duration)
         }
     }

@@ -9,6 +9,7 @@ type AudioPlayerProps = {
 export const AudioPlayer = styled(Box)`
     ${({ theme }: AudioPlayerProps) => `      
         position: fixed;
+        z-index: 1000;
         left: 0;
         bottom: 0;
         width: 100%;
