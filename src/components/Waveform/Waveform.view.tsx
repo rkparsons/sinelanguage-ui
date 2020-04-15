@@ -1,6 +1,6 @@
-import { Artist, Podcast, Release } from '~/cms/types'
+import { Artist, Podcast, Release, Track } from '~/cms/types'
 import { Grid, IconButton, Typography } from '@material-ui/core'
-import { PlayArrow, Stop } from '@material-ui/icons'
+import { PlayArrow, SkipNext, SkipPrevious, Stop } from '@material-ui/icons'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 import { SVG } from './Waveform.style'
@@ -78,6 +78,16 @@ export default ({ selectedMedia, tracksMetadata }: ViewProps) => {
 
     useRecursiveTimeout(updatePlayStatus, 1000)
 
+    const getTracks = (): Track[] => {
+        if (selectedMedia.__typename === 'ContentfulPodcast') {
+            return [(selectedMedia as Podcast).track]
+        } else if (selectedMedia.__typename === 'ContentfulRelease') {
+            return (selectedMedia as Release).tracks
+        } else {
+            return []
+        }
+    }
+
     return (
         <>
             <audio
@@ -88,8 +98,20 @@ export default ({ selectedMedia, tracksMetadata }: ViewProps) => {
             <Grid container alignItems="flex-end">
                 <Grid item xs={1}>
                     <SquareImage title={selectedMedia.title} image={selectedMedia.image} />
+                    <IconButton
+                        onClick={() => setTrackIndex(trackIndex - 1)}
+                        disabled={trackIndex === 0}
+                    >
+                        <SkipPrevious />
+                    </IconButton>
                     <IconButton onClick={() => setIsPlaying(!isPlaying)}>
                         {isPlaying ? <Stop /> : <PlayArrow />}
+                    </IconButton>
+                    <IconButton
+                        onClick={() => setTrackIndex(trackIndex + 1)}
+                        disabled={trackIndex === tracksMetadata.length - 1}
+                    >
+                        <SkipNext />
                     </IconButton>
                 </Grid>
                 <Grid item xs={11}>
@@ -98,6 +120,7 @@ export default ({ selectedMedia, tracksMetadata }: ViewProps) => {
                             <Typography>
                                 {selectedMedia.uid} - {selectedMedia.title}
                             </Typography>
+                            <Typography>{getTracks()[trackIndex].title}</Typography>
                             <Typography>{timeStamp}</Typography>
                         </Grid>
                         <Grid item xs={12}>
@@ -120,7 +143,7 @@ export default ({ selectedMedia, tracksMetadata }: ViewProps) => {
                                                 y1={lineHeight}
                                                 x2={(index + 1) * lineSpacing}
                                                 y2={(1 - sample) * lineHeight}
-                                                stroke={position < played ? 'red' : 'black'}
+                                                stroke={position < played ? 'black' : 'grey'}
                                                 strokeWidth={lineSpacing / 2}
                                             />
                                         )
