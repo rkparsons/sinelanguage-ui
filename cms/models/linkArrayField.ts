@@ -35,7 +35,7 @@ export default class LinkArrayField extends ContentfulField {
                 type: 'Link',
                 validations: [
                     {
-                        linkContentType: [link.name],
+                        linkContentType: [link.id],
                     },
                 ],
                 linkType: 'Entry',
