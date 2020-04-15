@@ -63,6 +63,7 @@ export default ({ selectedMedia, tracksMetadata }: ViewProps) => {
 
                 audioRef.current.currentTime =
                     (progress * tracksMetadata[trackIndex].duration) / 1000
+                updatePlayStatus()
                 setIsPlaying(true)
             }
         },
