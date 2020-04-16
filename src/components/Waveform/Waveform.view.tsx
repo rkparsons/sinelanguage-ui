@@ -3,6 +3,7 @@ import { Grid, IconButton, Typography } from '@material-ui/core'
 import { PlayArrow, SkipNext, SkipPrevious, Stop } from '@material-ui/icons'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
+import Controls from '~/components/AudioPlayer/Controls'
 import { SVG } from './Waveform.style'
 import SquareImage from '~/components/SquareImage'
 import moment from 'moment'
@@ -100,21 +101,13 @@ export default ({ media, tracks }: ViewProps) => {
             <Grid container alignItems="flex-end">
                 <Grid item xs={1}>
                     <SquareImage title={media.title} image={media.image} />
-                    <IconButton
-                        onClick={() => setTrackIndex(trackIndex - 1)}
-                        disabled={trackIndex === 0}
-                    >
-                        <SkipPrevious />
-                    </IconButton>
-                    <IconButton onClick={() => setIsPlaying(!isPlaying)}>
-                        {isPlaying ? <Stop /> : <PlayArrow />}
-                    </IconButton>
-                    <IconButton
-                        onClick={() => setTrackIndex(trackIndex + 1)}
-                        disabled={trackIndex === tracks.length - 1}
-                    >
-                        <SkipNext />
-                    </IconButton>
+                    <Controls
+                        trackIndex={trackIndex}
+                        setTrackIndex={setTrackIndex}
+                        isPlaying={isPlaying}
+                        setIsPlaying={setIsPlaying}
+                        trackCount={tracks.length}
+                    />
                 </Grid>
                 <Grid item xs={11}>
                     <Grid container direction="column">
