@@ -1,5 +1,5 @@
 import { Grid, Typography } from '@material-ui/core'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import Audio from '../Audio'
 import Waveform from '../Waveform'
@@ -18,6 +18,10 @@ type ViewProps = {
 export default ({ title, streamUrl, samples, durationMs, isPlaying, setIsPlaying }: ViewProps) => {
     const audioRef = useRef<HTMLAudioElement>(null)
     const [currentTimeMs, setCurrentTimeMs] = useState(0)
+
+    useEffect(() => {
+        setCurrentTimeMs(0)
+    }, [streamUrl])
 
     useRecursiveTimeout(() => {
         if (audioRef.current) {
