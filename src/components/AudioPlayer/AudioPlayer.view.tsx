@@ -1,13 +1,14 @@
-import { Grid, Typography } from '@material-ui/core'
 import { Podcast, Release, Track } from '~/cms/types'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 
-import Audio from '~/components/AudioPlayer/Audio'
+import Audio from './Audio'
 import { AudioPlayer } from './AudioPlayer.style'
-import Controls from '~/components/AudioPlayer/Controls'
+import Controls from './Controls'
+import { Grid } from '@material-ui/core'
+import Info from './Info'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import SquareImage from '~/components/SquareImage'
-import Waveform from '~/components/Waveform'
+import Waveform from './Waveform'
 import moment from 'moment'
 import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 
@@ -15,7 +16,7 @@ export default () => {
     const audioRef = useRef<HTMLAudioElement>(null)
     const [trackIndex, setTrackIndex] = useState(0)
     const [isPlaying, setIsPlaying] = useState(true)
-    const [timeStamp, setTimeStamp] = useState<string>('00:00:00')
+    const [timestamp, setTimestamp] = useState<string>('00:00:00')
     const [fractionPlayed, setFractionPlayed] = useState(0)
 
     const { selectedMedia } = useContext(SelectedMediaContext)
@@ -30,7 +31,7 @@ export default () => {
 
     const updatePlayStatus = () => {
         if (audioRef.current) {
-            setTimeStamp(moment.utc(audioRef.current.currentTime * 1000).format('H:mm:ss'))
+            setTimestamp(moment.utc(audioRef.current.currentTime * 1000).format('H:mm:ss'))
             setFractionPlayed(
                 (1000 * audioRef.current.currentTime) / selectedTracks[trackIndex].metadata.duration
             )
@@ -76,11 +77,10 @@ export default () => {
                     <Grid item xs={11}>
                         <Grid container direction="column">
                             <Grid item xs={12}>
-                                <Typography>
-                                    {selectedMedia.uid} - {selectedMedia.title}
-                                </Typography>
-                                <Typography>{selectedTracks[trackIndex].title}</Typography>
-                                <Typography>{timeStamp}</Typography>
+                                <Info
+                                    title={`${selectedMedia.uid} - ${selectedMedia.title}`}
+                                    timestamp={timestamp}
+                                />
                             </Grid>
                             <Grid item xs={12}>
                                 <Waveform

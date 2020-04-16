@@ -12,7 +12,7 @@ type ViewProps = {
 export default ({ samples, fractionPlayed, setFractionPlayed }: ViewProps) => {
     const windowSize = useWindowSize()
     const svgRef = useRef<SVGSVGElement>(null)
-    const [svgWidth, setSvgWidth] = useState<number>()
+    const [svgWidth, setSvgWidth] = useState<number>(window.innerWidth)
     const [samplesChunked, setSamplesChunked] = useState<number[]>([])
     const lineHeight = 50
 
