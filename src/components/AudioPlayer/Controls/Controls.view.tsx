@@ -1,4 +1,4 @@
-import { PlayArrow, SkipNext, SkipPrevious, Stop } from '@material-ui/icons'
+import { Pause, PlayArrow, SkipNext, SkipPrevious } from '@material-ui/icons'
 
 import { IconButton } from '@material-ui/core'
 import React from 'react'
@@ -34,7 +34,7 @@ export default ({
                 <SkipPrevious />
             </IconButton>
             <IconButton onClick={() => setIsPlaying(!isPlaying)}>
-                {isPlaying ? <Stop /> : <PlayArrow />}
+                {isPlaying ? <Pause /> : <PlayArrow />}
             </IconButton>
             <IconButton onClick={skipNext} disabled={trackIndex === trackCount - 1}>
                 <SkipNext />
