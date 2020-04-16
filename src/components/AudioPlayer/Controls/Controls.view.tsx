@@ -18,18 +18,25 @@ export default ({
     setIsPlaying,
     trackCount,
 }: ControlsProps) => {
+    const skipPrevious = () => {
+        setIsPlaying(false)
+        setTrackIndex(trackIndex - 1)
+    }
+
+    const skipNext = () => {
+        setIsPlaying(false)
+        setTrackIndex(trackIndex + 1)
+    }
+
     return (
         <>
-            <IconButton onClick={() => setTrackIndex(trackIndex - 1)} disabled={trackIndex === 0}>
+            <IconButton onClick={skipPrevious} disabled={trackIndex === 0}>
                 <SkipPrevious />
             </IconButton>
             <IconButton onClick={() => setIsPlaying(!isPlaying)}>
                 {isPlaying ? <Stop /> : <PlayArrow />}
             </IconButton>
-            <IconButton
-                onClick={() => setTrackIndex(trackIndex + 1)}
-                disabled={trackIndex === trackCount - 1}
-            >
+            <IconButton onClick={skipNext} disabled={trackIndex === trackCount - 1}>
                 <SkipNext />
             </IconButton>
         </>
