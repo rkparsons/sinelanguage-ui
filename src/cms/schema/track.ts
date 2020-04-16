@@ -1,4 +1,4 @@
-import { ContentfulContentType, IntegerField, SymbolField } from '../../../cms/models'
+import { ContentfulContentType, SoundCloudMetadataField, SymbolField } from '../../../cms/models'
 
 export default new ContentfulContentType({
     id: 'track',
@@ -9,11 +9,9 @@ export default new ContentfulContentType({
         new SymbolField({
             name: 'Title',
         }),
-        new IntegerField({
-            id: 'soundCloudID',
-            name: 'SoundCloud ID',
-            format: 'dateonly',
-            helpText: 'This is used to get streaming metadata from the SoundCloud API',
+        new SoundCloudMetadataField({
+            name: 'Metadata',
+            widgetId: 'bPHguxTpAJ71ExuaDuSyU',
         }),
     ],
 })

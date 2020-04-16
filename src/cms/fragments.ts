@@ -85,7 +85,12 @@ export const trackFragment = graphql`
 	fragment trackFragment on ContentfulTrack {
 		__typename
 		title
-		soundCloudID
+		metadata {
+            title
+            streamUrl
+            duration
+            samples
+        }
 	}
 `
 

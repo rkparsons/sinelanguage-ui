@@ -4,18 +4,17 @@ import { PlayArrow, SkipNext, SkipPrevious, Stop } from '@material-ui/icons'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 import { SVG } from './Waveform.style'
-import { SoundCloudTrackMetadata } from '~/types'
 import SquareImage from '~/components/SquareImage'
 import moment from 'moment'
 import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 import useWindowSize from '~/hooks/useWindowSize'
 
 type ViewProps = {
-    selectedMedia: Podcast | Release | Artist
-    tracksMetadata: SoundCloudTrackMetadata[]
+    media: Podcast | Release | Artist
+    tracks: Track[]
 }
 
-export default ({ selectedMedia, tracksMetadata }: ViewProps) => {
+export default ({ media, tracks }: ViewProps) => {
     const [trackIndex, setTrackIndex] = useState(0)
     const windowSize = useWindowSize()
     const [timeStamp, setTimeStamp] = useState<string>('00:00:00')
@@ -32,13 +31,13 @@ export default ({ selectedMedia, tracksMetadata }: ViewProps) => {
             const pixelWidth = svgRef.current.getBoundingClientRect().width
             setSvgWidth(pixelWidth)
 
-            const noOfSamples = tracksMetadata[trackIndex].samples.length
+            const noOfSamples = tracks[trackIndex].metadata.samples.length
             const pixelsPerChunk = 5
             const numberOfChunks = pixelWidth / pixelsPerChunk
             const chunkSize = noOfSamples / numberOfChunks
             let chunks = []
             for (var i = 0; i < noOfSamples; i += chunkSize) {
-                chunks.push(tracksMetadata[trackIndex].samples.slice(i, i + chunkSize))
+                chunks.push(tracks[trackIndex].metadata.samples.slice(i, i + chunkSize))
             }
             const chunksAveraged = chunks.map(
                 chunk => chunk.reduce((a, b) => a + b, 0) / chunk.length
@@ -46,7 +45,7 @@ export default ({ selectedMedia, tracksMetadata }: ViewProps) => {
 
             setSamples(chunksAveraged)
         }
-    }, [windowSize, svgRef.current, tracksMetadata[trackIndex].soundcloud_id])
+    }, [windowSize, svgRef.current, trackIndex, tracks])
 
     useEffect(() => {
         if (audioRef.current) {
@@ -62,7 +61,7 @@ export default ({ selectedMedia, tracksMetadata }: ViewProps) => {
                     (event.clientX - progressBar.left) / (progressBar.right - progressBar.left)
 
                 audioRef.current.currentTime =
-                    (progress * tracksMetadata[trackIndex].duration) / 1000
+                    (progress * tracks[trackIndex].metadata.duration) / 1000
                 updatePlayStatus()
                 setIsPlaying(true)
             }
@@ -73,32 +72,34 @@ export default ({ selectedMedia, tracksMetadata }: ViewProps) => {
     const updatePlayStatus = () => {
         if (audioRef.current) {
             setTimeStamp(moment.utc(audioRef.current.currentTime * 1000).format('H:mm:ss'))
-            setPlayed((1000 * audioRef.current.currentTime) / tracksMetadata[trackIndex].duration)
+            setPlayed((1000 * audioRef.current.currentTime) / tracks[trackIndex].metadata.duration)
         }
     }
 
     useRecursiveTimeout(updatePlayStatus, 1000)
 
     const getTracks = (): Track[] => {
-        if (selectedMedia.__typename === 'ContentfulPodcast') {
-            return [(selectedMedia as Podcast).track]
-        } else if (selectedMedia.__typename === 'ContentfulRelease') {
-            return (selectedMedia as Release).tracks
+        if (media.__typename === 'ContentfulPodcast') {
+            return [(media as Podcast).track]
+        } else if (media.__typename === 'ContentfulRelease') {
+            return (media as Release).tracks
         } else {
             return []
         }
     }
 
+    // todo: move client id to env vars
+
     return (
         <>
             <audio
                 ref={audioRef}
-                src={`${tracksMetadata[trackIndex].stream_url}?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
+                src={`${tracks[trackIndex].metadata.streamUrl}?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
                 preload="auto"
             ></audio>
             <Grid container alignItems="flex-end">
                 <Grid item xs={1}>
-                    <SquareImage title={selectedMedia.title} image={selectedMedia.image} />
+                    <SquareImage title={media.title} image={media.image} />
                     <IconButton
                         onClick={() => setTrackIndex(trackIndex - 1)}
                         disabled={trackIndex === 0}
@@ -110,7 +111,7 @@ export default ({ selectedMedia, tracksMetadata }: ViewProps) => {
                     </IconButton>
                     <IconButton
                         onClick={() => setTrackIndex(trackIndex + 1)}
-                        disabled={trackIndex === tracksMetadata.length - 1}
+                        disabled={trackIndex === tracks.length - 1}
                     >
                         <SkipNext />
                     </IconButton>
@@ -119,7 +120,7 @@ export default ({ selectedMedia, tracksMetadata }: ViewProps) => {
                     <Grid container direction="column">
                         <Grid item xs={12}>
                             <Typography>
-                                {selectedMedia.uid} - {selectedMedia.title}
+                                {media.uid} - {media.title}
                             </Typography>
                             <Typography>{getTracks()[trackIndex].title}</Typography>
                             <Typography>{timeStamp}</Typography>

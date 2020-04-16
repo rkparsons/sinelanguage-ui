@@ -9,6 +9,7 @@ import IntegerField from './integerField'
 import LinkArrayField from './linkArrayField'
 import LinkField from './linkField'
 import RichTextField from './richTextField'
+import SoundCloudMetadataField from './soundCloudmetadataField'
 import SymbolArrayField from './symbolArrayField'
 import SymbolField from '../models/symbolField'
 import TextField from './textField'
@@ -25,6 +26,7 @@ export {
     LinkArrayField,
     LinkField,
     RichTextField,
+    SoundCloudMetadataField,
     SymbolArrayField,
     SymbolField,
     TextField,

@@ -65,6 +65,11 @@ export type SiteMetadata = {
 export type Track = {
 	__typename: string
 	title: string
-	soundCloudID: number
+	metadata: {
+        title: string        
+        streamUrl: string
+        duration: number
+        samples: number[]
+    }
 }
 

@@ -11,6 +11,7 @@ export type FieldProps = {
     omitted?: boolean
     validations?: FieldValidation[]
     items?: FieldItems
+    widgetNamespace?: string
     widgetId?: string
     helpText?: string
     format?: string

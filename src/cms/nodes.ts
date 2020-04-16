@@ -57,9 +57,16 @@ export const typeDefs = `
 		image: ContentfulAsset
 	}
 
+	type contentfulTrackMetadataJsonNode implements Node {
+        title: String
+        streamUrl: String
+        duration: Int
+        samples: [Float]
+    }
+
 	type ContentfulTrack implements Node {
 		title: String
-		soundCloudID: Int
+		metadata: contentfulTrackMetadataJsonNode
 	}
 
 `

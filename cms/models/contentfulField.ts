@@ -19,6 +19,7 @@ export default abstract class ContentfulField extends Field {
         omitted = false,
         validations = [],
         items,
+        widgetNamespace = 'builtin',
         widgetId,
         helpText,
         format,
@@ -40,7 +41,7 @@ export default abstract class ContentfulField extends Field {
         if (widgetId) {
             this.control = {
                 fieldId: this.contentFields.id,
-                widgetNamespace: 'builtin',
+                widgetNamespace,
                 widgetId,
                 settings: {
                     helpText,
