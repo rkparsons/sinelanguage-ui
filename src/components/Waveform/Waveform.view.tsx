@@ -13,16 +13,25 @@ import useWindowSize from '~/hooks/useWindowSize'
 type ViewProps = {
     media: Podcast | Release | Artist
     tracks: Track[]
+    trackIndex: number
+    setTrackIndex(trackIndex: number): void
+    isPlaying: boolean
+    setIsPlaying(isPlaying: boolean): void
 }
 
-export default ({ media, tracks }: ViewProps) => {
-    const [trackIndex, setTrackIndex] = useState(0)
+export default ({
+    media,
+    tracks,
+    trackIndex,
+    setTrackIndex,
+    isPlaying,
+    setIsPlaying,
+}: ViewProps) => {
     const windowSize = useWindowSize()
     const [timeStamp, setTimeStamp] = useState<string>('00:00:00')
     const [played, setPlayed] = useState<number>(0)
     const audioRef = useRef<HTMLAudioElement>(null)
     const svgRef = useRef<SVGSVGElement>(null)
-    const [isPlaying, setIsPlaying] = useState(true)
     const [svgWidth, setSvgWidth] = useState<number>()
     const [samples, setSamples] = useState<number[]>([])
     const lineHeight = 50
