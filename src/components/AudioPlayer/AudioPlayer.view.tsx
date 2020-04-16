@@ -1,7 +1,8 @@
 import { Grid, Typography } from '@material-ui/core'
 import { Podcast, Release, Track } from '~/cms/types'
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 
+import Audio from '~/components/AudioPlayer/Audio'
 import { AudioPlayer } from './AudioPlayer.style'
 import Controls from '~/components/AudioPlayer/Controls'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
@@ -87,11 +88,7 @@ export default () => {
                                     fractionPlayed={fractionPlayed}
                                     setFractionPlayed={onWaveformClick}
                                 />
-                                <audio
-                                    ref={audioRef}
-                                    src={`${selectedTracks[trackIndex].metadata.streamUrl}?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
-                                    preload="auto"
-                                ></audio>
+                                <Audio track={selectedTracks[trackIndex]} audioRef={audioRef} />
                             </Grid>
                         </Grid>
                     </Grid>

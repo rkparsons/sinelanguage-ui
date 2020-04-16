@@ -50,8 +50,6 @@ export default ({ samples, fractionPlayed, setFractionPlayed }: ViewProps) => {
         [svgRef.current]
     )
 
-    // todo: move client id to env vars
-
     return (
         <>
             <SVG
