@@ -6,10 +6,10 @@ import useWindowSize from '~/hooks/useWindowSize'
 type ViewProps = {
     samples: number[]
     fractionPlayed: number
-    setFractionPlayed(fractionPlayed: number): void
+    onClick(fractionPlayed: number): void
 }
 
-export default ({ samples, fractionPlayed, setFractionPlayed }: ViewProps) => {
+export default ({ samples, fractionPlayed, onClick }: ViewProps) => {
     const windowSize = useWindowSize()
     const svgRef = useRef<SVGSVGElement>(null)
     const [svgWidth, setSvgWidth] = useState<number>(window.innerWidth)
@@ -44,7 +44,7 @@ export default ({ samples, fractionPlayed, setFractionPlayed }: ViewProps) => {
                 const progress =
                     (event.clientX - progressBar.left) / (progressBar.right - progressBar.left)
 
-                setFractionPlayed(progress)
+                onClick(progress)
             }
         },
         [svgRef.current]

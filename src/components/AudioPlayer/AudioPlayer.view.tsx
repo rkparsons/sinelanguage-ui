@@ -1,5 +1,5 @@
 import { Podcast, Release, Track } from '~/cms/types'
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 
 import Audio from './Audio'
 import { AudioPlayer } from './AudioPlayer.style'
@@ -10,14 +10,13 @@ import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import SquareImage from '~/components/SquareImage'
 import Waveform from './Waveform'
 import moment from 'moment'
-import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 
 export default () => {
-    const audioRef = useRef<HTMLAudioElement>(null)
     const [trackIndex, setTrackIndex] = useState(0)
     const [isPlaying, setIsPlaying] = useState(true)
-    const [timestamp, setTimestamp] = useState<string>('00:00:00')
     const [fractionPlayed, setFractionPlayed] = useState(0)
+    const [startTimeMs, setStartTimeMs] = useState(0)
+    const [timestamp, setTimestamp] = useState<string>('00:00:00')
 
     const { selectedMedia } = useContext(SelectedMediaContext)
 
@@ -29,34 +28,27 @@ export default () => {
         selectedTracks.push(...(selectedMedia as Release).tracks)
     }
 
-    const updatePlayStatus = () => {
-        if (audioRef.current) {
-            setTimestamp(moment.utc(audioRef.current.currentTime * 1000).format('H:mm:ss'))
-            setFractionPlayed(
-                (1000 * audioRef.current.currentTime) / selectedTracks[trackIndex].metadata.duration
-            )
-        }
+    const updatePlayStatus = (currentTimeMs: number) => {
+        setFractionPlayed(
+            selectedTracks.length ? currentTimeMs / selectedTracks[trackIndex].metadata.duration : 0
+        )
+        setTimestamp(moment.utc(currentTimeMs).format('H:mm:ss'))
     }
 
-    useRecursiveTimeout(updatePlayStatus, 1000)
+    const handleWaveformClick = (progress: number) => {
+        const newTimeMs = progress * selectedTracks[trackIndex].metadata.duration
 
-    const onWaveformClick = (progress: number) => {
-        if (audioRef.current) {
-            audioRef.current.currentTime =
-                (progress * selectedTracks[trackIndex].metadata.duration) / 1000
-            updatePlayStatus()
-            setIsPlaying(true)
-        }
+        setStartTimeMs(newTimeMs)
+        updatePlayStatus(newTimeMs)
+        setIsPlaying(true)
     }
 
-    useEffect(() => {
-        if (audioRef.current) {
-            isPlaying ? audioRef.current.play() : audioRef.current.pause()
-        }
-    }, [isPlaying, audioRef.current])
+    const handleTimeUpdate = useCallback((currentTimeMs: number) => {
+        updatePlayStatus(currentTimeMs)
+    }, [])
 
     useEffect(() => {
-        updatePlayStatus()
+        updatePlayStatus(0)
         setIsPlaying(true)
     }, [trackIndex])
 
@@ -86,9 +78,14 @@ export default () => {
                                 <Waveform
                                     samples={selectedTracks[trackIndex].metadata.samples}
                                     fractionPlayed={fractionPlayed}
-                                    setFractionPlayed={onWaveformClick}
+                                    onClick={handleWaveformClick}
                                 />
-                                <Audio track={selectedTracks[trackIndex]} audioRef={audioRef} />
+                                <Audio
+                                    src={`${selectedTracks[trackIndex].metadata.streamUrl}?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
+                                    isPlaying={isPlaying}
+                                    startTimeMs={startTimeMs}
+                                    onTimeUpdate={handleTimeUpdate}
+                                />
                             </Grid>
                         </Grid>
                     </Grid>
