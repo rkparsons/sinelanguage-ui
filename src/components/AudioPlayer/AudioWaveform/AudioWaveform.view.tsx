@@ -2,55 +2,48 @@ import { Grid, Typography } from '@material-ui/core'
 import React, { useRef, useState } from 'react'
 
 import Audio from '../Audio'
-import { Track } from '~/cms/types'
 import Waveform from '../Waveform'
 import moment from 'moment'
 import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 
 type ViewProps = {
-    track: Track
+    title: string
+    streamUrl: string
+    samples: number[]
+    durationMs: number
     isPlaying: boolean
     setIsPlaying(isPlaying: boolean): void
 }
 
-// todo: move clientId to env vars
-export default ({ track, isPlaying, setIsPlaying }: ViewProps) => {
+export default ({ title, streamUrl, samples, durationMs, isPlaying, setIsPlaying }: ViewProps) => {
     const audioRef = useRef<HTMLAudioElement>(null)
-    const [milliseconds, setMilliseconds] = useState(0)
-
-    const handleWaveformClick = (progress: number) => {
-        const currentTimeMs = progress * track.metadata.duration
-        if (audioRef.current) {
-            audioRef.current.currentTime = currentTimeMs
-        }
-
-        setMilliseconds(currentTimeMs)
-        setIsPlaying(true)
-    }
+    const [currentTimeMs, setCurrentTimeMs] = useState(0)
 
     useRecursiveTimeout(() => {
         if (audioRef.current) {
-            setMilliseconds(audioRef.current.currentTime * 1000)
+            setCurrentTimeMs(audioRef.current.currentTime * 1000)
         }
     }, 1000)
 
     return (
         <Grid container direction="column">
             <Grid item xs={12}>
-                <Typography>{track.title}</Typography>
-                <Typography>{moment.utc(milliseconds).format('H:mm:ss')}</Typography>
+                <Typography>{title}</Typography>
+                <Typography>
+                    {moment.utc(currentTimeMs).format('H:mm:ss')} /{' '}
+                    {moment.utc(durationMs).format('H:mm:ss')}
+                </Typography>
             </Grid>
             <Grid item xs={12}>
                 <Waveform
-                    samples={track.metadata.samples}
-                    fractionPlayed={milliseconds / track.metadata.duration}
-                    onClick={handleWaveformClick}
-                />
-                <Audio
                     audioRef={audioRef}
-                    src={`${track.metadata.streamUrl}?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
-                    isPlaying={isPlaying}
+                    samples={samples}
+                    currentTimeMs={currentTimeMs}
+                    setCurrentTimeMs={setCurrentTimeMs}
+                    durationMs={durationMs}
+                    setIsPlaying={setIsPlaying}
                 />
+                <Audio audioRef={audioRef} src={streamUrl} isPlaying={isPlaying} />
             </Grid>
         </Grid>
     )

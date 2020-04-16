@@ -8,6 +8,7 @@ import { Grid } from '@material-ui/core'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import SquareImage from '~/components/SquareImage'
 
+// todo: move clientId to env vars
 export default () => {
     const [trackIndex, setTrackIndex] = useState(0)
     const [isPlaying, setIsPlaying] = useState(true)
@@ -42,7 +43,10 @@ export default () => {
                     </Grid>
                     <Grid item xs={11}>
                         <AudioWaveform
-                            track={selectedTracks[trackIndex]}
+                            title={selectedTracks[trackIndex].metadata.title}
+                            streamUrl={`${selectedTracks[trackIndex].metadata.streamUrl}?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
+                            samples={selectedTracks[trackIndex].metadata.samples}
+                            durationMs={selectedTracks[trackIndex].metadata.duration}
                             isPlaying={isPlaying}
                             setIsPlaying={setIsPlaying}
                         />

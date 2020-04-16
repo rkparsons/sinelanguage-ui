@@ -1,15 +1,25 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { RefObject, useEffect, useRef, useState } from 'react'
 
 import { SVG } from './Waveform.style'
 import useWindowSize from '~/hooks/useWindowSize'
 
 type ViewProps = {
+    audioRef: RefObject<HTMLAudioElement>
     samples: number[]
-    fractionPlayed: number
-    onClick(fractionPlayed: number): void
+    currentTimeMs: number
+    setCurrentTimeMs(milliseconds: number): void
+    durationMs: number
+    setIsPlaying(isPlaying: boolean): void
 }
 
-export default ({ samples, fractionPlayed, onClick }: ViewProps) => {
+export default ({
+    audioRef,
+    samples,
+    currentTimeMs,
+    setCurrentTimeMs,
+    durationMs,
+    setIsPlaying,
+}: ViewProps) => {
     const windowSize = useWindowSize()
     const svgRef = useRef<SVGSVGElement>(null)
     const [svgWidth, setSvgWidth] = useState<number>(window.innerWidth)
@@ -37,18 +47,19 @@ export default ({ samples, fractionPlayed, onClick }: ViewProps) => {
         }
     }, [windowSize, svgRef.current, samples, setSvgWidth, setSamplesChunked])
 
-    const handleWaveformClick = useCallback(
-        (event: React.MouseEvent) => {
-            if (svgRef.current) {
-                const progressBar = svgRef.current.getBoundingClientRect()
-                const progress =
-                    (event.clientX - progressBar.left) / (progressBar.right - progressBar.left)
+    const handleWaveformClick = (event: React.MouseEvent) => {
+        if (!svgRef.current || !audioRef.current) {
+            return
+        }
 
-                onClick(progress)
-            }
-        },
-        [svgRef.current]
-    )
+        const progressBar = svgRef.current.getBoundingClientRect()
+        const progressFraction =
+            (event.clientX - progressBar.left) / (progressBar.right - progressBar.left)
+        const newTimeMs = progressFraction * durationMs
+        audioRef.current.currentTime = newTimeMs / 1000
+        setCurrentTimeMs(newTimeMs)
+        setIsPlaying(true)
+    }
 
     return (
         <>
@@ -71,7 +82,7 @@ export default ({ samples, fractionPlayed, onClick }: ViewProps) => {
                                 y1={lineHeight}
                                 x2={(index + 1) * lineSpacing}
                                 y2={(1 - sample) * lineHeight}
-                                stroke={position < fractionPlayed ? 'black' : 'grey'}
+                                stroke={position < currentTimeMs / durationMs ? 'black' : 'grey'}
                                 strokeWidth={lineSpacing / 2}
                             />
                         )
