@@ -24,10 +24,14 @@ export default () => {
     }
 
     useEffect(() => {
+        setTrackIndex(0)
+    }, [selectedMedia, setTrackIndex])
+
+    useEffect(() => {
         setIsPlaying(true)
     }, [trackIndex, setIsPlaying])
 
-    if (selectedMedia && selectedTracks.length) {
+    if (selectedMedia && selectedTracks[trackIndex]) {
         return (
             <AudioPlayer>
                 <Grid container alignItems="flex-end">
