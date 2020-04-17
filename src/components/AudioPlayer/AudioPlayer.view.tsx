@@ -1,11 +1,12 @@
+import { Artwork, AudioPlayer, Visualisation } from './AudioPlayer.style'
 import { Podcast, Release, Track } from '~/cms/types'
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 
-import Artwork from './Artwork'
-import { AudioPlayer } from './AudioPlayer.style'
+import Analyser from './Analyser'
 import Controls from './Controls'
 import { Grid } from '@material-ui/core'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
+import SquareImage from '~/components/SquareImage'
 import TimeControl from './TimeControl'
 
 // todo: move clientId to env vars
@@ -37,7 +38,13 @@ export default () => {
             <AudioPlayer>
                 <Grid container alignItems="stretch" spacing={5}>
                     <Grid item xs={1}>
-                        <Artwork title={selectedMedia.title} image={selectedMedia.image} />
+                        <Artwork>
+                            <SquareImage title={selectedMedia.title} image={selectedMedia.image} />
+
+                            {/* <Visualisation>
+                                <Analyser audioRef={audioRef} />
+                            </Visualisation> */}
+                        </Artwork>
                         <Controls
                             trackIndex={trackIndex}
                             setTrackIndex={setTrackIndex}

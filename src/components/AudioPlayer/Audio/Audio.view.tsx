@@ -21,5 +21,5 @@ export default memo(({ src, audioRef, isPlaying }: ViewProps) => {
         }
     }, [isPlaying, audioRef.current])
 
-    return <audio ref={audioRef} src={src} preload="auto"></audio>
+    return <audio ref={audioRef} src={src} preload="auto" crossOrigin="anonymous"></audio>
 })
