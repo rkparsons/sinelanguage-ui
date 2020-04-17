@@ -40,7 +40,7 @@ export default ({
                 chunks.push(samples.slice(i, i + chunkSize))
             }
             const chunksAveraged = chunks.map(
-                chunk => chunk.reduce((a, b) => a + b, 0) / chunk.length
+                (chunk) => chunk.reduce((a, b) => a + b, 0) / chunk.length
             )
 
             setSamplesChunked(chunksAveraged)
@@ -69,6 +69,7 @@ export default ({
                 onClick={handleWaveformClick}
                 viewBox={`0 0 ${svgWidth} ${lineHeight}`}
                 preserveAspectRatio="none"
+                transform={`scale(1, -1)`}
             >
                 {svgWidth &&
                     samplesChunked.map((sample, index) => {
@@ -76,14 +77,13 @@ export default ({
                         const lineSpacing = svgWidth / (samplesChunked.length + 1)
 
                         return (
-                            <line
+                            <rect
                                 key={index}
-                                x1={(index + 1) * lineSpacing}
-                                y1={lineHeight}
-                                x2={(index + 1) * lineSpacing}
-                                y2={(1 - sample) * lineHeight}
-                                stroke={position < currentTimeMs / durationMs ? 'black' : 'grey'}
-                                strokeWidth={lineSpacing / 2}
+                                x={(index + 1) * lineSpacing}
+                                y={0}
+                                width={lineSpacing / 2}
+                                height={sample * lineHeight}
+                                fill={position < currentTimeMs / durationMs ? 'black' : 'grey'}
                             />
                         )
                     })}
