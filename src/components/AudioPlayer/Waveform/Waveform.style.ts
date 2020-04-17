@@ -5,6 +5,6 @@ export const SVG = styled.svg`
     cursor: pointer;
 
     rect {
-        transition: height 0.2s ease-in-out;
+        transition: height 0.25s ease-in;
     }
 `
