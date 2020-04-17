@@ -23,7 +23,7 @@ export default ({
     const windowSize = useWindowSize()
     const svgRef = useRef<SVGSVGElement>(null)
     const [svgWidth, setSvgWidth] = useState<number>(window.innerWidth)
-    const [samplesChunked, setSamplesChunked] = useState<number[]>([])
+    const [samplesChunked, setSamplesChunked] = useState<number[]>(new Array(1800).fill(0))
     const lineHeight = 50
 
     useEffect(() => {
