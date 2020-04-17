@@ -34,7 +34,7 @@ export default () => {
     if (selectedMedia && selectedTracks[trackIndex]) {
         return (
             <AudioPlayer>
-                <Grid container alignItems="flex-end" spacing={5}>
+                <Grid container alignItems="stretch" spacing={5}>
                     <Grid item xs={1}>
                         <SquareImage title={selectedMedia.title} image={selectedMedia.image} />
                         <Controls

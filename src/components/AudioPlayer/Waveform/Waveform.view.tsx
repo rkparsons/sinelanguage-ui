@@ -1,5 +1,6 @@
 import React, { RefObject, useEffect, useRef, useState } from 'react'
 
+import { Grid } from '@material-ui/core'
 import { SVG } from './Waveform.style'
 import useWindowSize from '~/hooks/useWindowSize'
 
@@ -10,6 +11,7 @@ type ViewProps = {
     setCurrentTimeMs(milliseconds: number): void
     durationMs: number
     setIsPlaying(isPlaying: boolean): void
+    volume: number
 }
 
 export default ({
@@ -19,12 +21,13 @@ export default ({
     setCurrentTimeMs,
     durationMs,
     setIsPlaying,
+    volume,
 }: ViewProps) => {
     const windowSize = useWindowSize()
     const svgRef = useRef<SVGSVGElement>(null)
     const [svgWidth, setSvgWidth] = useState<number>(window.innerWidth)
     const [samplesChunked, setSamplesChunked] = useState<number[]>(new Array(1800).fill(0))
-    const lineHeight = 50
+    const lineHeight = 75
 
     useEffect(() => {
         if (svgRef.current) {
@@ -62,32 +65,30 @@ export default ({
     }
 
     return (
-        <>
-            <SVG
-                ref={svgRef}
-                height={lineHeight}
-                onClick={handleWaveformClick}
-                viewBox={`0 0 ${svgWidth} ${lineHeight}`}
-                preserveAspectRatio="none"
-                transform={`scale(1, -1)`}
-            >
-                {svgWidth &&
-                    samplesChunked.map((sample, index) => {
-                        const position = index / samplesChunked.length
-                        const lineSpacing = svgWidth / (samplesChunked.length + 1)
+        <SVG
+            ref={svgRef}
+            height={(volume / 100.0) * lineHeight}
+            onClick={handleWaveformClick}
+            viewBox={`0 0 ${svgWidth} ${lineHeight}`}
+            preserveAspectRatio="none"
+            transform={`scale(1, -1)`}
+        >
+            {svgWidth &&
+                samplesChunked.map((sample, index) => {
+                    const position = index / samplesChunked.length
+                    const lineSpacing = svgWidth / (samplesChunked.length + 1)
 
-                        return (
-                            <rect
-                                key={index}
-                                x={(index + 1) * lineSpacing}
-                                y={0}
-                                width={lineSpacing / 2}
-                                height={sample * lineHeight}
-                                fill={position < currentTimeMs / durationMs ? 'black' : 'grey'}
-                            />
-                        )
-                    })}
-            </SVG>
-        </>
+                    return (
+                        <rect
+                            key={index}
+                            x={(index + 1) * lineSpacing}
+                            y={0}
+                            width={lineSpacing / 2}
+                            height={sample * lineHeight}
+                            fill={position < currentTimeMs / durationMs ? 'black' : 'grey'}
+                        />
+                    )
+                })}
+        </SVG>
     )
 }

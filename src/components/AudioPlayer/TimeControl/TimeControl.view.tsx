@@ -2,6 +2,7 @@ import { Grid, Typography } from '@material-ui/core'
 import React, { useEffect, useRef, useState } from 'react'
 
 import Audio from '../Audio'
+import { TimeControl } from './TimeControl.style'
 import Waveform from '../Waveform'
 import moment from 'moment'
 import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
@@ -47,15 +48,15 @@ export default ({
     }, [volume, audioRef.current])
 
     return (
-        <Grid container direction="column">
-            <Grid item xs={12}>
+        <TimeControl container direction="column" justify="space-between" alignItems="stretch">
+            <Grid item>
                 <Typography>{title}</Typography>
                 <Typography>
                     {moment.utc(currentTimeMs).format('H:mm:ss')} /{' '}
                     {moment.utc(durationMs).format('H:mm:ss')}
                 </Typography>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item>
                 <Waveform
                     audioRef={audioRef}
                     samples={samples}
@@ -63,9 +64,10 @@ export default ({
                     setCurrentTimeMs={setCurrentTimeMs}
                     durationMs={durationMs}
                     setIsPlaying={setIsPlaying}
+                    volume={volume}
                 />
                 <Audio audioRef={audioRef} src={streamUrl} isPlaying={isPlaying} />
             </Grid>
-        </Grid>
+        </TimeControl>
     )
 }
