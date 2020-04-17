@@ -15,7 +15,7 @@ export const AudioPlayer = styled(Box)`
         width: 100%;
         background-color: rgba(255, 255, 255, 0.15);
         backdrop-filter: blur(10px);
-        padding-left: ${theme.spacing(5)};
-        padding-right: ${theme.spacing(5)};
+        padding: ${theme.spacing(5)};
+        padding-bottom: 0;
     `}
 `
