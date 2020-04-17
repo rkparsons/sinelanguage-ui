@@ -7,7 +7,8 @@ type AudioPlayerProps = {
 }
 
 export const AudioPlayer = styled(Box)`
-    ${({ theme }: AudioPlayerProps) => `      
+    ${({ theme }: AudioPlayerProps) => `    
+        color: white;  
         position: fixed;
         z-index: 1000;
         left: 0;
@@ -23,20 +24,4 @@ export const AudioPlayer = styled(Box)`
 export const Artwork = styled(Box)`
     cursor: pointer;
     position: relative;
-`
-
-export const Visualisation = styled(Box)`
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 3000;
-    background-color: black;
-    opacity: 0;
-    transition: opacity 0.1s linear;
-
-    &:hover {
-        opacity: 0.7;
-    }
 `

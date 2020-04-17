@@ -3,7 +3,7 @@ import red from '@material-ui/core/colors/red'
 
 export default {
     primary: {
-        main: '#000000',
+        main: '#ffffff',
     },
     secondary: pink,
     error: red,

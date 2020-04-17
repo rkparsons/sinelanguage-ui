@@ -34,7 +34,7 @@ export default (isDarkMode = false) =>
                     letterSpacing: -0.52,
                 },
             },
-            spacing: factor => `${0.25 * factor}rem`,
+            spacing: (factor) => `${0.25 * factor}rem`,
             palette: {
                 type: isDarkMode ? 'dark' : 'light',
                 ...palette,
