@@ -32,6 +32,11 @@ export const Visualisation = styled(Box)`
     top: 0;
     bottom: 0;
     z-index: 3000;
-    background-color: white;
-    opacity: 0.5;
+    background-color: black;
+    opacity: 0;
+    transition: opacity 0.1s linear;
+
+    &:hover {
+        opacity: 0.7;
+    }
 `

@@ -8,10 +8,12 @@ import { Grid } from '@material-ui/core'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import SquareImage from '~/components/SquareImage'
 import TimeControl from './TimeControl'
+import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 
 // todo: move clientId to env vars
 export default () => {
     const audioRef = useRef<HTMLAudioElement>(null)
+    const [isAudioLoaded, setIsAudioLoaded] = useState(false)
     const { selectedMedia } = useContext(SelectedMediaContext)
 
     const getTracks = useCallback(() => {
@@ -33,6 +35,13 @@ export default () => {
         setTrackIndex(0)
     }, [selectedMedia, setTrackIndex])
 
+    // todo: replace this polling with a callback from where audio is initiated
+    useRecursiveTimeout(() => {
+        if (audioRef.current) {
+            setIsAudioLoaded(true)
+        }
+    }, 1000)
+
     if (selectedMedia && selectedTracks[trackIndex]) {
         return (
             <AudioPlayer>
@@ -41,9 +50,11 @@ export default () => {
                         <Artwork>
                             <SquareImage title={selectedMedia.title} image={selectedMedia.image} />
 
-                            {/* <Visualisation>
-                                <Analyser audioRef={audioRef} />
-                            </Visualisation> */}
+                            {isAudioLoaded && (
+                                <Visualisation>
+                                    <Analyser audioRef={audioRef} />
+                                </Visualisation>
+                            )}
                         </Artwork>
                         <Controls
                             trackIndex={trackIndex}

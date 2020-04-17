@@ -8,13 +8,3 @@ export const TimeControl = styled(Grid)`
         padding-bottom: ${theme.spacing(1)};
     `}
 `
-
-export const Visualisation = styled(Box)`
-    position: absolute;
-    pointer-events: none;
-    z-index: 0;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-`
