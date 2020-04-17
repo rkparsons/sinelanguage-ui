@@ -22,10 +22,8 @@ export default () => {
 
     const [trackIndex, setTrackIndex] = useState(0)
     const [isPlaying, setIsPlaying] = useState(true)
-
+    const [volume, setVolume] = useState(100)
     const [selectedTracks, setSelectedTracks] = useState<Track[]>(getTracks())
-
-    console.log(selectedTracks.length, trackIndex)
 
     useEffect(() => {
         setIsPlaying(true)
@@ -36,7 +34,7 @@ export default () => {
     if (selectedMedia && selectedTracks[trackIndex]) {
         return (
             <AudioPlayer>
-                <Grid container alignItems="flex-end">
+                <Grid container alignItems="flex-end" spacing={5}>
                     <Grid item xs={1}>
                         <SquareImage title={selectedMedia.title} image={selectedMedia.image} />
                         <Controls
@@ -44,6 +42,8 @@ export default () => {
                             setTrackIndex={setTrackIndex}
                             isPlaying={isPlaying}
                             setIsPlaying={setIsPlaying}
+                            volume={volume}
+                            setVolume={setVolume}
                             trackCount={selectedTracks.length}
                         />
                     </Grid>
@@ -55,6 +55,8 @@ export default () => {
                             durationMs={selectedTracks[trackIndex].metadata.duration}
                             isPlaying={isPlaying}
                             setIsPlaying={setIsPlaying}
+                            volume={volume}
+                            setVolume={setVolume}
                         />
                     </Grid>
                 </Grid>

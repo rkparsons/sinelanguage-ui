@@ -13,9 +13,20 @@ type ViewProps = {
     durationMs: number
     isPlaying: boolean
     setIsPlaying(isPlaying: boolean): void
+    volume: number
+    setVolume(volume: number): void
 }
 
-export default ({ title, streamUrl, samples, durationMs, isPlaying, setIsPlaying }: ViewProps) => {
+export default ({
+    title,
+    streamUrl,
+    samples,
+    durationMs,
+    isPlaying,
+    setIsPlaying,
+    volume,
+    setVolume,
+}: ViewProps) => {
     const audioRef = useRef<HTMLAudioElement>(null)
     const [currentTimeMs, setCurrentTimeMs] = useState(0)
 
@@ -28,6 +39,12 @@ export default ({ title, streamUrl, samples, durationMs, isPlaying, setIsPlaying
             setCurrentTimeMs(audioRef.current.currentTime * 1000)
         }
     }, 1000)
+
+    useEffect(() => {
+        if (audioRef.current) {
+            audioRef.current.volume = volume / 100.0
+        }
+    }, [volume, audioRef.current])
 
     return (
         <Grid container direction="column">

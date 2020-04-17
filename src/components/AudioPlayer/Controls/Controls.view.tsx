@@ -1,6 +1,6 @@
-import { Pause, PlayArrow, SkipNext, SkipPrevious } from '@material-ui/icons'
+import { Grid, IconButton, Slider } from '@material-ui/core'
+import { Pause, PlayArrow, SkipNext, SkipPrevious, VolumeDown, VolumeUp } from '@material-ui/icons'
 
-import { IconButton } from '@material-ui/core'
 import React from 'react'
 
 type ControlsProps = {
@@ -8,6 +8,8 @@ type ControlsProps = {
     setTrackIndex(trackIndex: number): void
     isPlaying: boolean
     setIsPlaying(isPlaying: boolean): void
+    volume: number
+    setVolume(volume: number): void
     trackCount: number
 }
 
@@ -16,6 +18,8 @@ export default ({
     setTrackIndex,
     isPlaying,
     setIsPlaying,
+    volume,
+    setVolume,
     trackCount,
 }: ControlsProps) => {
     const skipPrevious = () => {
@@ -26,17 +30,32 @@ export default ({
         setTrackIndex(trackIndex + 1)
     }
 
+    const handleVolume = (event: any, newValue: number | number[]) => {
+        setVolume(newValue as number)
+    }
+
     return (
         <>
-            <IconButton onClick={skipPrevious} disabled={trackIndex === 0}>
-                <SkipPrevious />
-            </IconButton>
-            <IconButton onClick={() => setIsPlaying(!isPlaying)}>
-                {isPlaying ? <Pause /> : <PlayArrow />}
-            </IconButton>
-            <IconButton onClick={skipNext} disabled={trackIndex === trackCount - 1}>
-                <SkipNext />
-            </IconButton>
+            <Grid container>
+                <Grid item xs={4}>
+                    <IconButton onClick={skipPrevious} disabled={trackIndex === 0}>
+                        <SkipPrevious />
+                    </IconButton>
+                </Grid>
+                <Grid item xs={4}>
+                    <IconButton onClick={() => setIsPlaying(!isPlaying)}>
+                        {isPlaying ? <Pause /> : <PlayArrow />}
+                    </IconButton>
+                </Grid>
+                <Grid item xs={4}>
+                    <IconButton onClick={skipNext} disabled={trackIndex === trackCount - 1}>
+                        <SkipNext />
+                    </IconButton>
+                </Grid>
+                <Grid item xs={12}>
+                    <Slider value={volume} onChange={handleVolume} />
+                </Grid>
+            </Grid>
         </>
     )
 }
