@@ -14,7 +14,7 @@ export default memo(({ src, audioRef, isPlaying }: ViewProps) => {
             audioRef.current.play()
         }
     }, [src, audioRef.current])
-    console.log('src', src)
+
     useEffect(() => {
         if (audioRef.current) {
             isPlaying ? audioRef.current.play() : audioRef.current.pause()
