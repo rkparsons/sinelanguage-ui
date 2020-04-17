@@ -10,21 +10,26 @@ import TimeControl from './TimeControl'
 
 // todo: move clientId to env vars
 export default () => {
+    const { selectedMedia } = useContext(SelectedMediaContext)
+
+    const getTracks = useCallback(() => {
+        return selectedMedia?.__typename === 'ContentfulPodcast'
+            ? [(selectedMedia as Podcast).track]
+            : selectedMedia?.__typename === 'ContentfulRelease'
+            ? (selectedMedia as Release).tracks
+            : []
+    }, [selectedMedia])
+
     const [trackIndex, setTrackIndex] = useState(0)
     const [isPlaying, setIsPlaying] = useState(true)
 
-    const { selectedMedia } = useContext(SelectedMediaContext)
+    const [selectedTracks, setSelectedTracks] = useState<Track[]>(getTracks())
 
-    const selectedTracks: Track[] = []
-
-    if (selectedMedia?.__typename === 'ContentfulPodcast') {
-        selectedTracks.push((selectedMedia as Podcast).track)
-    } else if (selectedMedia?.__typename === 'ContentfulRelease') {
-        selectedTracks.push(...(selectedMedia as Release).tracks)
-    }
+    console.log(selectedTracks.length, trackIndex)
 
     useEffect(() => {
         setIsPlaying(true)
+        setSelectedTracks(getTracks())
         setTrackIndex(0)
     }, [selectedMedia, setTrackIndex])
 
