@@ -19,12 +19,10 @@ export default ({
     trackCount,
 }: ControlsProps) => {
     const skipPrevious = () => {
-        setIsPlaying(false)
         setTrackIndex(trackIndex - 1)
     }
 
     const skipNext = () => {
-        setIsPlaying(false)
         setTrackIndex(trackIndex + 1)
     }
 

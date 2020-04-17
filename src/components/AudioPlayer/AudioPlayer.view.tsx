@@ -24,12 +24,9 @@ export default () => {
     }
 
     useEffect(() => {
+        setIsPlaying(true)
         setTrackIndex(0)
     }, [selectedMedia, setTrackIndex])
-
-    useEffect(() => {
-        setIsPlaying(true)
-    }, [trackIndex, setIsPlaying])
 
     if (selectedMedia && selectedTracks[trackIndex]) {
         return (
