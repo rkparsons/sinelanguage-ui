@@ -43,7 +43,7 @@ export default ({
 
     useEffect(() => {
         if (audioRef.current) {
-            audioRef.current.volume = volume / 100.0
+            audioRef.current.volume = volume
         }
     }, [volume, audioRef.current])
 

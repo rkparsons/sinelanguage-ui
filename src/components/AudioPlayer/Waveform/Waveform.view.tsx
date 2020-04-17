@@ -67,7 +67,7 @@ export default ({
     return (
         <SVG
             ref={svgRef}
-            height={(volume / 100.0) * lineHeight}
+            height={volume * lineHeight}
             onClick={handleWaveformClick}
             viewBox={`0 0 ${svgWidth} ${lineHeight}`}
             preserveAspectRatio="none"

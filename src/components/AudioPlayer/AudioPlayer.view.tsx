@@ -22,7 +22,7 @@ export default () => {
 
     const [trackIndex, setTrackIndex] = useState(0)
     const [isPlaying, setIsPlaying] = useState(true)
-    const [volume, setVolume] = useState(100)
+    const [volume, setVolume] = useState(1)
     const [selectedTracks, setSelectedTracks] = useState<Track[]>(getTracks())
 
     useEffect(() => {
