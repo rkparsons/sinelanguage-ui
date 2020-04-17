@@ -1,5 +1,5 @@
 import { Grid, Typography } from '@material-ui/core'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { RefObject, useEffect, useState } from 'react'
 
 import Audio from '../Audio'
 import { TimeControl } from './TimeControl.style'
@@ -15,7 +15,7 @@ type ViewProps = {
     isPlaying: boolean
     setIsPlaying(isPlaying: boolean): void
     volume: number
-    setVolume(volume: number): void
+    audioRef: RefObject<HTMLAudioElement>
 }
 
 export default ({
@@ -26,9 +26,8 @@ export default ({
     isPlaying,
     setIsPlaying,
     volume,
-    setVolume,
+    audioRef,
 }: ViewProps) => {
-    const audioRef = useRef<HTMLAudioElement>(null)
     const [currentTimeMs, setCurrentTimeMs] = useState(0)
 
     useEffect(() => {

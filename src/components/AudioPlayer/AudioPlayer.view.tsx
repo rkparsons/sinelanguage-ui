@@ -1,15 +1,16 @@
 import { Podcast, Release, Track } from '~/cms/types'
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 
+import Artwork from './Artwork'
 import { AudioPlayer } from './AudioPlayer.style'
 import Controls from './Controls'
 import { Grid } from '@material-ui/core'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
-import SquareImage from '~/components/SquareImage'
 import TimeControl from './TimeControl'
 
 // todo: move clientId to env vars
 export default () => {
+    const audioRef = useRef<HTMLAudioElement>(null)
     const { selectedMedia } = useContext(SelectedMediaContext)
 
     const getTracks = useCallback(() => {
@@ -36,7 +37,7 @@ export default () => {
             <AudioPlayer>
                 <Grid container alignItems="stretch" spacing={5}>
                     <Grid item xs={1}>
-                        <SquareImage title={selectedMedia.title} image={selectedMedia.image} />
+                        <Artwork title={selectedMedia.title} image={selectedMedia.image} />
                         <Controls
                             trackIndex={trackIndex}
                             setTrackIndex={setTrackIndex}
@@ -56,7 +57,7 @@ export default () => {
                             isPlaying={isPlaying}
                             setIsPlaying={setIsPlaying}
                             volume={volume}
-                            setVolume={setVolume}
+                            audioRef={audioRef}
                         />
                     </Grid>
                 </Grid>
