@@ -24,7 +24,7 @@ export default (isDarkMode = false) =>
                     letterSpacing: 'normal',
                 },
                 h3: {
-                    fontSize: 28,
+                    fontSize: 32,
                     lineHeight: 1,
                     letterSpacing: -0.93,
                 },

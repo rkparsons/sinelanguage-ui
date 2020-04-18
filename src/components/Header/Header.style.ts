@@ -16,6 +16,6 @@ export const Header = styled.header`
 
 export const HeaderRow = styled(Grid)`
     ${({ theme }) => `
-        height: ${theme.spacing(8)};
+        height: ${theme.spacing(10)};
     `}
 `

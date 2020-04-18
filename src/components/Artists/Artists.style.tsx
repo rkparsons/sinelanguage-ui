@@ -1,7 +1,7 @@
+import { Box, Theme } from '@material-ui/core'
 import React, { ReactNode } from 'react'
+import { listRowPadding, marginSide } from '~/styles/sizes'
 
-import { Box } from '@material-ui/core'
-import { marginSide } from '~/styles/sizes'
 import styled from 'styled-components'
 
 export const Artists = styled(Box)`
@@ -12,7 +12,8 @@ export const Artists = styled(Box)`
         width: 100%;
         height: 100%;
         z-index: 500;
-        padding-top: ${theme.spacing(28)};
+        padding-top: ${theme.spacing(32)};
+        text-shadow: 1px 2px 4px #000000;
     `}
 `
 
@@ -58,6 +59,7 @@ export const BlurLayer = styled(({ width, height, offset, ...rest }: BlurLayerPr
 `
 
 type InvertLayerProps = {
+    theme: Theme
     width: number
     children: ReactNode
 }
@@ -65,10 +67,13 @@ type InvertLayerProps = {
 export const InvertLayer = styled(({ width, children, ...rest }: InvertLayerProps) => (
     <Box {...rest}>{children}</Box>
 ))`
-    ${({ width }: InvertLayerProps) => `
+    ${({ theme, width }: InvertLayerProps) => `
         text-align: right;
         width: ${width}px;
+        padding-top: ${theme.spacing(listRowPadding)};
+        padding-bottom: ${theme.spacing(listRowPadding)};
         ${ArtistRow}:hover & {
+            text-shadow: 1px 2px 4px #ffffff;
             color: black;
             background-color: rgba(255, 255, 255, 0);
             backdrop-filter: invert(100%);
@@ -77,10 +82,15 @@ export const InvertLayer = styled(({ width, children, ...rest }: InvertLayerProp
 `
 
 export const InvertBlurLayer = styled(InvertLayer)`
-    text-align: left;
-    ${ArtistRow}:hover & {
-        backdrop-filter: blur(7px) invert(100%);
-    }
+    ${({ theme }) => `
+        text-align: left;
+        padding-top: ${theme.spacing(listRowPadding)};
+        padding-bottom: ${theme.spacing(listRowPadding)};
+        ${ArtistRow}:hover & {
+            text-shadow: 1px 2px 4px #ffffff;
+            backdrop-filter: blur(7px) invert(100%);
+        }
+    `}
 `
 
 type ArtistImageProps = {

@@ -14,10 +14,9 @@ export default styled((props: GatsbyLinkProps<{}>) => (
     margin-right: 1.3rem;
     text-decoration: none;
     color: white;
+    text-shadow: 1px 2px 4px #000000;
 
     &:hover {
         color: black;
     }
-
-    text-shadow: 1px 2px 4px #000000;
 `
