@@ -4,6 +4,7 @@ import Artists from '~/components/Artists'
 import Dashboard from '~/components/Dashboard'
 import { Location } from '@reach/router'
 import React from 'react'
+import Releases from '~/components/Releases'
 import { graphql } from 'gatsby'
 
 type ViewProps = {
@@ -26,6 +27,9 @@ export default ({ data }: ViewProps) => (
             <>
                 {location.pathname === '/artists' && (
                     <Artists artists={data.allContentfulArtist.nodes} />
+                )}
+                {location.pathname === '/releases' && (
+                    <Releases releases={data.allContentfulRelease.nodes} />
                 )}
                 <Dashboard data={data} location={location} />
             </>

@@ -32,7 +32,7 @@ export default ({ data, location }: ViewProps) => {
             <Head title={title} />
             <Grid container>
                 {dashboardItems.map((dashboardItem, index) => (
-                    <Grid xs={3} item key={index}>
+                    <Grid item key={index}>
                         <DashboardItem dashboardItem={dashboardItem} />
                     </Grid>
                 ))}
