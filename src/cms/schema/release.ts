@@ -38,7 +38,6 @@ export default new ContentfulContentType({
         new SymbolField({
             name: 'Format',
             validations: [
-                unique,
                 {
                     in: ['Digital EP', 'Single', '12" Vinyl / Digital', 'Video'],
                 },
