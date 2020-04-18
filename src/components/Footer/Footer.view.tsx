@@ -14,9 +14,9 @@ type ViewProps = {
 export default ({ isDarkMode, setIsDarkMode }: ViewProps) => {
     return (
         <Footer>
-            {/* <Preferences />
+            <Preferences />
             <DarkModeToggle isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
-            <MailChimp /> */}
+            <MailChimp />
             <Logo src={logoSrc} />
             <span>SINE LANGUAGE &nbsp;&nbsp;&nbsp;&copy; 2018</span>
         </Footer>

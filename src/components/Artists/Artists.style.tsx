@@ -12,19 +12,21 @@ export const Artists = styled(Box)`
         width: 100%;
         height: 100%;
         z-index: 500;
-        padding-top: ${theme.spacing(25)};
+        padding-top: ${theme.spacing(28)};
     `}
 `
 
 export const ArtistRow = styled(Box)`
-    width: 100%;
-    color: white;
-    cursor: pointer;
-    text-transform: uppercase;
+    ${({ theme }) => `
+        width: 100%;
+        color: white;
+        cursor: pointer;
+        text-transform: uppercase;
+    `}
 `
 
 export const ArtistTitle = styled(Box)`
-    ${({ theme }) => `
+    ${({ theme }) => `    
         margin-left: ${theme.spacing(marginSide)};
     `}
 `
@@ -50,7 +52,7 @@ export const BlurLayer = styled(({ width, height, offset, ...rest }: BlurLayerPr
         width: ${width}px;
         height: ${height}px;
         margin-top: ${offset}px;
-        background-color: rgba(255, 255, 255, 0.13);
+        background-color: rgba(255, 255, 255, 0.08);
         backdrop-filter: blur(12px);
     `}
 `

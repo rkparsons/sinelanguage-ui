@@ -41,9 +41,9 @@ const Layout: FC<Props> = ({ isDarkMode, setIsDarkMode, children }: Props) => {
                                         <AudioPlayer />
                                     </Main>
                                 </Grid>
-                                <Grid item>
+                                {/* <Grid item>
                                     <Footer isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
-                                </Grid>
+                                </Grid> */}
                             </Grid>
                         </AppContainer>
                     </>

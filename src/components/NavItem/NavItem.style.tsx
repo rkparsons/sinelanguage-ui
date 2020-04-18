@@ -16,7 +16,7 @@ export default styled((props: GatsbyLinkProps<{}>) => (
     color: white;
 
     &:hover {
-        color: ${grey};
+        color: black;
     }
 
     text-shadow: 1px 2px 4px #000000;
