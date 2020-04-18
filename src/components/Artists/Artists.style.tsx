@@ -12,7 +12,7 @@ export const Artists = styled(Box)`
         width: 100%;
         height: 100%;
         z-index: 500;
-        padding-top: ${theme.spacing(20)};
+        padding-top: ${theme.spacing(25)};
     `}
 `
 
