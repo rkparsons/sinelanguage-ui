@@ -33,7 +33,7 @@ class Visualiser extends Component<AnalyserProps, AnalyserState> {
         const sliceWidth = (width * 1.0) / audioData.length
 
         context.lineWidth = 1
-        context.strokeStyle = '#ffffff'
+        context.strokeStyle = '#000000'
         context.clearRect(0, 0, width, height)
 
         context.beginPath()

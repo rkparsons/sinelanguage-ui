@@ -1,6 +1,7 @@
 import { Artist, Podcast, Release } from '~/cms/types'
 import { IconButton, Typography } from '@material-ui/core'
 
+import { DashboardItemInfo } from './DashboardItem.style'
 import { Link } from 'gatsby'
 import { PlayArrow } from '@material-ui/icons'
 import React from 'react'
@@ -19,8 +20,10 @@ export default ({ dashboardItem }: ViewProps) => {
         <>
             <Link to={`/${type}s/${uid}`.toLowerCase()}>
                 <SquareImage title={title} image={image} />
-                <Typography>{title}</Typography>
             </Link>
+            <DashboardItemInfo>
+                <Typography>{title}</Typography>
+            </DashboardItemInfo>
             {dashboardItem.__typename !== 'ContentfulEvent' && (
                 <SelectedMediaContext.Consumer>
                     {({ setSelectedMedia }) => (

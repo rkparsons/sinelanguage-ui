@@ -9,7 +9,7 @@ export default (isDarkMode = false) =>
     responsiveFontSizes(
         createMuiTheme({
             typography: {
-                fontFamily: 'TexgyreherosRegular',
+                fontFamily: 'HelveticaNowText',
                 allVariants: {
                     fontWeight: 500,
                 },

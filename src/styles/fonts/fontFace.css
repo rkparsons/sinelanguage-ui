@@ -1,23 +1,5 @@
 @font-face {
-    font-family: 'TexgyreherosRegular';
+    font-family: 'HelveticaNowText';
     font-display: 'block';
-    src: url('texgyreheroscn-regular.otf') format('opentype');
-}
-
-@font-face {
-    font-family: 'TexgyreherosItalic';
-    font-display: 'block';
-    src: url('texgyreheroscn-italic.otf') format('opentype');
-}
-
-@font-face {
-    font-family: 'TexgyreherosAlt';
-    font-display: 'block';
-    src: url('texgyreheros-regular.otf') format('opentype');
-}
-
-@font-face {
-    font-family: 'TexgyreherosAltItalic';
-    font-display: 'block';
-    src: url('texgyreheros-italic.otf') format('opentype');
+    src: url('helvetica-now-text.otf') format('opentype');
 }

@@ -51,10 +51,7 @@ export default ({
         <TimeControl container direction="column" justify="space-between" alignItems="stretch">
             <Grid item>
                 <Typography>{title}</Typography>
-                <Typography>
-                    {moment.utc(currentTimeMs).format('mm:ss')} /{' '}
-                    {moment.utc(durationMs).format('mm:ss')}
-                </Typography>
+                <Typography>{moment.utc(currentTimeMs).format('HH:mm:ss')}</Typography>
             </Grid>
             <Grid item>
                 {/* <Waveform

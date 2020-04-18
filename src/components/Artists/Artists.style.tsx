@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react'
 
 import { Box } from '@material-ui/core'
+import { marginSide } from '~/styles/sizes'
 import styled from 'styled-components'
 
 export const Artists = styled(Box)`
@@ -20,6 +21,18 @@ export const ArtistRow = styled(Box)`
     color: white;
     cursor: pointer;
     text-transform: uppercase;
+`
+
+export const ArtistTitle = styled(Box)`
+    ${({ theme }) => `
+        margin-left: ${theme.spacing(marginSide)};
+    `}
+`
+
+export const ArtistPlay = styled(Box)`
+    ${({ theme }) => `
+        margin-right: ${theme.spacing(marginSide)};
+    `}
 `
 
 type BlurLayerProps = {

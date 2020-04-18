@@ -1,6 +1,8 @@
 import {
     ArtistImage,
+    ArtistPlay,
     ArtistRow,
+    ArtistTitle,
     Artists,
     BlurLayer,
     InvertBlurLayer,
@@ -52,7 +54,7 @@ export default ({ artists }: ViewProps) => {
                     {artists.map((artist, index) => (
                         <Grid item xs={12} key={index}>
                             <RootRef
-                                rootRef={ref => {
+                                rootRef={(ref) => {
                                     rows.current.push(ref)
                                 }}
                             >
@@ -65,12 +67,18 @@ export default ({ artists }: ViewProps) => {
                                             <InvertBlurLayer
                                                 width={window.innerWidth - window.innerHeight}
                                             >
-                                                <Typography variant="h2">{artist.title}</Typography>
+                                                <ArtistTitle>
+                                                    <Typography variant="h3">
+                                                        {artist.title}
+                                                    </Typography>
+                                                </ArtistTitle>
                                             </InvertBlurLayer>
                                         </Grid>
                                         <Grid item>
                                             <InvertLayer width={window.innerHeight}>
-                                                <Typography variant="h2">PLAY</Typography>
+                                                <ArtistPlay>
+                                                    <Typography variant="h3">PLAY</Typography>
+                                                </ArtistPlay>
                                             </InvertLayer>
                                         </Grid>
                                     </Grid>

@@ -6,7 +6,7 @@ export const Visualisation = styled(Box)`
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 0;
+    left: 20vw;
     right: 0;
 `
 
