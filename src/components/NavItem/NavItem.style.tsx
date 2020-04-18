@@ -5,7 +5,7 @@ import { grey } from '~/styles/colours'
 import styled from 'styled-components'
 
 /* Workaround to exclude the "ref" property from GatsbyLinkProps. Can be removed when issue is resolved in Gatsby */
-const CustomLink: FC<Omit<GatsbyLinkProps<{}>, 'ref'>> = props => <Link {...props}></Link>
+const CustomLink: FC<Omit<GatsbyLinkProps<{}>, 'ref'>> = (props) => <Link {...props}></Link>
 
 export default styled((props: GatsbyLinkProps<{}>) => (
     <CustomLink {...props} activeStyle={{ color: 'black' }} />
@@ -18,4 +18,6 @@ export default styled((props: GatsbyLinkProps<{}>) => (
     &:hover {
         color: ${grey};
     }
+
+    text-shadow: 1px 2px 4px #000000;
 `
