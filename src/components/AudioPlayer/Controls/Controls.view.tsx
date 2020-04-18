@@ -57,9 +57,9 @@ export default ({
                         <SkipNext />
                     </IconButton>
                 </Grid>
-                <Grid item xs={12}>
+                {/* <Grid item xs={12}>
                     <Slider value={volume} onChange={handleVolume} min={0} max={1} step={0.01} />
-                </Grid>
+                </Grid> */}
             </Grid>
         </Controls>
     )

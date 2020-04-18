@@ -1,7 +1,7 @@
-import { Artwork, AudioPlayer } from './AudioPlayer.style'
 import { Podcast, Release, Track } from '~/cms/types'
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 
+import { AudioPlayer } from './AudioPlayer.style'
 import Controls from './Controls'
 import { Grid } from '@material-ui/core'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
@@ -37,9 +37,6 @@ export default () => {
             <AudioPlayer>
                 <Grid container alignItems="stretch" spacing={5}>
                     <Grid item xs={1}>
-                        <Artwork>
-                            <SquareImage title={selectedMedia.title} image={selectedMedia.image} />
-                        </Artwork>
                         <Controls
                             trackIndex={trackIndex}
                             setTrackIndex={setTrackIndex}

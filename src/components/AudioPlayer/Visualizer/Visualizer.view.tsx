@@ -1,6 +1,5 @@
+import { Canvas, Visualisation } from './Visualizer.style'
 import React, { Component } from 'react'
-
-import { Canvas } from './Visualizer.style'
 
 type AnalyserState = {}
 
@@ -49,7 +48,11 @@ class Visualiser extends Component<AnalyserProps, AnalyserState> {
     }
 
     render() {
-        return <Canvas ref={this.canvas} />
+        return (
+            <Visualisation>
+                <Canvas ref={this.canvas} />
+            </Visualisation>
+        )
     }
 }
 

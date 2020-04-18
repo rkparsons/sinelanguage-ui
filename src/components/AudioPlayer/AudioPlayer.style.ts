@@ -14,14 +14,8 @@ export const AudioPlayer = styled(Box)`
         left: 0;
         bottom: 0;
         width: 100%;
-        background-color: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(10px);
+        background-color: black;
         padding: ${theme.spacing(5)};
         padding-bottom: 0;
     `}
-`
-
-export const Artwork = styled(Box)`
-    cursor: pointer;
-    position: relative;
 `
