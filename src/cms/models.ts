@@ -6,6 +6,7 @@ export abstract class ContentModel {
     constructor(content: Artist | Release | Podcast) {
         this.content = content
     }
+    getDateMs = () => new Date(this.content.date).getTime()
     getImage = () => this.content.image
     getImageCaption = () => this.content.title
     getDashboardWidth = () => 1

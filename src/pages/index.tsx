@@ -37,15 +37,9 @@ export default ({ data }: ViewProps) => {
     const models = ([] as ContentModel[]).concat(artists).concat(releases).concat(podcasts)
 
     artists.sort((a, b) => a.content.title.localeCompare(b.content.title))
-    releases.sort(function (a, b) {
-        return new Date(b.content.date).getTime() - new Date(a.content.date).getTime()
-    })
-    podcasts.sort(function (a, b) {
-        return new Date(b.content.date).getTime() - new Date(a.content.date).getTime()
-    })
-    models.sort(function (a, b) {
-        return new Date(b.content.date).getTime() - new Date(a.content.date).getTime()
-    })
+    releases.sort((a, b) => b.getDateMs() - a.getDateMs())
+    podcasts.sort((a, b) => b.getDateMs() - a.getDateMs())
+    models.sort((a, b) => b.getDateMs() - a.getDateMs())
 
     return (
         <Location>
