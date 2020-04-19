@@ -5,6 +5,6 @@ export enum Route {
     PODCASTS = '/podcasts',
     EVENTS = '/events',
     CONTACT = '/contact',
+    BAG = '/bag',
     ACCOUNT = '/account',
-    BLOG = '/blog',
 }

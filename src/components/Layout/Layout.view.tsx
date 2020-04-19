@@ -31,20 +31,9 @@ const Layout: FC<Props> = ({ isDarkMode, setIsDarkMode, children }: Props) => {
                         <CssBaseline />
                         <GlobalStyle />
                         <AppContainer>
-                            <Grid container direction="column">
-                                <Grid item>
-                                    <Header />
-                                </Grid>
-                                <Grid item>
-                                    <Main>
-                                        {children}
-                                        <AudioPlayer />
-                                    </Main>
-                                </Grid>
-                                {/* <Grid item>
-                                    <Footer isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
-                                </Grid> */}
-                            </Grid>
+                            <Header />
+                            {children}
+                            <AudioPlayer />
                         </AppContainer>
                     </>
                 </SelectedMediaContext.Provider>

@@ -5,6 +5,7 @@ import styled from 'styled-components'
 
 export const Header = styled.header`
     ${({ theme }) => `
+        width: 100%;
         position: fixed;
         top: 0;
         z-index: 1000;
@@ -16,6 +17,6 @@ export const Header = styled.header`
 
 export const HeaderRow = styled(Grid)`
     ${({ theme }) => `
-        height: ${theme.spacing(10)};
+        height: ${theme.spacing(9)};
     `}
 `

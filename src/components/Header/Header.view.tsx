@@ -7,29 +7,36 @@ import { Route } from '~/constants/route'
 
 export default () => (
     <Header>
-        <Grid container direction="column" alignItems="flex-start" spacing={0}>
-            <HeaderRow item>
+        <Grid container>
+            <Grid item xs={6}>
                 <NavItem to={Route.NEWS} title="SINE LANGUAGE RECORDS" />
-            </HeaderRow>
-            <HeaderRow item>
-                <Grid container direction="row" spacing={4}>
-                    <Grid item>
+            </Grid>
+            <Grid item xs={3}>
+                <Grid container direction="column">
+                    <HeaderRow item>
                         <NavItem to={Route.ARTISTS} title="ARTISTS" partiallyActive={true} />
-                    </Grid>
-                    <Grid item>
-                        <NavItem to={Route.RELEASES} title="RELEASES" partiallyActive={true} />
-                    </Grid>
-                    <Grid item>
+                    </HeaderRow>
+                    <HeaderRow item>
                         <NavItem to={Route.PODCASTS} title="PODCASTS" partiallyActive={true} />
-                    </Grid>
-                    <Grid item>
-                        <NavItem to={Route.EVENTS} title="EVENTS" partiallyActive={true} />
-                    </Grid>
-                    <Grid item>
-                        <NavItem to={Route.CONTACT} title="CONTACT" partiallyActive={true} />
-                    </Grid>
+                    </HeaderRow>
+                    <HeaderRow item>
+                        <NavItem to={Route.RELEASES} title="RELEASES" partiallyActive={true} />
+                    </HeaderRow>
                 </Grid>
-            </HeaderRow>
+            </Grid>
+            <Grid item xs={3}>
+                <Grid container direction="column">
+                    <HeaderRow item>
+                        <NavItem to={Route.EVENTS} title="EVENTS" partiallyActive={true} />
+                    </HeaderRow>
+                    <HeaderRow item>
+                        <NavItem to={Route.CONTACT} title="CONTACT" partiallyActive={true} />
+                    </HeaderRow>
+                    <HeaderRow item>
+                        <NavItem to={Route.BAG} title="BAG" partiallyActive={true} />
+                    </HeaderRow>
+                </Grid>
+            </Grid>
         </Grid>
 
         {/* {isAuthenticated() ? (
