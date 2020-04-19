@@ -1,7 +1,7 @@
-import { Artist, Podcast, Release } from '~/cms/types'
 import { DashboardItem, DashboardItemInfo } from './DashboardItem.style'
 import { IconButton, Typography } from '@material-ui/core'
 
+import { ContentModel } from '~/cms/models'
 import Image from 'gatsby-image'
 import { Link } from 'gatsby'
 import { PlayArrow } from '@material-ui/icons'
@@ -10,40 +10,36 @@ import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import SquareImage from '~/components/SquareImage'
 
 type ViewProps = {
-    dashboardItem: Artist | Release | Podcast
+    model: ContentModel
 }
 
-export default ({ dashboardItem }: ViewProps) => {
-    const { __typename, title, uid, image } = dashboardItem
-    const type = __typename.replace('Contentful', '').toLowerCase()
-
-    // todo: replace format with enum
-    const isVideo =
-        dashboardItem.__typename === 'ContentfulRelease' &&
-        (dashboardItem as Release).format === 'Video'
-
+export default ({ model }: ViewProps) => {
     return (
-        <DashboardItem widthMultiplier={isVideo ? 2 : 1}>
-            <Link to={`/${type}s/${uid}`.toLowerCase()}>
-                {/* <SquareImage title={title} image={image} /> */}
-                <Image title={title} alt={title} sizes={{ ...image.fluid }} />
-            </Link>
-            <DashboardItemInfo>
-                <Typography>{title}</Typography>
-            </DashboardItemInfo>
-            {dashboardItem.__typename !== 'ContentfulEvent' && (
-                <SelectedMediaContext.Consumer>
-                    {({ setSelectedMedia }) => (
+        <SelectedMediaContext.Consumer>
+            {({ setSelectedMedia }) => (
+                <DashboardItem widthMultiplier={model.getDashboardWidth()}>
+                    <Link to={model.getDetailUrl()}>
+                        <Image
+                            title={model.getImageCaption()}
+                            alt={model.getImageCaption()}
+                            sizes={{ ...model.getImage().fluid }}
+                        />
+                    </Link>
+                    <DashboardItemInfo>
+                        <Typography>{model.getDashboardLine1()}</Typography>
+                        <Typography>{model.getDashboardLine2()}</Typography>
+                    </DashboardItemInfo>
+                    {model.isPlayableFromDashboard && (
                         <IconButton
                             onClick={() => {
-                                setSelectedMedia(dashboardItem)
+                                setSelectedMedia(model.content)
                             }}
                         >
                             <PlayArrow />
                         </IconButton>
                     )}
-                </SelectedMediaContext.Consumer>
+                </DashboardItem>
             )}
-        </DashboardItem>
+        </SelectedMediaContext.Consumer>
     )
 }

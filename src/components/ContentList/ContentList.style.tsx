@@ -4,7 +4,7 @@ import { listRowPadding, marginSide } from '~/styles/sizes'
 
 import styled from 'styled-components'
 
-export const Artists = styled(Box)`
+export const List = styled(Box)`
     ${({ theme }) => `
         position: fixed;
         top: 0;
@@ -17,24 +17,19 @@ export const Artists = styled(Box)`
     `}
 `
 
-export const ArtistRow = styled(Box)`
+export const Row = styled(Box)`
     ${({ theme }) => `
         width: 100%;
         color: white;
         cursor: pointer;
         text-transform: uppercase;
+        white-space: pre;
     `}
 `
 
-export const ArtistTitle = styled(Box)`
+export const RowTitle = styled(Box)`
     ${({ theme }) => `    
         margin-left: ${theme.spacing(marginSide)};
-    `}
-`
-
-export const ArtistPlay = styled(Box)`
-    ${({ theme }) => `
-        margin-right: ${theme.spacing(marginSide)};
     `}
 `
 
@@ -72,7 +67,7 @@ export const InvertLayer = styled(({ width, children, ...rest }: InvertLayerProp
         width: ${width}px;
         padding-top: ${theme.spacing(listRowPadding)};
         padding-bottom: ${theme.spacing(listRowPadding)};
-        ${ArtistRow}:hover & {
+        ${Row}:hover & {
             text-shadow: 1px 2px 4px #ffffff;
             color: black;
             background-color: rgba(255, 255, 255, 0);
@@ -86,23 +81,23 @@ export const InvertBlurLayer = styled(InvertLayer)`
         text-align: left;
         padding-top: ${theme.spacing(listRowPadding)};
         padding-bottom: ${theme.spacing(listRowPadding)};
-        ${ArtistRow}:hover & {
+        ${Row}:hover & {
             text-shadow: 1px 2px 4px #ffffff;
             backdrop-filter: blur(7px) invert(100%);
         }
     `}
 `
 
-type ArtistImageProps = {
+type FocusImageProps = {
     height: number
     offset: number
     children: ReactNode
 }
 
-export const ArtistImage = styled(({ height, offset, children, ...rest }: ArtistImageProps) => (
+export const FocusImage = styled(({ height, offset, children, ...rest }: FocusImageProps) => (
     <Box {...rest}>{children}</Box>
 ))`
-    ${({ height, offset }: ArtistImageProps) => `
+    ${({ height, offset }: FocusImageProps) => `
         position: fixed;
         z-index: 100;
         left: ${offset}px;

@@ -1,33 +1,32 @@
-import { Artist, Release } from '~/cms/types'
 import {
-    ArtistImage,
-    ArtistPlay,
-    ArtistRow,
-    ArtistTitle,
-    Artists,
     BlurLayer,
+    FocusImage,
     InvertBlurLayer,
     InvertLayer,
-} from './Releases.style'
+    List,
+    Row,
+    RowTitle,
+} from './ContentList.style'
 import { Grid, RootRef, Typography } from '@material-ui/core'
 import React, { useCallback, useRef, useState } from 'react'
 
+import { ContentModel } from '~/cms/models'
 import Image from 'gatsby-image'
 
 type ViewProps = {
-    releases: Release[]
+    models: ContentModel[]
 }
 
-export default ({ releases }: ViewProps) => {
-    const [activeRelease, setActiveRelease] = useState<Release>()
+export default ({ models }: ViewProps) => {
+    const [activeModel, setActiveModel] = useState<ContentModel>()
     const [verticalBreakpoints, setVerticalBreakpoints] = useState<number[]>([0, 0])
     const rows = useRef<(Element | null)[]>([])
 
     const highlightRow = useCallback(
-        (release?: Release, index?: number) => {
-            if (!release) {
+        (model?: ContentModel, index?: number) => {
+            if (!model) {
                 setVerticalBreakpoints([0, 0])
-                setActiveRelease(undefined)
+                setActiveModel(undefined)
             } else {
                 const rowElement = rows.current[index!]
 
@@ -36,7 +35,7 @@ export default ({ releases }: ViewProps) => {
                     setVerticalBreakpoints([rowRect.top, rowRect.bottom])
                 }
 
-                setActiveRelease(release)
+                setActiveModel(model)
             }
         },
         [setVerticalBreakpoints]
@@ -45,21 +44,21 @@ export default ({ releases }: ViewProps) => {
     return (
         <>
             <BlurLayer
-                width={activeRelease ? window.innerWidth - window.innerHeight : window.innerWidth}
+                width={activeModel ? window.innerWidth - window.innerHeight : window.innerWidth}
                 height={verticalBreakpoints[0]}
                 offset={0}
             ></BlurLayer>
-            <Artists>
+            <List>
                 <Grid container direction="column">
-                    {releases.map((release, index) => (
+                    {models.map((model, index) => (
                         <Grid item xs={12} key={index}>
                             <RootRef
                                 rootRef={(ref) => {
                                     rows.current.push(ref)
                                 }}
                             >
-                                <ArtistRow
-                                    onMouseEnter={() => highlightRow(release, index)}
+                                <Row
+                                    onMouseEnter={() => highlightRow(model, index)}
                                     onMouseLeave={() => highlightRow()}
                                 >
                                     <Grid container>
@@ -67,44 +66,41 @@ export default ({ releases }: ViewProps) => {
                                             <InvertBlurLayer
                                                 width={window.innerWidth - window.innerHeight}
                                             >
-                                                <ArtistTitle>
+                                                <RowTitle>
                                                     <Typography variant="h3">
-                                                        [{release.uid}]&nbsp;&nbsp;&nbsp;
-                                                        {release.title}
+                                                        {model.getListRowTitle()}
                                                     </Typography>
-                                                </ArtistTitle>
+                                                </RowTitle>
                                             </InvertBlurLayer>
                                         </Grid>
                                         <Grid item>
                                             <InvertLayer width={window.innerHeight}>
-                                                <ArtistPlay>
-                                                    <Typography variant="h3">PLAY</Typography>
-                                                </ArtistPlay>
+                                                <Typography variant="h3">PLAY</Typography>
                                             </InvertLayer>
                                         </Grid>
                                     </Grid>
-                                </ArtistRow>
+                                </Row>
                             </RootRef>
                         </Grid>
                     ))}
                 </Grid>
-            </Artists>
+            </List>
             <BlurLayer
-                width={activeRelease ? window.innerWidth - window.innerHeight : window.innerWidth}
+                width={activeModel ? window.innerWidth - window.innerHeight : window.innerWidth}
                 height={window.innerHeight - verticalBreakpoints[1]}
                 offset={verticalBreakpoints[1]}
             ></BlurLayer>
-            {activeRelease && (
-                <ArtistImage
+            {activeModel && (
+                <FocusImage
                     height={window.innerHeight}
                     offset={window.innerWidth - window.innerHeight}
                 >
                     <Image
-                        title={activeRelease.title}
-                        alt={activeRelease.title}
-                        sizes={{ ...activeRelease.image.fluid, aspectRatio: 1 }}
+                        title={activeModel.getImageCaption()}
+                        alt={activeModel.getImageCaption()}
+                        sizes={{ ...activeModel.getImage().fluid, aspectRatio: 1 }}
                     />
-                </ArtistImage>
+                </FocusImage>
             )}
         </>
     )

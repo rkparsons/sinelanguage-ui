@@ -11,6 +11,7 @@ import { assetFileSize, unique } from '../../../cms/validations'
 
 import Artist from './artist'
 import { FluidImageType } from '../../../cms/constants'
+import { Format } from '~/constants/format'
 import Track from './track'
 
 export default new ContentfulContentType({
@@ -39,7 +40,7 @@ export default new ContentfulContentType({
             name: 'Format',
             validations: [
                 {
-                    in: ['Digital EP', 'Single', '12" Vinyl / Digital', 'Video'],
+                    in: Object.values(Format),
                 },
             ],
         }),
