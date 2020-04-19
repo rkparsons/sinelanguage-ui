@@ -37,7 +37,7 @@ export default ({ models }: ViewProps) => {
         <>
             <BlurLayer height={verticalBreakpoints[0]} offset={0}></BlurLayer>
             <List>
-                <Grid container direction="column">
+                <Grid container direction="column" spacing={2}>
                     {models.map((model, index) => (
                         <Grid item xs={12} key={index}>
                             <RootRef
