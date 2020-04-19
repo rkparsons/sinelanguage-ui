@@ -50,13 +50,13 @@ export default ({ models }: ViewProps) => {
                                     onMouseLeave={() => highlightRow()}
                                 >
                                     <Grid container>
-                                        <InvertBlurLayer item xs={4}>
+                                        <InvertBlurLayer item>
                                             <Typography variant="h3">
                                                 {model.getListRowTitle()}
                                             </Typography>
                                         </InvertBlurLayer>
-                                        <InvertLayer item xs={4}></InvertLayer>
-                                        <InvertBlurLayer item xs={4}></InvertBlurLayer>
+                                        <InvertLayer item></InvertLayer>
+                                        <InvertBlurLayer item></InvertBlurLayer>
                                     </Grid>
                                 </Row>
                             </RootRef>

@@ -36,6 +36,7 @@ export const Row = styled(Box)`
 `
 
 export const InvertBlurLayer = styled(Grid)`
+    width: ${100 / 3}vw;
     ${Row}:hover & {
         background-color: rgba(255, 255, 255, 0);
         backdrop-filter: blur(7px) invert(100%);
@@ -43,6 +44,7 @@ export const InvertBlurLayer = styled(Grid)`
 `
 
 export const InvertLayer = styled(Grid)`
+    width: ${100 / 3}vw;
     ${Row}:hover & {
         background-color: rgba(255, 255, 255, 0);
         backdrop-filter: invert(100%);
