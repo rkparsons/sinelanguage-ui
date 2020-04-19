@@ -3,12 +3,16 @@ import { createGlobalStyle } from 'styled-components'
 import styled from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
-* { 
+    * { 
         scrollbar-width: none;
         -ms-overflow-style: none;
         ::-webkit-scrollbar {
             display: none;
         }
+    }
+
+    a {
+        text-decoration: none;
     }
 `
 
