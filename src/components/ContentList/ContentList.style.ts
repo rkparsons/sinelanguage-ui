@@ -1,11 +1,10 @@
 import { Box, Grid, Theme } from '@material-ui/core'
-import React, { ReactNode } from 'react'
-import { listRowPadding, marginSide } from '~/styles/sizes'
 
+import { marginSide } from '~/styles/sizes'
 import styled from 'styled-components'
 
 export const List = styled(Box)`
-    ${({ theme }) => `
+    ${({ theme }: { theme: Theme }) => `
         position: fixed;
         top: 0;
         left: 0;
@@ -18,7 +17,7 @@ export const List = styled(Box)`
 `
 
 export const Row = styled(Box)`
-    ${({ theme }) => `
+    ${({ theme }: { theme: Theme }) => `
         width: 100%;
         color: white;
         cursor: pointer;
@@ -51,13 +50,8 @@ export const InvertLayer = styled(Grid)`
     }
 `
 
-type BlurLayerProps = {
-    height: number
-    offset: number
-}
-
-export const BlurLayer = styled(({ height, offset, ...rest }: BlurLayerProps) => <Box {...rest} />)`
-    ${({ height, offset }: BlurLayerProps) => `
+export const BlurLayer = styled(Box)`
+    ${({ height, offset }: { height: number; offset: number }) => `
         position: fixed;
         z-index: 100;
         width: 100%;

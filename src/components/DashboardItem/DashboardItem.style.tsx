@@ -29,7 +29,7 @@ export const DashboardItem = styled(({ widthMultiplier, ...rest }: DashboardItem
 `
 
 export const DashboardItemInfo = styled(Box)`
-    ${({ theme }) => `
+    ${({ theme }: { theme: Theme }) => `
         min-height: ${theme.spacing(20)};
     `}
 `
