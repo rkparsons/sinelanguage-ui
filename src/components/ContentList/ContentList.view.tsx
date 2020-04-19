@@ -1,4 +1,4 @@
-import { BlurLayer, FocusImage, List, Row } from './ContentList.style'
+import { BlurLayer, FocusImage, InvertBlurLayer, InvertLayer, List, Row } from './ContentList.style'
 import { Grid, RootRef, Typography } from '@material-ui/core'
 import React, { useCallback, useRef, useState } from 'react'
 
@@ -49,7 +49,15 @@ export default ({ models }: ViewProps) => {
                                     onMouseEnter={() => highlightRow(model, index)}
                                     onMouseLeave={() => highlightRow()}
                                 >
-                                    <Typography variant="h3">{model.getListRowTitle()}</Typography>
+                                    <Grid container>
+                                        <InvertBlurLayer item xs={4}>
+                                            <Typography variant="h3">
+                                                {model.getListRowTitle()}
+                                            </Typography>
+                                        </InvertBlurLayer>
+                                        <InvertLayer item xs={4}></InvertLayer>
+                                        <InvertBlurLayer item xs={4}></InvertBlurLayer>
+                                    </Grid>
                                 </Row>
                             </RootRef>
                         </Grid>

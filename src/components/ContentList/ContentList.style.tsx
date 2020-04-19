@@ -1,4 +1,4 @@
-import { Box, Theme } from '@material-ui/core'
+import { Box, Grid, Theme } from '@material-ui/core'
 import React, { ReactNode } from 'react'
 import { listRowPadding, marginSide } from '~/styles/sizes'
 
@@ -25,16 +25,28 @@ export const Row = styled(Box)`
         text-transform: uppercase;
         white-space: pre;
         text-align: left;
-        padding-left: ${theme.spacing(marginSide)};
-        padding-top: ${theme.spacing(listRowPadding)};
-        padding-bottom: ${theme.spacing(listRowPadding)};
         &:hover {
             text-shadow: 1px 2px 4px #ffffff;
             color: black;
-            background-color: rgba(255, 255, 255, 0);
-            backdrop-filter: blur(7px) invert(100%);
+        }
+        h3 {
+            padding-left: ${theme.spacing(marginSide)};
         }
     `}
+`
+
+export const InvertBlurLayer = styled(Grid)`
+    ${Row}:hover & {
+        background-color: rgba(255, 255, 255, 0);
+        backdrop-filter: blur(7px) invert(100%);
+    }
+`
+
+export const InvertLayer = styled(Grid)`
+    ${Row}:hover & {
+        background-color: rgba(255, 255, 255, 0);
+        backdrop-filter: invert(100%);
+    }
 `
 
 type BlurLayerProps = {
@@ -62,6 +74,6 @@ export const FocusImage = styled(Box)`
     left: 0;
     z-index: 100;
     margin: auto;
-    width: 80vh;
-    height: 80vh;
+    width: ${100 / 3}vw;
+    height: ${100 / 3}vw;
 `
