@@ -36,7 +36,7 @@ export const Row = styled(Box)`
 `
 
 export const InvertBlurLayer = styled(Grid)`
-    width: ${30}vw;
+    width: 30vw;
     ${Row}:hover & {
         background-color: rgba(255, 255, 255, 0);
         backdrop-filter: blur(7px) invert(100%);
@@ -44,7 +44,7 @@ export const InvertBlurLayer = styled(Grid)`
 `
 
 export const InvertLayer = styled(Grid)`
-    width: ${40}vw;
+    width: 40vw;
     ${Row}:hover & {
         background-color: rgba(255, 255, 255, 0);
         backdrop-filter: invert(100%);
@@ -76,6 +76,6 @@ export const FocusImage = styled(Box)`
     left: 0;
     z-index: 100;
     margin: auto;
-    width: ${40}vw;
-    height: ${40}vw;
+    width: 40vw;
+    height: 40vw;
 `
