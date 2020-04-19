@@ -1,12 +1,4 @@
-import {
-    BlurLayer,
-    FocusImage,
-    InvertBlurLayer,
-    InvertLayer,
-    List,
-    Row,
-    RowTitle,
-} from './ContentList.style'
+import { BlurLayer, FocusImage, List, Row } from './ContentList.style'
 import { Grid, RootRef, Typography } from '@material-ui/core'
 import React, { useCallback, useRef, useState } from 'react'
 
@@ -43,11 +35,7 @@ export default ({ models }: ViewProps) => {
 
     return (
         <>
-            <BlurLayer
-                width={activeModel ? window.innerWidth - window.innerHeight : window.innerWidth}
-                height={verticalBreakpoints[0]}
-                offset={0}
-            ></BlurLayer>
+            <BlurLayer height={verticalBreakpoints[0]} offset={0}></BlurLayer>
             <List>
                 <Grid container direction="column">
                     {models.map((model, index) => (
@@ -61,24 +49,7 @@ export default ({ models }: ViewProps) => {
                                     onMouseEnter={() => highlightRow(model, index)}
                                     onMouseLeave={() => highlightRow()}
                                 >
-                                    <Grid container>
-                                        <Grid item>
-                                            <InvertBlurLayer
-                                                width={window.innerWidth - window.innerHeight}
-                                            >
-                                                <RowTitle>
-                                                    <Typography variant="h3">
-                                                        {model.getListRowTitle()}
-                                                    </Typography>
-                                                </RowTitle>
-                                            </InvertBlurLayer>
-                                        </Grid>
-                                        <Grid item>
-                                            <InvertLayer width={window.innerHeight}>
-                                                <Typography variant="h3">PLAY</Typography>
-                                            </InvertLayer>
-                                        </Grid>
-                                    </Grid>
+                                    <Typography variant="h3">{model.getListRowTitle()}</Typography>
                                 </Row>
                             </RootRef>
                         </Grid>
@@ -86,15 +57,11 @@ export default ({ models }: ViewProps) => {
                 </Grid>
             </List>
             <BlurLayer
-                width={activeModel ? window.innerWidth - window.innerHeight : window.innerWidth}
                 height={window.innerHeight - verticalBreakpoints[1]}
                 offset={verticalBreakpoints[1]}
             ></BlurLayer>
             {activeModel && (
-                <FocusImage
-                    height={window.innerHeight}
-                    offset={window.innerWidth - window.innerHeight}
-                >
+                <FocusImage>
                     <Image
                         title={activeModel.getImageCaption()}
                         alt={activeModel.getImageCaption()}
