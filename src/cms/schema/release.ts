@@ -6,12 +6,13 @@ import {
     LinkField,
     SymbolField,
     TextField,
+    VideoField,
 } from '../../../cms/models'
-import { assetFileSize, unique } from '../../../cms/validations'
+import { imageFileSize, unique, videoFileSize } from '../../../cms/validations'
 
 import Artist from './artist'
 import { FluidImageType } from '../../../cms/constants'
-import { Format } from '~/constants/format'
+import { Format } from '../../constants/format'
 import Track from './track'
 
 export default new ContentfulContentType({
@@ -51,10 +52,15 @@ export default new ContentfulContentType({
         }),
         new FluidImageField({
             name: 'Image',
-            validations: [assetFileSize],
+            validations: [imageFileSize],
             maxWidth: 2400,
             quality: 90,
             fluidImageType: FluidImageType.WEBP_BLUR_UP,
+        }),
+        new VideoField({
+            name: 'Video',
+            validations: [videoFileSize],
+            required: false,
         }),
         new DateField({
             name: 'Date',
@@ -64,6 +70,7 @@ export default new ContentfulContentType({
         new LinkArrayField({
             name: 'Tracks',
             link: Track,
+            required: false,
         }),
     ],
 })

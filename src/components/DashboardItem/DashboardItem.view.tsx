@@ -7,7 +7,6 @@ import { Link } from 'gatsby'
 import { PlayArrow } from '@material-ui/icons'
 import React from 'react'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
-import SquareImage from '~/components/SquareImage'
 
 type ViewProps = {
     model: ContentModel
@@ -18,13 +17,7 @@ export default ({ model }: ViewProps) => {
         <SelectedMediaContext.Consumer>
             {({ setSelectedMedia }) => (
                 <DashboardItem widthMultiplier={model.getDashboardWidth()}>
-                    <Link to={model.getDetailUrl()}>
-                        <Image
-                            title={model.getImageCaption()}
-                            alt={model.getImageCaption()}
-                            sizes={{ ...model.getImage().fluid }}
-                        />
-                    </Link>
+                    <Link to={model.getDetailUrl()}>{model.getDashboardComponent()}</Link>
                     <DashboardItemInfo>
                         <Typography>{model.getDashboardLine1()}</Typography>
                         <Typography>{model.getDashboardLine2()}</Typography>

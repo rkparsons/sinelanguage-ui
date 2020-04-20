@@ -13,6 +13,7 @@ import SoundCloudMetadataField from './soundCloudmetadataField'
 import SymbolArrayField from './symbolArrayField'
 import SymbolField from '../models/symbolField'
 import TextField from './textField'
+import VideoField from './videoField'
 
 export {
     ContentfulContentType,
@@ -30,4 +31,5 @@ export {
     SymbolArrayField,
     SymbolField,
     TextField,
+    VideoField,
 }

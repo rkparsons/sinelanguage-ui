@@ -1,5 +1,5 @@
 import { ContentfulContentType, ImageField, SymbolField, TextField } from '../../../cms/models'
-import { assetFileSize, unique } from '../../../cms/validations'
+import { imageFileSize, unique } from '../../../cms/validations'
 
 export default new ContentfulContentType({
     id: 'siteMetadata',
@@ -36,7 +36,7 @@ export default new ContentfulContentType({
         }),
         new ImageField({
             name: 'Image',
-            validations: [assetFileSize],
+            validations: [imageFileSize],
         }),
     ],
 })

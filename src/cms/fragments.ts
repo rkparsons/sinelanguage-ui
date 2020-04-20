@@ -58,6 +58,11 @@ export const releaseFragment = graphql`
                 ...GatsbyContentfulFluid_withWebp
             }
         }
+		video {
+            file {
+                url
+            }
+        }
 		date
 		tracks {
             ...trackFragment

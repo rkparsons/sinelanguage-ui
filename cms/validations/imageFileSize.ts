@@ -1,4 +1,4 @@
-export const assetFileSize = {
+export const imageFileSize = {
     assetFileSize: {
         min: 0,
         max: 524288,

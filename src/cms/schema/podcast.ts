@@ -7,7 +7,7 @@ import {
     SymbolField,
     TextField,
 } from '../../../cms/models'
-import { assetFileSize, unique } from '../../../cms/validations'
+import { imageFileSize, unique } from '../../../cms/validations'
 
 import { FluidImageType } from '../../../cms/constants'
 import Track from './track'
@@ -36,7 +36,7 @@ export default new ContentfulContentType({
         }),
         new FluidImageField({
             name: 'Image',
-            validations: [assetFileSize],
+            validations: [imageFileSize],
             maxWidth: 2400,
             quality: 90,
             fluidImageType: FluidImageType.WEBP_BLUR_UP,

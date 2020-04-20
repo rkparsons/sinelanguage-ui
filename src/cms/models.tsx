@@ -1,4 +1,8 @@
 import { Artist, Podcast, Release } from './types'
+import React, { memo } from 'react'
+
+import Image from 'gatsby-image'
+import Video from '~/components/Video'
 
 export abstract class ContentModel {
     content: Artist | Release | Podcast
@@ -10,6 +14,13 @@ export abstract class ContentModel {
     getImage = () => this.content.image
     getImageCaption = () => this.content.title
     getDashboardWidth = () => 1
+    getDashboardComponent = () => (
+        <Image
+            title={this.getImageCaption()}
+            alt={this.getImageCaption()}
+            sizes={{ ...this.getImage().fluid }}
+        />
+    )
     abstract getDashboardLine1(): string
     abstract getDashboardLine2(): string | undefined
     abstract getListRowTitle(): string
@@ -51,7 +62,7 @@ export class VideoReleaseModel extends ReleaseModel {
     constructor(release: Release) {
         super(release)
     }
-
+    getDashboardComponent = () => <Video src={this.release.video.file.url} />
     getDashboardWidth = () => 2
 }
 

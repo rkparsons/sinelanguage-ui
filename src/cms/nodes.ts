@@ -42,6 +42,7 @@ export const typeDefs = `
 		format: String
 		description: contentfulReleaseDescriptionTextNode
 		image: ContentfulAsset
+		video: ContentfulAsset
 		date: Date @dateformat
 		tracks: [ContentfulTrack]
 	}
