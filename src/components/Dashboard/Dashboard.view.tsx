@@ -3,12 +3,11 @@ import DashboardItem from '~/components/DashboardItem'
 import { Grid } from '@material-ui/core'
 import Head from '~/components/Head'
 import React from 'react'
+import useDashboardItems from '~/hooks/useDashboardItems'
 
-type ViewProps = {
-    models: ContentModel[]
-}
+export default () => {
+    const models = useDashboardItems()
 
-export default ({ models }: ViewProps) => {
     return (
         <>
             <Head title="News" />

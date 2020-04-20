@@ -6,6 +6,7 @@ import React, { FC, ReactNode, useState } from 'react'
 
 import AudioPlayer from '~/components/AudioPlayer'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import Dashboard from '~/components/Dashboard'
 import Footer from '~/components/Footer'
 import { Grid } from '@material-ui/core'
 import Header from '~/components/Header'
@@ -33,6 +34,7 @@ export default ({ isDarkMode, setIsDarkMode, children }: ViewProps) => {
                         <AppContainer>
                             <Header />
                             {children}
+                            <Dashboard />
                             <AudioPlayer />
                         </AppContainer>
                     </>

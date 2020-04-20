@@ -5,6 +5,7 @@ import React, { useCallback, useRef, useState } from 'react'
 import { ContentModel } from '~/cms/models'
 import Image from 'gatsby-image'
 import { Link } from 'gatsby'
+import useWindowSize from '~/hooks/useWindowSize'
 
 type ViewProps = {
     models: ContentModel[]
@@ -14,6 +15,7 @@ export default ({ models }: ViewProps) => {
     const [activeModel, setActiveModel] = useState<ContentModel>()
     const [verticalBreakpoints, setVerticalBreakpoints] = useState<number[]>([0, 0])
     const rows = useRef<(Element | null)[]>([])
+    const { width, height } = useWindowSize()
 
     const highlightRow = useCallback(
         (model?: ContentModel, index?: number) => {

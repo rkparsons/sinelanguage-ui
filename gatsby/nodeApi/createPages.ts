@@ -50,36 +50,6 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
         throw new Error('ERROR: Could not fetch content on build')
     }
 
-    createPage({
-        path: `artists`,
-        component: path.resolve(`./src/pages/index.tsx`),
-        context: {},
-    })
-
-    createPage({
-        path: `releases`,
-        component: path.resolve(`./src/pages/index.tsx`),
-        context: {},
-    })
-
-    createPage({
-        path: `podcasts`,
-        component: path.resolve(`./src/pages/index.tsx`),
-        context: {},
-    })
-
-    createPage({
-        path: `events`,
-        component: path.resolve(`./src/pages/index.tsx`),
-        context: {},
-    })
-
-    createPage({
-        path: `contact`,
-        component: path.resolve(`./src/pages/index.tsx`),
-        context: {},
-    })
-
     result.data?.allContentfulArtist.nodes.forEach(({ uid }: { uid: string }) => {
         createPage({
             path: `artists/${uid}`.toLocaleLowerCase(),
