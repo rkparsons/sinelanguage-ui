@@ -38,7 +38,6 @@ export default ({ models }: ViewProps) => {
 
     return (
         <>
-            <BlurLayer height={verticalBreakpoints[0]} offset={0}></BlurLayer>
             <List>
                 <Grid container direction="column" spacing={2}>
                     {models.map((model, index) => (
@@ -69,10 +68,6 @@ export default ({ models }: ViewProps) => {
                     ))}
                 </Grid>
             </List>
-            <BlurLayer
-                height={window.innerHeight - verticalBreakpoints[1]}
-                offset={verticalBreakpoints[1]}
-            ></BlurLayer>
             {activeModel && (
                 <FocusImage>
                     <Image
