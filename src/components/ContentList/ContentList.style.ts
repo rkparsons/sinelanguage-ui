@@ -27,47 +27,12 @@ export const Row = styled(Box)`
         &:hover {
             text-shadow: 1px 2px 4px #ffffff;
             color: black;
+            background-color: rgba(255, 255, 255, 0);
+            backdrop-filter: invert(100%);            
         }
         h3 {
             padding-left: ${theme.spacing(marginSide)};
         }
-    `}
-`
-
-export const InvertBlurLayer = styled(Grid)`
-    width: 30vw;
-    ${Row}:hover & {
-        background-color: rgba(255, 255, 255, 0);
-        backdrop-filter: blur(7px) invert(100%);
-    }
-`
-
-export const InvertLayer = styled(Grid)`
-    width: 40vw;
-    ${Row}:hover & {
-        background-color: rgba(255, 255, 255, 0);
-        backdrop-filter: invert(100%);
-    }
-`
-
-export const BlurLayer = styled(Box)`
-    ${({ height, offset }: { height: number; offset: number }) => `
-        @keyframes appear {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-        animation: 0.25s ease-out 0s 1 appear;
-        position: fixed;
-        z-index: 100;
-        width: 100%;
-        height: ${height}px;
-        margin-top: ${offset}px;
-        background-color: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(12px);
     `}
 `
 
