@@ -52,6 +52,15 @@ export const InvertLayer = styled(Grid)`
 
 export const BlurLayer = styled(Box)`
     ${({ height, offset }: { height: number; offset: number }) => `
+        @keyframes appear {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        animation: 0.25s ease-out 0s 1 appear;
         position: fixed;
         z-index: 100;
         width: 100%;
