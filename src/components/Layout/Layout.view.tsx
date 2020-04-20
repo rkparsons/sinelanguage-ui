@@ -14,13 +14,13 @@ import { ThemeProvider as ScThemeProvider } from 'styled-components'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import theme from '~/styles/theme'
 
-type Props = {
+type ViewProps = {
     isDarkMode: boolean
     setIsDarkMode: (isDarkMode: boolean) => void
     children: ReactNode
 }
 
-const Layout: FC<Props> = ({ isDarkMode, setIsDarkMode, children }: Props) => {
+export default ({ isDarkMode, setIsDarkMode, children }: ViewProps) => {
     const [selectedMedia, setSelectedMedia] = useState<Podcast | Release | Artist>()
 
     return (
@@ -41,5 +41,3 @@ const Layout: FC<Props> = ({ isDarkMode, setIsDarkMode, children }: Props) => {
         </MuiThemeProvider>
     )
 }
-
-export default Layout
