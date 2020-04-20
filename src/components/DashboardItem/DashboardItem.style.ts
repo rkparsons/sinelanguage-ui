@@ -1,9 +1,6 @@
-import { Box, Theme } from '@material-ui/core'
-
 import styled from 'styled-components'
 
 type DashboardItemProps = {
-    theme: Theme
     widthMultiplier: number
 }
 
@@ -25,8 +22,8 @@ export const DashboardItem = styled.div<DashboardItemProps>`
     `}
 `
 
-export const DashboardItemInfo = styled(Box)`
-    ${({ theme }: { theme: Theme }) => `
+export const DashboardItemInfo = styled.div`
+    ${({ theme }) => `
         min-height: ${theme.spacing(20)};
     `}
 `
