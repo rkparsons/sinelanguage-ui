@@ -55,10 +55,11 @@ export class ReleaseModel extends ContentModel {
 
     getDashboardInfoComponent = () => (
         <>
-            <Typography>
-                {this.release.artist.title}, {this.release.title}, {this.release.format}
+            <Typography variant="body1">
+                {this.release.artist.title.toUpperCase()}, <i>{this.release.title}</i>,{' '}
+                {this.release.format}
             </Typography>
-            <Typography>[{this.release.uid}]</Typography>
+            <Typography variant="body1">[{this.release.uid}]</Typography>
         </>
     )
     getListRowTitle = () =>
@@ -87,8 +88,8 @@ export class PodcastModel extends ContentModel {
 
     getDashboardInfoComponent = () => (
         <>
-            <Typography>{this.podcast.title}, Podcast</Typography>
-            <Typography>[{this.podcast.uid}]</Typography>
+            <Typography variant="body1">{this.podcast.title.toUpperCase()}, Podcast</Typography>
+            <Typography variant="body1">[{this.podcast.uid}]</Typography>
         </>
     )
     getListRowTitle = () => `[${this.podcast.uid}]    ${this.podcast.title}`
