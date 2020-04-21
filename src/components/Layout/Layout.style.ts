@@ -5,6 +5,7 @@ import styled from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
     * { 
+        user-select: none;
         scrollbar-width: none;
         -ms-overflow-style: none;
         ::-webkit-scrollbar {
@@ -14,12 +15,6 @@ export const GlobalStyle = createGlobalStyle`
 
     a {
         text-decoration: none;
-    }
-
-    button {
-        &:hover {
-            color: red;
-        }
     }
 `
 
