@@ -44,7 +44,7 @@ export const HoverImage = styled(Grid)`
     left: 0;
     z-index: 100;
     margin: auto;
-    width: 40vw;
-    height: 40vw;
+    width: 100vw;
+    height: 100vh;
     vertical-align: middle;
 `

@@ -7,6 +7,7 @@ import Video from '~/components/Video'
 export abstract class ContentModel {
     content: Artist | Release | Podcast
     isPlayableFromDashboard = true
+    hoverWidth: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 = 5
     constructor(content: Artist | Release | Podcast) {
         this.content = content
     }
@@ -61,9 +62,11 @@ export class VideoReleaseModel extends ReleaseModel {
     isPlayableFromDashboard = false
     constructor(release: Release) {
         super(release)
+        this.hoverWidth = 12
     }
     getDashboardComponent = () => <Video src={this.release.video.file.url} />
     getDashboardWidth = () => 2
+    getHoverWidth = () => 12
 }
 
 export class PodcastModel extends ContentModel {
