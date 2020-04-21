@@ -1,9 +1,8 @@
-import { Fade, Grid, RootRef, Typography } from '@material-ui/core'
-import { FocusImage, List, Row } from './ContentList.style'
-import React, { useRef, useState } from 'react'
+import { Grid, Typography } from '@material-ui/core'
+import { HoverImage, List, Row } from './ContentList.style'
+import React, { useState } from 'react'
 
 import { ContentModel } from '~/cms/models'
-import Image from 'gatsby-image'
 import { Link } from 'gatsby'
 
 type ViewProps = {
@@ -36,13 +35,11 @@ export default ({ models }: ViewProps) => {
                 </Grid>
             </List>
             {activeModel && (
-                <FocusImage>
-                    <Image
-                        title={activeModel.getImageCaption()}
-                        alt={activeModel.getImageCaption()}
-                        sizes={{ ...activeModel.getImage().fluid, aspectRatio: 1 }}
-                    />
-                </FocusImage>
+                <HoverImage container alignItems="center" justify="center">
+                    <Grid item xs={12}>
+                        {activeModel.getDashboardComponent()}
+                    </Grid>
+                </HoverImage>
             )}
         </>
     )

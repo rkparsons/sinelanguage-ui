@@ -1,4 +1,4 @@
-import { Box, Theme } from '@material-ui/core'
+import { Box, Grid, Theme } from '@material-ui/core'
 
 import { marginSide } from '~/styles/sizes'
 import styled from 'styled-components'
@@ -36,7 +36,7 @@ export const Row = styled.div`
     `}
 `
 
-export const FocusImage = styled.div`
+export const HoverImage = styled(Grid)`
     position: fixed;
     top: 0;
     right: 0;
@@ -46,4 +46,5 @@ export const FocusImage = styled.div`
     margin: auto;
     width: 40vw;
     height: 40vw;
+    vertical-align: middle;
 `
