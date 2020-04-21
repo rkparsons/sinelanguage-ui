@@ -12,7 +12,6 @@ type ViewProps = {
 
 export default ({ models }: ViewProps) => {
     const [activeModel, setActiveModel] = useState<ContentModel>()
-    const rows = useRef<(Element | null)[]>([])
 
     return (
         <>
@@ -20,24 +19,18 @@ export default ({ models }: ViewProps) => {
                 <Grid container direction="column" spacing={2}>
                     {models.map((model, index) => (
                         <Grid item xs={12} key={index}>
-                            <RootRef
-                                rootRef={(ref) => {
-                                    rows.current.push(ref)
-                                }}
-                            >
-                                <Link to={model.getDetailUrl()}>
-                                    <Row
-                                        onMouseEnter={() => setActiveModel(model)}
-                                        onMouseLeave={() => setActiveModel(undefined)}
-                                    >
-                                        <Grid container>
-                                            <Typography variant="h3">
-                                                {model.getListRowTitle()}
-                                            </Typography>
-                                        </Grid>
-                                    </Row>
-                                </Link>
-                            </RootRef>
+                            <Link to={model.getDetailUrl()}>
+                                <Row
+                                    onMouseEnter={() => setActiveModel(model)}
+                                    onMouseLeave={() => setActiveModel(undefined)}
+                                >
+                                    <Grid container>
+                                        <Typography variant="h3">
+                                            {model.getListRowTitle()}
+                                        </Typography>
+                                    </Grid>
+                                </Row>
+                            </Link>
                         </Grid>
                     ))}
                 </Grid>
