@@ -1,10 +1,10 @@
-import { Box, Grid, Theme } from '@material-ui/core'
+import { Box, Theme } from '@material-ui/core'
 
 import { marginSide } from '~/styles/sizes'
 import styled from 'styled-components'
 
-export const List = styled(Box)`
-    ${({ theme }: { theme: Theme }) => `
+export const List = styled.div`
+    ${({ theme }) => `
         position: fixed;
         top: 0;
         left: 0;
@@ -16,8 +16,8 @@ export const List = styled(Box)`
     `}
 `
 
-export const Row = styled(Box)`
-    ${({ theme }: { theme: Theme }) => `
+export const Row = styled.div`
+    ${({ theme }) => `
         width: 100%;
         color: white;
         cursor: pointer;
@@ -36,7 +36,7 @@ export const Row = styled(Box)`
     `}
 `
 
-export const FocusImage = styled(Box)`
+export const FocusImage = styled.div`
     position: fixed;
     top: 0;
     right: 0;

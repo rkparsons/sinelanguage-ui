@@ -35,9 +35,9 @@ export default ({ isDarkMode, setIsDarkMode, children }: ViewProps) => {
                         <GlobalStyle />
                         <AppContainer>
                             <Header />
-                            <Fade in={location.pathname !== '/'}>
+                            {/* <Fade in={location.pathname !== '/'}>
                                 <BlurLayer />
-                            </Fade>
+                            </Fade> */}
                             <Main>
                                 {children}
                                 <Dashboard />

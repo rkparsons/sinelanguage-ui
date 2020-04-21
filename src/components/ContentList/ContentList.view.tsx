@@ -1,11 +1,10 @@
+import { Fade, Grid, RootRef, Typography } from '@material-ui/core'
 import { FocusImage, List, Row } from './ContentList.style'
-import { Grid, RootRef, Typography } from '@material-ui/core'
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 import { ContentModel } from '~/cms/models'
 import Image from 'gatsby-image'
 import { Link } from 'gatsby'
-import useWindowSize from '~/hooks/useWindowSize'
 
 type ViewProps = {
     models: ContentModel[]
@@ -13,28 +12,7 @@ type ViewProps = {
 
 export default ({ models }: ViewProps) => {
     const [activeModel, setActiveModel] = useState<ContentModel>()
-    const [verticalBreakpoints, setVerticalBreakpoints] = useState<number[]>([0, 0])
     const rows = useRef<(Element | null)[]>([])
-    const { width, height } = useWindowSize()
-
-    const highlightRow = useCallback(
-        (model?: ContentModel, index?: number) => {
-            if (!model) {
-                setVerticalBreakpoints([0, 0])
-                setActiveModel(undefined)
-            } else {
-                const rowElement = rows.current[index!]
-
-                if (rowElement) {
-                    const rowRect = rowElement.getBoundingClientRect()
-                    setVerticalBreakpoints([rowRect.top, rowRect.bottom])
-                }
-
-                setActiveModel(model)
-            }
-        },
-        [setVerticalBreakpoints]
-    )
 
     return (
         <>
@@ -49,8 +27,8 @@ export default ({ models }: ViewProps) => {
                             >
                                 <Link to={model.getDetailUrl()}>
                                     <Row
-                                        onMouseEnter={() => highlightRow(model, index)}
-                                        onMouseLeave={() => highlightRow()}
+                                        onMouseEnter={() => setActiveModel(model)}
+                                        onMouseLeave={() => setActiveModel(undefined)}
                                     >
                                         <Grid container>
                                             <Typography variant="h3">
