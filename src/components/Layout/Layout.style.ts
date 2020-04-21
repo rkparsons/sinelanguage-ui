@@ -15,6 +15,12 @@ export const GlobalStyle = createGlobalStyle`
     a {
         text-decoration: none;
     }
+
+    button {
+        &:hover {
+            color: red;
+        }
+    }
 `
 
 export const AppContainer = styled(Container)`

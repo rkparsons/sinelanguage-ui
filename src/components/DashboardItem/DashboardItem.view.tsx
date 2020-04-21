@@ -1,10 +1,11 @@
+import { Button, Grid, Icon, Typography } from '@material-ui/core'
 import { DashboardItem, DashboardItemInfo } from './DashboardItem.style'
-import { IconButton, Typography } from '@material-ui/core'
+import { PlayArrow, ShoppingCart } from '@material-ui/icons'
 
 import { ContentModel } from '~/cms/models'
+import IconButton from '~/components/IconButton'
 import Image from 'gatsby-image'
 import { Link } from 'gatsby'
-import { PlayArrow } from '@material-ui/icons'
 import React from 'react'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 
@@ -21,13 +22,25 @@ export default ({ model }: ViewProps) => {
                     <DashboardItemInfo>
                         {model.getDashboardInfoComponent()}
                         {model.isPlayableFromDashboard && (
-                            <IconButton
-                                onClick={() => {
-                                    setSelectedMedia(model.content)
-                                }}
-                            >
-                                <PlayArrow />
-                            </IconButton>
+                            <Grid container spacing={2}>
+                                <Grid item xs={1}></Grid>
+                                <Grid item>
+                                    <IconButton
+                                        label="PLAY"
+                                        icon={<PlayArrow />}
+                                        onClick={() => {
+                                            setSelectedMedia(model.content)
+                                        }}
+                                    />
+                                </Grid>
+                                <Grid item>
+                                    <IconButton
+                                        label="BUY"
+                                        icon={<ShoppingCart />}
+                                        onClick={() => console.log('buy')}
+                                    />
+                                </Grid>
+                            </Grid>
                         )}
                     </DashboardItemInfo>
                 </DashboardItem>

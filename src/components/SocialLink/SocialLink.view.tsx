@@ -1,5 +1,4 @@
-import { CallMade, Facebook } from '@material-ui/icons'
-
+import { CallMade } from '@material-ui/icons'
 import { Link } from '@material-ui/core'
 import React from 'react'
 import { SocialIcon } from './SocialLink.style'

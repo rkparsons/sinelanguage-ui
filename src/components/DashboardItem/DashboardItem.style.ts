@@ -24,6 +24,7 @@ export const DashboardItem = styled.div<DashboardItemProps>`
 
 export const DashboardItemInfo = styled.div`
     ${({ theme }) => `
+        height: ${theme.spacing(35)};
         padding: ${theme.spacing(3)};
     `}
 `
