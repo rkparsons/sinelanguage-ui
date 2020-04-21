@@ -18,10 +18,7 @@ export default ({ model }: ViewProps) => {
             {({ setSelectedMedia }) => (
                 <DashboardItem widthMultiplier={model.getDashboardWidth()}>
                     <Link to={model.getDetailUrl()}>{model.getDashboardComponent()}</Link>
-                    <DashboardItemInfo>
-                        <Typography>{model.getDashboardLine1()}</Typography>
-                        <Typography>{model.getDashboardLine2()}</Typography>
-                    </DashboardItemInfo>
+                    <DashboardItemInfo>{model.getDashboardInfoComponent()}</DashboardItemInfo>
                     {model.isPlayableFromDashboard && (
                         <IconButton
                             onClick={() => {

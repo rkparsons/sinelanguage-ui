@@ -12,6 +12,7 @@ export const Dashboard = styled.div<DashboardProps>`
 
             :after {
                 content: " ";
+                pointer-events: none;
                 position: absolute;
                 height: 100%;
                 top: 0;

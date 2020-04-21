@@ -2,6 +2,7 @@ import { Artist, Podcast, Release } from './types'
 import React, { memo } from 'react'
 
 import Image from 'gatsby-image'
+import { Typography } from '@material-ui/core'
 import Video from '~/components/Video'
 
 export abstract class ContentModel {
@@ -22,8 +23,7 @@ export abstract class ContentModel {
             sizes={{ ...this.getImage().fluid }}
         />
     )
-    abstract getDashboardLine1(): string
-    abstract getDashboardLine2(): string | undefined
+    abstract getDashboardInfoComponent(): JSX.Element
     abstract getListRowTitle(): string
     abstract getDetailUrl(): string
 }
@@ -36,8 +36,11 @@ export class ArtistModel extends ContentModel {
         this.artist = artist
     }
 
-    getDashboardLine1 = () => this.artist.title
-    getDashboardLine2 = () => undefined
+    getDashboardInfoComponent = () => (
+        <>
+            <Typography>{this.artist.title}</Typography>
+        </>
+    )
     getListRowTitle = () => this.artist.title
     getDetailUrl = () => `/artists/${this.artist.uid}`.toLowerCase()
 }
@@ -50,9 +53,14 @@ export class ReleaseModel extends ContentModel {
         this.release = release
     }
 
-    getDashboardLine1 = () =>
-        `${this.release.artist.title}, ${this.release.title}, ${this.release.format}`
-    getDashboardLine2 = () => `[${this.release.uid}]`
+    getDashboardInfoComponent = () => (
+        <>
+            <Typography>
+                {this.release.artist.title}, {this.release.title}, {this.release.format}
+            </Typography>
+            <Typography>[{this.release.uid}]</Typography>
+        </>
+    )
     getListRowTitle = () =>
         `[${this.release.uid}]    ${this.release.artist.title}, ${this.release.title}, ${this.release.format}`
     getDetailUrl = () => `/releases/${this.release.uid}`.toLowerCase()
@@ -77,8 +85,12 @@ export class PodcastModel extends ContentModel {
         this.podcast = podcast
     }
 
-    getDashboardLine1 = () => `${this.podcast.title}, Podcast`
-    getDashboardLine2 = () => `[${this.podcast.uid}]`
+    getDashboardInfoComponent = () => (
+        <>
+            <Typography>{this.podcast.title}, Podcast</Typography>
+            <Typography>[{this.podcast.uid}]</Typography>
+        </>
+    )
     getListRowTitle = () => `[${this.podcast.uid}]    ${this.podcast.title}`
     getDetailUrl = () => `/podcasts/${this.podcast.uid}`.toLowerCase()
 }
