@@ -1,5 +1,12 @@
-import { Artist, Podcast, Release } from '~/cms/types'
-import { ArtistModel, ContentModel, PodcastModel, ReleaseModel, VideoReleaseModel } from '~/models'
+import { Artist, Event, Podcast, Release } from '~/cms/types'
+import {
+    ArtistModel,
+    ContentModel,
+    EventModel,
+    PodcastModel,
+    ReleaseModel,
+    VideoReleaseModel,
+} from '~/models'
 
 import { Format } from '~/constants/format'
 import { graphql } from 'gatsby'
@@ -9,11 +16,14 @@ type DashboardItems = {
     allContentfulArtist: {
         nodes: Artist[]
     }
-    allContentfulRelease: {
-        nodes: Release[]
+    allContentfulEvent: {
+        nodes: Event[]
     }
     allContentfulPodcast: {
         nodes: Podcast[]
+    }
+    allContentfulRelease: {
+        nodes: Release[]
     }
 }
 
@@ -25,9 +35,9 @@ export default () => {
                     ...artistFragment
                 }
             }
-            allContentfulRelease {
+            allContentfulEvent {
                 nodes {
-                    ...releaseFragment
+                    ...eventFragment
                 }
             }
             allContentfulPodcast {
@@ -35,15 +45,25 @@ export default () => {
                     ...podcastFragment
                 }
             }
+            allContentfulRelease {
+                nodes {
+                    ...releaseFragment
+                }
+            }
         }
     `)
 
     const artists = result.allContentfulArtist.nodes.map((x) => new ArtistModel(x))
+    const events = result.allContentfulEvent.nodes.map((x) => new EventModel(x))
+    const podcasts = result.allContentfulPodcast.nodes.map((x) => new PodcastModel(x))
     const releases = result.allContentfulRelease.nodes.map((x) =>
         x.format === Format.VIDEO ? new VideoReleaseModel(x) : new ReleaseModel(x)
     )
-    const podcasts = result.allContentfulPodcast.nodes.map((x) => new PodcastModel(x))
-    const models = ([] as ContentModel[]).concat(artists).concat(releases).concat(podcasts)
+    const models = ([] as ContentModel[])
+        .concat(artists)
+        .concat(events)
+        .concat(podcasts)
+        .concat(releases)
 
     models.sort((a, b) => b.getDateMs() - a.getDateMs())
 

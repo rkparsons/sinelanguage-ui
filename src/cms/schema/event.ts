@@ -4,8 +4,9 @@ import {
     FluidImageField,
     SymbolField,
     TextField,
+    VideoField,
 } from '../../../cms/models'
-import { imageFileSize, unique } from '../../../cms/validations'
+import { imageFileSize, unique, videoFileSize } from '../../../cms/validations'
 
 import { FluidImageType } from '../../../cms/constants'
 
@@ -36,6 +37,12 @@ export default new ContentfulContentType({
             maxWidth: 2400,
             quality: 90,
             fluidImageType: FluidImageType.WEBP_BLUR_UP,
+            required: false,
+        }),
+        new VideoField({
+            name: 'Video',
+            validations: [videoFileSize],
+            required: false,
         }),
         new DateField({
             name: 'Date',

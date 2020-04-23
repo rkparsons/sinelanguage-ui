@@ -28,6 +28,11 @@ export type Event = {
 	image: {
         fluid: FluidObject
     }
+	video: {
+        file: {
+            url: string
+        }
+    }
 	date: Date
 }
 
