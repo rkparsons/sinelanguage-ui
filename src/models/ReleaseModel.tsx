@@ -25,7 +25,7 @@ export class ReleaseModel extends ContentModel {
     getListComponent = () => (
         <Grid container justify="space-between">
             <Grid item xs={1}>
-                <Typography variant="h3">{this.release.uid}</Typography>
+                <Typography variant="h3">{this.release.uid.slice(0, 7)}</Typography>
             </Grid>
             <Grid item xs={8}>
                 <Typography variant="h3">
