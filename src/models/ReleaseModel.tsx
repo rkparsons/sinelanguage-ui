@@ -37,7 +37,7 @@ export class ReleaseModel extends ContentModel {
             </Grid>
             <Grid item xs={2}>
                 <Typography variant="h3" align="right">
-                    {moment(this.release.date).format(`MMM YY`)}
+                    {moment(this.release.date).format(`MMM YYYY`)}
                 </Typography>
             </Grid>
         </Grid>
