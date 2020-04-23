@@ -1,10 +1,10 @@
-import { Artist, Podcast, Release } from '~/cms/types'
+import { Artist, Event, Podcast, Release } from '~/cms/types'
 
 import { createContext } from 'react'
 
 type MediaContext = {
-    selectedMedia?: Podcast | Release | Artist
-    setSelectedMedia(media: Podcast | Release | Artist): void
+    selectedMedia?: Artist | Event | Podcast | Release
+    setSelectedMedia(media: Artist | Event | Podcast | Release): void
 }
 
 export const SelectedMediaContext = createContext<MediaContext>({

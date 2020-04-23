@@ -1,9 +1,8 @@
 import 'font-awesome/css/font-awesome.css'
 
-import { AppContainer, BlurLayer, GlobalStyle, Main } from './Layout.style'
-import { Artist, Podcast, Release } from '~/cms/types'
-import { Fade, Grid } from '@material-ui/core'
-import React, { FC, ReactNode, useState } from 'react'
+import { AppContainer, GlobalStyle } from './Layout.style'
+import { Artist, Event, Podcast, Release } from '~/cms/types'
+import React, { ReactNode, useState } from 'react'
 
 import AudioPlayer from '~/components/AudioPlayer'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -23,8 +22,7 @@ type ViewProps = {
 }
 
 export default ({ isDarkMode, setIsDarkMode, children }: ViewProps) => {
-    const [selectedMedia, setSelectedMedia] = useState<Podcast | Release | Artist>()
-    console.log(location)
+    const [selectedMedia, setSelectedMedia] = useState<Artist | Event | Podcast | Release>()
 
     return (
         <MuiThemeProvider theme={theme(isDarkMode)}>
@@ -35,13 +33,10 @@ export default ({ isDarkMode, setIsDarkMode, children }: ViewProps) => {
                         <GlobalStyle />
                         <AppContainer>
                             <Header />
-                            {/* <Fade in={location.pathname !== '/'}>
-                                <BlurLayer />
-                            </Fade> */}
-                            <Main>
+                            <main>
                                 {children}
                                 <Dashboard />
-                            </Main>
+                            </main>
                             <AudioPlayer />
                         </AppContainer>
                     </>

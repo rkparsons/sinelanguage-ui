@@ -1,40 +1,56 @@
 import { GatsbyNode } from 'gatsby'
 import path from 'path'
 
-type QueryResult = {
+type PageNode = {
+    uid: string
+}
+
+type Content = {
     allContentfulArtist: {
-        nodes: {
-            uid: string
-        }[]
+        nodes: PageNode[]
     }
-    allContentfulRelease: {
-        nodes: {
-            uid: string
-        }[]
+    allContentfulEvent: {
+        nodes: PageNode[]
     }
     allContentfulPodcast: {
-        nodes: {
-            uid: string
-        }[]
+        nodes: PageNode[]
+    }
+    allContentfulRelease: {
+        nodes: PageNode[]
     }
 }
 
 export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
     const { createPage } = actions
 
-    const result = await graphql<QueryResult>(`
+    const createPageFromNode = (type: string, uid: string) => {
+        createPage({
+            path: `${type}s/${uid}`.toLocaleLowerCase(),
+            component: path.resolve(`./src/templates/${type}.tsx`),
+            context: {
+                uid,
+            },
+        })
+    }
+
+    const result = await graphql<Content>(`
         query {
             allContentfulArtist {
                 nodes {
                     uid
                 }
             }
-            allContentfulRelease {
+            allContentfulEvent {
                 nodes {
                     uid
                 }
             }
             allContentfulPodcast {
+                nodes {
+                    uid
+                }
+            }
+            allContentfulRelease {
                 nodes {
                     uid
                 }
@@ -50,33 +66,8 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
         throw new Error('ERROR: Could not fetch content on build')
     }
 
-    result.data?.allContentfulArtist.nodes.forEach(({ uid }: { uid: string }) => {
-        createPage({
-            path: `artists/${uid}`.toLocaleLowerCase(),
-            component: path.resolve(`./src/templates/artist.tsx`),
-            context: {
-                uid,
-            },
-        })
-    })
-
-    result.data?.allContentfulRelease.nodes.forEach(({ uid }: { uid: string }) => {
-        createPage({
-            path: `releases/${uid}`.toLocaleLowerCase(),
-            component: path.resolve(`./src/templates/release.tsx`),
-            context: {
-                uid,
-            },
-        })
-    })
-
-    result.data?.allContentfulPodcast.nodes.forEach(({ uid }: { uid: string }) => {
-        createPage({
-            path: `podcasts/${uid}`.toLocaleLowerCase(),
-            component: path.resolve(`./src/templates/podcast.tsx`),
-            context: {
-                uid,
-            },
-        })
-    })
+    result.data.allContentfulArtist.nodes.forEach(({ uid }) => createPageFromNode('artist', uid))
+    result.data.allContentfulArtist.nodes.forEach(({ uid }) => createPageFromNode('event', uid))
+    result.data.allContentfulArtist.nodes.forEach(({ uid }) => createPageFromNode('podcast', uid))
+    result.data.allContentfulArtist.nodes.forEach(({ uid }) => createPageFromNode('release', uid))
 }

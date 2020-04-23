@@ -15,7 +15,7 @@
         "build": "run-p build:**",
         "build:app": "gatsby clean && gatsby build",
         "build:lambda": "netlify-lambda build src/lambda",
-        "gen:schema": "ts-node deploy-cms.ts",
+        "gen:cms": "ts-node generate-cms.ts",
         "gen:types": "ts-node generate-types.ts",
         "gen:fragments": "ts-node generate-fragments.ts",
         "gen:nodes": "ts-node generate-nodes.ts",

@@ -18,6 +18,18 @@ export const typeDefs = `
 		socials: [String]
 	}
 
+	type contentfulEventDescriptionTextNode implements Node {
+        description: String
+    }
+
+	type ContentfulEvent implements Node {
+		title: String
+		uid: String
+		description: contentfulEventDescriptionTextNode
+		image: ContentfulAsset
+		date: Date @dateformat
+	}
+
 	type contentfulPodcastDescriptionTextNode implements Node {
         description: String
     }
