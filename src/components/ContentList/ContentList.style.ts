@@ -13,27 +13,37 @@ export const List = styled.div`
         z-index: 500;
         padding-top: ${theme.spacing(32)};
         text-shadow: 1px 2px 4px #000000;
+        color: white;
     `}
 `
 
-export const Row = styled.div`
+const Row = styled.div`
     ${({ theme }) => `
         width: 100%;
         color: white;
-        cursor: pointer;
         text-transform: uppercase;
         white-space: pre;
         text-align: left;
-        &:hover {
-            text-shadow: 1px 2px 4px #ffffff;
-            color: black;
-            background-color: rgba(255, 255, 255, 0);
-            backdrop-filter: invert(100%);            
-        }
         h3 {
             padding-left: ${theme.spacing(marginSide)};
         }
     `}
+`
+
+export const TitleRow = styled(Row)`
+    ${({ theme }) => `
+        margin-bottom: ${theme.spacing(5)};
+    `}
+`
+
+export const ItemRow = styled(Row)`
+    cursor: pointer;
+    &:hover {
+        text-shadow: 1px 2px 4px #ffffff;
+        color: black;
+        background-color: rgba(255, 255, 255, 0);
+        backdrop-filter: invert(100%);
+    }
 `
 
 export const HoverImage = styled(Grid)`
