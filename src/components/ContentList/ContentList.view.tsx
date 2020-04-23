@@ -2,7 +2,7 @@ import { Grid, Typography } from '@material-ui/core'
 import { HoverImage, List, Row } from './ContentList.style'
 import React, { useState } from 'react'
 
-import { ContentModel } from '~/cms/models'
+import { ContentModel } from '~/models/ContentModel'
 import { Link } from 'gatsby'
 
 type ViewProps = {

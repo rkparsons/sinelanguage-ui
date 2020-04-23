@@ -1,11 +1,5 @@
 import { Artist, Podcast, Release } from '~/cms/types'
-import {
-    ArtistModel,
-    ContentModel,
-    PodcastModel,
-    ReleaseModel,
-    VideoReleaseModel,
-} from '~/cms/models'
+import { ArtistModel, ContentModel, PodcastModel, ReleaseModel, VideoReleaseModel } from '~/models'
 
 import { Format } from '~/constants/format'
 import { graphql } from 'gatsby'

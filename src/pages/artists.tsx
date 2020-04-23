@@ -1,5 +1,5 @@
 import { Artist } from '~/cms/types'
-import { ArtistModel } from '~/cms/models'
+import { ArtistModel } from '~/models'
 import ContentList from '~/components/ContentList'
 import React from 'react'
 import { graphql } from 'gatsby'

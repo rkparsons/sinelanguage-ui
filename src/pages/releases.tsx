@@ -1,4 +1,4 @@
-import { ReleaseModel, VideoReleaseModel } from '~/cms/models'
+import { ReleaseModel, VideoReleaseModel } from '~/models'
 
 import ContentList from '~/components/ContentList'
 import { Format } from '~/constants/format'

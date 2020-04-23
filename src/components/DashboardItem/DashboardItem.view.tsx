@@ -1,7 +1,7 @@
 import { DashboardItem, DashboardItemInfo } from './DashboardItem.style'
 
 import BagIcon from '~/components/BagIcon'
-import { ContentModel } from '~/cms/models'
+import { ContentModel } from '~/models/ContentModel'
 import { Grid } from '@material-ui/core'
 import IconButton from '~/components/IconButton'
 import { Link } from 'gatsby'

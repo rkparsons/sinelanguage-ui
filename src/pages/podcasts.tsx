@@ -1,6 +1,6 @@
 import ContentList from '~/components/ContentList'
 import { Podcast } from '~/cms/types'
-import { PodcastModel } from '~/cms/models'
+import { PodcastModel } from '~/models'
 import React from 'react'
 import { graphql } from 'gatsby'
 
