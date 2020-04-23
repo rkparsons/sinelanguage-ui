@@ -67,7 +67,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
     }
 
     result.data.allContentfulArtist.nodes.forEach(({ uid }) => createPageFromNode('artist', uid))
-    result.data.allContentfulArtist.nodes.forEach(({ uid }) => createPageFromNode('event', uid))
-    result.data.allContentfulArtist.nodes.forEach(({ uid }) => createPageFromNode('podcast', uid))
-    result.data.allContentfulArtist.nodes.forEach(({ uid }) => createPageFromNode('release', uid))
+    result.data.allContentfulEvent.nodes.forEach(({ uid }) => createPageFromNode('event', uid))
+    result.data.allContentfulPodcast.nodes.forEach(({ uid }) => createPageFromNode('podcast', uid))
+    result.data.allContentfulRelease.nodes.forEach(({ uid }) => createPageFromNode('release', uid))
 }

@@ -37,7 +37,6 @@ export default new ContentfulContentType({
             maxWidth: 2400,
             quality: 90,
             fluidImageType: FluidImageType.WEBP_BLUR_UP,
-            required: false,
         }),
         new VideoField({
             name: 'Video',
