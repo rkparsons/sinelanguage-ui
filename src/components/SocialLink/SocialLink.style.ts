@@ -5,9 +5,13 @@ export const SocialIcon = styled(Icon)`
     ${({ theme }) => `
         width: ${theme.spacing(10)};
         text-align: center;
-        color: black;
+        
         &:hover {
-            color: red;
+            color: rgb(0, 0, 255);
+        }
+
+        &:active {
+            color: rgb(0, 255, 0);
         }
     `}
 `
