@@ -20,7 +20,11 @@ export class ReleaseModel extends ContentModel {
             <Typography variant="body1">[{this.release.uid}]</Typography>
         </>
     )
-    getListRowTitle = () =>
-        `[${this.release.uid}]    ${this.release.artist.title}, ${this.release.title}, ${this.release.format}`
+    getListComponent = () => (
+        <Typography variant="h3">
+            [{this.release.uid}] {this.release.artist.title}, {this.release.title},{' '}
+            {this.release.format}
+        </Typography>
+    )
     getDetailUrl = () => `/releases/${this.release.uid}`.toLowerCase()
 }

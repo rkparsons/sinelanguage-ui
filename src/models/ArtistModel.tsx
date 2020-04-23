@@ -17,6 +17,6 @@ export class ArtistModel extends ContentModel {
             <Typography>{this.artist.title}</Typography>
         </>
     )
-    getListRowTitle = () => this.artist.title
+    getListComponent = () => <Typography variant="h3">{this.artist.title}</Typography>
     getDetailUrl = () => `/artists/${this.artist.uid}`.toLowerCase()
 }

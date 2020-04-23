@@ -18,6 +18,6 @@ export class EventModel extends ContentModel {
         </>
     )
     getDashboardComponent = () => <Video src={this.event.video.file.url} />
-    getListRowTitle = () => this.event.title
+    getListComponent = () => <Typography variant="h3">{this.event.title}</Typography>
     getDetailUrl = () => `/events/${this.event.uid}`.toLowerCase()
 }

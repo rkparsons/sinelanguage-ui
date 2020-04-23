@@ -22,6 +22,6 @@ export abstract class ContentModel {
         />
     )
     abstract getDashboardInfoComponent(): JSX.Element
-    abstract getListRowTitle(): string
+    abstract getListComponent(): JSX.Element
     abstract getDetailUrl(): string
 }

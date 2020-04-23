@@ -18,6 +18,10 @@ export class PodcastModel extends ContentModel {
             <Typography variant="body1">[{this.podcast.uid}]</Typography>
         </>
     )
-    getListRowTitle = () => `[${this.podcast.uid}]    ${this.podcast.title}`
+    getListComponent = () => (
+        <Typography variant="h3">
+            [{this.podcast.uid}] {this.podcast.title}
+        </Typography>
+    )
     getDetailUrl = () => `/podcasts/${this.podcast.uid}`.toLowerCase()
 }

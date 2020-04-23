@@ -33,9 +33,7 @@ export default ({ models }: ViewProps) => {
                                             onMouseEnter={() => setActiveModel(model)}
                                             onMouseLeave={() => setActiveModel(undefined)}
                                         >
-                                            <Typography variant="h3">
-                                                {model.getListRowTitle()}
-                                            </Typography>
+                                            {model.getListComponent()}
                                         </ItemRow>
                                     </Link>
                                 </Grid>
