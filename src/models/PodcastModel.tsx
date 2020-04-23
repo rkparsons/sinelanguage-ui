@@ -1,8 +1,9 @@
+import { Grid, Typography } from '@material-ui/core'
 import React, { memo } from 'react'
 
 import { ContentModel } from './ContentModel'
 import { Podcast } from '../cms/types'
-import { Typography } from '@material-ui/core'
+import moment from 'moment'
 
 export class PodcastModel extends ContentModel {
     podcast: Podcast
@@ -19,9 +20,24 @@ export class PodcastModel extends ContentModel {
         </>
     )
     getListComponent = () => (
-        <Typography variant="h3">
-            [{this.podcast.uid}] {this.podcast.title}
-        </Typography>
+        <Grid container justify="space-between">
+            <Grid item xs={1}>
+                <Typography variant="h3">{this.podcast.uid}</Typography>
+            </Grid>
+            <Grid item xs={8}>
+                <Typography variant="h3">{this.podcast.title}</Typography>
+            </Grid>
+            <Grid item xs={1}>
+                <Typography variant="h3">
+                    {moment.utc(this.podcast.track.metadata.duration).format('H:mm:ss')}
+                </Typography>
+            </Grid>
+            <Grid item xs={2}>
+                <Typography variant="h3" align="right">
+                    {moment(this.podcast.date).format(`MMM YY`)}
+                </Typography>
+            </Grid>
+        </Grid>
     )
     getDetailUrl = () => `/podcasts/${this.podcast.uid}`.toLowerCase()
 }

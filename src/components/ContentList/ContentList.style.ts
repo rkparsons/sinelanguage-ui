@@ -26,6 +26,7 @@ const Row = styled.div`
         text-align: left;
         h3 {
             padding-left: ${theme.spacing(marginSide)};
+            padding-right: ${theme.spacing(marginSide)};
         }
     `}
 `
