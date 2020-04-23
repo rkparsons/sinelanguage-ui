@@ -1,7 +1,9 @@
+import { Grid, Typography } from '@material-ui/core'
+
 import { ContentModel } from './ContentModel'
 import React from 'react'
 import { Release } from '../cms/types'
-import { Typography } from '@material-ui/core'
+import moment from 'moment'
 
 export class ReleaseModel extends ContentModel {
     release: Release
@@ -21,10 +23,24 @@ export class ReleaseModel extends ContentModel {
         </>
     )
     getListComponent = () => (
-        <Typography variant="h3">
-            [{this.release.uid}] {this.release.artist.title}, {this.release.title},{' '}
-            {this.release.format}
-        </Typography>
+        <Grid container justify="space-between">
+            <Grid item xs={1}>
+                <Typography variant="h3">{this.release.uid}</Typography>
+            </Grid>
+            <Grid item xs={8}>
+                <Typography variant="h3">
+                    {this.release.artist.title.toUpperCase()}, <i>{this.release.title}</i>
+                </Typography>
+            </Grid>
+            <Grid item xs={1}>
+                <Typography variant="h4">{this.release.format}</Typography>
+            </Grid>
+            <Grid item xs={2}>
+                <Typography variant="h3" align="right">
+                    {moment(this.release.date).format(`MMM YY`)}
+                </Typography>
+            </Grid>
+        </Grid>
     )
     getDetailUrl = () => `/releases/${this.release.uid}`.toLowerCase()
 }

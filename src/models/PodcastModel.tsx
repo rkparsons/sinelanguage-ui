@@ -25,7 +25,7 @@ export class PodcastModel extends ContentModel {
                 <Typography variant="h3">{this.podcast.uid}</Typography>
             </Grid>
             <Grid item xs={8}>
-                <Typography variant="h3">{this.podcast.title}</Typography>
+                <Typography variant="h3">{this.podcast.title.toUpperCase()}</Typography>
             </Grid>
             <Grid item xs={1}>
                 <Typography variant="h3">
@@ -34,7 +34,7 @@ export class PodcastModel extends ContentModel {
             </Grid>
             <Grid item xs={2}>
                 <Typography variant="h3" align="right">
-                    {moment(this.podcast.date).format(`MMM YY`)}
+                    {moment(this.podcast.date).format(`MMM YY`).toUpperCase()}
                 </Typography>
             </Grid>
         </Grid>

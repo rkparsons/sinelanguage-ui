@@ -22,7 +22,7 @@ export default ({ models }: ViewProps) => {
                             <Grid item xs={12}>
                                 <TitleRow>
                                     <Typography variant="h3">
-                                        {location.pathname.slice(1)} ({models.length})
+                                        {location.pathname.slice(1).toUpperCase()} ({models.length})
                                     </Typography>
                                 </TitleRow>
                             </Grid>

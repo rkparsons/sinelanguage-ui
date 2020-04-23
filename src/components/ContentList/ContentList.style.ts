@@ -21,7 +21,6 @@ const Row = styled.div`
     ${({ theme }) => `
         width: 100%;
         color: white;
-        text-transform: uppercase;
         white-space: pre;
         text-align: left;
         h3 {
