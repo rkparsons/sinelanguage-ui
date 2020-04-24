@@ -6,6 +6,7 @@ import { Format } from '~/constants/format'
 import Head from '~/components/Head'
 import IconButton from '~/components/IconButton'
 import Image from 'gatsby-image'
+import { Link } from 'gatsby'
 import { PlayArrow } from '@material-ui/icons'
 import React from 'react'
 import { ReleaseModel } from '~/models'
@@ -13,7 +14,6 @@ import RichText from '~/components/RichText'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import SocialLink from '~/components/SocialLink'
 import SquareImage from '~/components/SquareImage'
-import moment from 'moment'
 
 type ViewProps = {
     artist: Artist
@@ -73,7 +73,10 @@ export default ({ artist, releaseModels }: ViewProps) => {
                                 <Grid container>
                                     {releaseModels.map((releaseModel) => (
                                         <Grid item xs={releaseModel.thumbnailGridSize}>
-                                            {releaseModel.getDashboardComponent()}
+                                            <Link to={releaseModel.getDetailUrl()}>
+                                                {releaseModel.getDashboardComponent()}
+                                            </Link>
+
                                             {releaseModel.getThumbnailInfoComponent()}
                                             <br />
                                         </Grid>
