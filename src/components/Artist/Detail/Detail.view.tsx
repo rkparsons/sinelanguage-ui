@@ -6,7 +6,7 @@ import { Format } from '~/constants/format'
 import Head from '~/components/Head'
 import IconButton from '~/components/IconButton'
 import Image from 'gatsby-image'
-import { Link } from 'gatsby'
+import MediaLink from '~/components/MediaLink'
 import { PlayArrow } from '@material-ui/icons'
 import React from 'react'
 import { ReleaseModel } from '~/models'
@@ -73,9 +73,9 @@ export default ({ artist, releaseModels }: ViewProps) => {
                                 <Grid container>
                                     {releaseModels.map((releaseModel) => (
                                         <Grid item xs={releaseModel.thumbnailGridSize}>
-                                            <Link to={releaseModel.getDetailUrl()}>
+                                            <MediaLink url={releaseModel.getDetailUrl()}>
                                                 {releaseModel.getDashboardComponent()}
-                                            </Link>
+                                            </MediaLink>
 
                                             {releaseModel.getThumbnailInfoComponent()}
                                             <br />
