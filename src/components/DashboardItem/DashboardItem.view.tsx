@@ -17,7 +17,7 @@ export default ({ model }: ViewProps) => {
     return (
         <SelectedMediaContext.Consumer>
             {({ setSelectedMedia }) => (
-                <DashboardItem widthMultiplier={model.getDashboardWidth()}>
+                <DashboardItem widthMultiplier={model.dashboardWidth}>
                     <Link to={model.getDetailUrl()}>{model.getDashboardComponent()}</Link>
                     <DashboardItemInfo>
                         {model.getDashboardInfoComponent()}

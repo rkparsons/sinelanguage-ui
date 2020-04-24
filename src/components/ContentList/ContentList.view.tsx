@@ -42,7 +42,7 @@ export default ({ models }: ViewProps) => {
                     </List>
                     {activeModel && (
                         <HoverImage container alignItems="center" justify="center">
-                            <Grid item xs={activeModel.hoverWidth}>
+                            <Grid item xs={activeModel.hoverGridSize}>
                                 {activeModel.getDashboardComponent()}
                             </Grid>
                         </HoverImage>

@@ -7,9 +7,9 @@ export class VideoReleaseModel extends ReleaseModel {
     isPlayableFromDashboard = false
     constructor(release: Release) {
         super(release)
-        this.hoverWidth = 12
+        this.dashboardWidth = 2
+        this.hoverGridSize = 12
+        this.thumbnailGridSize = 6
     }
     getDashboardComponent = () => <Video src={this.release.video.file.url} />
-    getDashboardWidth = () => 2
-    getHoverWidth = () => 12
 }

@@ -1,21 +1,26 @@
+import { Artist, Release } from '~/cms/types'
 import { ArtistDetail, ArtistImage, ArtistInfo } from './Detail.style'
 import { Grid, Typography } from '@material-ui/core'
 
-import { Artist } from '~/cms/types'
+import { Format } from '~/constants/format'
 import Head from '~/components/Head'
 import IconButton from '~/components/IconButton'
+import Image from 'gatsby-image'
 import { PlayArrow } from '@material-ui/icons'
 import React from 'react'
+import { ReleaseModel } from '~/models'
 import RichText from '~/components/RichText'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import SocialLink from '~/components/SocialLink'
 import SquareImage from '~/components/SquareImage'
+import moment from 'moment'
 
 type ViewProps = {
     artist: Artist
+    releaseModels: ReleaseModel[]
 }
 
-export default ({ artist }: ViewProps) => {
+export default ({ artist, releaseModels }: ViewProps) => {
     const { title, description, image, bio, socials } = artist
 
     return (
@@ -62,6 +67,18 @@ export default ({ artist }: ViewProps) => {
                                 </Grid>
                                 <br />
                                 <RichText json={bio.json} variant="body2" />
+                                <br />
+                                <Typography variant="h3">RELEASES</Typography>
+                                <br />
+                                <Grid container>
+                                    {releaseModels.map((releaseModel) => (
+                                        <Grid item xs={releaseModel.thumbnailGridSize}>
+                                            {releaseModel.getDashboardComponent()}
+                                            {releaseModel.getThumbnailInfoComponent()}
+                                            <br />
+                                        </Grid>
+                                    ))}
+                                </Grid>
                             </ArtistInfo>
                         </Grid>
                     </ArtistDetail>
