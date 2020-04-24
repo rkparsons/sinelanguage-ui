@@ -23,5 +23,8 @@ export const ArtistInfo = styled.div`
     ${({ theme }) => `    
         margin: 0 ${theme.spacing(marginSide)};
         padding-top: ${theme.spacing(contentOffset)};
+        padding-bottom: ${theme.spacing(20)};
+        height: 100vh;
+        overflow: scroll;
     `}
 `
