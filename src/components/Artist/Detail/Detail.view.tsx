@@ -37,15 +37,20 @@ export default ({ artist }: ViewProps) => {
                         </Grid>
                         <Grid item xs={6}>
                             <ArtistInfo>
-                                <Typography variant="h3">{title.toUpperCase()}</Typography>
-
-                                <IconButton
-                                    label="PLAY"
-                                    icon={<PlayArrow fontSize="small" />}
-                                    onClick={() => {
-                                        setSelectedMedia(artist)
-                                    }}
-                                />
+                                <Grid container spacing={5}>
+                                    <Grid item>
+                                        <Typography variant="h3">{title.toUpperCase()}</Typography>
+                                    </Grid>
+                                    <Grid item>
+                                        <IconButton
+                                            label={<Typography variant="h3">PLAY</Typography>}
+                                            icon={<PlayArrow fontSize="large" />}
+                                            onClick={() => {
+                                                setSelectedMedia(artist)
+                                            }}
+                                        />
+                                    </Grid>
+                                </Grid>
                                 <Typography variant="h3">
                                     {socials.map((url) => (
                                         <SocialLink url={url} />

@@ -1,8 +1,8 @@
 import { DashboardItem, DashboardItemInfo } from './DashboardItem.style'
+import { Grid, Typography } from '@material-ui/core'
 
 import BagIcon from '~/components/BagIcon'
 import { ContentModel } from '~/models/ContentModel'
-import { Grid } from '@material-ui/core'
 import IconButton from '~/components/IconButton'
 import { Link } from 'gatsby'
 import { PlayArrow } from '@material-ui/icons'
@@ -26,7 +26,7 @@ export default ({ model }: ViewProps) => {
                                 <Grid item xs={1}></Grid>
                                 <Grid item>
                                     <IconButton
-                                        label="PLAY"
+                                        label={<Typography variant="body1">PLAY</Typography>}
                                         icon={<PlayArrow fontSize="small" />}
                                         onClick={() => {
                                             setSelectedMedia(model.content)
@@ -35,7 +35,7 @@ export default ({ model }: ViewProps) => {
                                 </Grid>
                                 <Grid item>
                                     <IconButton
-                                        label="BUY"
+                                        label={<Typography variant="body1">BUY</Typography>}
                                         icon={<BagIcon />}
                                         onClick={() => console.log('buy')}
                                     />

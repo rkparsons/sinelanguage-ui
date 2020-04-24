@@ -1,8 +1,8 @@
+import { Grid } from '@material-ui/core'
 import styled from 'styled-components'
 
-export const Button = styled.span`
+export const Button = styled(Grid)`
     cursor: pointer;
-    display: table;
 
     &:hover {
         color: rgb(0, 0, 255);
@@ -11,14 +11,8 @@ export const Button = styled.span`
     &:active {
         color: rgb(0, 255, 0);
     }
-`
 
-export const IconContainer = styled.span`
-    ${({ theme }) => `
-        display: table-cell;
-        vertical-align: middle;
-        width: ${theme.spacing(5)};
-        height: ${theme.spacing(5)};
-        display: inline-block;
-    `}
+    svg {
+        display: block;
+    }
 `
