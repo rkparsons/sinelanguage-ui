@@ -5,6 +5,7 @@ import BagIcon from '~/components/BagIcon'
 import { ContentModel } from '~/models/ContentModel'
 import IconButton from '~/components/IconButton'
 import { Link } from 'gatsby'
+import MediaLink from '~/components/MediaLink'
 import { PlayArrow } from '@material-ui/icons'
 import React from 'react'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
@@ -18,7 +19,9 @@ export default ({ model }: ViewProps) => {
         <SelectedMediaContext.Consumer>
             {({ setSelectedMedia }) => (
                 <DashboardItem widthMultiplier={model.dashboardWidth}>
-                    <Link to={model.getDetailUrl()}>{model.getDashboardComponent()}</Link>
+                    <MediaLink url={model.getDetailUrl()}>
+                        {model.getDashboardComponent()}
+                    </MediaLink>
                     <DashboardItemInfo>
                         {model.getDashboardInfoComponent()}
                         {model.isPlayableFromDashboard && (
