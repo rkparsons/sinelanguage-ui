@@ -1,4 +1,4 @@
-import React, { memo, useRef } from 'react'
+import React, { useRef } from 'react'
 
 import { VideoContainer } from './Video.style'
 
