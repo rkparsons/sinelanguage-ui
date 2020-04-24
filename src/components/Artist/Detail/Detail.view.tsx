@@ -57,8 +57,8 @@ export default ({ artist, releaseModels }: ViewProps) => {
                                     </Grid>
                                 </Grid>
                                 <Grid container spacing={2}>
-                                    {socials.map((url) => (
-                                        <Grid item>
+                                    {socials.map((url, index) => (
+                                        <Grid item key={index}>
                                             <Typography variant="h3">
                                                 <SocialLink url={url} />
                                             </Typography>
@@ -71,8 +71,8 @@ export default ({ artist, releaseModels }: ViewProps) => {
                                 <Typography variant="h3">RELEASES</Typography>
                                 <br />
                                 <Grid container>
-                                    {releaseModels.map((releaseModel) => (
-                                        <Grid item xs={releaseModel.thumbnailGridSize}>
+                                    {releaseModels.map((releaseModel, index) => (
+                                        <Grid item xs={releaseModel.thumbnailGridSize} key={index}>
                                             <MediaLink url={releaseModel.getDetailUrl()}>
                                                 {releaseModel.getDashboardComponent()}
                                             </MediaLink>
