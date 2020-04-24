@@ -7,13 +7,17 @@ import { Typography } from '@material-ui/core'
 
 interface ViewProps {
     json: Document
+    variant: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body1' | 'body2'
 }
 
-export default ({ json }: ViewProps) => {
+export default ({ json, variant }: ViewProps) => {
     const options: Options = {
         renderNode: {
             [BLOCKS.PARAGRAPH]: (node, children) => (
-                <Typography variant="body1">{children}</Typography>
+                <>
+                    <Typography variant={variant}>{children}</Typography>
+                    <br />
+                </>
             ),
         },
     }

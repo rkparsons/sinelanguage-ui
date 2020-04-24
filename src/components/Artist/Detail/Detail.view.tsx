@@ -51,12 +51,17 @@ export default ({ artist }: ViewProps) => {
                                         />
                                     </Grid>
                                 </Grid>
-                                <Typography variant="h3">
+                                <Grid container spacing={2}>
                                     {socials.map((url) => (
-                                        <SocialLink url={url} />
+                                        <Grid item>
+                                            <Typography variant="h3">
+                                                <SocialLink url={url} />
+                                            </Typography>
+                                        </Grid>
                                     ))}
-                                </Typography>
-                                <RichText json={bio.json} />
+                                </Grid>
+                                <br />
+                                <RichText json={bio.json} variant="body2" />
                             </ArtistInfo>
                         </Grid>
                     </ArtistDetail>
