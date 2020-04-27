@@ -18,6 +18,8 @@ export default () => {
             ? [(selectedMedia as Podcast).track]
             : selectedMedia?.__typename === 'ContentfulRelease'
             ? (selectedMedia as Release).tracks
+            : selectedMedia?.__typename === 'ContentfulTrack'
+            ? [selectedMedia as Track]
             : []
     }, [selectedMedia])
 

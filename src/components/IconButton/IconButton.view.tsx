@@ -10,7 +10,7 @@ type ViewProps = {
 }
 
 export default ({ label, icon, onClick }: ViewProps) => (
-    <Button container justify="center" alignItems="center" onClick={onClick}>
+    <Button container alignItems="center" onClick={onClick}>
         <Grid item>{icon}</Grid>
         <Grid item>{label}</Grid>
     </Button>
