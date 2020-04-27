@@ -1,24 +1,36 @@
-import { Box, Grid, Typography } from '@material-ui/core'
+import { Artist, Release } from '../cms/types'
+import { ArtistModel, VideoReleaseModel } from '.'
+import { Grid, Typography } from '@material-ui/core'
 
-import { ArtistModel } from './ArtistModel'
 import { ContentModel } from './ContentModel'
+import { Format } from '~/constants/format'
 import IconButton from '~/components/IconButton'
 import InvertOnHover from '~/components/InvertOnHover'
 import MediaLink from '~/components/MediaLink'
 import { PlayArrow } from '@material-ui/icons'
 import React from 'react'
-import { Release } from '../cms/types'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import moment from 'moment'
 
 export class ReleaseModel extends ContentModel {
     release: Release
     artistModel: ArtistModel
+    relatedReleaseModels: ReleaseModel[]
 
-    constructor(release: Release) {
+    constructor(release: Release & { artist: Artist & { release?: Release[] } }) {
         super(release)
         this.release = release
         this.artistModel = new ArtistModel(release.artist)
+
+        // todo: replace with factory method
+        this.relatedReleaseModels =
+            release.artist.release
+                ?.filter((x) => x.uid !== release.uid)
+                .map((release) =>
+                    release.format === Format.VIDEO
+                        ? new VideoReleaseModel(release)
+                        : new ReleaseModel(release)
+                ) || []
     }
 
     getDashboardInfoComponent = () => (
@@ -119,8 +131,28 @@ export class ReleaseModel extends ContentModel {
 
                             {this.artistModel.getThumbnailInfoComponent()}
                             <br />
+                            <br />
                         </Grid>
                     </Grid>
+
+                    {this.relatedReleaseModels.length && (
+                        <>
+                            <Typography variant="h3">RELATED</Typography>
+                            <br />
+                            <Grid container>
+                                {this.relatedReleaseModels.map((releaseModel, index) => (
+                                    <Grid item xs={releaseModel.thumbnailGridSize} key={index}>
+                                        <MediaLink url={releaseModel.getDetailUrl()}>
+                                            {releaseModel.getDashboardComponent()}
+                                        </MediaLink>
+
+                                        {releaseModel.getThumbnailInfoComponent()}
+                                        <br />
+                                    </Grid>
+                                ))}
+                            </Grid>
+                        </>
+                    )}
                 </>
             )}
         </SelectedMediaContext.Consumer>

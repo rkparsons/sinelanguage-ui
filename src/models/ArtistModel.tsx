@@ -70,20 +70,25 @@ export class ArtistModel extends ContentModel {
                     <br />
                     <RichText json={this.artist.bio.json} variant="body2" />
                     <br />
-                    <Typography variant="h3">RELEASES</Typography>
-                    <br />
-                    <Grid container>
-                        {this.releaseModels.map((releaseModel, index) => (
-                            <Grid item xs={releaseModel.thumbnailGridSize} key={index}>
-                                <MediaLink url={releaseModel.getDetailUrl()}>
-                                    {releaseModel.getDashboardComponent()}
-                                </MediaLink>
 
-                                {releaseModel.getThumbnailInfoComponent()}
-                                <br />
+                    {this.releaseModels.length && (
+                        <>
+                            <Typography variant="h3">RELEASES</Typography>
+                            <br />
+                            <Grid container>
+                                {this.releaseModels.map((releaseModel, index) => (
+                                    <Grid item xs={releaseModel.thumbnailGridSize} key={index}>
+                                        <MediaLink url={releaseModel.getDetailUrl()}>
+                                            {releaseModel.getDashboardComponent()}
+                                        </MediaLink>
+
+                                        {releaseModel.getThumbnailInfoComponent()}
+                                        <br />
+                                    </Grid>
+                                ))}
                             </Grid>
-                        ))}
-                    </Grid>
+                        </>
+                    )}
                 </>
             )}
         </SelectedMediaContext.Consumer>
