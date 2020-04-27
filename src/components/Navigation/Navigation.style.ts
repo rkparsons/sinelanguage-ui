@@ -12,6 +12,7 @@ export const Header = styled.header`
         margin-top: ${theme.spacing(marginTop)};
         margin-left: ${theme.spacing(marginSide)};
         margin-right: ${theme.spacing(marginSide)};
+        pointer-events: none;
     `}
 `
 

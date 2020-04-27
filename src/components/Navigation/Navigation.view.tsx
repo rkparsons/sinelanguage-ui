@@ -1,4 +1,4 @@
-import { Header, HeaderRow } from './Header.style'
+import { Header, HeaderRow } from './Navigation.style'
 
 import { Grid } from '@material-ui/core'
 import NavItem from '~/components/NavItem'

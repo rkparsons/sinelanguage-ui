@@ -8,8 +8,8 @@ import AudioPlayer from '~/components/AudioPlayer'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Dashboard from '~/components/Dashboard'
 import Footer from '~/components/Footer'
-import Header from '~/components/Header'
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
+import Navigation from '~/components/Navigation'
 import { ThemeProvider as ScThemeProvider } from 'styled-components'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import theme from '~/styles/theme'
@@ -32,7 +32,7 @@ export default ({ isDarkMode, setIsDarkMode, children }: ViewProps) => {
                         <CssBaseline />
                         <GlobalStyle />
                         <AppContainer>
-                            <Header />
+                            <Navigation />
                             <main>
                                 {children}
                                 <Dashboard />

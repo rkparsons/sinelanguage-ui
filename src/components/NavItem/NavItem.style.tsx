@@ -19,4 +19,9 @@ export default styled((props: GatsbyLinkProps<{}>) => (
     &:hover {
         color: black;
     }
+
+    h3 {
+        display: inline;
+        pointer-events: all;
+    }
 `
