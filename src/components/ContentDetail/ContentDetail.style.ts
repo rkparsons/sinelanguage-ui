@@ -3,7 +3,7 @@ import { contentOffset, marginSide } from '~/styles/sizes'
 import { Grid } from '@material-ui/core'
 import styled from 'styled-components'
 
-export const ArtistDetail = styled(Grid)`
+export const Detail = styled(Grid)`
     position: fixed;
     top: 0;
     left: 0;
@@ -14,12 +14,12 @@ export const ArtistDetail = styled(Grid)`
     color: white;
 `
 
-export const ArtistImage = styled(Grid)`
+export const Image = styled(Grid)`
     width: 100%;
     height: 100%;
 `
 
-export const ArtistInfo = styled.div`
+export const Info = styled.div`
     ${({ theme }) => `    
         margin: 0 ${theme.spacing(marginSide)};
         padding-top: ${theme.spacing(contentOffset)};

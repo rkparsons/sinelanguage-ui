@@ -3,6 +3,7 @@ import { Grid, Typography } from '@material-ui/core'
 import { ContentModel } from './ContentModel'
 import React from 'react'
 import { Release } from '../cms/types'
+import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import moment from 'moment'
 
 export class ReleaseModel extends ContentModel {
@@ -49,6 +50,11 @@ export class ReleaseModel extends ContentModel {
                 {moment(this.release.date).format('MMM. DD, YYYY')}
             </Typography>
         </>
+    )
+    getDetailComponent = () => (
+        <SelectedMediaContext.Consumer>
+            {({ setSelectedMedia }) => <></>}
+        </SelectedMediaContext.Consumer>
     )
     getDetailUrl = () => `/releases/${this.release.uid}`.toLowerCase()
 }
