@@ -1,9 +1,11 @@
 import { Artist, Event, Podcast, Release } from '../cms/types'
-import { GridSize, Typography } from '@material-ui/core'
+import { Grid, GridSize, Typography } from '@material-ui/core'
 
+import Centered from '~/components/Centered'
 import Head from '~/components/Head'
 import Image from 'gatsby-image'
 import React from 'react'
+import Scrollable from '~/components/Scrollable'
 
 export abstract class ContentModel {
     content: Artist | Event | Podcast | Release
@@ -32,9 +34,19 @@ export abstract class ContentModel {
             image={this.content.image.fluid.src}
         />
     )
+    getDetailComponent = () => (
+        <>
+            <Grid item xs={6}>
+                <Centered size={7}>{this.getDashboardComponent()}</Centered>
+            </Grid>
+            <Grid item xs={6}>
+                <Scrollable>{this.getDetailInfoComponent()}</Scrollable>
+            </Grid>
+        </>
+    )
     abstract getDashboardInfoComponent(): JSX.Element
     abstract getListComponent(): JSX.Element
 
-    abstract getDetailComponent(): JSX.Element
+    abstract getDetailInfoComponent(): JSX.Element
     abstract getDetailUrl(): string
 }

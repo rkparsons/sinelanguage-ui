@@ -43,7 +43,7 @@ export class PodcastModel extends ContentModel {
             </Grid>
         </Grid>
     )
-    getDetailComponent = () => (
+    getDetailInfoComponent = () => (
         <SelectedMediaContext.Consumer>
             {({ setSelectedMedia }) => (
                 <>

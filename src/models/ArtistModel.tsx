@@ -40,7 +40,7 @@ export class ArtistModel extends ContentModel {
         <Typography variant="body1">{this.content.title.toUpperCase()}</Typography>
     )
 
-    getDetailComponent = () => (
+    getDetailInfoComponent = () => (
         <SelectedMediaContext.Consumer>
             {({ setSelectedMedia }) => (
                 <>

@@ -70,7 +70,7 @@ export class ReleaseModel extends ContentModel {
             </Typography>
         </>
     )
-    getDetailComponent = () => (
+    getDetailInfoComponent = () => (
         <SelectedMediaContext.Consumer>
             {({ setSelectedMedia }) => (
                 <>

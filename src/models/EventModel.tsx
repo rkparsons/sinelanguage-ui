@@ -20,7 +20,7 @@ export class EventModel extends ContentModel {
     )
     getDashboardComponent = () => <Video src={this.event.video.file.url} />
     getListComponent = () => <Typography variant="h3">{this.event.title}</Typography>
-    getDetailComponent = () => (
+    getDetailInfoComponent = () => (
         <SelectedMediaContext.Consumer>
             {({ setSelectedMedia }) => <></>}
         </SelectedMediaContext.Consumer>

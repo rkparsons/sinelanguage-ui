@@ -1,8 +1,9 @@
 import { Artist, Release } from '~/cms/types'
+import { ReleaseModel, VideoReleaseModel } from '~/models'
 
 import ContentDetail from '~/components/ContentDetail'
+import { Format } from '~/constants/format'
 import React from 'react'
-import { ReleaseModel } from '~/models'
 import { graphql } from 'gatsby'
 
 type Props = {
@@ -11,9 +12,15 @@ type Props = {
     }
 }
 
-export default ({ data }: Props) => (
-    <ContentDetail model={new ReleaseModel(data.contentfulRelease)} />
-)
+export default ({ data }: Props) => {
+    // todo: replace with factory method
+    const release =
+        data.contentfulRelease.format === Format.VIDEO
+            ? new VideoReleaseModel(data.contentfulRelease)
+            : new ReleaseModel(data.contentfulRelease)
+
+    return <ContentDetail model={release} />
+}
 
 export const query = graphql`
     query($uid: String!) {
