@@ -1,8 +1,10 @@
 import { Box, Grid, Typography } from '@material-ui/core'
 
+import { ArtistModel } from './ArtistModel'
 import { ContentModel } from './ContentModel'
 import IconButton from '~/components/IconButton'
 import InvertOnHover from '~/components/InvertOnHover'
+import MediaLink from '~/components/MediaLink'
 import { PlayArrow } from '@material-ui/icons'
 import React from 'react'
 import { Release } from '../cms/types'
@@ -11,10 +13,12 @@ import moment from 'moment'
 
 export class ReleaseModel extends ContentModel {
     release: Release
+    artistModel: ArtistModel
 
     constructor(release: Release) {
         super(release)
         this.release = release
+        this.artistModel = new ArtistModel(release.artist)
     }
 
     getDashboardInfoComponent = () => (
@@ -104,8 +108,19 @@ export class ReleaseModel extends ContentModel {
                                     </Grid>
                                 </InvertOnHover>
                             ))}
+                            <br />
                         </>
                     )}
+                    <Grid container>
+                        <Grid item xs={3}>
+                            <MediaLink url={this.artistModel.getDetailUrl()}>
+                                {this.artistModel.getDashboardComponent()}
+                            </MediaLink>
+
+                            {this.artistModel.getThumbnailInfoComponent()}
+                            <br />
+                        </Grid>
+                    </Grid>
                 </>
             )}
         </SelectedMediaContext.Consumer>

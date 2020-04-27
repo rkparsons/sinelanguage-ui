@@ -14,14 +14,14 @@ import SocialLink from '~/components/SocialLink'
 
 export class ArtistModel extends ContentModel {
     artist: Artist
-    releases: ReleaseModel[]
+    releaseModels: ReleaseModel[]
 
     constructor(artist: Artist & { release?: Release[] }) {
         super(artist)
         this.artist = artist
 
         // todo: replace with factory method
-        this.releases =
+        this.releaseModels =
             artist.release?.map((release) =>
                 release.format === Format.VIDEO
                     ? new VideoReleaseModel(release)
@@ -35,6 +35,10 @@ export class ArtistModel extends ContentModel {
         </>
     )
     getListComponent = () => <Typography variant="h3">{this.artist.title.toUpperCase()}</Typography>
+
+    getThumbnailInfoComponent = () => (
+        <Typography variant="body1">{this.content.title.toUpperCase()}</Typography>
+    )
 
     getDetailComponent = () => (
         <SelectedMediaContext.Consumer>
@@ -69,7 +73,7 @@ export class ArtistModel extends ContentModel {
                     <Typography variant="h3">RELEASES</Typography>
                     <br />
                     <Grid container>
-                        {this.releases.map((releaseModel, index) => (
+                        {this.releaseModels.map((releaseModel, index) => (
                             <Grid item xs={releaseModel.thumbnailGridSize} key={index}>
                                 <MediaLink url={releaseModel.getDetailUrl()}>
                                     {releaseModel.getDashboardComponent()}
