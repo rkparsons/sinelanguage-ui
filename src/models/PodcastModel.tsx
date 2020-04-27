@@ -5,6 +5,7 @@ import IconButton from '~/components/IconButton'
 import { PlayArrow } from '@material-ui/icons'
 import { Podcast } from '../cms/types'
 import React from 'react'
+import RichText from '~/components/RichText'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import moment from 'moment'
 
@@ -45,20 +46,24 @@ export class PodcastModel extends ContentModel {
     getDetailComponent = () => (
         <SelectedMediaContext.Consumer>
             {({ setSelectedMedia }) => (
-                <Grid container spacing={5}>
-                    <Grid item>
-                        <Typography variant="h3">{this.podcast.title.toUpperCase()}</Typography>
+                <>
+                    <Grid container spacing={5}>
+                        <Grid item>
+                            <Typography variant="h3">{this.podcast.title.toUpperCase()}</Typography>
+                        </Grid>
+                        <Grid item>
+                            <IconButton
+                                label={<Typography variant="h3">PLAY</Typography>}
+                                icon={<PlayArrow fontSize="large" />}
+                                onClick={() => {
+                                    setSelectedMedia(this.podcast)
+                                }}
+                            />
+                        </Grid>
                     </Grid>
-                    <Grid item>
-                        <IconButton
-                            label={<Typography variant="h3">PLAY</Typography>}
-                            icon={<PlayArrow fontSize="large" />}
-                            onClick={() => {
-                                setSelectedMedia(this.podcast)
-                            }}
-                        />
-                    </Grid>
-                </Grid>
+                    <br />
+                    <RichText json={this.podcast.introduction.json} variant="body2" />
+                </>
             )}
         </SelectedMediaContext.Consumer>
     )

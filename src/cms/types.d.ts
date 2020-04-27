@@ -43,6 +43,9 @@ export type Podcast = {
 	description: {
         description: string
     }
+	introduction: {
+        json: Document
+    }
 	image: {
         fluid: FluidObject
     }

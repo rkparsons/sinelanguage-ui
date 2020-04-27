@@ -4,7 +4,7 @@ import Field from './field'
 import { FieldProps } from '../types/fieldProps'
 
 export default abstract class ContentfulField extends Field {
-    nameNoSpace: string
+    nodeName: string
     contentFields: ContentFields
     // todo: replace with contentful control type
     control?: Control
@@ -25,9 +25,8 @@ export default abstract class ContentfulField extends Field {
         format,
     }: FieldProps) {
         super()
-        this.nameNoSpace = name.replace(/ /g, '')
         this.contentFields = {
-            id: id || this.nameNoSpace.replace(/^\w/, c => c.toLowerCase()),
+            id: id || name.replace(/ /g, '').replace(/^\w/, (c) => c.toLowerCase()),
             name,
             type,
             localized,
@@ -37,6 +36,7 @@ export default abstract class ContentfulField extends Field {
             omitted,
             items,
         }
+        this.nodeName = this.contentFields.id.replace(/^\w/, (c) => c.toUpperCase())
 
         if (widgetId) {
             this.control = {

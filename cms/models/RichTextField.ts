@@ -38,13 +38,13 @@ export default class RichTextField extends ContentfulField {
 
     getLinkedNodeDefinition = (
         schemaName: string
-    ) => `type contentful${schemaName}${this.nameNoSpace}RichTextNode implements Node {
+    ) => `type contentful${schemaName}${this.nodeName}RichTextNode implements Node {
         nodeType: String
         json: JSON
     }`
 
     getNodeDefinition = (schemaName: string) =>
-        `${this.contentFields.id}: contentful${schemaName}${this.nameNoSpace}RichTextNode`
+        `${this.contentFields.id}: contentful${schemaName}${this.nodeName}RichTextNode`
 
     getFragmentDefinition = () =>
         `${this.contentFields.id} {

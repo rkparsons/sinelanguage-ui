@@ -42,7 +42,7 @@ export default class SoundCloudMetadataField extends ContentfulField {
 
     getLinkedNodeDefinition = (
         schemaName: string
-    ) => `type contentful${schemaName}${this.nameNoSpace}JsonNode implements Node {
+    ) => `type contentful${schemaName}${this.nodeName}JsonNode implements Node {
         title: String
         streamUrl: String
         duration: Int
@@ -50,7 +50,7 @@ export default class SoundCloudMetadataField extends ContentfulField {
     }`
 
     getNodeDefinition = (schemaName: string) =>
-        `${this.contentFields.id}: contentful${schemaName}${this.nameNoSpace}JsonNode`
+        `${this.contentFields.id}: contentful${schemaName}${this.nodeName}JsonNode`
 
     getFragmentDefinition = () =>
         `${this.contentFields.id} {

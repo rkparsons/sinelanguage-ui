@@ -4,10 +4,11 @@ import {
     FluidImageField,
     IntegerField,
     LinkField,
+    RichTextField,
     SymbolField,
     TextField,
 } from '../../../cms/models'
-import { imageFileSize, unique } from '../../../cms/validations'
+import { imageFileSize, marks, nodeTypes, unique } from '../../../cms/validations'
 
 import { FluidImageType } from '../../../cms/constants'
 import Track from './track'
@@ -30,9 +31,16 @@ export default new ContentfulContentType({
             helpText: 'Use format SLRXXX',
         }),
         new TextField({
-            name: 'Description',
+            id: 'description',
+            name: 'SEO Description',
             widgetId: 'multipleLine',
-            helpText: 'SEO friendly description used when linking to this podcast.',
+            helpText: 'Short SEO friendly description used when linking to this podcast.',
+        }),
+        new RichTextField({
+            name: 'Introduction',
+            validations: [nodeTypes(['hyperlink']), marks(['italic'])],
+            widgetId: 'richTextEditor',
+            helpText: 'Longer text to introduce the artist and mix.',
         }),
         new FluidImageField({
             name: 'Image',

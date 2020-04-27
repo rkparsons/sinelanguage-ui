@@ -51,6 +51,9 @@ export const podcastFragment = graphql`
 		description {
             description
         }
+		introduction {
+            json
+        }
 		image {
             fluid(maxWidth: 2400, quality: 90) {
                 ...GatsbyContentfulFluid_withWebp

@@ -36,12 +36,12 @@ export default class TextField extends ContentfulField {
     }`
 
     getLinkedNodeDefinition = (schemaName: string) =>
-        `type contentful${schemaName}${this.nameNoSpace}TextNode implements Node {
+        `type contentful${schemaName}${this.nodeName}TextNode implements Node {
         ${this.contentFields.id}: String
     }`
 
     getNodeDefinition = (schemaName: string) =>
-        `${this.contentFields.id}: contentful${schemaName}${this.nameNoSpace}TextNode`
+        `${this.contentFields.id}: contentful${schemaName}${this.nodeName}TextNode`
 
     getFragmentDefinition = () =>
         `${this.contentFields.id} {

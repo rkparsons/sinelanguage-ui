@@ -35,10 +35,16 @@ export const typeDefs = `
         description: String
     }
 
+	type contentfulPodcastIntroductionRichTextNode implements Node {
+        nodeType: String
+        json: JSON
+    }
+
 	type ContentfulPodcast implements Node {
 		title: String
 		uid: String
 		description: contentfulPodcastDescriptionTextNode
+		introduction: contentfulPodcastIntroductionRichTextNode
 		image: ContentfulAsset
 		date: Date @dateformat
 		track: ContentfulTrack
