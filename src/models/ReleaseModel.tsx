@@ -2,6 +2,7 @@ import { Box, Grid, Typography } from '@material-ui/core'
 
 import { ContentModel } from './ContentModel'
 import IconButton from '~/components/IconButton'
+import InvertOnHover from '~/components/InvertOnHover'
 import { PlayArrow } from '@material-ui/icons'
 import React from 'react'
 import { Release } from '../cms/types'
@@ -77,27 +78,31 @@ export class ReleaseModel extends ContentModel {
                             <Typography variant="h3">TRACKLIST</Typography>
                             <br />
                             {this.release.tracks.map((track, index) => (
-                                <Grid container key={index} justify="space-between">
-                                    <Grid item xs={8}>
-                                        <Typography variant="h3">
-                                            {index + 1}&nbsp;&nbsp;&nbsp;{track.title}
-                                        </Typography>
+                                <InvertOnHover>
+                                    <Grid container key={index} justify="space-between">
+                                        <Grid item xs={8}>
+                                            <Typography variant="h3">
+                                                {index + 1}&nbsp;&nbsp;&nbsp;{track.title}
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item>
+                                            <Typography variant="h3">
+                                                {moment
+                                                    .utc(track.metadata.duration)
+                                                    .format('H:mm:ss')}
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item>
+                                            <IconButton
+                                                label={<Typography variant="h3">PLAY</Typography>}
+                                                icon={<PlayArrow fontSize="large" />}
+                                                onClick={() => {
+                                                    setSelectedMedia(track)
+                                                }}
+                                            />
+                                        </Grid>
                                     </Grid>
-                                    <Grid item>
-                                        <Typography variant="h3">
-                                            {moment.utc(track.metadata.duration).format('H:mm:ss')}
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item>
-                                        <IconButton
-                                            label={<Typography variant="h3">PLAY</Typography>}
-                                            icon={<PlayArrow fontSize="large" />}
-                                            onClick={() => {
-                                                setSelectedMedia(track)
-                                            }}
-                                        />
-                                    </Grid>
-                                </Grid>
+                                </InvertOnHover>
                             ))}
                         </>
                     )}

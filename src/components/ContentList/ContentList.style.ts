@@ -38,12 +38,6 @@ export const TitleRow = styled(Row)`
 
 export const ItemRow = styled(Row)`
     cursor: pointer;
-    &:hover {
-        text-shadow: 1px 2px 4px #ffffff;
-        color: black;
-        background-color: rgba(255, 255, 255, 0);
-        backdrop-filter: invert(100%);
-    }
 `
 
 export const HoverImage = styled(Grid)`

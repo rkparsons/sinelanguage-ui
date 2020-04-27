@@ -3,6 +3,7 @@ import { HoverImage, ItemRow, List, TitleRow } from './ContentList.style'
 import React, { useState } from 'react'
 
 import { ContentModel } from '~/models/ContentModel'
+import InvertOnHover from '~/components/InvertOnHover'
 import { Link } from 'gatsby'
 import { Location } from '@reach/router'
 
@@ -33,7 +34,9 @@ export default ({ models }: ViewProps) => {
                                             onMouseEnter={() => setActiveModel(model)}
                                             onMouseLeave={() => setActiveModel(undefined)}
                                         >
-                                            {model.getListComponent()}
+                                            <InvertOnHover>
+                                                {model.getListComponent()}
+                                            </InvertOnHover>
                                         </ItemRow>
                                     </Link>
                                 </Grid>
