@@ -1,4 +1,3 @@
-import ContentDetail from '~/components/ContentDetail'
 import { Event } from '~/cms/types'
 import { EventModel } from '~/models'
 import React from 'react'
@@ -10,7 +9,11 @@ type Props = {
     }
 }
 
-export default ({ data }: Props) => <ContentDetail model={new EventModel(data.contentfulEvent)} />
+export default ({ data }: Props) => {
+    const event = new EventModel(data.contentfulEvent)
+
+    return event.getDetailComponent()
+}
 
 export const query = graphql`
     query($uid: String!) {

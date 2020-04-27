@@ -1,4 +1,3 @@
-import ContentDetail from '~/components/ContentDetail'
 import { Podcast } from '~/cms/types'
 import { PodcastModel } from '~/models'
 import React from 'react'
@@ -10,9 +9,11 @@ type Props = {
     }
 }
 
-export default ({ data }: Props) => (
-    <ContentDetail model={new PodcastModel(data.contentfulPodcast)} />
-)
+export default ({ data }: Props) => {
+    const podcast = new PodcastModel(data.contentfulPodcast)
+
+    return podcast.getDetailComponent()
+}
 
 export const query = graphql`
     query($uid: String!) {

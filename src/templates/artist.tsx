@@ -1,8 +1,6 @@
 import { Artist, Release } from '~/cms/types'
 
 import { ArtistModel } from '~/models'
-import ContentDetail from '~/components/ContentDetail'
-import React from 'react'
 import { graphql } from 'gatsby'
 
 type Props = {
@@ -11,7 +9,11 @@ type Props = {
     }
 }
 
-export default ({ data }: Props) => <ContentDetail model={new ArtistModel(data.contentfulArtist)} />
+export default ({ data }: Props) => {
+    const artist = new ArtistModel(data.contentfulArtist)
+
+    return artist.getDetailComponent()
+}
 
 export const query = graphql`
     query($uid: String!) {

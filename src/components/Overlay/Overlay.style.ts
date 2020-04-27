@@ -1,7 +1,6 @@
-import { Grid } from '@material-ui/core'
 import styled from 'styled-components'
 
-export const Detail = styled(Grid)`
+export const Overlay = styled.div`
     position: fixed;
     top: 0;
     left: 0;

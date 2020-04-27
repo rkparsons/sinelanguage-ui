@@ -4,6 +4,7 @@ import { Grid, GridSize, Typography } from '@material-ui/core'
 import Centered from '~/components/Centered'
 import Head from '~/components/Head'
 import Image from 'gatsby-image'
+import Overlay from '~/components/Overlay'
 import React from 'react'
 import Scrollable from '~/components/Scrollable'
 
@@ -35,14 +36,17 @@ export abstract class ContentModel {
         />
     )
     getDetailComponent = () => (
-        <>
-            <Grid item xs={6}>
-                <Centered size={7}>{this.getDashboardComponent()}</Centered>
+        <Overlay>
+            {this.getSEOComponent()}
+            <Grid container>
+                <Grid item xs={6}>
+                    <Centered size={7}>{this.getDashboardComponent()}</Centered>
+                </Grid>
+                <Grid item xs={6}>
+                    <Scrollable>{this.getDetailInfoComponent()}</Scrollable>
+                </Grid>
             </Grid>
-            <Grid item xs={6}>
-                <Scrollable>{this.getDetailInfoComponent()}</Scrollable>
-            </Grid>
-        </>
+        </Overlay>
     )
     abstract getDashboardInfoComponent(): JSX.Element
     abstract getListComponent(): JSX.Element
