@@ -28,27 +28,29 @@ export default ({ data }: Props) => {
         .map(getThumbnailComponent)
 
     return (
-        <Overlay>
+        <>
             <Head title={title} description={description.description} image={image.fluid.src} />
-            <Grid container>
-                <Grid item xs={6}>
-                    <Centered size={7}>
-                        <Image title={title} alt={title} sizes={{ ...image.fluid }} />
-                    </Centered>
+            <Overlay>
+                <Grid container>
+                    <Grid item xs={6}>
+                        <Centered size={7}>
+                            <Image title={title} alt={title} sizes={{ ...image.fluid }} />
+                        </Centered>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Scrollable>
+                            <ReleaseDetail release={data.contentfulRelease} />
+                            <Grid container>
+                                <ArtistThumbnail artist={artist} index={0} />
+                            </Grid>
+                            <Typography variant="h3">RELATED</Typography>
+                            <br />
+                            <Grid container>{relatedContentComponents}</Grid>
+                        </Scrollable>
+                    </Grid>
                 </Grid>
-                <Grid item xs={6}>
-                    <Scrollable>
-                        <ReleaseDetail release={data.contentfulRelease} />
-                        <Grid container>
-                            <ArtistThumbnail artist={artist} index={0} />
-                        </Grid>
-                        <Typography variant="h3">RELATED</Typography>
-                        <br />
-                        <Grid container>{relatedContentComponents}</Grid>
-                    </Scrollable>
-                </Grid>
-            </Grid>
-        </Overlay>
+            </Overlay>
+        </>
     )
 }
 
