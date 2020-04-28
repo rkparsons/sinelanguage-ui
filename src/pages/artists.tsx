@@ -17,7 +17,7 @@ export default ({ data }: ViewProps) => {
 
     artists.sort((a, b) => a.content.title.localeCompare(b.content.title))
 
-    return <ContentList models={artists} />
+    return <ContentList title="ARTISTS" models={artists} />
 }
 
 export const query = graphql`

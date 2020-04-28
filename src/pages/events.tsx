@@ -17,7 +17,7 @@ export default ({ data }: ViewProps) => {
 
     releases.sort((a, b) => b.getDateMs() - a.getDateMs())
 
-    return <ContentList models={releases} />
+    return <ContentList title="EVENTS" models={releases} />
 }
 
 export const query = graphql`
