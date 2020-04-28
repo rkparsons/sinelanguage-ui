@@ -1,6 +1,12 @@
+import Centered from '~/components/Centered'
+import { Grid } from '@material-ui/core'
+import Head from '~/components/Head'
+import Image from 'gatsby-image'
+import Overlay from '~/components/Overlay'
 import { Podcast } from '~/cms/types'
-import { PodcastModel } from '~/models'
+import PodcastDetail from '~/components/PodcastDetail'
 import React from 'react'
+import Scrollable from '~/components/Scrollable'
 import { graphql } from 'gatsby'
 
 type Props = {
@@ -10,9 +16,27 @@ type Props = {
 }
 
 export default ({ data }: Props) => {
-    const podcast = new PodcastModel(data.contentfulPodcast)
+    const { title, description, image } = data.contentfulPodcast
 
-    return podcast.getDetailComponent()
+    return (
+        <>
+            <Head title={title} description={description.description} image={image.fluid.src} />
+            <Overlay>
+                <Grid container>
+                    <Grid item xs={6}>
+                        <Centered size={7}>
+                            <Image title={title} alt={title} sizes={{ ...image.fluid }} />
+                        </Centered>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Scrollable>
+                            <PodcastDetail podcast={data.contentfulPodcast} />
+                        </Scrollable>
+                    </Grid>
+                </Grid>
+            </Overlay>
+        </>
+    )
 }
 
 export const query = graphql`
