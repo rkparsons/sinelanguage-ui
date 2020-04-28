@@ -1,6 +1,5 @@
 import ContentList from '~/components/ContentList'
 import { Event } from '~/cms/types'
-import { EventModel } from '~/models'
 import React from 'react'
 import { graphql } from 'gatsby'
 

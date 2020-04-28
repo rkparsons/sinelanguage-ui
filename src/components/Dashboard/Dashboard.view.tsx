@@ -1,5 +1,4 @@
 import { Dashboard } from './Dashboard.style'
-import DashboardItem from '~/components/DashboardItem'
 import { Grid } from '@material-ui/core'
 import Head from '~/components/Head'
 import { Location } from '@reach/router'

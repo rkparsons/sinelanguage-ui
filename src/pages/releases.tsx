@@ -1,8 +1,6 @@
-import { ContentModel, ReleaseModel, VideoModel } from '~/models'
 import { Release, Video } from '~/cms/types'
 
 import ContentList from '~/components/ContentList'
-import { Format } from '~/constants/format'
 import React from 'react'
 import { graphql } from 'gatsby'
 import { sort } from '~/utils/content'
