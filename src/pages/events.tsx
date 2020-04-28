@@ -12,13 +12,9 @@ type ViewProps = {
     }
 }
 
-export default ({ data }: ViewProps) => {
-    const releases = data.allContentfulEvent.nodes.map((x) => new EventModel(x))
-
-    releases.sort((a, b) => b.getDateMs() - a.getDateMs())
-
-    return <ContentList title="EVENTS" models={releases} />
-}
+export default ({ data }: ViewProps) => (
+    <ContentList title="EVENTS" items={data.allContentfulEvent.nodes} />
+)
 
 export const query = graphql`
     {

@@ -5,6 +5,7 @@ import ContentList from '~/components/ContentList'
 import { Format } from '~/constants/format'
 import React from 'react'
 import { graphql } from 'gatsby'
+import { sort } from '~/utils/content'
 
 type ViewProps = {
     data: {
@@ -18,13 +19,9 @@ type ViewProps = {
 }
 
 export default ({ data }: ViewProps) => {
-    const releases = data.allContentfulRelease.nodes.map((x) => new ReleaseModel(x))
-    const videos = data.allContentfulVideo.nodes.map((x) => new VideoModel(x))
-    const models = ([] as ContentModel[]).concat(releases).concat(videos)
+    const items = sort([...data.allContentfulRelease.nodes, ...data.allContentfulVideo.nodes])
 
-    models.sort((a, b) => b.getDateMs() - a.getDateMs())
-
-    return <ContentList title="RELEASES" models={models} />
+    return <ContentList title="RELEASES" items={items} />
 }
 
 export const query = graphql`

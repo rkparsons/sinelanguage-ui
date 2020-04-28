@@ -14,15 +14,15 @@ import { graphql } from 'gatsby'
 
 type Props = {
     data: {
-        contentfulRelease: Release & { artist: Artist & { release: Release[]; video: Video[] } }
+        contentfulRelease: Release & { artist: Artist & { release?: Release[]; video?: Video[] } }
     }
 }
 
 export default ({ data }: Props) => {
     const { uid, title, description, image, artist } = data.contentfulRelease
     const relatedContentComponents = sort([
-        ...data.contentfulRelease.artist.release,
-        ...data.contentfulRelease.artist.video,
+        ...(data.contentfulRelease.artist.release || []),
+        ...(data.contentfulRelease.artist.video || []),
     ])
         .filter((x) => x.uid !== uid)
         .map(getThumbnailComponent)
@@ -43,9 +43,14 @@ export default ({ data }: Props) => {
                             <Grid container>
                                 <ArtistThumbnail artist={artist} index={0} />
                             </Grid>
-                            <Typography variant="h3">RELATED</Typography>
                             <br />
-                            <Grid container>{relatedContentComponents}</Grid>
+                            {relatedContentComponents.length > 0 && (
+                                <>
+                                    <Typography variant="h3">RELATED</Typography>
+                                    <br />
+                                    <Grid container>{relatedContentComponents}</Grid>
+                                </>
+                            )}
                         </Scrollable>
                     </Grid>
                 </Grid>

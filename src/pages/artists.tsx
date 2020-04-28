@@ -12,13 +12,9 @@ type ViewProps = {
     }
 }
 
-export default ({ data }: ViewProps) => {
-    const artists = data.allContentfulArtist.nodes.map((x) => new ArtistModel(x))
-
-    artists.sort((a, b) => a.content.title.localeCompare(b.content.title))
-
-    return <ContentList title="ARTISTS" models={artists} />
-}
+export default ({ data }: ViewProps) => (
+    <ContentList title="ARTISTS" items={data.allContentfulArtist.nodes} />
+)
 
 export const query = graphql`
     {

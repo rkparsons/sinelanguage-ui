@@ -1,19 +1,19 @@
 import { Grid, Typography } from '@material-ui/core'
 import { HoverImage, ItemRow, List, TitleRow } from './ContentList.style'
 import React, { useState } from 'react'
+import { getDashboardComponent, getHoverSize, getListComponent, getUrl } from '~/utils/content'
 
-import { ContentModel } from '~/models/ContentModel'
+import { ContentItem } from '~/types/cms'
 import InvertOnHover from '~/components/InvertOnHover'
 import { Link } from 'gatsby'
-import { Location } from '@reach/router'
 
 type ViewProps = {
     title: string
-    models: ContentModel[]
+    items: ContentItem[]
 }
 
-export default ({ title, models }: ViewProps) => {
-    const [activeModel, setActiveModel] = useState<ContentModel>()
+export default ({ title, items }: ViewProps) => {
+    const [activeItem, setActiveItem] = useState<ContentItem>()
 
     return (
         <>
@@ -22,28 +22,28 @@ export default ({ title, models }: ViewProps) => {
                     <Grid item xs={12}>
                         <TitleRow>
                             <Typography variant="h3">
-                                {title} ({models.length})
+                                {title} ({items.length})
                             </Typography>
                         </TitleRow>
                     </Grid>
-                    {models.map((model, index) => (
+                    {items.map((item, index) => (
                         <Grid item xs={12} key={index}>
-                            <Link to={model.getDetailUrl()}>
+                            <Link to={getUrl(item)}>
                                 <ItemRow
-                                    onMouseEnter={() => setActiveModel(model)}
-                                    onMouseLeave={() => setActiveModel(undefined)}
+                                    onMouseEnter={() => setActiveItem(item)}
+                                    onMouseLeave={() => setActiveItem(undefined)}
                                 >
-                                    <InvertOnHover>{model.getListComponent()}</InvertOnHover>
+                                    <InvertOnHover>{getListComponent(item)}</InvertOnHover>
                                 </ItemRow>
                             </Link>
                         </Grid>
                     ))}
                 </Grid>
             </List>
-            {activeModel && (
+            {activeItem && (
                 <HoverImage container alignItems="center" justify="center">
-                    <Grid item xs={activeModel.hoverGridSize}>
-                        {activeModel.getDashboardComponent()}
+                    <Grid item xs={getHoverSize(activeItem)}>
+                        {getDashboardComponent(activeItem)}
                     </Grid>
                 </HoverImage>
             )}
