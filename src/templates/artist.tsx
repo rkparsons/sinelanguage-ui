@@ -3,7 +3,6 @@ import { Grid, Typography } from '@material-ui/core'
 import { getThumbnailComponent, sort } from '~/utils/content'
 
 import ArtistDetail from '~/components/ArtistDetail'
-import { ArtistModel } from '~/models'
 import Centered from '~/components/Centered'
 import Head from '~/components/Head'
 import Image from 'gatsby-image'
@@ -31,7 +30,6 @@ export default ({ data }: Props) => {
             <Grid container>
                 <Grid item xs={6}>
                     <Centered size={7}>
-                        {' '}
                         <Image title={title} alt={title} sizes={{ ...image.fluid }} />
                     </Centered>
                 </Grid>
