@@ -89,4 +89,19 @@ export const typeDefs = `
 		metadata: contentfulTrackMetadataJsonNode
 	}
 
+	type contentfulVideoDescriptionTextNode implements Node {
+        description: String
+    }
+
+	type ContentfulVideo implements Node {
+		title: String
+		uid: String
+		artist: ContentfulArtist
+		description: contentfulVideoDescriptionTextNode
+		image: ContentfulAsset
+		teaserVideo: ContentfulAsset
+		srcURL: String
+		date: Date @dateformat
+	}
+
 `

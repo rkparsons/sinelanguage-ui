@@ -1,5 +1,5 @@
-import { Artist, Release } from '../cms/types'
-import { ArtistModel, VideoReleaseModel } from '.'
+import { Artist, Release, Video } from '../cms/types'
+import { ArtistModel, VideoModel } from '.'
 import { Grid, Typography } from '@material-ui/core'
 
 import { ContentModel } from './ContentModel'
@@ -15,22 +15,29 @@ import moment from 'moment'
 export class ReleaseModel extends ContentModel {
     release: Release
     artistModel: ArtistModel
-    relatedReleaseModels: ReleaseModel[]
+    relatedModels: ContentModel[]
 
-    constructor(release: Release & { artist: Artist & { release?: Release[] } }) {
+    constructor(release: Release & { artist: Artist & { release?: Release[]; video?: Video[] } }) {
         super(release)
         this.release = release
         this.artistModel = new ArtistModel(release.artist)
 
-        // todo: replace with factory method
-        this.relatedReleaseModels =
+        // todo: abstract this for reuse in release, video and artist
+        const relatedReleaseModels =
             release.artist.release
                 ?.filter((x) => x.uid !== release.uid)
-                .map((release) =>
-                    release.format === Format.VIDEO
-                        ? new VideoReleaseModel(release)
-                        : new ReleaseModel(release)
-                ) || []
+                .map((release) => new ReleaseModel(release)) || []
+
+        const relatedVideoModels =
+            release.artist.video
+                ?.filter((x) => x.uid !== release.uid)
+                .map((video) => new VideoModel(video)) || []
+
+        this.relatedModels = ([] as ContentModel[])
+            .concat(relatedReleaseModels)
+            .concat(relatedVideoModels)
+
+        this.relatedModels.sort((a, b) => b.getDateMs() - a.getDateMs())
     }
 
     getDashboardInfoComponent = () => (
@@ -135,18 +142,18 @@ export class ReleaseModel extends ContentModel {
                         </Grid>
                     </Grid>
 
-                    {this.relatedReleaseModels.length && (
+                    {this.relatedModels.length > 0 && (
                         <>
                             <Typography variant="h3">RELATED</Typography>
                             <br />
                             <Grid container>
-                                {this.relatedReleaseModels.map((releaseModel, index) => (
-                                    <Grid item xs={releaseModel.thumbnailGridSize} key={index}>
-                                        <MediaLink url={releaseModel.getDetailUrl()}>
-                                            {releaseModel.getDashboardComponent()}
+                                {this.relatedModels.map((relatedModel, index) => (
+                                    <Grid item xs={relatedModel.thumbnailGridSize} key={index}>
+                                        <MediaLink url={relatedModel.getDetailUrl()}>
+                                            {relatedModel.getDashboardComponent()}
                                         </MediaLink>
 
-                                        {releaseModel.getThumbnailInfoComponent()}
+                                        {relatedModel.getThumbnailInfoComponent()}
                                         <br />
                                     </Grid>
                                 ))}

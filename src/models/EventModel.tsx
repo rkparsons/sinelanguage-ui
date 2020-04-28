@@ -3,7 +3,7 @@ import { Event } from '../cms/types'
 import React from 'react'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import { Typography } from '@material-ui/core'
-import Video from '~/components/Video'
+import Video from '~/components/TeaserVideo'
 
 export class EventModel extends ContentModel {
     event: Event

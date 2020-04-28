@@ -1,7 +1,7 @@
 import 'font-awesome/css/font-awesome.css'
 
 import { AppContainer, GlobalStyle } from './Layout.style'
-import { Artist, Event, Podcast, Release, Track } from '~/cms/types'
+import { Artist, Event, Podcast, Release, Track, Video } from '~/cms/types'
 import React, { ReactNode, useState } from 'react'
 
 import AudioPlayer from '~/components/AudioPlayer'
@@ -22,7 +22,9 @@ type ViewProps = {
 }
 
 export default ({ isDarkMode, setIsDarkMode, children }: ViewProps) => {
-    const [selectedMedia, setSelectedMedia] = useState<Artist | Event | Podcast | Release | Track>()
+    const [selectedMedia, setSelectedMedia] = useState<
+        Artist | Event | Podcast | Release | Track | Video
+    >()
 
     return (
         <MuiThemeProvider theme={theme(isDarkMode)}>

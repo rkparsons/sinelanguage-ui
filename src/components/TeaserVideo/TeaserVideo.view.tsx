@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 
-import { VideoContainer } from './Video.style'
+import { VideoContainer } from './TeaserVideo.style'
 
 type ViewProps = {
     src: string

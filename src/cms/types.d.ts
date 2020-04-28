@@ -99,3 +99,23 @@ export type Track = {
     }
 }
 
+export type Video = {
+	__typename: string
+	title: string
+	uid: string
+	artist: Artist
+	description: {
+        description: string
+    }
+	image: {
+        fluid: FluidObject
+    }
+	teaserVideo: {
+        file: {
+            url: string
+        }
+    }
+	srcURL: string
+	date: Date
+}
+

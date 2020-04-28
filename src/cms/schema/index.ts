@@ -4,5 +4,6 @@ import podcast from './podcast'
 import release from './release'
 import siteMetadata from './siteMetadata'
 import track from './track'
+import video from './video'
 
-export { artist, event, podcast, release, siteMetadata, track }
+export default [artist, event, podcast, release, siteMetadata, track, video]

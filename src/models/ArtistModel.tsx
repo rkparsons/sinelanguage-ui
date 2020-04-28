@@ -1,6 +1,6 @@
-import { Artist, Release } from '../cms/types'
+import { Artist, Release, Video } from '../cms/types'
 import { Grid, Typography } from '@material-ui/core'
-import { ReleaseModel, VideoReleaseModel } from '.'
+import { ReleaseModel, VideoModel } from '.'
 
 import { ContentModel } from './ContentModel'
 import { Format } from '~/constants/format'
@@ -14,19 +14,23 @@ import SocialLink from '~/components/SocialLink'
 
 export class ArtistModel extends ContentModel {
     artist: Artist
-    releaseModels: ReleaseModel[]
+    relatedModels: ContentModel[]
 
-    constructor(artist: Artist & { release?: Release[] }) {
+    constructor(artist: Artist & { release?: Release[]; video?: Video[] }) {
         super(artist)
         this.artist = artist
 
-        // todo: replace with factory method
-        this.releaseModels =
-            artist.release?.map((release) =>
-                release.format === Format.VIDEO
-                    ? new VideoReleaseModel(release)
-                    : new ReleaseModel(release)
-            ) || []
+        // todo: abstract this for reuse in release, video and artist
+        const relatedReleaseModels =
+            artist.release?.map((release) => new ReleaseModel(release)) || []
+
+        const relatedVideoModels = artist.video?.map((video) => new VideoModel(video)) || []
+
+        this.relatedModels = ([] as ContentModel[])
+            .concat(relatedReleaseModels)
+            .concat(relatedVideoModels)
+
+        this.relatedModels.sort((a, b) => b.getDateMs() - a.getDateMs())
     }
 
     getDashboardInfoComponent = () => (
@@ -71,18 +75,18 @@ export class ArtistModel extends ContentModel {
                     <RichText json={this.artist.bio.json} variant="body2" />
                     <br />
 
-                    {this.releaseModels.length && (
+                    {this.relatedModels.length && (
                         <>
                             <Typography variant="h3">RELEASES</Typography>
                             <br />
                             <Grid container>
-                                {this.releaseModels.map((releaseModel, index) => (
-                                    <Grid item xs={releaseModel.thumbnailGridSize} key={index}>
-                                        <MediaLink url={releaseModel.getDetailUrl()}>
-                                            {releaseModel.getDashboardComponent()}
+                                {this.relatedModels.map((relatedModel, index) => (
+                                    <Grid item xs={relatedModel.thumbnailGridSize} key={index}>
+                                        <MediaLink url={relatedModel.getDetailUrl()}>
+                                            {relatedModel.getDashboardComponent()}
                                         </MediaLink>
 
-                                        {releaseModel.getThumbnailInfoComponent()}
+                                        {relatedModel.getThumbnailInfoComponent()}
                                         <br />
                                     </Grid>
                                 ))}

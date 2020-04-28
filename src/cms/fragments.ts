@@ -124,3 +124,29 @@ export const trackFragment = graphql`
 	}
 `
 
+export const videoFragment = graphql`
+	fragment videoFragment on ContentfulVideo {
+		__typename
+		title
+		uid
+		artist {
+            ...artistFragment
+        }
+		description {
+            description
+        }
+		image {
+            fluid(maxWidth: 2400, quality: 90) {
+                ...GatsbyContentfulFluid_withWebp
+            }
+        }
+		teaserVideo {
+            file {
+                url
+            }
+        }
+		srcURL
+		date
+	}
+`
+

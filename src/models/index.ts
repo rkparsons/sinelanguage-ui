@@ -3,6 +3,6 @@ import { ContentModel } from './ContentModel'
 import { EventModel } from './EventModel'
 import { PodcastModel } from './PodcastModel'
 import { ReleaseModel } from './ReleaseModel'
-import { VideoReleaseModel } from './VideoReleaseModel'
+import { VideoModel } from './VideoModel'
 
-export { ArtistModel, EventModel, ContentModel, PodcastModel, ReleaseModel, VideoReleaseModel }
+export { ArtistModel, EventModel, ContentModel, PodcastModel, ReleaseModel, VideoModel }

@@ -1,4 +1,4 @@
-import { Artist, Event, Podcast, Release } from '../cms/types'
+import { Artist, Event, Podcast, Release, Video } from '../cms/types'
 import { Grid, GridSize, Typography } from '@material-ui/core'
 
 import Centered from '~/components/Centered'
@@ -9,12 +9,13 @@ import React from 'react'
 import Scrollable from '~/components/Scrollable'
 
 export abstract class ContentModel {
-    content: Artist | Event | Podcast | Release
+    content: Artist | Event | Podcast | Release | Video
     isPlayableFromDashboard = true
     hoverGridSize: GridSize = 5
     thumbnailGridSize: GridSize = 3
     dashboardWidth: number = 1
-    constructor(content: Artist | Event | Podcast | Release) {
+    // todo: don't reference content both in subclass and base class
+    constructor(content: Artist | Event | Podcast | Release | Video) {
         this.content = content
     }
     getDateMs = () => new Date(this.content.date).getTime()

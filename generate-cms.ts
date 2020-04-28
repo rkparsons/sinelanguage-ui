@@ -1,5 +1,4 @@
-import { artist, event, podcast, release, siteMetadata, track } from './src/cms/schema'
-
 import { deployCMS } from './cms/cicd/deploy-schema'
+import schema from './src/cms/schema'
 
-deployCMS('sinelanguage.net', [artist, event, podcast, release, siteMetadata, track])
+deployCMS('sinelanguage.net', schema)

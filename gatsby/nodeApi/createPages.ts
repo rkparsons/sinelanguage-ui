@@ -18,15 +18,18 @@ type Content = {
     allContentfulRelease: {
         nodes: PageNode[]
     }
+    allContentfulVideo: {
+        nodes: PageNode[]
+    }
 }
 
 export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
     const { createPage } = actions
 
-    const createPageFromNode = (type: string, uid: string) => {
+    const createPageFromNode = (rootPath: string, template: string, uid: string) => {
         createPage({
-            path: `${type}s/${uid}`.toLocaleLowerCase(),
-            component: path.resolve(`./src/templates/${type}.tsx`),
+            path: `${rootPath}/${uid}`.toLocaleLowerCase(),
+            component: path.resolve(`./src/templates/${template}.tsx`),
             context: {
                 uid,
             },
@@ -55,6 +58,11 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
                     uid
                 }
             }
+            allContentfulVideo {
+                nodes {
+                    uid
+                }
+            }
         }
     `)
 
@@ -66,8 +74,19 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
         throw new Error('ERROR: Could not fetch content on build')
     }
 
-    result.data.allContentfulArtist.nodes.forEach(({ uid }) => createPageFromNode('artist', uid))
-    result.data.allContentfulEvent.nodes.forEach(({ uid }) => createPageFromNode('event', uid))
-    result.data.allContentfulPodcast.nodes.forEach(({ uid }) => createPageFromNode('podcast', uid))
-    result.data.allContentfulRelease.nodes.forEach(({ uid }) => createPageFromNode('release', uid))
+    result.data.allContentfulArtist.nodes.forEach(({ uid }) =>
+        createPageFromNode('artists', 'artist', uid)
+    )
+    result.data.allContentfulEvent.nodes.forEach(({ uid }) =>
+        createPageFromNode('events', 'event', uid)
+    )
+    result.data.allContentfulPodcast.nodes.forEach(({ uid }) =>
+        createPageFromNode('podcasts', 'podcast', uid)
+    )
+    result.data.allContentfulRelease.nodes.forEach(({ uid }) =>
+        createPageFromNode('releases', 'release', uid)
+    )
+    result.data.allContentfulVideo.nodes.forEach(({ uid }) =>
+        createPageFromNode('releases/video', 'video', uid)
+    )
 }

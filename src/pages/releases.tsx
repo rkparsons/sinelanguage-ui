@@ -1,9 +1,9 @@
-import { ReleaseModel, VideoReleaseModel } from '~/models'
+import { ContentModel, ReleaseModel, VideoModel } from '~/models'
+import { Release, Video } from '~/cms/types'
 
 import ContentList from '~/components/ContentList'
 import { Format } from '~/constants/format'
 import React from 'react'
-import { Release } from '~/cms/types'
 import { graphql } from 'gatsby'
 
 type ViewProps = {
@@ -11,17 +11,20 @@ type ViewProps = {
         allContentfulRelease: {
             nodes: Release[]
         }
+        allContentfulVideo: {
+            nodes: Video[]
+        }
     }
 }
 
 export default ({ data }: ViewProps) => {
-    const releases = data.allContentfulRelease.nodes.map((x) =>
-        x.format === Format.VIDEO ? new VideoReleaseModel(x) : new ReleaseModel(x)
-    )
+    const releases = data.allContentfulRelease.nodes.map((x) => new ReleaseModel(x))
+    const videos = data.allContentfulVideo.nodes.map((x) => new VideoModel(x))
+    const models = ([] as ContentModel[]).concat(releases).concat(videos)
 
-    releases.sort((a, b) => b.getDateMs() - a.getDateMs())
+    models.sort((a, b) => b.getDateMs() - a.getDateMs())
 
-    return <ContentList models={releases} />
+    return <ContentList models={models} />
 }
 
 export const query = graphql`
@@ -29,6 +32,11 @@ export const query = graphql`
         allContentfulRelease {
             nodes {
                 ...releaseFragment
+            }
+        }
+        allContentfulVideo {
+            nodes {
+                ...videoFragment
             }
         }
     }

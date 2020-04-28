@@ -1,5 +1,4 @@
-import { artist, event, podcast, release, siteMetadata, track } from './src/cms/schema'
-
 import { generateFragments } from './cms/cicd/generate-fragments'
+import schema from './src/cms/schema'
 
-generateFragments('./src/cms/fragments.ts', [artist, event, podcast, release, siteMetadata, track])
+generateFragments('./src/cms/fragments.ts', schema)

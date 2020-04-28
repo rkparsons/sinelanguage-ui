@@ -1,5 +1,4 @@
-import { artist, event, podcast, release, siteMetadata, track } from './src/cms/schema'
-
 import { generateNodes } from './cms/cicd/generate-nodes'
+import schema from './src/cms/schema'
 
-generateNodes('./src/cms/nodes.ts', [artist, event, podcast, release, siteMetadata, track])
+generateNodes('./src/cms/nodes.ts', schema)
