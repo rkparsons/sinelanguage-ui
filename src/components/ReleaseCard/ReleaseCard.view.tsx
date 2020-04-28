@@ -20,7 +20,9 @@ export default ({ release }: ViewProps) => {
         <ContentCard widthMultiplier={1}>
             <MediaLink url={getUrl(release)}>{getCardMedia(release)}</MediaLink>
             <ContentCardDetail>
-                <Typography>{release.title.toUpperCase()}</Typography>
+                <Typography>
+                    {release.artist.title.toUpperCase()}, <i>{release.title}</i>
+                </Typography>
                 <Grid container spacing={2}>
                     <Grid item xs={1}></Grid>
                     <Grid item>
