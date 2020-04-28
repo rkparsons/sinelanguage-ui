@@ -7,6 +7,7 @@ import Image from 'gatsby-image'
 import Overlay from '~/components/Overlay'
 import React from 'react'
 import Scrollable from '~/components/Scrollable'
+import moment from 'moment'
 
 export abstract class ContentModel {
     content: Artist | Event | Podcast | Release | Video
@@ -28,7 +29,16 @@ export abstract class ContentModel {
             sizes={{ ...this.getImage().fluid }}
         />
     )
-    getThumbnailInfoComponent = () => <Typography variant="body1">{this.content.title}</Typography>
+    getThumbnailInfoComponent = () => (
+        <>
+            <Typography variant="body1">
+                <i>{this.content.title}</i>
+            </Typography>
+            <Typography variant="body1">
+                {moment(this.content.date).format('MMM. DD, YYYY')}
+            </Typography>
+        </>
+    )
     getSEOComponent = () => (
         <Head
             title={this.content.title}

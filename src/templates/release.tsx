@@ -24,6 +24,9 @@ export const query = graphql`
                 release {
                     ...releaseFragment
                 }
+                video {
+                    ...videoFragment
+                }
             }
         }
     }

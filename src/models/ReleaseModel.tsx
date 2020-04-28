@@ -69,14 +69,6 @@ export class ReleaseModel extends ContentModel {
             </Grid>
         </Grid>
     )
-    getThumbnailInfoComponent = () => (
-        <>
-            <Typography variant="body1">{this.release.title}</Typography>
-            <Typography variant="body1">
-                {moment(this.release.date).format('MMM. DD, YYYY')}
-            </Typography>
-        </>
-    )
     getDetailInfoComponent = () => (
         <SelectedMediaContext.Consumer>
             {({ setSelectedMedia }) => (
