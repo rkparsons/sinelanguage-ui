@@ -1,15 +1,7 @@
 import { Artist, Event, Podcast, Release, Video } from '~/cms/types'
-import {
-    ArtistModel,
-    ContentModel,
-    EventModel,
-    PodcastModel,
-    ReleaseModel,
-    VideoModel,
-} from '~/models'
 
-import { Format } from '~/constants/format'
 import { graphql } from 'gatsby'
+import { sort } from '~/utils/content'
 import { useStaticQuery } from 'gatsby'
 
 type DashboardItems = {
@@ -31,7 +23,7 @@ type DashboardItems = {
 }
 
 export default () => {
-    const result = useStaticQuery<DashboardItems>(graphql`
+    const data = useStaticQuery<DashboardItems>(graphql`
         {
             allContentfulArtist {
                 nodes {
@@ -61,19 +53,13 @@ export default () => {
         }
     `)
 
-    const artists = result.allContentfulArtist.nodes.map((x) => new ArtistModel(x))
-    const events = result.allContentfulEvent.nodes.map((x) => new EventModel(x))
-    const podcasts = result.allContentfulPodcast.nodes.map((x) => new PodcastModel(x))
-    const releases = result.allContentfulRelease.nodes.map((x) => new ReleaseModel(x))
-    const videos = result.allContentfulVideo.nodes.map((x) => new VideoModel(x))
-    const models = ([] as ContentModel[])
-        .concat(artists)
-        .concat(events)
-        .concat(podcasts)
-        .concat(releases)
-        .concat(videos)
+    const items = sort([
+        ...data.allContentfulArtist.nodes,
+        ...data.allContentfulEvent.nodes,
+        ...data.allContentfulPodcast.nodes,
+        ...data.allContentfulRelease.nodes,
+        ...data.allContentfulVideo.nodes,
+    ])
 
-    models.sort((a, b) => b.getDateMs() - a.getDateMs())
-
-    return models
+    return items
 }

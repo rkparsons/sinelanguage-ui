@@ -1,13 +1,16 @@
 import { Artist, Event, Podcast, Release, Track, Video } from '~/cms/types'
 
+import ArtistCard from '~/components/ArtistCard'
 import ArtistRow from '~/components/ArtistRow'
 import { ContentItem } from '~/types/cms'
 import { ContentType } from '~/constants/contentType'
 import EventRow from '~/components/EventRow'
+import Image from 'gatsby-image'
 import PodcastRow from '~/components/PodcastRow'
 import React from 'react'
 import ReleaseRow from '~/components/ReleaseRow'
 import ReleaseThumbnail from '~/components/ReleaseThumbnail'
+import TeaserVideo from '~/components/TeaserVideo'
 import VideoRow from '~/components/VideoRow'
 import VideoThumbnail from '~/components/VideoThumbnail'
 
@@ -42,7 +45,15 @@ export const getListComponent = (content: ContentItem) =>
         ''
     )
 
-export const getDashboardComponent = (content: ContentItem) => <></>
+export const getCardComponent = (content: ContentItem) =>
+    content.__typename === ContentType.ARTIST ? <ArtistCard artist={content as Artist} /> : <></>
+
+export const getHoverComponent = (content: ContentItem) =>
+    content.__typename === ContentType.VIDEO ? (
+        <TeaserVideo src={(content as Video).teaserVideo.file.url} />
+    ) : (
+        <Image title={content.title} alt={content.title} sizes={{ ...content.image.fluid }} />
+    )
 
 export const getUrl = (content: ContentItem) => {
     const slug = content.uid.toLowerCase()

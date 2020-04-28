@@ -4,10 +4,11 @@ import { Grid } from '@material-ui/core'
 import Head from '~/components/Head'
 import { Location } from '@reach/router'
 import React from 'react'
+import { getCardComponent } from '~/utils/content'
 import useDashboardItems from '~/hooks/useDashboardItems'
 
 export default () => {
-    const models = useDashboardItems()
+    const items = useDashboardItems()
 
     return (
         <Location>
@@ -15,9 +16,9 @@ export default () => {
                 <Dashboard isBlur={location.pathname !== '/'}>
                     <Head title="News" />
                     <Grid container>
-                        {models.map((model, index) => (
+                        {items.map((item, index) => (
                             <Grid item key={index}>
-                                <DashboardItem model={model} />
+                                {getCardComponent(item)}
                             </Grid>
                         ))}
                     </Grid>
