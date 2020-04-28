@@ -1,6 +1,13 @@
+import Centered from '~/components/Centered'
 import { Event } from '~/cms/types'
-import { EventModel } from '~/models'
+import EventDetail from '~/components/EventDetail'
+import { Grid } from '@material-ui/core'
+import Head from '~/components/Head'
+import Image from 'gatsby-image'
+import Overlay from '~/components/Overlay'
 import React from 'react'
+import Scrollable from '~/components/Scrollable'
+import TeaserVideo from '~/components/TeaserVideo'
 import { graphql } from 'gatsby'
 
 type Props = {
@@ -10,9 +17,27 @@ type Props = {
 }
 
 export default ({ data }: Props) => {
-    const event = new EventModel(data.contentfulEvent)
+    const { title, description, image, video } = data.contentfulEvent
 
-    return event.getDetailComponent()
+    return (
+        <>
+            <Head title={title} description={description.description} image={image.fluid.src} />
+            <Overlay>
+                <Grid container>
+                    <Grid item xs={6}>
+                        <Centered size={7}>
+                            <TeaserVideo src={video.file.url} />
+                        </Centered>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Scrollable>
+                            <EventDetail event={data.contentfulEvent} />
+                        </Scrollable>
+                    </Grid>
+                </Grid>
+            </Overlay>
+        </>
+    )
 }
 
 export const query = graphql`
