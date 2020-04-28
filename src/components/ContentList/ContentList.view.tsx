@@ -1,7 +1,7 @@
 import { Grid, Typography } from '@material-ui/core'
 import { HoverImage, ItemRow, List, TitleRow } from './ContentList.style'
 import React, { useState } from 'react'
-import { getHoverComponent, getHoverSize, getListComponent, getUrl } from '~/utils/content'
+import { getCardMedia, getHoverSize, getListComponent, getUrl } from '~/utils/content'
 
 import { ContentItem } from '~/types/cms'
 import InvertOnHover from '~/components/InvertOnHover'
@@ -43,7 +43,7 @@ export default ({ title, items }: ViewProps) => {
             {activeItem && (
                 <HoverImage container alignItems="center" justify="center">
                     <Grid item xs={getHoverSize(activeItem)}>
-                        {getHoverComponent(activeItem)}
+                        {getCardMedia(activeItem)}
                     </Grid>
                 </HoverImage>
             )}
