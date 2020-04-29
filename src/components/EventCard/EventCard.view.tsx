@@ -1,4 +1,4 @@
-import ContentCard from '~/components/ContentCard'
+import Column from '~/components/Column'
 import ContentCardDetail from '~/components/ContentCardDetail'
 import ContentCardMedia from '~/components/ContentCardMedia'
 import { Event } from '~/cms/types'
@@ -13,13 +13,13 @@ type ViewProps = {
 
 export default ({ event }: ViewProps) => {
     return (
-        <ContentCard widthMultiplier={1}>
+        <Column widthMultiplier={1}>
             <MediaLink url={getUrl(event)}>
                 <ContentCardMedia contentItem={event} />
             </MediaLink>
             <ContentCardDetail>
                 <Typography>{event.title.toUpperCase()}</Typography>
             </ContentCardDetail>
-        </ContentCard>
+        </Column>
     )
 }

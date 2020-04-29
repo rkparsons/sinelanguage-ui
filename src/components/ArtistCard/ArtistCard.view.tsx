@@ -1,5 +1,5 @@
 import { Artist } from '~/cms/types'
-import ContentCard from '~/components/ContentCard'
+import Column from '~/components/Column'
 import ContentCardDetail from '~/components/ContentCardDetail'
 import ContentCardMedia from '~/components/ContentCardMedia'
 import MediaLink from '~/components/MediaLink'
@@ -13,13 +13,13 @@ type ViewProps = {
 
 export default ({ artist }: ViewProps) => {
     return (
-        <ContentCard widthMultiplier={1}>
+        <Column widthMultiplier={1}>
             <MediaLink url={getUrl(artist)}>
                 <ContentCardMedia contentItem={artist} />
             </MediaLink>
             <ContentCardDetail>
                 <Typography>{artist.title.toUpperCase()}</Typography>
             </ContentCardDetail>
-        </ContentCard>
+        </Column>
     )
 }

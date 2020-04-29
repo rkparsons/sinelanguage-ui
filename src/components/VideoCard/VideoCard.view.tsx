@@ -1,4 +1,4 @@
-import ContentCard from '~/components/ContentCard'
+import Column from '~/components/Column'
 import ContentCardDetail from '~/components/ContentCardDetail'
 import ContentCardMedia from '~/components/ContentCardMedia'
 import MediaLink from '~/components/MediaLink'
@@ -13,7 +13,7 @@ type ViewProps = {
 
 export default ({ video }: ViewProps) => {
     return (
-        <ContentCard widthMultiplier={2}>
+        <Column widthMultiplier={2}>
             <MediaLink url={getUrl(video)}>
                 <ContentCardMedia contentItem={video} />
             </MediaLink>
@@ -23,6 +23,6 @@ export default ({ video }: ViewProps) => {
                 </Typography>
                 <Typography variant="body1">[{video.uid}]</Typography>
             </ContentCardDetail>
-        </ContentCard>
+        </Column>
     )
 }

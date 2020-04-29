@@ -1,7 +1,7 @@
 import { Grid, Typography } from '@material-ui/core'
 
 import BagIcon from '~/components/BagIcon'
-import ContentCard from '~/components/ContentCard'
+import Column from '~/components/Column'
 import ContentCardDetail from '~/components/ContentCardDetail'
 import ContentCardMedia from '~/components/ContentCardMedia'
 import ContentPlayButton from '~/components/ContentPlayButton'
@@ -17,7 +17,7 @@ type ViewProps = {
 
 export default ({ release }: ViewProps) => {
     return (
-        <ContentCard widthMultiplier={1}>
+        <Column widthMultiplier={1}>
             <MediaLink url={getUrl(release)}>
                 <ContentCardMedia contentItem={release} />
             </MediaLink>
@@ -39,6 +39,6 @@ export default ({ release }: ViewProps) => {
                     </Grid>
                 </Grid>
             </ContentCardDetail>
-        </ContentCard>
+        </Column>
     )
 }

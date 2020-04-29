@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 
-import { Card } from './ContentCard.style'
+import { ResponsiveColumn } from './Column.style'
 
 type ViewProps = {
     widthMultiplier: number
@@ -8,5 +8,5 @@ type ViewProps = {
 }
 
 export default ({ widthMultiplier, children }: ViewProps) => {
-    return <Card widthMultiplier={widthMultiplier}>{children}</Card>
+    return <ResponsiveColumn widthMultiplier={widthMultiplier}>{children}</ResponsiveColumn>
 }

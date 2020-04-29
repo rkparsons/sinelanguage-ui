@@ -1,4 +1,4 @@
-import ContentCard from '~/components/ContentCard'
+import Column from '~/components/Column'
 import ContentCardDetail from '~/components/ContentCardDetail'
 import ContentCardMedia from '~/components/ContentCardMedia'
 import MediaLink from '~/components/MediaLink'
@@ -13,7 +13,7 @@ type ViewProps = {
 
 export default ({ podcast }: ViewProps) => {
     return (
-        <ContentCard widthMultiplier={1}>
+        <Column widthMultiplier={1}>
             <MediaLink url={getUrl(podcast)}>
                 <ContentCardMedia contentItem={podcast} />
             </MediaLink>
@@ -21,6 +21,6 @@ export default ({ podcast }: ViewProps) => {
                 <Typography variant="body1">{podcast.title.toUpperCase()}, Podcast</Typography>
                 <Typography variant="body1">[{podcast.uid}]</Typography>
             </ContentCardDetail>
-        </ContentCard>
+        </Column>
     )
 }

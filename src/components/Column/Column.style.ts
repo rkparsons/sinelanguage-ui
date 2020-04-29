@@ -4,7 +4,7 @@ type CardProps = {
     widthMultiplier: number
 }
 
-export const Card = styled.div<CardProps>`
+export const ResponsiveColumn = styled.div<CardProps>`
     ${({ theme, widthMultiplier }) => `
         width: 100vw;
         ${theme.breakpoints.only('sm')} {
