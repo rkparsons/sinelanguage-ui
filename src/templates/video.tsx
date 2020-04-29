@@ -1,8 +1,9 @@
+import { Grid, Typography } from '@material-ui/core'
+
 import Centered from '~/components/Centered'
 import Head from '~/components/Head'
 import Overlay from '~/components/Overlay'
 import React from 'react'
-import { Typography } from '@material-ui/core'
 import { Video } from '~/cms/types'
 import YouTubeEmbed from '~/components/YouTubeEmbed'
 import { graphql } from 'gatsby'
@@ -22,7 +23,6 @@ export default ({ data }: Props) => {
             <Overlay>
                 <Centered size={7}>
                     <YouTubeEmbed src={srcURL} />
-                    <br />
                     <Typography variant="body2" align="center">
                         {artist.title.toUpperCase()}, <i>{title}</i>
                     </Typography>

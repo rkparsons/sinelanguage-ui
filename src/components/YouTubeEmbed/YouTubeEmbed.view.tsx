@@ -1,20 +1,39 @@
-import React from 'react'
-import { VideoContainer } from './YouTubeEmbed.style'
+import { Controls, VideoContainer } from './YouTubeEmbed.style'
+import React, { useEffect, useState } from 'react'
+
+import ReactPlayer from 'react-player'
 
 type ViewProps = {
     src: string
 }
 
 export default ({ src }: ViewProps) => {
-    console.log(src.split('=')[0])
+    const [forceControlsVisibility, setForceControlsVisibility] = useState(true)
+    const [isControlsVisible, setIsControlsVisible] = useState(true)
+
+    useEffect(() => {
+        const forceControlsVisibilityTimer = setTimeout(() => {
+            setIsControlsVisible(false)
+            setForceControlsVisibility(false)
+        }, 4000)
+        return () => clearTimeout(forceControlsVisibilityTimer)
+    }, [])
+
     return (
-        <VideoContainer>
-            <iframe
-                src={`https://www.youtube-nocookie.com/embed/${src.split('=')[1]}?autoplay=1`}
-                frameBorder={0}
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-            ></iframe>
+        <VideoContainer
+            onMouseOver={() => setIsControlsVisible(true)}
+            onMouseLeave={() => setIsControlsVisible(false)}
+        >
+            <ReactPlayer
+                url={src}
+                playing
+                config={{
+                    youtube: {
+                        playerVars: { modestbranding: 1 },
+                    },
+                }}
+            />
+            <Controls isVisible={forceControlsVisibility || isControlsVisible} />
         </VideoContainer>
     )
 }

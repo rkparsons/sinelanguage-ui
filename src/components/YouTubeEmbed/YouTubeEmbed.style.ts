@@ -14,3 +14,15 @@ export const VideoContainer = styled.div`
         height: 100%;
     }
 `
+
+export const Controls = styled.div<{ isVisible: boolean }>`
+    position: absolute;
+    background-color: black;
+    bottom: 0;
+    width: 100%;
+    height: 10%;
+    opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
+    transition-property: opacity;
+    transition-duration: 0s;
+    transition-delay: ${({ isVisible }) => (isVisible ? 0 : 1)}s;
+`
