@@ -1,9 +1,8 @@
 import { Artist, Release, Video } from '~/cms/types'
 import { Grid, Typography } from '@material-ui/core'
-import { getThumbnailComponent, sort } from '~/utils/content'
 
-import ArtistThumbnail from '~/components/ArtistThumbnail'
 import Centered from '~/components/Centered'
+import ContentThumbnail from '~/components/ContentThumbnail'
 import Head from '~/components/Head'
 import Image from 'gatsby-image'
 import Overlay from '~/components/Overlay'
@@ -11,6 +10,7 @@ import React from 'react'
 import ReleaseDetail from '~/components/ReleaseDetail'
 import Scrollable from '~/components/Scrollable'
 import { graphql } from 'gatsby'
+import { sort } from '~/utils/content'
 
 type Props = {
     data: {
@@ -24,8 +24,8 @@ export default ({ data }: Props) => {
         ...(data.contentfulRelease.artist.release || []),
         ...(data.contentfulRelease.artist.video || []),
     ])
-        .filter((x) => x.uid !== uid)
-        .map(getThumbnailComponent)
+        .filter((relatedContent) => relatedContent.uid !== uid)
+        .map((relatedContent, index) => <ContentThumbnail content={relatedContent} index={index} />)
 
     return (
         <>
@@ -41,7 +41,7 @@ export default ({ data }: Props) => {
                         <Scrollable>
                             <ReleaseDetail release={data.contentfulRelease} />
                             <Grid container>
-                                <ArtistThumbnail artist={artist} index={0} />
+                                <ContentThumbnail content={artist} index={0} />
                             </Grid>
                             <br />
                             {relatedContentComponents.length > 0 && (

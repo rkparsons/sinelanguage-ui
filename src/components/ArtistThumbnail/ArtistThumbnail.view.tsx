@@ -5,7 +5,6 @@ import Image from 'gatsby-image'
 import MediaLink from '~/components/MediaLink'
 import React from 'react'
 import { getUrl } from '~/utils/content'
-import moment from 'moment'
 
 type ViewProps = {
     artist: Artist

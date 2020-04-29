@@ -1,15 +1,16 @@
 import { Artist, Release, Video } from '~/cms/types'
 import { Grid, Typography } from '@material-ui/core'
-import { getThumbnailComponent, sort } from '~/utils/content'
 
 import ArtistDetail from '~/components/ArtistDetail'
 import Centered from '~/components/Centered'
+import ContentThumbnail from '~/components/ContentThumbnail'
 import Head from '~/components/Head'
 import Image from 'gatsby-image'
 import Overlay from '~/components/Overlay'
 import React from 'react'
 import Scrollable from '~/components/Scrollable'
 import { graphql } from 'gatsby'
+import { sort } from '~/utils/content'
 
 type Props = {
     data: {
@@ -22,7 +23,7 @@ export default ({ data }: Props) => {
     const relatedContentComponents = sort([
         ...data.contentfulArtist.release,
         ...data.contentfulArtist.video,
-    ]).map(getThumbnailComponent)
+    ]).map((relatedContent, index) => <ContentThumbnail content={relatedContent} index={index} />)
 
     return (
         <Overlay>
