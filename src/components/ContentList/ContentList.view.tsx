@@ -1,10 +1,11 @@
 import { Grid, Typography } from '@material-ui/core'
 import { HoverImage, ItemRow, List, TitleRow } from './ContentList.style'
 import React, { useState } from 'react'
-import { getHoverSize, getListComponent, getUrl } from '~/utils/content'
+import { getHoverSize, getUrl } from '~/utils/content'
 
 import ContentCardMedia from '~/components/ContentCardMedia'
 import { ContentItem } from '~/types/cms'
+import ContentRow from '~/components/ContentRow'
 import InvertOnHover from '~/components/InvertOnHover'
 import { Link } from 'gatsby'
 
@@ -34,7 +35,9 @@ export default ({ title, items }: ViewProps) => {
                                     onMouseEnter={() => setActiveItem(item)}
                                     onMouseLeave={() => setActiveItem(undefined)}
                                 >
-                                    <InvertOnHover>{getListComponent(item)}</InvertOnHover>
+                                    <InvertOnHover>
+                                        <ContentRow content={item} />
+                                    </InvertOnHover>
                                 </ItemRow>
                             </Link>
                         </Grid>
