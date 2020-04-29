@@ -61,7 +61,7 @@ export default ({ artist, title, src }: ViewProps) => {
             />
             <Controls isVisible={!isPlaying || forceControlsVisibility || isControlsVisible}>
                 <ControlsGrid container alignItems="center" justify="space-between">
-                    <Grid item>
+                    <Grid item xs={3}>
                         <IconButton
                             onClick={() => setIsPlaying(!isPlaying)}
                             aria-label={isPlaying ? 'Pause the video' : 'Play the video'}
@@ -73,14 +73,14 @@ export default ({ artist, title, src }: ViewProps) => {
                             )}
                         </IconButton>
                     </Grid>
-                    <Grid item>
-                        <Typography variant="body2">
+                    <Grid item xs={6}>
+                        <Typography variant="body2" align="center">
                             {artist.toUpperCase()}, <i>{title}</i>
                         </Typography>
                     </Grid>
-                    <Grid item>
+                    <Grid item xs={3}>
                         {duration && duration > 0 && (
-                            <Typography variant="body2">
+                            <Typography variant="body2" align="right">
                                 {`${formatSeconds(progress)} / ${formatSeconds(duration)}`}
                             </Typography>
                         )}
