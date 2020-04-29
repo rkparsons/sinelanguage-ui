@@ -1,18 +1,30 @@
-import { AppBar, Button, Grid, IconButton, Toolbar } from '@material-ui/core'
-import { Controls, VideoContainer } from './YouTubeEmbed.style'
+import { Controls, ControlsGrid, VideoContainer } from './YouTubeEmbed.style'
+import { Grid, IconButton, Typography } from '@material-ui/core'
 import { Pause, PlayArrow } from '@material-ui/icons'
 import React, { useEffect, useState } from 'react'
 
 import ReactPlayer from 'react-player'
+import moment from 'moment'
 
 type ViewProps = {
+    artist: string
+    title: string
     src: string
 }
 
-export default ({ src }: ViewProps) => {
+type OnProgressCallback = {
+    played: number
+    loaded: number
+    playedSeconds: number
+    loadedSeconds: number
+}
+
+export default ({ artist, title, src }: ViewProps) => {
     const [isPlaying, setIsPlaying] = useState(true)
     const [forceControlsVisibility, setForceControlsVisibility] = useState(true)
     const [isControlsVisible, setIsControlsVisible] = useState(true)
+    const [duration, setDuration] = useState<number>()
+    const [progress, setProgress] = useState<number>(0)
 
     useEffect(() => {
         const forceControlsVisibilityTimer = setTimeout(() => {
@@ -21,6 +33,8 @@ export default ({ src }: ViewProps) => {
         }, 4000)
         return () => clearTimeout(forceControlsVisibilityTimer)
     }, [])
+
+    const formatSeconds = (seconds: number) => moment.utc(seconds * 1000).format('mm:ss')
 
     return (
         <VideoContainer
@@ -37,19 +51,41 @@ export default ({ src }: ViewProps) => {
                 }}
                 onPause={() => setIsPlaying(false)}
                 onPlay={() => setIsPlaying(true)}
+                onDuration={setDuration}
+                onProgress={({
+                    played,
+                    loaded,
+                    playedSeconds,
+                    loadedSeconds,
+                }: OnProgressCallback) => setProgress(playedSeconds)}
             />
             <Controls isVisible={!isPlaying || forceControlsVisibility || isControlsVisible}>
-                <AppBar position="static">
-                    <Toolbar>
+                <ControlsGrid container alignItems="center" justify="space-between">
+                    <Grid item>
                         <IconButton
-                            edge="start"
                             onClick={() => setIsPlaying(!isPlaying)}
                             aria-label={isPlaying ? 'Pause the video' : 'Play the video'}
                         >
-                            {isPlaying ? <Pause /> : <PlayArrow />}
+                            {isPlaying ? (
+                                <Pause fontSize="large" />
+                            ) : (
+                                <PlayArrow fontSize="large" />
+                            )}
                         </IconButton>
-                    </Toolbar>
-                </AppBar>
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="body2">
+                            {artist.toUpperCase()}, <i>{title}</i>
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        {duration && duration > 0 && (
+                            <Typography variant="body2">
+                                {`${formatSeconds(progress)} / ${formatSeconds(duration)}`}
+                            </Typography>
+                        )}
+                    </Grid>
+                </ControlsGrid>
             </Controls>
         </VideoContainer>
     )

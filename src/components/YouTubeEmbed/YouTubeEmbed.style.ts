@@ -1,3 +1,4 @@
+import { Grid } from '@material-ui/core'
 import styled from 'styled-components'
 
 export const VideoContainer = styled.div`
@@ -5,6 +6,7 @@ export const VideoContainer = styled.div`
     width: 100%;
     height: 0;
     padding-bottom: ${(100 * 9) / 16}%;
+    background: black;
 
     iframe {
         position: absolute;
@@ -17,12 +19,22 @@ export const VideoContainer = styled.div`
 
 export const Controls = styled.div<{ isVisible: boolean }>`
     position: absolute;
-    background-color: black;
+    background-color: white;
+    border-top: 1px solid grey;
+    color: grey;
     bottom: 0;
     width: 100%;
     height: 10%;
+    text-shadow: none;
     opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
     transition-property: opacity;
     transition-duration: 0s;
     transition-delay: ${({ isVisible }) => (isVisible ? 0 : 1)}s;
+`
+
+export const ControlsGrid = styled(Grid)`
+    ${({ theme }) => `
+        height: 100%;    
+        padding-right: ${theme.spacing(5)};
+    `}
 `

@@ -22,10 +22,7 @@ export default ({ data }: Props) => {
             <Head title={title} description={description.description} image={image.fluid.src} />
             <Overlay>
                 <Centered size={7}>
-                    <YouTubeEmbed src={srcURL} />
-                    <Typography variant="body2" align="center">
-                        {artist.title.toUpperCase()}, <i>{title}</i>
-                    </Typography>
+                    <YouTubeEmbed artist={artist.title} title={title} src={srcURL} />
                 </Centered>
             </Overlay>
         </>
