@@ -39,7 +39,7 @@ export default new ContentfulContentType({
             fluidImageType: FluidImageType.WEBP_BLUR_UP,
         }),
         new VideoField({
-            name: 'Video',
+            name: 'Teaser Video',
             validations: [videoFileSize],
             required: false,
         }),

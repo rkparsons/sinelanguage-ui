@@ -17,7 +17,7 @@ type Props = {
 }
 
 export default ({ data }: Props) => {
-    const { title, description, image, video } = data.contentfulEvent
+    const { title, description, image, teaserVideo } = data.contentfulEvent
 
     return (
         <>
@@ -26,7 +26,7 @@ export default ({ data }: Props) => {
                 <Grid container>
                     <Grid item xs={6}>
                         <Centered size={7}>
-                            <TeaserVideo src={video.file.url} />
+                            <TeaserVideo src={teaserVideo.file.url} />
                         </Centered>
                     </Grid>
                     <Grid item xs={6}>

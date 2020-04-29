@@ -34,7 +34,7 @@ export const eventFragment = graphql`
                 ...GatsbyContentfulFluid_withWebp
             }
         }
-		video {
+		teaserVideo {
             file {
                 url
             }

@@ -66,7 +66,7 @@ export const getCardComponent = (content: ContentItem) =>
 
 export const getCardMedia = (content: ContentItem) =>
     content.__typename === ContentType.EVENT ? (
-        <TeaserVideo src={(content as Event).video.file.url} />
+        <TeaserVideo src={(content as Event).teaserVideo.file.url} />
     ) : content.__typename === ContentType.VIDEO ? (
         <TeaserVideo src={(content as Video).teaserVideo.file.url} />
     ) : (

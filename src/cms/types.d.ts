@@ -28,7 +28,7 @@ export type Event = {
 	image: {
         fluid: FluidObject
     }
-	video: {
+	teaserVideo: {
         file: {
             url: string
         }
