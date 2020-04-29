@@ -4,6 +4,7 @@ import { ContentType } from '~/constants/contentType'
 export const sort = (contents: ContentItem[]) =>
     contents.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
+// todo: replace with hidden constant on cms type (can then also be used in gatsby create pages)
 export const getUrl = (content: ContentItem) => {
     const slug = content.uid.toLowerCase()
     return content.__typename === ContentType.RELEASE
