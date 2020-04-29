@@ -1,15 +1,11 @@
-import { Grid, Typography } from '@material-ui/core'
-import { getCardMedia, getUrl } from '~/utils/content'
-
 import { Artist } from '~/cms/types'
-import BagIcon from '~/components/BagIcon'
 import ContentCard from '~/components/ContentCard'
 import ContentCardDetail from '~/components/ContentCardDetail'
-import ContentPlayButton from '~/components/ContentPlayButton'
-import IconButton from '~/components/IconButton'
-import Image from 'gatsby-image'
+import ContentCardMedia from '~/components/ContentCardMedia'
 import MediaLink from '~/components/MediaLink'
 import React from 'react'
+import { Typography } from '@material-ui/core'
+import { getUrl } from '~/utils/content'
 
 type ViewProps = {
     artist: Artist
@@ -18,7 +14,9 @@ type ViewProps = {
 export default ({ artist }: ViewProps) => {
     return (
         <ContentCard widthMultiplier={1}>
-            <MediaLink url={getUrl(artist)}>{getCardMedia(artist)}</MediaLink>
+            <MediaLink url={getUrl(artist)}>
+                <ContentCardMedia contentItem={artist} />
+            </MediaLink>
             <ContentCardDetail>
                 <Typography>{artist.title.toUpperCase()}</Typography>
             </ContentCardDetail>

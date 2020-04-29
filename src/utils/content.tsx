@@ -6,14 +6,12 @@ import { ContentItem } from '~/types/cms'
 import { ContentType } from '~/constants/contentType'
 import EventCard from '~/components/EventCard'
 import EventRow from '~/components/EventRow'
-import Image from 'gatsby-image'
 import PodcastCard from '~/components/PodcastCard'
 import PodcastRow from '~/components/PodcastRow'
 import React from 'react'
 import ReleaseCard from '~/components/ReleaseCard'
 import ReleaseRow from '~/components/ReleaseRow'
 import ReleaseThumbnail from '~/components/ReleaseThumbnail'
-import TeaserVideo from '~/components/TeaserVideo'
 import VideoCard from '~/components/VideoCard'
 import VideoRow from '~/components/VideoRow'
 import VideoThumbnail from '~/components/VideoThumbnail'
@@ -24,7 +22,6 @@ export const sort = (contents: ContentItem[]) =>
 export const getHoverSize = (content: ContentItem) =>
     content.__typename === ContentType.VIDEO ? 12 : 5
 
-// todo: refactor with strategy/factory
 export const getThumbnailComponent = (content: ContentItem, index: number) =>
     content.__typename === ContentType.RELEASE ? (
         <ReleaseThumbnail release={content as Release} index={index} />
@@ -62,15 +59,6 @@ export const getCardComponent = (content: ContentItem) =>
         <VideoCard video={content as Video} />
     ) : (
         ''
-    )
-
-export const getCardMedia = (content: ContentItem) =>
-    content.__typename === ContentType.EVENT ? (
-        <TeaserVideo src={(content as Event).teaserVideo.file.url} />
-    ) : content.__typename === ContentType.VIDEO ? (
-        <TeaserVideo src={(content as Video).teaserVideo.file.url} />
-    ) : (
-        <Image title={content.title} alt={content.title} sizes={{ ...content.image.fluid }} />
     )
 
 export const getUrl = (content: ContentItem) => {
