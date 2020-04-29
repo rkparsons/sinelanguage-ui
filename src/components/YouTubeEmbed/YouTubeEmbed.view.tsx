@@ -1,4 +1,6 @@
+import { AppBar, Button, Grid, IconButton, Toolbar } from '@material-ui/core'
 import { Controls, VideoContainer } from './YouTubeEmbed.style'
+import { Pause, PlayArrow } from '@material-ui/icons'
 import React, { useEffect, useState } from 'react'
 
 import ReactPlayer from 'react-player'
@@ -8,6 +10,7 @@ type ViewProps = {
 }
 
 export default ({ src }: ViewProps) => {
+    const [isPlaying, setIsPlaying] = useState(true)
     const [forceControlsVisibility, setForceControlsVisibility] = useState(true)
     const [isControlsVisible, setIsControlsVisible] = useState(true)
 
@@ -26,14 +29,28 @@ export default ({ src }: ViewProps) => {
         >
             <ReactPlayer
                 url={src}
-                playing
+                playing={isPlaying}
                 config={{
                     youtube: {
-                        playerVars: { modestbranding: 1 },
+                        playerVars: { modestbranding: 1, preload: true },
                     },
                 }}
+                onPause={() => setIsPlaying(false)}
+                onPlay={() => setIsPlaying(true)}
             />
-            <Controls isVisible={forceControlsVisibility || isControlsVisible} />
+            <Controls isVisible={!isPlaying || forceControlsVisibility || isControlsVisible}>
+                <AppBar position="static">
+                    <Toolbar>
+                        <IconButton
+                            edge="start"
+                            onClick={() => setIsPlaying(!isPlaying)}
+                            aria-label={isPlaying ? 'Pause the video' : 'Play the video'}
+                        >
+                            {isPlaying ? <Pause /> : <PlayArrow />}
+                        </IconButton>
+                    </Toolbar>
+                </AppBar>
+            </Controls>
         </VideoContainer>
     )
 }
