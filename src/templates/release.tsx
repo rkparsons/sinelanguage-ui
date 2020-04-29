@@ -19,12 +19,15 @@ type Props = {
 }
 
 export default ({ data }: Props) => {
-    const { uid, title, description, image, artist } = data.contentfulRelease
+    const { __typename, uid, title, description, image, artist } = data.contentfulRelease
     const relatedContentComponents = sort([
         ...(data.contentfulRelease.artist.release || []),
         ...(data.contentfulRelease.artist.video || []),
     ])
-        .filter((relatedContent) => relatedContent.uid !== uid)
+        .filter(
+            (relatedContent) =>
+                relatedContent.__typename !== __typename || relatedContent.uid !== uid
+        )
         .map((relatedContent, index) => <ContentThumbnail content={relatedContent} index={index} />)
 
     return (
