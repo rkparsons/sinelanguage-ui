@@ -44,7 +44,7 @@ export default ({ title, items }: ViewProps) => {
             {activeItem && (
                 <HoverImage container alignItems="center" justify="center">
                     <Grid item xs={getHoverSize(activeItem)}>
-                        <ContentCardMedia contentItem={activeItem} />
+                        <ContentCardMedia content={activeItem} />
                     </Grid>
                 </HoverImage>
             )}

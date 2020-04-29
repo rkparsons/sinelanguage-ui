@@ -15,7 +15,7 @@ export default ({ podcast }: ViewProps) => {
     return (
         <Column widthMultiplier={1}>
             <MediaLink url={getUrl(podcast)}>
-                <ContentCardMedia contentItem={podcast} />
+                <ContentCardMedia content={podcast} />
             </MediaLink>
             <ContentCardDetail>
                 <Typography variant="body1">{podcast.title.toUpperCase()}, Podcast</Typography>

@@ -7,16 +7,12 @@ import React from 'react'
 import TeaserVideo from '~/components/TeaserVideo'
 
 type ViewProps = {
-    contentItem: ContentItem
+    content: ContentItem
 }
 
-export default ({ contentItem }: ViewProps) =>
-    [`${ContentType.EVENT}`, `${ContentType.VIDEO}`].includes(contentItem.__typename) ? (
-        <TeaserVideo src={(contentItem as Event | Video).teaserVideo.file.url} />
+export default ({ content }: ViewProps) =>
+    [`${ContentType.EVENT}`, `${ContentType.VIDEO}`].includes(content.__typename) ? (
+        <TeaserVideo src={(content as Event | Video).teaserVideo.file.url} />
     ) : (
-        <Image
-            title={contentItem.title}
-            alt={contentItem.title}
-            sizes={{ ...contentItem.image.fluid }}
-        />
+        <Image title={content.title} alt={content.title} sizes={{ ...content.image.fluid }} />
     )

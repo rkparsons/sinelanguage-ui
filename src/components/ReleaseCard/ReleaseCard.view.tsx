@@ -19,7 +19,7 @@ export default ({ release }: ViewProps) => {
     return (
         <Column widthMultiplier={1}>
             <MediaLink url={getUrl(release)}>
-                <ContentCardMedia contentItem={release} />
+                <ContentCardMedia content={release} />
             </MediaLink>
             <ContentCardDetail>
                 <Typography>

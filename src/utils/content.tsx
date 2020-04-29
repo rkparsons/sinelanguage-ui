@@ -1,18 +1,13 @@
 import { Artist, Event, Podcast, Release, Track, Video } from '~/cms/types'
 
-import ArtistCard from '~/components/ArtistCard'
 import ArtistRow from '~/components/ArtistRow'
 import { ContentItem } from '~/types/cms'
 import { ContentType } from '~/constants/contentType'
-import EventCard from '~/components/EventCard'
 import EventRow from '~/components/EventRow'
-import PodcastCard from '~/components/PodcastCard'
 import PodcastRow from '~/components/PodcastRow'
 import React from 'react'
-import ReleaseCard from '~/components/ReleaseCard'
 import ReleaseRow from '~/components/ReleaseRow'
 import ReleaseThumbnail from '~/components/ReleaseThumbnail'
-import VideoCard from '~/components/VideoCard'
 import VideoRow from '~/components/VideoRow'
 import VideoThumbnail from '~/components/VideoThumbnail'
 
@@ -42,21 +37,6 @@ export const getListComponent = (content: ContentItem) =>
         <EventRow event={content as Event} />
     ) : content.__typename === ContentType.PODCAST ? (
         <PodcastRow podcast={content as Podcast} />
-    ) : (
-        ''
-    )
-
-export const getCardComponent = (content: ContentItem) =>
-    content.__typename === ContentType.ARTIST ? (
-        <ArtistCard artist={content as Artist} />
-    ) : content.__typename === ContentType.EVENT ? (
-        <EventCard event={content as Event} />
-    ) : content.__typename === ContentType.PODCAST ? (
-        <PodcastCard podcast={content as Podcast} />
-    ) : content.__typename === ContentType.RELEASE ? (
-        <ReleaseCard release={content as Release} />
-    ) : content.__typename === ContentType.VIDEO ? (
-        <VideoCard video={content as Video} />
     ) : (
         ''
     )

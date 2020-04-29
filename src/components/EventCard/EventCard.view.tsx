@@ -15,7 +15,7 @@ export default ({ event }: ViewProps) => {
     return (
         <Column widthMultiplier={1}>
             <MediaLink url={getUrl(event)}>
-                <ContentCardMedia contentItem={event} />
+                <ContentCardMedia content={event} />
             </MediaLink>
             <ContentCardDetail>
                 <Typography>{event.title.toUpperCase()}</Typography>

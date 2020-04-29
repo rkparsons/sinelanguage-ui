@@ -15,7 +15,7 @@ export default ({ artist }: ViewProps) => {
     return (
         <Column widthMultiplier={1}>
             <MediaLink url={getUrl(artist)}>
-                <ContentCardMedia contentItem={artist} />
+                <ContentCardMedia content={artist} />
             </MediaLink>
             <ContentCardDetail>
                 <Typography>{artist.title.toUpperCase()}</Typography>

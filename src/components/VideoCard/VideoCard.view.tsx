@@ -15,7 +15,7 @@ export default ({ video }: ViewProps) => {
     return (
         <Column widthMultiplier={2}>
             <MediaLink url={getUrl(video)}>
-                <ContentCardMedia contentItem={video} />
+                <ContentCardMedia content={video} />
             </MediaLink>
             <ContentCardDetail>
                 <Typography variant="body1">
