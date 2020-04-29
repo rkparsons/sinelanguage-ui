@@ -1,13 +1,14 @@
 import { Grid, Typography } from '@material-ui/core'
 import { HoverImage, ItemRow, List, TitleRow } from './ContentList.style'
 import React, { useState } from 'react'
-import { getHoverSize, getUrl } from '~/utils/content'
 
 import ContentCardMedia from '~/components/ContentCardMedia'
 import { ContentItem } from '~/types/cms'
 import ContentRow from '~/components/ContentRow'
+import { ContentType } from '~/constants/contentType'
 import InvertOnHover from '~/components/InvertOnHover'
 import { Link } from 'gatsby'
+import { getUrl } from '~/utils/content'
 
 type ViewProps = {
     title: string
@@ -46,7 +47,7 @@ export default ({ title, items }: ViewProps) => {
             </List>
             {activeItem && (
                 <HoverImage container alignItems="center" justify="center">
-                    <Grid item xs={getHoverSize(activeItem)}>
+                    <Grid item xs={activeItem.__typename === ContentType.VIDEO ? 12 : 5}>
                         <ContentCardMedia content={activeItem} />
                     </Grid>
                 </HoverImage>
