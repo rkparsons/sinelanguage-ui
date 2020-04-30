@@ -1,10 +1,11 @@
+import { contentOffsetSmall, marginSide } from '~/styles/sizes'
+
 import { Grid } from '@material-ui/core'
-import { marginSide } from '~/styles/sizes'
 import styled from 'styled-components'
 
 export const List = styled.div`
     ${({ theme }) => `
-        padding-top: ${theme.spacing(32)};
+        padding-top: ${theme.spacing(contentOffsetSmall)};
     `}
 `
 

@@ -1,7 +1,6 @@
 import { GatsbyLinkProps, Link } from 'gatsby'
 import React, { FC } from 'react'
 
-import { grey } from '~/styles/colours'
 import styled from 'styled-components'
 
 /* Workaround to exclude the "ref" property from GatsbyLinkProps. Can be removed when issue is resolved in Gatsby */
