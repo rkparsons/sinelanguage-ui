@@ -44,4 +44,12 @@ export const plugins: Plugins = [
             component: require.resolve(`../../src/components/Layout`),
         },
     },
+    {
+        resolve: 'gatsby-plugin-mailchimp',
+        options: {
+            // todo: move to env var
+            endpoint:
+                'https://sinelanguage.us19.list-manage.com/subscribe/post?u=f74d66b167e9f79b3c1aaf8fa&amp;id=de52cdc35f',
+        },
+    },
 ]

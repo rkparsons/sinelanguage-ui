@@ -31,5 +31,18 @@ export default (isDarkMode = false) =>
                 type: isDarkMode ? 'dark' : 'light',
                 ...palette,
             },
+            overrides: {
+                MuiInputBase: {
+                    input: {
+                        color: 'white',
+                        textShadow: '1px 2px 4px #000000',
+                    },
+                },
+                MuiInputLabel: {
+                    root: {
+                        color: 'white',
+                    },
+                },
+            },
         })
     )
