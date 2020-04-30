@@ -4,7 +4,9 @@ import { Typography } from '@material-ui/core'
 export default () => {
     return (
         <>
-            <Typography variant="h3">NEWSLETTER</Typography>
+            <Typography variant="h3" gutterBottom>
+                NEWSLETTER
+            </Typography>
         </>
     )
 }

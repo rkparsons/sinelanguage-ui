@@ -4,6 +4,7 @@ import styled from 'styled-components'
 export const SocialIcon = styled(Icon)`
     ${({ theme }) => `
         width: ${theme.spacing(10)};
+        height: ${theme.spacing(10)};
         text-align: center;
         
         &:hover {

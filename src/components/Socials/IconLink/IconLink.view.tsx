@@ -20,6 +20,8 @@ export default ({ url }: ViewProps) => {
                 <SocialIcon className="fa fa-instagram" />
             ) : url.includes('twitter') ? (
                 <SocialIcon className="fa fa-twitter" />
+            ) : url.includes('youtube') ? (
+                <SocialIcon className="fa fa-youtube" />
             ) : (
                 <CallMade />
             )}
