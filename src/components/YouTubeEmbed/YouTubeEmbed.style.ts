@@ -33,8 +33,5 @@ export const Controls = styled.div<{ isVisible: boolean }>`
 `
 
 export const ControlsGrid = styled(Grid)`
-    ${({ theme }) => `
-        height: 100%;    
-        padding-right: ${theme.spacing(5)};
-    `}
+    height: 100%;
 `

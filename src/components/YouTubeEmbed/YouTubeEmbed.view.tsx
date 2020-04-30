@@ -45,6 +45,9 @@ export default ({ artist, title, src }: ViewProps) => {
             return
         }
 
+        setIsMuted(false)
+        setIsPlaying(true)
+
         const playerNode = findDOMNode(player.current)
 
         if (playerNode) {
@@ -102,12 +105,6 @@ export default ({ artist, title, src }: ViewProps) => {
                                 <VolumeUp fontSize="large" />
                             )}
                         </IconButton>
-                        <IconButton
-                            onClick={handleFullscreenClick}
-                            aria-label="Fullscreen the video"
-                        >
-                            <Fullscreen fontSize="large" />
-                        </IconButton>
                     </Grid>
                     <Grid item xs={6}>
                         <Typography variant="body2" align="center">
@@ -115,11 +112,23 @@ export default ({ artist, title, src }: ViewProps) => {
                         </Typography>
                     </Grid>
                     <Grid item xs={3}>
-                        {duration && duration > 0 && (
-                            <Typography variant="body2" align="right">
-                                {`${formatSeconds(progress)} / ${formatSeconds(duration)}`}
-                            </Typography>
-                        )}
+                        <Grid container justify="space-between" alignItems="center">
+                            <Grid item>
+                                {duration && duration > 0 && (
+                                    <Typography variant="body2" align="right">
+                                        {`${formatSeconds(progress)} / ${formatSeconds(duration)}`}
+                                    </Typography>
+                                )}
+                            </Grid>
+                            <Grid item>
+                                <IconButton
+                                    onClick={handleFullscreenClick}
+                                    aria-label="Fullscreen the video"
+                                >
+                                    <Fullscreen fontSize="large" />
+                                </IconButton>
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </ControlsGrid>
             </Controls>
