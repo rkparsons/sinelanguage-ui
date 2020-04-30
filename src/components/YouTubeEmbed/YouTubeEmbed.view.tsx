@@ -1,10 +1,12 @@
 import { Controls, ControlsGrid, VideoContainer } from './YouTubeEmbed.style'
+import { Fullscreen, Pause, PlayArrow, VolumeOff, VolumeUp } from '@material-ui/icons'
 import { Grid, IconButton, Typography } from '@material-ui/core'
-import { Pause, PlayArrow, VolumeOff, VolumeUp } from '@material-ui/icons'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import ReactPlayer from 'react-player'
+import { findDOMNode } from 'react-dom'
 import moment from 'moment'
+import screenfull from 'screenfull'
 
 type ViewProps = {
     artist: string
@@ -20,6 +22,7 @@ type OnProgressCallback = {
 }
 
 export default ({ artist, title, src }: ViewProps) => {
+    const player = useRef<ReactPlayer>(null)
     const [isPlaying, setIsPlaying] = useState(true)
     const [isMuted, setIsMuted] = useState(true)
     const [forceControlsVisibility, setForceControlsVisibility] = useState(true)
@@ -37,12 +40,25 @@ export default ({ artist, title, src }: ViewProps) => {
 
     const formatSeconds = (seconds: number) => moment.utc(seconds * 1000).format('mm:ss')
 
+    const handleFullscreenClick = () => {
+        if (!screenfull.isEnabled || !player.current) {
+            return
+        }
+
+        const playerNode = findDOMNode(player.current)
+
+        if (playerNode) {
+            screenfull.request(playerNode as Element)
+        }
+    }
+
     return (
         <VideoContainer
             onMouseOver={() => setIsControlsVisible(true)}
             onMouseLeave={() => setIsControlsVisible(false)}
         >
             <ReactPlayer
+                ref={player}
                 url={src}
                 playing={isPlaying}
                 muted={isMuted}
@@ -85,6 +101,12 @@ export default ({ artist, title, src }: ViewProps) => {
                             ) : (
                                 <VolumeUp fontSize="large" />
                             )}
+                        </IconButton>
+                        <IconButton
+                            onClick={handleFullscreenClick}
+                            aria-label="Fullscreen the video"
+                        >
+                            <Fullscreen fontSize="large" />
                         </IconButton>
                     </Grid>
                     <Grid item xs={6}>
