@@ -13,5 +13,7 @@ export default ({ event }: ViewProps) => (
         <Typography variant="h3">
             {moment(event.date).format(`ddd, DD MMM YYYY`).toUpperCase()}
         </Typography>
+        <br />
+        <Typography variant="body2">{event.description.description}</Typography>
     </>
 )
