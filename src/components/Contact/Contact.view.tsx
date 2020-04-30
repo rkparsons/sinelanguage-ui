@@ -1,5 +1,6 @@
 import { Contact } from './Contact.style'
 import Email from './Email'
+import Follow from './Follow'
 import Overlay from '~/components/Overlay'
 import React from 'react'
 import Subscribe from './Subscribe'
@@ -17,6 +18,9 @@ export default () => {
                 <br />
                 <br />
                 <Subscribe />
+                <br />
+                <br />
+                <Follow />
             </Contact>
         </Overlay>
     )

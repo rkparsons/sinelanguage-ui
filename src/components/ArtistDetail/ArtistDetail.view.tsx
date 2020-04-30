@@ -6,7 +6,7 @@ import { PlayArrow } from '@material-ui/icons'
 import React from 'react'
 import RichText from '~/components/RichText'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
-import SocialLink from '~/components/SocialLink'
+import Socials from '~/components/Socials'
 
 type ViewProps = {
     artist: Artist
@@ -30,15 +30,7 @@ export default ({ artist }: ViewProps) => (
                         />
                     </Grid>
                 </Grid>
-                <Grid container spacing={2}>
-                    {artist.socials.map((url, index) => (
-                        <Grid item key={index}>
-                            <Typography variant="h3">
-                                <SocialLink url={url} />
-                            </Typography>
-                        </Grid>
-                    ))}
-                </Grid>
+                <Socials urls={artist.socials} />
                 <br />
                 <RichText json={artist.bio.json} variant="body2" />
                 <br />

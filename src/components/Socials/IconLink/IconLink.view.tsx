@@ -1,7 +1,7 @@
 import { CallMade } from '@material-ui/icons'
 import { Link } from '@material-ui/core'
 import React from 'react'
-import { SocialIcon } from './SocialLink.style'
+import { SocialIcon } from './IconLink.style'
 
 type ViewProps = {
     url: string
