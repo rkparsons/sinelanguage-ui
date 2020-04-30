@@ -1,19 +1,10 @@
-import { Box, Grid, Theme } from '@material-ui/core'
-
+import { Grid } from '@material-ui/core'
 import { marginSide } from '~/styles/sizes'
 import styled from 'styled-components'
 
 export const List = styled.div`
     ${({ theme }) => `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 500;
         padding-top: ${theme.spacing(32)};
-        text-shadow: 1px 2px 4px #000000;
-        color: white;
     `}
 `
 

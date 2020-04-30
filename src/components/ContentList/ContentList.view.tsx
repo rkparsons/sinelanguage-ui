@@ -8,6 +8,7 @@ import ContentRow from '~/components/ContentRow'
 import { ContentType } from '~/constants/contentType'
 import InvertOnHover from '~/components/InvertOnHover'
 import { Link } from 'gatsby'
+import Overlay from '~/components/Overlay'
 import { getUrl } from '~/utils/content'
 
 type ViewProps = {
@@ -19,7 +20,7 @@ export default ({ title, items }: ViewProps) => {
     const [activeItem, setActiveItem] = useState<ContentItem>()
 
     return (
-        <>
+        <Overlay>
             <List>
                 <Grid container direction="column" spacing={2}>
                     <Grid item xs={12}>
@@ -52,6 +53,6 @@ export default ({ title, items }: ViewProps) => {
                     </Grid>
                 </HoverImage>
             )}
-        </>
+        </Overlay>
     )
 }
