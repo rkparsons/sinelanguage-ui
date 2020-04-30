@@ -1,6 +1,6 @@
 import { Controls, ControlsGrid, VideoContainer } from './YouTubeEmbed.style'
 import { Grid, IconButton, Typography } from '@material-ui/core'
-import { Pause, PlayArrow } from '@material-ui/icons'
+import { Pause, PlayArrow, VolumeOff, VolumeUp } from '@material-ui/icons'
 import React, { useEffect, useState } from 'react'
 
 import ReactPlayer from 'react-player'
@@ -21,6 +21,7 @@ type OnProgressCallback = {
 
 export default ({ artist, title, src }: ViewProps) => {
     const [isPlaying, setIsPlaying] = useState(true)
+    const [isMuted, setIsMuted] = useState(true)
     const [forceControlsVisibility, setForceControlsVisibility] = useState(true)
     const [isControlsVisible, setIsControlsVisible] = useState(true)
     const [duration, setDuration] = useState<number>()
@@ -44,6 +45,7 @@ export default ({ artist, title, src }: ViewProps) => {
             <ReactPlayer
                 url={src}
                 playing={isPlaying}
+                muted={isMuted}
                 config={{
                     youtube: {
                         playerVars: { modestbranding: 1, preload: true },
@@ -59,7 +61,9 @@ export default ({ artist, title, src }: ViewProps) => {
                     loadedSeconds,
                 }: OnProgressCallback) => setProgress(playedSeconds)}
             />
-            <Controls isVisible={!isPlaying || forceControlsVisibility || isControlsVisible}>
+            <Controls
+                isVisible={!isPlaying || isMuted || forceControlsVisibility || isControlsVisible}
+            >
                 <ControlsGrid container alignItems="center" justify="space-between">
                     <Grid item xs={3}>
                         <IconButton
@@ -70,6 +74,16 @@ export default ({ artist, title, src }: ViewProps) => {
                                 <Pause fontSize="large" />
                             ) : (
                                 <PlayArrow fontSize="large" />
+                            )}
+                        </IconButton>
+                        <IconButton
+                            onClick={() => setIsMuted(!isMuted)}
+                            aria-label={isMuted ? 'Unmute the video' : 'Mute the video'}
+                        >
+                            {isMuted ? (
+                                <VolumeOff fontSize="large" />
+                            ) : (
+                                <VolumeUp fontSize="large" />
                             )}
                         </IconButton>
                     </Grid>
