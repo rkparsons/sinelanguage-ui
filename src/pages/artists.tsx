@@ -2,6 +2,7 @@ import { Artist } from '~/cms/types'
 import ContentList from '~/components/ContentList'
 import React from 'react'
 import { graphql } from 'gatsby'
+import { sortByTitle } from '~/utils/content'
 
 type ViewProps = {
     data: {
@@ -11,9 +12,11 @@ type ViewProps = {
     }
 }
 
-export default ({ data }: ViewProps) => (
-    <ContentList title="ARTISTS" items={data.allContentfulArtist.nodes} />
-)
+export default ({ data }: ViewProps) => {
+    const items = sortByTitle([...data.allContentfulArtist.nodes])
+
+    return <ContentList title="ARTISTS" items={items} />
+}
 
 export const query = graphql`
     {

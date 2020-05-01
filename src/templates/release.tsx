@@ -10,7 +10,7 @@ import React from 'react'
 import ReleaseDetail from '~/components/ReleaseDetail'
 import Scrollable from '~/components/Scrollable'
 import { graphql } from 'gatsby'
-import { sort } from '~/utils/content'
+import { sortByDate } from '~/utils/content'
 
 type Props = {
     data: {
@@ -20,7 +20,7 @@ type Props = {
 
 export default ({ data }: Props) => {
     const { __typename, uid, title, description, image, artist } = data.contentfulRelease
-    const relatedContentComponents = sort([
+    const relatedContentComponents = sortByDate([
         ...(data.contentfulRelease.artist.release || []),
         ...(data.contentfulRelease.artist.video || []),
     ])

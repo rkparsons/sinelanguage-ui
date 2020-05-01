@@ -1,7 +1,7 @@
 import { Artist, Event, Podcast, Release, Video } from '~/cms/types'
 
 import { graphql } from 'gatsby'
-import { sort } from '~/utils/content'
+import { sortByDate } from '~/utils/content'
 import { useStaticQuery } from 'gatsby'
 
 type DashboardItems = {
@@ -53,7 +53,7 @@ export default () => {
         }
     `)
 
-    const items = sort([
+    const items = sortByDate([
         ...data.allContentfulArtist.nodes,
         ...data.allContentfulEvent.nodes,
         ...data.allContentfulPodcast.nodes,

@@ -10,7 +10,7 @@ import Overlay from '~/components/Overlay'
 import React from 'react'
 import Scrollable from '~/components/Scrollable'
 import { graphql } from 'gatsby'
-import { sort } from '~/utils/content'
+import { sortByDate } from '~/utils/content'
 
 type Props = {
     data: {
@@ -20,7 +20,7 @@ type Props = {
 
 export default ({ data }: Props) => {
     const { title, description, image } = data.contentfulArtist
-    const relatedContentComponents = sort([
+    const relatedContentComponents = sortByDate([
         ...data.contentfulArtist.release,
         ...data.contentfulArtist.video,
     ]).map((relatedContent, index) => <ContentThumbnail content={relatedContent} index={index} />)
