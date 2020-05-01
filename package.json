@@ -39,6 +39,7 @@
         "babel-plugin-styled-components": "^1.10.6",
         "dotenv": "^8.1.0",
         "dotenv-safe": "^8.2.0",
+        "email-validator": "^2.0.4",
         "faunadb": "^2.8.0",
         "font-awesome": "^4.7.0",
         "gatsby": "^2.18.15",

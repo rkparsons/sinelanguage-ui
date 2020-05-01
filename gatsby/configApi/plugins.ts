@@ -35,7 +35,7 @@ export const plugins: Plugins = [
         options: {
             endpoint:
                 // todo: move to env var and use new link
-                'https://sinelanguage.us3.list-manage.com/subscribe/post?u=51b15e2b803b2c4e70392c5f9&amp;id=b5b38d278a',
+                'https://sinelanguage.us19.list-manage.com/subscribe/post?u=f74d66b167e9f79b3c1aaf8fa&amp;id=de52cdc35f',
         },
     },
     {
