@@ -1,10 +1,12 @@
+import { Grid, Typography } from '@material-ui/core'
+
 import Column from '~/components/Column'
 import ContentCardDetail from '~/components/ContentCardDetail'
 import ContentCardMedia from '~/components/ContentCardMedia'
+import ContentPlayButton from '~/components/ContentPlayButton'
 import MediaLink from '~/components/MediaLink'
 import { Podcast } from '~/cms/types'
 import React from 'react'
-import { Typography } from '@material-ui/core'
 import { getUrl } from '~/utils/content'
 
 type ViewProps = {
@@ -20,6 +22,12 @@ export default ({ podcast }: ViewProps) => {
             <ContentCardDetail>
                 <Typography variant="body1">{podcast.title.toUpperCase()}, Podcast</Typography>
                 <Typography variant="body1">[{podcast.uid}]</Typography>
+                <Grid container spacing={2}>
+                    <Grid item xs={1}></Grid>
+                    <Grid item>
+                        <ContentPlayButton content={podcast} />
+                    </Grid>
+                </Grid>
             </ContentCardDetail>
         </Column>
     )
