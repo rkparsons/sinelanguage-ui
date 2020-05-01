@@ -34,11 +34,12 @@ export const ItemRow = styled(Row)`
 
 export const HoverImage = styled(Grid)`
     position: fixed;
+    pointer-events: none;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 100;
+    z-index: -1;
     margin: auto;
     width: 100vw;
     height: 100vh;
