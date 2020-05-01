@@ -12,13 +12,13 @@ import TimeControl from './TimeControl'
 // todo: move clientId to env vars
 export default () => {
     const audioRef = useRef<HTMLAudioElement>(null)
-    const { trackIndex, setTrackIndex, selectedMedia } = useContext(SelectedMediaContext)
+    const { selectedMedia, setSelectedMedia } = useContext(SelectedMediaContext)
 
     const getTracks = useCallback(() => {
-        return selectedMedia?.__typename === ContentType.PODCAST
-            ? [(selectedMedia as Podcast).track]
-            : selectedMedia?.__typename === ContentType.RELEASE
-            ? (selectedMedia as Release).tracks
+        return selectedMedia?.content.__typename === ContentType.PODCAST
+            ? [(selectedMedia.content as Podcast).track]
+            : selectedMedia?.content.__typename === ContentType.RELEASE
+            ? (selectedMedia.content as Release).tracks
             : []
     }, [selectedMedia])
 
@@ -26,20 +26,29 @@ export default () => {
     const [volume, setVolume] = useState(1)
     const [selectedTracks, setSelectedTracks] = useState<Track[]>(getTracks())
 
+    const setTrackIndex = (index: number) => {
+        if (selectedMedia) {
+            setSelectedMedia({ content: selectedMedia.content, trackIndex: index })
+        }
+    }
+
     useEffect(() => {
         setIsPlaying(true)
         setSelectedTracks(getTracks())
-        setTrackIndex(0)
-    }, [selectedMedia, setTrackIndex])
+    }, [selectedMedia])
 
-    if (selectedMedia && selectedTracks[trackIndex]) {
+    // todo: move clientId to env vars
+    if (selectedMedia && selectedTracks[selectedMedia.trackIndex]) {
         return (
             <AudioPlayer>
                 <Grid container alignItems="stretch" spacing={5}>
                     <Grid item xs={1}>
-                        <SquareImage title={selectedMedia.title} image={selectedMedia.image} />
+                        <SquareImage
+                            title={selectedMedia.content.title}
+                            image={selectedMedia.content.image}
+                        />
                         <Controls
-                            trackIndex={trackIndex}
+                            trackIndex={selectedMedia.trackIndex}
                             setTrackIndex={setTrackIndex}
                             isPlaying={isPlaying}
                             setIsPlaying={setIsPlaying}
@@ -50,10 +59,12 @@ export default () => {
                     </Grid>
                     <Grid item xs={11}>
                         <TimeControl
-                            title={selectedTracks[trackIndex].metadata.title}
-                            streamUrl={`${selectedTracks[trackIndex].metadata.streamUrl}?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
-                            samples={selectedTracks[trackIndex].metadata.samples}
-                            durationMs={selectedTracks[trackIndex].metadata.duration}
+                            title={selectedTracks[selectedMedia.trackIndex].metadata.title}
+                            streamUrl={`${
+                                selectedTracks[selectedMedia.trackIndex].metadata.streamUrl
+                            }?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
+                            samples={selectedTracks[selectedMedia.trackIndex].metadata.samples}
+                            durationMs={selectedTracks[selectedMedia.trackIndex].metadata.duration}
                             isPlaying={isPlaying}
                             setIsPlaying={setIsPlaying}
                             volume={volume}

@@ -11,6 +11,7 @@ import Footer from '~/components/Footer'
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
 import Navigation from '~/components/Navigation'
 import { ThemeProvider as ScThemeProvider } from 'styled-components'
+import { SelectedMedia } from '~/types/cms'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import theme from '~/styles/theme'
 
@@ -22,15 +23,12 @@ type ViewProps = {
 }
 
 export default ({ isDarkMode, setIsDarkMode, children }: ViewProps) => {
-    const [trackIndex, setTrackIndex] = useState(0)
-    const [selectedMedia, setSelectedMedia] = useState<Artist | Podcast | Release>()
+    const [selectedMedia, setSelectedMedia] = useState<SelectedMedia>()
 
     return (
         <MuiThemeProvider theme={theme(isDarkMode)}>
             <ScThemeProvider theme={theme(isDarkMode)}>
-                <SelectedMediaContext.Provider
-                    value={{ trackIndex, setTrackIndex, selectedMedia, setSelectedMedia }}
-                >
+                <SelectedMediaContext.Provider value={{ selectedMedia, setSelectedMedia }}>
                     <>
                         <CssBaseline />
                         <GlobalStyle />

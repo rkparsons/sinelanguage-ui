@@ -1,17 +1,12 @@
-import { Artist, Podcast, Release } from '~/cms/types'
-
+import { SelectedMedia } from '~/types/cms'
 import { createContext } from 'react'
 
 type MediaContext = {
-    trackIndex: number
-    setTrackIndex(trackIndex: number): void
-    selectedMedia?: Artist | Podcast | Release
-    setSelectedMedia(media: Artist | Podcast | Release): void
+    selectedMedia?: SelectedMedia
+    setSelectedMedia(media: SelectedMedia): void
 }
 
 export const SelectedMediaContext = createContext<MediaContext>({
-    trackIndex: 0,
-    setTrackIndex: () => {},
     selectedMedia: undefined,
     setSelectedMedia: () => {},
 })

@@ -9,17 +9,19 @@ import { Typography } from '@material-ui/core'
 
 type ViewProps = {
     content: Artist | Podcast | Release
+    trackIndex: number
+    isLarge?: boolean
 }
 
-export default ({ content }: ViewProps) => {
+export default ({ content, trackIndex, isLarge = true }: ViewProps) => {
     return (
         <SelectedMediaContext.Consumer>
             {({ setSelectedMedia }) => (
                 <IconButton
-                    label={<Typography variant="body1">PLAY</Typography>}
-                    icon={<PlayArrow fontSize="small" />}
+                    label={<Typography variant={isLarge ? 'h3' : 'body1'}>PLAY</Typography>}
+                    icon={<PlayArrow fontSize={isLarge ? 'large' : 'small'} />}
                     onClick={() => {
-                        setSelectedMedia(content)
+                        setSelectedMedia({ content: content, trackIndex: trackIndex })
                     }}
                 />
             )}
