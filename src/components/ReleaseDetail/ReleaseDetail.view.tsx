@@ -36,7 +36,7 @@ export default ({ release }: ViewProps) => (
                         <Typography variant="h3">TRACKLIST</Typography>
                         <br />
                         {release.tracks.map((track, index) => (
-                            <InvertOnHover>
+                            <InvertOnHover key={index}>
                                 <Grid container key={index} justify="space-between">
                                     <Grid item xs={8}>
                                         <Typography variant="h3">
