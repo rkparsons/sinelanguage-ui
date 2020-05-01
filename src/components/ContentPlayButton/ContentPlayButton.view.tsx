@@ -1,3 +1,5 @@
+import { Artist, Podcast, Release } from '~/cms/types'
+
 import { ContentItem } from '~/types/cms'
 import IconButton from '~/components/IconButton'
 import { PlayArrow } from '@material-ui/icons'
@@ -6,7 +8,7 @@ import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import { Typography } from '@material-ui/core'
 
 type ViewProps = {
-    content: ContentItem
+    content: Artist | Podcast | Release
 }
 
 export default ({ content }: ViewProps) => {

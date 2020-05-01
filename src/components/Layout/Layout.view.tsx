@@ -22,9 +22,7 @@ type ViewProps = {
 }
 
 export default ({ isDarkMode, setIsDarkMode, children }: ViewProps) => {
-    const [selectedMedia, setSelectedMedia] = useState<
-        Artist | Event | Podcast | Release | Track | Video
-    >()
+    const [selectedMedia, setSelectedMedia] = useState<Artist | Podcast | Release>()
 
     return (
         <MuiThemeProvider theme={theme(isDarkMode)}>

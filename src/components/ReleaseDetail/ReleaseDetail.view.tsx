@@ -53,7 +53,7 @@ export default ({ release }: ViewProps) => (
                                             label={<Typography variant="h3">PLAY</Typography>}
                                             icon={<PlayArrow fontSize="large" />}
                                             onClick={() => {
-                                                setSelectedMedia(track)
+                                                setSelectedMedia(release)
                                             }}
                                         />
                                     </Grid>

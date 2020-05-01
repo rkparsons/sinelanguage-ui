@@ -2,6 +2,7 @@ import { Podcast, Release, Track } from '~/cms/types'
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 
 import { AudioPlayer } from './AudioPlayer.style'
+import { ContentType } from '~/constants/contentType'
 import Controls from './Controls'
 import { Grid } from '@material-ui/core'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
@@ -14,12 +15,10 @@ export default () => {
     const { selectedMedia } = useContext(SelectedMediaContext)
 
     const getTracks = useCallback(() => {
-        return selectedMedia?.__typename === 'ContentfulPodcast'
+        return selectedMedia?.__typename === ContentType.PODCAST
             ? [(selectedMedia as Podcast).track]
-            : selectedMedia?.__typename === 'ContentfulRelease'
+            : selectedMedia?.__typename === ContentType.RELEASE
             ? (selectedMedia as Release).tracks
-            : selectedMedia?.__typename === 'ContentfulTrack'
-            ? [selectedMedia as Track]
             : []
     }, [selectedMedia])
 
@@ -39,6 +38,7 @@ export default () => {
             <AudioPlayer>
                 <Grid container alignItems="stretch" spacing={5}>
                     <Grid item xs={1}>
+                        <SquareImage title={selectedMedia.title} image={selectedMedia.image} />
                         <Controls
                             trackIndex={trackIndex}
                             setTrackIndex={setTrackIndex}
