@@ -12,7 +12,7 @@ import TimeControl from './TimeControl'
 // todo: move clientId to env vars
 export default () => {
     const audioRef = useRef<HTMLAudioElement>(null)
-    const { selectedMedia } = useContext(SelectedMediaContext)
+    const { trackIndex, setTrackIndex, selectedMedia } = useContext(SelectedMediaContext)
 
     const getTracks = useCallback(() => {
         return selectedMedia?.__typename === ContentType.PODCAST
@@ -22,7 +22,6 @@ export default () => {
             : []
     }, [selectedMedia])
 
-    const [trackIndex, setTrackIndex] = useState(0)
     const [isPlaying, setIsPlaying] = useState(true)
     const [volume, setVolume] = useState(1)
     const [selectedTracks, setSelectedTracks] = useState<Track[]>(getTracks())

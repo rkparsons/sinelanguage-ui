@@ -14,7 +14,7 @@ type ViewProps = {
 
 export default ({ release }: ViewProps) => (
     <SelectedMediaContext.Consumer>
-        {({ setSelectedMedia }) => (
+        {({ setTrackIndex, setSelectedMedia }) => (
             <>
                 <Typography variant="h3">
                     {release.artist.title.toUpperCase()}, <i>{release.title}</i>
@@ -53,6 +53,7 @@ export default ({ release }: ViewProps) => (
                                             label={<Typography variant="h3">PLAY</Typography>}
                                             icon={<PlayArrow fontSize="large" />}
                                             onClick={() => {
+                                                setTrackIndex(index)
                                                 setSelectedMedia(release)
                                             }}
                                         />

@@ -22,12 +22,15 @@ type ViewProps = {
 }
 
 export default ({ isDarkMode, setIsDarkMode, children }: ViewProps) => {
+    const [trackIndex, setTrackIndex] = useState(0)
     const [selectedMedia, setSelectedMedia] = useState<Artist | Podcast | Release>()
 
     return (
         <MuiThemeProvider theme={theme(isDarkMode)}>
             <ScThemeProvider theme={theme(isDarkMode)}>
-                <SelectedMediaContext.Provider value={{ selectedMedia, setSelectedMedia }}>
+                <SelectedMediaContext.Provider
+                    value={{ trackIndex, setTrackIndex, selectedMedia, setSelectedMedia }}
+                >
                     <>
                         <CssBaseline />
                         <GlobalStyle />
