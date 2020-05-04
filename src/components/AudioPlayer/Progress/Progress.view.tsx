@@ -1,4 +1,4 @@
-import { PlayedBar, ProgressBar } from './Progress.style'
+import { BarContainer, PlayedBar, ProgressBar } from './Progress.style'
 import React, { RefObject, useRef } from 'react'
 
 type ViewProps = {
@@ -33,8 +33,9 @@ export default ({
     }
 
     return (
-        <ProgressBar ref={progressBarRef} onClick={skipToTime}>
+        <BarContainer>
+            <ProgressBar ref={progressBarRef} onClick={skipToTime} />
             <PlayedBar width={(100 * currentTimeMs) / durationMs} />
-        </ProgressBar>
+        </BarContainer>
     )
 }

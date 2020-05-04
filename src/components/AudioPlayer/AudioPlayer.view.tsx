@@ -1,10 +1,10 @@
+import { AudioPlayer, PlayerBody } from './AudioPlayer.style'
 import { Grid, Typography } from '@material-ui/core'
 import { Podcast, Release, Track } from '~/cms/types'
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 
 import Analyser from './Analyser'
 import Audio from './Audio'
-import { AudioPlayer } from './AudioPlayer.style'
 import { ContentType } from '~/constants/contentType'
 import Controls from './Controls'
 import Progress from './Progress'
@@ -76,43 +76,45 @@ export default () => {
                         durationMs={selectedTracks[selectedMedia.trackIndex].metadata.duration}
                         setIsPlaying={setIsPlaying}
                     />
-                    <Grid container alignItems="stretch" spacing={5}>
-                        <Grid item xs={1}>
-                            <SquareImage
-                                title={selectedMedia.content.title}
-                                image={selectedMedia.content.image}
-                            />
-                            <Controls
-                                trackIndex={selectedMedia.trackIndex}
-                                setTrackIndex={setTrackIndex}
-                                isPlaying={isPlaying}
-                                setIsPlaying={setIsPlaying}
-                                volume={volume}
-                                setVolume={setVolume}
-                                trackCount={selectedTracks.length}
-                            />
-                        </Grid>
-                        <Grid item xs={11}>
-                            <Grid
-                                container
-                                direction="column"
-                                justify="space-between"
-                                alignItems="stretch"
-                            >
-                                <Grid item>
-                                    <Typography>
-                                        {selectedTracks[selectedMedia.trackIndex].title}
-                                    </Typography>
-                                    <Typography>
-                                        {moment.utc(currentTimeMs).format('HH:mm:ss')}
-                                    </Typography>
-                                </Grid>
-                                <Grid item>
-                                    {audioRef.current && <Analyser audioRef={audioRef} />}
+                    <PlayerBody>
+                        <Grid container alignItems="stretch" spacing={5}>
+                            <Grid item xs={1}>
+                                <SquareImage
+                                    title={selectedMedia.content.title}
+                                    image={selectedMedia.content.image}
+                                />
+                                <Controls
+                                    trackIndex={selectedMedia.trackIndex}
+                                    setTrackIndex={setTrackIndex}
+                                    isPlaying={isPlaying}
+                                    setIsPlaying={setIsPlaying}
+                                    volume={volume}
+                                    setVolume={setVolume}
+                                    trackCount={selectedTracks.length}
+                                />
+                            </Grid>
+                            <Grid item xs={11}>
+                                <Grid
+                                    container
+                                    direction="column"
+                                    justify="space-between"
+                                    alignItems="stretch"
+                                >
+                                    <Grid item>
+                                        <Typography>
+                                            {selectedTracks[selectedMedia.trackIndex].title}
+                                        </Typography>
+                                        <Typography>
+                                            {moment.utc(currentTimeMs).format('HH:mm:ss')}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item>
+                                        {audioRef.current && <Analyser audioRef={audioRef} />}
+                                    </Grid>
                                 </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
+                    </PlayerBody>
                 </AudioPlayer>
 
                 <Audio
