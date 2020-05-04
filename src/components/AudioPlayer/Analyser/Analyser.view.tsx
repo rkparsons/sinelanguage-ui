@@ -8,6 +8,7 @@ type AnalyserState = {
 
 type AnalyserProps = {
     audioRef: RefObject<HTMLAudioElement>
+    isPlaying: boolean
 }
 
 class Analyser extends Component<AnalyserProps, AnalyserState> {
@@ -52,7 +53,7 @@ class Analyser extends Component<AnalyserProps, AnalyserState> {
     }
 
     render() {
-        return <Visualiser audioData={this.state.audioData} />
+        return this.props.isPlaying ? <Visualiser audioData={this.state.audioData} /> : <></>
     }
 }
 

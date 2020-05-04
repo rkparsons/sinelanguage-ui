@@ -109,7 +109,9 @@ export default () => {
                                             )
                                             .format('HH:mm:ss')}
                                     </Typography>
-                                    {audioRef.current && <Analyser audioRef={audioRef} />}
+                                    {audioRef.current && (
+                                        <Analyser isPlaying={isPlaying} audioRef={audioRef} />
+                                    )}
                                 </AnalyserContainer>
                             </Grid>
                         </Grid>
