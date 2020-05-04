@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const BarContainer = styled.div`
     position: relative;
     width: 100%;
-    height: 5px;
+    height: 4px;
     cursor: pointer;
 `
 

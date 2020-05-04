@@ -21,7 +21,13 @@ export const PlayerBody = styled.div`
         }
         text-shadow: 1px 2px 4px #000000;
         padding-top: ${theme.spacing(marginTop)};
-        padding-left: ${theme.spacing(marginSide)};
-        padding-right: ${theme.spacing(marginSide)};
+        padding-left: ${theme.spacing(6)};
+        padding-right: ${theme.spacing(6)};
     `}
+`
+
+export const AnalyserContainer = styled.div`
+    position: relative;
+    width: 100%;
+    height: 100%;
 `

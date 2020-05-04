@@ -1,4 +1,4 @@
-import { AudioPlayer, PlayerBody } from './AudioPlayer.style'
+import { AnalyserContainer, AudioPlayer, PlayerBody } from './AudioPlayer.style'
 import { Grid, Typography } from '@material-ui/core'
 import { Podcast, Release, Track } from '~/cms/types'
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
@@ -77,7 +77,7 @@ export default () => {
                         setIsPlaying={setIsPlaying}
                     />
                     <PlayerBody>
-                        <Grid container alignItems="stretch" spacing={5}>
+                        <Grid container alignItems="stretch" spacing={8}>
                             <Grid item xs={1}>
                                 <SquareImage
                                     title={selectedMedia.content.title}
@@ -94,27 +94,23 @@ export default () => {
                                 />
                             </Grid>
                             <Grid item xs={11}>
-                                <Grid
-                                    container
-                                    direction="column"
-                                    justify="space-between"
-                                    alignItems="stretch"
-                                >
-                                    <Grid item>
-                                        <Typography>
-                                            {selectedMedia.content.__typename ===
-                                                ContentType.RELEASE &&
-                                                `${(selectedMedia.content as Release).artist.title.toUpperCase()}, `}
-                                            <i>{selectedTracks[selectedMedia.trackIndex].title}</i>
-                                        </Typography>
-                                        <Typography>
-                                            {moment.utc(currentTimeMs).format('HH:mm:ss')}
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item>
-                                        {audioRef.current && <Analyser audioRef={audioRef} />}
-                                    </Grid>
-                                </Grid>
+                                <AnalyserContainer>
+                                    <Typography>
+                                        {selectedMedia.content.__typename === ContentType.RELEASE &&
+                                            `${(selectedMedia.content as Release).artist.title.toUpperCase()}, `}
+                                        <i>{selectedTracks[selectedMedia.trackIndex].title}</i>
+                                    </Typography>
+                                    <Typography>
+                                        {moment.utc(currentTimeMs).format('HH:mm:ss')} /{' '}
+                                        {moment
+                                            .utc(
+                                                selectedTracks[selectedMedia.trackIndex].metadata
+                                                    .duration
+                                            )
+                                            .format('HH:mm:ss')}
+                                    </Typography>
+                                    {audioRef.current && <Analyser audioRef={audioRef} />}
+                                </AnalyserContainer>
                             </Grid>
                         </Grid>
                     </PlayerBody>
