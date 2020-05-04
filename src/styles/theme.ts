@@ -43,6 +43,14 @@ export default (isDarkMode = false) =>
                         color: 'white',
                     },
                 },
+                MuiSlider: {
+                    rail: {
+                        boxShadow: '1px 2px 4px #000000',
+                    },
+                    thumb: {
+                        boxShadow: '1px 2px 4px #000000 !important',
+                    },
+                },
             },
         })
     )
