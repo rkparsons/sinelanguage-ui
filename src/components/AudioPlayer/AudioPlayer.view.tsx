@@ -1,14 +1,16 @@
+import { AudioPlayer, TimeControl } from './AudioPlayer.style'
+import { Grid, Typography } from '@material-ui/core'
 import { Podcast, Release, Track } from '~/cms/types'
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 
-import { AudioPlayer } from './AudioPlayer.style'
+import Analyser from './Analyser'
+import Audio from './Audio'
 import { ContentType } from '~/constants/contentType'
 import Controls from './Controls'
-import { Grid } from '@material-ui/core'
 import Progress from './Progress'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import SquareImage from '~/components/SquareImage'
-import TimeControl from './TimeControl'
+import moment from 'moment'
 import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 
 // todo: move clientId to env vars
@@ -65,44 +67,63 @@ export default () => {
     // todo: move clientId to env vars
     if (selectedMedia && selectedTracks[selectedMedia.trackIndex]) {
         return (
-            <AudioPlayer>
-                <Progress
+            <>
+                <AudioPlayer>
+                    <Progress
+                        audioRef={audioRef}
+                        currentTimeMs={currentTimeMs}
+                        setCurrentTimeMs={setCurrentTimeMs}
+                        durationMs={selectedTracks[selectedMedia.trackIndex].metadata.duration}
+                        setIsPlaying={setIsPlaying}
+                    />
+                    <Grid container alignItems="stretch" spacing={5}>
+                        <Grid item xs={1}>
+                            <SquareImage
+                                title={selectedMedia.content.title}
+                                image={selectedMedia.content.image}
+                            />
+                            <Controls
+                                trackIndex={selectedMedia.trackIndex}
+                                setTrackIndex={setTrackIndex}
+                                isPlaying={isPlaying}
+                                setIsPlaying={setIsPlaying}
+                                volume={volume}
+                                setVolume={setVolume}
+                                trackCount={selectedTracks.length}
+                            />
+                        </Grid>
+                        <Grid item xs={11}>
+                            <TimeControl
+                                container
+                                direction="column"
+                                justify="space-between"
+                                alignItems="stretch"
+                            >
+                                <Grid item>
+                                    <Typography>
+                                        {selectedTracks[selectedMedia.trackIndex].title}
+                                    </Typography>
+                                    <Typography>
+                                        {moment.utc(currentTimeMs).format('HH:mm:ss')}
+                                    </Typography>
+                                </Grid>
+                                <Grid item>
+                                    {audioRef.current && <Analyser audioRef={audioRef} />}
+                                </Grid>
+                            </TimeControl>
+                        </Grid>
+                    </Grid>
+                </AudioPlayer>
+
+                <Audio
                     audioRef={audioRef}
-                    currentTimeMs={currentTimeMs}
-                    setCurrentTimeMs={setCurrentTimeMs}
-                    durationMs={selectedTracks[selectedMedia.trackIndex].metadata.duration}
-                    setIsPlaying={setIsPlaying}
+                    src={`${
+                        selectedTracks[selectedMedia.trackIndex].metadata.streamUrl
+                    }?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
+                    isPlaying={isPlaying}
+                    onEnded={onEnded}
                 />
-                <Grid container alignItems="stretch" spacing={5}>
-                    <Grid item xs={1}>
-                        <SquareImage
-                            title={selectedMedia.content.title}
-                            image={selectedMedia.content.image}
-                        />
-                        <Controls
-                            trackIndex={selectedMedia.trackIndex}
-                            setTrackIndex={setTrackIndex}
-                            isPlaying={isPlaying}
-                            setIsPlaying={setIsPlaying}
-                            volume={volume}
-                            setVolume={setVolume}
-                            trackCount={selectedTracks.length}
-                        />
-                    </Grid>
-                    <Grid item xs={11}>
-                        <TimeControl
-                            title={selectedTracks[selectedMedia.trackIndex].metadata.title}
-                            streamUrl={`${
-                                selectedTracks[selectedMedia.trackIndex].metadata.streamUrl
-                            }?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
-                            isPlaying={isPlaying}
-                            audioRef={audioRef}
-                            onEnded={onEnded}
-                            currentTimeMs={currentTimeMs}
-                        />
-                    </Grid>
-                </Grid>
-            </AudioPlayer>
+            </>
         )
     } else {
         return <></>
