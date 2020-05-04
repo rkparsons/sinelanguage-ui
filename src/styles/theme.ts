@@ -48,7 +48,15 @@ export default (isDarkMode = false) =>
                         boxShadow: '1px 2px 4px #000000',
                     },
                     thumb: {
+                        width: '9px',
+                        height: '9px',
+                        marginTop: '-4px',
                         boxShadow: '1px 2px 4px #000000 !important',
+                    },
+                },
+                MuiIconButton: {
+                    root: {
+                        padding: '8px',
                     },
                 },
             },

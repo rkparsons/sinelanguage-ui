@@ -1,7 +1,7 @@
+import { Controls, SliderContainer } from './Controls.style'
 import { Grid, IconButton, Slider } from '@material-ui/core'
 import { Pause, PlayArrow, SkipNext, SkipPrevious } from '@material-ui/icons'
 
-import { Controls } from './Controls.style'
 import React from 'react'
 
 type ControlsProps = {
@@ -57,10 +57,10 @@ export default ({
                         <SkipNext color="primary" fontSize="small" />
                     </IconButton>
                 </Grid>
-                <Grid item xs={12}>
-                    <Slider value={volume} onChange={handleVolume} min={0} max={1} step={0.01} />
-                </Grid>
             </Grid>
+            <SliderContainer>
+                <Slider value={volume} onChange={handleVolume} min={0} max={1} step={0.01} />
+            </SliderContainer>
         </Controls>
     )
 }
