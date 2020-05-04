@@ -17,6 +17,7 @@ type ViewProps = {
     setIsPlaying(isPlaying: boolean): void
     volume: number
     audioRef: RefObject<HTMLAudioElement>
+    onEnded(): void
 }
 
 export default ({
@@ -28,6 +29,7 @@ export default ({
     setIsPlaying,
     volume,
     audioRef,
+    onEnded,
 }: ViewProps) => {
     const [currentTimeMs, setCurrentTimeMs] = useState(0)
 
@@ -54,7 +56,7 @@ export default ({
                 <Typography>{moment.utc(currentTimeMs).format('HH:mm:ss')}</Typography>
             </Grid>
             <Grid item>
-                {/* <Waveform
+                <Waveform
                     audioRef={audioRef}
                     samples={samples}
                     currentTimeMs={currentTimeMs}
@@ -62,10 +64,15 @@ export default ({
                     durationMs={durationMs}
                     setIsPlaying={setIsPlaying}
                     volume={volume}
-                /> */}
+                />
                 {audioRef.current && <Analyser audioRef={audioRef} />}
 
-                <Audio audioRef={audioRef} src={streamUrl} isPlaying={isPlaying} />
+                <Audio
+                    audioRef={audioRef}
+                    src={streamUrl}
+                    isPlaying={isPlaying}
+                    onEnded={onEnded}
+                />
             </Grid>
         </TimeControl>
     )

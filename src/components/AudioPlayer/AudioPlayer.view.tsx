@@ -32,6 +32,12 @@ export default () => {
         }
     }
 
+    const onEnded = () => {
+        if (selectedMedia && selectedMedia.trackIndex < selectedTracks.length - 1) {
+            setTrackIndex(selectedMedia.trackIndex + 1)
+        }
+    }
+
     useEffect(() => {
         setIsPlaying(true)
         setSelectedTracks(getTracks())
@@ -69,6 +75,7 @@ export default () => {
                             setIsPlaying={setIsPlaying}
                             volume={volume}
                             audioRef={audioRef}
+                            onEnded={onEnded}
                         />
                     </Grid>
                 </Grid>

@@ -4,9 +4,16 @@ type ViewProps = {
     audioRef: RefObject<HTMLAudioElement>
     src: string
     isPlaying: boolean
+    onEnded(): void
 }
 
-export default memo(({ src, audioRef, isPlaying }: ViewProps) => {
+export default memo(({ src, audioRef, isPlaying, onEnded }: ViewProps) => {
+    useEffect(() => {
+        if (audioRef.current) {
+            audioRef.current.onended = onEnded
+        }
+    }, [audioRef.current])
+
     useEffect(() => {
         if (isPlaying && audioRef.current) {
             audioRef.current.pause()
