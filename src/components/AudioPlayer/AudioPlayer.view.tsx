@@ -77,7 +77,7 @@ export default () => {
                         setIsPlaying={setIsPlaying}
                     />
                     <PlayerBody>
-                        <Grid container alignItems="stretch" spacing={8}>
+                        <Grid container alignItems="stretch" spacing={5}>
                             <Grid item xs={1}>
                                 <SquareImage
                                     title={selectedMedia.content.title}

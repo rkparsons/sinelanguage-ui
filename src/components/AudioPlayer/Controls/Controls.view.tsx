@@ -40,17 +40,21 @@ export default ({
             <Grid container>
                 <Grid item xs={4}>
                     <IconButton onClick={skipPrevious} disabled={trackIndex === 0}>
-                        <SkipPrevious color="primary" />
+                        <SkipPrevious color="primary" fontSize="small" />
                     </IconButton>
                 </Grid>
                 <Grid item xs={4}>
                     <IconButton onClick={() => setIsPlaying(!isPlaying)}>
-                        {isPlaying ? <Pause color="primary" /> : <PlayArrow color="primary" />}
+                        {isPlaying ? (
+                            <Pause color="primary" fontSize="small" />
+                        ) : (
+                            <PlayArrow color="primary" fontSize="small" />
+                        )}
                     </IconButton>
                 </Grid>
                 <Grid item xs={4}>
                     <IconButton onClick={skipNext} disabled={trackIndex === trackCount - 1}>
-                        <SkipNext color="primary" />
+                        <SkipNext color="primary" fontSize="small" />
                     </IconButton>
                 </Grid>
                 <Grid item xs={12}>

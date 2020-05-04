@@ -1,5 +1,4 @@
-import { marginSide, marginTop } from '~/styles/sizes'
-
+import { marginTop } from '~/styles/sizes'
 import styled from 'styled-components'
 
 export const AudioPlayer = styled.div`
