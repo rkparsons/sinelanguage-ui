@@ -102,7 +102,10 @@ export default () => {
                                 >
                                     <Grid item>
                                         <Typography>
-                                            {selectedTracks[selectedMedia.trackIndex].title}
+                                            {selectedMedia.content.__typename ===
+                                                ContentType.RELEASE &&
+                                                `${(selectedMedia.content as Release).artist.title.toUpperCase()}, `}
+                                            <i>{selectedTracks[selectedMedia.trackIndex].title}</i>
                                         </Typography>
                                         <Typography>
                                             {moment.utc(currentTimeMs).format('HH:mm:ss')}
