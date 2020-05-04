@@ -9,6 +9,7 @@ export const Dashboard = styled.div<DashboardProps>`
     ${({ isBlur }) => `
             filter: blur(${isBlur ? 12 : 0}px);
             transition: ${pageTransition}s filter linear;
+            padding-bottom: 200px;
 
             :after {
                 content: " ";
