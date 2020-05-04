@@ -1,5 +1,5 @@
 import { AnalyserContainer, AudioPlayer, PlayerBody } from './AudioPlayer.style'
-import { Grid, Typography } from '@material-ui/core'
+import { Box, Grid, Typography } from '@material-ui/core'
 import { Podcast, Release, Track } from '~/cms/types'
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 
@@ -77,8 +77,8 @@ export default () => {
                         setIsPlaying={setIsPlaying}
                     />
                     <PlayerBody>
-                        <Grid container alignItems="stretch" spacing={5}>
-                            <Grid item xs={1}>
+                        <Box display="flex">
+                            <Box>
                                 <SquareImage
                                     title={selectedMedia.content.title}
                                     image={selectedMedia.content.image}
@@ -92,8 +92,8 @@ export default () => {
                                     setVolume={setVolume}
                                     trackCount={selectedTracks.length}
                                 />
-                            </Grid>
-                            <Grid item xs={11}>
+                            </Box>
+                            <Box flexGrow={1}>
                                 <AnalyserContainer>
                                     <Typography>
                                         {selectedMedia.content.__typename === ContentType.RELEASE &&
@@ -113,8 +113,8 @@ export default () => {
                                         <Analyser isPlaying={isPlaying} audioRef={audioRef} />
                                     )}
                                 </AnalyserContainer>
-                            </Grid>
-                        </Grid>
+                            </Box>
+                        </Box>
                     </PlayerBody>
                 </AudioPlayer>
 

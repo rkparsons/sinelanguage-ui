@@ -1,3 +1,4 @@
+import { Grid } from '@material-ui/core'
 import { marginTop } from '~/styles/sizes'
 import styled from 'styled-components'
 
@@ -26,7 +27,9 @@ export const PlayerBody = styled.div`
 `
 
 export const AnalyserContainer = styled.div`
-    position: relative;
-    width: 100%;
-    height: 100%;
+    ${({ theme }) => `    
+        position: relative;
+        height: 100%;
+        margin-left: ${theme.spacing(6)};
+    `}
 `
