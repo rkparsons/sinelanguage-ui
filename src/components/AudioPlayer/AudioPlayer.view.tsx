@@ -5,13 +5,16 @@ import { AudioPlayer } from './AudioPlayer.style'
 import { ContentType } from '~/constants/contentType'
 import Controls from './Controls'
 import { Grid } from '@material-ui/core'
+import Progress from './Progress'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import SquareImage from '~/components/SquareImage'
 import TimeControl from './TimeControl'
+import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 
 // todo: move clientId to env vars
 export default () => {
     const audioRef = useRef<HTMLAudioElement>(null)
+    const [currentTimeMs, setCurrentTimeMs] = useState(0)
     const { selectedMedia, setSelectedMedia } = useContext(SelectedMediaContext)
 
     const getTracks = useCallback(() => {
@@ -25,6 +28,22 @@ export default () => {
     const [isPlaying, setIsPlaying] = useState(true)
     const [volume, setVolume] = useState(1)
     const [selectedTracks, setSelectedTracks] = useState<Track[]>(getTracks())
+
+    useEffect(() => {
+        setCurrentTimeMs(0)
+    }, [selectedMedia])
+
+    useRecursiveTimeout(() => {
+        if (audioRef.current) {
+            setCurrentTimeMs(audioRef.current.currentTime * 1000)
+        }
+    }, 100)
+
+    useEffect(() => {
+        if (audioRef.current) {
+            audioRef.current.volume = volume
+        }
+    }, [volume, audioRef.current])
 
     const setTrackIndex = (index: number) => {
         if (selectedMedia) {
@@ -47,6 +66,13 @@ export default () => {
     if (selectedMedia && selectedTracks[selectedMedia.trackIndex]) {
         return (
             <AudioPlayer>
+                <Progress
+                    audioRef={audioRef}
+                    currentTimeMs={currentTimeMs}
+                    setCurrentTimeMs={setCurrentTimeMs}
+                    durationMs={selectedTracks[selectedMedia.trackIndex].metadata.duration}
+                    setIsPlaying={setIsPlaying}
+                />
                 <Grid container alignItems="stretch" spacing={5}>
                     <Grid item xs={1}>
                         <SquareImage
@@ -69,13 +95,10 @@ export default () => {
                             streamUrl={`${
                                 selectedTracks[selectedMedia.trackIndex].metadata.streamUrl
                             }?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
-                            samples={selectedTracks[selectedMedia.trackIndex].metadata.samples}
-                            durationMs={selectedTracks[selectedMedia.trackIndex].metadata.duration}
                             isPlaying={isPlaying}
-                            setIsPlaying={setIsPlaying}
-                            volume={volume}
                             audioRef={audioRef}
                             onEnded={onEnded}
+                            currentTimeMs={currentTimeMs}
                         />
                     </Grid>
                 </Grid>

@@ -3,75 +3,28 @@ import React, { RefObject, useEffect, useState } from 'react'
 
 import Analyser from '../Analyser'
 import Audio from '../Audio'
-import Progress from '../Progress'
 import { TimeControl } from './TimeControl.style'
 import moment from 'moment'
-import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 
 type ViewProps = {
     title: string
     streamUrl: string
-    samples: number[]
-    durationMs: number
     isPlaying: boolean
-    setIsPlaying(isPlaying: boolean): void
-    volume: number
     audioRef: RefObject<HTMLAudioElement>
     onEnded(): void
+    currentTimeMs: number
 }
 
-export default ({
-    title,
-    streamUrl,
-    samples,
-    durationMs,
-    isPlaying,
-    setIsPlaying,
-    volume,
-    audioRef,
-    onEnded,
-}: ViewProps) => {
-    const [currentTimeMs, setCurrentTimeMs] = useState(0)
+export default ({ title, streamUrl, isPlaying, audioRef, onEnded, currentTimeMs }: ViewProps) => (
+    <TimeControl container direction="column" justify="space-between" alignItems="stretch">
+        <Grid item>
+            <Typography>{title}</Typography>
+            <Typography>{moment.utc(currentTimeMs).format('HH:mm:ss')}</Typography>
+        </Grid>
+        <Grid item>
+            {audioRef.current && <Analyser audioRef={audioRef} />}
 
-    useEffect(() => {
-        setCurrentTimeMs(0)
-    }, [streamUrl])
-
-    useRecursiveTimeout(() => {
-        if (audioRef.current) {
-            setCurrentTimeMs(audioRef.current.currentTime * 1000)
-        }
-    }, 100)
-
-    useEffect(() => {
-        if (audioRef.current) {
-            audioRef.current.volume = volume
-        }
-    }, [volume, audioRef.current])
-
-    return (
-        <TimeControl container direction="column" justify="space-between" alignItems="stretch">
-            <Grid item>
-                <Typography>{title}</Typography>
-                <Typography>{moment.utc(currentTimeMs).format('HH:mm:ss')}</Typography>
-            </Grid>
-            <Grid item>
-                <Progress
-                    audioRef={audioRef}
-                    currentTimeMs={currentTimeMs}
-                    setCurrentTimeMs={setCurrentTimeMs}
-                    durationMs={durationMs}
-                    setIsPlaying={setIsPlaying}
-                />
-                {audioRef.current && <Analyser audioRef={audioRef} />}
-
-                <Audio
-                    audioRef={audioRef}
-                    src={streamUrl}
-                    isPlaying={isPlaying}
-                    onEnded={onEnded}
-                />
-            </Grid>
-        </TimeControl>
-    )
-}
+            <Audio audioRef={audioRef} src={streamUrl} isPlaying={isPlaying} onEnded={onEnded} />
+        </Grid>
+    </TimeControl>
+)
