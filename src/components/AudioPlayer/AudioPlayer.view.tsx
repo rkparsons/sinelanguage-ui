@@ -15,6 +15,7 @@ import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 
 // todo: move clientId to env vars
 export default () => {
+    const [isMinimised, setIsMinimised] = useState(false)
     const audioRef = useRef<HTMLAudioElement>(null)
     const [currentTimeMs, setCurrentTimeMs] = useState(0)
     const { selectedMedia, setSelectedMedia } = useContext(SelectedMediaContext)
@@ -68,58 +69,62 @@ export default () => {
     if (selectedMedia && selectedTracks[selectedMedia.trackIndex]) {
         return (
             <>
-                <Slide direction="up" in={true}>
-                    <AudioPlayer>
-                        <Progress
-                            audioRef={audioRef}
-                            currentTimeMs={currentTimeMs}
-                            setCurrentTimeMs={setCurrentTimeMs}
-                            durationMs={selectedTracks[selectedMedia.trackIndex].metadata.duration}
-                            setIsPlaying={setIsPlaying}
-                        />
-                        <PlayerBody>
-                            <Box display="flex">
-                                <Box>
-                                    <SquareImage
-                                        title={selectedMedia.content.title}
-                                        image={selectedMedia.content.image}
-                                    />
-                                    <Controls
-                                        trackIndex={selectedMedia.trackIndex}
-                                        setTrackIndex={setTrackIndex}
-                                        isPlaying={isPlaying}
-                                        setIsPlaying={setIsPlaying}
-                                        volume={volume}
-                                        setVolume={setVolume}
-                                        trackCount={selectedTracks.length}
-                                    />
-                                </Box>
-                                <Box flexGrow={1}>
-                                    <AnalyserContainer>
-                                        <Typography>
-                                            {selectedMedia.content.__typename ===
-                                                ContentType.RELEASE &&
-                                                `${(selectedMedia.content as Release).artist.title.toUpperCase()}, `}
-                                            <i>{selectedTracks[selectedMedia.trackIndex].title}</i>
-                                        </Typography>
-                                        <Typography>
-                                            {moment.utc(currentTimeMs).format('HH:mm:ss')} /{' '}
-                                            {moment
-                                                .utc(
-                                                    selectedTracks[selectedMedia.trackIndex]
-                                                        .metadata.duration
-                                                )
-                                                .format('HH:mm:ss')}
-                                        </Typography>
-                                        {audioRef.current && (
-                                            <Analyser isPlaying={isPlaying} audioRef={audioRef} />
-                                        )}
-                                    </AnalyserContainer>
-                                </Box>
+                <AudioPlayer
+                    isMinimised={isMinimised}
+                    onMouseOver={() => setIsMinimised(false)}
+                    onMouseLeave={() => setIsMinimised(true)}
+                >
+                    <Progress
+                        audioRef={audioRef}
+                        currentTimeMs={currentTimeMs}
+                        setCurrentTimeMs={setCurrentTimeMs}
+                        durationMs={selectedTracks[selectedMedia.trackIndex].metadata.duration}
+                        setIsPlaying={setIsPlaying}
+                    />
+                    <PlayerBody>
+                        <Box display="flex">
+                            <Box>
+                                <SquareImage
+                                    title={selectedMedia.content.title}
+                                    image={selectedMedia.content.image}
+                                />
+                                <Controls
+                                    trackIndex={selectedMedia.trackIndex}
+                                    setTrackIndex={setTrackIndex}
+                                    isPlaying={isPlaying}
+                                    setIsPlaying={setIsPlaying}
+                                    volume={volume}
+                                    setVolume={setVolume}
+                                    trackCount={selectedTracks.length}
+                                />
                             </Box>
-                        </PlayerBody>
-                    </AudioPlayer>
-                </Slide>
+                            <Box flexGrow={1}>
+                                <AnalyserContainer>
+                                    <Typography>
+                                        {selectedMedia.content.__typename === ContentType.RELEASE &&
+                                            `${(selectedMedia.content as Release).artist.title.toUpperCase()}, `}
+                                        <i>{selectedTracks[selectedMedia.trackIndex].title}</i>
+                                    </Typography>
+                                    <Typography>
+                                        {moment.utc(currentTimeMs).format('HH:mm:ss')} /{' '}
+                                        {moment
+                                            .utc(
+                                                selectedTracks[selectedMedia.trackIndex].metadata
+                                                    .duration
+                                            )
+                                            .format('HH:mm:ss')}
+                                    </Typography>
+                                    {audioRef.current && (
+                                        <Analyser
+                                            showVisualisation={isPlaying && !isMinimised}
+                                            audioRef={audioRef}
+                                        />
+                                    )}
+                                </AnalyserContainer>
+                            </Box>
+                        </Box>
+                    </PlayerBody>
+                </AudioPlayer>
                 <Audio
                     audioRef={audioRef}
                     src={`${

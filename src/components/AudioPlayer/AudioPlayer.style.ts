@@ -1,13 +1,14 @@
-import { Grid } from '@material-ui/core'
 import { marginTop } from '~/styles/sizes'
 import styled from 'styled-components'
 
-export const AudioPlayer = styled.div`
+export const AudioPlayer = styled.div<{ isMinimised: boolean }>`
     position: fixed;
+    display: block;
     z-index: 1000;
     left: 0;
-    bottom: 0;
+    bottom: ${({ isMinimised }) => (isMinimised ? -100 : 0)}px;
     width: 100%;
+    transition: bottom 0.1s ease;
 `
 
 export const PlayerBody = styled.div`
