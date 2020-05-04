@@ -1,10 +1,10 @@
-import { AudioPlayer, TimeControl } from './AudioPlayer.style'
 import { Grid, Typography } from '@material-ui/core'
 import { Podcast, Release, Track } from '~/cms/types'
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 
 import Analyser from './Analyser'
 import Audio from './Audio'
+import { AudioPlayer } from './AudioPlayer.style'
 import { ContentType } from '~/constants/contentType'
 import Controls from './Controls'
 import Progress from './Progress'
@@ -93,7 +93,7 @@ export default () => {
                             />
                         </Grid>
                         <Grid item xs={11}>
-                            <TimeControl
+                            <Grid
                                 container
                                 direction="column"
                                 justify="space-between"
@@ -110,7 +110,7 @@ export default () => {
                                 <Grid item>
                                     {audioRef.current && <Analyser audioRef={audioRef} />}
                                 </Grid>
-                            </TimeControl>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </AudioPlayer>

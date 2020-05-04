@@ -1,5 +1,5 @@
 import { Grid, IconButton, Slider } from '@material-ui/core'
-import { Pause, PlayArrow, SkipNext, SkipPrevious, VolumeDown, VolumeUp } from '@material-ui/icons'
+import { Pause, PlayArrow, SkipNext, SkipPrevious } from '@material-ui/icons'
 
 import { Controls } from './Controls.style'
 import React from 'react'
@@ -40,17 +40,17 @@ export default ({
             <Grid container>
                 <Grid item xs={4}>
                     <IconButton onClick={skipPrevious} disabled={trackIndex === 0}>
-                        <SkipPrevious />
+                        <SkipPrevious color="primary" />
                     </IconButton>
                 </Grid>
                 <Grid item xs={4}>
                     <IconButton onClick={() => setIsPlaying(!isPlaying)}>
-                        {isPlaying ? <Pause /> : <PlayArrow />}
+                        {isPlaying ? <Pause color="primary" /> : <PlayArrow color="primary" />}
                     </IconButton>
                 </Grid>
                 <Grid item xs={4}>
                     <IconButton onClick={skipNext} disabled={trackIndex === trackCount - 1}>
-                        <SkipNext />
+                        <SkipNext color="primary" />
                     </IconButton>
                 </Grid>
                 <Grid item xs={12}>

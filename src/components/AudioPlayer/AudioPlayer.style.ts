@@ -10,6 +10,7 @@ type AudioPlayerProps = {
 export const AudioPlayer = styled(Box)`
     ${({ theme }: AudioPlayerProps) => `    
         color: white;  
+        text-shadow: 1px 2px 4px #000000;
         position: fixed;
         z-index: 1000;
         left: 0;
@@ -20,11 +21,9 @@ export const AudioPlayer = styled(Box)`
         padding-right: ${theme.spacing(marginSide)};
         background-color: rgba(255, 255, 255, 0.13);
         backdrop-filter: blur(12px);
-    `}
-`
-export const TimeControl = styled(Grid)`
-    ${({ theme }) => `
-        height: 100%;
-        padding-bottom: ${theme.spacing(1)};
+
+        svg {
+            filter: drop-shadow( 2px 2px 2px #000000);
+        }
     `}
 `
