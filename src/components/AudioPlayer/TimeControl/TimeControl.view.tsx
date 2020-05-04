@@ -3,8 +3,8 @@ import React, { RefObject, useEffect, useState } from 'react'
 
 import Analyser from '../Analyser'
 import Audio from '../Audio'
+import Progress from '../Progress'
 import { TimeControl } from './TimeControl.style'
-import Waveform from '../Waveform'
 import moment from 'moment'
 import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 
@@ -41,7 +41,7 @@ export default ({
         if (audioRef.current) {
             setCurrentTimeMs(audioRef.current.currentTime * 1000)
         }
-    }, 1000)
+    }, 100)
 
     useEffect(() => {
         if (audioRef.current) {
@@ -56,14 +56,12 @@ export default ({
                 <Typography>{moment.utc(currentTimeMs).format('HH:mm:ss')}</Typography>
             </Grid>
             <Grid item>
-                <Waveform
+                <Progress
                     audioRef={audioRef}
-                    samples={samples}
                     currentTimeMs={currentTimeMs}
                     setCurrentTimeMs={setCurrentTimeMs}
                     durationMs={durationMs}
                     setIsPlaying={setIsPlaying}
-                    volume={volume}
                 />
                 {audioRef.current && <Analyser audioRef={audioRef} />}
 
