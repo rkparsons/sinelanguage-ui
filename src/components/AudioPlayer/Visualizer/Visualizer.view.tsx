@@ -9,6 +9,7 @@ type AnalyserProps = {
 
 class Visualiser extends Component<AnalyserProps, AnalyserState> {
     canvas: React.RefObject<HTMLCanvasElement>
+    dpi = window.devicePixelRatio
 
     constructor(props: AnalyserProps) {
         super(props)
@@ -19,10 +20,26 @@ class Visualiser extends Component<AnalyserProps, AnalyserState> {
         this.draw()
     }
 
+    fix_dpi() {
+        if (!this.canvas.current) {
+            return
+        }
+        //create a style object that returns width and height
+        const width = +getComputedStyle(this.canvas.current).getPropertyValue('width').slice(0, -2)
+        const height = +getComputedStyle(this.canvas.current)
+            .getPropertyValue('height')
+            .slice(0, -2)
+
+        //set the correct attributes for a crystal clear image!
+        this.canvas.current.setAttribute('width', `${width * this.dpi}`)
+        this.canvas.current.setAttribute('height', `${height * this.dpi}`)
+    }
+
     draw() {
         if (!this.canvas.current) {
             return
         }
+        this.fix_dpi()
 
         const { audioData } = this.props
         const canvas = this.canvas.current
@@ -32,10 +49,10 @@ class Visualiser extends Component<AnalyserProps, AnalyserState> {
         let x = 0
         const sliceWidth = (width * 1.0) / audioData.length
 
-        context.lineWidth = 1
-        // context.strokeStyle = '#000000'
+        context.lineWidth = 2
+        context.strokeStyle = '#000000'
         // context.strokeStyle = `hsl(${~~(360 * Math.random())},100%,70%)`
-        context.strokeStyle = `#${Math.floor(Math.random() * 16777215).toString(16)}`
+        // context.strokeStyle = `#${Math.floor(Math.random() * 16777215).toString(16)}`
         context.clearRect(0, 0, width, height)
 
         context.beginPath()
