@@ -1,3 +1,4 @@
+import { Box } from '@material-ui/core'
 import { marginTop } from '~/styles/sizes'
 import styled from 'styled-components'
 
@@ -34,9 +35,13 @@ export const PlayerBody = styled.div`
         backdrop-filter: blur(12px);
 
         text-shadow: 1px 2px 4px #000000;
-        padding-top: ${theme.spacing(marginTop)};
         padding-left: ${theme.spacing(6)};
-        padding-right: ${theme.spacing(6)};
+    `}
+`
+
+export const PaddedTop = styled(Box)`
+    ${({ theme }) => `   
+        padding-top: ${theme.spacing(marginTop)};
     `}
 `
 
@@ -49,8 +54,12 @@ export const AnalyserContainer = styled.div`
 `
 
 export const CloseButton = styled.div`
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 1000;
+    ${({ theme }) => `    
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1000;
+        padding-top: ${theme.spacing(1)};
+        padding-right: ${theme.spacing(2)};
+    `}
 `

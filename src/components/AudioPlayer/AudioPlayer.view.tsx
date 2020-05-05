@@ -1,4 +1,10 @@
-import { AnalyserContainer, AudioPlayer, CloseButton, PlayerBody } from './AudioPlayer.style'
+import {
+    AnalyserContainer,
+    AudioPlayer,
+    CloseButton,
+    PaddedTop,
+    PlayerBody,
+} from './AudioPlayer.style'
 import { Box, Grid, IconButton, Typography } from '@material-ui/core'
 import { Podcast, Release, Track } from '~/cms/types'
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
@@ -94,13 +100,6 @@ export default () => {
                     onMouseOver={onMouseOver}
                     onMouseLeave={() => setIsMinimised(true)}
                 >
-                    {!isMinimised && (
-                        <CloseButton>
-                            <IconButton onClick={() => setSelectedMedia()}>
-                                <Close color="primary" />
-                            </IconButton>
-                        </CloseButton>
-                    )}
                     <Progress
                         audioRef={audioRef}
                         currentTimeMs={currentTimeMs}
@@ -110,7 +109,7 @@ export default () => {
                     />
                     <PlayerBody>
                         <Box display="flex">
-                            <Box>
+                            <PaddedTop>
                                 <SquareImage
                                     title={selectedMedia.content.title}
                                     image={selectedMedia.content.image}
@@ -124,23 +123,37 @@ export default () => {
                                     setVolume={setVolume}
                                     trackCount={selectedTracks.length}
                                 />
-                            </Box>
+                            </PaddedTop>
                             <Box flexGrow={1}>
                                 <AnalyserContainer>
-                                    <Typography>
-                                        {selectedMedia.content.__typename === ContentType.RELEASE &&
-                                            `${(selectedMedia.content as Release).artist.title.toUpperCase()}, `}
-                                        <i>{selectedTracks[selectedMedia.trackIndex].title}</i>
-                                    </Typography>
-                                    <Typography>
-                                        {moment.utc(currentTimeMs).format('HH:mm:ss')} /{' '}
-                                        {moment
-                                            .utc(
-                                                selectedTracks[selectedMedia.trackIndex].metadata
-                                                    .duration
-                                            )
-                                            .format('HH:mm:ss')}
-                                    </Typography>
+                                    <Box display="flex">
+                                        <PaddedTop flexGrow={1}>
+                                            <Typography>
+                                                {selectedMedia.content.__typename ===
+                                                    ContentType.RELEASE &&
+                                                    `${(selectedMedia.content as Release).artist.title.toUpperCase()}, `}
+                                                <i>
+                                                    {selectedTracks[selectedMedia.trackIndex].title}
+                                                </i>
+                                            </Typography>
+                                            <Typography>
+                                                {moment.utc(currentTimeMs).format('HH:mm:ss')} /{' '}
+                                                {moment
+                                                    .utc(
+                                                        selectedTracks[selectedMedia.trackIndex]
+                                                            .metadata.duration
+                                                    )
+                                                    .format('HH:mm:ss')}
+                                            </Typography>
+                                        </PaddedTop>
+                                        {!isMinimised && (
+                                            <CloseButton>
+                                                <IconButton onClick={() => setSelectedMedia()}>
+                                                    <Close color="primary" />
+                                                </IconButton>
+                                            </CloseButton>
+                                        )}
+                                    </Box>
                                     {audioRef.current && (
                                         <Analyser
                                             showVisualisation={isPlaying && !isMinimised}
