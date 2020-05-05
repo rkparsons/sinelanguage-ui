@@ -1,9 +1,10 @@
 import { Controls, ControlsGrid, VideoContainer } from './YouTubeEmbed.style'
 import { Fullscreen, Pause, PlayArrow, VolumeOff, VolumeUp } from '@material-ui/icons'
 import { Grid, IconButton, Typography } from '@material-ui/core'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 
 import ReactPlayer from 'react-player'
+import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import { findDOMNode } from 'react-dom'
 import moment from 'moment'
 import screenfull from 'screenfull'
@@ -29,6 +30,7 @@ export default ({ artist, title, src }: ViewProps) => {
     const [isControlsVisible, setIsControlsVisible] = useState(true)
     const [duration, setDuration] = useState<number>()
     const [progress, setProgress] = useState<number>(0)
+    const { setSelectedMedia } = useContext(SelectedMediaContext)
 
     useEffect(() => {
         const forceControlsVisibilityTimer = setTimeout(() => {
@@ -54,6 +56,12 @@ export default ({ artist, title, src }: ViewProps) => {
             screenfull.request(playerNode as Element)
         }
     }
+
+    useEffect(() => {
+        if (!isMuted) {
+            setSelectedMedia(undefined)
+        }
+    }, [isMuted])
 
     return (
         <VideoContainer
