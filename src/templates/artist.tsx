@@ -1,5 +1,5 @@
 import { Artist, Release, Video } from '~/cms/types'
-import { Grid, Typography } from '@material-ui/core'
+import { Box, Grid, Typography } from '@material-ui/core'
 
 import ArtistDetail from '~/components/ArtistDetail'
 import Centered from '~/components/Centered'
@@ -14,15 +14,15 @@ import { sortByDate } from '~/utils/content'
 
 type Props = {
     data: {
-        contentfulArtist: Artist & { release: Release[]; video: Video[] }
+        contentfulArtist: Artist & { release?: Release[]; video?: Video[] }
     }
 }
 
 export default ({ data }: Props) => {
     const { title, description, image } = data.contentfulArtist
     const relatedContentComponents = sortByDate([
-        ...data.contentfulArtist.release,
-        ...data.contentfulArtist.video,
+        ...(data.contentfulArtist.release || []),
+        ...(data.contentfulArtist.video || []),
     ]).map((relatedContent, index) => <ContentThumbnail content={relatedContent} index={index} />)
 
     return (
