@@ -33,7 +33,9 @@ class Visualiser extends Component<AnalyserProps, AnalyserState> {
         const sliceWidth = (width * 1.0) / audioData.length
 
         context.lineWidth = 1
-        context.strokeStyle = '#000000'
+        // context.strokeStyle = '#000000'
+        // context.strokeStyle = `hsl(${~~(360 * Math.random())},100%,70%)`
+        context.strokeStyle = `#${Math.floor(Math.random() * 16777215).toString(16)}`
         context.clearRect(0, 0, width, height)
 
         context.beginPath()
