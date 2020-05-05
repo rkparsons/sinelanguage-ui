@@ -1,10 +1,11 @@
-import { AnalyserContainer, AudioPlayer, PlayerBody } from './AudioPlayer.style'
-import { Box, Grid, Slide, Typography } from '@material-ui/core'
+import { AnalyserContainer, AudioPlayer, CloseButton, PlayerBody } from './AudioPlayer.style'
+import { Box, Grid, IconButton, Typography } from '@material-ui/core'
 import { Podcast, Release, Track } from '~/cms/types'
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 
 import Analyser from './Analyser'
 import Audio from './Audio'
+import { Close } from '@material-ui/icons'
 import { ContentType } from '~/constants/contentType'
 import Controls from './Controls'
 import Progress from './Progress'
@@ -93,6 +94,13 @@ export default () => {
                     onMouseOver={onMouseOver}
                     onMouseLeave={() => setIsMinimised(true)}
                 >
+                    {!isMinimised && (
+                        <CloseButton>
+                            <IconButton onClick={() => setSelectedMedia()}>
+                                <Close color="primary" />
+                            </IconButton>
+                        </CloseButton>
+                    )}
                     <Progress
                         audioRef={audioRef}
                         currentTimeMs={currentTimeMs}

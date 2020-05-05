@@ -21,6 +21,10 @@ export const AudioPlayer = styled.div<{ isMinimised: boolean }>`
     transition: bottom 0.1s ease;
     animation-name: slidein;
     animation-duration: 0.2s;
+
+    svg {
+        filter: drop-shadow(2px 2px 2px #000000);
+    }
 `
 
 export const PlayerBody = styled.div`
@@ -29,9 +33,6 @@ export const PlayerBody = styled.div`
         background-color: rgba(255, 255, 255, 0.13);
         backdrop-filter: blur(12px);
 
-        svg {
-            filter: drop-shadow( 2px 2px 2px #000000);
-        }
         text-shadow: 1px 2px 4px #000000;
         padding-top: ${theme.spacing(marginTop)};
         padding-left: ${theme.spacing(6)};
@@ -45,4 +46,11 @@ export const AnalyserContainer = styled.div`
         height: 100%;
         margin-left: ${theme.spacing(6)};
     `}
+`
+
+export const CloseButton = styled.div`
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1000;
 `

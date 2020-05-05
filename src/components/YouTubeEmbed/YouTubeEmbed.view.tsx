@@ -59,7 +59,7 @@ export default ({ artist, title, src }: ViewProps) => {
 
     useEffect(() => {
         if (!isMuted) {
-            setSelectedMedia(undefined)
+            setSelectedMedia()
         }
     }, [isMuted])
 
