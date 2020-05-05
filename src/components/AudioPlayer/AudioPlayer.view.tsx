@@ -15,6 +15,8 @@ import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 
 // todo: move clientId to env vars
 export default () => {
+    const hideDelay = 5000
+    const [isInteracted, setIsInteracted] = useState(false)
     const [isMinimised, setIsMinimised] = useState(false)
     const audioRef = useRef<HTMLAudioElement>(null)
     const [currentTimeMs, setCurrentTimeMs] = useState(0)
@@ -31,6 +33,18 @@ export default () => {
     const [isPlaying, setIsPlaying] = useState(true)
     const [volume, setVolume] = useState(1)
     const [selectedTracks, setSelectedTracks] = useState<Track[]>(getTracks())
+
+    useEffect(() => {
+        setIsMinimised(false)
+        setIsInteracted(false)
+        const hideIfNoInteraction = setTimeout(() => {
+            if (!isInteracted) {
+                setIsMinimised(true)
+            }
+        }, hideDelay)
+
+        return () => clearTimeout(hideIfNoInteraction)
+    }, [selectedMedia, hideDelay])
 
     useEffect(() => {
         setCurrentTimeMs(0)
@@ -65,13 +79,18 @@ export default () => {
         setSelectedTracks(getTracks())
     }, [selectedMedia])
 
+    const onMouseOver = () => {
+        setIsInteracted(true)
+        setIsMinimised(false)
+    }
+
     // todo: move clientId to env vars
     if (selectedMedia && selectedTracks[selectedMedia.trackIndex]) {
         return (
             <>
                 <AudioPlayer
                     isMinimised={isMinimised}
-                    onMouseOver={() => setIsMinimised(false)}
+                    onMouseOver={onMouseOver}
                     onMouseLeave={() => setIsMinimised(true)}
                 >
                     <Progress
