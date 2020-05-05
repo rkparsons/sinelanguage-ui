@@ -9,7 +9,7 @@ export const AudioPlayer = styled.div<{ isMinimised: boolean }>`
         }
 
         to {
-            bottom: 0;
+            bottom: -1;
         }
     }
 
@@ -17,7 +17,7 @@ export const AudioPlayer = styled.div<{ isMinimised: boolean }>`
     display: block;
     z-index: 1000;
     left: 0;
-    bottom: ${({ isMinimised }) => (isMinimised ? -100 : 0)}px;
+    bottom: ${({ isMinimised }) => (isMinimised ? -100 : -1)}px;
     width: 100%;
     transition: bottom 0.1s ease;
     animation-name: slidein;
