@@ -5,10 +5,11 @@ import { Visualisation } from './Visualizer.style'
 
 type VisualiserProps = {
     audioData: Uint8Array
+    isVisible: boolean
 }
 
-export default ({ audioData }: VisualiserProps) => (
-    <Visualisation>
+export default ({ audioData, isVisible }: VisualiserProps) => (
+    <Visualisation isVisible={isVisible}>
         <ResponsiveContainer width="100%" height="100%">
             <LineChart
                 data={Array.from(audioData).map((value, index) => ({

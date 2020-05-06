@@ -53,10 +53,8 @@ class Analyser extends Component<AnalyserProps, AnalyserState> {
     }
 
     render() {
-        return this.props.showVisualisation ? (
-            <Visualizer audioData={this.state.audioData} />
-        ) : (
-            <></>
+        return (
+            <Visualizer audioData={this.state.audioData} isVisible={this.props.showVisualisation} />
         )
     }
 }

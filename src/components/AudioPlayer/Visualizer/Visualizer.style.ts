@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-export const Visualisation = styled.div`
-    ${({ theme }) => `    
+export const Visualisation = styled.div<{ isVisible: boolean }>`
+    ${({ theme, isVisible }) => `    
         pointer-events: none;
         position: absolute;
         z-index: -1;
@@ -15,5 +15,8 @@ export const Visualisation = styled.div`
         svg {
             filter: none;
         }
+
+        opacity: ${isVisible ? 1 : 0};
+        transition: opacity 0.2s;
     `}
 `
