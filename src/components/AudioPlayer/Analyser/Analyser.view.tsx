@@ -1,5 +1,7 @@
 import React, { Component, RefObject } from 'react'
 
+import Visualizer from '../Visualizer'
+import VisualizerRechartsArea from '../VisualizerRechartsArea'
 import VisualizerSVG from '../VisualizerSVG'
 
 type AnalyserState = {
@@ -54,7 +56,7 @@ class Analyser extends Component<AnalyserProps, AnalyserState> {
 
     render() {
         return this.props.showVisualisation ? (
-            <VisualizerSVG audioData={this.state.audioData} />
+            <VisualizerRechartsArea audioData={this.state.audioData} />
         ) : (
             <></>
         )
