@@ -2,6 +2,7 @@ import { Grid, Typography } from '@material-ui/core'
 
 import { Podcast } from '~/cms/types'
 import React from 'react'
+import { getDurationTimestamp } from '~/utils/date'
 import moment from 'moment'
 
 type ViewProps = {
@@ -18,7 +19,7 @@ export default ({ podcast }: ViewProps) => (
         </Grid>
         <Grid item xs={1}>
             <Typography variant="h3">
-                {moment.utc(podcast.track.metadata.duration).format('H:mm:ss')}
+                {getDurationTimestamp(podcast.track.metadata.duration)}
             </Typography>
         </Grid>
         <Grid item xs={2}>

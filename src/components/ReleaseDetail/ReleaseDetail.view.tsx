@@ -1,12 +1,10 @@
 import { Grid, Typography } from '@material-ui/core'
 
 import ContentPlayButton from '~/components/ContentPlayButton'
-import IconButton from '~/components/IconButton'
 import InvertOnHover from '~/components/InvertOnHover'
-import { PlayArrow } from '@material-ui/icons'
 import React from 'react'
 import { Release } from '~/cms/types'
-import moment from 'moment'
+import { getDurationTimestamp } from '~/utils/date'
 
 type ViewProps = {
     release: Release
@@ -38,7 +36,7 @@ export default ({ release }: ViewProps) => (
                             </Grid>
                             <Grid item>
                                 <Typography variant="h3">
-                                    {moment.utc(track.metadata.duration).format('H:mm:ss')}
+                                    {getDurationTimestamp(track.metadata.duration)}
                                 </Typography>
                             </Grid>
                             <Grid item>

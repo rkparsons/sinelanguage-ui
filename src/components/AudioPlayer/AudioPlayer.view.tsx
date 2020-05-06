@@ -17,6 +17,7 @@ import Controls from './Controls'
 import Progress from './Progress'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import SquareImage from '~/components/SquareImage'
+import { getTimestamp } from '~/utils/date'
 import moment from 'moment'
 import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 
@@ -40,6 +41,10 @@ export default () => {
     const [isPlaying, setIsPlaying] = useState(true)
     const [volume, setVolume] = useState(1)
     const [selectedTracks, setSelectedTracks] = useState<Track[]>(getTracks())
+
+    const getDuration = () => {
+        return selectedMedia ? selectedTracks[selectedMedia.trackIndex].metadata.duration : 0
+    }
 
     useEffect(() => {
         setIsMinimised(false)
@@ -104,7 +109,7 @@ export default () => {
                         audioRef={audioRef}
                         currentTimeMs={currentTimeMs}
                         setCurrentTimeMs={setCurrentTimeMs}
-                        durationMs={selectedTracks[selectedMedia.trackIndex].metadata.duration}
+                        durationMs={getDuration()}
                         setIsPlaying={setIsPlaying}
                     />
                     <PlayerBody>
@@ -137,13 +142,8 @@ export default () => {
                                                 </i>
                                             </Typography>
                                             <Typography>
-                                                {moment.utc(currentTimeMs).format('HH:mm:ss')} /{' '}
-                                                {moment
-                                                    .utc(
-                                                        selectedTracks[selectedMedia.trackIndex]
-                                                            .metadata.duration
-                                                    )
-                                                    .format('HH:mm:ss')}
+                                                {getTimestamp(currentTimeMs, getDuration())}/
+                                                {getTimestamp(getDuration(), getDuration())}
                                             </Typography>
                                         </PaddedTop>
                                         {!isMinimised && (

@@ -2,11 +2,11 @@ import { Controls, ControlsGrid, VideoContainer } from './YouTubeEmbed.style'
 import { Fullscreen, Pause, PlayArrow, VolumeOff, VolumeUp } from '@material-ui/icons'
 import { Grid, IconButton, Typography } from '@material-ui/core'
 import React, { useContext, useEffect, useRef, useState } from 'react'
+import { getDurationTimestamp, getTimestamp } from '~/utils/date'
 
 import ReactPlayer from 'react-player'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import { findDOMNode } from 'react-dom'
-import moment from 'moment'
 import screenfull from 'screenfull'
 
 type ViewProps = {
@@ -39,8 +39,6 @@ export default ({ artist, title, src }: ViewProps) => {
         }, 4000)
         return () => clearTimeout(forceControlsVisibilityTimer)
     }, [])
-
-    const formatSeconds = (seconds: number) => moment.utc(seconds * 1000).format('mm:ss')
 
     const handleFullscreenClick = () => {
         if (!screenfull.isEnabled || !player.current) {
@@ -124,7 +122,10 @@ export default ({ artist, title, src }: ViewProps) => {
                             <Grid item>
                                 {duration && duration > 0 && (
                                     <Typography variant="body2" align="right">
-                                        {`${formatSeconds(progress)} / ${formatSeconds(duration)}`}
+                                        {`${getTimestamp(
+                                            progress * 1000,
+                                            duration * 1000
+                                        )} / ${getDurationTimestamp(duration * 1000)}`}
                                     </Typography>
                                 )}
                             </Grid>
