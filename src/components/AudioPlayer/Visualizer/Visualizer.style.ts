@@ -1,20 +1,19 @@
-import { Box } from '@material-ui/core'
 import styled from 'styled-components'
 
-export const Visualisation = styled(Box)`
+export const Visualisation = styled.div`
     ${({ theme }) => `    
         pointer-events: none;
         position: absolute;
+        z-index: -1;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
 
         padding-right: ${theme.spacing(6)};
-    `}
-`
 
-export const Canvas = styled.canvas`
-    width: 100%;
-    height: 100%;
+        svg {
+            filter: none;
+        }
+    `}
 `
