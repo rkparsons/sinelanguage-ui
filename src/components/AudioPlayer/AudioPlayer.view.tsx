@@ -128,7 +128,7 @@ export default () => {
                                 <AnalyserContainer>
                                     <Box display="flex">
                                         <PaddedTop flexGrow={1}>
-                                            <Typography>
+                                            <Typography variant="h5">
                                                 {selectedMedia.content.__typename ===
                                                     ContentType.RELEASE &&
                                                     `${(selectedMedia.content as Release).artist.title.toUpperCase()}, `}
