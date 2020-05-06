@@ -96,7 +96,7 @@ export default () => {
         return (
             <>
                 <AudioPlayer
-                    isMinimised={isMinimised}
+                    isMinimised={false}
                     onMouseOver={onMouseOver}
                     onMouseLeave={() => setIsMinimised(true)}
                 >
@@ -155,10 +155,7 @@ export default () => {
                                         )}
                                     </Box>
                                     {audioRef.current && (
-                                        <Analyser
-                                            showVisualisation={isPlaying && !isMinimised}
-                                            audioRef={audioRef}
-                                        />
+                                        <Analyser showVisualisation={true} audioRef={audioRef} />
                                     )}
                                 </AnalyserContainer>
                             </Box>

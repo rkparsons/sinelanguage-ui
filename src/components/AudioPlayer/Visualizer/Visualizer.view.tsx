@@ -1,17 +1,17 @@
 import { Canvas, Visualisation } from './Visualizer.style'
 import React, { Component } from 'react'
 
-type AnalyserState = {}
+type VisualiserState = {}
 
-type AnalyserProps = {
+type VisualiserProps = {
     audioData: Uint8Array
 }
 
-class Visualiser extends Component<AnalyserProps, AnalyserState> {
+class Visualiser extends Component<VisualiserProps, VisualiserState> {
     canvas: React.RefObject<HTMLCanvasElement>
     dpi = window.devicePixelRatio
 
-    constructor(props: AnalyserProps) {
+    constructor(props: VisualiserProps) {
         super(props)
         this.canvas = React.createRef()
     }
