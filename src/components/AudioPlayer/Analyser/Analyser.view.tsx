@@ -2,6 +2,7 @@ import React, { Component, RefObject } from 'react'
 
 import Visualizer from '../Visualizer'
 import VisualizerRechartsArea from '../VisualizerRechartsArea'
+import VisualizerRechartsLines from '../VisualizerRechartsLines'
 import VisualizerSVG from '../VisualizerSVG'
 
 type AnalyserState = {
