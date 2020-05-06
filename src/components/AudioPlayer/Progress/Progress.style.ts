@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 
 export const BarContainer = styled.div`
+    z-index: 1000;
     position: relative;
     width: 100%;
-    height: 4px;
+    height: 15px;
     cursor: pointer;
 `
 
@@ -11,7 +12,10 @@ export const ProgressBar = styled.div`
     background-color: rgba(255, 255, 255, 0);
     backdrop-filter: blur(12px) invert(100%);
     width: 100%;
-    height: 100%;
+    height: 3px;
+    position: absolute;
+    bottom: -1px;
+    left: 0;
 `
 
 export const PlayedBar = styled.div<{ width: number }>`
@@ -19,10 +23,10 @@ export const PlayedBar = styled.div<{ width: number }>`
         pointer-events: none;
         position: absolute;
         z-index: 3000;
-        top:0;
+        bottom:-1px;
         left:0;
         width: ${width}%;
-        height: 100%;
+        height: 3px;
         background-color: rgb(17, 194, 32);
     `}
 `

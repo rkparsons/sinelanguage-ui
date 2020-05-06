@@ -33,8 +33,8 @@ export default ({
     }
 
     return (
-        <BarContainer>
-            <ProgressBar ref={progressBarRef} onClick={skipToTime} />
+        <BarContainer onClick={skipToTime}>
+            <ProgressBar ref={progressBarRef} />
             <PlayedBar width={(100 * currentTimeMs) / durationMs} />
         </BarContainer>
     )
