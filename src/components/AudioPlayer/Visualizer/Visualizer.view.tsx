@@ -1,7 +1,7 @@
 import { Box, Zoom } from '@material-ui/core'
 import { Line, LineChart, ResponsiveContainer, YAxis } from 'recharts'
+import React, { useState } from 'react'
 
-import React from 'react'
 import { Visualisation } from './Visualizer.style'
 
 type VisualiserProps = {
@@ -9,22 +9,37 @@ type VisualiserProps = {
     isVisible: boolean
 }
 
-export default ({ audioData, isVisible }: VisualiserProps) => (
-    <Zoom in={true} timeout={1500}>
-        <Visualisation isVisible={isVisible}>
-            <ResponsiveContainer width="100%" height="100%">
-                <LineChart
-                    data={Array.from(audioData).map((value, index) => ({
-                        x: index,
-                        y: value - 128,
-                        y2: 128 - value,
-                    }))}
-                >
-                    <YAxis type="number" domain={[-128, 128]} hide />
-                    <Line type="monotone" dataKey="y2" stroke="#f7aec2" strokeWidth={2.5} />
-                    <Line type="monotone" dataKey="y" stroke={'#a1cbdd'} strokeWidth={2.5} />
-                </LineChart>
-            </ResponsiveContainer>
-        </Visualisation>
-    </Zoom>
-)
+export default ({ audioData, isVisible }: VisualiserProps) => {
+    const getSamples = () => Array.from(audioData).map((y) => y - 128)
+
+    return (
+        <Zoom in={true} timeout={1500}>
+            <Visualisation isVisible={isVisible}>
+                <ResponsiveContainer width="100%" height="100%">
+                    <LineChart
+                        data={getSamples().map((value, index) => ({
+                            x: index,
+                            y: value,
+                            y2: -value,
+                        }))}
+                    >
+                        <YAxis type="number" domain={[-128, 128]} hide />
+                        <Line
+                            type="monotone"
+                            dataKey="y2"
+                            stroke="#f7aec2"
+                            opacity={0.2 + (0.8 * Math.max(...getSamples())) / 128.0}
+                            strokeWidth={2 + (1.5 * Math.max(...getSamples())) / 128.0}
+                        />
+                        <Line
+                            type="monotone"
+                            dataKey="y"
+                            stroke={'#a1cbdd'}
+                            strokeWidth={2 + (1.5 * Math.max(...getSamples())) / 128.0}
+                        />
+                    </LineChart>
+                </ResponsiveContainer>
+            </Visualisation>
+        </Zoom>
+    )
+}
