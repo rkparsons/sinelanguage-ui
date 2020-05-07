@@ -5,6 +5,8 @@ import styled from 'styled-components'
 export const Link = styled.a`
     cursor: pointer;
     color: white;
+    display: block;
+    width: auto;
 
     &:hover {
         color: ${linkHover};
@@ -12,6 +14,14 @@ export const Link = styled.a`
 
     &:active {
         color: ${linkActive};
+    }
+
+    .MuiIcon-root {
+        ${({ theme }) => `        
+            width: ${theme.spacing(12)};
+            height: ${theme.spacing(12)};
+            padding-left: ${theme.spacing(1)};
+        `}
     }
 
     svg {

@@ -1,6 +1,6 @@
+import { Box, Grid } from '@material-ui/core'
 import React, { ReactNode } from 'react'
 
-import { Grid } from '@material-ui/core'
 import { Link } from './ExternalLink.style'
 
 type ViewProps = {
