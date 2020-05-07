@@ -53,6 +53,6 @@ export const AnalyserContainer = styled.div`
 
 export const ImageContainer = styled.div`
     ${({ theme }) => `   
-        width: ${theme.spacing(30)};
+        width: ${theme.spacing(27)};
     `}
 `
