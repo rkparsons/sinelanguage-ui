@@ -4,31 +4,33 @@ import { Grid } from '@material-ui/core'
 import styled from 'styled-components'
 
 export const Button = styled(Grid)<{ isLight: boolean; isDisabled: boolean }>`
-    cursor: pointer;
-
     svg {
         display: block;
     }
 
-    &:active {
-        color: black !important;
-        text-shadow: none !important;
-
-        svg {
-            filter: none !important;
-        }
-    }
-
-    ${({ isLight }) => `    
+    ${({ isLight, isDisabled }) => `    
+        cursor: ${isDisabled ? 'auto' : 'pointer'};
         color: ${isLight ? 'white' : 'black'};
+        opacity: ${isDisabled ? 0.3 : 1};
 
-        &:hover {
-            color: ${isLight ? 'black' : 'white'};
-            text-shadow: ${isLight ? lightShadow : darkShadow};
+        ${
+            !isDisabled &&
+            `&:hover {
+                color: ${isLight ? 'black' : 'white'};
+                text-shadow: ${isLight ? lightShadow : darkShadow};
 
-            svg {
-                filter: drop-shadow(${isLight ? lightShadow : darkShadow});
+                svg {
+                    filter: drop-shadow(${isLight ? lightShadow : darkShadow});
+                }
             }
+            &:active {
+                color: black !important;
+                text-shadow: none !important;
+
+                svg {
+                    filter: none !important;
+                }
+            }`
         }
     `}
 `

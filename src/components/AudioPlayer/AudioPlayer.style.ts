@@ -1,6 +1,5 @@
 import { marginSide, marginTop } from '~/styles/sizes'
 
-import { Box } from '@material-ui/core'
 import { darkShadow } from '~/styles/shadows'
 import styled from 'styled-components'
 
@@ -32,7 +31,7 @@ export const AudioPlayer = styled.div<{ isMinimised: boolean }>`
 
 export const PlayerBody = styled.div`
     color: white;
-    background-color: rgba(255, 255, 255, 0.13);
+    background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(12px);
     text-shadow: ${darkShadow};
 

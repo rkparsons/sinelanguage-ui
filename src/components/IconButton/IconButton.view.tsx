@@ -15,7 +15,7 @@ export default ({ label, icon, onClick, isLight, isDisabled = false }: ViewProps
     <Button
         container
         alignItems="center"
-        onClick={onClick}
+        onClick={() => !isDisabled && onClick()}
         isLight={isLight}
         isDisabled={isDisabled}
     >
