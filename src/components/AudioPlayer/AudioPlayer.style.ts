@@ -1,4 +1,5 @@
 import { Box } from '@material-ui/core'
+import { darkShadow } from '~/styles/shadows'
 import { marginTop } from '~/styles/sizes'
 import styled from 'styled-components'
 
@@ -24,7 +25,7 @@ export const AudioPlayer = styled.div<{ isMinimised: boolean }>`
     animation-duration: 0.2s;
 
     svg {
-        filter: drop-shadow(2px 2px 2px #000000);
+        filter: drop-shadow(${darkShadow});
     }
 `
 
@@ -34,7 +35,7 @@ export const PlayerBody = styled.div`
         background-color: rgba(255, 255, 255, 0.13);
         backdrop-filter: blur(12px);
 
-        text-shadow: 1px 2px 4px #000000;
+        text-shadow: ${darkShadow};
         padding-left: ${theme.spacing(6)};
     `}
 `

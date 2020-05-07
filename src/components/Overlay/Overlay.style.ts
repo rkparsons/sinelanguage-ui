@@ -1,3 +1,4 @@
+import { darkShadow } from '~/styles/shadows'
 import styled from 'styled-components'
 
 export const Overlay = styled.div`
@@ -7,6 +8,10 @@ export const Overlay = styled.div`
     width: 100%;
     height: 100%;
     z-index: 500;
-    text-shadow: 1px 2px 4px #000000;
+    text-shadow: ${darkShadow};
     color: white;
+
+    svg {
+        filter: drop-shadow(${darkShadow});
+    }
 `

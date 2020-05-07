@@ -1,5 +1,6 @@
 import { GatsbyLinkProps, Link } from 'gatsby'
 import React, { FC } from 'react'
+import { darkShadow, lightShadow } from '~/styles/shadows'
 
 import styled from 'styled-components'
 
@@ -7,16 +8,17 @@ import styled from 'styled-components'
 const CustomLink: FC<Omit<GatsbyLinkProps<{}>, 'ref'>> = (props) => <Link {...props}></Link>
 
 export default styled((props: GatsbyLinkProps<{}>) => (
-    <CustomLink {...props} activeStyle={{ color: 'black' }} />
+    <CustomLink {...props} activeStyle={{ color: 'black', textShadow: lightShadow }} />
 ))`
     font-size: 0.9rem;
     margin-right: 1.3rem;
     text-decoration: none;
     color: white;
-    text-shadow: 1px 2px 4px #000000;
+    text-shadow: ${darkShadow};
 
     &:hover {
         color: black;
+        text-shadow: ${lightShadow};
     }
 
     h3 {

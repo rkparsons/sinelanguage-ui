@@ -2,6 +2,7 @@ import './fonts/fontFace.css'
 
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
 
+import { darkShadow } from './shadows'
 import palette from './palette'
 
 // todo: use less font files
@@ -38,7 +39,7 @@ export default (isDarkMode = false) =>
                 MuiInputBase: {
                     input: {
                         color: 'white',
-                        textShadow: '1px 2px 4px #000000',
+                        textShadow: darkShadow,
                     },
                 },
                 MuiInputLabel: {
@@ -48,13 +49,13 @@ export default (isDarkMode = false) =>
                 },
                 MuiSlider: {
                     rail: {
-                        boxShadow: '1px 2px 4px #000000',
+                        boxShadow: darkShadow,
                     },
                     thumb: {
                         width: '9px',
                         height: '9px',
                         marginTop: '-4px',
-                        boxShadow: '1px 2px 4px #000000 !important',
+                        boxShadow: `${darkShadow} !important`,
                     },
                 },
                 MuiIconButton: {

@@ -1,3 +1,4 @@
+import { darkShadow, lightShadow } from '~/styles/shadows'
 import { linkActive, linkHover } from '~/styles/colours'
 
 import styled from 'styled-components'
@@ -9,11 +10,8 @@ export const Link = styled.a`
     width: auto;
 
     &:hover {
-        color: ${linkHover};
-    }
-
-    &:active {
-        color: ${linkActive};
+        color: black;
+        text-shadow: ${lightShadow};
     }
 
     .MuiIcon-root {
