@@ -12,14 +12,6 @@ export const Link = styled.a`
         text-shadow: ${lightShadow};
     }
 
-    &:active {
-        text-shadow: none;
-
-        svg {
-            filter: none;
-        }
-    }
-
     .MuiIcon-root {
         ${({ theme }) => `        
             width: ${theme.spacing(12)};

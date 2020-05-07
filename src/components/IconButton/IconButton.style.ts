@@ -1,5 +1,6 @@
+import { darkShadow, lightShadow } from '~/styles/shadows'
+
 import { Grid } from '@material-ui/core'
-import { lightShadow } from '~/styles/shadows'
 import styled from 'styled-components'
 
 export const Button = styled(Grid)<{ isLight: boolean }>`
@@ -9,23 +10,24 @@ export const Button = styled(Grid)<{ isLight: boolean }>`
         display: block;
     }
 
+    &:active {
+        color: black !important;
+        text-shadow: none !important;
+
+        svg {
+            filter: none !important;
+        }
+    }
+
     ${({ isLight }) => `    
         color: ${isLight ? 'white' : 'black'};
 
         &:hover {
-            color: ${isLight ? 'black' : 'rgb(0, 0, 255)'};
-            text-shadow: ${isLight ? lightShadow : 'none'};
+            color: ${isLight ? 'black' : 'white'};
+            text-shadow: ${isLight ? lightShadow : darkShadow};
 
             svg {
-                filter: ${isLight ? `drop-shadow(${lightShadow})` : 'none'};
-            }
-        }
-
-        &:active {
-            text-shadow: none;
-
-            svg {
-                filter: none;
+                filter: drop-shadow(${isLight ? lightShadow : darkShadow});
             }
         }
     `}
