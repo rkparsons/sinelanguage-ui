@@ -5,7 +5,7 @@ import {
     PaddedTop,
     PlayerBody,
 } from './AudioPlayer.style'
-import { Box, Grid, IconButton, Typography } from '@material-ui/core'
+import { Box, Typography } from '@material-ui/core'
 import { Podcast, Release, Track } from '~/cms/types'
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 
@@ -14,11 +14,11 @@ import Audio from './Audio'
 import { Close } from '@material-ui/icons'
 import { ContentType } from '~/constants/contentType'
 import Controls from './Controls'
+import IconButton from '~/components/IconButton'
 import Progress from './Progress'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import SquareImage from '~/components/SquareImage'
 import { getTimestamp } from '~/utils/date'
-import moment from 'moment'
 import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 
 // todo: move clientId to env vars
@@ -148,9 +148,11 @@ export default () => {
                                         </PaddedTop>
                                         {!isMinimised && (
                                             <CloseButton>
-                                                <IconButton onClick={() => setSelectedMedia()}>
-                                                    <Close color="primary" />
-                                                </IconButton>
+                                                <IconButton
+                                                    icon={<Close />}
+                                                    onClick={() => setSelectedMedia()}
+                                                    isLight={true}
+                                                />
                                             </CloseButton>
                                         )}
                                     </Box>

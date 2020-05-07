@@ -1,7 +1,8 @@
 import { Controls, SliderContainer } from './Controls.style'
-import { Grid, IconButton, Slider } from '@material-ui/core'
+import { Grid, Slider } from '@material-ui/core'
 import { Pause, PlayArrow, SkipNext, SkipPrevious } from '@material-ui/icons'
 
+import IconButton from '~/components/IconButton'
 import React from 'react'
 
 type ControlsProps = {
@@ -37,25 +38,31 @@ export default ({
 
     return (
         <Controls>
-            <Grid container>
+            <Grid container spacing={2}>
                 <Grid item xs={4}>
-                    <IconButton onClick={skipPrevious} disabled={trackIndex === 0}>
-                        <SkipPrevious color="primary" fontSize="small" />
-                    </IconButton>
+                    <IconButton
+                        icon={<SkipPrevious fontSize="small" />}
+                        onClick={skipPrevious}
+                        isDisabled={trackIndex === 0}
+                        isLight={true}
+                    />
                 </Grid>
                 <Grid item xs={4}>
-                    <IconButton onClick={() => setIsPlaying(!isPlaying)}>
-                        {isPlaying ? (
-                            <Pause color="primary" fontSize="small" />
-                        ) : (
-                            <PlayArrow color="primary" fontSize="small" />
-                        )}
-                    </IconButton>
+                    <IconButton
+                        icon={
+                            isPlaying ? <Pause fontSize="small" /> : <PlayArrow fontSize="small" />
+                        }
+                        onClick={() => setIsPlaying(!isPlaying)}
+                        isLight={true}
+                    />
                 </Grid>
                 <Grid item xs={4}>
-                    <IconButton onClick={skipNext} disabled={trackIndex === trackCount - 1}>
-                        <SkipNext color="primary" fontSize="small" />
-                    </IconButton>
+                    <IconButton
+                        icon={<SkipNext fontSize="small" />}
+                        onClick={skipNext}
+                        isDisabled={trackIndex === trackCount - 1}
+                        isLight={true}
+                    />
                 </Grid>
             </Grid>
             <SliderContainer>

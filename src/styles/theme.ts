@@ -47,22 +47,6 @@ export default (isDarkMode = false) =>
                         color: 'white',
                     },
                 },
-                MuiSlider: {
-                    rail: {
-                        boxShadow: darkShadow,
-                    },
-                    thumb: {
-                        width: '9px',
-                        height: '9px',
-                        marginTop: '-4px',
-                        boxShadow: `${darkShadow} !important`,
-                    },
-                },
-                MuiIconButton: {
-                    root: {
-                        padding: '8px',
-                    },
-                },
             },
         })
     )

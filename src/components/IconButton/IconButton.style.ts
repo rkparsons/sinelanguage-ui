@@ -3,7 +3,7 @@ import { darkShadow, lightShadow } from '~/styles/shadows'
 import { Grid } from '@material-ui/core'
 import styled from 'styled-components'
 
-export const Button = styled(Grid)<{ isLight: boolean }>`
+export const Button = styled(Grid)<{ isLight: boolean; isDisabled: boolean }>`
     cursor: pointer;
 
     svg {
