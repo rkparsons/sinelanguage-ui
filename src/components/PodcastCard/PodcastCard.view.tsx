@@ -25,7 +25,12 @@ export default ({ podcast }: ViewProps) => {
                 <Grid container spacing={2}>
                     <Grid item xs={1}></Grid>
                     <Grid item>
-                        <ContentPlayButton content={podcast} trackIndex={0} isLarge={false} />
+                        <ContentPlayButton
+                            content={podcast}
+                            trackIndex={0}
+                            isLarge={false}
+                            isLight={false}
+                        />
                     </Grid>
                 </Grid>
             </ContentCardDetail>

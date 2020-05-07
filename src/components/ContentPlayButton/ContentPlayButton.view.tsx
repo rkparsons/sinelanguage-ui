@@ -1,6 +1,5 @@
 import { Artist, Podcast, Release } from '~/cms/types'
 
-import { ContentItem } from '~/types/cms'
 import IconButton from '~/components/IconButton'
 import { PlayArrow } from '@material-ui/icons'
 import React from 'react'
@@ -10,10 +9,11 @@ import { Typography } from '@material-ui/core'
 type ViewProps = {
     content: Artist | Podcast | Release
     trackIndex: number
+    isLight: boolean
     isLarge?: boolean
 }
 
-export default ({ content, trackIndex, isLarge = true }: ViewProps) => {
+export default ({ content, trackIndex, isLight, isLarge = true }: ViewProps) => {
     return (
         <SelectedMediaContext.Consumer>
             {({ setSelectedMedia }) => (
@@ -23,6 +23,7 @@ export default ({ content, trackIndex, isLarge = true }: ViewProps) => {
                     onClick={() => {
                         setSelectedMedia({ content: content, trackIndex: trackIndex })
                     }}
+                    isLight={isLight}
                 />
             )}
         </SelectedMediaContext.Consumer>

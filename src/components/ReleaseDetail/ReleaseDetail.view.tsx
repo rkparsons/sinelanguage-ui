@@ -19,7 +19,7 @@ export default ({ release }: ViewProps) => (
         <Typography variant="h3">[{release.uid}]</Typography>
         <Typography variant="h3">{release.format}</Typography>
 
-        <ContentPlayButton content={release} trackIndex={0} />
+        <ContentPlayButton content={release} trackIndex={0} isLight={true} />
         <br />
 
         {release.tracks.length > 1 && (
@@ -40,7 +40,11 @@ export default ({ release }: ViewProps) => (
                                 </Typography>
                             </Grid>
                             <Grid item>
-                                <ContentPlayButton content={release} trackIndex={index} />
+                                <ContentPlayButton
+                                    content={release}
+                                    trackIndex={index}
+                                    isLight={true}
+                                />
                             </Grid>
                         </Grid>
                     </InvertOnHover>

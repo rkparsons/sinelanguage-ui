@@ -17,7 +17,7 @@ export default ({ artist }: ViewProps) => (
                 <Typography variant="h3">{artist.title.toUpperCase()}</Typography>
             </Grid>
             <Grid item>
-                <ContentPlayButton content={artist} trackIndex={0} />
+                <ContentPlayButton content={artist} trackIndex={0} isLight={true} />
             </Grid>
         </Grid>
         <Socials urls={artist.socials} />

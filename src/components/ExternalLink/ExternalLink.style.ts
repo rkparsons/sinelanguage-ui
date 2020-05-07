@@ -1,6 +1,4 @@
-import { darkShadow, lightShadow } from '~/styles/shadows'
-import { linkActive, linkHover } from '~/styles/colours'
-
+import { lightShadow } from '~/styles/shadows'
 import styled from 'styled-components'
 
 export const Link = styled.a`
@@ -12,6 +10,14 @@ export const Link = styled.a`
     &:hover {
         color: black;
         text-shadow: ${lightShadow};
+    }
+
+    &:active {
+        text-shadow: none;
+
+        svg {
+            filter: none;
+        }
     }
 
     .MuiIcon-root {

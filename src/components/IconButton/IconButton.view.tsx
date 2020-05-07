@@ -7,10 +7,11 @@ type ViewProps = {
     label: ReactNode
     icon: ReactNode
     onClick(): void
+    isLight: boolean
 }
 
-export default ({ label, icon, onClick }: ViewProps) => (
-    <Button container alignItems="center" onClick={onClick}>
+export default ({ label, icon, onClick, isLight }: ViewProps) => (
+    <Button container alignItems="center" onClick={onClick} isLight={isLight}>
         <Grid item>{icon}</Grid>
         <Grid item>{label}</Grid>
     </Button>

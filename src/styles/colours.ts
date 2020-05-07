@@ -1,5 +1,3 @@
 export const lightGrey = '#999999'
 export const grey = '#666666'
 export const darkGrey = '#333333'
-export const linkHover = 'rgb(0, 0, 255)'
-export const linkActive = 'rgb(0, 255, 0)'

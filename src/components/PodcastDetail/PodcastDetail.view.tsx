@@ -16,7 +16,7 @@ export default ({ podcast }: ViewProps) => (
                 <Typography variant="h3">{podcast.title.toUpperCase()}</Typography>
             </Grid>
             <Grid item>
-                <ContentPlayButton content={podcast} trackIndex={0} />
+                <ContentPlayButton content={podcast} trackIndex={0} isLight={true} />
             </Grid>
         </Grid>
         <br />

@@ -28,13 +28,19 @@ export default ({ release }: ViewProps) => {
                 <Grid container spacing={2}>
                     <Grid item xs={1}></Grid>
                     <Grid item>
-                        <ContentPlayButton content={release} trackIndex={0} isLarge={false} />
+                        <ContentPlayButton
+                            content={release}
+                            trackIndex={0}
+                            isLarge={false}
+                            isLight={false}
+                        />
                     </Grid>
                     <Grid item>
                         <IconButton
                             label={<Typography variant="body1">BUY</Typography>}
                             icon={<BagIcon />}
                             onClick={() => console.log('buy')}
+                            isLight={false}
                         />
                     </Grid>
                 </Grid>
