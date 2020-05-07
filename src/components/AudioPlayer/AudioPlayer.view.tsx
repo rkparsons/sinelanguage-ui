@@ -127,7 +127,7 @@ export default () => {
                                 <AnalyserContainer>
                                     <Grid container justify="space-between">
                                         <Grid item>
-                                            <Typography variant="h5">
+                                            <Typography variant="h5" gutterBottom>
                                                 {selectedMedia.content.__typename ===
                                                     ContentType.RELEASE &&
                                                     `${(selectedMedia.content as Release).artist.title.toUpperCase()}, `}
@@ -135,12 +135,12 @@ export default () => {
                                                     {selectedTracks[selectedMedia.trackIndex].title}
                                                 </i>
                                             </Typography>
-                                            <Typography>
+                                            <Typography variant="h5">
                                                 {getTimestamp(currentTimeMs, getDuration())}/
                                                 {getTimestamp(getDuration(), getDuration())}
                                             </Typography>
                                         </Grid>
-                                        {!isMinimised && (
+                                        {true && (
                                             <Grid item>
                                                 <IconButton
                                                     icon={<Close />}

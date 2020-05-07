@@ -38,7 +38,7 @@ export default ({
 
     return (
         <Controls>
-            <Grid container spacing={4}>
+            <Grid container spacing={3}>
                 <Grid item xs={4}>
                     <IconButton
                         icon={<SkipPrevious />}
@@ -63,9 +63,9 @@ export default ({
                     />
                 </Grid>
             </Grid>
-            <SliderContainer>
+            {/* <SliderContainer>
                 <Slider value={volume} onChange={handleVolume} min={0} max={1} step={0.01} />
-            </SliderContainer>
+            </SliderContainer> */}
         </Controls>
     )
 }

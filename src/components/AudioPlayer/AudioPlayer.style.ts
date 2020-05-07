@@ -18,7 +18,7 @@ export const AudioPlayer = styled.div<{ isMinimised: boolean }>`
     display: block;
     z-index: 1000;
     left: 0;
-    bottom: ${({ isMinimised }) => (isMinimised ? -110 : -1)}px;
+    bottom: ${({ isMinimised }) => (isMinimised ? -85 : -1)}px;
     width: 100%;
     transition: bottom 0.1s ease;
     animation-name: slidein;
@@ -37,6 +37,7 @@ export const PlayerBody = styled.div`
 
     ${({ theme }) => `    
         padding-top: ${theme.spacing(marginTop)};
+        padding-bottom: ${theme.spacing(3)};
         padding-left: ${theme.spacing(marginSide)};
         padding-right: ${theme.spacing(marginSide)};
     `}
