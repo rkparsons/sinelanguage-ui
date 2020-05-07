@@ -1,4 +1,4 @@
-import { AnalyserContainer, AudioPlayer, PlayerBody } from './AudioPlayer.style'
+import { AnalyserContainer, AudioPlayer, ImageContainer, PlayerBody } from './AudioPlayer.style'
 import { Box, Grid, Typography } from '@material-ui/core'
 import { Podcast, Release, Track } from '~/cms/types'
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
@@ -109,10 +109,12 @@ export default () => {
                     <PlayerBody>
                         <Box display="flex">
                             <Box>
-                                <SquareImage
-                                    title={selectedMedia.content.title}
-                                    image={selectedMedia.content.image}
-                                />
+                                <ImageContainer>
+                                    <SquareImage
+                                        title={selectedMedia.content.title}
+                                        image={selectedMedia.content.image}
+                                    />
+                                </ImageContainer>
                                 <Controls
                                     trackIndex={selectedMedia.trackIndex}
                                     setTrackIndex={setTrackIndex}

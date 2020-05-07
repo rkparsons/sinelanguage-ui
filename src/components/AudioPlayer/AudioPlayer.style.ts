@@ -18,7 +18,7 @@ export const AudioPlayer = styled.div<{ isMinimised: boolean }>`
     display: block;
     z-index: 1000;
     left: 0;
-    bottom: ${({ isMinimised }) => (isMinimised ? -85 : -1)}px;
+    bottom: ${({ isMinimised }) => (isMinimised ? -102 : -1)}px;
     width: 100%;
     transition: bottom 0.1s ease;
     animation-name: slidein;
@@ -43,9 +43,16 @@ export const PlayerBody = styled.div`
     `}
 `
 export const AnalyserContainer = styled.div`
-    ${({ theme }) => `    
-        position: relative;
-        height: 100%;
+    position: relative;
+    height: 100%;
+
+    ${({ theme }) => `   
         margin-left: ${theme.spacing(marginSide)};
+    `}
+`
+
+export const ImageContainer = styled.div`
+    ${({ theme }) => `   
+        width: ${theme.spacing(30)};
     `}
 `

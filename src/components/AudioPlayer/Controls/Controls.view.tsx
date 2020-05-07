@@ -1,5 +1,5 @@
+import { Box, Grid, Slider } from '@material-ui/core'
 import { Controls, SliderContainer } from './Controls.style'
-import { Grid, Slider } from '@material-ui/core'
 import { Pause, PlayArrow, SkipNext, SkipPrevious } from '@material-ui/icons'
 
 import IconButton from '~/components/IconButton'
@@ -39,7 +39,7 @@ export default ({
     return (
         <Controls>
             <Grid container spacing={3}>
-                <Grid item xs={4}>
+                <Grid item>
                     <IconButton
                         icon={<SkipPrevious />}
                         onClick={skipPrevious}
@@ -47,14 +47,16 @@ export default ({
                         isLight={true}
                     />
                 </Grid>
-                <Grid item xs={4}>
+                <Box flexGrow={1} />
+                <Grid item>
                     <IconButton
                         icon={isPlaying ? <Pause /> : <PlayArrow />}
                         onClick={() => setIsPlaying(!isPlaying)}
                         isLight={true}
                     />
                 </Grid>
-                <Grid item xs={4}>
+                <Box flexGrow={1} />
+                <Grid item>
                     <IconButton
                         icon={<SkipNext />}
                         onClick={skipNext}
