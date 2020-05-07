@@ -1,30 +1,26 @@
-import { CallMade } from '@material-ui/icons'
-import { Link } from '@material-ui/core'
+import ExternalLink from '~/components/ExternalLink'
+import { Icon } from '@material-ui/core'
 import React from 'react'
-import { SocialIcon } from './IconLink.style'
+import { Social } from '~/constants/social'
 
 type ViewProps = {
     url: string
 }
 
 export default ({ url }: ViewProps) => {
-    return (
-        <Link href={url} target="_blank" rel="noopener">
-            {url.includes('facebook') ? (
-                <SocialIcon className="fa fa-facebook-square" />
-            ) : url.includes('spotify') ? (
-                <SocialIcon className="fa fa-spotify" />
-            ) : url.includes('soundcloud') ? (
-                <SocialIcon className="fa fa-soundcloud" />
-            ) : url.includes('instagram') ? (
-                <SocialIcon className="fa fa-instagram" />
-            ) : url.includes('twitter') ? (
-                <SocialIcon className="fa fa-twitter" />
-            ) : url.includes('youtube') ? (
-                <SocialIcon className="fa fa-youtube" />
-            ) : (
-                <CallMade />
-            )}
-        </Link>
-    )
+    const iconClass = url.includes(Social.FACEBOOK)
+        ? 'fa fa-facebook-square'
+        : url.includes(Social.SPOTIFY)
+        ? 'fa fa-spotify'
+        : url.includes(Social.SOUNDCLOUD)
+        ? 'fa fa-soundcloud'
+        : url.includes(Social.INSTAGRAM)
+        ? 'fa fa-instagram'
+        : url.includes(Social.TWITTER)
+        ? 'fa fa-twitter'
+        : url.includes(Social.YOUTUBE)
+        ? 'fa fa-youtube'
+        : 'fa fa-user'
+
+    return <ExternalLink href={url} icon={<Icon className={iconClass} />} />
 }

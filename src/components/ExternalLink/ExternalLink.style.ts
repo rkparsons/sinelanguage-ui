@@ -1,10 +1,10 @@
 import { linkActive, linkHover } from '~/styles/colours'
 
-import { Grid } from '@material-ui/core'
 import styled from 'styled-components'
 
-export const Button = styled(Grid)`
+export const Link = styled.a`
     cursor: pointer;
+    color: white;
 
     &:hover {
         color: ${linkHover};

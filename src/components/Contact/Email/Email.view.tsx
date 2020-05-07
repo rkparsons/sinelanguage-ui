@@ -1,5 +1,5 @@
-import { Grid, Link } from '@material-ui/core'
-
+import ExternalLink from '~/components/ExternalLink'
+import { Grid } from '@material-ui/core'
 import React from 'react'
 import { Title } from './Email.style'
 
@@ -14,9 +14,7 @@ export default ({ title, email }: ViewProps) => (
             <Title variant="h3">{title.toUpperCase()}</Title>
         </Grid>
         <Grid item>
-            <Link href={`mailto:${email}`} target="_blank" rel="noopener">
-                {email.toUpperCase()}
-            </Link>
+            <ExternalLink href={`mailto:${email}`} title={email} />
         </Grid>
     </Grid>
 )
