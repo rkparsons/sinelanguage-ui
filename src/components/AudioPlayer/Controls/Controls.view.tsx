@@ -38,10 +38,10 @@ export default ({
 
     return (
         <Controls>
-            <Grid container spacing={2}>
+            <Grid container spacing={4}>
                 <Grid item xs={4}>
                     <IconButton
-                        icon={<SkipPrevious fontSize="small" />}
+                        icon={<SkipPrevious />}
                         onClick={skipPrevious}
                         isDisabled={trackIndex === 0}
                         isLight={true}
@@ -49,16 +49,14 @@ export default ({
                 </Grid>
                 <Grid item xs={4}>
                     <IconButton
-                        icon={
-                            isPlaying ? <Pause fontSize="small" /> : <PlayArrow fontSize="small" />
-                        }
+                        icon={isPlaying ? <Pause /> : <PlayArrow />}
                         onClick={() => setIsPlaying(!isPlaying)}
                         isLight={true}
                     />
                 </Grid>
                 <Grid item xs={4}>
                     <IconButton
-                        icon={<SkipNext fontSize="small" />}
+                        icon={<SkipNext />}
                         onClick={skipNext}
                         isDisabled={trackIndex === trackCount - 1}
                         isLight={true}

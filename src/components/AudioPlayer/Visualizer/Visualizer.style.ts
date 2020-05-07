@@ -10,8 +10,6 @@ export const Visualisation = styled.div<{ isVisible: boolean }>`
         width: 100%;
         height: 100%;
 
-        padding-right: ${theme.spacing(6)};
-
         svg {
             filter: none;
         }

@@ -1,11 +1,5 @@
-import {
-    AnalyserContainer,
-    AudioPlayer,
-    CloseButton,
-    PaddedTop,
-    PlayerBody,
-} from './AudioPlayer.style'
-import { Box, Typography } from '@material-ui/core'
+import { AnalyserContainer, AudioPlayer, PlayerBody } from './AudioPlayer.style'
+import { Box, Grid, Typography } from '@material-ui/core'
 import { Podcast, Release, Track } from '~/cms/types'
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 
@@ -114,7 +108,7 @@ export default () => {
                     />
                     <PlayerBody>
                         <Box display="flex">
-                            <PaddedTop>
+                            <Box>
                                 <SquareImage
                                     title={selectedMedia.content.title}
                                     image={selectedMedia.content.image}
@@ -128,11 +122,11 @@ export default () => {
                                     setVolume={setVolume}
                                     trackCount={selectedTracks.length}
                                 />
-                            </PaddedTop>
+                            </Box>
                             <Box flexGrow={1}>
                                 <AnalyserContainer>
-                                    <Box display="flex">
-                                        <PaddedTop flexGrow={1}>
+                                    <Grid container justify="space-between">
+                                        <Grid item>
                                             <Typography variant="h5">
                                                 {selectedMedia.content.__typename ===
                                                     ContentType.RELEASE &&
@@ -145,17 +139,17 @@ export default () => {
                                                 {getTimestamp(currentTimeMs, getDuration())}/
                                                 {getTimestamp(getDuration(), getDuration())}
                                             </Typography>
-                                        </PaddedTop>
+                                        </Grid>
                                         {!isMinimised && (
-                                            <CloseButton>
+                                            <Grid item>
                                                 <IconButton
                                                     icon={<Close />}
                                                     onClick={() => setSelectedMedia()}
                                                     isLight={true}
                                                 />
-                                            </CloseButton>
+                                            </Grid>
                                         )}
-                                    </Box>
+                                    </Grid>
                                     {audioRef.current && (
                                         <Analyser
                                             showVisualisation={isPlaying && !isMinimised}
