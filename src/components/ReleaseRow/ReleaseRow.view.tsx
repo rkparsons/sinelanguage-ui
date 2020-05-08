@@ -11,7 +11,7 @@ type ViewProps = {
 }
 
 export default ({ release, format }: ViewProps) => (
-    <Grid container justify="space-between">
+    <Grid container justify="space-between" alignItems="flex-start">
         <Grid item xs={12} lg={12} xl={1}>
             <Typography variant="h3">{release.uid}</Typography>
         </Grid>

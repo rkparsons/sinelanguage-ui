@@ -11,7 +11,7 @@ export const rowSpacing: Record<Breakpoint, GridSpacing> = {
     xs: 0,
     sm: 0,
     md: 0,
-    lg: 6,
+    lg: 4,
     xl: 2,
 }
 
@@ -19,6 +19,6 @@ export const rowPadding: Record<Breakpoint, GridSpacing> = {
     xs: 4,
     sm: 4,
     md: 4,
-    lg: 0,
+    lg: 2,
     xl: 0,
 }
