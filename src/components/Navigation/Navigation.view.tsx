@@ -34,8 +34,11 @@ export default withWidth()(({ width, location }: ViewProps) => {
     return (
         <Header>
             <Grid container spacing={isMobile ? 10 : 0} justify="space-between">
-                <Grid item xs={6}>
-                    <NavItem to={Route.NEWS} title="SINE LANGUAGE RECORDS" />
+                <Grid item xs={isMobile ? 9 : 6}>
+                    <NavItem
+                        to={Route.NEWS}
+                        title={isMobile ? 'SINE LANGUAGE' : 'SINE LANGUAGE RECORDS'}
+                    />
                 </Grid>
                 {isMobile && (
                     <Grid item>
