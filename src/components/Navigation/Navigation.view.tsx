@@ -5,27 +5,32 @@ import React, { useEffect, useState } from 'react'
 
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import IconButton from '~/components/IconButton'
+import Links from './Links'
 import NavItem from '~/components/NavItem'
 import PointerEvents from '~/components/PointerEvents'
 import { Route } from '~/constants/route'
 import { globalHistory } from '@reach/router'
+import { navigate } from 'gatsby'
 
 type ViewProps = {
     width: Breakpoint
+    location: Location
 }
 
-export default withWidth()(({ width }: ViewProps) => {
+export default withWidth()(({ width, location }: ViewProps) => {
+    const isMenuOpen = location.pathname === '/menu'
     const isMobile = ['xs', 'sm'].includes(width)
-    const [isOverlay, setIsOverlay] = useState(false)
 
-    useEffect(() => {
-        return globalHistory.listen(({ action }) => {
-            if (action === 'PUSH') setIsOverlay(false)
-        })
-    }, [setIsOverlay])
+    const handleMenuClick = () => {
+        if (isMenuOpen) {
+            navigate('/')
+        } else {
+            navigate('/menu')
+        }
+    }
 
     return (
-        <Header isOverlay={isOverlay}>
+        <Header>
             <Grid container spacing={isMobile ? 10 : 0} justify="space-between">
                 <Grid item xs={6}>
                     <NavItem to={Route.NEWS} title="SINE LANGUAGE RECORDS" />
@@ -34,63 +39,14 @@ export default withWidth()(({ width }: ViewProps) => {
                     <Grid item>
                         <PointerEvents value="all">
                             <IconButton
-                                icon={isOverlay ? <Close /> : <Add />}
-                                onClick={() => setIsOverlay(!isOverlay)}
+                                icon={isMenuOpen ? <Close /> : <Add />}
+                                onClick={handleMenuClick}
                                 isLight={true}
                             />
                         </PointerEvents>
                     </Grid>
                 )}
-                {(isOverlay || !isMobile) && (
-                    <>
-                        <Grid item xs={isMobile ? 12 : 3}>
-                            <Grid container direction="column">
-                                <HeaderRow item>
-                                    <NavItem
-                                        to={Route.ARTISTS}
-                                        title="ARTISTS"
-                                        partiallyActive={true}
-                                    />
-                                </HeaderRow>
-                                <HeaderRow item>
-                                    <NavItem
-                                        to={Route.PODCASTS}
-                                        title="PODCASTS"
-                                        partiallyActive={true}
-                                    />
-                                </HeaderRow>
-                                <HeaderRow item>
-                                    <NavItem
-                                        to={Route.RELEASES}
-                                        title="RELEASES"
-                                        partiallyActive={true}
-                                    />
-                                </HeaderRow>
-                            </Grid>
-                        </Grid>
-                        <Grid item xs={isMobile ? 12 : 3}>
-                            <Grid container direction="column">
-                                <HeaderRow item>
-                                    <NavItem
-                                        to={Route.EVENTS}
-                                        title="EVENTS"
-                                        partiallyActive={true}
-                                    />
-                                </HeaderRow>
-                                <HeaderRow item>
-                                    <NavItem
-                                        to={Route.CONTACT}
-                                        title="CONTACT"
-                                        partiallyActive={true}
-                                    />
-                                </HeaderRow>
-                                <HeaderRow item>
-                                    <NavItem to={Route.BAG} title="BAG" partiallyActive={true} />
-                                </HeaderRow>
-                            </Grid>
-                        </Grid>
-                    </>
-                )}
+                {!isMobile && <Links isMobile={isMobile} />}
             </Grid>
 
             {/* {isAuthenticated() ? (

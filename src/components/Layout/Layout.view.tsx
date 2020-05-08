@@ -33,7 +33,7 @@ export default ({ isDarkMode, setIsDarkMode, children }: ViewProps) => {
                         <CssBaseline />
                         <GlobalStyle />
                         <AppContainer>
-                            <Navigation />
+                            <Navigation location={location} />
                             <main>
                                 {children}
                                 <Dashboard />
