@@ -7,6 +7,7 @@ import { Podcast } from '~/cms/types'
 import PodcastDetail from '~/components/PodcastDetail'
 import React from 'react'
 import Scrollable from '~/components/Scrollable'
+import SideMargins from '~/components/SideMargins'
 import { graphql } from 'gatsby'
 
 type Props = {
@@ -30,7 +31,9 @@ export default ({ data }: Props) => {
                     </Grid>
                     <Grid item xs={6}>
                         <Scrollable>
-                            <PodcastDetail podcast={data.contentfulPodcast} />
+                            <SideMargins>
+                                <PodcastDetail podcast={data.contentfulPodcast} />
+                            </SideMargins>
                         </Scrollable>
                     </Grid>
                 </Grid>

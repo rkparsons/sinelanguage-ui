@@ -1,5 +1,5 @@
-import { Grid, Typography } from '@material-ui/core'
-import { HoverImage, ItemRow, List, TitleRow } from './ContentList.style'
+import { Grid, Hidden, Typography } from '@material-ui/core'
+import { HoverImage, ItemRow, TitleRow } from './ContentList.style'
 import React, { useState } from 'react'
 
 import ContentCardMedia from '~/components/ContentCardMedia'
@@ -9,6 +9,7 @@ import { ContentType } from '~/constants/contentType'
 import InvertOnHover from '~/components/InvertOnHover'
 import { Link } from 'gatsby'
 import Overlay from '~/components/Overlay'
+import Scrollable from '~/components/Scrollable'
 import { getUrl } from '~/utils/content'
 
 type ViewProps = {
@@ -21,7 +22,7 @@ export default ({ title, items }: ViewProps) => {
 
     return (
         <Overlay>
-            <List>
+            <Scrollable>
                 <Grid container direction="column" spacing={2}>
                     <Grid item xs={12}>
                         <TitleRow>
@@ -45,13 +46,15 @@ export default ({ title, items }: ViewProps) => {
                         </Grid>
                     ))}
                 </Grid>
-            </List>
+            </Scrollable>
             {activeItem && (
-                <HoverImage container alignItems="center" justify="center">
-                    <Grid item xs={activeItem.__typename === ContentType.VIDEO ? 12 : 5}>
-                        <ContentCardMedia content={activeItem} />
-                    </Grid>
-                </HoverImage>
+                <Hidden mdDown>
+                    <HoverImage container alignItems="center" justify="center">
+                        <Grid item xs={activeItem.__typename === ContentType.VIDEO ? 12 : 5}>
+                            <ContentCardMedia content={activeItem} />
+                        </Grid>
+                    </HoverImage>
+                </Hidden>
             )}
         </Overlay>
     )

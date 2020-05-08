@@ -3,19 +3,13 @@ import { contentOffsetSmall, marginSide } from '~/styles/sizes'
 import { Grid } from '@material-ui/core'
 import styled from 'styled-components'
 
-export const List = styled.div`
-    ${({ theme }) => `
-        padding-top: ${theme.spacing(contentOffsetSmall)};
-    `}
-`
-
 const Row = styled.div`
     ${({ theme }) => `
         width: 100%;
         color: white;
         white-space: pre;
         text-align: left;
-        h3 {
+        h3, h4 {
             padding-left: ${theme.spacing(marginSide)};
             padding-right: ${theme.spacing(marginSide)};
         }
