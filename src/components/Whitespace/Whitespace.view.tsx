@@ -8,5 +8,5 @@ type ViewProps = {
 }
 
 export default ({ children, value }: ViewProps) => (
-    <Container whitespace={value}>{children}</Container>
+    <Container whiteSpace={value}>{children}</Container>
 )

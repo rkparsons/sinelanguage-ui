@@ -1,5 +1,5 @@
 import styled from 'styled-components'
 
-export const Container = styled.span<{ whitespace: string }>`
-    white-space: ${({ whitespace }) => whitespace};
+export const Container = styled.span<{ whiteSpace: string }>`
+    white-space: ${({ whiteSpace }) => whiteSpace};
 `
