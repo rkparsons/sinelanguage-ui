@@ -1,10 +1,11 @@
 import { AnalyserContainer, AudioPlayer, ImageContainer, PlayerBody } from './AudioPlayer.style'
-import { Box, Grid, Typography } from '@material-ui/core'
+import { Box, Grid, Hidden, Typography, withWidth } from '@material-ui/core'
 import { Podcast, Release, Track } from '~/cms/types'
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 
 import Analyser from './Analyser'
 import Audio from './Audio'
+import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import { Close } from '@material-ui/icons'
 import { ContentType } from '~/constants/contentType'
 import Controls from './Controls'
@@ -15,8 +16,13 @@ import SquareImage from '~/components/SquareImage'
 import { getTimestamp } from '~/utils/date'
 import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 
+type ViewProps = {
+    width: Breakpoint
+}
+
 // todo: move clientId to env vars
-export default () => {
+export default withWidth()(({ width }: ViewProps) => {
+    const isMobile = ['xs', 'sm'].includes(width)
     const audioPlayer = useRef<HTMLDivElement>(null)
     const hideDelay = 5000
     const [isInteracted, setIsInteracted] = useState(false)
@@ -98,7 +104,7 @@ export default () => {
                 <AudioPlayer
                     ref={audioPlayer}
                     height={audioPlayer.current?.getBoundingClientRect().height || 0}
-                    isMinimised={isMinimised}
+                    isMinimised={!isMobile && isMinimised}
                     onMouseOver={onMouseOver}
                     onMouseLeave={() => setIsMinimised(true)}
                 >
@@ -112,12 +118,14 @@ export default () => {
                     <PlayerBody>
                         <Box display="flex">
                             <Box>
-                                <ImageContainer>
-                                    <SquareImage
-                                        title={selectedMedia.content.title}
-                                        image={selectedMedia.content.image}
-                                    />
-                                </ImageContainer>
+                                {!isMobile && (
+                                    <ImageContainer>
+                                        <SquareImage
+                                            title={selectedMedia.content.title}
+                                            image={selectedMedia.content.image}
+                                        />
+                                    </ImageContainer>
+                                )}
                                 <Controls
                                     trackIndex={selectedMedia.trackIndex}
                                     setTrackIndex={setTrackIndex}
@@ -157,7 +165,9 @@ export default () => {
                                     </Grid>
                                     {audioRef.current && (
                                         <Analyser
-                                            showVisualisation={isPlaying && !isMinimised}
+                                            showVisualisation={
+                                                isPlaying && !isMinimised && !isMobile
+                                            }
                                             audioRef={audioRef}
                                         />
                                     )}
@@ -179,4 +189,4 @@ export default () => {
     } else {
         return <></>
     }
-}
+})
