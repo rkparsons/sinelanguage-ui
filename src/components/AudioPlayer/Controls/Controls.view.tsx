@@ -1,5 +1,5 @@
 import { Box, Grid, Hidden, Slider } from '@material-ui/core'
-import { Controls, SliderContainer } from './Controls.style'
+import { Controls, IconButtonContainer } from './Controls.style'
 import { Pause, PlayArrow, SkipNext, SkipPrevious } from '@material-ui/icons'
 
 import IconButton from '~/components/IconButton'
@@ -51,11 +51,13 @@ export default ({
                     <Box flexGrow={1} />
                 </Hidden>
                 <Grid item>
-                    <IconButton
-                        icon={isPlaying ? <Pause /> : <PlayArrow />}
-                        onClick={() => setIsPlaying(!isPlaying)}
-                        isLight={true}
-                    />
+                    <IconButtonContainer>
+                        <IconButton
+                            icon={isPlaying ? <Pause /> : <PlayArrow />}
+                            onClick={() => setIsPlaying(!isPlaying)}
+                            isLight={true}
+                        />
+                    </IconButtonContainer>
                 </Grid>
 
                 <Hidden smDown>

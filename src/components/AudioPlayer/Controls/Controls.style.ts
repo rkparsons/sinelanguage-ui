@@ -4,7 +4,11 @@ import styled from 'styled-components'
 
 export const Controls = styled.div`
     ${({ theme }) => `            
-        padding-top: ${theme.spacing(2)};
+        padding-top: 0;
+
+        ${theme.breakpoints.up('md')} {
+            padding-top: ${theme.spacing(2)};
+        }
     `}
 `
 
@@ -39,4 +43,18 @@ export const SliderContainer = styled.div`
         right: -10px;
         bottom: -10px;
     }
+`
+
+export const IconButtonContainer = styled.div`
+    ${({ theme }) => `    
+        svg {
+            width: ${theme.spacing(10)};
+            height: ${theme.spacing(10)};
+
+            ${theme.breakpoints.up('md')} {
+                width: 1em;
+                height: 1em;
+            }
+        }        
+    `}
 `

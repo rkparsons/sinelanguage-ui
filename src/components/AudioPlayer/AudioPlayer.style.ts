@@ -42,10 +42,14 @@ export const PlayerBody = styled.div`
     text-shadow: ${darkShadow};
 
     ${({ theme }) => `    
-        padding-top: ${theme.spacing(marginTop)};
+        padding-top: ${theme.spacing(3)};
         padding-bottom: ${theme.spacing(3)};
         padding-left: ${theme.spacing(marginSide)};
         padding-right: ${theme.spacing(marginSide)};
+        
+        ${theme.breakpoints.up('md')} {
+            padding-top: ${theme.spacing(marginTop)};
+        }
     `}
 `
 export const AnalyserContainer = styled.div`
