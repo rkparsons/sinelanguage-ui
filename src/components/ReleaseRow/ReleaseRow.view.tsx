@@ -1,7 +1,6 @@
 import { Grid, Typography } from '@material-ui/core'
 import { Release, Video } from '~/cms/types'
 
-import { ContentType } from '~/constants/contentType'
 import React from 'react'
 import moment from 'moment'
 
