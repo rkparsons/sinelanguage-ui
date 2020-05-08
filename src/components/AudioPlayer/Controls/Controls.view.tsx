@@ -1,4 +1,4 @@
-import { Box, Grid, Slider } from '@material-ui/core'
+import { Box, Grid, Hidden, Slider } from '@material-ui/core'
 import { Controls, SliderContainer } from './Controls.style'
 import { Pause, PlayArrow, SkipNext, SkipPrevious } from '@material-ui/icons'
 
@@ -39,15 +39,17 @@ export default ({
     return (
         <Controls>
             <Grid container spacing={3}>
-                <Grid item>
-                    <IconButton
-                        icon={<SkipPrevious />}
-                        onClick={skipPrevious}
-                        isDisabled={trackIndex === 0}
-                        isLight={true}
-                    />
-                </Grid>
-                <Box flexGrow={1} />
+                <Hidden mdDown>
+                    <Grid item>
+                        <IconButton
+                            icon={<SkipPrevious />}
+                            onClick={skipPrevious}
+                            isDisabled={trackIndex === 0}
+                            isLight={true}
+                        />
+                    </Grid>
+                    <Box flexGrow={1} />
+                </Hidden>
                 <Grid item>
                     <IconButton
                         icon={isPlaying ? <Pause /> : <PlayArrow />}
@@ -55,15 +57,18 @@ export default ({
                         isLight={true}
                     />
                 </Grid>
-                <Box flexGrow={1} />
-                <Grid item>
-                    <IconButton
-                        icon={<SkipNext />}
-                        onClick={skipNext}
-                        isDisabled={trackIndex === trackCount - 1}
-                        isLight={true}
-                    />
-                </Grid>
+
+                <Hidden mdDown>
+                    <Box flexGrow={1} />
+                    <Grid item>
+                        <IconButton
+                            icon={<SkipNext />}
+                            onClick={skipNext}
+                            isDisabled={trackIndex === trackCount - 1}
+                            isLight={true}
+                        />
+                    </Grid>
+                </Hidden>
             </Grid>
             {/* <SliderContainer>
                 <Slider value={volume} onChange={handleVolume} min={0} max={1} step={0.01} />

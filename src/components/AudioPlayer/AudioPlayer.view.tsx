@@ -118,14 +118,14 @@ export default withWidth()(({ width }: ViewProps) => {
                     <PlayerBody>
                         <Box display="flex">
                             <Box>
-                                {!isMobile && (
+                                <Hidden smDown>
                                     <ImageContainer>
                                         <SquareImage
                                             title={selectedMedia.content.title}
                                             image={selectedMedia.content.image}
                                         />
                                     </ImageContainer>
-                                )}
+                                </Hidden>
                                 <Controls
                                     trackIndex={selectedMedia.trackIndex}
                                     setTrackIndex={setTrackIndex}
@@ -165,9 +165,7 @@ export default withWidth()(({ width }: ViewProps) => {
                                     </Grid>
                                     {audioRef.current && (
                                         <Analyser
-                                            showVisualisation={
-                                                isPlaying && !isMinimised && !isMobile
-                                            }
+                                            showVisualisation={isPlaying && !isMinimised}
                                             audioRef={audioRef}
                                         />
                                     )}
