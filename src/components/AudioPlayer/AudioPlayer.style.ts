@@ -3,7 +3,7 @@ import { marginSide, marginTop } from '~/styles/sizes'
 import { darkShadow } from '~/styles/shadows'
 import styled from 'styled-components'
 
-export const AudioPlayer = styled.div<{ isMinimised: boolean }>`
+export const AudioPlayer = styled.div<{ isMinimised: boolean; height: number }>`
     @keyframes slidein {
         from {
             bottom: -200px;
@@ -18,7 +18,7 @@ export const AudioPlayer = styled.div<{ isMinimised: boolean }>`
     display: block;
     z-index: 1000;
     left: 0;
-    bottom: ${({ isMinimised }) => (isMinimised ? -102 : -1)}px;
+    bottom: ${({ isMinimised, height }) => (isMinimised ? -height / 2 : -1)}px;
     width: 100%;
     transition: bottom 0.1s ease;
     animation-name: slidein;

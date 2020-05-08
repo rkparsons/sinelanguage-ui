@@ -17,6 +17,7 @@ import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 
 // todo: move clientId to env vars
 export default () => {
+    const audioPlayer = useRef<HTMLDivElement>(null)
     const hideDelay = 5000
     const [isInteracted, setIsInteracted] = useState(false)
     const [isMinimised, setIsMinimised] = useState(false)
@@ -95,6 +96,8 @@ export default () => {
         return (
             <>
                 <AudioPlayer
+                    ref={audioPlayer}
+                    height={audioPlayer.current?.getBoundingClientRect().height || 0}
                     isMinimised={isMinimised}
                     onMouseOver={onMouseOver}
                     onMouseLeave={() => setIsMinimised(true)}
