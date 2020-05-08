@@ -39,7 +39,7 @@ export default ({
     return (
         <Controls>
             <Grid container spacing={3}>
-                <Hidden mdDown>
+                <Hidden smDown>
                     <Grid item>
                         <IconButton
                             icon={<SkipPrevious />}
@@ -58,7 +58,7 @@ export default ({
                     />
                 </Grid>
 
-                <Hidden mdDown>
+                <Hidden smDown>
                     <Box flexGrow={1} />
                     <Grid item>
                         <IconButton

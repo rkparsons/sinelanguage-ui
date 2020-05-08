@@ -13,16 +13,22 @@ export const AudioPlayer = styled.div<{ isMinimised: boolean; height: number }>`
             bottom: -1;
         }
     }
+    transition: bottom 0.1s ease;
+    animation-name: slidein;
+    animation-duration: 0.2s;
 
+    width: 100%;
     position: fixed;
     display: block;
     z-index: 1000;
     left: 0;
-    bottom: ${({ isMinimised, height }) => (isMinimised ? -height / 2 : -1)}px;
-    width: 100%;
-    transition: bottom 0.1s ease;
-    animation-name: slidein;
-    animation-duration: 0.2s;
+
+    bottom: -1px;
+    ${({ theme, isMinimised, height }) => `
+        ${theme.breakpoints.up('md')} {
+            bottom: ${isMinimised ? -height / 2 : -1}px;
+        }
+    `}
 
     svg {
         filter: drop-shadow(${darkShadow});
