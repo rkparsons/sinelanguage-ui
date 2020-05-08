@@ -1,7 +1,7 @@
 import { Button, Grid, Typography } from '@material-ui/core'
+import { EmailInput, InputGrid } from './Subscribe.style'
 import React, { useRef, useState } from 'react'
 
-import { EmailInput } from './Subscribe.style'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
 import { validate } from 'email-validator'
 
@@ -55,8 +55,8 @@ export default () => {
                 NEWSLETTER
             </Typography>
             {!isSuccess && (
-                <Grid container>
-                    <Grid item xs={3}>
+                <InputGrid container>
+                    <Grid item xs={12}>
                         <EmailInput
                             inputRef={emailInput}
                             label={isInvalid ? 'Please enter a valid email' : 'EMAIL'}
@@ -67,8 +67,7 @@ export default () => {
                             onKeyDown={onKeyDown}
                         />
                     </Grid>
-                    <Grid item xs={9} />
-                    <Grid item xs={3} style={{ textAlign: 'right' }}>
+                    <Grid item xs={12} style={{ textAlign: 'right' }}>
                         <Button
                             color="secondary"
                             size="large"
@@ -78,8 +77,7 @@ export default () => {
                             SUBMIT
                         </Button>
                     </Grid>
-                    <Grid item xs={9} />
-                </Grid>
+                </InputGrid>
             )}
             {isSuccess && (
                 <Typography variant="h3" gutterBottom>
