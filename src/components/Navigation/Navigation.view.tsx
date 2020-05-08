@@ -1,13 +1,14 @@
 import { Add, Close } from '@material-ui/icons'
 import { Grid, withWidth } from '@material-ui/core'
 import { Header, HeaderRow } from './Navigation.style'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import IconButton from '~/components/IconButton'
 import NavItem from '~/components/NavItem'
 import PointerEvents from '~/components/PointerEvents'
 import { Route } from '~/constants/route'
+import { globalHistory } from '@reach/router'
 
 type ViewProps = {
     width: Breakpoint
@@ -16,6 +17,12 @@ type ViewProps = {
 export default withWidth()(({ width }: ViewProps) => {
     const isMobile = ['xs', 'sm'].includes(width)
     const [isOverlay, setIsOverlay] = useState(false)
+
+    useEffect(() => {
+        return globalHistory.listen(({ action }) => {
+            if (action === 'PUSH') setIsOverlay(false)
+        })
+    }, [setIsOverlay])
 
     return (
         <Header isOverlay={isOverlay}>
