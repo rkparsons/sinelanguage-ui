@@ -1,12 +1,11 @@
-import { contentOffsetSmall, marginSide } from '~/styles/sizes'
+import { Grid, GridSpacing } from '@material-ui/core'
 
-import { Grid } from '@material-ui/core'
+import { marginSide } from '~/styles/sizes'
 import styled from 'styled-components'
 
 const Row = styled.div`
     ${({ theme }) => `
         width: 100%;
-        color: white;
         white-space: pre;
         text-align: left;
         h3, h4 {
@@ -22,8 +21,12 @@ export const TitleRow = styled(Row)`
     `}
 `
 
-export const ItemRow = styled(Row)`
+export const ItemRow = styled(Row)<{ padding: GridSpacing }>`
     cursor: pointer;
+
+    ${({ theme, padding }) => `    
+        padding: ${theme.spacing(padding)} 0;
+    `}
 `
 
 export const HoverImage = styled(Grid)`

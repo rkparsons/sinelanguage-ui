@@ -2,6 +2,7 @@ import { Grid, Typography } from '@material-ui/core'
 import { Release, Video } from '~/cms/types'
 
 import React from 'react'
+import Whitespace from '~/components/Whitespace'
 import moment from 'moment'
 
 type ViewProps = {
@@ -15,9 +16,11 @@ export default ({ release, format }: ViewProps) => (
             <Typography variant="h3">{release.uid}</Typography>
         </Grid>
         <Grid item xs={12} lg={8} xl={8}>
-            <Typography variant="h3">
-                {release.artist.title.toUpperCase()}, <i>{release.title}</i>
-            </Typography>
+            <Whitespace value="pre-wrap">
+                <Typography variant="h3" style={{ whiteSpace: 'normal' }}>
+                    {release.artist.title.toUpperCase()}, <i>{release.title}</i>
+                </Typography>
+            </Whitespace>
         </Grid>
         <Grid item xs={6} lg={2} xl={1}>
             <Typography variant="h4">{format}</Typography>

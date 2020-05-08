@@ -11,7 +11,9 @@ export default (isDarkMode = false) =>
         createMuiTheme({
             typography: {
                 fontFamily: 'HelveticaNowText',
-                allVariants: {},
+                allVariants: {
+                    wordWrap: 'break-word',
+                },
                 body1: {
                     fontSize: 16,
                     lineHeight: 1.3,

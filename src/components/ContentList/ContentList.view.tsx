@@ -1,6 +1,7 @@
 import { Grid, GridSpacing, Hidden, Typography, withWidth } from '@material-ui/core'
 import { HoverImage, ItemRow, TitleRow } from './ContentList.style'
 import React, { useState } from 'react'
+import { rowPadding, rowSpacing } from '~/styles/sizes'
 
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import ContentCardMedia from '~/components/ContentCardMedia'
@@ -12,7 +13,6 @@ import { Link } from 'gatsby'
 import Overlay from '~/components/Overlay'
 import Scrollable from '~/components/Scrollable'
 import { getUrl } from '~/utils/content'
-import { rowSpacing } from '~/styles/sizes'
 
 type ViewProps = {
     title: string
@@ -37,14 +37,15 @@ export default withWidth()(({ title, items, width }: ViewProps) => {
                     {items.map((item, index) => (
                         <Grid item xs={12} key={index}>
                             <Link to={getUrl(item)}>
-                                <ItemRow
-                                    onMouseEnter={() => setActiveItem(item)}
-                                    onMouseLeave={() => setActiveItem(undefined)}
-                                >
-                                    <InvertOnHover>
+                                <InvertOnHover>
+                                    <ItemRow
+                                        onMouseEnter={() => setActiveItem(item)}
+                                        onMouseLeave={() => setActiveItem(undefined)}
+                                        padding={rowPadding[width]}
+                                    >
                                         <ContentRow content={item} />
-                                    </InvertOnHover>
-                                </ItemRow>
+                                    </ItemRow>
+                                </InvertOnHover>
                             </Link>
                         </Grid>
                     ))}
