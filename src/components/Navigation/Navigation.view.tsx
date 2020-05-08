@@ -1,9 +1,9 @@
 import { Add, Close } from '@material-ui/icons'
 import { Grid, withWidth } from '@material-ui/core'
-import { Header, HeaderRow } from './Navigation.style'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
+import { Header } from './Navigation.style'
 import IconButton from '~/components/IconButton'
 import Links from './Links'
 import NavItem from '~/components/NavItem'
@@ -20,11 +20,13 @@ type ViewProps = {
 export default withWidth()(({ width, location }: ViewProps) => {
     const isMenuOpen = location.pathname === '/menu'
     const isMobile = ['xs', 'sm'].includes(width)
+    const [previousLocation, setPreviousLocation] = useState<string>()
 
     const handleMenuClick = () => {
         if (isMenuOpen) {
-            navigate('/')
+            navigate(previousLocation || '/')
         } else {
+            setPreviousLocation(location.pathname)
             navigate('/menu')
         }
     }
