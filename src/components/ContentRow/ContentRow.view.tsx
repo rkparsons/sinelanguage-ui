@@ -7,7 +7,6 @@ import EventRow from '~/components/EventRow'
 import PodcastRow from '~/components/PodcastRow'
 import React from 'react'
 import ReleaseRow from '~/components/ReleaseRow'
-import VideoRow from '~/components/VideoRow'
 
 type ViewProps = {
     content: ContentItem
@@ -18,8 +17,11 @@ export default ({ content }: ViewProps) => {
         [ContentType.ARTIST]: <ArtistRow artist={content as Artist} />,
         [ContentType.EVENT]: <EventRow event={content as Event} />,
         [ContentType.PODCAST]: <PodcastRow podcast={content as Podcast} />,
-        [ContentType.RELEASE]: <ReleaseRow release={content as Release} />,
-        [ContentType.VIDEO]: <VideoRow video={content as Video} />,
+        [ContentType.RELEASE]: (
+            <ReleaseRow release={content as Release} format={(content as Release).format} />
+        ),
+        // todo: add format constant to video
+        [ContentType.VIDEO]: <ReleaseRow release={content as Video} format="Video" />,
     }
 
     return components[content.__typename]
