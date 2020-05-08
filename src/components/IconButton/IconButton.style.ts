@@ -1,9 +1,8 @@
 import { darkShadow, lightShadow } from '~/styles/shadows'
 
-import { Grid } from '@material-ui/core'
 import styled from 'styled-components'
 
-export const Button = styled(Grid)<{ isLight: boolean; isDisabled: boolean }>`
+export const Button = styled.div<{ isLight: boolean; isDisabled: boolean }>`
     svg {
         display: block;
     }

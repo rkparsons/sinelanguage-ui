@@ -12,14 +12,10 @@ type ViewProps = {
 }
 
 export default ({ label, icon, onClick, isLight, isDisabled = false }: ViewProps) => (
-    <Button
-        container
-        alignItems="center"
-        onClick={() => !isDisabled && onClick()}
-        isLight={isLight}
-        isDisabled={isDisabled}
-    >
-        <Grid item>{icon}</Grid>
-        {label && <Grid item>{label}</Grid>}
+    <Button onClick={() => !isDisabled && onClick()} isLight={isLight} isDisabled={isDisabled}>
+        <Grid container alignItems="center">
+            <Grid item>{icon}</Grid>
+            {label && <Grid item>{label}</Grid>}
+        </Grid>
     </Button>
 )
