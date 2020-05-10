@@ -1,9 +1,10 @@
 import { Controls, ControlsGrid, VideoContainer } from './YouTubeEmbed.style'
 import { Fullscreen, Pause, PlayArrow, VolumeOff, VolumeUp } from '@material-ui/icons'
-import { Grid, IconButton, Typography } from '@material-ui/core'
+import { Grid, Hidden, IconButton, Typography, withWidth } from '@material-ui/core'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { getDurationTimestamp, getTimestamp } from '~/utils/date'
 
+import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import ReactPlayer from 'react-player'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import { findDOMNode } from 'react-dom'
@@ -13,6 +14,7 @@ type ViewProps = {
     artist: string
     title: string
     src: string
+    width: Breakpoint
 }
 
 type OnProgressCallback = {
@@ -22,10 +24,11 @@ type OnProgressCallback = {
     loadedSeconds: number
 }
 
-export default ({ artist, title, src }: ViewProps) => {
+export default withWidth()(({ artist, title, src, width }: ViewProps) => {
+    const isMobile = ['xs', 'sm'].includes(width)
     const player = useRef<ReactPlayer>(null)
-    const [isPlaying, setIsPlaying] = useState(true)
-    const [isMuted, setIsMuted] = useState(true)
+    const [isPlaying, setIsPlaying] = useState(!isMobile)
+    const [isMuted, setIsMuted] = useState(!isMobile)
     const [forceControlsVisibility, setForceControlsVisibility] = useState(true)
     const [isControlsVisible, setIsControlsVisible] = useState(true)
     const [duration, setDuration] = useState<number>()
@@ -55,6 +58,14 @@ export default ({ artist, title, src }: ViewProps) => {
         }
     }
 
+    const handlePlayClick = () => {
+        if (isMobile) {
+            handleFullscreenClick()
+        } else {
+            setIsPlaying(true)
+        }
+    }
+
     useEffect(() => {
         if (!isMuted) {
             setSelectedMedia()
@@ -71,13 +82,14 @@ export default ({ artist, title, src }: ViewProps) => {
                 url={src}
                 playing={isPlaying}
                 muted={isMuted}
+                controls={isMobile}
                 config={{
                     youtube: {
                         playerVars: { modestbranding: 1, preload: true },
                     },
                 }}
                 onPause={() => setIsPlaying(false)}
-                onPlay={() => setIsPlaying(true)}
+                onPlay={handlePlayClick}
                 onDuration={setDuration}
                 onProgress={({
                     played,
@@ -86,61 +98,63 @@ export default ({ artist, title, src }: ViewProps) => {
                     loadedSeconds,
                 }: OnProgressCallback) => setProgress(playedSeconds)}
             />
-            <Controls
-                isVisible={!isPlaying || isMuted || forceControlsVisibility || isControlsVisible}
-            >
-                <ControlsGrid container alignItems="center" justify="space-between">
-                    <Grid item xs={3}>
-                        <IconButton
-                            onClick={() => setIsPlaying(!isPlaying)}
-                            aria-label={isPlaying ? 'Pause the video' : 'Play the video'}
-                        >
-                            {isPlaying ? (
-                                <Pause fontSize="large" />
-                            ) : (
-                                <PlayArrow fontSize="large" />
-                            )}
-                        </IconButton>
-                        <IconButton
-                            onClick={() => setIsMuted(!isMuted)}
-                            aria-label={isMuted ? 'Unmute the video' : 'Mute the video'}
-                        >
-                            {isMuted ? (
-                                <VolumeOff fontSize="large" />
-                            ) : (
-                                <VolumeUp fontSize="large" />
-                            )}
-                        </IconButton>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Typography variant="body2" align="center">
-                            {artist.toUpperCase()}, <i>{title}</i>
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={3}>
-                        <Grid container justify="space-between" alignItems="center">
-                            <Grid item>
-                                {duration && duration > 0 && (
-                                    <Typography variant="body2" align="right">
-                                        {`${getTimestamp(
-                                            progress * 1000,
-                                            duration * 1000
-                                        )} / ${getDurationTimestamp(duration * 1000)}`}
-                                    </Typography>
+            <Hidden smDown>
+                <Controls isVisible={!isPlaying || forceControlsVisibility || isControlsVisible}>
+                    <ControlsGrid container alignItems="center" justify="space-between">
+                        <Grid item xs={3}>
+                            <IconButton
+                                onClick={() => setIsPlaying(!isPlaying)}
+                                aria-label={isPlaying ? 'Pause the video' : 'Play the video'}
+                            >
+                                {isPlaying ? (
+                                    <Pause fontSize="large" />
+                                ) : (
+                                    <PlayArrow fontSize="large" />
                                 )}
-                            </Grid>
-                            <Grid item>
-                                <IconButton
-                                    onClick={handleFullscreenClick}
-                                    aria-label="Fullscreen the video"
-                                >
-                                    <Fullscreen fontSize="large" />
-                                </IconButton>
+                            </IconButton>
+                            <IconButton
+                                onClick={() => setIsMuted(!isMuted)}
+                                aria-label={isMuted ? 'Unmute the video' : 'Mute the video'}
+                            >
+                                {isMuted ? (
+                                    <VolumeOff fontSize="large" />
+                                ) : (
+                                    <VolumeUp fontSize="large" />
+                                )}
+                            </IconButton>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <Typography variant="body2" align="center">
+                                {artist.toUpperCase()}, <i>{title}</i>
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={3}>
+                            <Grid container justify="space-between" alignItems="center">
+                                <Grid item>
+                                    {duration && duration > 0 && (
+                                        <Hidden smDown>
+                                            <Typography variant="body2" align="right">
+                                                {`${getTimestamp(
+                                                    progress * 1000,
+                                                    duration * 1000
+                                                )} / ${getDurationTimestamp(duration * 1000)}`}
+                                            </Typography>
+                                        </Hidden>
+                                    )}
+                                </Grid>
+                                <Grid item>
+                                    <IconButton
+                                        onClick={handleFullscreenClick}
+                                        aria-label="Fullscreen the video"
+                                    >
+                                        <Fullscreen fontSize="large" />
+                                    </IconButton>
+                                </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
-                </ControlsGrid>
-            </Controls>
+                    </ControlsGrid>
+                </Controls>
+            </Hidden>
         </VideoContainer>
     )
-}
+})

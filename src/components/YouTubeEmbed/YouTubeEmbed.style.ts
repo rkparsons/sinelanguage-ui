@@ -24,7 +24,7 @@ export const Controls = styled.div<{ isVisible: boolean }>`
     color: grey;
     bottom: 0;
     width: 100%;
-    height: 10%;
+    height: 60px;
     opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
     transition-property: opacity;
     transition-duration: 0s;
