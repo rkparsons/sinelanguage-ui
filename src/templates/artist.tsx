@@ -1,5 +1,5 @@
 import { Artist, Release, Video } from '~/cms/types'
-import { Box, Grid, Typography } from '@material-ui/core'
+import { Box, Grid, Hidden, Typography } from '@material-ui/core'
 
 import ArtistDetail from '~/components/ArtistDetail'
 import Centered from '~/components/Centered'
@@ -30,12 +30,14 @@ export default ({ data }: Props) => {
         <Overlay>
             <Head title={title} description={description.description} image={image.fluid.src} />
             <Grid container>
-                <Grid item xs={6}>
-                    <Centered size={7}>
-                        <Image title={title} alt={title} sizes={{ ...image.fluid }} />
-                    </Centered>
-                </Grid>
-                <Grid item xs={6}>
+                <Hidden mdDown>
+                    <Grid item xs={6}>
+                        <Centered size={7}>
+                            <Image title={title} alt={title} sizes={{ ...image.fluid }} />
+                        </Centered>
+                    </Grid>
+                </Hidden>
+                <Grid item xs={12} lg={6}>
                     <Scrollable>
                         <SideMargins>
                             <ArtistDetail artist={data.contentfulArtist} />

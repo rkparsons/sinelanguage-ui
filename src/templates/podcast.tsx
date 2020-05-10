@@ -1,5 +1,6 @@
+import { Grid, Hidden } from '@material-ui/core'
+
 import Centered from '~/components/Centered'
-import { Grid } from '@material-ui/core'
 import Head from '~/components/Head'
 import Image from 'gatsby-image'
 import Overlay from '~/components/Overlay'
@@ -24,12 +25,14 @@ export default ({ data }: Props) => {
             <Head title={title} description={description.description} image={image.fluid.src} />
             <Overlay>
                 <Grid container>
-                    <Grid item xs={6}>
-                        <Centered size={7}>
-                            <Image title={title} alt={title} sizes={{ ...image.fluid }} />
-                        </Centered>
-                    </Grid>
-                    <Grid item xs={6}>
+                    <Hidden mdDown>
+                        <Grid item xs={6}>
+                            <Centered size={7}>
+                                <Image title={title} alt={title} sizes={{ ...image.fluid }} />
+                            </Centered>
+                        </Grid>
+                    </Hidden>
+                    <Grid item xs={12} lg={6}>
                         <Scrollable>
                             <SideMargins>
                                 <PodcastDetail podcast={data.contentfulPodcast} />
