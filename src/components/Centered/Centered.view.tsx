@@ -1,7 +1,7 @@
 import { Grid, GridSize } from '@material-ui/core'
 import React, { ReactNode } from 'react'
 
-import { FullSizeGrid } from './Centered.style'
+import FullSizeGrid from '~/components/FullSizeGrid'
 
 type ViewProps = {
     children: ReactNode
@@ -9,7 +9,7 @@ type ViewProps = {
 }
 
 export default ({ children, size }: ViewProps) => (
-    <FullSizeGrid container justify="center" alignItems="center">
+    <FullSizeGrid justify="center" alignItems="center">
         <Grid item xs={size}>
             {children}
         </Grid>
