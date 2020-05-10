@@ -1,6 +1,7 @@
-import { Grid, Typography } from '@material-ui/core'
+import { Grid, Hidden, Typography } from '@material-ui/core'
 
 import ContentPlayButton from '~/components/ContentPlayButton'
+import Image from 'gatsby-image'
 import { Podcast } from '~/cms/types'
 import React from 'react'
 import RichText from '~/components/RichText'
@@ -9,17 +10,30 @@ type ViewProps = {
     podcast: Podcast
 }
 
-export default ({ podcast }: ViewProps) => (
-    <>
-        <Grid container spacing={5}>
-            <Grid item>
-                <Typography variant="h3">{podcast.title.toUpperCase()}</Typography>
+export default ({ podcast }: ViewProps) => {
+    const { title, introduction, image } = podcast
+    return (
+        <>
+            <Grid container spacing={5}>
+                <Grid item>
+                    <Typography variant="h3">{title.toUpperCase()}</Typography>
+                </Grid>
+                <Grid item>
+                    <ContentPlayButton content={podcast} trackIndex={0} isLight={true} />
+                </Grid>
             </Grid>
-            <Grid item>
-                <ContentPlayButton content={podcast} trackIndex={0} isLight={true} />
-            </Grid>
-        </Grid>
-        <br />
-        <RichText json={podcast.introduction.json} variant="body2" />
-    </>
-)
+
+            <Hidden lgUp>
+                <br />
+                <Grid container>
+                    <Grid item xs={12} sm={8} md={6}>
+                        <Image title={title} alt={title} sizes={{ ...image.fluid }} />
+                    </Grid>
+                </Grid>
+            </Hidden>
+
+            <br />
+            <RichText json={introduction.json} variant="body2" />
+        </>
+    )
+}
