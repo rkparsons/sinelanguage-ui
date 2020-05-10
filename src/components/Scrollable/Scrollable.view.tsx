@@ -6,4 +6,12 @@ type ViewProps = {
     children: ReactNode
 }
 
-export default ({ children }: ViewProps) => <Scrollable>{children}</Scrollable>
+export default ({ children }: ViewProps) => (
+    <Scrollable>
+        {children}
+        <br />
+        <br />
+        <br />
+        <br />
+    </Scrollable>
+)
