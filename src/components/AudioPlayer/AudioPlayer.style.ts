@@ -13,7 +13,6 @@ export const AudioPlayer = styled.div<{ isMinimised: boolean; height: number }>`
             bottom: -1;
         }
     }
-    transition: bottom 0.1s ease;
     animation-name: slidein;
     animation-duration: 0.2s;
 
@@ -29,6 +28,9 @@ export const AudioPlayer = styled.div<{ isMinimised: boolean; height: number }>`
             bottom: ${isMinimised ? -height / 2 : -1}px;
         }
     `}
+    @supports not (-ms-ime-align:auto) {
+        transition: bottom 0.1s ease;
+    }
 
     svg {
         filter: drop-shadow(${darkShadow});
