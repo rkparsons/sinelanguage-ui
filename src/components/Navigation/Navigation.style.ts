@@ -17,6 +17,11 @@ export const Header = styled.header`
         padding-top: ${theme.spacing(marginTop)};
         padding-left: ${theme.spacing(marginSide)};
         padding-right: ${theme.spacing(marginSide)};
+
+        svg {
+            width: ${theme.spacing(7.5)};
+            height: ${theme.spacing(7.5)};
+        }
     `}
 `
 
