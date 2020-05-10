@@ -1,19 +1,34 @@
+import { Grid, Hidden, Typography } from '@material-ui/core'
+
 import { Event } from '~/cms/types'
 import React from 'react'
-import { Typography } from '@material-ui/core'
+import TeaserVideo from '~/components/TeaserVideo'
 import moment from 'moment'
 
 type ViewProps = {
     event: Event
 }
 
-export default ({ event }: ViewProps) => (
-    <>
-        <Typography variant="h3">{event.title.toUpperCase()}</Typography>
-        <Typography variant="h3">
-            {moment(event.date).format(`ddd, DD MMM YYYY`).toUpperCase()}
-        </Typography>
-        <br />
-        <Typography variant="body2">{event.description.description}</Typography>
-    </>
-)
+export default ({ event }: ViewProps) => {
+    const { title, date, image, description, teaserVideo } = event
+    return (
+        <>
+            <Typography variant="h3">{title.toUpperCase()}</Typography>
+            <Typography variant="h3">
+                {moment(date).format(`ddd, DD MMM YYYY`).toUpperCase()}
+            </Typography>
+            <br />
+
+            <Hidden lgUp>
+                <Grid container>
+                    <Grid item xs={12} sm={8} md={6}>
+                        <TeaserVideo src={teaserVideo.file.url} />
+                    </Grid>
+                </Grid>
+                <br />
+            </Hidden>
+
+            <Typography variant="body2">{description.description}</Typography>
+        </>
+    )
+}
