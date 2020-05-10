@@ -1,5 +1,5 @@
+import { BlackBackdrop, HoverImage, ItemRow, TitleRow } from './ContentList.style'
 import { Grid, GridSpacing, Hidden, Typography, withWidth } from '@material-ui/core'
-import { HoverImage, ItemRow, TitleRow } from './ContentList.style'
 import React, { useState } from 'react'
 import { rowPadding, rowSpacing } from '~/styles/sizes'
 
@@ -58,6 +58,7 @@ export default withWidth()(({ title, items, width }: ViewProps) => {
                             <ContentCardMedia content={activeItem} />
                         </Grid>
                     </HoverImage>
+                    {activeItem.__typename === ContentType.VIDEO && <BlackBackdrop />}
                 </Hidden>
             )}
         </Overlay>

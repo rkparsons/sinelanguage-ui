@@ -42,3 +42,17 @@ export const HoverImage = styled(Grid)`
     height: 100vh;
     vertical-align: middle;
 `
+
+export const BlackBackdrop = styled.div`
+    position: fixed;
+    pointer-events: none;
+    background-color: black;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -2;
+    margin: auto;
+    width: 100vw;
+    height: 100vh;
+`
