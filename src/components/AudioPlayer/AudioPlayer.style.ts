@@ -37,8 +37,13 @@ export const AudioPlayer = styled.div<{ isMinimised: boolean; height: number }>`
 
 export const PlayerBody = styled.div`
     color: white;
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.8);
+
+    @supports (backdrop-filter: blur(12px)) {
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+    }
+
     text-shadow: ${darkShadow};
 
     ${({ theme }) => `    
@@ -65,4 +70,9 @@ export const ImageContainer = styled.div`
     ${({ theme }) => `   
         width: ${theme.spacing(27)};
     `}
+`
+
+export const PlayerText = styled.div`
+    position: relative;
+    z-index: 1000;
 `

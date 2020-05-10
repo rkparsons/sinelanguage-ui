@@ -1,4 +1,10 @@
-import { AnalyserContainer, AudioPlayer, ImageContainer, PlayerBody } from './AudioPlayer.style'
+import {
+    AnalyserContainer,
+    AudioPlayer,
+    ImageContainer,
+    PlayerBody,
+    PlayerText,
+} from './AudioPlayer.style'
 import { Box, Grid, Hidden, Typography, withWidth } from '@material-ui/core'
 import { Podcast, Release, Track } from '~/cms/types'
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
@@ -140,18 +146,23 @@ export default withWidth()(({ width }: ViewProps) => {
                                 <AnalyserContainer>
                                     <Grid container justify="space-between">
                                         <Grid item>
-                                            <Typography variant="h5" gutterBottom>
-                                                {selectedMedia.content.__typename ===
-                                                    ContentType.RELEASE &&
-                                                    `${(selectedMedia.content as Release).artist.title.toUpperCase()}, `}
-                                                <i>
-                                                    {selectedTracks[selectedMedia.trackIndex].title}
-                                                </i>
-                                            </Typography>
-                                            <Typography variant="h5">
-                                                {getTimestamp(currentTimeMs, getDuration())}/
-                                                {getTimestamp(getDuration(), getDuration())}
-                                            </Typography>
+                                            <PlayerText>
+                                                <Typography variant="h5" gutterBottom>
+                                                    {selectedMedia.content.__typename ===
+                                                        ContentType.RELEASE &&
+                                                        `${(selectedMedia.content as Release).artist.title.toUpperCase()}, `}
+                                                    <i>
+                                                        {
+                                                            selectedTracks[selectedMedia.trackIndex]
+                                                                .title
+                                                        }
+                                                    </i>
+                                                </Typography>
+                                                <Typography variant="h5">
+                                                    {getTimestamp(currentTimeMs, getDuration())}/
+                                                    {getTimestamp(getDuration(), getDuration())}
+                                                </Typography>
+                                            </PlayerText>
                                         </Grid>
                                         {true && (
                                             <Grid item>
