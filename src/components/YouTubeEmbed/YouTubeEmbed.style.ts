@@ -25,11 +25,15 @@ export const Controls = styled.div<{ isVisible: boolean }>`
     bottom: 0;
     width: 100%;
     height: 10%;
-    text-shadow: none;
     opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
     transition-property: opacity;
     transition-duration: 0s;
     transition-delay: ${({ isVisible }) => (isVisible ? 0 : 1)}s;
+    text-shadow: none;
+
+    svg {
+        filter: none;
+    }
 `
 
 export const ControlsGrid = styled(Grid)`
