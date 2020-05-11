@@ -15,7 +15,9 @@ export const Overlay = styled.div`
         filter: drop-shadow(${darkShadow});
     }
 
-    @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
-        background-color: white;
+    background-color: white;
+
+    @supports (filter: blur(12px)) {
+        background: none;
     }
 `
