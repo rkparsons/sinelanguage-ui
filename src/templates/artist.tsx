@@ -9,7 +9,6 @@ import Image from 'gatsby-image'
 import Overlay from '~/components/Overlay'
 import React from 'react'
 import Scrollable from '~/components/Scrollable'
-import SideMargins from '~/components/SideMargins'
 import { graphql } from 'gatsby'
 import { sortByDate } from '~/utils/content'
 
@@ -38,13 +37,11 @@ export default ({ data }: Props) => {
                     </Grid>
                 </Hidden>
                 <Grid item xs={12} lg={6}>
-                    <Scrollable>
-                        <SideMargins>
-                            <ArtistDetail artist={data.contentfulArtist} />
-                            <Typography variant="h3">RELEASES</Typography>
-                            <br />
-                            <Grid container>{relatedContentComponents}</Grid>
-                        </SideMargins>
+                    <Scrollable isWithMargin={true}>
+                        <ArtistDetail artist={data.contentfulArtist} />
+                        <Typography variant="h3">RELEASES</Typography>
+                        <br />
+                        <Grid container>{relatedContentComponents}</Grid>
                     </Scrollable>
                 </Grid>
             </Grid>

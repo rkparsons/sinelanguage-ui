@@ -9,7 +9,6 @@ import Overlay from '~/components/Overlay'
 import React from 'react'
 import ReleaseDetail from '~/components/ReleaseDetail'
 import Scrollable from '~/components/Scrollable'
-import SideMargins from '~/components/SideMargins'
 import { graphql } from 'gatsby'
 import { sortByDate } from '~/utils/content'
 
@@ -44,21 +43,19 @@ export default ({ data }: Props) => {
                         </Grid>
                     </Hidden>
                     <Grid item xs={12} lg={6}>
-                        <Scrollable>
-                            <SideMargins>
-                                <ReleaseDetail release={data.contentfulRelease} />
-                                <Grid container>
-                                    <ContentThumbnail content={artist} index={0} />
-                                </Grid>
-                                <br />
-                                {relatedContentComponents.length > 0 && (
-                                    <>
-                                        <Typography variant="h3">RELATED</Typography>
-                                        <br />
-                                        <Grid container>{relatedContentComponents}</Grid>
-                                    </>
-                                )}
-                            </SideMargins>
+                        <Scrollable isWithMargin={true}>
+                            <ReleaseDetail release={data.contentfulRelease} />
+                            <Grid container>
+                                <ContentThumbnail content={artist} index={0} />
+                            </Grid>
+                            <br />
+                            {relatedContentComponents.length > 0 && (
+                                <>
+                                    <Typography variant="h3">RELATED</Typography>
+                                    <br />
+                                    <Grid container>{relatedContentComponents}</Grid>
+                                </>
+                            )}
                         </Scrollable>
                     </Grid>
                 </Grid>

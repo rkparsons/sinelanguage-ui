@@ -25,7 +25,7 @@ export const ItemRow = styled(Row)<{ padding: GridSpacing }>`
     cursor: pointer;
 
     ${({ theme, padding }) => `    
-        padding: ${theme.spacing(padding)} 0;
+        padding: ${theme.spacing(padding * 0.5)} 0;
     `}
 `
 

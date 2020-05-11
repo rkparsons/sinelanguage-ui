@@ -25,7 +25,7 @@ export default withWidth()(({ title, items, width }: ViewProps) => {
 
     return (
         <Overlay>
-            <Scrollable>
+            <Scrollable isWithMargin={false}>
                 <Grid container spacing={rowSpacing[width]}>
                     <Grid item xs={12}>
                         <TitleRow>

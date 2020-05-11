@@ -8,7 +8,6 @@ import Image from 'gatsby-image'
 import Overlay from '~/components/Overlay'
 import React from 'react'
 import Scrollable from '~/components/Scrollable'
-import SideMargins from '~/components/SideMargins'
 import TeaserVideo from '~/components/TeaserVideo'
 import { graphql } from 'gatsby'
 
@@ -34,10 +33,8 @@ export default ({ data }: Props) => {
                         </Grid>
                     </Hidden>
                     <Grid item xs={12} lg={6}>
-                        <Scrollable>
-                            <SideMargins>
-                                <EventDetail event={data.contentfulEvent} />
-                            </SideMargins>
+                        <Scrollable isWithMargin={true}>
+                            <EventDetail event={data.contentfulEvent} />
                         </Scrollable>
                     </Grid>
                 </Grid>
