@@ -1,4 +1,3 @@
-import { darkShadow, lightShadow } from '~/styles/shadows'
 import { marginSide, marginTop } from '~/styles/sizes'
 
 import { Grid } from '@material-ui/core'
@@ -15,8 +14,6 @@ export const Header = styled.header`
 
     ${({ theme }) => `
         padding-top: ${theme.spacing(marginTop)};
-        padding-left: ${theme.spacing(marginSide)};
-        padding-right: ${theme.spacing(marginSide)};
 
         svg {
             width: ${theme.spacing(7.5)};
@@ -25,8 +22,8 @@ export const Header = styled.header`
     `}
 `
 
-export const HeaderRow = styled(Grid)`
+export const Title = styled.div`
     ${({ theme }) => `
-        height: ${theme.spacing(9)};
+        padding-left: ${theme.spacing(marginSide)};
     `}
 `

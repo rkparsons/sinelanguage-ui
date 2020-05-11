@@ -4,14 +4,12 @@ import { marginSide } from '~/styles/sizes'
 import styled from 'styled-components'
 
 const Row = styled.div`
+    width: 100%;
+    white-space: pre;
+    text-align: left;
+
     ${({ theme }) => `
-        width: 100%;
-        white-space: pre;
-        text-align: left;
-        h3, h4 {
-            padding-left: ${theme.spacing(marginSide)};
-            padding-right: ${theme.spacing(marginSide)};
-        }
+        padding-left: ${theme.spacing(marginSide)};
     `}
 `
 
