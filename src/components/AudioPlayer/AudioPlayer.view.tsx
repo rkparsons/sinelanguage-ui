@@ -16,6 +16,7 @@ import { Close } from '@material-ui/icons'
 import { ContentType } from '~/constants/contentType'
 import Controls from './Controls'
 import IconButton from '~/components/IconButton'
+import { PlayerState } from '~/constants/playerState'
 import Progress from './Progress'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import SquareImage from '~/components/SquareImage'
@@ -28,11 +29,11 @@ type ViewProps = {
 
 // todo: move clientId to env vars
 export default withWidth()(({ width }: ViewProps) => {
+    const [playerState, setPlayerState] = useState(PlayerState.CLOSED)
     const isMobile = ['xs', 'sm'].includes(width)
     const audioPlayer = useRef<HTMLDivElement>(null)
     const hideDelay = 5000
     const [isInteracted, setIsInteracted] = useState(false)
-    const [isMinimised, setIsMinimised] = useState(false)
     const audioRef = useRef<HTMLAudioElement>(null)
     const [currentTimeMs, setCurrentTimeMs] = useState(0)
     const { selectedMedia, setSelectedMedia } = useContext(SelectedMediaContext)
@@ -54,11 +55,11 @@ export default withWidth()(({ width }: ViewProps) => {
     }
 
     useEffect(() => {
-        setIsMinimised(false)
+        setPlayerState(PlayerState.OPEN)
         setIsInteracted(false)
         const hideIfNoInteraction = setTimeout(() => {
-            if (!isInteracted) {
-                setIsMinimised(true)
+            if (!isInteracted && !isMobile) {
+                setPlayerState(PlayerState.MINIMISED)
             }
         }, hideDelay)
 
@@ -99,8 +100,16 @@ export default withWidth()(({ width }: ViewProps) => {
     }, [selectedMedia])
 
     const onMouseOver = () => {
-        setIsInteracted(true)
-        setIsMinimised(false)
+        if (!isMobile) {
+            setIsInteracted(true)
+            setPlayerState(PlayerState.OPEN)
+        }
+    }
+
+    const onMouseLeave = () => {
+        if (!isMobile) {
+            setPlayerState(PlayerState.MINIMISED)
+        }
     }
 
     // todo: move clientId to env vars
@@ -110,9 +119,9 @@ export default withWidth()(({ width }: ViewProps) => {
                 <AudioPlayer
                     ref={audioPlayer}
                     height={audioPlayer.current?.getBoundingClientRect().height || 0}
-                    isMinimised={!isMobile && isMinimised}
+                    playerState={playerState}
                     onMouseOver={onMouseOver}
-                    onMouseLeave={() => setIsMinimised(true)}
+                    onMouseLeave={onMouseLeave}
                 >
                     <Progress
                         audioRef={audioRef}
@@ -176,7 +185,9 @@ export default withWidth()(({ width }: ViewProps) => {
                                     </Grid>
                                     {audioRef.current && (
                                         <Analyser
-                                            showVisualisation={isPlaying && !isMinimised}
+                                            showVisualisation={
+                                                isPlaying && playerState === PlayerState.OPEN
+                                            }
                                             audioRef={audioRef}
                                         />
                                     )}

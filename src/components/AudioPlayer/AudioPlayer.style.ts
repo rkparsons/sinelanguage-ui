@@ -1,9 +1,10 @@
 import { marginSide, marginTop } from '~/styles/sizes'
 
+import { PlayerState } from '~/constants/playerState'
 import { darkShadow } from '~/styles/shadows'
 import styled from 'styled-components'
 
-export const AudioPlayer = styled.div<{ isMinimised: boolean; height: number }>`
+export const AudioPlayer = styled.div<{ playerState: PlayerState; height: number }>`
     @keyframes slidein {
         from {
             bottom: -200px;
@@ -22,15 +23,16 @@ export const AudioPlayer = styled.div<{ isMinimised: boolean; height: number }>`
     z-index: 1000;
     left: 0;
 
-    bottom: -1px;
-    ${({ theme, isMinimised, height }) => `
-        ${theme.breakpoints.up('md')} {
-            bottom: ${isMinimised ? -height / 2 : -1}px;
-        }
+    ${({ playerState, height }) => `        
+        bottom: ${
+            playerState === PlayerState.CLOSED
+                ? -height
+                : playerState === PlayerState.MINIMISED
+                ? -height / 2
+                : -1
+        }px;
     `}
-    @supports not (-ms-ime-align:auto) {
-        transition: bottom 0.1s ease;
-    }
+    transition: bottom 1s ease;
 
     svg {
         filter: drop-shadow(${darkShadow});
