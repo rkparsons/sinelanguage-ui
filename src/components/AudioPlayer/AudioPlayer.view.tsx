@@ -181,7 +181,11 @@ export default withWidth()(({ width }: ViewProps) => {
                                         </Grid>
                                     </Grid>
                                     {audioRef.current && (
-                                        <AnimateOpacity playerState={playerState}>
+                                        <AnimateOpacity
+                                            isVisible={
+                                                isPlaying && playerState !== PlayerState.MINIMISED
+                                            }
+                                        >
                                             <Analyser audioRef={audioRef} />
                                         </AnimateOpacity>
                                     )}
