@@ -1,4 +1,4 @@
-import { Box, Grid } from '@material-ui/core'
+import { Box, Grid, Hidden } from '@material-ui/core'
 import { Controls, IconButtonContainer } from './Controls.style'
 import { Pause, PlayArrow, SkipNext, SkipPrevious } from '@material-ui/icons'
 
@@ -13,7 +13,6 @@ type ControlsProps = {
     volume: number
     setVolume(volume: number): void
     trackCount: number
-    isMiniPlayer: boolean
 }
 
 export default ({
@@ -24,7 +23,6 @@ export default ({
     volume,
     setVolume,
     trackCount,
-    isMiniPlayer,
 }: ControlsProps) => {
     const skipPrevious = () => {
         setTrackIndex(trackIndex - 1)
@@ -41,19 +39,17 @@ export default ({
     return (
         <Controls>
             <Grid container spacing={3}>
-                {!isMiniPlayer && (
-                    <>
-                        <Grid item>
-                            <IconButton
-                                icon={<SkipPrevious />}
-                                onClick={skipPrevious}
-                                isDisabled={trackIndex === 0}
-                                isLight={true}
-                            />
-                        </Grid>
-                        <Box flexGrow={1} />
-                    </>
-                )}
+                <Hidden smDown>
+                    <Grid item>
+                        <IconButton
+                            icon={<SkipPrevious />}
+                            onClick={skipPrevious}
+                            isDisabled={trackIndex === 0}
+                            isLight={true}
+                        />
+                    </Grid>
+                    <Box flexGrow={1} />
+                </Hidden>
                 <Grid item>
                     <IconButtonContainer>
                         <IconButton
@@ -64,19 +60,17 @@ export default ({
                     </IconButtonContainer>
                 </Grid>
 
-                {!isMiniPlayer && (
-                    <>
-                        <Box flexGrow={1} />
-                        <Grid item>
-                            <IconButton
-                                icon={<SkipNext />}
-                                onClick={skipNext}
-                                isDisabled={trackIndex === trackCount - 1}
-                                isLight={true}
-                            />
-                        </Grid>
-                    </>
-                )}
+                <Hidden smDown>
+                    <Box flexGrow={1} />
+                    <Grid item>
+                        <IconButton
+                            icon={<SkipNext />}
+                            onClick={skipNext}
+                            isDisabled={trackIndex === trackCount - 1}
+                            isLight={true}
+                        />
+                    </Grid>
+                </Hidden>
             </Grid>
             {/* <SliderContainer>
                 <Slider value={volume} onChange={handleVolume} min={0} max={1} step={0.01} />
