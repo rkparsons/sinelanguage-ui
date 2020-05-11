@@ -172,15 +172,13 @@ export default withWidth()(({ width }: ViewProps) => {
                                                 </Typography>
                                             </PlayerText>
                                         </Grid>
-                                        {true && (
-                                            <Grid item>
-                                                <IconButton
-                                                    icon={<Close />}
-                                                    onClick={() => setSelectedMedia()}
-                                                    isLight={true}
-                                                />
-                                            </Grid>
-                                        )}
+                                        <Grid item>
+                                            <IconButton
+                                                icon={<Close />}
+                                                onClick={() => setSelectedMedia()}
+                                                isLight={true}
+                                            />
+                                        </Grid>
                                     </Grid>
                                     {audioRef.current && (
                                         <AnimateOpacity playerState={playerState}>
