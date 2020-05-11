@@ -30,8 +30,9 @@ type ViewProps = {
 
 // todo: move clientId to env vars
 export default withWidth()(({ width }: ViewProps) => {
+    const isWebAudioAvailable = window.AudioContext !== undefined
+    const isMiniPlayer = !isWebAudioAvailable || ['xs', 'sm'].includes(width)
     const [playerState, setPlayerState] = useState(PlayerState.CLOSED)
-    const isMobile = ['xs', 'sm'].includes(width)
     const audioPlayer = useRef<HTMLDivElement>(null)
     const hideDelay = 5000
     const audioRef = useRef<HTMLAudioElement>(null)
@@ -62,7 +63,7 @@ export default withWidth()(({ width }: ViewProps) => {
     }, [selectedMedia])
 
     useEffect(() => {
-        if (isMobile) {
+        if (isMiniPlayer) {
             return
         }
 
@@ -100,13 +101,13 @@ export default withWidth()(({ width }: ViewProps) => {
     }
 
     const onMouseOver = () => {
-        if (!isMobile) {
+        if (!isMiniPlayer) {
             setPlayerState(PlayerState.OPEN_MANUAL)
         }
     }
 
     const onMouseLeave = () => {
-        if (!isMobile) {
+        if (!isMiniPlayer) {
             setPlayerState(PlayerState.MINIMISED)
         }
     }
@@ -132,14 +133,14 @@ export default withWidth()(({ width }: ViewProps) => {
                     <PlayerBody>
                         <Box display="flex">
                             <Box>
-                                <Hidden smDown>
+                                {!isMiniPlayer && (
                                     <ImageContainer>
                                         <SquareImage
                                             title={selectedMedia.content.title}
                                             image={selectedMedia.content.image}
                                         />
                                     </ImageContainer>
-                                </Hidden>
+                                )}
                                 <Controls
                                     trackIndex={selectedMedia.trackIndex}
                                     setTrackIndex={setTrackIndex}
@@ -148,6 +149,7 @@ export default withWidth()(({ width }: ViewProps) => {
                                     volume={volume}
                                     setVolume={setVolume}
                                     trackCount={selectedTracks.length}
+                                    isMiniPlayer={isMiniPlayer}
                                 />
                             </Box>
                             <Box flexGrow={1}>
@@ -180,7 +182,7 @@ export default withWidth()(({ width }: ViewProps) => {
                                             />
                                         </Grid>
                                     </Grid>
-                                    {audioRef.current && (
+                                    {audioRef.current && !isMiniPlayer && (
                                         <AnimateOpacity
                                             isVisible={
                                                 isPlaying && playerState !== PlayerState.MINIMISED

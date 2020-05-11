@@ -33,10 +33,6 @@ export const AudioPlayer = styled.div<{ playerState: PlayerState; height: number
         }px;
     `}
     transition: bottom 0.2s ease;
-
-    svg {
-        filter: drop-shadow(${darkShadow});
-    }
 `
 
 export const PlayerBody = styled.div`
