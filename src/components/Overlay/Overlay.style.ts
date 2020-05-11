@@ -14,4 +14,8 @@ export const Overlay = styled.div`
     svg {
         filter: drop-shadow(${darkShadow});
     }
+
+    @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+        background-color: white;
+    }
 `
