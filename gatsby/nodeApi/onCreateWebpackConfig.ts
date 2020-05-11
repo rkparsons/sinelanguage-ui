@@ -22,6 +22,14 @@ export const onCreateWebpackConfig = ({ stage, loaders, actions }: CreateWebpack
                     'react-dom': '@hot-loader/react-dom',
                 },
             },
+            module: {
+                rules: [
+                    {
+                        test: /react-refresh-webpack-plugin/,
+                        use: [loaders.js()],
+                    },
+                ],
+            },
         })
     }
 
