@@ -1,5 +1,6 @@
 export enum PlayerState {
     CLOSED,
-    OPEN,
+    OPEN_AUTO,
     MINIMISED,
+    OPEN_MANUAL,
 }

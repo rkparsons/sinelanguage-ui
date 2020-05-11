@@ -33,7 +33,6 @@ export default withWidth()(({ width }: ViewProps) => {
     const isMobile = ['xs', 'sm'].includes(width)
     const audioPlayer = useRef<HTMLDivElement>(null)
     const hideDelay = 5000
-    const [isInteracted, setIsInteracted] = useState(false)
     const audioRef = useRef<HTMLAudioElement>(null)
     const [currentTimeMs, setCurrentTimeMs] = useState(0)
     const { selectedMedia, setSelectedMedia } = useContext(SelectedMediaContext)
@@ -55,20 +54,25 @@ export default withWidth()(({ width }: ViewProps) => {
     }
 
     useEffect(() => {
-        setPlayerState(PlayerState.OPEN)
-        setIsInteracted(false)
-        const hideIfNoInteraction = setTimeout(() => {
-            if (!isInteracted && !isMobile) {
-                setPlayerState(PlayerState.MINIMISED)
-            }
-        }, hideDelay)
-
-        return () => clearTimeout(hideIfNoInteraction)
-    }, [selectedMedia, hideDelay])
+        setCurrentTimeMs(0)
+        setIsPlaying(true)
+        setSelectedTracks(getTracks())
+        setPlayerState(PlayerState.OPEN_AUTO)
+    }, [selectedMedia])
 
     useEffect(() => {
-        setCurrentTimeMs(0)
-    }, [selectedMedia])
+        if (isMobile) {
+            return
+        }
+
+        if (playerState === PlayerState.OPEN_AUTO) {
+            const hideIfNoInteraction = setTimeout(() => {
+                setPlayerState(PlayerState.MINIMISED)
+            }, hideDelay)
+
+            return () => clearTimeout(hideIfNoInteraction)
+        }
+    }, [playerState])
 
     useRecursiveTimeout(() => {
         if (audioRef.current) {
@@ -94,15 +98,9 @@ export default withWidth()(({ width }: ViewProps) => {
         }
     }
 
-    useEffect(() => {
-        setIsPlaying(true)
-        setSelectedTracks(getTracks())
-    }, [selectedMedia])
-
     const onMouseOver = () => {
         if (!isMobile) {
-            setIsInteracted(true)
-            setPlayerState(PlayerState.OPEN)
+            setPlayerState(PlayerState.OPEN_MANUAL)
         }
     }
 
@@ -186,7 +184,9 @@ export default withWidth()(({ width }: ViewProps) => {
                                     {audioRef.current && (
                                         <Analyser
                                             showVisualisation={
-                                                isPlaying && playerState === PlayerState.OPEN
+                                                (isPlaying &&
+                                                    playerState === PlayerState.OPEN_AUTO) ||
+                                                playerState === PlayerState.OPEN_MANUAL
                                             }
                                             audioRef={audioRef}
                                         />
