@@ -149,6 +149,7 @@ export default withWidth()(({ width }: ViewProps) => {
                                     volume={volume}
                                     setVolume={setVolume}
                                     trackCount={selectedTracks.length}
+                                    audioRef={audioRef}
                                 />
                             </Box>
                             <Box flexGrow={1}>

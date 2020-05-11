@@ -1,9 +1,9 @@
 import { Box, Grid, Hidden } from '@material-ui/core'
 import { Controls, IconButtonContainer } from './Controls.style'
 import { Pause, PlayArrow, SkipNext, SkipPrevious } from '@material-ui/icons'
+import React, { RefObject } from 'react'
 
 import IconButton from '~/components/IconButton'
-import React from 'react'
 
 type ControlsProps = {
     trackIndex: number
@@ -13,6 +13,7 @@ type ControlsProps = {
     volume: number
     setVolume(volume: number): void
     trackCount: number
+    audioRef: RefObject<HTMLAudioElement>
 }
 
 export default ({
@@ -23,6 +24,7 @@ export default ({
     volume,
     setVolume,
     trackCount,
+    audioRef,
 }: ControlsProps) => {
     const skipPrevious = () => {
         setTrackIndex(trackIndex - 1)
@@ -34,6 +36,15 @@ export default ({
 
     const handleVolume = (event: any, newValue: number | number[]) => {
         setVolume(newValue as number)
+    }
+
+    const togglePlay = () => {
+        if (!isPlaying) {
+            audioRef.current?.play()
+            setIsPlaying(true)
+        } else {
+            setIsPlaying(false)
+        }
     }
 
     return (
@@ -54,7 +65,7 @@ export default ({
                     <IconButtonContainer>
                         <IconButton
                             icon={isPlaying ? <Pause /> : <PlayArrow />}
-                            onClick={() => setIsPlaying(!isPlaying)}
+                            onClick={togglePlay}
                             isLight={true}
                         />
                     </IconButtonContainer>
