@@ -6,14 +6,15 @@ import { Visualisation } from './Visualizer.style'
 
 type VisualiserProps = {
     audioData: Uint8Array
+    isActive: boolean
 }
 
-export default ({ audioData }: VisualiserProps) => {
+export default ({ audioData, isActive }: VisualiserProps) => {
     const getSamples = () => Array.from(audioData).map((y) => y - 128)
 
     return (
         <Hidden smDown>
-            <Zoom in={true} timeout={1500}>
+            <Zoom in={isActive} timeout={1500}>
                 <Visualisation>
                     <ResponsiveContainer width="100%" height="100%">
                         <LineChart
