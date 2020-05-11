@@ -1,7 +1,6 @@
 import { BlackBackdrop, HoverImage, ItemRow, TitleRow } from './ContentList.style'
 import { Grid, GridSpacing, Hidden, Typography, withWidth } from '@material-ui/core'
 import React, { useState } from 'react'
-import { rowPadding, rowSpacing } from '~/styles/sizes'
 
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import ContentCardMedia from '~/components/ContentCardMedia'
@@ -13,6 +12,7 @@ import { Link } from 'gatsby'
 import Overlay from '~/components/Overlay'
 import Scrollable from '~/components/Scrollable'
 import { getUrl } from '~/utils/content'
+import { rowPadding } from '~/styles/sizes'
 
 type ViewProps = {
     title: string
@@ -26,7 +26,7 @@ export default withWidth()(({ title, items, width }: ViewProps) => {
     return (
         <Overlay>
             <Scrollable isWithMargin={false}>
-                <Grid container spacing={rowSpacing[width]}>
+                <Grid container>
                     <Grid item xs={12}>
                         <TitleRow>
                             <Typography variant="h3">
