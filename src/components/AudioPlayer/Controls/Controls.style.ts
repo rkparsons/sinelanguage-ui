@@ -9,6 +9,11 @@ export const Controls = styled.div`
         ${theme.breakpoints.up('md')} {
             padding-top: ${theme.spacing(2)};
         }
+
+        /* Refactor ie11 media queries */
+        @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {        
+            padding-top: 0;
+        }
     `}
 `
 
@@ -54,6 +59,11 @@ export const IconButtonContainer = styled.div`
             ${theme.breakpoints.up('md')} {
                 width: 1em;
                 height: 1em;
+            }
+
+            @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {  
+                width: ${theme.spacing(10)};
+                height: ${theme.spacing(10)};
             }
         }        
     `}
