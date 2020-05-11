@@ -6,6 +6,13 @@ import styled from 'styled-components'
 export const Button = styled.div<{ isLight: boolean; isDisabled: boolean }>`
     svg {
         display: block;
+
+        path {
+            stroke: black;
+            @supports (filter: blur(12px)) {
+                stroke: none;
+            }
+        }
     }
 
     ${({ isLight, isDisabled }) => `    
@@ -16,13 +23,6 @@ export const Button = styled.div<{ isLight: boolean; isDisabled: boolean }>`
 
         svg {
             filter: drop-shadow(${isLight ? darkShadow : lightShadow});
-
-            @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {  
-                path {
-                    stroke: black;
-                    stroke-width: 2px;
-                }
-            }
         }
 
         ${
