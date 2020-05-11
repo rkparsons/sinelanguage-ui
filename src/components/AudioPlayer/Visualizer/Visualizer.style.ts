@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Visualisation = styled.div<{ isVisible: boolean }>`
+export const Visualisation = styled.div`
     svg {
         filter: none;
     }
@@ -11,6 +11,4 @@ export const Visualisation = styled.div<{ isVisible: boolean }>`
     left: -1px;
     width: 100%;
     height: 100%;
-    transition: opacity 0.2s;
-    opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
 `

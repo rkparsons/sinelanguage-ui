@@ -1,8 +1,9 @@
 import {
-    AnalyserContainer,
+    AnimateOpacity,
     AudioPlayer,
     ImageContainer,
     PlayerBody,
+    PlayerPanel,
     PlayerText,
 } from './AudioPlayer.style'
 import { Box, Grid, Hidden, Typography, withWidth } from '@material-ui/core'
@@ -150,7 +151,7 @@ export default withWidth()(({ width }: ViewProps) => {
                                 />
                             </Box>
                             <Box flexGrow={1}>
-                                <AnalyserContainer>
+                                <PlayerPanel>
                                     <Grid container justify="space-between">
                                         <Grid item>
                                             <PlayerText>
@@ -182,16 +183,11 @@ export default withWidth()(({ width }: ViewProps) => {
                                         )}
                                     </Grid>
                                     {audioRef.current && (
-                                        <Analyser
-                                            showVisualisation={
-                                                (isPlaying &&
-                                                    playerState === PlayerState.OPEN_AUTO) ||
-                                                playerState === PlayerState.OPEN_MANUAL
-                                            }
-                                            audioRef={audioRef}
-                                        />
+                                        <AnimateOpacity playerState={playerState}>
+                                            <Analyser audioRef={audioRef} />
+                                        </AnimateOpacity>
                                     )}
-                                </AnalyserContainer>
+                                </PlayerPanel>
                             </Box>
                         </Box>
                     </PlayerBody>

@@ -61,13 +61,19 @@ export const PlayerBody = styled.div`
         }
     `}
 `
-export const AnalyserContainer = styled.div`
+export const PlayerPanel = styled.div`
     position: relative;
     height: 100%;
 
     ${({ theme }) => `   
         margin-left: ${theme.spacing(marginSide)};
     `}
+`
+export const AnimateOpacity = styled.div<{ playerState: PlayerState }>`
+    ${({ playerState }) => `        
+        opacity: ${playerState === PlayerState.MINIMISED ? 0 : 1};
+    `}
+    transition: opacity 0.5s ease;
 `
 
 export const ImageContainer = styled.div`
