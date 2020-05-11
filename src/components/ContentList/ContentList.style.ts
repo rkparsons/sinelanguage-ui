@@ -46,7 +46,6 @@ export const HoverImage = styled(Grid)`
 export const BlackBackdrop = styled.div`
     position: fixed;
     pointer-events: none;
-    background-color: black;
     top: 0;
     right: 0;
     bottom: 0;
@@ -55,4 +54,10 @@ export const BlackBackdrop = styled.div`
     margin: auto;
     width: 100vw;
     height: 100vh;
+
+    background-color: white;
+
+    @supports (filter: blur(12px)) {
+        background-color: black;
+    }
 `
