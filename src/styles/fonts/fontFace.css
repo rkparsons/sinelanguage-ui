@@ -1,5 +1,9 @@
 @font-face {
     font-family: 'HelveticaNowText';
     font-display: 'block';
-    src: url('helvetica-now-text.otf') format('opentype');
+    src: url('helvetica-now-text.eot');
+    src: url('helvetica-now-text.eot?#iefix') format('eot'),
+        url('helvetica-now-text.woff2') format('woff2'),
+        url('helvetica-now-text.woff') format('woff'),
+        url('helvetica-now-text.ttf') format('truetype');
 }
