@@ -16,6 +16,13 @@ export const Button = styled.div<{ isLight: boolean; isDisabled: boolean }>`
 
         svg {
             filter: drop-shadow(${isLight ? darkShadow : lightShadow});
+
+            @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {  
+                path {
+                    stroke: black;
+                    stroke-width: 2px;
+                }
+            }
         }
 
         ${
