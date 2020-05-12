@@ -1,10 +1,10 @@
 import { Artist, Podcast, Release, Track } from '~/cms/types'
 import React, { ReactNode, useEffect, useRef, useState } from 'react'
 
-import AudioAnalyser from '~/components/AudioAnalyser'
 import AudioContext from '~/contexts/audioContext'
 import { ContentType } from '~/constants/contentType'
 import { FluidObject } from 'gatsby-image'
+import useAudioData from '~/hooks/useAudioData'
 import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 
 type ViewProps = {
@@ -22,7 +22,7 @@ export default ({ children }: ViewProps) => {
     const [timeMs, setTimeMs] = useState(0)
     const [durationMs, setDurationMs] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
-    const [audioData, setAudioData] = useState<Uint8Array>(new Uint8Array(0))
+    const audioData = useAudioData(audioRef)
 
     // todo: put audio analyser init here and remove audioRef from context
 
@@ -137,7 +137,6 @@ export default ({ children }: ViewProps) => {
     return (
         <AudioContext.Provider
             value={{
-                audioRef,
                 isPlaying,
                 track: tracks[trackIndex],
                 artwork,
@@ -157,11 +156,9 @@ export default ({ children }: ViewProps) => {
                 pauseMedia,
                 skipMedia,
                 setVolume,
-                setAudioData,
             }}
         >
             <audio ref={audioRef} preload="auto" crossOrigin="anonymous" />
-            {audioRef.current && <AudioAnalyser audio={audioRef.current} />}
             {children}
         </AudioContext.Provider>
     )

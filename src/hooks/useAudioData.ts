@@ -1,20 +1,18 @@
-import React, { useEffect, useRef } from 'react'
+import { RefObject, useEffect, useRef, useState } from 'react'
 
-import useAudioContext from '~/hooks/useAudioContext'
-
-type ViewProps = {
-    audio: HTMLAudioElement
-}
-
-export default ({ audio }: ViewProps) => {
-    const { setAudioData } = useAudioContext()
+export default (audioRef: RefObject<HTMLAudioElement>) => {
     const rafId = useRef(0)
     const analyser = useRef<AnalyserNode>()
+    const [audioData, setAudioData] = useState<Uint8Array>(new Uint8Array(0))
 
     useEffect(() => {
+        if (!audioRef.current) {
+            return
+        }
+
         const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
         analyser.current = audioContext.createAnalyser()
-        const source = audioContext.createMediaElementSource(audio)
+        const source = audioContext.createMediaElementSource(audioRef.current)
         source.connect(analyser.current)
         source.connect(audioContext.destination)
         rafId.current = requestAnimationFrame(tick)
@@ -34,5 +32,6 @@ export default ({ audio }: ViewProps) => {
             rafId.current = requestAnimationFrame(tick)
         }
     }
-    return <></>
+
+    return audioData
 }

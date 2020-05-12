@@ -4,7 +4,6 @@ import { RefObject, createContext } from 'react'
 import { FluidObject } from 'gatsby-image'
 
 type AudioContext = {
-    audioRef: RefObject<HTMLAudioElement>
     isPlaying: boolean
     track: Track | undefined
     artwork: FluidObject | undefined
@@ -24,7 +23,6 @@ type AudioContext = {
     pauseMedia: () => void
     skipMedia: (newTimeMs: number) => void
     setVolume: (volume: number) => void
-    setAudioData: (dataArray: Uint8Array) => void
 }
 
 export default createContext<AudioContext | undefined>(undefined)

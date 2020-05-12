@@ -10,7 +10,6 @@ import { Box, Grid, Hidden, Typography, withWidth } from '@material-ui/core'
 import { Podcast, Release, Track } from '~/cms/types'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
-import AudioAnalyser from '~/components/AudioAnalyser'
 import AudioVisualizer from '~/components/AudioVisualizer'
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import { Close } from '@material-ui/icons'
@@ -28,14 +27,12 @@ type ViewProps = {
     width: Breakpoint
 }
 
-// todo: move clientId to env vars
 export default withWidth()(({ width }: ViewProps) => {
     const [playerState, setPlayerState] = useState(PlayerState.CLOSED)
     const isMobile = ['xs', 'sm'].includes(width)
     const audioPlayer = useRef<HTMLDivElement>(null)
     const hideDelay = 5000
     const {
-        audioRef,
         isPlaying,
         track,
         artwork,
@@ -133,9 +130,7 @@ export default withWidth()(({ width }: ViewProps) => {
                                                 isPlaying && playerState !== PlayerState.MINIMISED
                                             }
                                         >
-                                            {audioRef.current && (
-                                                <AudioVisualizer isActive={isPlaying} />
-                                            )}
+                                            <AudioVisualizer isActive={isPlaying} />
                                         </AnimateOpacity>
                                     )}
                                 </PlayerPanel>
