@@ -132,7 +132,12 @@ export default withWidth()(({ width }: ViewProps) => {
                                                 isPlaying && playerState !== PlayerState.MINIMISED
                                             }
                                         >
-                                            <Analyser audioRef={audioRef} isActive={isPlaying} />
+                                            {audioRef.current && (
+                                                <Analyser
+                                                    audio={audioRef.current}
+                                                    isActive={isPlaying}
+                                                />
+                                            )}
                                         </AnimateOpacity>
                                     )}
                                 </PlayerPanel>

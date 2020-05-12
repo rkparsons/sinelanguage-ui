@@ -1,60 +1,41 @@
-import React, { Component, RefObject } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import Visualizer from '../Visualizer'
 
-type AnalyserState = {
-    audioData: Uint8Array
-}
-
-type AnalyserProps = {
-    audioRef: RefObject<HTMLAudioElement>
+type ViewProps = {
+    audio: HTMLAudioElement
     isActive: boolean
 }
 
-class Analyser extends Component<AnalyserProps, AnalyserState> {
-    audioContext: AudioContext | undefined
-    analyser: AnalyserNode | undefined
-    dataArray: Uint8Array | undefined
-    source: MediaElementAudioSourceNode | undefined
-    rafId: number | undefined
+export default ({ audio, isActive }: ViewProps) => {
+    const rafId = useRef(0)
+    const [audioData, setAudioData] = useState<Uint8Array>(new Uint8Array(0))
+    const analyser = useRef<AnalyserNode>()
 
-    constructor(props: AnalyserProps) {
-        super(props)
-        this.state = { audioData: new Uint8Array(0) }
-        this.tick = this.tick.bind(this)
-    }
+    useEffect(() => {
+        const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
+        analyser.current = audioContext.createAnalyser()
+        const source = audioContext.createMediaElementSource(audio)
+        source.connect(analyser.current)
+        source.connect(audioContext.destination)
+        rafId.current = requestAnimationFrame(tick)
 
-    componentDidMount() {
-        if (!this.props.audioRef.current) {
-            return
+        return () => {
+            console.log('disposing')
+            cancelAnimationFrame(rafId.current)
+            analyser.current?.disconnect()
+            source.disconnect()
         }
+    }, [])
 
-        this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
-        this.analyser = this.audioContext.createAnalyser()
-        this.dataArray = new Uint8Array(this.analyser.frequencyBinCount)
-        this.source = this.audioContext.createMediaElementSource(this.props.audioRef.current)
-        this.source.connect(this.analyser)
-        this.source.connect(this.audioContext.destination)
-        this.rafId = requestAnimationFrame(this.tick)
-    }
-
-    tick() {
-        if (this.analyser && this.dataArray) {
-            this.analyser.getByteTimeDomainData(this.dataArray)
-            this.setState({ audioData: this.dataArray })
-            this.rafId = requestAnimationFrame(this.tick)
+    function tick() {
+        if (analyser.current) {
+            const dataArray = new Uint8Array(analyser.current.frequencyBinCount)
+            analyser.current.getByteTimeDomainData(dataArray)
+            setAudioData(dataArray)
+            rafId.current = requestAnimationFrame(tick)
         }
     }
 
-    componentWillUnmount() {
-        cancelAnimationFrame(this.rafId!)
-        this.analyser?.disconnect()
-        this.source?.disconnect()
-    }
-
-    render() {
-        return <Visualizer audioData={this.state.audioData} isActive={this.props.isActive} />
-    }
+    return <Visualizer audioData={audioData} isActive={isActive} />
 }
-
-export default Analyser
