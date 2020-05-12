@@ -21,7 +21,6 @@ export default ({ children }: ViewProps) => {
     const [timeMs, setTimeMs] = useState(0)
     const [durationMs, setDurationMs] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
-    console.log('creating context')
 
     // todo: put audio analyser init here and remove audioRef from context
 
