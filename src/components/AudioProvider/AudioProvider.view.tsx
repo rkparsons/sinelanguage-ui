@@ -26,13 +26,17 @@ export default ({ children }: ViewProps) => {
         if (audioRef.current) {
             audioRef.current.onended = next
         }
-    }, [audioRef.current])
+    }, [audioRef.current, trackIndex])
 
     useEffect(() => {
         if (trackIndex < tracks.length) {
             setDurationMs(tracks[trackIndex].metadata.duration)
         }
     }, [tracks, trackIndex])
+
+    function onEnded() {
+        next()
+    }
 
     // todo: separate out logic for audio ref from selectedmedia
     function isPrevious() {
@@ -46,10 +50,13 @@ export default ({ children }: ViewProps) => {
     function previous() {
         if (isPrevious()) {
             setTrackIndex(trackIndex - 1)
+            loadSrc(tracks[trackIndex - 1].metadata.streamUrl)
+            playMedia()
         }
     }
 
     function next() {
+        console.log(trackIndex, '/', tracks.length)
         if (isNext()) {
             setTrackIndex(trackIndex + 1)
             loadSrc(tracks[trackIndex + 1].metadata.streamUrl)
