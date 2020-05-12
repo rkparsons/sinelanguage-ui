@@ -60,17 +60,29 @@ export default ({ children }: ViewProps) => {
     }
 
     function getTracks(content: Artist | Podcast | Release) {
-        return content.__typename === ContentType.PODCAST
+        return content.__typename === ContentType.ARTIST
+            ? []
+            : content.__typename === ContentType.PODCAST
             ? [(content as Podcast).track]
             : content.__typename === ContentType.RELEASE
             ? (content as Release).tracks
             : []
     }
 
+    function getArtistTitle(content: Artist | Podcast | Release) {
+        return content.__typename === ContentType.ARTIST
+            ? (content as Artist).title
+            : content.__typename === ContentType.PODCAST
+            ? (content as Podcast).title
+            : content.__typename === ContentType.RELEASE
+            ? (content as Release).artist.title
+            : ''
+    }
+
     function loadMedia(content: Artist | Podcast | Release, newTrackIndex: number = 0) {
         const newTracks = getTracks(content)
         setArtwork(content.image.fluid)
-        setArtistTitle('ADD ARTIST')
+        setArtistTitle(getArtistTitle(content))
         setTracks(newTracks)
         setTrackIndex(newTrackIndex)
         loadSrc(newTracks[newTrackIndex].metadata.streamUrl)

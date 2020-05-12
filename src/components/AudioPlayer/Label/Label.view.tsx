@@ -15,8 +15,7 @@ export default ({ timeMs }: ViewProps) => {
     return (
         <Label>
             <Typography variant="h5" gutterBottom>
-                {artistTitle}
-                <i>{track?.title}</i>
+                {artistTitle.toUpperCase()}, <i>{track?.title}</i>
             </Typography>
             <Typography variant="h5">
                 {getTimestamp(timeMs, durationMs)}/{getTimestamp(durationMs, durationMs)}

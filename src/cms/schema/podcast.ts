@@ -17,11 +17,11 @@ export default new ContentfulContentType({
     id: 'podcast',
     name: 'Podcast',
     description: '',
-    displayField: 'title',
+    displayField: 'uid',
     fields: [
         new SymbolField({
-            name: 'Title',
-            validations: [unique],
+            id: 'title',
+            name: 'Artist',
         }),
         new SymbolField({
             id: 'uid',
