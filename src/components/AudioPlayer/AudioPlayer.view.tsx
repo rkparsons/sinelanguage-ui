@@ -6,11 +6,11 @@ import AudioVisualizer from '~/components/AudioVisualizer'
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import { Close } from '@material-ui/icons'
 import Controls from './Controls'
-import IconButton from '~/components/IconButton'
 import Label from './Label'
 import { PlayerState } from '~/constants/playerState'
 import Progress from './Progress'
 import SquareImage from '~/components/SquareImage'
+import StopButton from './StopButton'
 import useAudioContext from '~/hooks/useAudioContext'
 
 type ViewProps = {
@@ -87,11 +87,7 @@ export default withWidth()(({ width }: ViewProps) => {
                                         <Label />
                                     </Grid>
                                     <Grid item>
-                                        <IconButton
-                                            icon={<Close />}
-                                            onClick={stopMedia}
-                                            isLight={true}
-                                        />
+                                        <StopButton />
                                     </Grid>
                                 </Grid>
                                 <Hidden smDown>
