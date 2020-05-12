@@ -34,10 +34,6 @@ export default ({ children }: ViewProps) => {
         }
     }, [tracks, trackIndex])
 
-    function onEnded() {
-        next()
-    }
-
     // todo: separate out logic for audio ref from selectedmedia
     function isPrevious() {
         return trackIndex > 0
