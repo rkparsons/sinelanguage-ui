@@ -24,7 +24,7 @@ export default () => {
     return (
         <BarContainer onClick={skipToTime}>
             <ProgressBar ref={progressBarRef} />
-            <PlayedBar width={(100 * timeMs) / durationMs} />
+            {durationMs > 0 && <PlayedBar width={(100 * timeMs) / durationMs} />}
         </BarContainer>
     )
 }
