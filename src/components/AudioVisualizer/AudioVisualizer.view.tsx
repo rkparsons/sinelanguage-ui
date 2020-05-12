@@ -1,8 +1,9 @@
-import { Hidden, Zoom } from '@material-ui/core'
 import { Line, LineChart, ResponsiveContainer, YAxis } from 'recharts'
 
+import Fade from '~/components/Fade'
 import React from 'react'
 import { Visualisation } from './AudioVisualizer.style'
+import { Zoom } from '@material-ui/core'
 import useAudioContext from '~/hooks/useAudioContext'
 
 type ViewProps = {
@@ -14,7 +15,7 @@ export default ({ isActive }: ViewProps) => {
     const getSamples = () => Array.from(audioData).map((y) => y - 128)
 
     return (
-        <Hidden smDown>
+        <Fade isVisible={isActive} durationMs={500}>
             <Zoom in={isActive} timeout={1500}>
                 <Visualisation>
                     <ResponsiveContainer width="100%" height="100%">
@@ -43,6 +44,6 @@ export default ({ isActive }: ViewProps) => {
                     </ResponsiveContainer>
                 </Visualisation>
             </Zoom>
-        </Hidden>
+        </Fade>
     )
 }

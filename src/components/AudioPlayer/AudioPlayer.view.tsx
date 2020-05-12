@@ -1,5 +1,4 @@
 import {
-    AnimateOpacity,
     AudioPlayer,
     ImageContainer,
     PlayerBody,
@@ -121,15 +120,13 @@ export default withWidth()(({ width }: ViewProps) => {
                                             />
                                         </Grid>
                                     </Grid>
-                                    {isHTMLAudioReady() && isWebAudioAPIAvailable() && (
-                                        <AnimateOpacity
-                                            isVisible={
+                                    <Hidden smDown>
+                                        <AudioVisualizer
+                                            isActive={
                                                 isPlaying && playerState !== PlayerState.MINIMISED
                                             }
-                                        >
-                                            <AudioVisualizer isActive={isPlaying} />
-                                        </AnimateOpacity>
-                                    )}
+                                        />
+                                    </Hidden>
                                 </PlayerPanel>
                             </Box>
                         </Box>

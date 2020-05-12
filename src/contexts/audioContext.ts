@@ -11,6 +11,7 @@ type AudioContext = {
     timeMs: number
     durationMs: number
     audioData: Uint8Array
+    // todo: can i remove these methods? or move them to analyser
     isHTMLAudioReady: () => boolean
     isWebAudioAPIAvailable: () => boolean
     isPrevious: () => boolean

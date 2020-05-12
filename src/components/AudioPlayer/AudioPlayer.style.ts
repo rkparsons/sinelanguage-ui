@@ -65,10 +65,6 @@ export const PlayerPanel = styled.div`
         margin-left: ${theme.spacing(marginSide)};
     `}
 `
-export const AnimateOpacity = styled.div<{ isVisible: boolean }>`
-    opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
-    transition: opacity 0.5s ease;
-`
 
 export const ImageContainer = styled.div`
     ${({ theme }) => `   
