@@ -22,8 +22,6 @@ export default ({ children }: ViewProps) => {
     const [isPlaying, setIsPlaying] = useState(false)
     const getAudioData = useAudioAnalyser(audioRef)
 
-    // todo: put audio analyser init here and remove audioRef from context
-
     useEffect(() => {
         if (audioRef.current) {
             audioRef.current.onended = next
@@ -117,14 +115,6 @@ export default ({ children }: ViewProps) => {
         }
     }
 
-    function isHTMLAudioReady() {
-        return audioRef.current !== undefined
-    }
-
-    function isWebAudioAPIAvailable() {
-        return window.AudioContext !== undefined
-    }
-
     function getTimeMs() {
         return audioRef.current ? audioRef.current.currentTime * 1000 : 0
     }
@@ -137,8 +127,6 @@ export default ({ children }: ViewProps) => {
                 artwork,
                 artistTitle,
                 durationMs,
-                isHTMLAudioReady,
-                isWebAudioAPIAvailable,
                 isPrevious,
                 isNext,
                 previous,

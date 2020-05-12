@@ -4,7 +4,7 @@ export default (audioRef: RefObject<HTMLAudioElement>) => {
     const analyser = useRef<AnalyserNode>()
 
     useEffect(() => {
-        if (!audioRef.current) {
+        if (!audioRef.current || !window.AudioContext) {
             return
         }
 
