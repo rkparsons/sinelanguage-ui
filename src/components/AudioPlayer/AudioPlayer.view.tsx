@@ -11,6 +11,7 @@ import { Podcast, Release, Track } from '~/cms/types'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 import AudioAnalyser from '~/components/AudioAnalyser'
+import AudioVisualizer from '~/components/AudioVisualizer'
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import { Close } from '@material-ui/icons'
 import { ContentType } from '~/constants/contentType'
@@ -133,10 +134,7 @@ export default withWidth()(({ width }: ViewProps) => {
                                             }
                                         >
                                             {audioRef.current && (
-                                                <AudioAnalyser
-                                                    audio={audioRef.current}
-                                                    isActive={isPlaying}
-                                                />
+                                                <AudioVisualizer isActive={isPlaying} />
                                             )}
                                         </AnimateOpacity>
                                     )}

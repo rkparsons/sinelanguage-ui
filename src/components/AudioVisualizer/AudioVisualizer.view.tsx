@@ -1,15 +1,16 @@
-import { Box, Hidden, Zoom } from '@material-ui/core'
+import { Hidden, Zoom } from '@material-ui/core'
 import { Line, LineChart, ResponsiveContainer, YAxis } from 'recharts'
-import React, { useState } from 'react'
 
-import { Visualisation } from './Visualizer.style'
+import React from 'react'
+import { Visualisation } from './AudioVisualizer.style'
+import useAudioContext from '~/hooks/useAudioContext'
 
-type VisualiserProps = {
-    audioData: Uint8Array
+type ViewProps = {
     isActive: boolean
 }
 
-export default ({ audioData, isActive }: VisualiserProps) => {
+export default ({ isActive }: ViewProps) => {
+    const { audioData } = useAudioContext()
     const getSamples = () => Array.from(audioData).map((y) => y - 128)
 
     return (

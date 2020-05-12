@@ -1,15 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 
-import Visualizer from '../AudioPlayer/Visualizer'
+import useAudioContext from '~/hooks/useAudioContext'
 
 type ViewProps = {
     audio: HTMLAudioElement
-    isActive: boolean
 }
 
-export default ({ audio, isActive }: ViewProps) => {
+export default ({ audio }: ViewProps) => {
+    const { setAudioData } = useAudioContext()
     const rafId = useRef(0)
-    const [audioData, setAudioData] = useState<Uint8Array>(new Uint8Array(0))
     const analyser = useRef<AnalyserNode>()
 
     useEffect(() => {
@@ -21,7 +20,6 @@ export default ({ audio, isActive }: ViewProps) => {
         rafId.current = requestAnimationFrame(tick)
 
         return () => {
-            console.log('disposing')
             cancelAnimationFrame(rafId.current)
             analyser.current?.disconnect()
             source.disconnect()
@@ -36,6 +34,5 @@ export default ({ audio, isActive }: ViewProps) => {
             rafId.current = requestAnimationFrame(tick)
         }
     }
-
-    return <Visualizer audioData={audioData} isActive={isActive} />
+    return <></>
 }

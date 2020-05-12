@@ -11,6 +11,7 @@ type AudioContext = {
     artistTitle: string
     timeMs: number
     durationMs: number
+    audioData: Uint8Array
     isHTMLAudioReady: () => boolean
     isWebAudioAPIAvailable: () => boolean
     isPrevious: () => boolean
@@ -23,6 +24,7 @@ type AudioContext = {
     pauseMedia: () => void
     skipMedia: (newTimeMs: number) => void
     setVolume: (volume: number) => void
+    setAudioData: (dataArray: Uint8Array) => void
 }
 
 export default createContext<AudioContext | undefined>(undefined)
