@@ -9,7 +9,6 @@ type AudioContext = {
     artwork: FluidObject | undefined
     artistTitle: string
     durationMs: number
-    audioData: Uint8Array
     // todo: can i remove these methods? or move them to analyser
     isHTMLAudioReady: () => boolean
     isWebAudioAPIAvailable: () => boolean
@@ -24,6 +23,7 @@ type AudioContext = {
     skipMedia: (newTimeMs: number) => void
     setVolume: (volume: number) => void
     getTimeMs: () => number
+    getAudioData: () => number[]
 }
 
 export default createContext<AudioContext | undefined>(undefined)

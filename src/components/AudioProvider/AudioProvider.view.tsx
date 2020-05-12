@@ -4,7 +4,7 @@ import React, { ReactNode, useEffect, useRef, useState } from 'react'
 import AudioContext from '~/contexts/audioContext'
 import { ContentType } from '~/constants/contentType'
 import { FluidObject } from 'gatsby-image'
-import useAudioData from '~/hooks/useAudioData'
+import useAudioAnalyser from '~/hooks/useAudioAnalyser'
 
 type ViewProps = {
     children: ReactNode
@@ -20,7 +20,7 @@ export default ({ children }: ViewProps) => {
     const [artistTitle, setArtistTitle] = useState('')
     const [durationMs, setDurationMs] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
-    const audioData = useAudioData(audioRef)
+    const getAudioData = useAudioAnalyser(audioRef)
 
     // todo: put audio analyser init here and remove audioRef from context
 
@@ -137,7 +137,6 @@ export default ({ children }: ViewProps) => {
                 artwork,
                 artistTitle,
                 durationMs,
-                audioData,
                 isHTMLAudioReady,
                 isWebAudioAPIAvailable,
                 isPrevious,
@@ -151,6 +150,7 @@ export default ({ children }: ViewProps) => {
                 skipMedia,
                 setVolume,
                 getTimeMs,
+                getAudioData,
             }}
         >
             <audio ref={audioRef} preload="auto" crossOrigin="anonymous" />

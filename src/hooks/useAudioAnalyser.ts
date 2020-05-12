@@ -1,9 +1,7 @@
-import { RefObject, useEffect, useRef, useState } from 'react'
+import { RefObject, useEffect, useRef } from 'react'
 
 export default (audioRef: RefObject<HTMLAudioElement>) => {
-    const rafId = useRef(0)
     const analyser = useRef<AnalyserNode>()
-    const [audioData, setAudioData] = useState<Uint8Array>(new Uint8Array(0))
 
     useEffect(() => {
         if (!audioRef.current) {
@@ -15,23 +13,22 @@ export default (audioRef: RefObject<HTMLAudioElement>) => {
         const source = audioContext.createMediaElementSource(audioRef.current)
         source.connect(analyser.current)
         source.connect(audioContext.destination)
-        rafId.current = requestAnimationFrame(tick)
 
         return () => {
-            cancelAnimationFrame(rafId.current)
             analyser.current?.disconnect()
             source.disconnect()
         }
     }, [])
 
-    function tick() {
-        if (analyser.current) {
+    function getAudioData() {
+        if (!analyser.current) {
+            return []
+        } else {
             const dataArray = new Uint8Array(analyser.current.frequencyBinCount)
             analyser.current.getByteTimeDomainData(dataArray)
-            setAudioData(dataArray)
-            rafId.current = requestAnimationFrame(tick)
+            return Array.from(dataArray).map((y) => y - 128)
         }
     }
 
-    return audioData
+    return getAudioData
 }

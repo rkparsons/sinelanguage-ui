@@ -11,8 +11,8 @@ import { PlayerState } from '~/constants/playerState'
 import Progress from './Progress'
 import SquareImage from '~/components/SquareImage'
 import StopButton from './StopButton'
+import useAnimationFrame from '~/hooks/useAnimationFrame'
 import useAudioContext from '~/hooks/useAudioContext'
-import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 
 type ViewProps = {
     width: Breakpoint
@@ -23,8 +23,9 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
     const [playerState, setPlayerState] = useState(PlayerState.CLOSED)
     const isMobile = ['xs', 'sm'].includes(width)
     const audioPlayer = useRef<HTMLDivElement>(null)
+    const [audioData, setAudioData] = useState<number[]>([])
     const [timeMs, setTimeMs] = useState(0)
-    const { isPlaying, track, artwork, artistTitle, getTimeMs } = useAudioContext()
+    const { isPlaying, track, artwork, artistTitle, getTimeMs, getAudioData } = useAudioContext()
 
     useEffect(() => {
         if (track) {
@@ -40,9 +41,10 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
         }
     }, [playerState])
 
-    useRecursiveTimeout(() => {
+    useAnimationFrame(() => {
         setTimeMs(getTimeMs())
-    }, 100)
+        setAudioData(getAudioData())
+    })
 
     function minimiseAfterTimeout() {
         const hideIfNoInteraction = setTimeout(() => {
@@ -98,6 +100,7 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
                                 </Grid>
                                 <Hidden smDown>
                                     <AudioVisualizer
+                                        audioData={audioData}
                                         isActive={
                                             isPlaying && playerState !== PlayerState.MINIMISED
                                         }
