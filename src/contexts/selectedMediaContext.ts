@@ -6,7 +6,4 @@ type MediaContext = {
     setSelectedMedia(media?: SelectedMedia): void
 }
 
-export const SelectedMediaContext = createContext<MediaContext>({
-    selectedMedia: undefined,
-    setSelectedMedia: () => {},
-})
+export const SelectedMediaContext = createContext<MediaContext | undefined>(undefined)

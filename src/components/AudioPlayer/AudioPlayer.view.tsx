@@ -22,6 +22,7 @@ import Progress from './Progress'
 import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import SquareImage from '~/components/SquareImage'
 import { getTimestamp } from '~/utils/date'
+import useAudioContext from '~/hooks/useAudioContext'
 import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 
 type ViewProps = {
@@ -37,7 +38,7 @@ export default withWidth()(({ width }: ViewProps) => {
     const hideDelay = 5000
     const audioRef = useRef<HTMLAudioElement>(null)
     const [currentTimeMs, setCurrentTimeMs] = useState(0)
-    const { selectedMedia, setSelectedMedia } = useContext(SelectedMediaContext)
+    const { selectedMedia, setSelectedMedia } = useAudioContext()
 
     const getTracks = useCallback(() => {
         return selectedMedia?.content.__typename === ContentType.PODCAST

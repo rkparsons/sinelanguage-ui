@@ -1,14 +1,14 @@
 import { Controls, ControlsGrid, VideoContainer } from './YouTubeEmbed.style'
 import { Fullscreen, Pause, PlayArrow, VolumeOff, VolumeUp } from '@material-ui/icons'
 import { Grid, Hidden, IconButton, Typography, withWidth } from '@material-ui/core'
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { getDurationTimestamp, getTimestamp } from '~/utils/date'
 
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import ReactPlayer from 'react-player'
-import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
 import { findDOMNode } from 'react-dom'
 import screenfull from 'screenfull'
+import useAudioContext from '~/hooks/useAudioContext'
 
 type ViewProps = {
     artist: string
@@ -33,7 +33,7 @@ export default withWidth()(({ artist, title, src, width }: ViewProps) => {
     const [isControlsVisible, setIsControlsVisible] = useState(true)
     const [duration, setDuration] = useState<number>()
     const [progress, setProgress] = useState<number>(0)
-    const { setSelectedMedia } = useContext(SelectedMediaContext)
+    const { setSelectedMedia } = useAudioContext()
 
     useEffect(() => {
         const forceControlsVisibilityTimer = setTimeout(() => {
