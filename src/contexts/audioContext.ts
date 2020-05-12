@@ -8,7 +8,6 @@ type AudioContext = {
     track: Track | undefined
     artwork: FluidObject | undefined
     artistTitle: string
-    timeMs: number
     durationMs: number
     audioData: Uint8Array
     // todo: can i remove these methods? or move them to analyser
@@ -24,6 +23,7 @@ type AudioContext = {
     pauseMedia: () => void
     skipMedia: (newTimeMs: number) => void
     setVolume: (volume: number) => void
+    getTimeMs: () => number
 }
 
 export default createContext<AudioContext | undefined>(undefined)

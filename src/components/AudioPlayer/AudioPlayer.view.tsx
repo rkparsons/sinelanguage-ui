@@ -12,6 +12,7 @@ import Progress from './Progress'
 import SquareImage from '~/components/SquareImage'
 import StopButton from './StopButton'
 import useAudioContext from '~/hooks/useAudioContext'
+import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 
 type ViewProps = {
     width: Breakpoint
@@ -22,7 +23,8 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
     const [playerState, setPlayerState] = useState(PlayerState.CLOSED)
     const isMobile = ['xs', 'sm'].includes(width)
     const audioPlayer = useRef<HTMLDivElement>(null)
-    const { isPlaying, track, artwork, artistTitle } = useAudioContext()
+    const [timeMs, setTimeMs] = useState(0)
+    const { isPlaying, track, artwork, artistTitle, getTimeMs } = useAudioContext()
 
     useEffect(() => {
         if (track) {
@@ -37,6 +39,10 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
             return minimiseAfterTimeout()
         }
     }, [playerState])
+
+    useRecursiveTimeout(() => {
+        setTimeMs(getTimeMs())
+    }, 100)
 
     function minimiseAfterTimeout() {
         const hideIfNoInteraction = setTimeout(() => {
@@ -66,7 +72,7 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
                 onMouseOver={onMouseOver}
                 onMouseLeave={onMouseLeave}
             >
-                <Progress />
+                <Progress timeMs={timeMs} />
                 <PlayerBody>
                     <Box display="flex">
                         <Box>
@@ -84,7 +90,7 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
                             <PlayerPanel>
                                 <Grid container justify="space-between">
                                     <Grid item>
-                                        <Label />
+                                        <Label timeMs={timeMs} />
                                     </Grid>
                                     <Grid item>
                                         <StopButton />

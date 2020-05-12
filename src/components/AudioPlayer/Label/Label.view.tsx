@@ -5,8 +5,12 @@ import { Typography } from '@material-ui/core'
 import { getTimestamp } from '~/utils/date'
 import useAudioContext from '~/hooks/useAudioContext'
 
-export default () => {
-    const { track, artistTitle, timeMs, durationMs } = useAudioContext()
+type ViewProps = {
+    timeMs: number
+}
+
+export default ({ timeMs }: ViewProps) => {
+    const { track, artistTitle, durationMs } = useAudioContext()
 
     return (
         <Label>

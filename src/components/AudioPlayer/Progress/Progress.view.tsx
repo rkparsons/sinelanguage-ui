@@ -3,10 +3,14 @@ import React, { useRef } from 'react'
 
 import useAudioContext from '~/hooks/useAudioContext'
 
-export default () => {
+type ViewProps = {
+    timeMs: number
+}
+
+export default ({ timeMs }: ViewProps) => {
     const progressBarRef = useRef<HTMLDivElement>(null)
 
-    const { timeMs, durationMs, skipMedia } = useAudioContext()
+    const { durationMs, skipMedia } = useAudioContext()
 
     function skipToTime(event: React.MouseEvent) {
         if (!progressBarRef.current) {

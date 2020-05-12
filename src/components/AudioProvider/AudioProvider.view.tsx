@@ -5,7 +5,6 @@ import AudioContext from '~/contexts/audioContext'
 import { ContentType } from '~/constants/contentType'
 import { FluidObject } from 'gatsby-image'
 import useAudioData from '~/hooks/useAudioData'
-import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 
 type ViewProps = {
     children: ReactNode
@@ -19,7 +18,6 @@ export default ({ children }: ViewProps) => {
     const [trackIndex, setTrackIndex] = useState(0)
     const [artwork, setArtwork] = useState<FluidObject>()
     const [artistTitle, setArtistTitle] = useState('')
-    const [timeMs, setTimeMs] = useState(0)
     const [durationMs, setDurationMs] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
     const audioData = useAudioData(audioRef)
@@ -34,17 +32,9 @@ export default ({ children }: ViewProps) => {
 
     useEffect(() => {
         if (trackIndex < tracks.length) {
-            setTimeMs(0)
             setDurationMs(tracks[trackIndex].metadata.duration)
         }
     }, [tracks, trackIndex])
-
-    // todo: only run this when tracks selected
-    useRecursiveTimeout(() => {
-        if (audioRef.current) {
-            setTimeMs(audioRef.current.currentTime * 1000)
-        }
-    }, 100)
 
     // todo: separate out logic for audio ref from selectedmedia
     function isPrevious() {
@@ -118,7 +108,6 @@ export default ({ children }: ViewProps) => {
             audioRef.current.currentTime = newTimeMs / 1000
         }
 
-        setTimeMs(newTimeMs)
         setIsPlaying(true)
     }
 
@@ -136,6 +125,10 @@ export default ({ children }: ViewProps) => {
         return window.AudioContext !== undefined
     }
 
+    function getTimeMs() {
+        return audioRef.current ? audioRef.current.currentTime * 1000 : 0
+    }
+
     return (
         <AudioContext.Provider
             value={{
@@ -143,7 +136,6 @@ export default ({ children }: ViewProps) => {
                 track: tracks[trackIndex],
                 artwork,
                 artistTitle,
-                timeMs,
                 durationMs,
                 audioData,
                 isHTMLAudioReady,
@@ -158,6 +150,7 @@ export default ({ children }: ViewProps) => {
                 pauseMedia,
                 skipMedia,
                 setVolume,
+                getTimeMs,
             }}
         >
             <audio ref={audioRef} preload="auto" crossOrigin="anonymous" />
