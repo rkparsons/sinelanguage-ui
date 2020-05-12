@@ -1,10 +1,4 @@
-import {
-    AudioPlayer,
-    ImageContainer,
-    PlayerBody,
-    PlayerPanel,
-    PlayerText,
-} from './AudioPlayer.style'
+import { AudioPlayer, ImageContainer, PlayerBody, PlayerPanel } from './AudioPlayer.style'
 import { Box, Grid, Hidden, Typography, withWidth } from '@material-ui/core'
 import React, { useEffect, useRef, useState } from 'react'
 
@@ -13,10 +7,10 @@ import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import { Close } from '@material-ui/icons'
 import Controls from './Controls'
 import IconButton from '~/components/IconButton'
+import Label from './Label'
 import { PlayerState } from '~/constants/playerState'
 import Progress from './Progress'
 import SquareImage from '~/components/SquareImage'
-import { getTimestamp } from '~/utils/date'
 import useAudioContext from '~/hooks/useAudioContext'
 
 type ViewProps = {
@@ -28,17 +22,7 @@ export default withWidth()(({ width }: ViewProps) => {
     const isMobile = ['xs', 'sm'].includes(width)
     const audioPlayer = useRef<HTMLDivElement>(null)
     const hideDelay = 5000
-    const {
-        isPlaying,
-        track,
-        artwork,
-        artistTitle,
-        timeMs,
-        durationMs,
-        isHTMLAudioReady,
-        isWebAudioAPIAvailable,
-        stopMedia,
-    } = useAudioContext()
+    const { isPlaying, track, artwork, artistTitle, stopMedia } = useAudioContext()
 
     useEffect(() => {
         if (track) {
@@ -75,64 +59,53 @@ export default withWidth()(({ width }: ViewProps) => {
 
     if (track && artwork) {
         return (
-            <>
-                <AudioPlayer
-                    ref={audioPlayer}
-                    height={audioPlayer.current?.getBoundingClientRect().height || 0}
-                    playerState={playerState}
-                    onMouseOver={onMouseOver}
-                    onMouseLeave={onMouseLeave}
-                >
-                    <Progress />
-                    <PlayerBody>
-                        <Box display="flex">
-                            <Box>
-                                <Hidden smDown>
-                                    <ImageContainer>
-                                        <SquareImage
-                                            title={`${artistTitle} - ${track.title}`}
-                                            image={artwork}
-                                        />
-                                    </ImageContainer>
-                                </Hidden>
-                                <Controls />
-                            </Box>
-                            <Box flexGrow={1}>
-                                <PlayerPanel>
-                                    <Grid container justify="space-between">
-                                        <Grid item>
-                                            <PlayerText>
-                                                <Typography variant="h5" gutterBottom>
-                                                    {artistTitle}
-                                                    <i>{track.title}</i>
-                                                </Typography>
-                                                <Typography variant="h5">
-                                                    {getTimestamp(timeMs, durationMs)}/
-                                                    {getTimestamp(durationMs, durationMs)}
-                                                </Typography>
-                                            </PlayerText>
-                                        </Grid>
-                                        <Grid item>
-                                            <IconButton
-                                                icon={<Close />}
-                                                onClick={stopMedia}
-                                                isLight={true}
-                                            />
-                                        </Grid>
-                                    </Grid>
-                                    <Hidden smDown>
-                                        <AudioVisualizer
-                                            isActive={
-                                                isPlaying && playerState !== PlayerState.MINIMISED
-                                            }
-                                        />
-                                    </Hidden>
-                                </PlayerPanel>
-                            </Box>
+            <AudioPlayer
+                ref={audioPlayer}
+                height={audioPlayer.current?.getBoundingClientRect().height || 0}
+                playerState={playerState}
+                onMouseOver={onMouseOver}
+                onMouseLeave={onMouseLeave}
+            >
+                <Progress />
+                <PlayerBody>
+                    <Box display="flex">
+                        <Box>
+                            <Hidden smDown>
+                                <ImageContainer>
+                                    <SquareImage
+                                        title={`${artistTitle} - ${track.title}`}
+                                        image={artwork}
+                                    />
+                                </ImageContainer>
+                            </Hidden>
+                            <Controls />
                         </Box>
-                    </PlayerBody>
-                </AudioPlayer>
-            </>
+                        <Box flexGrow={1}>
+                            <PlayerPanel>
+                                <Grid container justify="space-between">
+                                    <Grid item>
+                                        <Label />
+                                    </Grid>
+                                    <Grid item>
+                                        <IconButton
+                                            icon={<Close />}
+                                            onClick={stopMedia}
+                                            isLight={true}
+                                        />
+                                    </Grid>
+                                </Grid>
+                                <Hidden smDown>
+                                    <AudioVisualizer
+                                        isActive={
+                                            isPlaying && playerState !== PlayerState.MINIMISED
+                                        }
+                                    />
+                                </Hidden>
+                            </PlayerPanel>
+                        </Box>
+                    </Box>
+                </PlayerBody>
+            </AudioPlayer>
         )
     } else {
         return <></>

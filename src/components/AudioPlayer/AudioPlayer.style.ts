@@ -71,8 +71,3 @@ export const ImageContainer = styled.div`
         width: ${theme.spacing(27)};
     `}
 `
-
-export const PlayerText = styled.div`
-    position: relative;
-    z-index: 1000;
-`
