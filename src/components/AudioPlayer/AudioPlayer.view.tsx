@@ -22,7 +22,7 @@ export default withWidth()(({ width }: ViewProps) => {
     const isMobile = ['xs', 'sm'].includes(width)
     const audioPlayer = useRef<HTMLDivElement>(null)
     const hideDelay = 5000
-    const { isPlaying, track, artwork, artistTitle, stopMedia } = useAudioContext()
+    const { isPlaying, track, artwork, artistTitle } = useAudioContext()
 
     useEffect(() => {
         if (track) {
