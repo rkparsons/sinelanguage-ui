@@ -101,9 +101,8 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
                                 <Hidden smDown>
                                     <AudioVisualizer
                                         audioData={audioData}
-                                        isActive={
-                                            isPlaying && playerState !== PlayerState.MINIMISED
-                                        }
+                                        isPlaying={isPlaying}
+                                        playerState={playerState}
                                     />
                                 </Hidden>
                             </PlayerPanel>

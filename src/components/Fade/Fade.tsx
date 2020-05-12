@@ -9,7 +9,7 @@ type ViewProps = {
 }
 
 export default ({ children, isVisible, durationMs }: ViewProps) => (
-    <Fade isVisible durationMs={durationMs}>
+    <Fade isVisible={isVisible} durationMs={durationMs}>
         {children}
     </Fade>
 )
