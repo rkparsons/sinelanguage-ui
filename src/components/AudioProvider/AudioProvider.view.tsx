@@ -64,6 +64,8 @@ export default ({ children }: ViewProps) => {
     function next() {
         if (isNext()) {
             setTrackIndex(trackIndex + 1)
+            loadSrc(tracks[trackIndex + 1].metadata.streamUrl)
+            playMedia()
         }
     }
 
