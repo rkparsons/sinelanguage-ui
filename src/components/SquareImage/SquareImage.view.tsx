@@ -4,11 +4,9 @@ import React from 'react'
 
 type ViewProps = {
     title: string
-    image: {
-        fluid: FluidObject
-    }
+    image: FluidObject
 }
 
 export default ({ title, image }: ViewProps) => (
-    <Image title={title} alt={title} sizes={{ ...image.fluid, aspectRatio: 1 }} />
+    <Image title={title} alt={title} sizes={{ ...image, aspectRatio: 1 }} />
 )

@@ -33,7 +33,7 @@ export default withWidth()(({ artist, title, src, width }: ViewProps) => {
     const [isControlsVisible, setIsControlsVisible] = useState(true)
     const [duration, setDuration] = useState<number>()
     const [progress, setProgress] = useState<number>(0)
-    const { setSelectedMedia } = useAudioContext()
+    const { stopMedia } = useAudioContext()
 
     useEffect(() => {
         const forceControlsVisibilityTimer = setTimeout(() => {
@@ -68,7 +68,7 @@ export default withWidth()(({ artist, title, src, width }: ViewProps) => {
 
     useEffect(() => {
         if (!isMuted) {
-            setSelectedMedia()
+            stopMedia()
         }
     }, [isMuted])
 

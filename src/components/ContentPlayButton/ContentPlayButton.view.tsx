@@ -14,14 +14,14 @@ type ViewProps = {
 }
 
 export default ({ content, trackIndex, isLight, isLarge = true }: ViewProps) => {
-    const { setSelectedMedia } = useAudioContext()
+    const { loadMedia } = useAudioContext()
 
     return (
         <IconButton
             label={<Typography variant={isLarge ? 'h3' : 'body1'}>PLAY</Typography>}
             icon={<PlayArrow fontSize={isLarge ? 'large' : 'small'} />}
             onClick={() => {
-                setSelectedMedia({ content: content, trackIndex: trackIndex })
+                loadMedia(content, trackIndex)
             }}
             isLight={isLight}
         />

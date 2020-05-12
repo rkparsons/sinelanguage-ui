@@ -8,10 +8,9 @@ import {
 } from './AudioPlayer.style'
 import { Box, Grid, Hidden, Typography, withWidth } from '@material-ui/core'
 import { Podcast, Release, Track } from '~/cms/types'
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 import Analyser from './Analyser'
-import Audio from './Audio'
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import { Close } from '@material-ui/icons'
 import { ContentType } from '~/constants/contentType'
@@ -30,90 +29,57 @@ type ViewProps = {
 
 // todo: move clientId to env vars
 export default withWidth()(({ width }: ViewProps) => {
-    const isWebAudioAvailable = window.AudioContext !== undefined
     const [playerState, setPlayerState] = useState(PlayerState.CLOSED)
     const isMobile = ['xs', 'sm'].includes(width)
     const audioPlayer = useRef<HTMLDivElement>(null)
     const hideDelay = 5000
-    const audioRef = useRef<HTMLAudioElement>(null)
-    const [currentTimeMs, setCurrentTimeMs] = useState(0)
-    const { selectedMedia, setSelectedMedia } = useAudioContext()
-
-    const getTracks = useCallback(() => {
-        return selectedMedia?.content.__typename === ContentType.PODCAST
-            ? [(selectedMedia.content as Podcast).track]
-            : selectedMedia?.content.__typename === ContentType.RELEASE
-            ? (selectedMedia.content as Release).tracks
-            : []
-    }, [selectedMedia])
-
-    const [isPlaying, setIsPlaying] = useState(true)
-    const [volume, setVolume] = useState(1)
-    const [selectedTracks, setSelectedTracks] = useState<Track[]>(getTracks())
-
-    const getDuration = () => {
-        return selectedMedia ? selectedTracks[selectedMedia.trackIndex].metadata.duration : 0
-    }
+    const {
+        audioRef,
+        isPlaying,
+        track,
+        artwork,
+        artistTitle,
+        timeMs,
+        durationMs,
+        isHTMLAudioReady,
+        isWebAudioAPIAvailable,
+        stopMedia,
+    } = useAudioContext()
 
     useEffect(() => {
-        setCurrentTimeMs(0)
-        setIsPlaying(true)
-        setSelectedTracks(getTracks())
-        setPlayerState(PlayerState.OPEN_AUTO)
-    }, [selectedMedia])
-
-    useEffect(() => {
-        if (isMobile) {
-            return
+        if (track) {
+            setPlayerState(PlayerState.OPEN_AUTO)
+        } else {
+            setPlayerState(PlayerState.CLOSED)
         }
+    }, [track])
 
-        if (playerState === PlayerState.OPEN_AUTO) {
-            const hideIfNoInteraction = setTimeout(() => {
-                setPlayerState(PlayerState.MINIMISED)
-            }, hideDelay)
-
-            return () => clearTimeout(hideIfNoInteraction)
+    useEffect(() => {
+        if (playerState === PlayerState.OPEN_AUTO && !isMobile) {
+            return minimiseAfterTimeout()
         }
     }, [playerState])
 
-    useRecursiveTimeout(() => {
-        if (audioRef.current) {
-            setCurrentTimeMs(audioRef.current.currentTime * 1000)
-        }
-    }, 100)
-
-    useEffect(() => {
-        if (audioRef.current) {
-            audioRef.current.volume = volume
-        }
-    }, [volume, audioRef.current])
-
-    const setTrackIndex = (index: number) => {
-        if (selectedMedia) {
-            setSelectedMedia({ content: selectedMedia.content, trackIndex: index })
-        }
+    function minimiseAfterTimeout() {
+        const hideIfNoInteraction = setTimeout(() => {
+            setPlayerState(PlayerState.MINIMISED)
+        }, hideDelay)
+        return () => clearTimeout(hideIfNoInteraction)
     }
 
-    const onEnded = () => {
-        if (selectedMedia && selectedMedia.trackIndex < selectedTracks.length - 1) {
-            setTrackIndex(selectedMedia.trackIndex + 1)
-        }
-    }
-
-    const onMouseOver = () => {
+    function onMouseOver() {
         if (!isMobile) {
             setPlayerState(PlayerState.OPEN_MANUAL)
         }
     }
 
-    const onMouseLeave = () => {
+    function onMouseLeave() {
         if (!isMobile) {
             setPlayerState(PlayerState.MINIMISED)
         }
     }
 
-    // todo: move clientId to env vars
-    if (selectedMedia && selectedTracks[selectedMedia.trackIndex]) {
+    if (track && artwork) {
         return (
             <>
                 <AudioPlayer
@@ -123,34 +89,19 @@ export default withWidth()(({ width }: ViewProps) => {
                     onMouseOver={onMouseOver}
                     onMouseLeave={onMouseLeave}
                 >
-                    <Progress
-                        audioRef={audioRef}
-                        currentTimeMs={currentTimeMs}
-                        setCurrentTimeMs={setCurrentTimeMs}
-                        durationMs={getDuration()}
-                        setIsPlaying={setIsPlaying}
-                    />
+                    <Progress />
                     <PlayerBody>
                         <Box display="flex">
                             <Box>
                                 <Hidden smDown>
                                     <ImageContainer>
                                         <SquareImage
-                                            title={selectedMedia.content.title}
-                                            image={selectedMedia.content.image}
+                                            title={`${artistTitle} - ${track.title}`}
+                                            image={artwork}
                                         />
                                     </ImageContainer>
                                 </Hidden>
-                                <Controls
-                                    trackIndex={selectedMedia.trackIndex}
-                                    setTrackIndex={setTrackIndex}
-                                    isPlaying={isPlaying}
-                                    setIsPlaying={setIsPlaying}
-                                    volume={volume}
-                                    setVolume={setVolume}
-                                    trackCount={selectedTracks.length}
-                                    audioRef={audioRef}
-                                />
+                                <Controls />
                             </Box>
                             <Box flexGrow={1}>
                                 <PlayerPanel>
@@ -158,31 +109,24 @@ export default withWidth()(({ width }: ViewProps) => {
                                         <Grid item>
                                             <PlayerText>
                                                 <Typography variant="h5" gutterBottom>
-                                                    {selectedMedia.content.__typename ===
-                                                        ContentType.RELEASE &&
-                                                        `${(selectedMedia.content as Release).artist.title.toUpperCase()}, `}
-                                                    <i>
-                                                        {
-                                                            selectedTracks[selectedMedia.trackIndex]
-                                                                .title
-                                                        }
-                                                    </i>
+                                                    {artistTitle}
+                                                    <i>{track.title}</i>
                                                 </Typography>
                                                 <Typography variant="h5">
-                                                    {getTimestamp(currentTimeMs, getDuration())}/
-                                                    {getTimestamp(getDuration(), getDuration())}
+                                                    {getTimestamp(timeMs, durationMs)}/
+                                                    {getTimestamp(durationMs, durationMs)}
                                                 </Typography>
                                             </PlayerText>
                                         </Grid>
                                         <Grid item>
                                             <IconButton
                                                 icon={<Close />}
-                                                onClick={() => setSelectedMedia()}
+                                                onClick={stopMedia}
                                                 isLight={true}
                                             />
                                         </Grid>
                                     </Grid>
-                                    {audioRef.current && isWebAudioAvailable && (
+                                    {isHTMLAudioReady() && isWebAudioAPIAvailable() && (
                                         <AnimateOpacity
                                             isVisible={
                                                 isPlaying && playerState !== PlayerState.MINIMISED
@@ -196,14 +140,6 @@ export default withWidth()(({ width }: ViewProps) => {
                         </Box>
                     </PlayerBody>
                 </AudioPlayer>
-                <Audio
-                    audioRef={audioRef}
-                    src={`${
-                        selectedTracks[selectedMedia.trackIndex].metadata.streamUrl
-                    }?client_id=c5a171200f3a0a73a523bba14a1e0a29`}
-                    isPlaying={isPlaying}
-                    onEnded={onEnded}
-                />
             </>
         )
     } else {

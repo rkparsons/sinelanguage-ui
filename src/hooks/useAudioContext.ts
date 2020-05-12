@@ -1,8 +1,8 @@
-import { SelectedMediaContext } from '~/contexts/selectedMediaContext'
+import AudioContext from '~/contexts/audioContext'
 import { useContext } from 'react'
 
 export default () => {
-    const context = useContext(SelectedMediaContext)
+    const context = useContext(AudioContext)
 
     if (context === undefined) {
         throw new Error('useAudioContext must be used within an AudioProvider')

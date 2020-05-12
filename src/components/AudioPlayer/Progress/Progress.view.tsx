@@ -1,25 +1,15 @@
 import { BarContainer, PlayedBar, ProgressBar } from './Progress.style'
-import React, { RefObject, useRef } from 'react'
+import React, { useRef } from 'react'
 
-type ViewProps = {
-    audioRef: RefObject<HTMLAudioElement>
-    currentTimeMs: number
-    setCurrentTimeMs(milliseconds: number): void
-    durationMs: number
-    setIsPlaying(isPlaying: boolean): void
-}
+import useAudioContext from '~/hooks/useAudioContext'
 
-export default ({
-    audioRef,
-    currentTimeMs,
-    setCurrentTimeMs,
-    durationMs,
-    setIsPlaying,
-}: ViewProps) => {
+export default () => {
     const progressBarRef = useRef<HTMLDivElement>(null)
 
-    const skipToTime = (event: React.MouseEvent) => {
-        if (!progressBarRef.current || !audioRef.current) {
+    const { timeMs, durationMs, skipMedia } = useAudioContext()
+
+    function skipToTime(event: React.MouseEvent) {
+        if (!progressBarRef.current) {
             return
         }
 
@@ -27,15 +17,14 @@ export default ({
         const progressFraction =
             (event.clientX - progressBar.left) / (progressBar.right - progressBar.left)
         const newTimeMs = progressFraction * durationMs
-        audioRef.current.currentTime = newTimeMs / 1000
-        setCurrentTimeMs(newTimeMs)
-        setIsPlaying(true)
+
+        skipMedia(newTimeMs)
     }
 
     return (
         <BarContainer onClick={skipToTime}>
             <ProgressBar ref={progressBarRef} />
-            <PlayedBar width={(100 * currentTimeMs) / durationMs} />
+            <PlayedBar width={(100 * timeMs) / durationMs} />
         </BarContainer>
     )
 }
