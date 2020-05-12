@@ -39,7 +39,7 @@ export default (isDarkMode = false) =>
             },
             spacing: (factor) => `${0.25 * factor}rem`,
             palette: {
-                type: isDarkMode ? 'dark' : 'light',
+                type: 'light',
                 ...palette,
             },
             overrides: {
