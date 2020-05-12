@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import Visualizer from '../Visualizer'
+import Visualizer from '../AudioPlayer/Visualizer'
 
 type ViewProps = {
     audio: HTMLAudioElement

@@ -10,7 +10,7 @@ import { Box, Grid, Hidden, Typography, withWidth } from '@material-ui/core'
 import { Podcast, Release, Track } from '~/cms/types'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
-import Analyser from './Analyser'
+import AudioAnalyser from '~/components/AudioAnalyser'
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import { Close } from '@material-ui/icons'
 import { ContentType } from '~/constants/contentType'
@@ -133,7 +133,7 @@ export default withWidth()(({ width }: ViewProps) => {
                                             }
                                         >
                                             {audioRef.current && (
-                                                <Analyser
+                                                <AudioAnalyser
                                                     audio={audioRef.current}
                                                     isActive={isPlaying}
                                                 />
