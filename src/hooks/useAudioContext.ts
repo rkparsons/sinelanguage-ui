@@ -5,6 +5,7 @@ export default () => {
     const context = useContext(AudioContext)
 
     if (context === undefined) {
+        console.log('undefined context')
         throw new Error('useAudioContext must be used within an AudioProvider')
     }
 

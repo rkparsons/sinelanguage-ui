@@ -34,10 +34,8 @@ export default ({ children }: ViewProps) => {
 
     useEffect(() => {
         if (trackIndex < tracks.length) {
-            loadSrc(tracks[trackIndex].metadata.streamUrl)
             setTimeMs(0)
             setDurationMs(tracks[trackIndex].metadata.duration)
-            playMedia()
         }
     }, [tracks, trackIndex])
 
@@ -77,11 +75,13 @@ export default ({ children }: ViewProps) => {
             : []
     }
 
-    function loadMedia(content: Artist | Podcast | Release, trackIndex: number = 0) {
+    function loadMedia(content: Artist | Podcast | Release, newTrackIndex: number = 0) {
+        const newTracks = getTracks(content)
         setArtwork(content.image.fluid)
         setArtistTitle('ADD ARTIST')
-        setTracks(getTracks(content))
-        setTrackIndex(trackIndex)
+        setTracks(newTracks)
+        setTrackIndex(newTrackIndex)
+        loadSrc(newTracks[newTrackIndex].metadata.streamUrl)
         playMedia()
     }
 

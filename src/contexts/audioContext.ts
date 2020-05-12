@@ -1,7 +1,7 @@
 import { Artist, Podcast, Release, Track } from '~/cms/types'
-import { RefObject, createContext } from 'react'
 
 import { FluidObject } from 'gatsby-image'
+import { createContext } from 'react'
 
 type AudioContext = {
     isPlaying: boolean
