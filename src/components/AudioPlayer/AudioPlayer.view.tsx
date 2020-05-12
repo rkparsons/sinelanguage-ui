@@ -7,13 +7,11 @@ import {
     PlayerText,
 } from './AudioPlayer.style'
 import { Box, Grid, Hidden, Typography, withWidth } from '@material-ui/core'
-import { Podcast, Release, Track } from '~/cms/types'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import AudioVisualizer from '~/components/AudioVisualizer'
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import { Close } from '@material-ui/icons'
-import { ContentType } from '~/constants/contentType'
 import Controls from './Controls'
 import IconButton from '~/components/IconButton'
 import { PlayerState } from '~/constants/playerState'
@@ -21,7 +19,6 @@ import Progress from './Progress'
 import SquareImage from '~/components/SquareImage'
 import { getTimestamp } from '~/utils/date'
 import useAudioContext from '~/hooks/useAudioContext'
-import useRecursiveTimeout from '~/hooks/useRecursiveTimeout'
 
 type ViewProps = {
     width: Breakpoint
