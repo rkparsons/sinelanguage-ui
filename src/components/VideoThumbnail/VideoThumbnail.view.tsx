@@ -10,11 +10,10 @@ import moment from 'moment'
 
 type ViewProps = {
     video: Video
-    index: number
 }
 
-export default ({ video, index }: ViewProps) => (
-    <Grid item xs={8} sm={6} md={4} lg={6} key={index}>
+export default ({ video }: ViewProps) => (
+    <Grid item xs={8} sm={6} md={4} lg={6}>
         <MediaLink url={getUrl(video)}>
             <TeaserVideo src={video.teaserVideo.file.url} />
         </MediaLink>

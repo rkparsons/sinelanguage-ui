@@ -23,7 +23,7 @@ export default ({ data }: Props) => {
     const relatedContentComponents = sortByDate([
         ...(data.contentfulArtist.release || []),
         ...(data.contentfulArtist.video || []),
-    ]).map((relatedContent, index) => <ContentThumbnail content={relatedContent} index={index} />)
+    ]).map((relatedContent, index) => <ContentThumbnail content={relatedContent} key={index} />)
 
     return (
         <Overlay>

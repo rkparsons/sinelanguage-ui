@@ -28,7 +28,7 @@ export default ({ data }: Props) => {
             (relatedContent) =>
                 relatedContent.__typename !== __typename || relatedContent.uid !== uid
         )
-        .map((relatedContent, index) => <ContentThumbnail content={relatedContent} index={index} />)
+        .map((relatedContent, index) => <ContentThumbnail content={relatedContent} key={index} />)
 
     return (
         <>
@@ -46,7 +46,7 @@ export default ({ data }: Props) => {
                         <Scrollable isWithMargin={true}>
                             <ReleaseDetail release={data.contentfulRelease} />
                             <Grid container>
-                                <ContentThumbnail content={artist} index={0} />
+                                <ContentThumbnail content={artist} />
                             </Grid>
                             <br />
                             {relatedContentComponents.length > 0 && (

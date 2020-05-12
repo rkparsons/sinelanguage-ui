@@ -9,11 +9,10 @@ import moment from 'moment'
 
 type ViewProps = {
     release: Release
-    index: number
 }
 
-export default ({ release, index }: ViewProps) => (
-    <Grid item xs={4} sm={3} md={2} lg={3} key={index}>
+export default ({ release }: ViewProps) => (
+    <Grid item xs={4} sm={3} md={2} lg={3}>
         <MediaLink url={getUrl(release)}>
             <Image title={release.title} alt={release.title} sizes={{ ...release.image.fluid }} />
         </MediaLink>

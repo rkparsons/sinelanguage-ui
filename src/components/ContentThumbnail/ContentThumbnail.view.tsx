@@ -9,14 +9,13 @@ import VideoThumbnail from '~/components/VideoThumbnail'
 
 type ViewProps = {
     content: ContentItem
-    index: number
 }
 
-export default ({ content, index }: ViewProps) => {
+export default ({ content }: ViewProps) => {
     const components: Record<string, JSX.Element> = {
-        [ContentType.ARTIST]: <ArtistThumbnail artist={content as Artist} index={index} />,
-        [ContentType.RELEASE]: <ReleaseThumbnail release={content as Release} index={index} />,
-        [ContentType.VIDEO]: <VideoThumbnail video={content as Video} index={index} />,
+        [ContentType.ARTIST]: <ArtistThumbnail artist={content as Artist} />,
+        [ContentType.RELEASE]: <ReleaseThumbnail release={content as Release} />,
+        [ContentType.VIDEO]: <VideoThumbnail video={content as Video} />,
     }
 
     return components[content.__typename]

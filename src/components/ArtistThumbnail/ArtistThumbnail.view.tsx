@@ -8,11 +8,10 @@ import { getUrl } from '~/utils/content'
 
 type ViewProps = {
     artist: Artist
-    index: number
 }
 
-export default ({ artist, index }: ViewProps) => (
-    <Grid item xs={4} sm={3} md={2} lg={3} key={index}>
+export default ({ artist }: ViewProps) => (
+    <Grid item xs={4} sm={3} md={2} lg={3}>
         <MediaLink url={getUrl(artist)}>
             <Image title={artist.title} alt={artist.title} sizes={{ ...artist.image.fluid }} />
         </MediaLink>
