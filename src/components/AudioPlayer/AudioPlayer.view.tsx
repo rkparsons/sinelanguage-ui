@@ -15,13 +15,13 @@ import useAudioContext from '~/hooks/useAudioContext'
 
 type ViewProps = {
     width: Breakpoint
+    hideTimeout: number
 }
 
-export default withWidth()(({ width }: ViewProps) => {
+export default withWidth()(({ width, hideTimeout }: ViewProps) => {
     const [playerState, setPlayerState] = useState(PlayerState.CLOSED)
     const isMobile = ['xs', 'sm'].includes(width)
     const audioPlayer = useRef<HTMLDivElement>(null)
-    const hideDelay = 5000
     const { isPlaying, track, artwork, artistTitle } = useAudioContext()
 
     useEffect(() => {
@@ -41,7 +41,7 @@ export default withWidth()(({ width }: ViewProps) => {
     function minimiseAfterTimeout() {
         const hideIfNoInteraction = setTimeout(() => {
             setPlayerState(PlayerState.MINIMISED)
-        }, hideDelay)
+        }, hideTimeout)
         return () => clearTimeout(hideIfNoInteraction)
     }
 

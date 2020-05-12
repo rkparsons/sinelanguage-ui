@@ -31,7 +31,7 @@ export default ({ isDarkMode, setIsDarkMode, children }: ViewProps) => (
                         {children}
                         <Dashboard />
                     </main>
-                    <AudioPlayer />
+                    <AudioPlayer hideTimeout={5000} />
                 </AppContainer>
             </AudioProvider>
         </ScThemeProvider>
