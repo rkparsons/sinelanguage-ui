@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
 
+import ResponsivePaddingTop from '~/components/ResponsivePaddingTop'
 import { Scrollable } from './Scrollable.style'
 
 type ViewProps = {
@@ -9,10 +10,12 @@ type ViewProps = {
 
 export default ({ children, isWithMargin }: ViewProps) => (
     <Scrollable isWithMargin={isWithMargin}>
-        {children}
-        <br />
-        <br />
-        <br />
-        <br />
+        <ResponsivePaddingTop>
+            {children}
+            <br />
+            <br />
+            <br />
+            <br />
+        </ResponsivePaddingTop>
     </Scrollable>
 )

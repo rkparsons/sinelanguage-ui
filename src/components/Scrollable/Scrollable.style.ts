@@ -1,10 +1,8 @@
-import { contentOffset, marginSide } from '~/styles/sizes'
-
+import { marginSide } from '~/styles/sizes'
 import styled from 'styled-components'
 
 export const Scrollable = styled.div<{ isWithMargin: boolean }>`
     ${({ theme, isWithMargin }) => `    
-        padding-top: ${theme.spacing(contentOffset)};
         height: 100vh;
         overflow-x: hidden;
         overflow-y: auto;
