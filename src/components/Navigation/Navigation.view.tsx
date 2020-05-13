@@ -1,9 +1,9 @@
 import { Add, Close } from '@material-ui/icons'
 import { Grid, withWidth } from '@material-ui/core'
-import { Header, Title } from './Navigation.style'
 import React, { useState } from 'react'
 
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
+import { Header } from './Navigation.style'
 import IconButton from '~/components/IconButton'
 import Links from './Links'
 import NavItem from '~/components/NavItem'
@@ -34,12 +34,10 @@ export default withWidth()(({ width, location }: ViewProps) => {
         <Header>
             <Grid container spacing={isMobile ? 10 : 0} justify="space-between">
                 <Grid item xs={isMobile ? 9 : 6}>
-                    <Title>
-                        <NavItem
-                            to={Route.NEWS}
-                            title={isMobile ? 'SINE LANGUAGE' : 'SINE LANGUAGE RECORDS'}
-                        />
-                    </Title>
+                    <NavItem
+                        to={Route.NEWS}
+                        title={isMobile ? 'SINE LANGUAGE' : 'SINE LANGUAGE RECORDS'}
+                    />
                 </Grid>
                 {isMobile && (
                     <Grid item>
