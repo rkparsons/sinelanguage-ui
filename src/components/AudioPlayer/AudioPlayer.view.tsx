@@ -88,16 +88,16 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
                             </Hidden>
                             <Controls />
                         </Box>
-                        <Box flexGrow={1}>
+                        <Box flexGrow={1} minWidth={0}>
                             <PlayerPanel>
-                                <Grid container justify="space-between">
-                                    <Grid item>
+                                <Box display="flex">
+                                    <Box flexGrow={1} flexShrink={1} minWidth={0}>
                                         <Label timeMs={timeMs} />
-                                    </Grid>
-                                    <Grid item>
+                                    </Box>
+                                    <Box>
                                         <StopButton />
-                                    </Grid>
-                                </Grid>
+                                    </Box>
+                                </Box>
                                 <Hidden smDown>
                                     <AudioVisualizer
                                         audioData={audioData}

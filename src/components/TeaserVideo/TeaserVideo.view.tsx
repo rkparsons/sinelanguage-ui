@@ -11,7 +11,7 @@ export default ({ src }: ViewProps) => {
 
     return (
         <VideoContainer>
-            <video ref={videoRef} autoPlay loop muted>
+            <video ref={videoRef} muted autoPlay loop playsInline>
                 <source src={src} type="video/mp4" />
             </video>
         </VideoContainer>
