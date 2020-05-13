@@ -5,7 +5,9 @@ import Image from 'gatsby-image'
 import InvertOnHover from '~/components/InvertOnHover'
 import React from 'react'
 import { Release } from '~/cms/types'
+import { Tracks } from './ReleaseDetail.style'
 import { getDurationTimestamp } from '~/utils/date'
+import useAudioContext from '~/hooks/useAudioContext'
 
 type ViewProps = {
     release: Release
@@ -13,6 +15,7 @@ type ViewProps = {
 
 export default ({ release }: ViewProps) => {
     const { artist, title, uid, format, image, tracks } = release
+    const { loadMedia } = useAudioContext()
 
     return (
         <>
@@ -42,25 +45,27 @@ export default ({ release }: ViewProps) => {
                     <br />
                     {tracks.map((track, index) => (
                         <InvertOnHover key={index}>
-                            <Grid container key={index} justify="space-between">
-                                <Grid item xs={8}>
-                                    <Typography variant="h3">
-                                        {index + 1}&nbsp;&nbsp;&nbsp;{track.title}
-                                    </Typography>
+                            <Tracks onClick={() => loadMedia(release, index)}>
+                                <Grid container key={index} justify="space-between">
+                                    <Grid item xs={8}>
+                                        <Typography variant="h3">
+                                            {index + 1}&nbsp;&nbsp;&nbsp;{track.title}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item>
+                                        <Typography variant="h3">
+                                            {getDurationTimestamp(track.metadata.duration)}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item>
+                                        <ContentPlayButton
+                                            content={release}
+                                            trackIndex={index}
+                                            isLight={true}
+                                        />
+                                    </Grid>
                                 </Grid>
-                                <Grid item>
-                                    <Typography variant="h3">
-                                        {getDurationTimestamp(track.metadata.duration)}
-                                    </Typography>
-                                </Grid>
-                                <Grid item>
-                                    <ContentPlayButton
-                                        content={release}
-                                        trackIndex={index}
-                                        isLight={true}
-                                    />
-                                </Grid>
-                            </Grid>
+                            </Tracks>
                         </InvertOnHover>
                     ))}
                     <br />
