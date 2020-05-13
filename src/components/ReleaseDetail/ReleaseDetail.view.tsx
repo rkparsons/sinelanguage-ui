@@ -52,9 +52,14 @@ export default ({ release }: ViewProps) => {
                     <Typography variant="h3">TRACKLIST</Typography>
                     <br />
                     {tracks.map((track, index) => (
-                        <InvertOnHover key={index}>
-                            <TrackRow release={release} track={track} index={index} />
-                        </InvertOnHover>
+                        <>
+                            <InvertOnHover key={index}>
+                                <TrackRow release={release} track={track} index={index} />
+                            </InvertOnHover>
+                            <Hidden smUp>
+                                <br />
+                            </Hidden>
+                        </>
                     ))}
                     <br />
                 </>

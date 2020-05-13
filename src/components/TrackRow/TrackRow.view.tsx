@@ -1,9 +1,9 @@
-import { Grid, Typography } from '@material-ui/core'
+import { Box, Grid, Typography } from '@material-ui/core'
 import { Release, Track } from '~/cms/types'
+import { TrackNumber, TrackRow } from './TrackRow.style'
 
 import ContentPlayButton from '~/components/ContentPlayButton'
 import React from 'react'
-import { TrackRow } from './TrackRow.style'
 import { getDurationTimestamp } from '~/utils/date'
 import useAudioContext from '~/hooks/useAudioContext'
 
@@ -24,25 +24,36 @@ export default ({ release, track, index }: ViewProps) => {
 
     return (
         <TrackRow onClick={() => playTrack(index)}>
-            <Grid container key={index} justify="space-between">
-                <Grid item xs={8}>
-                    <Typography variant="h3">
-                        {index + 1}&nbsp;&nbsp;&nbsp;{track.title}
-                    </Typography>
-                </Grid>
-                {track.metadata.duration && (
-                    <Grid item>
-                        <Typography variant="h3">
-                            {getDurationTimestamp(track.metadata.duration)}
-                        </Typography>
+            <Box display="flex">
+                <Box>
+                    <TrackNumber>
+                        <Typography variant="h3">{index + 1}</Typography>
+                    </TrackNumber>
+                </Box>
+                <Box flexGrow={1}>
+                    <Grid container key={index} justify="space-between">
+                        <Grid item xs={12} sm={8}>
+                            <Typography variant="h3">{track.title}</Typography>
+                        </Grid>
+                        {track.metadata.duration && (
+                            <Grid item xs={3} sm={2}>
+                                <Typography variant="h3">
+                                    {getDurationTimestamp(track.metadata.duration)}
+                                </Typography>
+                            </Grid>
+                        )}
+                        {track.metadata.streamUrl && (
+                            <Grid item xs>
+                                <ContentPlayButton
+                                    content={release}
+                                    trackIndex={index}
+                                    isLight={true}
+                                />
+                            </Grid>
+                        )}
                     </Grid>
-                )}
-                {track.metadata.streamUrl && (
-                    <Grid item>
-                        <ContentPlayButton content={release} trackIndex={index} isLight={true} />
-                    </Grid>
-                )}
-            </Grid>
+                </Box>
+            </Box>
         </TrackRow>
     )
 }
