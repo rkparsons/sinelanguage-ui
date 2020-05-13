@@ -15,7 +15,14 @@ type ViewProps = {
 
 export default ({ release }: ViewProps) => {
     const { artist, title, uid, format, image, tracks } = release
+    const isTracksMissingMetadata = tracks.find((track) => !track.metadata.streamUrl) !== undefined
     const { loadMedia } = useAudioContext()
+
+    const playTrack = (index: number) => {
+        if (tracks[index].metadata.streamUrl) {
+            loadMedia(release, index)
+        }
+    }
 
     return (
         <>
@@ -25,8 +32,10 @@ export default ({ release }: ViewProps) => {
             <br />
             <Typography variant="h3">[{uid}]</Typography>
             <Typography variant="h3">{format}</Typography>
+            {!isTracksMissingMetadata && (
+                <ContentPlayButton content={release} trackIndex={0} isLight={true} />
+            )}
 
-            <ContentPlayButton content={release} trackIndex={0} isLight={true} />
             <br />
 
             <Hidden lgUp>
@@ -45,25 +54,29 @@ export default ({ release }: ViewProps) => {
                     <br />
                     {tracks.map((track, index) => (
                         <InvertOnHover key={index}>
-                            <Tracks onClick={() => loadMedia(release, index)}>
+                            <Tracks onClick={() => playTrack(index)}>
                                 <Grid container key={index} justify="space-between">
                                     <Grid item xs={8}>
                                         <Typography variant="h3">
                                             {index + 1}&nbsp;&nbsp;&nbsp;{track.title}
                                         </Typography>
                                     </Grid>
-                                    <Grid item>
-                                        <Typography variant="h3">
-                                            {getDurationTimestamp(track.metadata.duration)}
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item>
-                                        <ContentPlayButton
-                                            content={release}
-                                            trackIndex={index}
-                                            isLight={true}
-                                        />
-                                    </Grid>
+                                    {track.metadata.duration && (
+                                        <Grid item>
+                                            <Typography variant="h3">
+                                                {getDurationTimestamp(track.metadata.duration)}
+                                            </Typography>
+                                        </Grid>
+                                    )}
+                                    {track.metadata.streamUrl && (
+                                        <Grid item>
+                                            <ContentPlayButton
+                                                content={release}
+                                                trackIndex={index}
+                                                isLight={true}
+                                            />
+                                        </Grid>
+                                    )}
                                 </Grid>
                             </Tracks>
                         </InvertOnHover>

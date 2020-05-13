@@ -16,6 +16,9 @@ type ViewProps = {
 }
 
 export default ({ release }: ViewProps) => {
+    const { title, artist, tracks } = release
+    const isTracksMissingMetadata = tracks.find((track) => !track.metadata.streamUrl) !== undefined
+
     return (
         <Column widthMultiplier={1}>
             <MediaLink url={getUrl(release)}>
@@ -23,18 +26,21 @@ export default ({ release }: ViewProps) => {
             </MediaLink>
             <ContentCardDetail>
                 <Typography>
-                    {release.artist.title.toUpperCase()}, <i>{release.title}</i>
+                    {artist.title.toUpperCase()}, <i>{title}</i>
                 </Typography>
                 <Grid container spacing={2}>
                     <Grid item xs={1}></Grid>
-                    <Grid item>
-                        <ContentPlayButton
-                            content={release}
-                            trackIndex={0}
-                            isLarge={false}
-                            isLight={false}
-                        />
-                    </Grid>
+                    {!isTracksMissingMetadata && (
+                        <Grid item>
+                            <ContentPlayButton
+                                content={release}
+                                trackIndex={0}
+                                isLarge={false}
+                                isLight={false}
+                            />
+                        </Grid>
+                    )}
+
                     <Grid item>
                         <IconButton
                             label={<Typography variant="body1">BUY</Typography>}
