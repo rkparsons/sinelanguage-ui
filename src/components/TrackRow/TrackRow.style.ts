@@ -1,5 +1,5 @@
 import styled from 'styled-components'
 
-export const Track = styled.div`
+export const TrackRow = styled.div`
     cursor: pointer;
 `

@@ -5,8 +5,7 @@ import Image from 'gatsby-image'
 import InvertOnHover from '~/components/InvertOnHover'
 import React from 'react'
 import { Release } from '~/cms/types'
-import { Track } from './ReleaseDetail.style'
-import { getDurationTimestamp } from '~/utils/date'
+import TrackRow from '~/components/TrackRow'
 import useAudioContext from '~/hooks/useAudioContext'
 
 type ViewProps = {
@@ -54,31 +53,7 @@ export default ({ release }: ViewProps) => {
                     <br />
                     {tracks.map((track, index) => (
                         <InvertOnHover key={index}>
-                            <Track onClick={() => playTrack(index)}>
-                                <Grid container key={index} justify="space-between">
-                                    <Grid item xs={8}>
-                                        <Typography variant="h3">
-                                            {index + 1}&nbsp;&nbsp;&nbsp;{track.title}
-                                        </Typography>
-                                    </Grid>
-                                    {track.metadata.duration && (
-                                        <Grid item>
-                                            <Typography variant="h3">
-                                                {getDurationTimestamp(track.metadata.duration)}
-                                            </Typography>
-                                        </Grid>
-                                    )}
-                                    {track.metadata.streamUrl && (
-                                        <Grid item>
-                                            <ContentPlayButton
-                                                content={release}
-                                                trackIndex={index}
-                                                isLight={true}
-                                            />
-                                        </Grid>
-                                    )}
-                                </Grid>
-                            </Track>
+                            <TrackRow release={release} track={track} index={index} />
                         </InvertOnHover>
                     ))}
                     <br />
