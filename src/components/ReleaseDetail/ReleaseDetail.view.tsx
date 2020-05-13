@@ -5,7 +5,7 @@ import Image from 'gatsby-image'
 import InvertOnHover from '~/components/InvertOnHover'
 import React from 'react'
 import { Release } from '~/cms/types'
-import { Tracks } from './ReleaseDetail.style'
+import { Track } from './ReleaseDetail.style'
 import { getDurationTimestamp } from '~/utils/date'
 import useAudioContext from '~/hooks/useAudioContext'
 
@@ -54,7 +54,7 @@ export default ({ release }: ViewProps) => {
                     <br />
                     {tracks.map((track, index) => (
                         <InvertOnHover key={index}>
-                            <Tracks onClick={() => playTrack(index)}>
+                            <Track onClick={() => playTrack(index)}>
                                 <Grid container key={index} justify="space-between">
                                     <Grid item xs={8}>
                                         <Typography variant="h3">
@@ -78,7 +78,7 @@ export default ({ release }: ViewProps) => {
                                         </Grid>
                                     )}
                                 </Grid>
-                            </Tracks>
+                            </Track>
                         </InvertOnHover>
                     ))}
                     <br />
