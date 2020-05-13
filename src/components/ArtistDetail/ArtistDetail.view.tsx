@@ -1,4 +1,4 @@
-import { Grid, Hidden, Typography } from '@material-ui/core'
+import { Box, Grid, Hidden, Typography } from '@material-ui/core'
 
 import { Artist } from '~/cms/types'
 import ContentPlayButton from '~/components/ContentPlayButton'
@@ -18,7 +18,9 @@ export default ({ artist }: ViewProps) => {
         <>
             <Grid container spacing={5}>
                 <Grid item>
-                    <Typography variant="h3">{title.toUpperCase()}</Typography>
+                    <Box display="flex" alignItems="center" height="100%">
+                        <Typography variant="h3">{title.toUpperCase()}</Typography>
+                    </Box>
                 </Grid>
                 <Grid item>
                     <ContentPlayButton content={artist} trackIndex={0} isLight={true} />
