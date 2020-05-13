@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import { VideoContainer } from './TeaserVideo.style'
 
@@ -8,6 +8,12 @@ type ViewProps = {
 
 export default ({ src }: ViewProps) => {
     const videoRef = useRef<HTMLVideoElement>(null)
+
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.setAttribute('muted', '1')
+        }
+    }, [videoRef.current])
 
     return (
         <VideoContainer>
