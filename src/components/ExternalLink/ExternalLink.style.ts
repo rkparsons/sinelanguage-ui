@@ -10,6 +10,10 @@ export const Link = styled.a`
     &:hover {
         color: black;
         text-shadow: ${lightShadow};
+
+        svg {
+            filter: drop-shadow(${lightShadow});
+        }
     }
 
     .MuiIcon-root {

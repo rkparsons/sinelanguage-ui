@@ -11,7 +11,7 @@ type ViewProps = {
 
 export default ({ href, title, icon }: ViewProps) => (
     <Link href={href} target="_blank" rel="noopener">
-        <Grid container alignItems="center">
+        <Grid container alignItems="center" spacing={2}>
             {icon && <Grid item>{icon}</Grid>}
             {title && <Grid item>{title.toUpperCase()}</Grid>}
         </Grid>

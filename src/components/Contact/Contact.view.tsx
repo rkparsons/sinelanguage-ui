@@ -12,21 +12,19 @@ export default () => {
     return (
         <Overlay>
             <Scrollable isWithMargin={false}>
-                <ResponsivePaddingTop>
-                    <Contact>
-                        <Typography variant="h3">CONTACT</Typography>
-                        <br />
-                        <Email title="INQUIRIES" email="info@sinelanguage.net" />
-                        <Email title="BOOKINGS" email="bookings@sinelanguage.net" />
-                        <Email title="DEMOS" email="demos@sinelanguage.net" />
-                        <br />
-                        <br />
-                        <Subscribe />
-                        <br />
-                        <br />
-                        <Follow />
-                    </Contact>
-                </ResponsivePaddingTop>
+                <Contact>
+                    <Typography variant="h3">CONTACT</Typography>
+                    <br />
+                    <Email title="INQUIRIES" email="info@sinelanguage.net" />
+                    <Email title="BOOKINGS" email="bookings@sinelanguage.net" />
+                    <Email title="DEMOS" email="demos@sinelanguage.net" />
+                    <br />
+                    <br />
+                    <Subscribe />
+                    <br />
+                    <br />
+                    <Follow />
+                </Contact>
             </Scrollable>
         </Overlay>
     )
