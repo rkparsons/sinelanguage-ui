@@ -69,7 +69,6 @@
         "react-helmet": "^5.2.1",
         "react-player": "^2.0.1",
         "recharts": "^1.8.5",
-        "screenfull": "^5.0.2",
         "styled-components": "^4.4.1",
         "universal-cookie": "^4.0.3"
     },
