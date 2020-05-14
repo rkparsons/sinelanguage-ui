@@ -35,22 +35,18 @@ export default ({ release, track, index }: ViewProps) => {
                         <Grid item xs={12} sm={8}>
                             <Typography variant="h3">{track.title}</Typography>
                         </Grid>
-                        {track.metadata.duration && (
-                            <Grid item xs={3} sm={2}>
-                                <Typography variant="h3">
-                                    {getDurationTimestamp(track.metadata.duration)}
-                                </Typography>
-                            </Grid>
-                        )}
-                        {track.metadata.streamUrl && (
-                            <Grid item xs>
-                                <ContentPlayButton
-                                    content={release}
-                                    trackIndex={index}
-                                    isLight={true}
-                                />
-                            </Grid>
-                        )}
+                        <Grid item xs={3} sm={2}>
+                            <Typography variant="h3">
+                                {getDurationTimestamp(track.metadata.duration)}
+                            </Typography>
+                        </Grid>
+                        <Grid item xs>
+                            <ContentPlayButton
+                                content={release}
+                                trackIndex={index}
+                                isLight={true}
+                            />
+                        </Grid>
                     </Grid>
                 </Box>
             </Box>

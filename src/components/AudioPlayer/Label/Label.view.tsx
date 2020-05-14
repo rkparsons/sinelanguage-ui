@@ -14,7 +14,7 @@ export default ({ timeMs }: ViewProps) => {
 
     return (
         <Label>
-            <Typography variant="h5" gutterBottom>
+            <Typography variant="h5">
                 {artistTitle.toUpperCase()}, <i>{track?.title}</i>
             </Typography>
             <Typography variant="h5">

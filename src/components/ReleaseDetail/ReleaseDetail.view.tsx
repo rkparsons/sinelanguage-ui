@@ -14,14 +14,6 @@ type ViewProps = {
 
 export default ({ release }: ViewProps) => {
     const { artist, title, uid, format, image, tracks } = release
-    const isTracksMissingMetadata = tracks.find((track) => !track.metadata.streamUrl) !== undefined
-    const { loadMedia } = useAudioContext()
-
-    const playTrack = (index: number) => {
-        if (tracks[index].metadata.streamUrl) {
-            loadMedia(release, index)
-        }
-    }
 
     return (
         <>
@@ -31,9 +23,7 @@ export default ({ release }: ViewProps) => {
             <br />
             <Typography variant="h3">[{uid}]</Typography>
             <Typography variant="h3">{format}</Typography>
-            {!isTracksMissingMetadata && (
-                <ContentPlayButton content={release} trackIndex={0} isLight={true} />
-            )}
+            <ContentPlayButton content={release} trackIndex={0} isLight={true} />
 
             <br />
 

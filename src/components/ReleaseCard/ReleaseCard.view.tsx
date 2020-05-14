@@ -16,8 +16,7 @@ type ViewProps = {
 }
 
 export default ({ release }: ViewProps) => {
-    const { title, artist, tracks } = release
-    const isTracksMissingMetadata = tracks.find((track) => !track.metadata.streamUrl) !== undefined
+    const { title, artist } = release
 
     return (
         <Column widthMultiplier={1}>
@@ -30,16 +29,14 @@ export default ({ release }: ViewProps) => {
                 </Typography>
                 <Grid container spacing={2}>
                     <Grid item xs={1}></Grid>
-                    {!isTracksMissingMetadata && (
-                        <Grid item>
-                            <ContentPlayButton
-                                content={release}
-                                trackIndex={0}
-                                isLarge={false}
-                                isLight={false}
-                            />
-                        </Grid>
-                    )}
+                    <Grid item>
+                        <ContentPlayButton
+                            content={release}
+                            trackIndex={0}
+                            isLarge={false}
+                            isLight={false}
+                        />
+                    </Grid>
 
                     <Grid item>
                         <IconButton

@@ -11,7 +11,6 @@ export default new ContentfulContentType({
         }),
         new SoundCloudMetadataField({
             name: 'Metadata',
-            required: false,
             widgetId: 'bPHguxTpAJ71ExuaDuSyU',
         }),
     ],

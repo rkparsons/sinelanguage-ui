@@ -24,7 +24,7 @@ export default (isDarkMode = false) =>
                 },
                 h5: {
                     fontSize: 20,
-                    lineHeight: 1,
+                    lineHeight: 1.5,
                 },
                 h4: {
                     lineHeight: 1.25,
