@@ -17,11 +17,13 @@ export const VideoContainer = styled.div`
     }
 `
 
-export const Backdrop = styled.div`
+export const Backdrop = styled.div<{ isVisible: boolean }>`
     position: absolute;
     background-color: black;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
+    transition: opacity 1.5s;
 `

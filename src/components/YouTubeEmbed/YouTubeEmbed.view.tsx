@@ -25,10 +25,9 @@ export default withWidth()(({ width, src }: ViewProps) => {
 
     return (
         <>
-            {isPlaying && isMobile && <Backdrop />}
+            <Backdrop isVisible={isPlaying && isMobile} />
             <VideoContainer onClick={stopMedia}>
                 <ReactPlayer
-                    isPlaying={isPlaying}
                     url={src}
                     controls={true}
                     playsinline={false}
