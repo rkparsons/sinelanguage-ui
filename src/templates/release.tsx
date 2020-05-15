@@ -16,10 +16,13 @@ type Props = {
     data: {
         contentfulRelease: Release & { artist: Artist & { release?: Release[]; video?: Video[] } }
     }
+    location: Location
 }
 
-export default ({ data }: Props) => {
+export default ({ data, location }: Props) => {
     const { __typename, uid, title, description, image, artist } = data.contentfulRelease
+    const isCart = location.hash === '#/cart'
+
     const relatedContentComponents = sortByDate([
         ...(data.contentfulRelease.artist.release || []),
         ...(data.contentfulRelease.artist.video || []),

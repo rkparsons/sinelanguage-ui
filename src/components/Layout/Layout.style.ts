@@ -22,6 +22,22 @@ export const GlobalStyle = createGlobalStyle`
     a {
         text-decoration: none;
     }
+    .snipcart-modal__container {
+        width: 50vw !important;
+        left: 50% !important;
+        background-color: transparent !important;
+        position: absolute;
+        z-index: 1000 !important;
+    }
+    .snipcart-cart-header {
+        background-color: transparent !important;
+    }
+    .snipcart-cart__content {
+        background-color: transparent !important;
+    }
+    .snipcart-item-line {
+        background-color: transparent !important;
+    }
 `
 
 export const AppContainer = styled(Container)`

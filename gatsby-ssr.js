@@ -2,14 +2,12 @@
 
 // module.exports = ssrAPI
 
-import Cart from './src/components/cart'
+import Cart from './src/components/Cart'
 import React from 'react'
 
 export const onRenderBody = ({ setPostBodyComponents }) => {
     const components = [
-        <div hidden id="snipcart" data-api-key={process.env.GATSBY_SNIPCART_API_KEY}>
-            <Cart />
-        </div>,
+        <Cart />,
         <script src="https://cdn.snipcart.com/themes/v3.0.11/default/snipcart.js"></script>,
     ]
 

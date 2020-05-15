@@ -1,14 +1,10 @@
-import FeaturedPaymentMethods from './FeaturedPaymentMethods'
-import LineItem from './LineItem'
+const FeaturedPaymentMethods = require('./FeaturedPaymentMethods')
+const LineItem = require('./LineItem')
+// import { snipcartApiKey } from '../../../env-variables'
+
+import { Cart } from './Cart.style'
 import React from 'react'
 
-const Cart = () => {
-    return (
-        <>
-            <FeaturedPaymentMethods />
-            <LineItem />
-        </>
-    )
+export default () => {
+    return <div hidden id="snipcart" data-api-key={process.env.GATSBY_SNIPCART_API_KEY} />
 }
-
-export default Cart
