@@ -1,5 +1,6 @@
 import { Box, Grid, Hidden, Typography } from '@material-ui/core'
 
+import BuyButton from '~/components/BuyButton'
 import ContentPlayButton from '~/components/ContentPlayButton'
 import Image from 'gatsby-image'
 import InvertOnHover from '~/components/InvertOnHover'
@@ -57,15 +58,9 @@ export default ({ release }: ViewProps) => {
             )}
 
             <Typography variant="h3">BUY</Typography>
-            <button
-                className="buy-button snipcart-add-item"
-                data-item-id="1"
-                data-item-price="18.99"
-                data-item-url={getUrl(release)}
-                data-item-name="Ellipsis Vinyl"
-            >
-                Add to cart (£18.99)
-            </button>
+            <BuyButton id="1" price={18.99} url={getUrl(release)} name="Ellipsis Vinyl" />
+            <br />
+            <br />
         </>
     )
 }

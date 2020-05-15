@@ -5,7 +5,6 @@
 import Cart from './src/components/Cart'
 import React from 'react'
 import { RenderBodyArgs } from './gatsby/types/ssr'
-import { createElement } from 'react'
 
 export type GatsbySsrContext = {
     setBodyComponents: (components: React.ReactElement[]) => undefined
