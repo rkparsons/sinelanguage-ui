@@ -34,3 +34,5 @@ export const contentfulAccessToken = process.env['GATSBY_CTF_ACCESS_TOKEN']!
 export const contentfulManagementToken = process.env['GATSBY_CTF_MANAGEMENT_TOKEN']!
 
 export const soundCloudClientID = process.env['SOUNDCLOUD_CLIENT_ID']
+
+export const snipcartApiKey = process.env['GATSBY_SNIPCART_API_KEY']

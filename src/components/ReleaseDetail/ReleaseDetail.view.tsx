@@ -1,4 +1,4 @@
-import { Grid, Hidden, Typography } from '@material-ui/core'
+import { Box, Grid, Hidden, Typography } from '@material-ui/core'
 
 import ContentPlayButton from '~/components/ContentPlayButton'
 import Image from 'gatsby-image'
@@ -6,6 +6,7 @@ import InvertOnHover from '~/components/InvertOnHover'
 import React from 'react'
 import { Release } from '~/cms/types'
 import TrackRow from '~/components/TrackRow'
+import { getUrl } from '~/utils/content'
 import useAudioContext from '~/hooks/useAudioContext'
 
 type ViewProps = {
@@ -42,18 +43,29 @@ export default ({ release }: ViewProps) => {
                     <Typography variant="h3">TRACKLIST</Typography>
                     <br />
                     {tracks.map((track, index) => (
-                        <>
+                        <Box key={index}>
                             <InvertOnHover key={index}>
                                 <TrackRow release={release} track={track} index={index} />
                             </InvertOnHover>
                             <Hidden smUp>
                                 <br />
                             </Hidden>
-                        </>
+                        </Box>
                     ))}
                     <br />
                 </>
             )}
+
+            <Typography variant="h3">BUY</Typography>
+            <button
+                className="buy-button snipcart-add-item"
+                data-item-id="1"
+                data-item-price="18.99"
+                data-item-url={getUrl(release)}
+                data-item-name="Ellipsis Vinyl"
+            >
+                Add to cart (£18.99)
+            </button>
         </>
     )
 }
