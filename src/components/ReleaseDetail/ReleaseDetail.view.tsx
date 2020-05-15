@@ -58,7 +58,15 @@ export default ({ release }: ViewProps) => {
             )}
 
             <Typography variant="h3">BUY</Typography>
-            <BuyButton id="1" price={18.99} url={getUrl(release)} name="Ellipsis Vinyl" />
+            <BuyButton
+                id="1"
+                price={18.99}
+                url={getUrl(release)}
+                name="Ellipsis Vinyl"
+                isLarge={true}
+                isLight={true}
+            />
+
             <br />
             <br />
         </>

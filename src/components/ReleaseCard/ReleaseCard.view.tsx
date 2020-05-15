@@ -1,11 +1,10 @@
 import { Grid, Typography } from '@material-ui/core'
 
-import BagIcon from '~/components/BagIcon'
+import BuyButton from '~/components/BuyButton'
 import Column from '~/components/Column'
 import ContentCardDetail from '~/components/ContentCardDetail'
 import ContentCardMedia from '~/components/ContentCardMedia'
 import ContentPlayButton from '~/components/ContentPlayButton'
-import IconButton from '~/components/IconButton'
 import MediaLink from '~/components/MediaLink'
 import React from 'react'
 import { Release } from '~/cms/types'
@@ -39,10 +38,12 @@ export default ({ release }: ViewProps) => {
                     </Grid>
 
                     <Grid item>
-                        <IconButton
-                            label={<Typography variant="body1">BUY</Typography>}
-                            icon={<BagIcon />}
-                            onClick={() => console.log('buy')}
+                        <BuyButton
+                            id="1"
+                            price={18.99}
+                            url={getUrl(release)}
+                            name="Ellipsis Vinyl"
+                            isLarge={false}
                             isLight={false}
                         />
                     </Grid>

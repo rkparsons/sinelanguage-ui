@@ -3,7 +3,7 @@ import { darkShadow, lightShadow } from '~/styles/shadows'
 import styled from 'styled-components'
 
 // todo: move all light dark shadow/colour logic to single place
-export const Button = styled.div<{ isLight: boolean; isDisabled: boolean }>`
+export const Button = styled.span<{ isLight: boolean; isDisabled: boolean }>`
     svg {
         display: block;
 

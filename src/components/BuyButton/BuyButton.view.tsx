@@ -1,7 +1,7 @@
 import { Box, Typography } from '@material-ui/core'
 
 import BagIcon from '~/components/BagIcon'
-import { Button } from './BuyButton.style'
+import IconButton from '~/components/IconButton'
 import React from 'react'
 
 type ViewProps = {
@@ -9,25 +9,21 @@ type ViewProps = {
     price: number
     url: string
     name: string
+    isLarge: boolean
+    isLight: boolean
 }
 
-export default ({ id, price, url, name }: ViewProps) => (
-    <Button
-        isLight={true}
-        isDisabled={false}
-        className="buy-button snipcart-add-item"
-        data-item-id={id}
-        data-item-price={price}
-        data-item-url={url}
-        data-item-name={name}
-    >
-        <Box display="inline-flex">
-            <Box>
-                <BagIcon />
-            </Box>
-            <Box>
-                <Typography variant="h3">ADD TO CART</Typography>
-            </Box>
-        </Box>
-    </Button>
+export default ({ id, price, url, name, isLarge, isLight }: ViewProps) => (
+    <IconButton
+        label={<Typography variant={isLarge ? 'h3' : 'body1'}>BUY</Typography>}
+        icon={<BagIcon isLarge={isLarge} />}
+        onClick={() => console.log('buy')}
+        isLight={isLight}
+        cartItem={{
+            id,
+            price,
+            url,
+            name,
+        }}
+    />
 )
