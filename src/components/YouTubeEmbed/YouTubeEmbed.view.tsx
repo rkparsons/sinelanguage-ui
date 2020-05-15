@@ -1,31 +1,45 @@
+import { Backdrop, VideoContainer } from './YouTubeEmbed.style'
+import React, { useState } from 'react'
+
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
-import React from 'react'
 import ReactPlayer from 'react-player'
-import { VideoContainer } from './YouTubeEmbed.style'
 import useAudioContext from '~/hooks/useAudioContext'
+import { withWidth } from '@material-ui/core'
 
 type ViewProps = {
+    width: Breakpoint
     artist: string
     title: string
     src: string
 }
 
-export default ({ src }: ViewProps) => {
+export default withWidth()(({ width, src }: ViewProps) => {
+    const isMobile = ['xs', 'sm'].includes(width)
+    const [isPlaying, setIsPlaying] = useState(false)
     const { stopMedia } = useAudioContext()
 
+    function onPlay() {
+        stopMedia()
+        setIsPlaying(true)
+    }
+
     return (
-        <VideoContainer onClick={stopMedia}>
-            <ReactPlayer
-                url={src}
-                controls={true}
-                playsinline={false}
-                config={{
-                    youtube: {
-                        playerVars: { modestbranding: 1, preload: true },
-                    },
-                }}
-                onPlay={stopMedia}
-            />
-        </VideoContainer>
+        <>
+            {isPlaying && isMobile && <Backdrop />}
+            <VideoContainer onClick={stopMedia}>
+                <ReactPlayer
+                    isPlaying={isPlaying}
+                    url={src}
+                    controls={true}
+                    playsinline={false}
+                    config={{
+                        youtube: {
+                            playerVars: { modestbranding: 1, preload: true },
+                        },
+                    }}
+                    onPlay={onPlay}
+                />
+            </VideoContainer>
+        </>
     )
-}
+})

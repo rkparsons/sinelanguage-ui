@@ -17,25 +17,11 @@ export const VideoContainer = styled.div`
     }
 `
 
-export const Controls = styled.div<{ isVisible: boolean }>`
+export const Backdrop = styled.div`
     position: absolute;
-    background-color: white;
-    border-top: 1px solid grey;
-    color: grey;
-    bottom: 0;
+    background-color: black;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 60px;
-    opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
-    transition-property: opacity;
-    transition-duration: 0s;
-    transition-delay: ${({ isVisible }) => (isVisible ? 0 : 1)}s;
-    text-shadow: none;
-
-    svg {
-        filter: none;
-    }
-`
-
-export const ControlsGrid = styled(Grid)`
     height: 100%;
 `
