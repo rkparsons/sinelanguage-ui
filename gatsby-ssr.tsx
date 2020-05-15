@@ -4,8 +4,14 @@
 
 import Cart from './src/components/Cart'
 import React from 'react'
+import { RenderBodyArgs } from './gatsby/types/ssr'
+import { createElement } from 'react'
 
-export const onRenderBody = ({ setPostBodyComponents }) => {
+export type GatsbySsrContext = {
+    setBodyComponents: (components: React.ReactElement[]) => undefined
+}
+
+export const onRenderBody = ({ setPostBodyComponents }: RenderBodyArgs) => {
     const components = [
         <Cart />,
         <script src="https://cdn.snipcart.com/themes/v3.0.11/default/snipcart.js"></script>,
