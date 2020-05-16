@@ -65,6 +65,7 @@ export default ({ release }: ViewProps) => {
                 name="Ellipsis Vinyl"
                 description={release.description.description}
                 imageUrl={release.image.fluid.src}
+                formats='12" Vinyl|Cassette[-8]|Digital[-10]'
                 isLarge={true}
                 isLight={true}
             />

@@ -11,11 +11,22 @@ type ViewProps = {
     name: string
     description: string
     imageUrl: string
+    formats: string
     isLarge: boolean
     isLight: boolean
 }
 
-export default ({ id, price, url, name, description, imageUrl, isLarge, isLight }: ViewProps) => (
+export default ({
+    id,
+    price,
+    url,
+    name,
+    description,
+    imageUrl,
+    formats,
+    isLarge,
+    isLight,
+}: ViewProps) => (
     <IconButton
         label={<Typography variant={isLarge ? 'h3' : 'body1'}>BUY</Typography>}
         icon={<BagIcon isLarge={isLarge} />}
@@ -28,6 +39,7 @@ export default ({ id, price, url, name, description, imageUrl, isLarge, isLight 
             name,
             description,
             imageUrl,
+            formats,
         }}
     />
 )

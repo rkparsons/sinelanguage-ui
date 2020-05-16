@@ -25,6 +25,8 @@ export default ({ label, icon, onClick, isLight, isDisabled = false, cartItem }:
         data-item-name={cartItem?.name}
         data-item-description={cartItem?.description}
         data-item-image={cartItem?.imageUrl}
+        data-item-custom1-name="Format"
+        data-item-custom1-options={cartItem?.formats}
     >
         <Box display="inline-flex">
             <Box>{icon}</Box>

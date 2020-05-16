@@ -5,4 +5,5 @@ export type CartItem = {
     name: string
     description: string
     imageUrl: string
+    formats: string
 }
