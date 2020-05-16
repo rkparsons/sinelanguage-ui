@@ -1,6 +1,6 @@
 import { Add, Close } from '@material-ui/icons'
 import { Grid, withWidth } from '@material-ui/core'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import { Header } from './Navigation.style'
@@ -21,7 +21,7 @@ export default withWidth()(({ width, location }: ViewProps) => {
     const isMobile = ['xs', 'sm'].includes(width)
     const [previousLocation, setPreviousLocation] = useState<string>()
 
-    const handleMenuClick = () => {
+    function handleMenuClick() {
         if (isMenuOpen) {
             navigate(previousLocation || '/')
         } else {
@@ -29,6 +29,28 @@ export default withWidth()(({ width, location }: ViewProps) => {
             navigate('/menu')
         }
     }
+
+    function configureSnipcart() {
+        const { Snipcart } = window as any
+
+        if (!Snipcart) {
+            return
+        }
+
+        Snipcart.api.session.setLanguage('en', {
+            actions: {
+                continue_shopping: 'Go back to store',
+            },
+        })
+    }
+
+    useEffect(() => {
+        configureSnipcart()
+
+        document.addEventListener('snipcart.ready', () => {
+            configureSnipcart()
+        })
+    }, [])
 
     return (
         <Header>
