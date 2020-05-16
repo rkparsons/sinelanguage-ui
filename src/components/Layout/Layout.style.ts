@@ -28,6 +28,9 @@ export const GlobalStyle = createGlobalStyle`
         background-color: transparent !important;
         position: absolute;
         z-index: 1000 !important;
+        * {
+            font-family: 'HelveticaNowText' !important;
+        }
     }
     .snipcart-cart-header {
         background-color: transparent !important;
