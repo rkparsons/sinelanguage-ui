@@ -1,8 +1,9 @@
-import { Grid } from '@material-ui/core'
+import { Box, Grid, Typography } from '@material-ui/core'
+import { CartButton, Row } from './Links.style'
+
 import NavItem from '~/components/NavItem'
 import React from 'react'
 import { Route } from '~/constants/route'
-import { Row } from './Links.style'
 
 // todo: replace row style with grid spacing
 
@@ -34,7 +35,10 @@ export default ({ isMobile }: ViewProps) => (
                     <NavItem to={Route.CONTACT} title="CONTACT" partiallyActive={true} />
                 </Row>
                 <Row item>
-                    <NavItem to={Route.BAG} title="BAG" partiallyActive={true} />
+                    <CartButton className="snipcart-checkout">
+                        <Typography variant="h3">BAG</Typography>
+                    </CartButton>
+                    {/* <NavItem to={Route.BAG} title="BAG" partiallyActive={true} /> */}
                 </Row>
             </Grid>
         </Grid>

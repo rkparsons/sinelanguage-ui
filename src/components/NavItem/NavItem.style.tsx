@@ -10,8 +10,6 @@ const CustomLink: FC<Omit<GatsbyLinkProps<{}>, 'ref'>> = (props) => <Link {...pr
 export default styled((props: GatsbyLinkProps<{}>) => (
     <CustomLink {...props} activeStyle={{ color: 'black', textShadow: lightShadow }} />
 ))`
-    font-size: 0.9rem;
-    margin-right: 1.3rem;
     text-decoration: none;
     color: white;
     text-shadow: ${darkShadow};
