@@ -2,18 +2,11 @@ const FeaturedPaymentMethods = require('./FeaturedPaymentMethods')
 const LineItem = require('./LineItem')
 
 import React, { useEffect } from 'react'
-import { SnipcartBilling, SnipcartCheckbox, SnipcartInput, SnipcartLabel } from '~/types/snipcart'
 
-declare global {
-    namespace JSX {
-        interface IntrinsicElements {
-            billing: SnipcartBilling
-            'snipcart-label': SnipcartLabel
-            'snipcart-input': SnipcartInput
-            'snipcart-checkbox': SnipcartCheckbox
-        }
-    }
-}
+import Billing from './Billing'
+import SnipcartCheckbox from './SnipcartCheckbox'
+import SnipcartInput from './SnipcartInput'
+import SnipcartLabel from './SnipcartLabel'
 
 export default () => {
     function configureSnipcart() {
@@ -34,29 +27,30 @@ export default () => {
 
     return (
         <div hidden id="snipcart" data-api-key={process.env.GATSBY_SNIPCART_API_KEY}>
-            <billing section="top">
+            <Billing section="top">
                 <fieldset className="snipcart-form__set">
                     <div className="snipcart-form__field">
-                        <snipcart-label className="snipcart__font--tiny" for="phone">
-                            Phone number
-                        </snipcart-label>
-                        <snipcart-input name="phone"></snipcart-input>
+                        <SnipcartLabel
+                            className="snipcart__font--tiny"
+                            forInput="phone"
+                            text="Phone number"
+                        />
+                        <SnipcartInput name="phone" />
                     </div>
                 </fieldset>
-            </billing>
-            <billing section="bottom">
+            </Billing>
+            <Billing section="bottom">
                 <fieldset className="snipcart-form__set">
                     <div className="snipcart-form__field-checkbox">
-                        <snipcart-checkbox name="subscribeToNewsletter"></snipcart-checkbox>
-                        <snipcart-label
+                        <SnipcartCheckbox name="subscribeToNewsletter" />
+                        <SnipcartLabel
                             className="snipcart__font--tiny snipcart-form__label--checkbox"
-                            for="subscribeToNewsletter"
-                        >
-                            Subscribe to newsletter
-                        </snipcart-label>
+                            forInput="subscribeToNewsletter"
+                            text="Subscribe to newsletter"
+                        />
                     </div>
                 </fieldset>
-            </billing>
+            </Billing>
         </div>
     )
 }
