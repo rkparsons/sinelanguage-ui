@@ -1,5 +1,4 @@
-import { Box, Container } from '@material-ui/core'
-
+import { Container } from '@material-ui/core'
 import { createGlobalStyle } from 'styled-components'
 import styled from 'styled-components'
 
@@ -21,25 +20,6 @@ export const GlobalStyle = createGlobalStyle`
 
     a {
         text-decoration: none;
-    }
-    .snipcart-modal__container {
-        /* width: 50vw !important;
-        left: 50% !important; */
-        background-color: transparent !important;
-        position: absolute;
-        z-index: 1000 !important;
-        * {
-            font-family: 'HelveticaNowText' !important;
-        }
-    }
-    .snipcart-cart-header {
-        background-color: transparent !important;
-    }
-    .snipcart-cart__content {
-        background-color: transparent !important;
-    }
-    .snipcart-item-line {
-        background-color: transparent !important;
     }
 `
 

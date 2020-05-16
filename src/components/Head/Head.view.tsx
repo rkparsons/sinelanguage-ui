@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet'
 import React from 'react'
 import { SiteMetadata } from '~/cms/types'
-import TexgyreherosRegular from '~/styles/fonts/texgyreheroscn-regular.otf'
 
 interface ViewProps {
     title: string
@@ -31,11 +30,6 @@ export default ({ title, description, image, url, siteMetadata }: ViewProps) => 
             <meta property="twitter:title" content={seoTitle} />
             <meta property="twitter:description" content={seoDescription} />
             <meta property="twitter:image" content={seoImage} />
-            <link
-                rel="stylesheet"
-                href="https://cdn.snipcart.com/themes/v3.0.11/default/snipcart.css"
-            />
-            <script src="https://cdn.snipcart.com/themes/v3.0.11/default/snipcart.js"></script>,
         </Helmet>
     )
 }
