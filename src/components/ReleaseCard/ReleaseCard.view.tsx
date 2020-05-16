@@ -43,6 +43,7 @@ export default ({ release }: ViewProps) => {
                             price={18.99}
                             url={getUrl(release)}
                             name={release.title}
+                            description={release.description.description}
                             imageUrl={release.image.fluid.src}
                             isLarge={false}
                             isLight={false}

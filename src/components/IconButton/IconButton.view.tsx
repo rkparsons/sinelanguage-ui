@@ -8,6 +8,7 @@ type CardItem = {
     price: number
     url: string
     name: string
+    description: string
     imageUrl: string
 }
 
@@ -30,6 +31,7 @@ export default ({ label, icon, onClick, isLight, isDisabled = false, cartItem }:
         data-item-price={cartItem?.price}
         data-item-url={cartItem?.url}
         data-item-name={cartItem?.name}
+        data-item-description={cartItem?.description}
         data-item-image={cartItem?.imageUrl}
     >
         <Box display="inline-flex">
