@@ -8,6 +8,7 @@ type CardItem = {
     price: number
     url: string
     name: string
+    imageUrl: string
 }
 
 type ViewProps = {
@@ -29,6 +30,7 @@ export default ({ label, icon, onClick, isLight, isDisabled = false, cartItem }:
         data-item-price={cartItem?.price}
         data-item-url={cartItem?.url}
         data-item-name={cartItem?.name}
+        data-item-image={cartItem?.imageUrl}
     >
         <Box display="inline-flex">
             <Box>{icon}</Box>

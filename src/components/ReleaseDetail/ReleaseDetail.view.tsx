@@ -63,6 +63,7 @@ export default ({ release }: ViewProps) => {
                 price={18.99}
                 url={getUrl(release)}
                 name="Ellipsis Vinyl"
+                imageUrl={release.image.fluid.src}
                 isLarge={true}
                 isLight={true}
             />
