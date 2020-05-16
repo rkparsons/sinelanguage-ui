@@ -5,6 +5,7 @@ import React, { ReactNode } from 'react'
 
 import AudioPlayer from '~/components/AudioPlayer'
 import AudioProvider from '~/components/AudioProvider'
+import Cart from '~/components/Cart'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Dashboard from '~/components/Dashboard'
 import { Location } from '@reach/router'
@@ -32,6 +33,7 @@ export default ({ isDarkMode, setIsDarkMode, children }: ViewProps) => (
                         <Dashboard />
                     </main>
                     <AudioPlayer hideTimeout={5000} />
+                    <Cart />
                 </AppContainer>
             </AudioProvider>
         </ScThemeProvider>

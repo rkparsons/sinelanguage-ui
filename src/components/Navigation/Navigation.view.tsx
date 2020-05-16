@@ -30,28 +30,6 @@ export default withWidth()(({ width, location }: ViewProps) => {
         }
     }
 
-    function configureSnipcart() {
-        const { Snipcart } = window as any
-
-        if (!Snipcart) {
-            return
-        }
-
-        Snipcart.api.session.setLanguage('en', {
-            actions: {
-                continue_shopping: 'Go back to store',
-            },
-        })
-    }
-
-    useEffect(() => {
-        configureSnipcart()
-
-        document.addEventListener('snipcart.ready', () => {
-            configureSnipcart()
-        })
-    }, [])
-
     return (
         <Header>
             <Grid container spacing={isMobile ? 10 : 0} justify="space-between">

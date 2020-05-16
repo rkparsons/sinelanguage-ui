@@ -31,11 +31,11 @@ export default ({ title, description, image, url, siteMetadata }: ViewProps) => 
             <meta property="twitter:title" content={seoTitle} />
             <meta property="twitter:description" content={seoDescription} />
             <meta property="twitter:image" content={seoImage} />
-
             <link
                 rel="stylesheet"
                 href="https://cdn.snipcart.com/themes/v3.0.11/default/snipcart.css"
             />
+            <script src="https://cdn.snipcart.com/themes/v3.0.11/default/snipcart.js"></script>,
         </Helmet>
     )
 }

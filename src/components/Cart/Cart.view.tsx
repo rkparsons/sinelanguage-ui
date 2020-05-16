@@ -1,26 +1,8 @@
 const FeaturedPaymentMethods = require('./FeaturedPaymentMethods')
 const LineItem = require('./LineItem')
-// import { snipcartApiKey } from '../../../env-variables'
 
-import React from 'react'
-
-type HTMLProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>
-
-type SnipcartBilling = HTMLProps & {
-    section: string
-}
-
-type SnipcartLabel = HTMLProps & {
-    for: string
-}
-
-type SnipcartInput = HTMLProps & {
-    name: string
-}
-
-type SnipcartCheckbox = HTMLProps & {
-    name: string
-}
+import React, { useEffect } from 'react'
+import { SnipcartBilling, SnipcartCheckbox, SnipcartInput, SnipcartLabel } from '~/types/snipcart'
 
 declare global {
     namespace JSX {
@@ -34,6 +16,22 @@ declare global {
 }
 
 export default () => {
+    function configureSnipcart() {
+        const { Snipcart } = window as any
+
+        Snipcart.api.session.setLanguage('en', {
+            actions: {
+                continue_shopping: 'Go back to store',
+            },
+        })
+    }
+
+    useEffect(() => {
+        document.addEventListener('snipcart.ready', () => {
+            configureSnipcart()
+        })
+    }, [])
+
     return (
         <div hidden id="snipcart" data-api-key={process.env.GATSBY_SNIPCART_API_KEY}>
             <billing section="top">
