@@ -19,6 +19,9 @@ export default () => {
                 continue_shopping: 'Go back to store',
             },
         })
+
+        // open events: item added, bag clicked
+        // close events: back to store clicked
     }
 
     useEffect(() => {
