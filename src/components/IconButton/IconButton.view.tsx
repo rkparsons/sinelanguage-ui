@@ -2,15 +2,7 @@ import { Box, Grid } from '@material-ui/core'
 import React, { ReactNode } from 'react'
 
 import { Button } from './IconButton.style'
-
-type CardItem = {
-    id: string
-    price: number
-    url: string
-    name: string
-    description: string
-    imageUrl: string
-}
+import { CartItem } from '~/types/snipcart'
 
 type ViewProps = {
     label?: ReactNode
@@ -18,7 +10,7 @@ type ViewProps = {
     onClick(): void
     isLight: boolean
     isDisabled?: boolean
-    cartItem?: CardItem
+    cartItem?: CartItem
 }
 
 export default ({ label, icon, onClick, isLight, isDisabled = false, cartItem }: ViewProps) => (
