@@ -73,10 +73,8 @@ export const productFragment = graphql`
 	fragment productFragment on ContentfulProduct {
 		__typename
 		id
+		title
 		format
-		description {
-            description
-        }
 		price
 	}
 `
@@ -141,6 +139,9 @@ export const trackFragment = graphql`
             streamUrl
             duration
             samples
+        }
+		product {
+            ...productFragment
         }
 	}
 `

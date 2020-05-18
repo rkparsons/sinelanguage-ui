@@ -1,4 +1,11 @@
-import { ContentfulContentType, SoundCloudMetadataField, SymbolField } from '../../../cms/models'
+import {
+    ContentfulContentType,
+    LinkField,
+    SoundCloudMetadataField,
+    SymbolField,
+} from '../../../cms/models'
+
+import Product from './product'
 
 export default new ContentfulContentType({
     id: 'track',
@@ -12,6 +19,11 @@ export default new ContentfulContentType({
         new SoundCloudMetadataField({
             name: 'Metadata',
             widgetId: 'bPHguxTpAJ71ExuaDuSyU',
+        }),
+        new LinkField({
+            name: 'Product',
+            link: Product,
+            required: false,
         }),
     ],
 })

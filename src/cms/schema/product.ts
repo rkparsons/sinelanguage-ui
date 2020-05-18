@@ -6,8 +6,13 @@ export default new ContentfulContentType({
     id: 'product',
     name: 'Product',
     description: '',
-    displayField: 'description',
+    displayField: 'title',
     fields: [
+        new SymbolField({
+            name: 'Title',
+            widgetId: 'singleLine',
+            helpText: 'Use the form: artist - release (format)',
+        }),
         new SymbolField({
             id: 'format',
             name: 'Format',
@@ -16,12 +21,6 @@ export default new ContentfulContentType({
                     in: Object.values(ProductFormat),
                 },
             ],
-        }),
-        // todo: remove description?
-        new TextField({
-            name: 'Description',
-            widgetId: 'singleLine',
-            helpText: 'Short description used in the shopping cart.',
         }),
         new DecimalField({
             name: 'Price',

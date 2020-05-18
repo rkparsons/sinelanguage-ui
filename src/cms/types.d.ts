@@ -59,10 +59,8 @@ export type Podcast = {
 export type Product = {
 	__typename: string
 	id: string
+	title: string
 	format: string
-	description: {
-        description: string
-    }
 	price: number
 }
 
@@ -114,6 +112,7 @@ export type Track = {
         duration: number
         samples: number[]
     }
+	product: Product
 }
 
 export type Video = {
