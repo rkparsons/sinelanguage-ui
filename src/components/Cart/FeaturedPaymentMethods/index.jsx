@@ -1,5 +1,6 @@
 import React from 'react'
 
+// todo: replace with PCI compliant notice or similar
 export default () => (
     <featured-payment-methods>
         <div className="snipcart-featured-payment-methods">
