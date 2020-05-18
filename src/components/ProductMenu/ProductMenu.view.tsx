@@ -1,15 +1,18 @@
 import { Menu } from '@material-ui/core'
 import { MenuItem } from '@material-ui/core'
-import { Product } from '~/cms/types'
 import React from 'react'
+import { Release } from '~/cms/types'
+import { getUrl } from '~/utils/content'
 
 type Props = {
-    products: Product[]
+    release: Release
     triggerElement: HTMLButtonElement | undefined
     closeHandler: () => void
 }
 
-export default ({ products, triggerElement, closeHandler }: Props) => {
+export default ({ release, triggerElement, closeHandler }: Props) => {
+    const { artist, products, image, title } = release
+
     const handleClose = () => {
         closeHandler()
     }
@@ -23,7 +26,18 @@ export default ({ products, triggerElement, closeHandler }: Props) => {
             onClose={handleClose}
         >
             {products.map((product, index) => (
-                <MenuItem key={index} component="button">
+                <MenuItem
+                    key={index}
+                    component="button"
+                    className="snipcart-add-item"
+                    data-item-id={product.id}
+                    data-item-price={product.price}
+                    data-item-url={getUrl(release)}
+                    data-item-name={`${artist.title} - ${release.title}`}
+                    data-item-description={product.format}
+                    data-item-image={image.fluid.src}
+                    onClick={handleClose}
+                >
                     {product.format} (£{product.price.toFixed(2)})
                 </MenuItem>
             ))}

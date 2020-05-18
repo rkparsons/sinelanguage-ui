@@ -62,7 +62,7 @@ export default ({ release }: ViewProps) => {
                             <ProductMenu
                                 triggerElement={menuTrigger}
                                 closeHandler={handleClose}
-                                products={products}
+                                release={release}
                             />
                         </Grid>
                     )}

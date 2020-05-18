@@ -17,6 +17,7 @@ export default new ContentfulContentType({
                 },
             ],
         }),
+        // todo: remove description?
         new TextField({
             name: 'Description',
             widgetId: 'singleLine',
