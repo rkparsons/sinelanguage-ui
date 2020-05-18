@@ -18,6 +18,7 @@ export default ({ release }: ViewProps) => {
 
     return (
         <>
+            <br />
             <Typography variant="h3">TRACKLIST</Typography>
             <br />
             {tracks.map((track, index) => (

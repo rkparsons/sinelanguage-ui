@@ -35,6 +35,7 @@ export default ({ release }: ViewProps) => {
 
                 <br />
             </Hidden>
+            <br />
 
             <ReleaseTracks release={release} />
             <br />

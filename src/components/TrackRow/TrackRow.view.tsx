@@ -41,11 +41,13 @@ export default ({ release, track, index }: ViewProps) => {
                             </Typography>
                         </Grid>
                         <Grid item xs>
-                            <ContentPlayButton
-                                content={release}
-                                trackIndex={index}
-                                isLight={true}
-                            />
+                            <Box display="flex" width="100%" justifyContent="flex-end">
+                                <ContentPlayButton
+                                    content={release}
+                                    trackIndex={index}
+                                    isLight={true}
+                                />
+                            </Box>
                         </Grid>
                     </Grid>
                 </Box>
