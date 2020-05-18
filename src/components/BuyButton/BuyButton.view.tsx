@@ -1,8 +1,7 @@
-import { Box, Typography } from '@material-ui/core'
-
 import BagIcon from '~/components/BagIcon'
 import IconButton from '~/components/IconButton'
 import React from 'react'
+import { Typography } from '@material-ui/core'
 
 type ViewProps = {
     id: string
@@ -17,7 +16,7 @@ type ViewProps = {
 
 export default ({ id, price, url, name, description, imageUrl, isLarge, isLight }: ViewProps) => (
     <IconButton
-        label={<Typography variant={isLarge ? 'h3' : 'body1'}>ADD TO CART</Typography>}
+        label={<Typography variant={isLarge ? 'h3' : 'body1'}>BUY</Typography>}
         icon={<BagIcon isLarge={isLarge} />}
         onClick={() => console.log('buy')}
         isLight={isLight}
