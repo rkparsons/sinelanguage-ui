@@ -8,8 +8,8 @@ import SnipcartInput from './SnipcartInput'
 import SnipcartLabel from './SnipcartLabel'
 
 export default () => {
-    const stylesUrl = 'https://cdn.snipcart.com/themes/v3.0.11/default/snipcart.css'
-    const scriptUrl = 'https://cdn.snipcart.com/themes/v3.0.11/default/snipcart.js'
+    const stylesUrl = 'https://cdn.snipcart.com/themes/v3.0.13/default/snipcart.css'
+    const scriptUrl = 'https://cdn.snipcart.com/themes/v3.0.13/default/snipcart.js'
 
     function configureSnipcart() {
         const { Snipcart } = window as any
