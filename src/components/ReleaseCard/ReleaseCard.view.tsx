@@ -1,12 +1,14 @@
-import { Grid, Typography } from '@material-ui/core'
+import { Button, Grid, Menu, MenuItem, Typography } from '@material-ui/core'
+import React, { useRef, useState } from 'react'
 
-import BuyButton from '~/components/BuyButton'
+import BagIcon from '~/components/BagIcon'
 import Column from '~/components/Column'
 import ContentCardDetail from '~/components/ContentCardDetail'
 import ContentCardMedia from '~/components/ContentCardMedia'
 import ContentPlayButton from '~/components/ContentPlayButton'
+import FormatMenu from '~/components/FormatMenu'
+import IconButton from '~/components/IconButton'
 import MediaLink from '~/components/MediaLink'
-import React from 'react'
 import { Release } from '~/cms/types'
 import { getUrl } from '~/utils/content'
 
@@ -16,6 +18,18 @@ type ViewProps = {
 
 export default ({ release }: ViewProps) => {
     const { title, artist } = release
+    const [menuTrigger, setMenuTrigger] = useState<HTMLButtonElement>()
+    const menuTriggerRef = useRef<HTMLButtonElement>(null)
+
+    const handleClick = () => {
+        if (menuTriggerRef.current) {
+            setMenuTrigger(menuTriggerRef.current)
+        }
+    }
+
+    const handleClose = () => {
+        setMenuTrigger(undefined)
+    }
 
     return (
         <Column widthMultiplier={1}>
@@ -38,17 +52,14 @@ export default ({ release }: ViewProps) => {
                     </Grid>
 
                     <Grid item>
-                        <BuyButton
-                            id="1"
-                            price={18.99}
-                            url={getUrl(release)}
-                            name={release.title}
-                            description={release.description.description}
-                            imageUrl={release.image.fluid.src}
-                            formats='12" Vinyl|Cassette[-8]|Digital[-10]'
-                            isLarge={false}
+                        <IconButton
+                            buttonRef={menuTriggerRef}
+                            label={<Typography variant="body1">BUY</Typography>}
+                            icon={<BagIcon isLarge={false} />}
+                            onClick={handleClick}
                             isLight={false}
                         />
+                        <FormatMenu triggerElement={menuTrigger} closeHandler={handleClose} />
                     </Grid>
                 </Grid>
             </ContentCardDetail>

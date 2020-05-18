@@ -1,10 +1,11 @@
 import { Box, Grid } from '@material-ui/core'
-import React, { ReactNode } from 'react'
+import React, { ReactNode, RefObject } from 'react'
 
 import { Button } from './IconButton.style'
 import { CartItem } from '~/types/snipcart'
 
 type ViewProps = {
+    buttonRef?: RefObject<HTMLButtonElement>
     label?: ReactNode
     icon: ReactNode
     onClick(): void
@@ -13,8 +14,17 @@ type ViewProps = {
     cartItem?: CartItem
 }
 
-export default ({ label, icon, onClick, isLight, isDisabled = false, cartItem }: ViewProps) => (
+export default ({
+    buttonRef,
+    label,
+    icon,
+    onClick,
+    isLight,
+    isDisabled = false,
+    cartItem,
+}: ViewProps) => (
     <Button
+        ref={buttonRef}
         onClick={() => !isDisabled && onClick()}
         isLight={isLight}
         isDisabled={isDisabled}
