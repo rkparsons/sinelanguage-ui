@@ -54,6 +54,11 @@ export default (isDarkMode = false) =>
                         color: 'white',
                     },
                 },
+                MuiMenuItem: {
+                    root: {
+                        width: '100%',
+                    },
+                },
             },
         })
     )

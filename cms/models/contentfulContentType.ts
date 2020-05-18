@@ -34,15 +34,16 @@ export default class ContentfulContentType extends ContentType {
         this.displayField = displayField
         this.fields = fields
         this.controls = fields
-            .map(x => x.control)
-            .filter(control => control !== undefined) as Control[]
+            .map((x) => x.control)
+            .filter((control) => control !== undefined) as Control[]
     }
 
     getTypeDefinition() {
         this.stringWriter = ``
         this.writeLine(`export type ${this.typeName} = {`)
         this.writeLine(`__typename: string`, 1)
-        this.fields.forEach(field => {
+        this.writeLine(`id: string`, 1)
+        this.fields.forEach((field) => {
             this.writeLine(field.getTypeDefinition(), 1)
         })
         this.writeLine(`}`)
@@ -55,7 +56,8 @@ export default class ContentfulContentType extends ContentType {
         this.writeLine(`export const ${this.fragmentName} = graphql\``)
         this.writeLine(`fragment ${this.fragmentName} on ${this.nodeName} {`, 1)
         this.writeLine(`__typename`, 2)
-        this.fields.forEach(field => {
+        this.writeLine(`id`, 2)
+        this.fields.forEach((field) => {
             this.writeLine(field.getFragmentDefinition(), 2)
         })
         this.writeLine(`}`, 1)
@@ -67,7 +69,7 @@ export default class ContentfulContentType extends ContentType {
     getNodeDefinition() {
         this.stringWriter = ``
 
-        this.fields.forEach(field => {
+        this.fields.forEach((field) => {
             const linkedNodeDefinition = field.getLinkedNodeDefinition(this.typeName)
             if (linkedNodeDefinition) {
                 this.writeLine(linkedNodeDefinition, 1)
@@ -76,7 +78,7 @@ export default class ContentfulContentType extends ContentType {
         })
 
         this.writeLine(`type Contentful${this.typeName} implements Node {`, 1)
-        this.fields.forEach(field => {
+        this.fields.forEach((field) => {
             this.writeLine(field.getNodeDefinition(this.typeName), 2)
         })
         this.writeLine('}', 1)

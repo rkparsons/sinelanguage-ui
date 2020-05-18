@@ -3,6 +3,7 @@ import { Document } from '@contentful/rich-text-types/dist/types/types'
 
 export type Artist = {
 	__typename: string
+	id: string
 	title: string
 	uid: string
 	description: {
@@ -20,6 +21,7 @@ export type Artist = {
 
 export type Event = {
 	__typename: string
+	id: string
 	title: string
 	uid: string
 	description: {
@@ -38,6 +40,7 @@ export type Event = {
 
 export type Podcast = {
 	__typename: string
+	id: string
 	title: string
 	uid: string
 	description: {
@@ -55,6 +58,7 @@ export type Podcast = {
 
 export type Product = {
 	__typename: string
+	id: string
 	format: string
 	description: {
         description: string
@@ -64,6 +68,7 @@ export type Product = {
 
 export type Release = {
 	__typename: string
+	id: string
 	title: string
 	uid: string
 	artist: Artist
@@ -86,6 +91,7 @@ export type Release = {
 
 export type SiteMetadata = {
 	__typename: string
+	id: string
 	title: string
 	url: string
 	description: {
@@ -100,6 +106,7 @@ export type SiteMetadata = {
 
 export type Track = {
 	__typename: string
+	id: string
 	title: string
 	metadata: {
         title: string        
@@ -111,6 +118,7 @@ export type Track = {
 
 export type Video = {
 	__typename: string
+	id: string
 	title: string
 	uid: string
 	artist: Artist

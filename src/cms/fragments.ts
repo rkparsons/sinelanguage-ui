@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 export const artistFragment = graphql`
 	fragment artistFragment on ContentfulArtist {
 		__typename
+		id
 		title
 		uid
 		description {
@@ -24,6 +25,7 @@ export const artistFragment = graphql`
 export const eventFragment = graphql`
 	fragment eventFragment on ContentfulEvent {
 		__typename
+		id
 		title
 		uid
 		description {
@@ -46,6 +48,7 @@ export const eventFragment = graphql`
 export const podcastFragment = graphql`
 	fragment podcastFragment on ContentfulPodcast {
 		__typename
+		id
 		title
 		uid
 		description {
@@ -69,6 +72,7 @@ export const podcastFragment = graphql`
 export const productFragment = graphql`
 	fragment productFragment on ContentfulProduct {
 		__typename
+		id
 		format
 		description {
             description
@@ -80,6 +84,7 @@ export const productFragment = graphql`
 export const releaseFragment = graphql`
 	fragment releaseFragment on ContentfulRelease {
 		__typename
+		id
 		title
 		uid
 		artist {
@@ -112,6 +117,7 @@ export const releaseFragment = graphql`
 export const siteMetadataFragment = graphql`
 	fragment siteMetadataFragment on ContentfulSiteMetadata {
 		__typename
+		id
 		title
 		url
 		description {
@@ -128,6 +134,7 @@ export const siteMetadataFragment = graphql`
 export const trackFragment = graphql`
 	fragment trackFragment on ContentfulTrack {
 		__typename
+		id
 		title
 		metadata {
             title
@@ -141,6 +148,7 @@ export const trackFragment = graphql`
 export const videoFragment = graphql`
 	fragment videoFragment on ContentfulVideo {
 		__typename
+		id
 		title
 		uid
 		artist {

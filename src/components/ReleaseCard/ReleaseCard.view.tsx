@@ -6,9 +6,9 @@ import Column from '~/components/Column'
 import ContentCardDetail from '~/components/ContentCardDetail'
 import ContentCardMedia from '~/components/ContentCardMedia'
 import ContentPlayButton from '~/components/ContentPlayButton'
-import FormatMenu from '~/components/FormatMenu'
 import IconButton from '~/components/IconButton'
 import MediaLink from '~/components/MediaLink'
+import ProductMenu from '~/components/ProductMenu'
 import { Release } from '~/cms/types'
 import { getUrl } from '~/utils/content'
 
@@ -17,7 +17,7 @@ type ViewProps = {
 }
 
 export default ({ release }: ViewProps) => {
-    const { title, artist } = release
+    const { title, artist, products } = release
     const [menuTrigger, setMenuTrigger] = useState<HTMLButtonElement>()
     const menuTriggerRef = useRef<HTMLButtonElement>(null)
 
@@ -50,17 +50,22 @@ export default ({ release }: ViewProps) => {
                             isLight={false}
                         />
                     </Grid>
-
-                    <Grid item>
-                        <IconButton
-                            buttonRef={menuTriggerRef}
-                            label={<Typography variant="body1">BUY</Typography>}
-                            icon={<BagIcon isLarge={false} />}
-                            onClick={handleClick}
-                            isLight={false}
-                        />
-                        <FormatMenu triggerElement={menuTrigger} closeHandler={handleClose} />
-                    </Grid>
+                    {products && (
+                        <Grid item>
+                            <IconButton
+                                buttonRef={menuTriggerRef}
+                                label={<Typography variant="body1">BUY</Typography>}
+                                icon={<BagIcon isLarge={false} />}
+                                onClick={handleClick}
+                                isLight={false}
+                            />
+                            <ProductMenu
+                                triggerElement={menuTrigger}
+                                closeHandler={handleClose}
+                                products={products}
+                            />
+                        </Grid>
+                    )}
                 </Grid>
             </ContentCardDetail>
         </Column>
