@@ -8,7 +8,6 @@ export const Cart = styled.div`
             font-family: 'HelveticaNowText';
             /* color: white; */
         }
-        position: absolute;
         z-index: 1000;
 
         /* 
