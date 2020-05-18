@@ -53,6 +53,15 @@ export type Podcast = {
 	track: Track
 }
 
+export type Product = {
+	__typename: string
+	format: string
+	description: {
+        description: string
+    }
+	price: number
+}
+
 export type Release = {
 	__typename: string
 	title: string
@@ -72,6 +81,7 @@ export type Release = {
     }
 	date: Date
 	tracks: Track[]
+	products: Product[]
 }
 
 export type SiteMetadata = {

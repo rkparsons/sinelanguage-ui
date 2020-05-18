@@ -13,6 +13,7 @@ import { imageFileSize, unique, videoFileSize } from '../../../cms/validations'
 import Artist from './artist'
 import { FluidImageType } from '../../../cms/constants'
 import { Format } from '../../constants/format'
+import Product from './product'
 import Track from './track'
 
 export default new ContentfulContentType({
@@ -70,6 +71,11 @@ export default new ContentfulContentType({
         new LinkArrayField({
             name: 'Tracks',
             link: Track,
+            required: false,
+        }),
+        new LinkArrayField({
+            name: 'Products',
+            link: Product,
             required: false,
         }),
     ],

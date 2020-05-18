@@ -66,6 +66,17 @@ export const podcastFragment = graphql`
 	}
 `
 
+export const productFragment = graphql`
+	fragment productFragment on ContentfulProduct {
+		__typename
+		format
+		description {
+            description
+        }
+		price
+	}
+`
+
 export const releaseFragment = graphql`
 	fragment releaseFragment on ContentfulRelease {
 		__typename
@@ -91,6 +102,9 @@ export const releaseFragment = graphql`
 		date
 		tracks {
             ...trackFragment
+        }
+		products {
+            ...productFragment
         }
 	}
 `

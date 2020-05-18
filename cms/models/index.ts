@@ -2,6 +2,7 @@ import ContentType from './contentType'
 import ContentfulContentType from './contentfulContentType'
 import ContentfulField from './contentfulField'
 import DateField from './dateField'
+import DecimalField from './decimalField'
 import Field from './field'
 import FluidImageField from './fluidImageField'
 import ImageField from './imageField'
@@ -20,6 +21,7 @@ export {
     ContentfulField,
     ContentType,
     DateField,
+    DecimalField,
     Field,
     FluidImageField,
     ImageField,
