@@ -11,7 +11,7 @@ type ViewProps = {
 export default ({ release }: ViewProps) => {
     const { artist, products } = release
 
-    if (!products.length) {
+    if (!products || !products.length) {
         return <></>
     }
 
