@@ -6,6 +6,7 @@ import { Typography } from '@material-ui/core'
 type ViewProps = {
     id: string
     price: number
+    url: string
     name: string
     description: string
     imageUrl: string
@@ -13,15 +14,16 @@ type ViewProps = {
     isLight: boolean
 }
 
-export default ({ id, price, name, description, imageUrl, isLarge, isLight }: ViewProps) => (
+export default ({ id, price, url, name, description, imageUrl, isLarge, isLight }: ViewProps) => (
     <IconButton
         label={<Typography variant={isLarge ? 'h3' : 'body1'}>BUY</Typography>}
         icon={<BagIcon isLarge={isLarge} />}
-        onClick={() => console.log('buy')}
+        onClick={() => {}}
         isLight={isLight}
         cartItem={{
             id,
             price,
+            url,
             name,
             description,
             imageUrl,

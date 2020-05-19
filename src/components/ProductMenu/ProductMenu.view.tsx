@@ -2,6 +2,7 @@ import { Menu } from '@material-ui/core'
 import { MenuItem } from '@material-ui/core'
 import React from 'react'
 import { Release } from '~/cms/types'
+import { getUrl } from '~/utils/content'
 
 type Props = {
     release: Release
@@ -31,7 +32,7 @@ export default ({ release, triggerElement, closeHandler }: Props) => {
                     className="snipcart-add-item"
                     data-item-id={product.id}
                     data-item-price={product.price}
-                    data-item-url="/"
+                    data-item-url={getUrl(release)}
                     data-item-name={`${artist.title} - ${title}`}
                     data-item-description={product.format}
                     data-item-image={image.fluid.src}

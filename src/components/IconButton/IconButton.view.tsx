@@ -31,7 +31,7 @@ export default ({
         className={cartItem !== undefined ? 'buy-button snipcart-add-item' : ''}
         data-item-id={cartItem?.id}
         data-item-price={cartItem?.price}
-        data-item-url="/"
+        data-item-url={cartItem?.url}
         data-item-name={cartItem?.name}
         data-item-description={cartItem?.description}
         data-item-image={cartItem?.imageUrl}
