@@ -14,17 +14,20 @@ export default () => {
     function configureSnipcart() {
         const { Snipcart } = window as any
 
+        if (!Snipcart) {
+            return
+        }
+
         Snipcart.api.session.setLanguage('en', {
             actions: {
                 continue_shopping: 'Go back to store',
             },
         })
-
-        // open events: item added, bag clicked
-        // close events: back to store clicked
     }
 
     useEffect(() => {
+        configureSnipcart()
+
         document.addEventListener('snipcart.ready', () => {
             configureSnipcart()
         })
