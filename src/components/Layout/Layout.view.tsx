@@ -21,21 +21,23 @@ type ViewProps = {
 }
 
 export default ({ isDarkMode, setIsDarkMode, children }: ViewProps) => (
-    <MuiThemeProvider theme={theme(isDarkMode)}>
-        <ScThemeProvider theme={theme(isDarkMode)}>
-            <AudioProvider>
-                <CssBaseline />
-                <GlobalStyle />
-                <AppContainer>
-                    <Location>{({ location }) => <Navigation location={location} />}</Location>
-                    <main>
-                        {children}
-                        <Dashboard />
-                    </main>
-                    <AudioPlayer hideTimeout={5000} />
-                    <Cart />
-                </AppContainer>
-            </AudioProvider>
-        </ScThemeProvider>
-    </MuiThemeProvider>
+    <>
+        <MuiThemeProvider theme={theme(isDarkMode)}>
+            <ScThemeProvider theme={theme(isDarkMode)}>
+                <AudioProvider>
+                    <CssBaseline />
+                    <GlobalStyle />
+                    <AppContainer>
+                        <Location>{({ location }) => <Navigation location={location} />}</Location>
+                        <main>
+                            {children}
+                            <Dashboard />
+                        </main>
+                        <AudioPlayer hideTimeout={5000} />
+                    </AppContainer>
+                </AudioProvider>
+            </ScThemeProvider>
+        </MuiThemeProvider>
+        <Cart />
+    </>
 )
