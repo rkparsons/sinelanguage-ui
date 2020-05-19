@@ -3,7 +3,6 @@ import { Box, Grid, Typography } from '@material-ui/core'
 import BuyButton from '~/components/BuyButton'
 import React from 'react'
 import { Release } from '~/cms/types'
-import { getUrl } from '~/utils/content'
 
 type ViewProps = {
     release: Release
@@ -31,7 +30,6 @@ export default ({ release }: ViewProps) => {
                         <BuyButton
                             id={product.id}
                             price={product.price}
-                            url={getUrl(release)}
                             name={`${artist.title} - ${release.title}`}
                             description={product.format}
                             imageUrl={release.image.fluid.src}
