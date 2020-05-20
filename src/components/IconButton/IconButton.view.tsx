@@ -12,6 +12,7 @@ type ViewProps = {
     isLight: boolean
     isDisabled?: boolean
     cartItem?: CartItem
+    className?: string
 }
 
 export default ({
@@ -22,13 +23,14 @@ export default ({
     isLight,
     isDisabled = false,
     cartItem,
+    className = '',
 }: ViewProps) => (
     <Button
         ref={buttonRef}
         onClick={() => !isDisabled && onClick()}
         isLight={isLight}
         isDisabled={isDisabled}
-        className={cartItem !== undefined ? 'buy-button snipcart-add-item' : ''}
+        className={className}
         data-item-id={cartItem?.id}
         data-item-price={cartItem?.price}
         data-item-url={cartItem?.url}

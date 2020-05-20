@@ -28,5 +28,6 @@ export default ({ id, price, url, name, description, imageUrl, isLarge, isLight 
             description,
             imageUrl,
         }}
+        className="snipcart-add-item"
     />
 )
