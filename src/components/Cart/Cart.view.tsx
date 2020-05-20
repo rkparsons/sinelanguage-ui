@@ -9,31 +9,30 @@ import SnipcartLabel from './SnipcartLabel'
 
 export default memo(
     () => {
-        console.log('rendering cart')
-        const stylesUrl = 'https://cdn.snipcart.com/themes/v3.0.13/default/snipcart.css'
-        const scriptUrl = 'https://cdn.snipcart.com/themes/v3.0.13/default/snipcart.js'
+        const stylesUrl = 'https://cdn.snipcart.com/themes/v3.0.12/default/snipcart.css'
+        const scriptUrl = 'https://cdn.snipcart.com/themes/v3.0.12/default/snipcart.js'
 
-        function configureSnipcart() {
-            const { Snipcart } = window as any
+        // function configureSnipcart() {
+        //     const { Snipcart } = window as any
 
-            if (!Snipcart) {
-                return
-            }
+        //     if (!Snipcart) {
+        //         return
+        //     }
 
-            Snipcart.api.session.setLanguage('en', {
-                actions: {
-                    continue_shopping: 'Go back to store',
-                },
-            })
-        }
+        //     Snipcart.api.session.setLanguage('en', {
+        //         actions: {
+        //             continue_shopping: 'Go back to store',
+        //         },
+        //     })
+        // }
 
-        useEffect(() => {
-            configureSnipcart()
+        // useEffect(() => {
+        //     configureSnipcart()
 
-            document.addEventListener('snipcart.ready', () => {
-                configureSnipcart()
-            })
-        }, [])
+        //     document.addEventListener('snipcart.ready', () => {
+        //         configureSnipcart()
+        //     })
+        // }, [])
 
         return (
             <>
