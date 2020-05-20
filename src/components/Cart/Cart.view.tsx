@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
 
 import Billing from './Billing'
 import { Cart } from './Cart.style'
@@ -7,38 +7,39 @@ import SnipcartCheckbox from './SnipcartCheckbox'
 import SnipcartInput from './SnipcartInput'
 import SnipcartLabel from './SnipcartLabel'
 
+type ViewProps = {
+    version: string
+}
+
 export default memo(
-    () => {
-        const version = '3.0.13'
-        const stylesUrl = `https://cdn.snipcart.com/themes/v${version}/default/snipcart.css`
-        const scriptUrl = `https://cdn.snipcart.com/themes/v${version}/default/snipcart.js`
+    ({ version }: ViewProps) => {
+        function configureSnipcart() {
+            const { Snipcart } = window as any
 
-        // function configureSnipcart() {
-        //     const { Snipcart } = window as any
+            if (!Snipcart) {
+                return
+            }
 
-        //     if (!Snipcart) {
-        //         return
-        //     }
+            Snipcart.api.session.setLanguage('en', {
+                actions: {
+                    continue_shopping: 'Go back to store',
+                },
+            })
+        }
 
-        //     Snipcart.api.session.setLanguage('en', {
-        //         actions: {
-        //             continue_shopping: 'Go back to store',
-        //         },
-        //     })
-        // }
+        useEffect(() => {
+            configureSnipcart()
 
-        // useEffect(() => {
-        //     configureSnipcart()
+            document.addEventListener('snipcart.ready', () => {
+                configureSnipcart()
+            })
+        }, [])
 
-        //     document.addEventListener('snipcart.ready', () => {
-        //         configureSnipcart()
-        //     })
-        // }, [])
         const dependencies = [
             React.createElement('link', {
                 key: 'snipcart-style',
                 rel: 'stylesheet',
-                href: stylesUrl,
+                href: `https://cdn.snipcart.com/themes/v${version}/default/snipcart.css`,
                 as: 'style',
             }),
             React.createElement('script', {
@@ -46,7 +47,7 @@ export default memo(
                 defer: true,
                 rel: 'preload',
                 as: 'script',
-                src: scriptUrl,
+                src: `https://cdn.snipcart.com/themes/v${version}/default/snipcart.js`,
             }),
         ]
 
