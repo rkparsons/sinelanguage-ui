@@ -1,18 +1,18 @@
 import { Menu, Typography } from '@material-ui/core'
+import { Product, Release } from '~/cms/types'
 import React, { useRef, useState } from 'react'
 
 import BagIcon from '~/components/BagIcon'
 import IconButton from '~/components/IconButton'
 import { MenuItem } from '@material-ui/core'
-import { Release } from '~/cms/types'
 import { getUrl } from '~/utils/content'
 
 type Props = {
     release: Release
+    products: Product[]
 }
 
-export default ({ release }: Props) => {
-    const { artist, products, image, title } = release
+export default ({ release, products }: Props) => {
     const [menuTrigger, setMenuTrigger] = useState<HTMLButtonElement>()
     const menuTriggerRef = useRef<HTMLButtonElement>(null)
 
@@ -52,7 +52,7 @@ export default ({ release }: Props) => {
                         data-item-url={getUrl(release)}
                         data-item-name={product.title}
                         data-item-description={product.description.description}
-                        data-item-image={image.fluid.src}
+                        data-item-image={release.image.fluid.src}
                         onClick={handleClose}
                     >
                         {product.format} (£{product.price.toFixed(2)})
