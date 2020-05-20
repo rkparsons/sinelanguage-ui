@@ -50,10 +50,15 @@ export const typeDefs = `
 		track: ContentfulTrack
 	}
 
+	type contentfulProductDescriptionTextNode implements Node {
+        description: String
+    }
+
 	type ContentfulProduct implements Node {
 		title: String
 		format: String
 		price: Float
+		description: contentfulProductDescriptionTextNode
 	}
 
 	type contentfulReleaseDescriptionTextNode implements Node {
@@ -94,7 +99,7 @@ export const typeDefs = `
 	type ContentfulTrack implements Node {
 		title: String
 		metadata: contentfulTrackMetadataJsonNode
-		product: ContentfulProduct
+		products: [ContentfulProduct]
 	}
 
 	type contentfulVideoDescriptionTextNode implements Node {

@@ -25,5 +25,10 @@ export default new ContentfulContentType({
         new DecimalField({
             name: 'Price',
         }),
+        new TextField({
+            name: 'Description',
+            widgetId: 'multipleLine',
+            helpText: 'Any additional product info, e.g. 1xLP, Digital download.',
+        }),
     ],
 })

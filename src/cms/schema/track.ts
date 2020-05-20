@@ -1,6 +1,6 @@
 import {
     ContentfulContentType,
-    LinkField,
+    LinkArrayField,
     SoundCloudMetadataField,
     SymbolField,
 } from '../../../cms/models'
@@ -20,8 +20,8 @@ export default new ContentfulContentType({
             name: 'Metadata',
             widgetId: 'bPHguxTpAJ71ExuaDuSyU',
         }),
-        new LinkField({
-            name: 'Product',
+        new LinkArrayField({
+            name: 'Products',
             link: Product,
             required: false,
         }),

@@ -1,14 +1,12 @@
-import { Button, Grid, Menu, MenuItem, Typography } from '@material-ui/core'
-import React, { useRef, useState } from 'react'
+import { Grid, Typography } from '@material-ui/core'
 
-import BagIcon from '~/components/BagIcon'
 import Column from '~/components/Column'
 import ContentCardDetail from '~/components/ContentCardDetail'
 import ContentCardMedia from '~/components/ContentCardMedia'
 import ContentPlayButton from '~/components/ContentPlayButton'
-import IconButton from '~/components/IconButton'
 import MediaLink from '~/components/MediaLink'
 import ProductMenu from '~/components/ProductMenu'
+import React from 'react'
 import { Release } from '~/cms/types'
 import { getUrl } from '~/utils/content'
 
@@ -18,18 +16,6 @@ type ViewProps = {
 
 export default ({ release }: ViewProps) => {
     const { title, artist, products } = release
-    const [menuTrigger, setMenuTrigger] = useState<HTMLButtonElement>()
-    const menuTriggerRef = useRef<HTMLButtonElement>(null)
-
-    const handleClick = () => {
-        if (menuTriggerRef.current) {
-            setMenuTrigger(menuTriggerRef.current)
-        }
-    }
-
-    const handleClose = () => {
-        setMenuTrigger(undefined)
-    }
 
     return (
         <Column widthMultiplier={1}>
@@ -52,18 +38,7 @@ export default ({ release }: ViewProps) => {
                     </Grid>
                     {products && (
                         <Grid item>
-                            <IconButton
-                                buttonRef={menuTriggerRef}
-                                label={<Typography variant="body1">BUY</Typography>}
-                                icon={<BagIcon isLarge={false} />}
-                                onClick={handleClick}
-                                isLight={false}
-                            />
-                            <ProductMenu
-                                triggerElement={menuTrigger}
-                                closeHandler={handleClose}
-                                release={release}
-                            />
+                            <ProductMenu release={release} />
                         </Grid>
                     )}
                 </Grid>

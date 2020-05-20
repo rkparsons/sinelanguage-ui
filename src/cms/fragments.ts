@@ -76,6 +76,9 @@ export const productFragment = graphql`
 		title
 		format
 		price
+		description {
+            description
+        }
 	}
 `
 
@@ -140,7 +143,7 @@ export const trackFragment = graphql`
             duration
             samples
         }
-		product {
+		products {
             ...productFragment
         }
 	}

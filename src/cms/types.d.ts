@@ -62,6 +62,9 @@ export type Product = {
 	title: string
 	format: string
 	price: number
+	description: {
+        description: string
+    }
 }
 
 export type Release = {
@@ -112,7 +115,7 @@ export type Track = {
         duration: number
         samples: number[]
     }
-	product: Product
+	products: Product[]
 }
 
 export type Video = {

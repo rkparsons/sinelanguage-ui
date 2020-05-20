@@ -33,7 +33,7 @@ export default ({
         data-item-price={cartItem?.price}
         data-item-url={cartItem?.url}
         data-item-name={cartItem?.name}
-        data-item-description=""
+        data-item-description={cartItem?.description}
         data-item-image={cartItem?.imageUrl}
     >
         <Box display="inline-flex" alignItems="center">
