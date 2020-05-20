@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo } from 'react'
 
 import Billing from './Billing'
 import { Cart } from './Cart.style'
@@ -9,8 +9,9 @@ import SnipcartLabel from './SnipcartLabel'
 
 export default memo(
     () => {
-        const stylesUrl = 'https://cdn.snipcart.com/themes/v3.0.12/default/snipcart.css'
-        const scriptUrl = 'https://cdn.snipcart.com/themes/v3.0.12/default/snipcart.js'
+        const version = '3.0.13'
+        const stylesUrl = `https://cdn.snipcart.com/themes/v${version}/default/snipcart.css`
+        const scriptUrl = `https://cdn.snipcart.com/themes/v${version}/default/snipcart.js`
 
         // function configureSnipcart() {
         //     const { Snipcart } = window as any
@@ -33,13 +34,25 @@ export default memo(
         //         configureSnipcart()
         //     })
         // }, [])
+        const dependencies = [
+            React.createElement('link', {
+                key: 'snipcart-style',
+                rel: 'stylesheet',
+                href: stylesUrl,
+                as: 'style',
+            }),
+            React.createElement('script', {
+                key: 'snipcart-script',
+                defer: true,
+                rel: 'preload',
+                as: 'script',
+                src: scriptUrl,
+            }),
+        ]
 
         return (
             <>
-                <Helmet>
-                    <link rel="stylesheet" href={stylesUrl} />
-                    <script src={scriptUrl}></script>,
-                </Helmet>
+                <Helmet>{dependencies}</Helmet>
                 <Cart>
                     <div hidden id="snipcart" data-api-key={process.env.GATSBY_SNIPCART_API_KEY}>
                         <Billing section="top">
