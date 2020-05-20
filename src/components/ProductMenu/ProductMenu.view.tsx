@@ -33,8 +33,8 @@ export default ({ release, triggerElement, closeHandler }: Props) => {
                     data-item-id={product.id}
                     data-item-price={product.price}
                     data-item-url={getUrl(release)}
-                    data-item-name={`${artist.title} - ${title}`}
-                    data-item-description={product.format}
+                    data-item-name={product.title}
+                    data-item-description=""
                     data-item-image={image.fluid.src}
                     onClick={handleClose}
                 >
