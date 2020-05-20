@@ -38,7 +38,7 @@ export default ({ isMobile }: ViewProps) => (
                     <CartButton className="snipcart-checkout">
                         <Typography variant="h3">BAG</Typography>
                         <Typography variant="h3">
-                            (<span className="snipcart-total-price" />)
+                            (<span className="snipcart-items-count" />)
                         </Typography>
                     </CartButton>
                     {/* <NavItem to={Route.BAG} title="BAG" partiallyActive={true} /> */}

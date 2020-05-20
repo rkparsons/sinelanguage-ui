@@ -10,9 +10,11 @@ import { getUrl } from '~/utils/content'
 type Props = {
     release: Release
     products: Product[]
+    isLarge: boolean
+    isLight: boolean
 }
 
-export default ({ release, products }: Props) => {
+export default ({ release, products, isLarge, isLight }: Props) => {
     const [menuTrigger, setMenuTrigger] = useState<HTMLButtonElement>()
     const menuTriggerRef = useRef<HTMLButtonElement>(null)
 
@@ -30,10 +32,10 @@ export default ({ release, products }: Props) => {
         <>
             <IconButton
                 buttonRef={menuTriggerRef}
-                label={<Typography variant="body1">BUY</Typography>}
-                icon={<BagIcon isLarge={false} />}
+                label={<Typography variant={isLarge ? 'h3' : 'body1'}>BUY</Typography>}
+                icon={<BagIcon isLarge={isLarge} />}
                 onClick={handleClick}
-                isLight={false}
+                isLight={isLight}
             />
             <Menu
                 id="customized-menu"

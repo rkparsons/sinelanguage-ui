@@ -23,9 +23,7 @@ export default ({ release }: ViewProps) => {
             <br />
             {tracks.map((track, index) => (
                 <Box key={index}>
-                    <InvertOnHover key={index}>
-                        <TrackRow release={release} track={track} index={index} />
-                    </InvertOnHover>
+                    <TrackRow release={release} track={track} index={index} />
                     <Hidden smUp>
                         <br />
                     </Hidden>

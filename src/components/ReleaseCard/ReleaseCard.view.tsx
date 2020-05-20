@@ -38,7 +38,12 @@ export default ({ release }: ViewProps) => {
                     </Grid>
                     {products && (
                         <Grid item>
-                            <ProductMenu release={release} products={release.products} />
+                            <ProductMenu
+                                release={release}
+                                products={release.products}
+                                isLight={false}
+                                isLarge={false}
+                            />
                         </Grid>
                     )}
                 </Grid>
