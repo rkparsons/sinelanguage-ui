@@ -1,13 +1,12 @@
 import { Add, Close } from '@material-ui/icons'
 import { Grid, withWidth } from '@material-ui/core'
-import React, { useEffect, useState } from 'react'
+import { Header, ToggleMobileMenu } from './Navigation.style'
+import React, { useState } from 'react'
 
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
-import { Header } from './Navigation.style'
 import IconButton from '~/components/IconButton'
 import Links from './Links'
 import NavItem from '~/components/NavItem'
-import PointerEvents from '~/components/PointerEvents'
 import { Route } from '~/constants/route'
 import { navigate } from 'gatsby'
 
@@ -41,13 +40,13 @@ export default withWidth()(({ width, location }: ViewProps) => {
                 </Grid>
                 {isMobile && (
                     <Grid item>
-                        <PointerEvents value="all">
+                        <ToggleMobileMenu>
                             <IconButton
                                 icon={isMenuOpen ? <Close /> : <Add />}
                                 onClick={handleMenuClick}
                                 isLight={true}
                             />
-                        </PointerEvents>
+                        </ToggleMobileMenu>
                     </Grid>
                 )}
                 {!isMobile && <Links isMobile={isMobile} />}

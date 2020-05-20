@@ -15,6 +15,12 @@ export const Header = styled.header`
         padding-top: ${theme.spacing(marginTop)};
         padding-left: ${theme.spacing(marginSide)};
         padding-right: ${theme.spacing(marginSide)};
+    `}
+`
+
+export const ToggleMobileMenu = styled.div`
+    ${({ theme }) => `
+        pointer-events: all;
 
         svg {
             width: ${theme.spacing(7.5)};

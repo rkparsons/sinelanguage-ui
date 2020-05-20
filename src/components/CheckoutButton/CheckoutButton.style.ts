@@ -26,7 +26,5 @@ export const CheckoutButton = styled.div`
 
     svg {
         pointer-events: all;
-        width: 2em;
-        height: 2em;
     }
 `
