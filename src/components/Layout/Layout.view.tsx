@@ -38,6 +38,6 @@ export default ({ isDarkMode, setIsDarkMode, children }: ViewProps) => (
                 </AudioProvider>
             </ScThemeProvider>
         </MuiThemeProvider>
-        <Cart />
+        {/* <Cart /> */}
     </>
 )
