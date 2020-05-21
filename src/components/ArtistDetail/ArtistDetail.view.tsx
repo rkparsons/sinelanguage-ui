@@ -23,7 +23,7 @@ export default ({ artist }: ViewProps) => {
                     </Box>
                 </Grid>
                 <Grid item>
-                    <ContentPlayButton content={artist} trackIndex={0} isLight={true} />
+                    <ContentPlayButton content={artist} trackIndex={0} isLight={true} text="PLAY" />
                 </Grid>
             </Grid>
 

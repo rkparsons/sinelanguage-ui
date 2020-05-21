@@ -5,7 +5,12 @@ import React from 'react'
 import { Typography } from '@material-ui/core'
 import useCartContext from '~/hooks/useCartContext'
 
-export default () => {
+type ViewProps = {
+    text: string
+    isWithCount: boolean
+}
+
+export default ({ text, isWithCount }: ViewProps) => {
     const { cart } = useCartContext()
 
     return (
@@ -13,7 +18,7 @@ export default () => {
             <IconButton
                 label={
                     <Typography variant={'h3'}>
-                        BAG {cart.items.length ? `(${cart.items.length})` : ``}
+                        {text} {isWithCount && cart.items.length ? `(${cart.items.length})` : ``}
                     </Typography>
                 }
                 icon={<BagIcon isLarge={true} />}

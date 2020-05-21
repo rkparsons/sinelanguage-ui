@@ -1,9 +1,11 @@
 import { Box, Grid, Typography } from '@material-ui/core'
 
 import BuyButton from '~/components/BuyButton'
+import CheckoutButton from '~/components/CheckoutButton'
 import React from 'react'
 import { Release } from '~/cms/types'
 import { getUrl } from '~/utils/content'
+import useCartContext from '~/hooks/useCartContext'
 
 type ViewProps = {
     release: Release
@@ -11,6 +13,7 @@ type ViewProps = {
 
 export default ({ release }: ViewProps) => {
     const { artist, products } = release
+    const { cart } = useCartContext()
 
     if (!products || !products.length) {
         return <></>
@@ -28,16 +31,20 @@ export default ({ release }: ViewProps) => {
                         </Typography>
                     </Box>
                     <Box>
-                        <BuyButton
-                            id={product.id}
-                            price={product.price}
-                            url={getUrl(release)}
-                            name={product.title}
-                            description={product.description.description}
-                            imageUrl={release.image.fluid.src}
-                            isLarge={true}
-                            isLight={true}
-                        />
+                        {cart.items.map((cartItem) => cartItem.id).includes(product.id) ? (
+                            <CheckoutButton text="CHECKOUT" isWithCount={false} />
+                        ) : (
+                            <BuyButton
+                                id={product.id}
+                                price={product.price}
+                                url={getUrl(release)}
+                                name={product.title}
+                                description={product.description.description}
+                                imageUrl={release.image.fluid.src}
+                                isLarge={true}
+                                isLight={true}
+                            />
+                        )}
                     </Box>
                 </Box>
             ))}

@@ -30,6 +30,7 @@ export default ({ podcast }: ViewProps) => {
                             trackIndex={0}
                             isLarge={false}
                             isLight={false}
+                            text="PLAY"
                         />
                     </Grid>
                 </Grid>

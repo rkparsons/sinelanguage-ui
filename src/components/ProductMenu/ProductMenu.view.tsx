@@ -6,6 +6,7 @@ import BagIcon from '~/components/BagIcon'
 import IconButton from '~/components/IconButton'
 import { MenuItem } from '@material-ui/core'
 import { getUrl } from '~/utils/content'
+import useCartContext from '~/hooks/useCartContext'
 
 type Props = {
     release: Release
@@ -15,6 +16,7 @@ type Props = {
 }
 
 export default ({ release, products, isLarge, isLight }: Props) => {
+    const { cart } = useCartContext()
     const [menuTrigger, setMenuTrigger] = useState<HTMLButtonElement>()
     const menuTriggerRef = useRef<HTMLButtonElement>(null)
 
@@ -32,7 +34,6 @@ export default ({ release, products, isLarge, isLight }: Props) => {
         <>
             <IconButton
                 buttonRef={menuTriggerRef}
-                label={<Typography variant={isLarge ? 'h3' : 'body1'}>BUY</Typography>}
                 icon={<BagIcon isLarge={isLarge} />}
                 onClick={handleClick}
                 isLight={isLight}

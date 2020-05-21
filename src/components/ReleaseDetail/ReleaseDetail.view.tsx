@@ -22,7 +22,7 @@ export default ({ release }: ViewProps) => {
             <br />
             <Typography variant="h3">[{uid}]</Typography>
             <Typography variant="h3">{format}</Typography>
-            <ContentPlayButton content={release} trackIndex={0} isLight={true} />
+            <ContentPlayButton content={release} trackIndex={0} isLight={true} text="PLAY" />
 
             <br />
 

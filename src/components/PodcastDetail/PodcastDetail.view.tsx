@@ -21,7 +21,12 @@ export default ({ podcast }: ViewProps) => {
                     </Box>
                 </Grid>
                 <Grid item>
-                    <ContentPlayButton content={podcast} trackIndex={0} isLight={true} />
+                    <ContentPlayButton
+                        content={podcast}
+                        trackIndex={0}
+                        isLight={true}
+                        text="PLAY"
+                    />
                 </Grid>
             </Grid>
 

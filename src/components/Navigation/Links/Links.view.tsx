@@ -37,7 +37,7 @@ export default ({ isMobile }: ViewProps) => (
                     <NavItem to={Route.CONTACT} title="CONTACT" partiallyActive={true} />
                 </Row>
                 <Row item>
-                    <CheckoutButton />
+                    <CheckoutButton text="BAG" isWithCount={true} />
                 </Row>
             </Grid>
         </Grid>

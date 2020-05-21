@@ -11,14 +11,19 @@ type ViewProps = {
     trackIndex: number
     isLight: boolean
     isLarge?: boolean
+    text?: string
 }
 
-export default ({ content, trackIndex, isLight, isLarge = true }: ViewProps) => {
+export default ({ content, trackIndex, isLight, isLarge = true, text }: ViewProps) => {
     const { loadMedia } = useAudioContext()
 
     return (
         <IconButton
-            label={<Typography variant={isLarge ? 'h3' : 'body1'}>PLAY</Typography>}
+            label={
+                text ? (
+                    <Typography variant={isLarge ? 'h3' : 'body1'}>{text}</Typography>
+                ) : undefined
+            }
             icon={<PlayArrow fontSize={isLarge ? 'large' : 'small'} />}
             onClick={() => {
                 loadMedia(content, trackIndex)
