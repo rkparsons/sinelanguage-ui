@@ -26,28 +26,31 @@ export default ({ release }: ViewProps) => {
             {products.map((product, index) => (
                 <Box display="flex" width="100%" key={index}>
                     <Box flexGrow={1}>
-                        <Typography variant="h3">
-                            {product.format} – £{product.price.toFixed(2)}
-                        </Typography>
+                        <Typography variant="h3">{product.format}</Typography>
                     </Box>
                     <Box>
-                        {cart.items.map((cartItem) => cartItem.id).includes(product.id) ? (
-                            <CheckoutButton text="CHECKOUT" isWithCount={false} />
-                        ) : (
-                            <BuyButton
-                                id={product.id}
-                                price={product.price}
-                                url={getUrl(release)}
-                                name={product.title}
-                                description={product.description.description}
-                                imageUrl={release.image.fluid.src}
-                                isLarge={true}
-                                isLight={true}
-                            />
-                        )}
+                        <BuyButton
+                            id={product.id}
+                            price={product.price}
+                            url={getUrl(release)}
+                            name={product.title}
+                            description={product.description.description}
+                            imageUrl={release.image.fluid.src}
+                            isLarge={true}
+                            isLight={true}
+                        />
                     </Box>
                 </Box>
             ))}
+
+            {cart.items.find((cartItem) => products.map((x) => x.id).includes(cartItem.id)) ? (
+                <>
+                    <br />
+                    <CheckoutButton text="GO TO CHECKOUT" isWithCount={false} />
+                </>
+            ) : (
+                <></>
+            )}
 
             <br />
         </>
