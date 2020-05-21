@@ -15,7 +15,7 @@ export default ({ children }: ViewProps) => {
 
         if (Snipcart) {
             const { cart } = Snipcart.store.getState()
-            console.log('cart state:', cart)
+
             setCart(cart)
         }
     }
@@ -41,7 +41,7 @@ export default ({ children }: ViewProps) => {
             }}
         >
             {children}
-            <Cart version="3.0.13" />
+            <Cart version="3.0.13" openCartOnAdd={false} />
         </CartContext.Provider>
     )
 }

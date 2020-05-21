@@ -9,10 +9,11 @@ import SnipcartLabel from './SnipcartLabel'
 
 type ViewProps = {
     version: string
+    openCartOnAdd: boolean
 }
 
 export default memo(
-    ({ version }: ViewProps) => {
+    ({ version, openCartOnAdd }: ViewProps) => {
         const dependencies = [
             React.createElement('link', {
                 key: 'snipcart-style',
@@ -33,7 +34,12 @@ export default memo(
             <>
                 <Helmet>{dependencies}</Helmet>
                 <Cart>
-                    <div hidden id="snipcart" data-api-key={process.env.GATSBY_SNIPCART_API_KEY}>
+                    <div
+                        hidden
+                        id="snipcart"
+                        data-api-key={process.env.GATSBY_SNIPCART_API_KEY}
+                        data-config-add-product-behavior={openCartOnAdd === false ? 'none' : null}
+                    >
                         <Billing section="top">
                             <fieldset className="snipcart-form__set">
                                 <div className="snipcart-form__field">
