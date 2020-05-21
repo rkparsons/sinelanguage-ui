@@ -13,28 +13,6 @@ type ViewProps = {
 
 export default memo(
     ({ version }: ViewProps) => {
-        function configureSnipcart() {
-            const { Snipcart } = window as any
-
-            if (!Snipcart) {
-                return
-            }
-
-            Snipcart.api.session.setLanguage('en', {
-                actions: {
-                    continue_shopping: 'Go back to store',
-                },
-            })
-        }
-
-        useEffect(() => {
-            configureSnipcart()
-
-            document.addEventListener('snipcart.ready', () => {
-                configureSnipcart()
-            })
-        }, [])
-
         const dependencies = [
             React.createElement('link', {
                 key: 'snipcart-style',

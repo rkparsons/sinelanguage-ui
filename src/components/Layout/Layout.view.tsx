@@ -5,7 +5,7 @@ import React, { ReactNode } from 'react'
 
 import AudioPlayer from '~/components/AudioPlayer'
 import AudioProvider from '~/components/AudioProvider'
-import Cart from '~/components/Cart'
+import CartProvider from '~/components/CartProvider'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Dashboard from '~/components/Dashboard'
 import { Location } from '@reach/router'
@@ -24,20 +24,23 @@ export default ({ isDarkMode, setIsDarkMode, children }: ViewProps) => (
     <>
         <MuiThemeProvider theme={theme(isDarkMode)}>
             <ScThemeProvider theme={theme(isDarkMode)}>
-                <AudioProvider>
-                    <CssBaseline />
-                    <GlobalStyle />
-                    <AppContainer>
-                        <Location>{({ location }) => <Navigation location={location} />}</Location>
-                        <main>
-                            {children}
-                            <Dashboard />
-                        </main>
-                        <AudioPlayer hideTimeout={5000} />
-                    </AppContainer>
-                </AudioProvider>
+                <CartProvider>
+                    <AudioProvider>
+                        <CssBaseline />
+                        <GlobalStyle />
+                        <AppContainer>
+                            <Location>
+                                {({ location }) => <Navigation location={location} />}
+                            </Location>
+                            <main>
+                                {children}
+                                <Dashboard />
+                            </main>
+                            <AudioPlayer hideTimeout={5000} />
+                        </AppContainer>
+                    </AudioProvider>
+                </CartProvider>
             </ScThemeProvider>
         </MuiThemeProvider>
-        <Cart version="3.0.13" />
     </>
 )
