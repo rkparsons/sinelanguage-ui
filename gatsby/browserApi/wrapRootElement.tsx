@@ -3,6 +3,7 @@ import React, { ReactNode, useCallback, useEffect, useState } from 'react'
 
 import { silentAuth } from '../../src/utils/auth'
 
+// todo: strip out auth code
 const SessionCheck = ({ children }: { children: ReactNode }) => {
     const [isLoading, setIsLoading] = useState(true)
 
