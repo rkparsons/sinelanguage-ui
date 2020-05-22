@@ -13,9 +13,10 @@ type Props = {
     products: Product[]
     isLarge: boolean
     isLight: boolean
+    text?: string
 }
 
-export default ({ release, products, isLarge, isLight }: Props) => {
+export default ({ release, products, isLarge, isLight, text }: Props) => {
     const { cart } = useCartContext()
     const [menuTrigger, setMenuTrigger] = useState<HTMLButtonElement>()
     const menuTriggerRef = useRef<HTMLButtonElement>(null)
@@ -35,6 +36,11 @@ export default ({ release, products, isLarge, isLight }: Props) => {
             <IconButton
                 buttonRef={menuTriggerRef}
                 icon={<BagIcon isLarge={isLarge} />}
+                label={
+                    text ? (
+                        <Typography variant={isLarge ? 'h3' : 'body1'}>{text}</Typography>
+                    ) : undefined
+                }
                 onClick={handleClick}
                 isLight={isLight}
             />

@@ -44,6 +44,7 @@ export default ({ release }: ViewProps) => {
                                 products={release.products}
                                 isLight={false}
                                 isLarge={false}
+                                text="BUY"
                             />
                         </Grid>
                     )}
