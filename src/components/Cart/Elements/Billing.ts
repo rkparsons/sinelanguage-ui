@@ -1,10 +1,10 @@
 import React, { ReactNode } from 'react'
 
-type BillingProps = {
+type ViewProps = {
     children: ReactNode
     section: 'top' | 'bottom'
 }
 
-export default ({ children, section }: BillingProps) => {
+export default ({ children, section }: ViewProps) => {
     return React.createElement('billing', { section, is: 'x3d' }, children)
 }

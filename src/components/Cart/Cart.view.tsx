@@ -1,11 +1,8 @@
 import React, { memo } from 'react'
 
-import Billing from './Billing'
+import Billing from './Templates/Billing'
 import { Cart } from './Cart.style'
 import { Helmet } from 'react-helmet'
-import SnipcartCheckbox from './SnipcartCheckbox'
-import SnipcartInput from './SnipcartInput'
-import SnipcartLabel from './SnipcartLabel'
 
 type ViewProps = {
     version: string
@@ -40,30 +37,7 @@ export default memo(
                         data-api-key={process.env.GATSBY_SNIPCART_API_KEY}
                         data-config-add-product-behavior={openCartOnAdd === false ? 'none' : null}
                     >
-                        <Billing section="top">
-                            <fieldset className="snipcart-form__set">
-                                <div className="snipcart-form__field">
-                                    <SnipcartLabel
-                                        className="snipcart__font--tiny"
-                                        forInput="phone"
-                                        text="Phone number"
-                                    />
-                                    <SnipcartInput name="phone" />
-                                </div>
-                            </fieldset>
-                        </Billing>
-                        <Billing section="bottom">
-                            <fieldset className="snipcart-form__set">
-                                <div className="snipcart-form__field-checkbox">
-                                    <SnipcartCheckbox name="subscribeToNewsletter" />
-                                    <SnipcartLabel
-                                        className="snipcart__font--tiny snipcart-form__label--checkbox"
-                                        forInput="subscribeToNewsletter"
-                                        text="Subscribe to newsletter"
-                                    />
-                                </div>
-                            </fieldset>
-                        </Billing>
+                        <Billing />
                     </div>
                 </Cart>
             </>

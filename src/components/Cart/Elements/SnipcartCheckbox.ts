@@ -1,9 +1,9 @@
 import React from 'react'
 
-type SnipcartCheckboxProps = {
+type ViewProps = {
     name: string
 }
 
-export default ({ name }: SnipcartCheckboxProps) => {
+export default ({ name }: ViewProps) => {
     return React.createElement('snipcart-checkbox', { name })
 }

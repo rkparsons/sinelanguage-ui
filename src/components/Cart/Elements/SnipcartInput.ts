@@ -1,9 +1,9 @@
 import React from 'react'
 
-type SnipcartInputProps = {
+type ViewProps = {
     name: string
 }
 
-export default ({ name }: SnipcartInputProps) => {
+export default ({ name }: ViewProps) => {
     return React.createElement('snipcart-input', { name })
 }
