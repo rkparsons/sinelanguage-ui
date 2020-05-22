@@ -91,6 +91,7 @@ export const releaseFragment = graphql`
 		artist {
             ...artistFragment
         }
+		originalArtist
 		format
 		description {
             description
@@ -158,6 +159,7 @@ export const videoFragment = graphql`
 		artist {
             ...artistFragment
         }
+		originalArtist
 		description {
             description
         }

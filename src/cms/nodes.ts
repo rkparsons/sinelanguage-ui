@@ -69,6 +69,7 @@ export const typeDefs = `
 		title: String
 		uid: String
 		artist: ContentfulArtist
+		originalArtist: String
 		format: String
 		description: contentfulReleaseDescriptionTextNode
 		image: ContentfulAsset
@@ -110,6 +111,7 @@ export const typeDefs = `
 		title: String
 		uid: String
 		artist: ContentfulArtist
+		originalArtist: String
 		description: contentfulVideoDescriptionTextNode
 		image: ContentfulAsset
 		teaserVideo: ContentfulAsset

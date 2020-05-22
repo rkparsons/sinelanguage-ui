@@ -13,11 +13,13 @@ const contentfulApi = createClient({
     accessToken: contentfulManagementToken,
 })
 
+// todo: fix error when adding a new field with a control (currently it has to be run twice to add field and control)
+
 export const deployCMS = (spaceName: string, contentTypeModels: ContentfulContentType[]) => {
     return contentfulApi
         .getSpace(contentfulSpaceId)
-        .then(space => deploySpace(space, spaceName, contentTypeModels))
-        .catch(error => console.log(`\nERROR: 'Could not deploy space\n`, error))
+        .then((space) => deploySpace(space, spaceName, contentTypeModels))
+        .catch((error) => console.log(`\nERROR: 'Could not deploy space\n`, error))
 }
 
 const deploySpace = (space: Space, name: string, contentTypeModels: ContentfulContentType[]) => {
@@ -25,14 +27,14 @@ const deploySpace = (space: Space, name: string, contentTypeModels: ContentfulCo
 
     return space
         .getEnvironment('master')
-        .then(environment =>
-            environment.getContentTypes().then(contentTypes => ({ contentTypes, environment }))
+        .then((environment) =>
+            environment.getContentTypes().then((contentTypes) => ({ contentTypes, environment }))
         )
         .then(({ contentTypes, environment }) =>
             Promise.all(
-                contentTypeModels.map(contentTypeModel => {
+                contentTypeModels.map((contentTypeModel) => {
                     const isNew = !contentTypes.items
-                        .map(x => x.sys.id)
+                        .map((x) => x.sys.id)
                         .includes(contentTypeModel.id)
 
                     return deployContentType(environment, contentTypeModel, isNew)
@@ -71,7 +73,7 @@ const applyEditorInterfaceUpdates = (
     contentType: ContentType,
     contentTypeModel: ContentfulContentType
 ) =>
-    contentType.getEditorInterface().then(editorInterface => {
+    contentType.getEditorInterface().then((editorInterface) => {
         editorInterface.controls = contentTypeModel.controls
         return editorInterface.update().then(() => Promise.resolve(contentType))
     })
@@ -92,7 +94,7 @@ const applyFieldUpdates = (contentType: ContentType, contentTypeModel: Contentfu
         contentType.name = contentTypeModel.name
         contentType.description = contentTypeModel.description
         contentType.displayField = contentTypeModel.displayField
-        contentType.fields = contentTypeModel.fields.map(field => field.contentFields)
+        contentType.fields = contentTypeModel.fields.map((field) => field.contentFields)
 
         return contentType.update()
     }
@@ -103,12 +105,12 @@ const createContentType = (environment: Environment, contentTypeModel: Contentfu
         name: contentTypeModel.name,
         description: contentTypeModel.description,
         displayField: contentTypeModel.displayField,
-        fields: contentTypeModel.fields.map(field => field.contentFields),
+        fields: contentTypeModel.fields.map((field) => field.contentFields),
     })
 
 const applyFieldOmissions = (contentType: ContentType, contentTypeModel: ContentfulContentType) => {
     contentType.fields.forEach(
-        field => (field.omitted = shouldFieldBeDeleted(field, contentTypeModel))
+        (field) => (field.omitted = shouldFieldBeDeleted(field, contentTypeModel))
     )
 
     return contentType.update()
@@ -116,7 +118,7 @@ const applyFieldOmissions = (contentType: ContentType, contentTypeModel: Content
 
 const applyFieldDeletions = (contentType: ContentType, contentTypeModel: ContentfulContentType) => {
     contentType.fields = contentType.fields.filter(
-        field => !shouldFieldBeDeleted(field, contentTypeModel)
+        (field) => !shouldFieldBeDeleted(field, contentTypeModel)
     )
 
     return contentType.update()
@@ -124,7 +126,7 @@ const applyFieldDeletions = (contentType: ContentType, contentTypeModel: Content
 
 const shouldFieldBeDeleted = (field: ContentFields, contentTypeModel: ContentfulContentType) => {
     const matchingModelField = contentTypeModel.fields.find(
-        modelField => modelField.contentFields.id === field.id
+        (modelField) => modelField.contentFields.id === field.id
     )
 
     return !matchingModelField || matchingModelField.contentFields.type != field.type
@@ -136,5 +138,5 @@ const isContentTypeEqual = (contentType: ContentType, contentTypeModel: Contentf
     contentType.displayField === contentTypeModel.displayField &&
     isDeepEqual(
         contentType.fields,
-        contentTypeModel.fields.map(field => field.contentFields)
+        contentTypeModel.fields.map((field) => field.contentFields)
     )

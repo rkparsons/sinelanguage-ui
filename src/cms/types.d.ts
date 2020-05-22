@@ -73,6 +73,7 @@ export type Release = {
 	title: string
 	uid: string
 	artist: Artist
+	originalArtist: string
 	format: string
 	description: {
         description: string
@@ -124,6 +125,7 @@ export type Video = {
 	title: string
 	uid: string
 	artist: Artist
+	originalArtist: string
 	description: {
         description: string
     }

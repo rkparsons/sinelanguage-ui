@@ -10,25 +10,29 @@ type ViewProps = {
     format: string
 }
 
-export default ({ release, format }: ViewProps) => (
-    <Grid container justify="space-between" alignItems="flex-start">
-        <Grid item xs={12} xl={1}>
-            <Typography variant="h3">{release.uid}</Typography>
-        </Grid>
-        <Grid item xs={12} xl={8}>
-            <Whitespace value="pre-wrap">
-                <Typography variant="h3">
-                    {release.artist.title.toUpperCase()}, <i>{release.title}</i>
+export default ({ release, format }: ViewProps) => {
+    const { uid, originalArtist, artist, title, date } = release
+
+    return (
+        <Grid container justify="space-between" alignItems="flex-start">
+            <Grid item xs={12} xl={1}>
+                <Typography variant="h3">{uid}</Typography>
+            </Grid>
+            <Grid item xs={12} xl={8}>
+                <Whitespace value="pre-wrap">
+                    <Typography variant="h3">
+                        {(originalArtist || artist.title).toUpperCase()}, <i>{title}</i>
+                    </Typography>
+                </Whitespace>
+            </Grid>
+            <Grid item xs={6} xl={1}>
+                <Typography variant="h4">{format}</Typography>
+            </Grid>
+            <Grid item xs={6} xl={2}>
+                <Typography variant="h3" align="right">
+                    {moment(date).format(`MMM YYYY`)}
                 </Typography>
-            </Whitespace>
+            </Grid>
         </Grid>
-        <Grid item xs={6} xl={1}>
-            <Typography variant="h4">{format}</Typography>
-        </Grid>
-        <Grid item xs={6} xl={2}>
-            <Typography variant="h3" align="right">
-                {moment(release.date).format(`MMM YYYY`)}
-            </Typography>
-        </Grid>
-    </Grid>
-)
+    )
+}

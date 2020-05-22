@@ -17,7 +17,7 @@ export default ({ release }: ViewProps) => {
     return (
         <>
             <Typography variant="h3">
-                {artist.title.toUpperCase()}, <i>{title}</i>
+                {(release.originalArtist || artist.title).toUpperCase()}, <i>{title}</i>
             </Typography>
             <br />
             <Typography variant="h3">[{uid}]</Typography>

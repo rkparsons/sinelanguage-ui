@@ -34,6 +34,13 @@ export default new ContentfulContentType({
             widgetId: 'entryCardEditor',
             link: Artist,
         }),
+        new SymbolField({
+            name: 'Original Artist',
+            widgetId: 'singleLine',
+            helpText:
+                'If the original artist is not available above (e.g. for a remix of a non SLR-artist), please provide their name here.',
+            required: false,
+        }),
         new TextField({
             name: 'Description',
             widgetId: 'multipleLine',
