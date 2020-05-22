@@ -46,6 +46,7 @@ export default ({ release }: ViewProps) => {
                 products={release.products}
                 isLarge={true}
                 isLight={true}
+                isDescription={true}
             />
             <br />
         </>

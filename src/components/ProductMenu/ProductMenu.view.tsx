@@ -66,6 +66,7 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                     products={products}
                     isLarge={isLarge}
                     isLight={false}
+                    isDescription={false}
                     onCheckoutClick={handleClose}
                 />
             </Menu>

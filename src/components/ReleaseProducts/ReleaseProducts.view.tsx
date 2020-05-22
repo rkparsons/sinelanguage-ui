@@ -1,5 +1,5 @@
 import { AddLabel, ProductRow } from './ReleaseProducts.style'
-import { Box, Typography } from '@material-ui/core'
+import { Box, Grid, Typography } from '@material-ui/core'
 import { Product, Release } from '~/cms/types'
 
 import CheckoutButton from '~/components/CheckoutButton'
@@ -14,10 +14,19 @@ type ViewProps = {
     products: Product[]
     isLight: boolean
     isLarge: boolean
+    isDescription: boolean
     onCheckoutClick?: () => void
 }
 
-export default ({ title, release, products, isLight, isLarge, onCheckoutClick }: ViewProps) => {
+export default ({
+    title,
+    release,
+    products,
+    isLight,
+    isLarge,
+    isDescription,
+    onCheckoutClick,
+}: ViewProps) => {
     const { artist, image } = release
     const { cart } = useCartContext()
 
@@ -37,8 +46,20 @@ export default ({ title, release, products, isLight, isLarge, onCheckoutClick }:
             {products.map(({ id, title, format, price, description }, index) => (
                 <ProductRow display="flex" width="100%" key={index} alignItems="center">
                     <Box flexGrow={1} minWidth={isLarge ? '300px' : '200px'}>
-                        <Typography variant={isLarge ? 'h3' : 'body1'}>{format}</Typography>
+                        <Grid container>
+                            <Grid item xs={isDescription ? 3 : 12}>
+                                <Typography variant={isLarge ? 'h3' : 'body1'}>{format}</Typography>
+                            </Grid>
+                            {isDescription && (
+                                <Grid item xs={9}>
+                                    <Typography variant={isLarge ? 'h3' : 'body1'}>
+                                        {description.description}
+                                    </Typography>
+                                </Grid>
+                            )}
+                        </Grid>
                     </Box>
+
                     <Box
                         minWidth={isLarge ? '100px' : '75px'}
                         display="flex"
