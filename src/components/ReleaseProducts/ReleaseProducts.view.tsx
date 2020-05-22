@@ -81,8 +81,6 @@ export default ({ title, release, isLight, isLarge }: ViewProps) => {
             ) : (
                 <></>
             )}
-
-            <br />
         </>
     )
 }
