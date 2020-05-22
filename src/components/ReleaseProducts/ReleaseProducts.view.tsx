@@ -9,10 +9,11 @@ import { getUrl } from '~/utils/content'
 import useCartContext from '~/hooks/useCartContext'
 
 type ViewProps = {
+    title?: string
     release: Release
 }
 
-export default ({ release }: ViewProps) => {
+export default ({ title, release }: ViewProps) => {
     const { artist, products, image } = release
     const { cart } = useCartContext()
 
@@ -22,8 +23,13 @@ export default ({ release }: ViewProps) => {
 
     return (
         <>
-            <Typography variant="h3">BUY</Typography>
-            <br />
+            {title && (
+                <>
+                    <Typography variant="h3">BUY</Typography>
+                    <br />
+                </>
+            )}
+
             {products.map(({ id, title, format, price, description }, index) => (
                 <ProductRow display="flex" width="100%" key={index}>
                     <Box flexGrow={1}>

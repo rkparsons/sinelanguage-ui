@@ -40,7 +40,7 @@ export default ({ release }: ViewProps) => {
             <ReleaseTracks release={release} />
             <br />
 
-            <ReleaseProducts release={release} />
+            <ReleaseProducts title="BUY" release={release} />
             <br />
         </>
     )
