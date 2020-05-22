@@ -25,6 +25,7 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
 
     // todo: refactor cart check into utility method
     const isInBag =
+        products &&
         cart.items.find((cartItem) => products.map((x) => x.id).includes(cartItem.id)) !== undefined
 
     const handleClick = () => {
@@ -53,6 +54,7 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                 }
                 onClick={handleClick}
                 isLight={isLight}
+                isDisabled={!products}
             />
             <Menu
                 id="customized-menu"
