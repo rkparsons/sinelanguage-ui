@@ -37,6 +37,7 @@ export default ({
         data-item-name={cartItem?.name}
         data-item-description={cartItem?.description}
         data-item-image={cartItem?.imageUrl}
+        data-item-file-guid={cartItem?.fileGUID}
     >
         {icon}
         {label}

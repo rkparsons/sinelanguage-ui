@@ -1,3 +1,4 @@
+// todo: replace with usage of product/release
 export type CartItem = {
     id: string
     price: number
@@ -5,4 +6,5 @@ export type CartItem = {
     name: string
     description: string
     imageUrl: string
+    fileGUID: string
 }

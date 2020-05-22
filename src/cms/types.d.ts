@@ -65,6 +65,7 @@ export type Product = {
 	description: {
         description: string
     }
+	fileGUID: string
 }
 
 export type Release = {

@@ -79,6 +79,7 @@ export const productFragment = graphql`
 		description {
             description
         }
+		fileGUID
 	}
 `
 

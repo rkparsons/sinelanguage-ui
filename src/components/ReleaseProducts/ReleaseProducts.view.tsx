@@ -43,7 +43,7 @@ export default ({
                 </>
             )}
 
-            {products.map(({ id, title, format, price, description }, index) => (
+            {products.map(({ id, title, format, price, description, fileGUID }, index) => (
                 <ProductRow display="flex" width="100%" key={index} alignItems="center">
                     <Box flexGrow={1} minWidth={isLarge ? '300px' : '200px'}>
                         <Grid container>
@@ -85,6 +85,7 @@ export default ({
                                     name: title,
                                     description: description.description,
                                     imageUrl: image.fluid.src,
+                                    fileGUID,
                                 }}
                                 className="snipcart-add-item"
                             />
@@ -95,7 +96,6 @@ export default ({
 
             {cart.items.find((cartItem) => products.map((x) => x.id).includes(cartItem.id)) ? (
                 <>
-                    <br />
                     <Box display="flex" justifyContent="flex-end" width="100%">
                         <CheckoutButton
                             text={`GO TO CHECKOUT \u2191`}

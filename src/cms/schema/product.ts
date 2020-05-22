@@ -30,5 +30,11 @@ export default new ContentfulContentType({
             widgetId: 'multipleLine',
             helpText: 'Any additional product info, e.g. 1xLP, Digital download.',
         }),
+        new SymbolField({
+            name: 'File GUID',
+            widgetId: 'singleLine',
+            helpText: 'The digital download identier located in the Snipcart dashboard',
+            required: false,
+        }),
     ],
 })
