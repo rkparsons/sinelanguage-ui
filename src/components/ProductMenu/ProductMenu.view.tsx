@@ -51,7 +51,7 @@ export default ({ release, products, isLarge, isLight, text }: Props) => {
                 open={Boolean(menuTrigger)}
                 onClose={handleClose}
             >
-                <ReleaseProducts release={release} isLarge={isLarge} isLight={isLight} />
+                <ReleaseProducts release={release} isLarge={isLarge} isLight={false} />
             </Menu>
         </>
     )

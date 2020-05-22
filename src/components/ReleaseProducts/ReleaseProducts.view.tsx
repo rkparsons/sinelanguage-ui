@@ -37,7 +37,11 @@ export default ({ title, release, isLight, isLarge }: ViewProps) => {
                     <Box flexGrow={1} minWidth={isLarge ? '300px' : '200px'}>
                         <Typography variant={isLarge ? 'h3' : 'body1'}>{format}</Typography>
                     </Box>
-                    <Box>
+                    <Box
+                        minWidth={isLarge ? '100px' : '75px'}
+                        display="flex"
+                        justifyContent="flex-end"
+                    >
                         {cart.items.find((cartItem) => cartItem.id === id) ? (
                             <Typography variant={isLarge ? 'h3' : 'body1'} color="secondary">
                                 ADDED
