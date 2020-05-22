@@ -2,7 +2,7 @@ import React from 'react'
 
 type ViewProps = {
     name: string
-    alt: string
+    alt?: string
     className: string
 }
 

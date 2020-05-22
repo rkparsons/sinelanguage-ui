@@ -3,6 +3,7 @@ import React, { memo } from 'react'
 import Billing from './Templates/Billing'
 import { Cart } from './Cart.style'
 import FeaturedPaymentMethods from './Templates/FeaturedPaymentMethods'
+import Header from './Templates/Header'
 import { Helmet } from 'react-helmet'
 
 type ViewProps = {
@@ -38,6 +39,7 @@ export default memo(
                         data-api-key={process.env.GATSBY_SNIPCART_API_KEY}
                         data-config-add-product-behavior={openCartOnAdd === false ? 'none' : null}
                     >
+                        <Header />
                         <Billing />
                         <FeaturedPaymentMethods />
                     </div>

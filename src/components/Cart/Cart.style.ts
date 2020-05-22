@@ -15,7 +15,8 @@ export const Cart = styled.div`
     .snipcart-cart__footer,
     .snipcart-cart__content,
     .snipcart-discount-box,
-    .snipcart-cart-button {
+    .snipcart-cart-button,
+    .snipcart__box--badge-highlight {
         background: none;
     }
 
@@ -23,11 +24,22 @@ export const Cart = styled.div`
         border: 1px solid grey;
     }
 
-    .snipcart-cart-button {
+    .snipcart-cart-button,
+    .snipcart__box--badge-highlight {
         background-color: black;
     }
 
     .snipcart-featured-payment-methods {
         border-top: 1px solid grey;
+    }
+
+    .snipcart-cart-header {
+        justify-content: space-between;
+
+        button {
+            display: flex;
+            cursor: pointer;
+            outline: none;
+        }
     }
 `
