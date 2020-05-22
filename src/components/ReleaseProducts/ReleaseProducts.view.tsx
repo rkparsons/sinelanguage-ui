@@ -34,7 +34,7 @@ export default ({ title, release, isLight, isLarge }: ViewProps) => {
 
             {products.map(({ id, title, format, price, description }, index) => (
                 <ProductRow display="flex" width="100%" key={index} alignItems="center">
-                    <Box flexGrow={1}>
+                    <Box flexGrow={1} minWidth={isLarge ? '300px' : '200px'}>
                         <Typography variant={isLarge ? 'h3' : 'body1'}>{format}</Typography>
                     </Box>
                     <Box>

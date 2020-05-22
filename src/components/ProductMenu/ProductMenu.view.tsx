@@ -1,12 +1,11 @@
-import { Menu, Typography } from '@material-ui/core'
 import { Product, Release } from '~/cms/types'
 import React, { useRef, useState } from 'react'
 
 import BagIcon from '~/components/BagIcon'
 import IconButton from '~/components/IconButton'
-import { MenuItem } from '@material-ui/core'
+import { Menu } from './ProductMenu.style'
 import ReleaseProducts from '~/components/ReleaseProducts'
-import { getUrl } from '~/utils/content'
+import { Typography } from '@material-ui/core'
 import useCartContext from '~/hooks/useCartContext'
 
 type Props = {
