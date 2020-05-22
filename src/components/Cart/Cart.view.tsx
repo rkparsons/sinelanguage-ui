@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo } from 'react'
 
 import Billing from './Billing'
 import { Cart } from './Cart.style'
