@@ -38,9 +38,7 @@ export default ({
         data-item-description={cartItem?.description}
         data-item-image={cartItem?.imageUrl}
     >
-        <Box display="inline-flex" alignItems="center">
-            {icon && <Box>{icon}</Box>}
-            {label && <Box>{label}</Box>}
-        </Box>
+        {icon}
+        {label}
     </Button>
 )

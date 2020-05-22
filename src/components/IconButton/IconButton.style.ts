@@ -4,8 +4,12 @@ import styled from 'styled-components'
 
 // todo: move all light dark shadow/colour logic to single place
 export const Button = styled.span<{ isLight: boolean; isDisabled: boolean }>`
+    display: flex;
+    p {
+        display: inline-block;
+    }
     svg {
-        display: block;
+        display: inline-block;
 
         path {
             stroke: black;
