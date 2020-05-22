@@ -1,22 +1,23 @@
 import { AddLabel, ProductRow } from './ReleaseProducts.style'
 import { Box, Typography } from '@material-ui/core'
+import { Product, Release } from '~/cms/types'
 
 import CheckoutButton from '~/components/CheckoutButton'
 import IconButton from '~/components/IconButton'
 import React from 'react'
-import { Release } from '~/cms/types'
 import { getUrl } from '~/utils/content'
 import useCartContext from '~/hooks/useCartContext'
 
 type ViewProps = {
     title?: string
     release: Release
+    products: Product[]
     isLight: boolean
     isLarge: boolean
 }
 
-export default ({ title, release, isLight, isLarge }: ViewProps) => {
-    const { artist, products, image } = release
+export default ({ title, release, products, isLight, isLarge }: ViewProps) => {
+    const { artist, image } = release
     const { cart } = useCartContext()
 
     if (!products || !products.length) {
