@@ -26,4 +26,8 @@ export const Cart = styled.div`
     .snipcart-cart-button {
         background-color: black;
     }
+
+    .snipcart-featured-payment-methods {
+        border-top: 1px solid grey;
+    }
 `

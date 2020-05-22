@@ -2,6 +2,7 @@ import React, { memo } from 'react'
 
 import Billing from './Templates/Billing'
 import { Cart } from './Cart.style'
+import FeaturedPaymentMethods from './Templates/FeaturedPaymentMethods'
 import { Helmet } from 'react-helmet'
 
 type ViewProps = {
@@ -38,6 +39,7 @@ export default memo(
                         data-config-add-product-behavior={openCartOnAdd === false ? 'none' : null}
                     >
                         <Billing />
+                        <FeaturedPaymentMethods />
                     </div>
                 </Cart>
             </>

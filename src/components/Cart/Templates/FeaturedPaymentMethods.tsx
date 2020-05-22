@@ -1,21 +1,19 @@
+import FeaturedPaymentMethods from '../Elements/FeaturedPaymentMethods'
+import Icon from '../Elements/Icon'
 import React from 'react'
 
 // todo: replace with PCI compliant notice or similar
 export default () => (
-    <featured-payment-methods>
+    <FeaturedPaymentMethods>
         <div className="snipcart-featured-payment-methods">
             <ul className="snipcart-featured-payment-methods__list">
                 <li className="snipcart-featured-payment-methods__list-item">
-                    <icon name="visa" alt="Visa" className="snipcart__icon--brand"></icon>
+                    <Icon name="visa" alt="Visa" className="snipcart__icon--brand" />
                 </li>
                 <li className="snipcart-featured-payment-methods__list-item">
-                    <icon
-                        name="mastercard"
-                        alt="Mastercard"
-                        className="snipcart__icon--brand"
-                    ></icon>
+                    <Icon name="mastercard" alt="Mastercard" className="snipcart__icon--brand" />
                 </li>
             </ul>
         </div>
-    </featured-payment-methods>
+    </FeaturedPaymentMethods>
 )
