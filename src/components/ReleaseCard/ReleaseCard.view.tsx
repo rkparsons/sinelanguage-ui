@@ -45,6 +45,7 @@ export default ({ release }: ViewProps) => {
                                 isLight={false}
                                 isLarge={false}
                                 text="BUY"
+                                indicateWhenInBag={false}
                             />
                         </Grid>
                     )}

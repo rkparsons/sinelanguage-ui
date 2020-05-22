@@ -2,6 +2,7 @@ import { Product, Release } from '~/cms/types'
 import React, { useRef, useState } from 'react'
 
 import BagIcon from '~/components/BagIcon'
+import { BagIconContainer } from './ProductMenu.style'
 import IconButton from '~/components/IconButton'
 import { Menu } from './ProductMenu.style'
 import ReleaseProducts from '~/components/ReleaseProducts'
@@ -14,12 +15,17 @@ type Props = {
     isLarge: boolean
     isLight: boolean
     text?: string
+    indicateWhenInBag: boolean
 }
 
-export default ({ release, products, isLarge, isLight, text }: Props) => {
+export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }: Props) => {
     const { cart } = useCartContext()
     const [menuTrigger, setMenuTrigger] = useState<HTMLButtonElement>()
     const menuTriggerRef = useRef<HTMLButtonElement>(null)
+
+    // todo: refactor cart check into utility method
+    const isInBag =
+        cart.items.find((cartItem) => products.map((x) => x.id).includes(cartItem.id)) !== undefined
 
     const handleClick = () => {
         if (menuTriggerRef.current) {
@@ -35,7 +41,11 @@ export default ({ release, products, isLarge, isLight, text }: Props) => {
         <>
             <IconButton
                 buttonRef={menuTriggerRef}
-                icon={<BagIcon isLarge={isLarge} />}
+                icon={
+                    <BagIconContainer isInBag={indicateWhenInBag && isInBag}>
+                        <BagIcon isLarge={isLarge} />
+                    </BagIconContainer>
+                }
                 label={
                     text ? (
                         <Typography variant={isLarge ? 'h3' : 'body1'}>{text}</Typography>

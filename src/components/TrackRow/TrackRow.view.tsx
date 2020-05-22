@@ -1,7 +1,6 @@
 import { Box, Grid, Typography } from '@material-ui/core'
 import { Release, Track } from '~/cms/types'
 
-import CheckoutButton from '~/components/CheckoutButton'
 import ContentPlayButton from '~/components/ContentPlayButton'
 import ProductMenu from '~/components/ProductMenu'
 import React from 'react'
@@ -39,6 +38,7 @@ export default ({ release, track, index }: ViewProps) => (
                             products={track.products}
                             isLight={true}
                             isLarge={true}
+                            indicateWhenInBag={true}
                         />
                     </Box>
                 </Grid>

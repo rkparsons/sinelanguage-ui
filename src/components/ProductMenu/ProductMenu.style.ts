@@ -11,3 +11,13 @@ export const Menu = styled(MuiMenu)`
         }
     }
 `
+
+export const BagIconContainer = styled.span<{ isInBag: boolean }>`
+    ${({ theme, isInBag }) =>
+        isInBag &&
+        `
+            svg:not(:hover) {
+                color: ${theme.palette.secondary.main};
+            }
+        `}
+`
