@@ -61,7 +61,9 @@ export default ({ release }: ViewProps) => {
             {cart.items.find((cartItem) => products.map((x) => x.id).includes(cartItem.id)) ? (
                 <>
                     <br />
-                    <CheckoutButton text="GO TO CHECKOUT" isWithCount={false} />
+                    <Box display="flex" justifyContent="flex-end" width="100%">
+                        <CheckoutButton text={`GO TO CHECKOUT \u2191`} isWithCount={false} />
+                    </Box>
                 </>
             ) : (
                 <></>

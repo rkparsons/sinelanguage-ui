@@ -1,16 +1,17 @@
-import BagIcon from '~/components/BagIcon'
+import React, { ReactNode } from 'react'
+
 import { CheckoutButton } from './CheckoutButton.style'
 import IconButton from '~/components/IconButton'
-import React from 'react'
 import { Typography } from '@material-ui/core'
 import useCartContext from '~/hooks/useCartContext'
 
 type ViewProps = {
     text: string
+    icon?: ReactNode
     isWithCount: boolean
 }
 
-export default ({ text, isWithCount }: ViewProps) => {
+export default ({ text, icon, isWithCount }: ViewProps) => {
     const { cart } = useCartContext()
 
     return (
@@ -21,7 +22,7 @@ export default ({ text, isWithCount }: ViewProps) => {
                         {text} {isWithCount && cart.items.length ? `(${cart.items.length})` : ``}
                     </Typography>
                 }
-                icon={<BagIcon isLarge={true} />}
+                icon={icon}
                 onClick={() => {}}
                 isLight={true}
             />
