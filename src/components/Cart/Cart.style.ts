@@ -10,24 +10,13 @@ export const Cart = styled.div`
         background-color: ${lightGrey};
     }
 
-    .snipcart-modal {
-        background-color: ${lightGrey};
-    }
-
-    .snipcart-cart-header {
-        background-color: ${lightGrey};
-    }
-
-    .snipcart-cart__footer {
-        background-color: ${lightGrey};
-    }
-
-    .snipcart-cart__content {
-        background-color: ${lightGrey};
-    }
-
-    .snipcart-discount-box {
-        background-color: ${lightGrey};
+    .snipcart-modal,
+    .snipcart-cart-header,
+    .snipcart-cart__footer,
+    .snipcart-cart__content,
+    .snipcart-discount-box,
+    .snipcart-cart-button {
+        background: none;
     }
 
     .snipcart-discount-box__button {
@@ -35,7 +24,6 @@ export const Cart = styled.div`
     }
 
     .snipcart-cart-button {
-        background-image: none;
         background-color: black;
     }
 `
