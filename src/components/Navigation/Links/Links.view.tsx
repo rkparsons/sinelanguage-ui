@@ -40,6 +40,8 @@ export default ({ isMobile }: ViewProps) => (
                         text="BAG"
                         icon={<BagIcon isLarge={true} />}
                         isWithCount={true}
+                        isLarge={true}
+                        isLight={true}
                     />
                 </Row>
             </Grid>

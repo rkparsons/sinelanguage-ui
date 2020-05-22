@@ -3,7 +3,10 @@ import { darkShadow, lightShadow } from '~/styles/shadows'
 
 import styled from 'styled-components'
 
-export const ProductRow = styled(Box)``
+export const ProductRow = styled(Box)`
+    ${({ theme }) => `    
+    `}
+`
 
 export const AddLabel = styled.span<{ price: string }>`
 

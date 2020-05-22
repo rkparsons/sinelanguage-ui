@@ -11,9 +11,11 @@ import useCartContext from '~/hooks/useCartContext'
 type ViewProps = {
     title?: string
     release: Release
+    isLight: boolean
+    isLarge: boolean
 }
 
-export default ({ title, release }: ViewProps) => {
+export default ({ title, release, isLight, isLarge }: ViewProps) => {
     const { artist, products, image } = release
     const { cart } = useCartContext()
 
@@ -25,30 +27,30 @@ export default ({ title, release }: ViewProps) => {
         <>
             {title && (
                 <>
-                    <Typography variant="h3">BUY</Typography>
+                    <Typography variant={isLarge ? 'h3' : 'body1'}>BUY</Typography>
                     <br />
                 </>
             )}
 
             {products.map(({ id, title, format, price, description }, index) => (
-                <ProductRow display="flex" width="100%" key={index}>
+                <ProductRow display="flex" width="100%" key={index} alignItems="center">
                     <Box flexGrow={1}>
-                        <Typography variant="h3">{format}</Typography>
+                        <Typography variant={isLarge ? 'h3' : 'body1'}>{format}</Typography>
                     </Box>
                     <Box>
                         {cart.items.find((cartItem) => cartItem.id === id) ? (
-                            <Typography variant="h3" color="secondary">
+                            <Typography variant={isLarge ? 'h3' : 'body1'} color="secondary">
                                 ADDED
                             </Typography>
                         ) : (
                             <IconButton
                                 label={
-                                    <Typography variant="h3">
+                                    <Typography variant={isLarge ? 'h3' : 'body1'}>
                                         <AddLabel price={`£${price.toFixed(2)}`} />
                                     </Typography>
                                 }
                                 onClick={() => {}}
-                                isLight={true}
+                                isLight={isLight}
                                 cartItem={{
                                     id,
                                     price,
@@ -68,7 +70,12 @@ export default ({ title, release }: ViewProps) => {
                 <>
                     <br />
                     <Box display="flex" justifyContent="flex-end" width="100%">
-                        <CheckoutButton text={`GO TO CHECKOUT \u2191`} isWithCount={false} />
+                        <CheckoutButton
+                            text={`GO TO CHECKOUT \u2191`}
+                            isWithCount={false}
+                            isLarge={isLarge}
+                            isLight={isLight}
+                        />
                     </Box>
                 </>
             ) : (

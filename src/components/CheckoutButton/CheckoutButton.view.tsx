@@ -9,22 +9,24 @@ type ViewProps = {
     text: string
     icon?: ReactNode
     isWithCount: boolean
+    isLight: boolean
+    isLarge: boolean
 }
 
-export default ({ text, icon, isWithCount }: ViewProps) => {
+export default ({ text, icon, isWithCount, isLight, isLarge }: ViewProps) => {
     const { cart } = useCartContext()
 
     return (
         <CheckoutButton className="snipcart-checkout">
             <IconButton
                 label={
-                    <Typography variant={'h3'}>
+                    <Typography variant={isLarge ? 'h3' : 'body1'}>
                         {text} {isWithCount && cart.items.length ? `(${cart.items.length})` : ``}
                     </Typography>
                 }
                 icon={icon}
                 onClick={() => {}}
-                isLight={true}
+                isLight={isLight}
             />
         </CheckoutButton>
     )
