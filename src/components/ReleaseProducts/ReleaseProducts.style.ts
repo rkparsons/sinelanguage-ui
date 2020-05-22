@@ -1,14 +1,17 @@
+import { Box, Grid } from '@material-ui/core'
 import { darkShadow, lightShadow } from '~/styles/shadows'
 
-import { Grid } from '@material-ui/core'
 import styled from 'styled-components'
 
+export const ProductRow = styled(Box)``
+
 export const AddLabel = styled.span<{ price: string }>`
+
     &:after {
         content: '${({ price }) => price}';
     }
 
-    &:hover:after {
+    ${ProductRow}:hover &:after {
         content: 'ADD';
     }
 `

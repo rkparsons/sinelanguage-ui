@@ -1,7 +1,8 @@
-import { Box, Grid, Typography } from '@material-ui/core'
+import { AddLabel, ProductRow } from './ReleaseProducts.style'
+import { Box, Typography } from '@material-ui/core'
 
-import BuyButton from '~/components/BuyButton'
 import CheckoutButton from '~/components/CheckoutButton'
+import IconButton from '~/components/IconButton'
 import React from 'react'
 import { Release } from '~/cms/types'
 import { getUrl } from '~/utils/content'
@@ -12,7 +13,7 @@ type ViewProps = {
 }
 
 export default ({ release }: ViewProps) => {
-    const { artist, products } = release
+    const { artist, products, image } = release
     const { cart } = useCartContext()
 
     if (!products || !products.length) {
@@ -23,24 +24,38 @@ export default ({ release }: ViewProps) => {
         <>
             <Typography variant="h3">BUY</Typography>
             <br />
-            {products.map((product, index) => (
-                <Box display="flex" width="100%" key={index}>
+            {products.map(({ id, title, format, price, description }, index) => (
+                <ProductRow display="flex" width="100%" key={index}>
                     <Box flexGrow={1}>
-                        <Typography variant="h3">{product.format}</Typography>
+                        <Typography variant="h3">{format}</Typography>
                     </Box>
                     <Box>
-                        <BuyButton
-                            id={product.id}
-                            price={product.price}
-                            url={getUrl(release)}
-                            name={product.title}
-                            description={product.description.description}
-                            imageUrl={release.image.fluid.src}
-                            isLarge={true}
-                            isLight={true}
-                        />
+                        {cart.items.find((cartItem) => cartItem.id === id) ? (
+                            <Typography variant="h3" color="secondary">
+                                ADDED
+                            </Typography>
+                        ) : (
+                            <IconButton
+                                label={
+                                    <Typography variant="h3">
+                                        <AddLabel price={`£${price.toFixed(2)}`} />
+                                    </Typography>
+                                }
+                                onClick={() => {}}
+                                isLight={true}
+                                cartItem={{
+                                    id,
+                                    price,
+                                    url: getUrl(release),
+                                    name: title,
+                                    description: description.description,
+                                    imageUrl: image.fluid.src,
+                                }}
+                                className="snipcart-add-item"
+                            />
+                        )}
                     </Box>
-                </Box>
+                </ProductRow>
             ))}
 
             {cart.items.find((cartItem) => products.map((x) => x.id).includes(cartItem.id)) ? (
