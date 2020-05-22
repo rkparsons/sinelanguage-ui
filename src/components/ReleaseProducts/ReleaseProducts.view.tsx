@@ -14,9 +14,10 @@ type ViewProps = {
     products: Product[]
     isLight: boolean
     isLarge: boolean
+    onCheckoutClick?: () => void
 }
 
-export default ({ title, release, products, isLight, isLarge }: ViewProps) => {
+export default ({ title, release, products, isLight, isLarge, onCheckoutClick }: ViewProps) => {
     const { artist, image } = release
     const { cart } = useCartContext()
 
@@ -80,6 +81,7 @@ export default ({ title, release, products, isLight, isLarge }: ViewProps) => {
                             isWithCount={false}
                             isLarge={isLarge}
                             isLight={isLight}
+                            onClick={onCheckoutClick}
                         />
                     </Box>
                 </>

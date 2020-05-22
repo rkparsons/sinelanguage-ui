@@ -56,6 +56,7 @@ export default ({ release, products, isLarge, isLight, text }: Props) => {
                     products={products}
                     isLarge={isLarge}
                     isLight={false}
+                    onCheckoutClick={handleClose}
                 />
             </Menu>
         </>
