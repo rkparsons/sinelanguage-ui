@@ -4,7 +4,7 @@ import React, { useRef, useState } from 'react'
 import BagIcon from '~/components/BagIcon'
 import { BagIconContainer } from './ProductMenu.style'
 import IconButton from '~/components/IconButton'
-import { Menu } from './ProductMenu.style'
+import { Popover } from './ProductMenu.style'
 import ReleaseProducts from '~/components/ReleaseProducts'
 import { Typography } from '@material-ui/core'
 import useCartContext from '~/hooks/useCartContext'
@@ -20,8 +20,8 @@ type Props = {
 
 export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }: Props) => {
     const { cart } = useCartContext()
-    const [menuTrigger, setMenuTrigger] = useState<HTMLButtonElement>()
-    const menuTriggerRef = useRef<HTMLButtonElement>(null)
+    const [popoverTrigger, setPopoverTrigger] = useState<HTMLButtonElement>()
+    const popoverTriggerRef = useRef<HTMLButtonElement>(null)
 
     // todo: refactor cart check into utility method
     const isInBag =
@@ -29,19 +29,19 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
         cart.items.find((cartItem) => products.map((x) => x.id).includes(cartItem.id)) !== undefined
 
     const handleClick = () => {
-        if (menuTriggerRef.current) {
-            setMenuTrigger(menuTriggerRef.current)
+        if (popoverTriggerRef.current) {
+            setPopoverTrigger(popoverTriggerRef.current)
         }
     }
 
     const handleClose = () => {
-        setMenuTrigger(undefined)
+        setPopoverTrigger(undefined)
     }
 
     return (
         <>
             <IconButton
-                buttonRef={menuTriggerRef}
+                buttonRef={popoverTriggerRef}
                 icon={
                     <BagIconContainer isInBag={indicateWhenInBag && isInBag}>
                         <BagIcon isLarge={isLarge} />
@@ -56,13 +56,7 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                 isLight={isLight}
                 isDisabled={!products}
             />
-            <Menu
-                id="customized-menu"
-                anchorEl={menuTrigger}
-                keepMounted
-                open={Boolean(menuTrigger)}
-                onClose={handleClose}
-            >
+            <Popover open={Boolean(popoverTrigger)} anchorEl={popoverTrigger} onClose={handleClose}>
                 <ReleaseProducts
                     release={release}
                     products={products}
@@ -71,7 +65,7 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                     isDescription={false}
                     onCheckoutClick={handleClose}
                 />
-            </Menu>
+            </Popover>
         </>
     )
 }
