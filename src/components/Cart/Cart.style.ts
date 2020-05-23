@@ -1,7 +1,7 @@
 import { lightGrey } from '~/styles/colours'
 import styled from 'styled-components'
 
-export const Cart = styled.div`
+export const OverrideCartStyles = styled.div`
     .snipcart-modal__container {
         * {
             font-family: 'HelveticaNowText';

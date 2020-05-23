@@ -1,10 +1,10 @@
 import React, { memo } from 'react'
 
 import Billing from './Templates/Billing'
-import { Cart } from './Cart.style'
 import FeaturedPaymentMethods from './Templates/FeaturedPaymentMethods'
 import Header from './Templates/Header'
 import { Helmet } from 'react-helmet'
+import { OverrideCartStyles } from './Cart.style'
 
 type ViewProps = {
     version: string
@@ -32,7 +32,7 @@ export default memo(
         return (
             <>
                 <Helmet>{dependencies}</Helmet>
-                <Cart>
+                <OverrideCartStyles>
                     <div
                         hidden
                         id="snipcart"
@@ -43,7 +43,7 @@ export default memo(
                         <Billing />
                         <FeaturedPaymentMethods />
                     </div>
-                </Cart>
+                </OverrideCartStyles>
             </>
         )
     },
