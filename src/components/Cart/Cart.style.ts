@@ -38,7 +38,12 @@ export const OverrideCartStyles = styled.div`
 
         button {
             display: flex;
+            align-items: center;
             cursor: pointer;
+
+            .snipcart-modal__close-icon {
+                font-size: ${({ theme }) => theme.spacing(4)};
+            }
         }
     }
 
