@@ -39,7 +39,23 @@ export const OverrideCartStyles = styled.div`
         button {
             display: flex;
             cursor: pointer;
-            outline: none;
         }
+    }
+
+    .snipcart-item-line__actions {
+        .snipcart__button--icon {
+            border: none;
+            svg {
+                display: none;
+            }
+            :after {
+                content: 'x';
+                font-size: ${({ theme }) => theme.spacing(5)};
+            }
+        }
+    }
+
+    button {
+        outline: none;
     }
 `
