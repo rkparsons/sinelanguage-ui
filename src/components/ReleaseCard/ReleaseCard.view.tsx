@@ -29,7 +29,7 @@ export default ({ release }: ViewProps) => {
                 <Grid container spacing={2}>
                     <Grid item xs={1}></Grid>
                     <Grid item>
-                        <Box paddingRight={2}>
+                        <Box paddingRight={1}>
                             <ContentPlayButton
                                 content={release}
                                 trackIndex={0}
