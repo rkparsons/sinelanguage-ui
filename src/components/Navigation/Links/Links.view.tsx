@@ -4,6 +4,7 @@ import NavItem from '~/components/NavItem'
 import React from 'react'
 import { Route } from '~/constants/route'
 import { Row } from './Links.style'
+import { Unicode } from '~/constants/unicode'
 
 // todo: replace row style with grid spacing
 
@@ -35,7 +36,12 @@ export default ({ isMobile }: ViewProps) => (
                     <NavItem to={Route.CONTACT} title="CONTACT" partiallyActive={true} />
                 </Row>
                 <Row item>
-                    <CheckoutButton text="BAG" isWithCount={true} isLarge={true} isLight={true} />
+                    <CheckoutButton
+                        text={`${Unicode.CART_LEFT_ALIGN} BAG`}
+                        isWithCount={true}
+                        isLarge={true}
+                        isLight={true}
+                    />
                 </Row>
             </Grid>
         </Grid>

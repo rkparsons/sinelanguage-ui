@@ -23,7 +23,7 @@ export default ({ text, icon, isWithCount, isLight, isLarge, onClick = () => {} 
             <IconButton
                 label={
                     <Typography variant={isLarge ? 'h3' : 'body1'}>
-                        {`${Unicode.CART_LEFT_ALIGN} ${text} ${
+                        {`${text} ${
                             isWithCount && cart.items.length ? `(${cart.items.length})` : ``
                         }`}
                     </Typography>
