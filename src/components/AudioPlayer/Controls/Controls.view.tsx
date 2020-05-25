@@ -49,7 +49,7 @@ export default () => {
                 <Grid item>
                     <IconButton
                         label={
-                            <Typography variant="h3">{isPlaying ? `\u0003` : `\u0002`}</Typography>
+                            <Typography variant="h3">{isPlaying ? `\u0003` : `\u0006`}</Typography>
                         }
                         onClick={onPlayPause}
                         isLight={true}

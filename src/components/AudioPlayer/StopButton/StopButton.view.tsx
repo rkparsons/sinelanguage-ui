@@ -7,9 +7,10 @@ import useAudioContext from '~/hooks/useAudioContext'
 export default () => {
     const { stopMedia } = useAudioContext()
 
+    // todo: replace all unicode chars with enum
     return (
         <IconButton
-            label={<Typography variant="h3">x</Typography>}
+            label={<Typography variant="h3">{`\u00D7`}</Typography>}
             onClick={stopMedia}
             isLight={true}
         />
