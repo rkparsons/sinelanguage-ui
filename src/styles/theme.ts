@@ -30,7 +30,7 @@ export default (isDarkMode = false) =>
                     lineHeight: 1.25,
                 },
                 h3: {
-                    fontSize: 30,
+                    fontSize: 26,
                     lineHeight: 1.25,
                 },
                 h1: {

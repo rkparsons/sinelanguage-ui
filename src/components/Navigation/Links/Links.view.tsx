@@ -17,13 +17,13 @@ export default ({ isMobile }: ViewProps) => (
         <Grid item xs={isMobile ? 12 : 3}>
             <Grid container direction="column">
                 <Row item>
-                    <NavItem to={Route.ARTISTS} title="ARTISTS" partiallyActive={true} />
+                    <NavItem to={Route.RELEASES} title="RELEASES" partiallyActive={true} />
                 </Row>
                 <Row item>
                     <NavItem to={Route.PODCASTS} title="PODCASTS" partiallyActive={true} />
                 </Row>
                 <Row item>
-                    <NavItem to={Route.RELEASES} title="RELEASES" partiallyActive={true} />
+                    <NavItem to={Route.ARTISTS} title="ARTISTS" partiallyActive={true} />
                 </Row>
             </Grid>
         </Grid>

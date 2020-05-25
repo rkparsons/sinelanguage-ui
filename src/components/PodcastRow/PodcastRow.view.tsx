@@ -24,7 +24,7 @@ export default ({ podcast }: ViewProps) => (
         </Grid>
         <Grid item xs={6} lg={2} xl={2}>
             <Typography variant="h3" align="right">
-                {moment(podcast.date).format(`MMM YYYY`).toUpperCase()}
+                {moment(podcast.date).format(`YYYY`).toUpperCase()}
             </Typography>
         </Grid>
     </Grid>

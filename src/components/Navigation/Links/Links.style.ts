@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 export const Row = styled(Grid)`
     ${({ theme }) => `
-        height: ${theme.spacing(9)};
+        height: ${theme.spacing(7.6)};
     `}
 `
 

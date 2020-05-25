@@ -25,11 +25,11 @@ export default ({ release, format }: ViewProps) => {
                 </Box>
             </Grid>
             <Grid item xs={6} xl={1}>
-                <Typography variant="h4">{format}</Typography>
+                <Typography variant="h3">{format}</Typography>
             </Grid>
             <Grid item xs={6} xl={2}>
                 <Typography variant="h3" align="right">
-                    {moment(date).format(`MMM YYYY`)}
+                    {moment(date).format(`YYYY`)}
                 </Typography>
             </Grid>
         </Grid>
