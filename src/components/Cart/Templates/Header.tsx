@@ -3,12 +3,13 @@ import CloseCartAction from '../Elements/CloseCartAction'
 import Icon from '../Elements/Icon'
 import Media from '../Elements/Media'
 import React from 'react'
+import { Unicode } from '~/constants/unicode'
 
 export default () => (
     <CartHeader>
         <header className="snipcart-cart-header">
             <CloseCartAction className="snipcart-cart-header__close-button snipcart-modal__close">
-                <span className="snipcart-modal__close-icon">{`\u2190`}</span>
+                <span className="snipcart-modal__close-icon">{Unicode.LEFT}</span>
                 <span className="snipcart-modal__close-title snipcart__font--std">
                     {`Continue browsing`}
                 </span>

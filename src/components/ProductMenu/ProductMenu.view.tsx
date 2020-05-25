@@ -5,6 +5,7 @@ import IconButton from '~/components/IconButton'
 import { Popover } from './ProductMenu.style'
 import ReleaseProducts from '~/components/ReleaseProducts'
 import { Typography } from '@material-ui/core'
+import { Unicode } from '~/constants/unicode'
 import { getUrl } from '~/utils/content'
 import useCartContext from '~/hooks/useCartContext'
 
@@ -42,7 +43,7 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
             <IconButton
                 buttonRef={popoverTriggerRef}
                 label={
-                    <Typography variant={isLarge ? 'h3' : 'body1'}>{`\u0001 ${
+                    <Typography variant={isLarge ? 'h3' : 'body1'}>{`${Unicode.CART_LEFT_ALIGN} ${
                         text ? text : ''
                     }`}</Typography>
                 }

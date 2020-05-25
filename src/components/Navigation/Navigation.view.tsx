@@ -8,6 +8,7 @@ import IconButton from '~/components/IconButton'
 import Links from './Links'
 import NavItem from '~/components/NavItem'
 import { Route } from '~/constants/route'
+import { Unicode } from '~/constants/unicode'
 import { navigate } from 'gatsby'
 
 type ViewProps = {
@@ -44,7 +45,7 @@ export default withWidth()(({ width, location }: ViewProps) => {
                             <IconButton
                                 label={
                                     <Typography variant="h1" align="center">
-                                        {isMenuOpen ? `\u00D7` : '+'}
+                                        {isMenuOpen ? Unicode.CLOSE : '+'}
                                     </Typography>
                                 }
                                 onClick={handleMenuClick}

@@ -5,6 +5,7 @@ import { Product, Release } from '~/cms/types'
 import CheckoutButton from '~/components/CheckoutButton'
 import IconButton from '~/components/IconButton'
 import React from 'react'
+import { Unicode } from '~/constants/unicode'
 import { getUrl } from '~/utils/content'
 import useCartContext from '~/hooks/useCartContext'
 
@@ -103,7 +104,7 @@ export default ({
                     <Grid container justify="flex-end">
                         <Grid item>
                             <CheckoutButton
-                                text={`GO TO CHECKOUT \u2191`}
+                                text={`GO TO CHECKOUT ${Unicode.UP}`}
                                 isWithCount={false}
                                 isLarge={isLarge}
                                 isLight={isLight}

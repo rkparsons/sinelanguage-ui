@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 
 import { Controls } from './Controls.style'
 import IconButton from '~/components/IconButton'
+import { Unicode } from '~/constants/unicode'
 import useAudioContext from '~/hooks/useAudioContext'
 
 export default () => {
@@ -38,7 +39,7 @@ export default () => {
                 <Hidden smDown>
                     <Grid item>
                         <IconButton
-                            label={<Typography variant="h3">{`\u0005`}</Typography>}
+                            label={<Typography variant="h3">{Unicode.PREVIOUS}</Typography>}
                             onClick={previous}
                             isDisabled={!isPrevious()}
                             isLight={true}
@@ -49,7 +50,9 @@ export default () => {
                 <Grid item>
                     <IconButton
                         label={
-                            <Typography variant="h3">{isPlaying ? `\u0003` : `\u0006`}</Typography>
+                            <Typography variant="h3">
+                                {isPlaying ? Unicode.PAUSE : Unicode.PLAY}
+                            </Typography>
                         }
                         onClick={onPlayPause}
                         isLight={true}
@@ -60,7 +63,7 @@ export default () => {
                     <Box flexGrow={1} />
                     <Grid item>
                         <IconButton
-                            label={<Typography variant="h3">{`\u0004`}</Typography>}
+                            label={<Typography variant="h3">{Unicode.NEXT}</Typography>}
                             onClick={next}
                             isDisabled={!isNext()}
                             isLight={true}
