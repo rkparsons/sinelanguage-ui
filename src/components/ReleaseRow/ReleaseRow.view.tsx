@@ -1,4 +1,4 @@
-import { Box, Grid, Hidden, Typography } from '@material-ui/core'
+import { Grid, Hidden, Typography } from '@material-ui/core'
 import { Release, Video } from '~/cms/types'
 
 import React from 'react'
@@ -20,7 +20,6 @@ export default ({ release, format }: ViewProps) => {
                     <ReleaseId>{uid}</ReleaseId>
                 </Typography>
             </Hidden>
-            <Grid item xs={12}></Grid>
             <Grid item xs={12} md={9}>
                 <Typography variant="h3">
                     <Hidden smDown>
