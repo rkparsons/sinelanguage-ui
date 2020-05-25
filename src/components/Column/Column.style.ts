@@ -11,7 +11,7 @@ export const ResponsiveColumn = styled.div<CardProps>`
             width: ${(widthMultiplier * 100) / 2}vw;
         }
         ${theme.breakpoints.only('md')} {
-            width: ${(widthMultiplier * 100) / 3}vw;
+            width: ${(widthMultiplier * 100) / 4}vw;
         }
         ${theme.breakpoints.only('lg')} {
             width: ${(widthMultiplier * 100) / 5}vw;
