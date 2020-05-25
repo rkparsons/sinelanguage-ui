@@ -7,6 +7,7 @@ import IconButton from '~/components/IconButton'
 import { Popover } from './ProductMenu.style'
 import ReleaseProducts from '~/components/ReleaseProducts'
 import { Typography } from '@material-ui/core'
+import { getUrl } from '~/utils/content'
 import useCartContext from '~/hooks/useCartContext'
 
 type Props = {
@@ -56,6 +57,21 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                 isLight={isLight}
                 isDisabled={!products}
             />
+            {products.map((product, index) => (
+                <button
+                    key={index}
+                    hidden
+                    data-item-id={product.id}
+                    data-item-price={product.price}
+                    data-item-url={getUrl(release)}
+                    data-item-name={product.title}
+                    data-item-description={product.description.description}
+                    data-item-image={release.image.fluid.src}
+                    data-item-file-guid={product.fileGUID}
+                >
+                    {product.title}
+                </button>
+            ))}
             <Popover open={Boolean(popoverTrigger)} anchorEl={popoverTrigger} onClose={handleClose}>
                 <ReleaseProducts
                     release={release}
