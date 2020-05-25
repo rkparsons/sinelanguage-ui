@@ -46,6 +46,11 @@ export default new ContentfulContentType({
             widgetId: 'multipleLine',
             helpText: 'SEO friendly description used when linking to this release.',
         }),
+        new TextField({
+            name: 'Credits',
+            widgetId: 'multipleLine',
+            helpText: 'Credit any artists involved.',
+        }),
         new FluidImageField({
             name: 'Image',
             validations: [imageFileSize],

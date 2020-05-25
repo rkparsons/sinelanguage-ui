@@ -108,12 +108,17 @@ export const typeDefs = `
         description: String
     }
 
+	type contentfulVideoCreditsTextNode implements Node {
+        credits: String
+    }
+
 	type ContentfulVideo implements Node {
 		title: String
 		uid: String
 		artist: ContentfulArtist
 		originalArtist: String
 		description: contentfulVideoDescriptionTextNode
+		credits: contentfulVideoCreditsTextNode
 		image: ContentfulAsset
 		teaserVideo: ContentfulAsset
 		srcURL: String

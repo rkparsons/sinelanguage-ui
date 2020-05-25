@@ -164,6 +164,9 @@ export const videoFragment = graphql`
 		description {
             description
         }
+		credits {
+            credits
+        }
 		image {
             fluid(maxWidth: 2400, quality: 90) {
                 ...GatsbyContentfulFluid_withWebp
