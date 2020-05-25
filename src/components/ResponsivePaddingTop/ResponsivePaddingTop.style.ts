@@ -6,7 +6,7 @@ export const ResponsivePaddingTop = styled.div`
     ${({ theme }) => `    
         padding-top: ${theme.spacing(contentOffsetMobile)};
                 
-        ${theme.breakpoints.up('sm')} {
+        ${theme.breakpoints.up('md')} {
             padding-top: ${theme.spacing(contentOffsetDesktop)};
         }
     `}
