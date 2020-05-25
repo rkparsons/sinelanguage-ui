@@ -10,6 +10,7 @@ export const Button = styled.span<{ isLight: boolean; isDisabled: boolean }>`
     }
     svg {
         display: inline-block;
+        margin-right: ${({ theme }) => theme.spacing(0.5)};
 
         path {
             stroke: black;
