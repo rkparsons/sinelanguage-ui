@@ -23,8 +23,15 @@ export const ItemRow = styled(Row)<{ padding: GridSpacing }>`
     cursor: pointer;
 
     ${({ theme, padding }) => `    
-        padding: ${theme.spacing(padding * 0.5)} ${theme.spacing(marginSide)};
+        padding: ${theme.spacing(padding * 0.4)} ${theme.spacing(marginSide)};
     `}
+
+    h3 {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        padding-right: ${({ theme }) => theme.spacing(3)};
+    }
 `
 
 export const HoverImage = styled(Grid)`

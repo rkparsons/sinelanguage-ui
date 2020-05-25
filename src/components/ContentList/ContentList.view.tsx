@@ -51,7 +51,7 @@ export default withWidth()(({ title, items, width }: ViewProps) => {
                     ))}
                 </Grid>
             </Scrollable>
-            <Hidden mdDown>
+            <Hidden smDown>
                 {items.map((item, index) => (
                     <HoverImage container alignItems="center" justify="center" key={index}>
                         <Grid item xs={item.__typename === ContentType.VIDEO ? 12 : 4}>
