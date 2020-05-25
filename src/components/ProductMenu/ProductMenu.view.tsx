@@ -60,7 +60,6 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
             {products.map((product, index) => (
                 <button
                     key={index}
-                    hidden
                     data-item-id={product.id}
                     data-item-price={product.price}
                     data-item-url={getUrl(release)}
@@ -69,7 +68,7 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                     data-item-image={release.image.fluid.src}
                     data-item-file-guid={product.fileGUID}
                 >
-                    {product.title}
+                    {product.format}
                 </button>
             ))}
             <Popover open={Boolean(popoverTrigger)} anchorEl={popoverTrigger} onClose={handleClose}>
