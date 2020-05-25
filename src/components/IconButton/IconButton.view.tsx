@@ -7,7 +7,6 @@ import { CartItem } from '~/types/snipcart'
 type ViewProps = {
     buttonRef?: RefObject<HTMLButtonElement>
     label?: ReactNode
-    icon?: ReactNode
     onClick(): void
     isLight: boolean
     isDisabled?: boolean
@@ -18,7 +17,6 @@ type ViewProps = {
 export default ({
     buttonRef,
     label,
-    icon,
     onClick,
     isLight,
     isDisabled = false,
@@ -39,7 +37,6 @@ export default ({
         data-item-image={cartItem?.imageUrl}
         data-item-file-guid={cartItem?.fileGUID}
     >
-        {icon}
         {label}
     </Button>
 )

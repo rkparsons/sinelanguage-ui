@@ -1,4 +1,3 @@
-import BagIcon from '~/components/BagIcon'
 import CheckoutButton from '~/components/CheckoutButton'
 import { Grid } from '@material-ui/core'
 import NavItem from '~/components/NavItem'
@@ -36,13 +35,7 @@ export default ({ isMobile }: ViewProps) => (
                     <NavItem to={Route.CONTACT} title="CONTACT" partiallyActive={true} />
                 </Row>
                 <Row item>
-                    <CheckoutButton
-                        text="BAG"
-                        icon={<BagIcon isLarge={true} isTranslateY={true} />}
-                        isWithCount={true}
-                        isLarge={true}
-                        isLight={true}
-                    />
+                    <CheckoutButton text="BAG" isWithCount={true} isLarge={true} isLight={true} />
                 </Row>
             </Grid>
         </Grid>

@@ -44,17 +44,3 @@ export const SliderContainer = styled.div`
         bottom: -10px;
     }
 `
-
-export const IconButtonContainer = styled.div`
-    ${({ theme }) => `    
-        svg {
-            width: ${theme.spacing(10)};
-            height: ${theme.spacing(10)};
-
-            ${theme.breakpoints.up('md')} {
-                width: 1em;
-                height: 1em;
-            }
-        }        
-    `}
-`

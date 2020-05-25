@@ -1,8 +1,6 @@
 import { Product, Release } from '~/cms/types'
 import React, { useRef, useState } from 'react'
 
-import BagIcon from '~/components/BagIcon'
-import { BagIconContainer } from './ProductMenu.style'
 import IconButton from '~/components/IconButton'
 import { Popover } from './ProductMenu.style'
 import ReleaseProducts from '~/components/ReleaseProducts'
@@ -43,15 +41,10 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
         <>
             <IconButton
                 buttonRef={popoverTriggerRef}
-                icon={
-                    <BagIconContainer isInBag={indicateWhenInBag && isInBag}>
-                        <BagIcon isLarge={isLarge} isTranslateY={text !== undefined} />
-                    </BagIconContainer>
-                }
                 label={
-                    text ? (
-                        <Typography variant={isLarge ? 'h3' : 'body1'}>{text}</Typography>
-                    ) : undefined
+                    <Typography variant={isLarge ? 'h3' : 'body1'}>{`\u0001 ${
+                        text ? text : ''
+                    }`}</Typography>
                 }
                 onClick={handleClick}
                 isLight={isLight}

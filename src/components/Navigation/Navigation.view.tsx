@@ -1,5 +1,5 @@
 import { Add, Close } from '@material-ui/icons'
-import { Grid, withWidth } from '@material-ui/core'
+import { Grid, Typography, withWidth } from '@material-ui/core'
 import { Header, ToggleMobileMenu } from './Navigation.style'
 import React, { useState } from 'react'
 
@@ -42,7 +42,11 @@ export default withWidth()(({ width, location }: ViewProps) => {
                     <Grid item>
                         <ToggleMobileMenu>
                             <IconButton
-                                icon={isMenuOpen ? <Close /> : <Add />}
+                                label={
+                                    <Typography variant="h1" align="center">
+                                        {isMenuOpen ? `\u00D7` : '+'}
+                                    </Typography>
+                                }
                                 onClick={handleMenuClick}
                                 isLight={true}
                             />

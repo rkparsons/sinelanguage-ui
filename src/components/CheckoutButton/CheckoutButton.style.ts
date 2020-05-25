@@ -23,8 +23,4 @@ export const CheckoutButton = styled.div`
         display: inline-block;
         pointer-events: all;
     }
-
-    svg {
-        pointer-events: all;
-    }
 `

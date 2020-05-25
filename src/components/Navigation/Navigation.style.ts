@@ -21,10 +21,5 @@ export const Header = styled.header`
 export const ToggleMobileMenu = styled.div`
     ${({ theme }) => `
         pointer-events: all;
-
-        svg {
-            width: ${theme.spacing(7.5)};
-            height: ${theme.spacing(7.5)};
-        }
     `}
 `

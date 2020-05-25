@@ -12,13 +12,3 @@ export const Popover = styled(MuiPopover)`
         }
     }
 `
-
-export const BagIconContainer = styled.span<{ isInBag: boolean }>`
-    ${({ theme, isInBag }) =>
-        isInBag &&
-        `
-            svg:not(:hover) {
-                color: ${theme.palette.secondary.main};
-            }
-        `}
-`

@@ -34,7 +34,7 @@ export default (isDarkMode = false) =>
                     lineHeight: 1.25,
                 },
                 h1: {
-                    fontSize: 59,
+                    fontSize: 33,
                 },
             },
             spacing: (factor) => `${0.25 * factor}rem`,

@@ -1,4 +1,4 @@
-import { Grid, Typography } from '@material-ui/core'
+import { Box, Grid, Typography } from '@material-ui/core'
 
 import Column from '~/components/Column'
 import ContentCardDetail from '~/components/ContentCardDetail'
@@ -29,13 +29,15 @@ export default ({ release }: ViewProps) => {
                 <Grid container spacing={2}>
                     <Grid item xs={1}></Grid>
                     <Grid item>
-                        <ContentPlayButton
-                            content={release}
-                            trackIndex={0}
-                            isLarge={false}
-                            isLight={false}
-                            text="PLAY"
-                        />
+                        <Box paddingRight={2}>
+                            <ContentPlayButton
+                                content={release}
+                                trackIndex={0}
+                                isLarge={false}
+                                isLight={false}
+                                text="PLAY"
+                            />
+                        </Box>
                     </Grid>
                     {products && (
                         <Grid item>
