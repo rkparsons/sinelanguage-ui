@@ -45,7 +45,7 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                 buttonRef={popoverTriggerRef}
                 icon={
                     <BagIconContainer isInBag={indicateWhenInBag && isInBag}>
-                        <BagIcon isLarge={isLarge} />
+                        <BagIcon isLarge={isLarge} isTranslateY={text !== undefined} />
                     </BagIconContainer>
                 }
                 label={

@@ -38,7 +38,7 @@ export default ({ isMobile }: ViewProps) => (
                 <Row item>
                     <CheckoutButton
                         text="BAG"
-                        icon={<BagIcon isLarge={true} />}
+                        icon={<BagIcon isLarge={true} isTranslateY={true} />}
                         isWithCount={true}
                         isLarge={true}
                         isLight={true}
