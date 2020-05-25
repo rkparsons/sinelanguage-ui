@@ -11,23 +11,14 @@ type ViewProps = {
     isWithCount: boolean
     isLight: boolean
     isLarge: boolean
-    isVisible: boolean
     onClick?: () => void
 }
 
-export default ({
-    text,
-    icon,
-    isWithCount,
-    isLight,
-    isLarge,
-    isVisible,
-    onClick = () => {},
-}: ViewProps) => {
+export default ({ text, icon, isWithCount, isLight, isLarge, onClick = () => {} }: ViewProps) => {
     const { cart } = useCartContext()
 
     return (
-        <CheckoutButton className="snipcart-checkout" isVisible={isVisible}>
+        <CheckoutButton className="snipcart-checkout">
             <IconButton
                 label={
                     <Typography variant={isLarge ? 'h3' : 'body1'}>

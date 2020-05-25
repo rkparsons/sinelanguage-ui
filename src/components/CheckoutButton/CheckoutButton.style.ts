@@ -1,9 +1,8 @@
 import { darkShadow, lightShadow } from '~/styles/shadows'
 
-import { Grid } from '@material-ui/core'
 import styled from 'styled-components'
 
-export const CheckoutButton = styled.div<{ isVisible: boolean }>`
+export const CheckoutButton = styled.div`
     cursor: pointer;
     background: none;
     padding: 0;
@@ -13,7 +12,6 @@ export const CheckoutButton = styled.div<{ isVisible: boolean }>`
     text-shadow: none;
     color: white;
     text-shadow: ${darkShadow};
-    opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
 
     &:hover {
         color: black;

@@ -1,4 +1,4 @@
-import { ActionRow, AddLabel, ProductRow } from './ReleaseProducts.style'
+import { AddLabel, ProductRow } from './ReleaseProducts.style'
 import { Box, Grid, Typography } from '@material-ui/core'
 import { Product, Release } from '~/cms/types'
 
@@ -95,29 +95,24 @@ export default ({
                     </Box>
                 </ProductRow>
             ))}
-            <Typography variant={isLarge ? 'h3' : 'body1'}>
-                <br />
-            </Typography>
-
-            <Grid container justify="space-between">
-                <Grid item>
-                    <IconButton
-                        label={<Typography variant={isLarge ? 'h3' : 'body1'}>CLOSE</Typography>}
-                        onClick={onCheckoutClick}
-                        isLight={isLight}
-                    />
-                </Grid>
-                <Grid item>
-                    <CheckoutButton
-                        text={`GO TO CHECKOUT \u2191`}
-                        isWithCount={false}
-                        isLarge={isLarge}
-                        isLight={isLight}
-                        onClick={onCheckoutClick}
-                        isVisible={isProductInCart}
-                    />
-                </Grid>
-            </Grid>
+            {isProductInCart && (
+                <>
+                    <Typography variant={isLarge ? 'h3' : 'body1'}>
+                        <br />
+                    </Typography>
+                    <Grid container justify="flex-end">
+                        <Grid item>
+                            <CheckoutButton
+                                text={`GO TO CHECKOUT \u2191`}
+                                isWithCount={false}
+                                isLarge={isLarge}
+                                isLight={isLight}
+                                onClick={onCheckoutClick}
+                            />
+                        </Grid>
+                    </Grid>
+                </>
+            )}
         </>
     )
 }
