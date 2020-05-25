@@ -1,8 +1,7 @@
-import { Grid, Typography } from '@material-ui/core'
+import { Box, Grid, Typography } from '@material-ui/core'
 import { Release, Video } from '~/cms/types'
 
 import React from 'react'
-import Whitespace from '~/components/Whitespace'
 import moment from 'moment'
 
 type ViewProps = {
@@ -19,11 +18,11 @@ export default ({ release, format }: ViewProps) => {
                 <Typography variant="h3">{uid}</Typography>
             </Grid>
             <Grid item xs={12} xl={8}>
-                <Whitespace value="pre-wrap">
+                <Box whiteSpace="pre-wrap">
                     <Typography variant="h3">
                         {(originalArtist || artist.title).toUpperCase()}, <i>{title}</i>
                     </Typography>
-                </Whitespace>
+                </Box>
             </Grid>
             <Grid item xs={6} xl={1}>
                 <Typography variant="h4">{format}</Typography>

@@ -1,4 +1,4 @@
-import { AddLabel, ProductRow } from './ReleaseProducts.style'
+import { ActionRow, AddLabel, ProductRow } from './ReleaseProducts.style'
 import { Box, Grid, Typography } from '@material-ui/core'
 import { Product, Release } from '~/cms/types'
 
@@ -25,10 +25,12 @@ export default ({
     isLight,
     isLarge,
     isDescription,
-    onCheckoutClick,
+    onCheckoutClick = () => {},
 }: ViewProps) => {
     const { artist, image } = release
     const { cart } = useCartContext()
+    const isProductInCart =
+        cart.items.find((cartItem) => products.map((x) => x.id).includes(cartItem.id)) !== undefined
 
     if (!products || !products.length) {
         return <></>
@@ -45,7 +47,7 @@ export default ({
 
             {products.map(({ id, title, format, price, description, fileGUID }, index) => (
                 <ProductRow display="flex" width="100%" key={index} alignItems="center">
-                    <Box flexGrow={1} minWidth={isLarge ? '300px' : '200px'}>
+                    <Box flexGrow={1} minWidth={isLarge ? '350px' : '200px'}>
                         <Grid container>
                             <Grid item xs={isDescription ? 3 : 12}>
                                 <Typography variant={isLarge ? 'h3' : 'body1'}>{format}</Typography>
@@ -93,22 +95,29 @@ export default ({
                     </Box>
                 </ProductRow>
             ))}
+            <Typography variant={isLarge ? 'h3' : 'body1'}>
+                <br />
+            </Typography>
 
-            {cart.items.find((cartItem) => products.map((x) => x.id).includes(cartItem.id)) ? (
-                <>
-                    <Box display="flex" justifyContent="flex-end" width="100%">
-                        <CheckoutButton
-                            text={`GO TO CHECKOUT \u2191`}
-                            isWithCount={false}
-                            isLarge={isLarge}
-                            isLight={isLight}
-                            onClick={onCheckoutClick}
-                        />
-                    </Box>
-                </>
-            ) : (
-                <></>
-            )}
+            <Grid container justify="space-between">
+                <Grid item>
+                    <IconButton
+                        label={<Typography variant={isLarge ? 'h3' : 'body1'}>CLOSE</Typography>}
+                        onClick={onCheckoutClick}
+                        isLight={isLight}
+                    />
+                </Grid>
+                <Grid item>
+                    <CheckoutButton
+                        text={`GO TO CHECKOUT \u2191`}
+                        isWithCount={false}
+                        isLarge={isLarge}
+                        isLight={isLight}
+                        onClick={onCheckoutClick}
+                        isVisible={isProductInCart}
+                    />
+                </Grid>
+            </Grid>
         </>
     )
 }

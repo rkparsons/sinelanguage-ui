@@ -42,6 +42,7 @@ export default ({ isMobile }: ViewProps) => (
                         isWithCount={true}
                         isLarge={true}
                         isLight={true}
+                        isVisible={true}
                     />
                 </Row>
             </Grid>

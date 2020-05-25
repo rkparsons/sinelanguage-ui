@@ -1,9 +1,8 @@
+import { Box, Typography } from '@material-ui/core'
 import React, { ReactNode } from 'react'
 
 import { CheckoutButton } from './CheckoutButton.style'
 import IconButton from '~/components/IconButton'
-import { Typography } from '@material-ui/core'
-import Whitespace from '~/components/Whitespace'
 import useCartContext from '~/hooks/useCartContext'
 
 type ViewProps = {
@@ -12,22 +11,28 @@ type ViewProps = {
     isWithCount: boolean
     isLight: boolean
     isLarge: boolean
+    isVisible: boolean
     onClick?: () => void
 }
 
-export default ({ text, icon, isWithCount, isLight, isLarge, onClick = () => {} }: ViewProps) => {
+export default ({
+    text,
+    icon,
+    isWithCount,
+    isLight,
+    isLarge,
+    isVisible,
+    onClick = () => {},
+}: ViewProps) => {
     const { cart } = useCartContext()
 
     return (
-        <CheckoutButton className="snipcart-checkout">
+        <CheckoutButton className="snipcart-checkout" isVisible={isVisible}>
             <IconButton
                 label={
-                    <Whitespace value="nowrap">
-                        <Typography variant={isLarge ? 'h3' : 'body1'}>
-                            {text}{' '}
-                            {isWithCount && cart.items.length ? `(${cart.items.length})` : ``}
-                        </Typography>
-                    </Whitespace>
+                    <Typography variant={isLarge ? 'h3' : 'body1'}>
+                        {text} {isWithCount && cart.items.length ? `(${cart.items.length})` : ``}
+                    </Typography>
                 }
                 icon={icon}
                 onClick={onClick}
