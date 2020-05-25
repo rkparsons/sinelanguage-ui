@@ -1,10 +1,10 @@
 import { Backdrop, VideoContainer } from './YouTubeEmbed.style'
 import React, { useState } from 'react'
+import { Typography, withWidth } from '@material-ui/core'
 
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import ReactPlayer from 'react-player'
 import useAudioContext from '~/hooks/useAudioContext'
-import { withWidth } from '@material-ui/core'
 
 type ViewProps = {
     width: Breakpoint
@@ -13,7 +13,7 @@ type ViewProps = {
     src: string
 }
 
-export default withWidth()(({ width, src }: ViewProps) => {
+export default withWidth()(({ artist, title, width, src }: ViewProps) => {
     const isMobile = ['xs', 'sm'].includes(width)
     const [isPlaying, setIsPlaying] = useState(false)
     const { stopMedia } = useAudioContext()
