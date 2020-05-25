@@ -1,4 +1,4 @@
-import { darkShadow, lightShadow } from '~/styles/shadows'
+import { darkDropShadow, darkShadow, lightDropShadow, lightShadow } from '~/styles/shadows'
 
 import styled from 'styled-components'
 
@@ -27,7 +27,7 @@ export const Button = styled.span<{ isLight: boolean; isDisabled: boolean }>`
         text-shadow: ${isLight ? darkShadow : lightShadow};
 
         svg {
-            filter: drop-shadow(${isLight ? darkShadow : lightShadow});
+            filter: drop-shadow(${isLight ? darkDropShadow : lightDropShadow});
         }
 
         ${
@@ -37,7 +37,7 @@ export const Button = styled.span<{ isLight: boolean; isDisabled: boolean }>`
                 text-shadow: ${isLight ? lightShadow : darkShadow};
 
                 svg {
-                    filter: drop-shadow(${isLight ? lightShadow : darkShadow});
+                    filter: drop-shadow(${isLight ? lightDropShadow : darkDropShadow});
                 }
             }
             &:active {
