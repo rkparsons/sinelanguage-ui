@@ -13,6 +13,7 @@ export const Button = styled.span<{ isLight: boolean; isDisabled: boolean }>`
         margin-right: ${({ theme }) => theme.spacing(0.5)};
 
         path {
+            transform: translateX(-5px);
             stroke: black;
             @supports (filter: blur(12px)) {
                 stroke: none;
