@@ -18,9 +18,10 @@ type ViewProps = {
     title: string
     items: ContentItem[]
     width: Breakpoint
+    isLargePaddingOnMobile?: boolean
 }
 
-export default withWidth()(({ title, items, width }: ViewProps) => {
+export default withWidth()(({ title, items, width, isLargePaddingOnMobile = true }: ViewProps) => {
     const [activeItem, setActiveItem] = useState<ContentItem>()
 
     return (
@@ -41,7 +42,7 @@ export default withWidth()(({ title, items, width }: ViewProps) => {
                                     <ItemRow
                                         onMouseEnter={() => setActiveItem(item)}
                                         onMouseLeave={() => setActiveItem(undefined)}
-                                        padding={rowPadding[width]}
+                                        padding={isLargePaddingOnMobile ? rowPadding[width] : 1}
                                     >
                                         <ContentRow content={item} />
                                     </ItemRow>

@@ -10,7 +10,7 @@ export const listRowPadding = 1
 export const rowPadding: Record<Breakpoint, GridSpacing> = {
     xs: 10,
     sm: 10,
-    md: 2,
-    lg: 2,
+    md: 1,
+    lg: 1,
     xl: 1,
 }

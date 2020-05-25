@@ -15,7 +15,7 @@ type ViewProps = {
 export default ({ data }: ViewProps) => {
     const items = sortByTitle([...data.allContentfulArtist.nodes])
 
-    return <ContentList title="ARTISTS" items={items} />
+    return <ContentList title="ARTISTS" items={items} isLargePaddingOnMobile={false} />
 }
 
 export const query = graphql`
