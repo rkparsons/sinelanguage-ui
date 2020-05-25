@@ -1,5 +1,5 @@
-import { BlackBackdrop, HoverImage, ItemRow, TitleRow } from './ContentList.style'
-import { Grid, GridSpacing, Hidden, Typography, withWidth } from '@material-ui/core'
+import { BlackBackdrop, Fade, HoverImage, ItemRow, TitleRow } from './ContentList.style'
+import { Collapse, Grid, Hidden, Typography, withWidth } from '@material-ui/core'
 import React, { useState } from 'react'
 
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
@@ -51,16 +51,20 @@ export default withWidth()(({ title, items, width }: ViewProps) => {
                     ))}
                 </Grid>
             </Scrollable>
-            {activeItem && (
-                <Hidden mdDown>
-                    <HoverImage container alignItems="center" justify="center">
-                        <Grid item xs={activeItem.__typename === ContentType.VIDEO ? 12 : 5}>
-                            <ContentCardMedia content={activeItem} />
+            <Hidden mdDown>
+                {items.map((item, index) => (
+                    <HoverImage container alignItems="center" justify="center" key={index}>
+                        <Grid item xs={item.__typename === ContentType.VIDEO ? 12 : 4}>
+                            <Collapse in={item === activeItem} timeout={300}>
+                                <Fade isVisible={item === activeItem}>
+                                    <ContentCardMedia content={item} />
+                                </Fade>
+                            </Collapse>
                         </Grid>
                     </HoverImage>
-                    {activeItem.__typename === ContentType.VIDEO && <BlackBackdrop />}
-                </Hidden>
-            )}
+                ))}
+                <BlackBackdrop isVisible={activeItem?.__typename === ContentType.VIDEO} />
+            </Hidden>
         </Overlay>
     )
 })

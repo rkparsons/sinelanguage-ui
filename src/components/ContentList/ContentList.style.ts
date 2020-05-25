@@ -41,7 +41,7 @@ export const HoverImage = styled(Grid)`
     vertical-align: middle;
 `
 
-export const BlackBackdrop = styled.div`
+export const BlackBackdrop = styled.div<{ isVisible: boolean }>`
     position: fixed;
     pointer-events: none;
     top: 0;
@@ -52,10 +52,16 @@ export const BlackBackdrop = styled.div`
     margin: auto;
     width: 100vw;
     height: 100vh;
+    opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
 
     background-color: white;
 
     @supports (filter: blur(12px)) {
         background-color: black;
     }
+`
+
+export const Fade = styled.div<{ isVisible: boolean }>`
+    opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
+    transition: opacity 300ms;
 `
