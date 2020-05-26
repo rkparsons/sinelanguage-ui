@@ -115,6 +115,7 @@ export default ({ children }: ViewProps) => {
 
     function loadSrc(src: string) {
         if (audioRef.current) {
+            audioRef.current.volume = 1
             audioRef.current.src = `${src}?client_id=${clientId}`
             audioRef.current.load()
         }
@@ -151,7 +152,7 @@ export default ({ children }: ViewProps) => {
 
     function setVolume(volume: number) {
         if (audioRef.current) {
-            audioRef.current.volume = volume
+            // audioRef.current.volume = volume
         }
     }
 
