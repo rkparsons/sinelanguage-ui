@@ -101,6 +101,7 @@ export default ({ children }: ViewProps) => {
         setTracks([])
         setTrackIndex(0)
         setArtwork(undefined)
+        setIsPlaying(false)
 
         if (audioRef.current) {
             audioRef.current.pause()

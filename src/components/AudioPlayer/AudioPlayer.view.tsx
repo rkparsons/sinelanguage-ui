@@ -55,7 +55,7 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
         if (isWebAudio) {
             setAudioData(getAudioData())
         }
-    })
+    }, isPlaying)
 
     function minimiseAfterTimeout() {
         const hideIfNoInteraction = setTimeout(() => {
@@ -76,6 +76,7 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
         }
     }
 
+    // todo: pause animation frame when player not playing
     if (track && artwork) {
         return (
             <AudioPlayer

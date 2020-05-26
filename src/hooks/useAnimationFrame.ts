@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react'
 
-export default (callback: (dt: number) => void) => {
+export default (callback: (dt: number) => void, isActive: boolean) => {
     const requestRef = useRef<number>()
     const previousTimeRef = useRef<number>()
 
-    const animate = (time: number) => {
+    function animate(time: number) {
         if (previousTimeRef.current !== undefined) {
             const deltaTime = time - previousTimeRef.current
             callback(deltaTime)
@@ -13,12 +13,19 @@ export default (callback: (dt: number) => void) => {
         requestRef.current = requestAnimationFrame(animate)
     }
 
-    useEffect(() => {
-        requestRef.current = requestAnimationFrame(animate)
-        return () => {
-            if (requestRef.current) {
-                cancelAnimationFrame(requestRef.current)
-            }
+    function dispose() {
+        if (requestRef.current) {
+            cancelAnimationFrame(requestRef.current)
         }
-    }, [])
+    }
+
+    useEffect(() => {
+        if (isActive) {
+            requestRef.current = requestAnimationFrame(animate)
+        } else {
+            dispose()
+        }
+
+        return dispose
+    }, [isActive])
 }
