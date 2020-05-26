@@ -25,15 +25,7 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
     const audioPlayer = useRef<HTMLDivElement>(null)
     const [audioData, setAudioData] = useState<number[]>([])
     const [timeMs, setTimeMs] = useState(0)
-    const {
-        isPlaying,
-        track,
-        artwork,
-        artistTitle,
-        isWebAudio,
-        getTimeMs,
-        getAudioData,
-    } = useAudioContext()
+    const { isPlaying, track, artwork, artistTitle, getTimeMs, getAudioData } = useAudioContext()
 
     useEffect(() => {
         if (track) {
@@ -52,7 +44,7 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
     useAnimationFrame(() => {
         setTimeMs(getTimeMs())
 
-        if (isWebAudio) {
+        if (getAudioData) {
             setAudioData(getAudioData())
         }
     }, isPlaying)
@@ -76,7 +68,6 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
         }
     }
 
-    // todo: pause animation frame when player not playing
     if (track && artwork) {
         return (
             <AudioPlayer
