@@ -4,6 +4,7 @@ import React, { ReactNode, useEffect, useRef, useState } from 'react'
 import AudioContext from '~/contexts/audioContext'
 import { ContentType } from '~/constants/contentType'
 import { FluidObject } from 'gatsby-image'
+import blankMp3 from './blank.mp3'
 import useAudioAnalyser from '~/hooks/useAudioAnalyser'
 
 type ViewProps = {
@@ -24,6 +25,16 @@ export default ({ children }: ViewProps) => {
 
     useEffect(() => {
         if (audioRef.current) {
+            window.addEventListener('keydown', enableAudioAutoplay)
+            window.addEventListener('mousedown', enableAudioAutoplay)
+            window.addEventListener('touchstart', enableAudioAutoplay)
+
+            return removeInteractionListeners
+        }
+    }, [audioRef.current])
+
+    useEffect(() => {
+        if (audioRef.current) {
             audioRef.current.onended = next
         }
     }, [audioRef.current, trackIndex])
@@ -33,6 +44,18 @@ export default ({ children }: ViewProps) => {
             setDurationMs(tracks[trackIndex].metadata.duration)
         }
     }, [tracks, trackIndex])
+
+    function removeInteractionListeners() {
+        window.removeEventListener('keydown', enableAudioAutoplay)
+        window.removeEventListener('mousedown', enableAudioAutoplay)
+        window.removeEventListener('touchstart', enableAudioAutoplay)
+    }
+
+    function enableAudioAutoplay() {
+        audioRef.current?.load()
+
+        removeInteractionListeners()
+    }
 
     // todo: separate out logic for audio ref from selectedmedia
     function isPrevious() {
@@ -157,7 +180,7 @@ export default ({ children }: ViewProps) => {
                 getAudioData,
             }}
         >
-            <audio ref={audioRef} preload="auto" crossOrigin="anonymous" />
+            <audio ref={audioRef} preload="auto" crossOrigin="anonymous" src={blankMp3} />
             {children}
         </AudioContext.Provider>
     )
