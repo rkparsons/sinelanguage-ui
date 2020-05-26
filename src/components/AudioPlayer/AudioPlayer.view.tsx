@@ -25,7 +25,15 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
     const audioPlayer = useRef<HTMLDivElement>(null)
     const [audioData, setAudioData] = useState<number[]>([])
     const [timeMs, setTimeMs] = useState(0)
-    const { isPlaying, track, artwork, artistTitle, getTimeMs, getAudioData } = useAudioContext()
+    const {
+        isPlaying,
+        track,
+        artwork,
+        artistTitle,
+        isWebAudio,
+        getTimeMs,
+        getAudioData,
+    } = useAudioContext()
 
     useEffect(() => {
         if (track) {
@@ -43,7 +51,10 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
 
     useAnimationFrame(() => {
         setTimeMs(getTimeMs())
-        setAudioData(getAudioData())
+
+        if (isWebAudio) {
+            setAudioData(getAudioData())
+        }
     })
 
     function minimiseAfterTimeout() {

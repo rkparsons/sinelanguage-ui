@@ -9,6 +9,7 @@ type AudioContext = {
     artwork: FluidObject | undefined
     artistTitle: string
     durationMs: number
+    isWebAudio: boolean
     isPrevious: () => boolean
     isNext: () => boolean
     previous: () => void

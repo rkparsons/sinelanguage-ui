@@ -1,14 +1,20 @@
 import { RefObject, useEffect, useRef } from 'react'
 
-export default (audioRef: RefObject<HTMLAudioElement>) => {
+export default (
+    audioRef: RefObject<HTMLAudioElement>,
+    audioContextCtr: {
+        new (contextOptions?: AudioContextOptions | undefined): AudioContext
+        prototype: AudioContext
+    }
+) => {
     const analyser = useRef<AnalyserNode>()
 
     useEffect(() => {
-        if (!audioRef.current || !window.AudioContext) {
+        if (!audioRef.current || !audioContextCtr) {
             return
         }
 
-        const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
+        const audioContext = new audioContextCtr()
         analyser.current = audioContext.createAnalyser()
         const source = audioContext.createMediaElementSource(audioRef.current)
         source.connect(analyser.current)
