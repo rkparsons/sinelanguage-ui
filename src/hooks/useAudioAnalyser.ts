@@ -2,13 +2,11 @@ import { RefObject, useEffect, useRef } from 'react'
 
 export default (audioRef: RefObject<HTMLAudioElement>) => {
     const analyser = useRef<AnalyserNode>()
-    const isWindow = typeof window !== `undefined`
-    const AudioContext = isWindow
-        ? window.AudioContext || (window as any).webkitAudioContext
-        : undefined
 
     useEffect(() => {
-        if (!audioRef.current || !AudioContext) {
+        const AudioContext = window.AudioContext || (window as any).webkitAudioContext
+
+        if (!audioRef.current || AudioContext === undefined) {
             return
         }
 
@@ -34,5 +32,5 @@ export default (audioRef: RefObject<HTMLAudioElement>) => {
         }
     }
 
-    return AudioContext ? getAudioData : undefined
+    return getAudioData
 }

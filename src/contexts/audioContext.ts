@@ -20,7 +20,7 @@ type AudioContext = {
     skipMedia: (newTimeMs: number) => void
     setVolume: (volume: number) => void
     getTimeMs: () => number
-    getAudioData?: () => number[]
+    getAudioData: () => number[]
 }
 
 export default createContext<AudioContext | undefined>(undefined)
