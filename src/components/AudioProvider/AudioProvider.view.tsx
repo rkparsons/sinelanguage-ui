@@ -52,6 +52,7 @@ export default ({ children }: ViewProps) => {
     }
 
     function enableAudioAutoplay() {
+        // todo: replace mp3 with smaller file
         audioRef.current?.load()
 
         removeInteractionListeners()
