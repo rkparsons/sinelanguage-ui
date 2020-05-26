@@ -2,10 +2,12 @@ import { RefObject, useEffect, useRef } from 'react'
 
 export default (
     audioRef: RefObject<HTMLAudioElement>,
-    audioContextCtr: {
-        new (contextOptions?: AudioContextOptions | undefined): AudioContext
-        prototype: AudioContext
-    }
+    audioContextCtr:
+        | {
+              new (contextOptions?: AudioContextOptions | undefined): AudioContext
+              prototype: AudioContext
+          }
+        | undefined
 ) => {
     const analyser = useRef<AnalyserNode>()
 
