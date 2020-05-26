@@ -92,6 +92,7 @@ export default ({ children }: ViewProps) => {
     function loadSrc(src: string) {
         if (audioRef.current) {
             audioRef.current.src = `${src}?client_id=${clientId}`
+            audioRef.current.load()
         }
     }
 
