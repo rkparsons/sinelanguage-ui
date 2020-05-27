@@ -1,13 +1,15 @@
 import { RefObject, useEffect, useRef } from 'react'
+import { useMediaQuery, useTheme } from '@material-ui/core'
 
 export default (audioRef: RefObject<HTMLAudioElement>) => {
     const audioAnalyser = useRef<AnalyserNode>()
     const audioSource = useRef<MediaElementAudioSourceNode>()
     const isWindow = typeof window !== `undefined`
     const isAudioContext = isWindow && ('AudioContext' in window || 'webkitAudioContext' in window)
+    const isMobile = useMediaQuery(useTheme().breakpoints.down('sm'))
 
     useEffect(() => {
-        if (audioRef.current && isAudioContext && !audioSource.current) {
+        if (!isMobile && audioRef.current && isAudioContext && !audioSource.current) {
             const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
             audioAnalyser.current = audioContext.createAnalyser()
             audioSource.current = audioContext.createMediaElementSource(audioRef.current)
