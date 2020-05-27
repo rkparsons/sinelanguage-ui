@@ -7,16 +7,10 @@ export default (audioRef: RefObject<HTMLAudioElement>) => {
     const isAudioContext = isWindow && ('AudioContext' in window || 'webkitAudioContext' in window)
 
     useEffect(() => {
-        if (audioRef.current && isAudioContext && !audioSource.current) {
-            const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
-            audioAnalyser.current = audioContext.createAnalyser()
-            audioSource.current = audioContext.createMediaElementSource(audioRef.current)
-            audioSource.current.connect(audioAnalyser.current)
-            audioSource.current.connect(audioContext.destination)
-        }
-    }, [audioRef.current, audioSource.current])
+        window.addEventListener('keydown', initialiseAudioAnalyser)
+        window.addEventListener('mousedown', initialiseAudioAnalyser)
+        window.addEventListener('touchstart', initialiseAudioAnalyser)
 
-    useEffect(() => {
         return function dispose() {
             audioAnalyser.current?.disconnect()
             audioSource.current?.disconnect()
@@ -24,6 +18,24 @@ export default (audioRef: RefObject<HTMLAudioElement>) => {
             audioSource.current = undefined
         }
     }, [])
+
+    function initialiseAudioAnalyser() {
+        if (audioRef.current && isAudioContext && !audioSource.current) {
+            const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
+            audioAnalyser.current = audioContext.createAnalyser()
+            audioSource.current = audioContext.createMediaElementSource(audioRef.current)
+            audioSource.current.connect(audioAnalyser.current)
+            audioSource.current.connect(audioContext.destination)
+
+            removeInteractionListeners()
+        }
+    }
+
+    function removeInteractionListeners() {
+        window.removeEventListener('keydown', initialiseAudioAnalyser)
+        window.removeEventListener('mousedown', initialiseAudioAnalyser)
+        window.removeEventListener('touchstart', initialiseAudioAnalyser)
+    }
 
     function getAudioData() {
         if (!audioAnalyser.current) {
