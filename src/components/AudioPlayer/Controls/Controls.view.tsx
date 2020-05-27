@@ -1,4 +1,4 @@
-import { Box, Grid, Hidden, Typography } from '@material-ui/core'
+import { Box, Grid, Typography } from '@material-ui/core'
 import { Pause, PlayArrow, SkipNext, SkipPrevious } from '@material-ui/icons'
 import React, { useEffect, useState } from 'react'
 
@@ -7,7 +7,11 @@ import IconButton from '~/components/IconButton'
 import { Unicode } from '~/constants/unicode'
 import useAudioContext from '~/hooks/useAudioContext'
 
-export default () => {
+type ViewProps = {
+    isFullSizePlayer: boolean
+}
+
+export default ({ isFullSizePlayer }: ViewProps) => {
     const [volumeLevel, setVolumeLevel] = useState(1)
 
     const {
@@ -36,17 +40,20 @@ export default () => {
     return (
         <Controls>
             <Grid container spacing={3}>
-                <Hidden smDown>
-                    <Grid item>
-                        <IconButton
-                            label={<Typography variant="h3">{Unicode.PREVIOUS}</Typography>}
-                            onClick={previous}
-                            isDisabled={!isPrevious()}
-                            isLight={true}
-                        />
-                    </Grid>
-                    <Box flexGrow={1} />
-                </Hidden>
+                {isFullSizePlayer && (
+                    <>
+                        <Grid item>
+                            <IconButton
+                                label={<Typography variant="h3">{Unicode.PREVIOUS}</Typography>}
+                                onClick={previous}
+                                isDisabled={!isPrevious()}
+                                isLight={true}
+                            />
+                        </Grid>
+                        <Box flexGrow={1} />
+                    </>
+                )}
+
                 <Grid item>
                     <IconButton
                         label={
@@ -59,17 +66,19 @@ export default () => {
                     />
                 </Grid>
 
-                <Hidden smDown>
-                    <Box flexGrow={1} />
-                    <Grid item>
-                        <IconButton
-                            label={<Typography variant="h3">{Unicode.NEXT}</Typography>}
-                            onClick={next}
-                            isDisabled={!isNext()}
-                            isLight={true}
-                        />
-                    </Grid>
-                </Hidden>
+                {isFullSizePlayer && (
+                    <>
+                        <Box flexGrow={1} />
+                        <Grid item>
+                            <IconButton
+                                label={<Typography variant="h3">{Unicode.NEXT}</Typography>}
+                                onClick={next}
+                                isDisabled={!isNext()}
+                                isLight={true}
+                            />
+                        </Grid>
+                    </>
+                )}
             </Grid>
             {/* <SliderContainer>
                 <Slider value={volume} onChange={handleVolume} min={0} max={1} step={0.01} />

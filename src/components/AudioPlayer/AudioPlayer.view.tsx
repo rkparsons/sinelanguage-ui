@@ -1,10 +1,9 @@
 import { AudioPlayer, ImageContainer, PlayerBody, PlayerPanel } from './AudioPlayer.style'
 import { Box, Grid, Hidden, Typography, withWidth } from '@material-ui/core'
 import React, { useEffect, useRef, useState } from 'react'
+import { isMobile, isSafari } from 'react-device-detect'
 
 import AudioVisualizer from '~/components/AudioVisualizer'
-import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
-import { Close } from '@material-ui/icons'
 import Controls from './Controls'
 import Label from './Label'
 import { PlayerState } from '~/constants/playerState'
@@ -15,17 +14,16 @@ import useAnimationFrame from '~/hooks/useAnimationFrame'
 import useAudioContext from '~/hooks/useAudioContext'
 
 type ViewProps = {
-    width: Breakpoint
     hideTimeout: number
 }
 
-export default withWidth()(({ width, hideTimeout }: ViewProps) => {
+export default ({ hideTimeout }: ViewProps) => {
     const [playerState, setPlayerState] = useState(PlayerState.CLOSED)
-    const isMobile = ['xs', 'sm'].includes(width)
     const audioPlayer = useRef<HTMLDivElement>(null)
     const [audioData, setAudioData] = useState<number[]>([])
     const [timeMs, setTimeMs] = useState(0)
     const { isPlaying, track, artwork, artistTitle, getTimeMs, getAudioData } = useAudioContext()
+    const isFullSizePlayer = !isMobile && !isSafari
 
     useEffect(() => {
         if (track) {
@@ -36,7 +34,7 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
     }, [track])
 
     useEffect(() => {
-        if (playerState === PlayerState.OPEN_AUTO && !isMobile) {
+        if (playerState === PlayerState.OPEN_AUTO && isFullSizePlayer) {
             return minimiseAfterTimeout()
         }
     }, [playerState])
@@ -57,13 +55,13 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
     }
 
     function onMouseOver() {
-        if (!isMobile) {
+        if (isFullSizePlayer) {
             setPlayerState(PlayerState.OPEN_MANUAL)
         }
     }
 
     function onMouseLeave() {
-        if (!isMobile) {
+        if (isFullSizePlayer) {
             setPlayerState(PlayerState.MINIMISED)
         }
     }
@@ -81,15 +79,16 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
                 <PlayerBody>
                     <Box display="flex">
                         <Box>
-                            <Hidden smDown>
+                            {isFullSizePlayer && (
                                 <ImageContainer>
                                     <SquareImage
                                         title={`${artistTitle} - ${track.title}`}
                                         image={artwork}
                                     />
                                 </ImageContainer>
-                            </Hidden>
-                            <Controls />
+                            )}
+
+                            <Controls isFullSizePlayer={isFullSizePlayer} />
                         </Box>
                         <Box flexGrow={1} minWidth={0}>
                             <PlayerPanel>
@@ -101,13 +100,13 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
                                         <StopButton />
                                     </Box>
                                 </Box>
-                                <Hidden smDown>
+                                {isFullSizePlayer && (
                                     <AudioVisualizer
                                         audioData={audioData}
                                         isPlaying={isPlaying}
                                         playerState={playerState}
                                     />
-                                </Hidden>
+                                )}
                             </PlayerPanel>
                         </Box>
                     </Box>
@@ -117,4 +116,4 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
     } else {
         return <></>
     }
-})
+}

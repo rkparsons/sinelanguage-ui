@@ -1,19 +1,17 @@
 import { Artist, Podcast, Release, Track } from '~/cms/types'
 import React, { ReactNode, useEffect, useRef, useState } from 'react'
-import { useMediaQuery, useTheme, withWidth } from '@material-ui/core'
+import { isMobile, isSafari } from 'react-device-detect'
 
 import AudioContext from '~/contexts/audioContext'
-import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import { ContentType } from '~/constants/contentType'
 import { FluidObject } from 'gatsby-image'
 import useAudioAnalyser from '~/hooks/useAudioAnalyser'
 
 type ViewProps = {
-    width: Breakpoint
     children: ReactNode
 }
 
-export default withWidth()(({ width, children }: ViewProps) => {
+export default ({ children }: ViewProps) => {
     // todo: move client id to env vars
     const clientId = 'c5a171200f3a0a73a523bba14a1e0a29'
     const audioRef = useRef<HTMLAudioElement>(null)
@@ -23,8 +21,8 @@ export default withWidth()(({ width, children }: ViewProps) => {
     const [artistTitle, setArtistTitle] = useState('')
     const [durationMs, setDurationMs] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
-    const isMobile = ['xs', 'sm'].includes(width)
-    const getAudioData = useAudioAnalyser(audioRef, !isMobile)
+    const isAnalysisAvailable = !isMobile && !isSafari
+    const getAudioData = useAudioAnalyser(audioRef, isAnalysisAvailable)
 
     useEffect(() => {
         if (audioRef.current) {
@@ -165,4 +163,4 @@ export default withWidth()(({ width, children }: ViewProps) => {
             {children}
         </AudioContext.Provider>
     )
-})
+}
