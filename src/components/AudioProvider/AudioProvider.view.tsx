@@ -20,7 +20,8 @@ export default ({ children }: ViewProps) => {
     const [artistTitle, setArtistTitle] = useState('')
     const [durationMs, setDurationMs] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
-    const getAudioData = useAudioAnalyser(audioRef)
+    // const getAudioData = useAudioAnalyser(audioRef)
+    const getAudioData = () => []
 
     useEffect(() => {
         if (audioRef.current) {
