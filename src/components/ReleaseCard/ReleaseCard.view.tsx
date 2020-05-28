@@ -16,6 +16,7 @@ type ViewProps = {
 
 export default ({ release }: ViewProps) => {
     const { title, artist, products } = release
+    const allProductDownloadsAvailable = products && products.every((product) => product.fileGUID)
 
     return (
         <Column widthMultiplier={1}>
@@ -39,7 +40,7 @@ export default ({ release }: ViewProps) => {
                             />
                         </Box>
                     </Grid>
-                    {products && (
+                    {allProductDownloadsAvailable && (
                         <Grid item>
                             <ProductMenu
                                 release={release}
