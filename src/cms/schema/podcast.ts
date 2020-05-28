@@ -2,11 +2,11 @@ import {
     ContentfulContentType,
     DateField,
     FluidImageField,
-    IntegerField,
     LinkField,
     RichTextField,
     SymbolField,
     TextField,
+    TrackListField,
 } from '../../../cms/models'
 import { imageFileSize, marks, nodeTypes, unique } from '../../../cms/validations'
 
@@ -57,6 +57,9 @@ export default new ContentfulContentType({
         new LinkField({
             name: 'Track',
             link: Track,
+        }),
+        new TrackListField({
+            name: 'Track List',
         }),
     ],
 })

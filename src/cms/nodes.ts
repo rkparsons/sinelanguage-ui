@@ -40,6 +40,11 @@ export const typeDefs = `
         json: JSON
     }
 
+	type contentfulPodcastTrackListJsonNode implements Node {            
+        artist: String
+        title: String
+    }
+
 	type ContentfulPodcast implements Node {
 		title: String
 		uid: String
@@ -48,6 +53,7 @@ export const typeDefs = `
 		image: ContentfulAsset
 		date: Date @dateformat
 		track: ContentfulTrack
+		trackList: [contentfulPodcastTrackListJsonNode]
 	}
 
 	type contentfulProductDescriptionTextNode implements Node {

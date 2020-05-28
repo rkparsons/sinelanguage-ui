@@ -14,6 +14,7 @@ import SoundCloudMetadataField from './soundCloudmetadataField'
 import SymbolArrayField from './symbolArrayField'
 import SymbolField from '../models/symbolField'
 import TextField from './textField'
+import TrackListField from './TrackListField'
 import VideoField from './videoField'
 
 export {
@@ -33,5 +34,6 @@ export {
     SymbolArrayField,
     SymbolField,
     TextField,
+    TrackListField,
     VideoField,
 }

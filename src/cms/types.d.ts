@@ -54,6 +54,10 @@ export type Podcast = {
     }
 	date: Date
 	track: Track
+	trackList: {
+        artist: string
+        title: string
+    }[]
 }
 
 export type Product = {

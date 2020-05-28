@@ -5,13 +5,15 @@ import Image from 'gatsby-image'
 import { Podcast } from '~/cms/types'
 import React from 'react'
 import RichText from '~/components/RichText'
+import { TrackNumber } from './PodcastDetail.style'
 
 type ViewProps = {
     podcast: Podcast
 }
 
 export default ({ podcast }: ViewProps) => {
-    const { title, introduction, image } = podcast
+    const { title, introduction, image, trackList } = podcast
+    console.log(trackList)
     return (
         <>
             <Grid container spacing={5}>
@@ -41,6 +43,26 @@ export default ({ podcast }: ViewProps) => {
 
             <br />
             <RichText json={introduction.json} variant="body2" />
+
+            <br />
+            {trackList.map((trackListTrack, index) => (
+                <Box display="flex">
+                    <Box>
+                        <TrackNumber>
+                            <Typography variant="h3">{`0${index + 1}`.slice(-2)}</Typography>
+                        </TrackNumber>
+                    </Box>
+                    <Box flexGrow={1}>
+                        <Grid container key={index} justify="space-between">
+                            <Grid item xs={12}>
+                                <Typography variant="h3">
+                                    {trackListTrack.artist} – <i>{trackListTrack.title}</i>
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </Box>
+            ))}
         </>
     )
 }

@@ -66,6 +66,10 @@ export const podcastFragment = graphql`
 		track {
             ...trackFragment
         }
+		trackList {
+            artist
+            title
+        }
 	}
 `
 
