@@ -1,5 +1,5 @@
-import { BlackBackdrop, Fade, HoverImage, ItemRow, TitleRow } from './ContentList.style'
 import { Collapse, Grid, Hidden, Typography, withWidth } from '@material-ui/core'
+import { Fade, HoverImage, ItemRow, TitleRow } from './ContentList.style'
 import React, { useState } from 'react'
 
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
@@ -55,8 +55,14 @@ export default withWidth()(({ title, items, width, isLargePaddingOnMobile = true
             <Hidden smDown>
                 {items.map((item, index) => (
                     <HoverImage container alignItems="center" justify="center" key={index}>
-                        <Grid item xs={item.__typename === ContentType.VIDEO ? 12 : 4}>
-                            <Collapse in={item === activeItem} timeout={300}>
+                        <Grid item xs={item.__typename === ContentType.VIDEO ? 8 : 4}>
+                            <Collapse
+                                in={item === activeItem}
+                                timeout={{
+                                    enter: 400,
+                                    exit: 200,
+                                }}
+                            >
                                 <Fade isVisible={item === activeItem}>
                                     <ContentCardMedia content={item} />
                                 </Fade>
@@ -64,7 +70,7 @@ export default withWidth()(({ title, items, width, isLargePaddingOnMobile = true
                         </Grid>
                     </HoverImage>
                 ))}
-                <BlackBackdrop isVisible={activeItem?.__typename === ContentType.VIDEO} />
+                {/* <BlackBackdrop isVisible={activeItem?.__typename === ContentType.VIDEO} /> */}
             </Hidden>
         </Overlay>
     )
