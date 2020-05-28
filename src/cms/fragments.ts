@@ -70,6 +70,7 @@ export const podcastFragment = graphql`
             artist
             title
         }
+		socials
 	}
 `
 

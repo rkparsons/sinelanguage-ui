@@ -4,11 +4,12 @@ import {
     FluidImageField,
     LinkField,
     RichTextField,
+    SymbolArrayField,
     SymbolField,
     TextField,
     TrackListField,
 } from '../../../cms/models'
-import { imageFileSize, marks, nodeTypes, unique } from '../../../cms/validations'
+import { imageFileSize, marks, nodeTypes, unique, url } from '../../../cms/validations'
 
 import { FluidImageType } from '../../../cms/constants'
 import Track from './track'
@@ -60,6 +61,13 @@ export default new ContentfulContentType({
         }),
         new TrackListField({
             name: 'Track List',
+        }),
+        new SymbolArrayField({
+            name: 'Socials',
+            required: false,
+            itemType: 'Symbol',
+            itemValidations: [url],
+            widgetId: 'tagEditor',
         }),
     ],
 })

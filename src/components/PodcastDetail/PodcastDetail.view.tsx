@@ -5,14 +5,16 @@ import Image from 'gatsby-image'
 import { Podcast } from '~/cms/types'
 import React from 'react'
 import RichText from '~/components/RichText'
+import Socials from '~/components/Socials'
 import { TrackNumber } from './PodcastDetail.style'
+import artist from '~/cms/schema/artist'
 
 type ViewProps = {
     podcast: Podcast
 }
 
 export default ({ podcast }: ViewProps) => {
-    const { title, introduction, image, trackList } = podcast
+    const { title, introduction, image, trackList, socials } = podcast
     console.log(trackList)
     return (
         <>
@@ -63,6 +65,15 @@ export default ({ podcast }: ViewProps) => {
                     </Box>
                 </Box>
             ))}
+            <br />
+            {socials && (
+                <>
+                    <Typography variant="h3" gutterBottom>
+                        FOLLOW {title.toUpperCase()}
+                    </Typography>
+                    <Socials urls={socials} />
+                </>
+            )}
         </>
     )
 }

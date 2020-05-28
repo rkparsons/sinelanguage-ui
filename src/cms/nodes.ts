@@ -54,6 +54,7 @@ export const typeDefs = `
 		date: Date @dateformat
 		track: ContentfulTrack
 		trackList: [contentfulPodcastTrackListJsonNode]
+		socials: [String]
 	}
 
 	type contentfulProductDescriptionTextNode implements Node {

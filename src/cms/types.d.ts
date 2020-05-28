@@ -58,6 +58,7 @@ export type Podcast = {
         artist: string
         title: string
     }[]
+	socials: string[]
 }
 
 export type Product = {
