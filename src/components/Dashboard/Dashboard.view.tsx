@@ -3,6 +3,7 @@ import { Dashboard } from './Dashboard.style'
 import { Grid } from '@material-ui/core'
 import Head from '~/components/Head'
 import { Location } from '@reach/router'
+import PlaylistCard from '~/components/PlaylistCard'
 import React from 'react'
 import useDashboardItems from '~/hooks/useDashboardItems'
 
@@ -16,9 +17,16 @@ export default () => {
                     <Head title="News" />
                     <Grid container>
                         {items.map((item, index) => (
-                            <Grid item key={index}>
-                                <ContentCard content={item} />
-                            </Grid>
+                            <>
+                                {index === 2 && (
+                                    <Grid item>
+                                        <PlaylistCard />
+                                    </Grid>
+                                )}
+                                <Grid item key={index}>
+                                    <ContentCard content={item} />
+                                </Grid>
+                            </>
                         ))}
                     </Grid>
                 </Dashboard>
