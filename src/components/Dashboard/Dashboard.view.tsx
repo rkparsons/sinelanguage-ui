@@ -12,7 +12,7 @@ import useDashboardItems from '~/hooks/useDashboardItems'
 
 export default () => {
     const items = useDashboardItems()
-    const newsletterIndex = 6
+    const newsletterIndex = 12
     const playlistIndex = 8
 
     return (
