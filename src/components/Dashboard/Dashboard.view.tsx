@@ -6,11 +6,14 @@ import Footer from '~/components/Footer'
 import { Grid } from '@material-ui/core'
 import Head from '~/components/Head'
 import { Location } from '@reach/router'
+import NewsletterCard from '~/components/NewsletterCard'
 import PlaylistCard from '~/components/PlaylistCard'
 import useDashboardItems from '~/hooks/useDashboardItems'
 
 export default () => {
     const items = useDashboardItems()
+    const newsletterIndex = 6
+    const playlistIndex = 8
 
     return (
         <Location>
@@ -20,7 +23,12 @@ export default () => {
                     <Grid container>
                         {items.map((item, index) => (
                             <Fragment key={index}>
-                                {index === 8 && (
+                                {index === newsletterIndex && (
+                                    <Grid item>
+                                        <NewsletterCard />
+                                    </Grid>
+                                )}
+                                {index === playlistIndex && (
                                     <Grid item>
                                         <PlaylistCard />
                                     </Grid>

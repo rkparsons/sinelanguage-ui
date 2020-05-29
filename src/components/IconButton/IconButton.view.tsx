@@ -12,6 +12,7 @@ type ViewProps = {
     isDisabled?: boolean
     cartItem?: CartItem
     className?: string
+    disabledOpacity?: number
 }
 
 export default ({
@@ -22,12 +23,14 @@ export default ({
     isDisabled = false,
     cartItem,
     className = '',
+    disabledOpacity = 0.3,
 }: ViewProps) => (
     <Button
         ref={buttonRef}
         onClick={() => !isDisabled && onClick()}
         isLight={isLight}
         isDisabled={isDisabled}
+        disabledOpacity={disabledOpacity}
         className={className}
         data-item-id={cartItem?.id}
         data-item-price={cartItem?.price}

@@ -3,16 +3,20 @@ import { darkShadow, lightShadow } from '~/styles/shadows'
 import styled from 'styled-components'
 
 // todo: move all light dark shadow/colour logic to single place
-export const Button = styled.span<{ isLight: boolean; isDisabled: boolean }>`
+export const Button = styled.span<{
+    isLight: boolean
+    isDisabled: boolean
+    disabledOpacity: number
+}>`
     display: flex;
     p {
         display: inline-block;
     }
 
-    ${({ isLight, isDisabled }) => `    
+    ${({ isLight, isDisabled, disabledOpacity }) => `    
         cursor: ${isDisabled ? 'auto' : 'pointer'};
         color: ${isLight ? 'white' : 'black'};
-        opacity: ${isDisabled ? 0.3 : 1};
+        opacity: ${isDisabled ? disabledOpacity : 1};
         text-shadow: ${isLight ? darkShadow : lightShadow};
 
         ${

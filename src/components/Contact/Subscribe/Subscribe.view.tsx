@@ -1,53 +1,19 @@
 import { Button, Grid, Typography } from '@material-ui/core'
 import { EmailInput, InputGrid } from './Subscribe.style'
-import React, { useRef, useState } from 'react'
 
-import addToMailchimp from 'gatsby-plugin-mailchimp'
-import { validate } from 'email-validator'
+import React from 'react'
+import useMailchimp from '~/hooks/useMailchimp'
 
 export default () => {
-    const emailInput = useRef<HTMLInputElement>(null)
-    const [isInvalid, setIsInvalid] = useState(false)
-    const [email, setEmail] = useState('')
-    const [isSuccess, setIsSuccess] = useState(false)
-
-    type MailChimpResponse = {
-        msg: string
-        result: string
-    }
-    const subscribe = () => {
-        addToMailchimp(email).then(({ msg, result }: MailChimpResponse) => {
-            console.log(msg, result)
-            if (result === 'success' || msg.includes('already subscribed')) {
-                setEmail('')
-                setIsSuccess(true)
-            } else {
-                setIsInvalid(true)
-                emailInput.current?.focus()
-            }
-        })
-    }
-    const onSubmit = () => {
-        if (validate(email)) {
-            subscribe()
-        } else {
-            setIsInvalid(true)
-            emailInput.current?.focus()
-        }
-    }
-
-    const onEmailChanged = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        if (isInvalid) {
-            setIsInvalid(false)
-        }
-        setEmail(event.target.value)
-    }
-
-    const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-        if (event.key === 'Enter') {
-            onSubmit()
-        }
-    }
+    const {
+        isSuccess,
+        isInvalid,
+        emailInput,
+        email,
+        onEmailChanged,
+        onKeyDown,
+        onSubmit,
+    } = useMailchimp()
 
     return (
         <>
