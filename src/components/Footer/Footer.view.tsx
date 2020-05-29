@@ -1,24 +1,13 @@
-import { Footer, Logo } from './Footer.style'
-
-import DarkModeToggle from '~/components/DarkModeToggle'
-import MailChimp from '~/components/MailChimp'
-import Preferences from '~/components/Preferences'
+import { Footer } from './Footer.style'
+import Logo from '~/components/Logo'
 import React from 'react'
-import logoSrc from '~/images/logo.png'
+import { Typography } from '@material-ui/core'
 
-type ViewProps = {
-    isDarkMode: boolean
-    setIsDarkMode: (isDarkMode: boolean) => void
-}
-
-export default ({ isDarkMode, setIsDarkMode }: ViewProps) => {
+export default () => {
     return (
         <Footer>
-            <Preferences />
-            <DarkModeToggle isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
-            <MailChimp />
-            <Logo src={logoSrc} />
-            <span>SINE LANGUAGE &nbsp;&nbsp;&nbsp;&copy; 2018</span>
+            <Logo />
+            <Typography variant="h3">SLR &copy; 2020</Typography>
         </Footer>
     )
 }

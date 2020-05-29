@@ -1,11 +1,11 @@
+import { darkShadow } from '~/styles/shadows'
 import styled from 'styled-components'
 
-export const Footer = styled.footer``
-export const Logo = styled.img`
-    display: block;
-    height: 40px;
-    margin-left: 0;
-    margin-top: 0;
-    margin-right: 0;
-    margin-bottom: 4px;
+export const Footer = styled.footer`
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding: ${({ theme }) => theme.spacing(2)};
+    text-shadow: ${darkShadow};
+    color: white;
 `

@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 
 import ContentCard from '~/components/ContentCard'
 import { Dashboard } from './Dashboard.style'
+import Footer from '~/components/Footer'
 import { Grid } from '@material-ui/core'
 import Head from '~/components/Head'
 import { Location } from '@reach/router'
@@ -30,6 +31,8 @@ export default () => {
                             </Fragment>
                         ))}
                     </Grid>
+
+                    <Footer />
                 </Dashboard>
             )}
         </Location>
