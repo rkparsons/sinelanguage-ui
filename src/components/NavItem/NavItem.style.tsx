@@ -21,6 +21,8 @@ export default styled((props: GatsbyLinkProps<{}>) => (
 
     h3 {
         display: block;
+        float: left;
+        clear: left;
         pointer-events: all;
     }
 `
