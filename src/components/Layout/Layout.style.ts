@@ -21,6 +21,10 @@ export const GlobalStyle = createGlobalStyle`
     a {
         text-decoration: none;
     }
+
+    body {
+        background-color: white;
+    }
 `
 
 export const AppContainer = styled(Container)`
