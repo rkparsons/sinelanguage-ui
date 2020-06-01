@@ -23,7 +23,6 @@ export const InputGrid = styled(Grid)`
 
 export const EmailInput = styled(TextField)`
     width: 100%;
-    background-color: white;
 
     label {
         color: grey;
@@ -31,14 +30,21 @@ export const EmailInput = styled(TextField)`
     }
 
     input {
+        background-color: white;
         color: black;
         text-shadow: none;
         padding-left: ${({ theme }) => theme.spacing(4)};
+
+        &:focus::placeholder {
+            color: transparent;
+        }
     }
 `
 
 export const Title = styled.div`
-    padding: ${({ theme }) => theme.spacing(4)};
+    padding-top: ${({ theme }) => theme.spacing(3)};
+    padding-left: ${({ theme }) => theme.spacing(4)};
+    padding-right: ${({ theme }) => theme.spacing(4)};
 `
 
 export const Action = styled.div`

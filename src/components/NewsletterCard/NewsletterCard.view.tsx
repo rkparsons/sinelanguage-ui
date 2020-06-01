@@ -25,7 +25,9 @@ export default () => {
                 <Content>
                     <Title>
                         <Typography variant={isMobileOnly ? 'body1' : 'h5'}>
-                            WANT TO HEAR FROM US ABOUT NEW RELEASES?
+                            {isSuccess
+                                ? 'Thanks for subscribing!'
+                                : 'WANT TO HEAR FROM US ABOUT NEW RELEASES?'}
                         </Typography>
                     </Title>
                     {!isSuccess && (
@@ -33,7 +35,6 @@ export default () => {
                             <Grid item xs={12}>
                                 <EmailInput
                                     inputRef={emailInput}
-                                    label={isInvalid ? 'Please enter a valid email' : 'EMAIL'}
                                     type="email"
                                     value={email}
                                     error={isInvalid}
@@ -41,18 +42,16 @@ export default () => {
                                     onKeyDown={onKeyDown}
                                     InputProps={{
                                         disableUnderline: true,
-                                        style: { fontSize: isMobileOnly ? '1rem' : '1.2rem' },
+                                        style: { fontSize: isMobileOnly ? '1rem' : '1.35rem' },
                                     }}
-                                    InputLabelProps={{
-                                        style: { fontSize: isMobileOnly ? '1rem' : '1.2rem' },
-                                    }}
+                                    placeholder={isInvalid ? 'Please enter a valid email' : 'EMAIL'}
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 <Action>
                                     <IconButton
                                         label={
-                                            <Typography variant="h5">
+                                            <Typography variant={isMobileOnly ? 'body1' : 'h5'}>
                                                 JOIN THE MAILING LIST
                                             </Typography>
                                         }
@@ -64,11 +63,6 @@ export default () => {
                                 </Action>
                             </Grid>
                         </InputGrid>
-                    )}
-                    {isSuccess && (
-                        <Typography variant="h3" gutterBottom>
-                            Thanks for subscribing!
-                        </Typography>
                     )}
                 </Content>
             </AspectRatio>
