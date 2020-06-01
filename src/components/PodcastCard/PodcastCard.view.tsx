@@ -20,10 +20,10 @@ export default ({ podcast }: ViewProps) => {
                 <ContentCardMedia content={podcast} />
             </MediaLink>
             <ContentCardDetail>
-                <Typography variant="body1">{podcast.title.toUpperCase()}, Podcast</Typography>
-                <Typography variant="body1">[{podcast.uid}]</Typography>
+                <Typography variant="body1">{podcast.title.toUpperCase()}, PODCAST</Typography>
+                <Typography variant="body1">{podcast.uid}</Typography>
                 <Grid container spacing={2}>
-                    <Grid item xs={1}></Grid>
+                    {/* <Grid item xs={1}></Grid> */}
                     <Grid item>
                         <ContentPlayButton
                             content={podcast}

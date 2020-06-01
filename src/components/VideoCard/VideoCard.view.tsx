@@ -19,9 +19,9 @@ export default ({ video }: ViewProps) => {
             </MediaLink>
             <ContentCardDetail>
                 <Typography variant="body1">
-                    {video.artist.title.toUpperCase()}, <i>{video.title}</i>, Video
+                    {video.artist.title.toUpperCase()}, <i>{video.title.toUpperCase()}</i>, VIDEO
                 </Typography>
-                <Typography variant="body1">[{video.uid}]</Typography>
+                <Typography variant="body1">{video.uid}</Typography>
             </ContentCardDetail>
         </Column>
     )

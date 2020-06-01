@@ -24,11 +24,12 @@ export default ({ release }: ViewProps) => {
                 <ContentCardMedia content={release} />
             </MediaLink>
             <ContentCardDetail>
-                <Typography>
-                    {(release.originalArtist || artist.title).toUpperCase()}, <i>{title}</i>
+                <Typography variant="body1">
+                    {(release.originalArtist || artist.title).toUpperCase()},{' '}
+                    <i>{title.toUpperCase()}</i>
                 </Typography>
                 <Grid container spacing={2}>
-                    <Grid item xs={1}></Grid>
+                    {/* <Grid item xs={1}></Grid> */}
                     <Grid item>
                         <Box paddingRight={1}>
                             <ContentPlayButton

@@ -15,7 +15,7 @@ export default (isDarkMode = false) =>
                     wordWrap: 'break-word',
                 },
                 body1: {
-                    fontSize: 16,
+                    fontSize: 15.5,
                     lineHeight: 1.3,
                 },
                 body2: {
