@@ -26,7 +26,7 @@ export default () => {
                     <Title>
                         <Typography variant={isMobileOnly ? 'body1' : 'h5'}>
                             {isSuccess
-                                ? 'Thanks for subscribing!'
+                                ? 'THANKS FOR SUBSCRIBING!'
                                 : 'WANT TO HEAR FROM US ABOUT NEW RELEASES?'}
                         </Typography>
                     </Title>
