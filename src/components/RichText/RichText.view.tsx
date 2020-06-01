@@ -7,7 +7,7 @@ import { Typography } from '@material-ui/core'
 
 interface ViewProps {
     json: Document
-    variant: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body1' | 'body2'
+    variant: 'h3' | 'body1' | 'body2'
 }
 
 export default ({ json, variant }: ViewProps) => {

@@ -18,7 +18,7 @@ export default ({ timeMs }: ViewProps) => {
                 {artistTitle.toUpperCase()}, <i>{track?.title}</i>
             </Typography>
             <Typography variant="h5">
-                {getTimestamp(timeMs, durationMs)}/{getTimestamp(durationMs, durationMs)}
+                {getTimestamp(timeMs, durationMs)} / {getTimestamp(durationMs, durationMs)}
             </Typography>
         </Label>
     )
