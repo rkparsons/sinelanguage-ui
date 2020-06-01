@@ -1,6 +1,5 @@
 import { Grid, Typography } from '@material-ui/core'
 
-import Image from 'gatsby-image'
 import MediaLink from '~/components/MediaLink'
 import React from 'react'
 import TeaserVideo from '~/components/TeaserVideo'

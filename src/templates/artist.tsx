@@ -20,7 +20,7 @@ type Props = {
 
 export default ({ data }: Props) => {
     const { title, description, image } = data.contentfulArtist
-    const relatedContentComponents = sortByDate([
+    const releases = sortByDate([
         ...(data.contentfulArtist.release || []),
         ...(data.contentfulArtist.video || []),
     ]).map((relatedContent, index) => <ContentThumbnail content={relatedContent} key={index} />)
@@ -38,10 +38,7 @@ export default ({ data }: Props) => {
                 </Hidden>
                 <Grid item xs={12} lg={6}>
                     <Scrollable isWithMargin={true}>
-                        <ArtistDetail artist={data.contentfulArtist} />
-                        <Typography variant="h3">RELEASES</Typography>
-                        <br />
-                        <Grid container>{relatedContentComponents}</Grid>
+                        <ArtistDetail artist={data.contentfulArtist} releases={releases} />
                     </Scrollable>
                 </Grid>
             </Grid>

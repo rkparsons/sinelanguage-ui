@@ -1,5 +1,5 @@
 import { Artist, Release, Video } from '~/cms/types'
-import { Grid, Hidden, Typography } from '@material-ui/core'
+import { Grid, Hidden } from '@material-ui/core'
 
 import Centered from '~/components/Centered'
 import ContentThumbnail from '~/components/ContentThumbnail'
@@ -23,7 +23,7 @@ export default ({ data, location }: Props) => {
     const { __typename, uid, title, description, image, artist } = data.contentfulRelease
     const isCart = location.hash === '#/cart'
 
-    const relatedContentComponents = sortByDate([
+    const relatedReleases = sortByDate([
         ...(data.contentfulRelease.artist.release || []),
         ...(data.contentfulRelease.artist.video || []),
     ])
@@ -47,18 +47,10 @@ export default ({ data, location }: Props) => {
                     </Hidden>
                     <Grid item xs={12} lg={6}>
                         <Scrollable isWithMargin={true}>
-                            <ReleaseDetail release={data.contentfulRelease} />
-                            <Grid container>
-                                <ContentThumbnail content={artist} />
-                            </Grid>
-                            <br />
-                            {relatedContentComponents.length > 0 && (
-                                <>
-                                    <Typography variant="h3">RELATED</Typography>
-                                    <br />
-                                    <Grid container>{relatedContentComponents}</Grid>
-                                </>
-                            )}
+                            <ReleaseDetail
+                                release={data.contentfulRelease}
+                                relatedReleases={relatedReleases}
+                            />
                         </Scrollable>
                     </Grid>
                 </Grid>

@@ -6,16 +6,18 @@ import Image from 'gatsby-image'
 import React from 'react'
 import RichText from '~/components/RichText'
 import Socials from '~/components/Socials'
+import { maxContentWidth } from '~/styles/sizes'
 
 type ViewProps = {
     artist: Artist
+    releases: JSX.Element[]
 }
 
-export default ({ artist }: ViewProps) => {
+export default ({ artist, releases }: ViewProps) => {
     const { title, image, socials, bio } = artist
 
     return (
-        <>
+        <Box maxWidth={`${maxContentWidth}rem`}>
             <Grid container spacing={5}>
                 <Grid item>
                     <Box display="flex" alignItems="center" height="100%">
@@ -39,8 +41,11 @@ export default ({ artist }: ViewProps) => {
             </Hidden>
             <Socials urls={socials} />
             <br />
-            <RichText json={bio.json} variant="body2" />
+            <RichText json={bio.json} variant="h3" />
             <br />
-        </>
+            <Typography variant="h3">RELEASES</Typography>
+            <br />
+            <Grid container>{releases}</Grid>
+        </Box>
     )
 }

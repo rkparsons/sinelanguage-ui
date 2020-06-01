@@ -1,21 +1,24 @@
-import { Grid, Hidden, Typography } from '@material-ui/core'
+import { Box, Grid, Hidden, Typography } from '@material-ui/core'
 
 import ContentPlayButton from '~/components/ContentPlayButton'
+import ContentThumbnail from '~/components/ContentThumbnail'
 import Image from 'gatsby-image'
 import React from 'react'
 import { Release } from '~/cms/types'
 import ReleaseProducts from '~/components/ReleaseProducts'
 import ReleaseTracks from '~/components/ReleaseTracks'
+import { maxContentWidth } from '~/styles/sizes'
 
 type ViewProps = {
     release: Release
+    relatedReleases: JSX.Element[]
 }
 
-export default ({ release }: ViewProps) => {
+export default ({ release, relatedReleases }: ViewProps) => {
     const { artist, title, uid, format, image, tracks, products } = release
 
     return (
-        <>
+        <Box maxWidth={`${maxContentWidth}rem`}>
             <Typography variant="h3">
                 {(release.originalArtist || artist.title).toUpperCase()}, <i>{title}</i>
             </Typography>
@@ -49,6 +52,17 @@ export default ({ release }: ViewProps) => {
                 isDescription={true}
             />
             <br />
-        </>
+            <Grid container>
+                <ContentThumbnail content={artist} />
+            </Grid>
+            <br />
+            {relatedReleases.length > 0 && (
+                <>
+                    <Typography variant="h3">RELATED</Typography>
+                    <br />
+                    <Grid container>{relatedReleases}</Grid>
+                </>
+            )}
+        </Box>
     )
 }

@@ -7,7 +7,7 @@ import React from 'react'
 import RichText from '~/components/RichText'
 import Socials from '~/components/Socials'
 import { TrackNumber } from './PodcastDetail.style'
-import artist from '~/cms/schema/artist'
+import { maxContentWidth } from '~/styles/sizes'
 
 type ViewProps = {
     podcast: Podcast
@@ -15,9 +15,9 @@ type ViewProps = {
 
 export default ({ podcast }: ViewProps) => {
     const { title, introduction, image, trackList, socials } = podcast
-    console.log(trackList)
+
     return (
-        <>
+        <Box maxWidth={`${maxContentWidth}rem`}>
             <Grid container spacing={5}>
                 <Grid item>
                     <Box display="flex" alignItems="center" height="100%">
@@ -44,7 +44,7 @@ export default ({ podcast }: ViewProps) => {
             </Hidden>
 
             <br />
-            <RichText json={introduction.json} variant="body2" />
+            <RichText json={introduction.json} variant="h3" />
 
             <br />
             {trackList.map((trackListTrack, index) => (
@@ -74,6 +74,6 @@ export default ({ podcast }: ViewProps) => {
                     <Socials urls={socials} />
                 </>
             )}
-        </>
+        </Box>
     )
 }
