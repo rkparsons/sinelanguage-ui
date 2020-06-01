@@ -13,7 +13,7 @@ export default (isDarkMode = false) =>
                 wordWrap: 'break-word',
                 lineHeight: 1.3,
             },
-            body1: responsiveFont(15, 15, 13.5, 14, 15),
+            body1: { ...responsiveFont(15, 15, 13.5, 14, 15), fontWeight: 'bold' },
             body2: {
                 fontSize: 28,
             },
