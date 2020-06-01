@@ -20,7 +20,7 @@ export default styled((props: GatsbyLinkProps<{}>) => (
     }
 
     h3 {
-        display: inline-block;
+        display: block;
         pointer-events: all;
     }
 `
