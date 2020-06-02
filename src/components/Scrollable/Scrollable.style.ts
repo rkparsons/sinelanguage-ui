@@ -9,7 +9,7 @@ export const Scrollable = styled.div<{ isWithMargin: boolean }>`
         -webkit-overflow-scrolling: touch;
         margin: 0 ${theme.spacing(isWithMargin ? marginSide : 0)};      
                 
-        ${theme.breakpoints.up('lg')} {
+        ${theme.breakpoints.up('md')} {
             margin: 0;
             margin-right: ${theme.spacing(isWithMargin ? marginSide : 0)};
         }

@@ -20,7 +20,7 @@ export default ({ event }: ViewProps) => {
             </Typography>
             <br />
 
-            <Hidden lgUp>
+            <Hidden mdUp>
                 <Grid container>
                     <Grid item xs={12} sm={8} md={6}>
                         <TeaserVideo src={teaserVideo.file.url} />

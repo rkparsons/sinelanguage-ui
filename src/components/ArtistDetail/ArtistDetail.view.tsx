@@ -29,10 +29,10 @@ export default ({ artist, releases }: ViewProps) => {
                 </Grid>
             </Grid>
 
-            <Hidden lgUp>
+            <Hidden mdUp>
                 <br />
                 <Grid container>
-                    <Grid item xs={12} sm={8} md={6}>
+                    <Grid item xs={12} sm={8}>
                         <Image title={title} alt={title} sizes={{ ...image.fluid }} />
                     </Grid>
                 </Grid>

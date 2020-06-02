@@ -34,7 +34,7 @@ export default ({ podcast }: ViewProps) => {
                 </Grid>
             </Grid>
 
-            <Hidden lgUp>
+            <Hidden mdUp>
                 <br />
                 <Grid container>
                     <Grid item xs={12} sm={8} md={6}>

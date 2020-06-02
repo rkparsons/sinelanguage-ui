@@ -25,14 +25,14 @@ export default ({ data }: Props) => {
             <Head title={title} description={description.description} image={image.fluid.src} />
             <Overlay>
                 <Grid container>
-                    <Hidden mdDown>
+                    <Hidden smDown>
                         <Grid item xs={6}>
                             <Centered size={7}>
                                 <TeaserVideo src={teaserVideo.file.url} />
                             </Centered>
                         </Grid>
                     </Hidden>
-                    <Grid item xs={12} lg={6}>
+                    <Grid item xs={12} md={6}>
                         <Scrollable isWithMargin={true}>
                             <EventDetail event={data.contentfulEvent} />
                         </Scrollable>

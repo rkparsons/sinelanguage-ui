@@ -29,7 +29,7 @@ export default ({ release, relatedReleases }: ViewProps) => {
 
             <br />
 
-            <Hidden lgUp>
+            <Hidden mdUp>
                 <Grid container>
                     <Grid item xs={12} sm={8} md={6}>
                         <Image title={title} alt={title} sizes={{ ...image.fluid }} />
