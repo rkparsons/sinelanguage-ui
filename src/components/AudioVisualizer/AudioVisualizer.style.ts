@@ -1,3 +1,5 @@
+import { marginSide, volumeSliderWidth } from '~/styles/sizes'
+
 import styled from 'styled-components'
 
 export const Visualisation = styled.div`
@@ -11,4 +13,5 @@ export const Visualisation = styled.div`
     left: -1px;
     width: 100%;
     height: 100%;
+    padding-right: ${({ theme }) => theme.spacing(volumeSliderWidth + marginSide)};
 `

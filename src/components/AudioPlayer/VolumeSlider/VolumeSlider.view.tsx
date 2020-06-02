@@ -5,7 +5,11 @@ import React from 'react'
 import useAudioContext from '~/hooks/useAudioContext'
 import { useMousePosition } from '~/hooks/useMousePosition'
 
-export default () => {
+type ViewProps = {
+    isVisible: boolean
+}
+
+export default ({ isVisible }: ViewProps) => {
     const noOfBars = 15
     const barSpacingPercent = 100 / noOfBars
     const barWidthPercent = barSpacingPercent / 3
@@ -64,6 +68,7 @@ export default () => {
                 height={`${size[1]}px`}
                 viewBox={`0 0 ${size[0]} ${size[1]}`}
                 preserveAspectRatio="none"
+                isVisible={isVisible}
             >
                 {[...Array(noOfBars + 1).keys()].map((index) => (
                     <Bar
