@@ -1,4 +1,3 @@
-import { Close } from '@material-ui/icons'
 import IconButton from '~/components/IconButton'
 import React from 'react'
 import { Typography } from '@material-ui/core'

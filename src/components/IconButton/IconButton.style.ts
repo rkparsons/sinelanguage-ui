@@ -8,9 +8,8 @@ export const Button = styled.span<{
     isDisabled: boolean
     disabledOpacity: number
 }>`
-    display: flex;
-    p {
-        display: inline-block;
+    h3 {
+        text-align: center;
     }
 
     ${({ isLight, isDisabled, disabledOpacity }) => `    

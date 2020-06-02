@@ -1,15 +1,16 @@
 import { AudioPlayer, ImageContainer, PlayerBody, PlayerPanel } from './AudioPlayer.style'
-import { Box, Grid, Hidden, Typography, withWidth } from '@material-ui/core'
 import React, { useEffect, useRef, useState } from 'react'
 import { isMobile, isSafari } from 'react-device-detect'
 
 import AudioVisualizer from '~/components/AudioVisualizer'
+import { Box } from '@material-ui/core'
 import Controls from './Controls'
 import Label from './Label'
 import { PlayerState } from '~/constants/playerState'
 import Progress from './Progress'
 import SquareImage from '~/components/SquareImage'
 import StopButton from './StopButton'
+import VolumeSlider from './VolumeSlider'
 import useAnimationFrame from '~/hooks/useAnimationFrame'
 import useAudioContext from '~/hooks/useAudioContext'
 
@@ -92,12 +93,17 @@ export default ({ hideTimeout }: ViewProps) => {
                         </Box>
                         <Box flexGrow={1} minWidth={0}>
                             <PlayerPanel>
-                                <Box display="flex">
+                                <Box display="flex" height="100%">
                                     <Box flexGrow={1} flexShrink={1} minWidth={0}>
                                         <Label timeMs={timeMs} />
                                     </Box>
                                     <Box>
-                                        <StopButton />
+                                        <Box height="20%">
+                                            <StopButton />
+                                        </Box>
+                                        <Box height="80%">
+                                            <VolumeSlider />
+                                        </Box>
                                     </Box>
                                 </Box>
                                 {isFullSizePlayer && (

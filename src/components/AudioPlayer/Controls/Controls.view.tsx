@@ -1,9 +1,8 @@
 import { Box, Grid, Typography } from '@material-ui/core'
-import { Pause, PlayArrow, SkipNext, SkipPrevious } from '@material-ui/icons'
-import React, { useEffect, useState } from 'react'
 
 import { Controls } from './Controls.style'
 import IconButton from '~/components/IconButton'
+import React from 'react'
 import { Unicode } from '~/constants/unicode'
 import useAudioContext from '~/hooks/useAudioContext'
 
@@ -12,8 +11,6 @@ type ViewProps = {
 }
 
 export default ({ isFullSizePlayer }: ViewProps) => {
-    const [volumeLevel, setVolumeLevel] = useState(1)
-
     const {
         isPlaying,
         isPrevious,
@@ -22,16 +19,7 @@ export default ({ isFullSizePlayer }: ViewProps) => {
         next,
         playMedia,
         pauseMedia,
-        setVolume,
     } = useAudioContext()
-
-    useEffect(() => {
-        setVolume(volumeLevel)
-    }, [volumeLevel])
-
-    function onVolume(event: any, newValue: number | number[]) {
-        setVolumeLevel(newValue as number)
-    }
 
     function onPlayPause() {
         isPlaying ? pauseMedia() : playMedia()
@@ -80,9 +68,6 @@ export default ({ isFullSizePlayer }: ViewProps) => {
                     </>
                 )}
             </Grid>
-            {/* <SliderContainer>
-                <Slider value={volume} onChange={handleVolume} min={0} max={1} step={0.01} />
-            </SliderContainer> */}
         </Controls>
     )
 }
