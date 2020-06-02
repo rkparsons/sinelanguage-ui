@@ -102,9 +102,13 @@ export default ({ hideTimeout }: ViewProps) => {
                                             <StopButton />
                                         </Box>
                                         <Box height="80%" paddingTop="15px">
-                                            <VolumeSlider
-                                                isVisible={playerState !== PlayerState.MINIMISED}
-                                            />
+                                            {isFullSizePlayer && (
+                                                <VolumeSlider
+                                                    isVisible={
+                                                        playerState !== PlayerState.MINIMISED
+                                                    }
+                                                />
+                                            )}
                                         </Box>
                                     </Box>
                                 </Box>

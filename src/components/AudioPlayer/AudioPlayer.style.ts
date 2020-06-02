@@ -48,7 +48,7 @@ export const PlayerBody = styled.div`
 
     ${({ theme }) => `    
         padding-top: ${theme.spacing(3)};
-        padding-bottom: ${theme.spacing(3)};
+        padding-bottom: ${theme.spacing(2)};
         padding-left: ${theme.spacing(marginSide)};
         padding-right: ${theme.spacing(marginSide)};
         

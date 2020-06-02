@@ -28,11 +28,12 @@ export default ({ isFullSizePlayer }: ViewProps) => {
     return (
         <Controls>
             <Grid container spacing={3}>
+                <Grid item></Grid>
                 {isFullSizePlayer && (
                     <>
                         <Grid item>
                             <IconButton
-                                label={<Typography variant="h3">{Unicode.PREVIOUS}</Typography>}
+                                label={<Typography variant="h5">{Unicode.PREVIOUS}</Typography>}
                                 onClick={previous}
                                 isDisabled={!isPrevious()}
                                 isLight={true}
@@ -45,7 +46,7 @@ export default ({ isFullSizePlayer }: ViewProps) => {
                 <Grid item>
                     <IconButton
                         label={
-                            <Typography variant="h3">
+                            <Typography variant="h5">
                                 {isPlaying ? Unicode.PAUSE : Unicode.PLAY}
                             </Typography>
                         }
@@ -59,7 +60,7 @@ export default ({ isFullSizePlayer }: ViewProps) => {
                         <Box flexGrow={1} />
                         <Grid item>
                             <IconButton
-                                label={<Typography variant="h3">{Unicode.NEXT}</Typography>}
+                                label={<Typography variant="h5">{Unicode.NEXT}</Typography>}
                                 onClick={next}
                                 isDisabled={!isNext()}
                                 isLight={true}
@@ -67,6 +68,7 @@ export default ({ isFullSizePlayer }: ViewProps) => {
                         </Grid>
                     </>
                 )}
+                <Grid item></Grid>
             </Grid>
         </Controls>
     )
