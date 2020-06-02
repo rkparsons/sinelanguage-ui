@@ -14,9 +14,9 @@ export default () => {
             </Link>
             <ContentCardDetail>
                 <Typography variant="body1">
-                    <i>SLR SELECTIONS</i>
+                    <i>SLR Selections</i>
                 </Typography>
-                <Typography variant="body1">PLAYLIST</Typography>
+                <Typography variant="body1">Playlist</Typography>
             </ContentCardDetail>
         </Column>
     )

@@ -25,8 +25,7 @@ export default ({ release }: ViewProps) => {
             </MediaLink>
             <ContentCardDetail>
                 <Typography variant="body1">
-                    {(release.originalArtist || artist.title).toUpperCase()},{' '}
-                    <i>{title.toUpperCase()}</i>
+                    {release.originalArtist || artist.title}, <i>{title}</i>
                 </Typography>
                 <Grid container spacing={2}>
                     {/* <Grid item xs={1}></Grid> */}

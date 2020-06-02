@@ -18,7 +18,7 @@ export default ({ event }: ViewProps) => {
                 <ContentCardMedia content={event} />
             </MediaLink>
             <ContentCardDetail>
-                <Typography>{event.title.toUpperCase()}</Typography>
+                <Typography>{event.title}</Typography>
             </ContentCardDetail>
         </Column>
     )
