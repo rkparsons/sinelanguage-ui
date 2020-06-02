@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const ClickContainer = styled.div`
+    width: ${({ theme }) => theme.spacing(5)};
     height: 100%;
 `
 
@@ -11,5 +12,5 @@ export const SVG = styled.svg`
 
 export const Bar = styled.rect<{ isActive: boolean }>`
     width: 100%;
-    fill: ${({ isActive }) => (isActive ? 'white' : 'grey')};
+    fill: ${({ isActive }) => (isActive ? 'white' : '#cdcdcd')};
 `
