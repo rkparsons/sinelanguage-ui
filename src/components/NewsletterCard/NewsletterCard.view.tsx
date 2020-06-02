@@ -1,4 +1,12 @@
-import { Action, AspectRatio, Content, EmailInput, InputGrid, Title } from './NewsletterCard.style'
+import {
+    Action,
+    AspectRatio,
+    Content,
+    EmailInput,
+    ErrorMessage,
+    InputGrid,
+    Title,
+} from './NewsletterCard.style'
 import { Grid, Typography } from '@material-ui/core'
 
 import Column from '~/components/Column'
@@ -33,19 +41,34 @@ export default () => {
                     {!isSuccess && (
                         <InputGrid container>
                             <Grid item xs={12}>
-                                <EmailInput
-                                    inputRef={emailInput}
-                                    type="email"
-                                    value={email}
-                                    error={isInvalid}
-                                    onChange={onEmailChanged}
-                                    onKeyDown={onKeyDown}
-                                    InputProps={{
-                                        disableUnderline: true,
-                                        style: { fontSize: isMobileOnly ? '1rem' : '1.35rem' },
-                                    }}
-                                    placeholder={isInvalid ? 'Please enter a valid email' : 'EMAIL'}
-                                />
+                                <ErrorMessage>
+                                    <Typography
+                                        variant={isMobileOnly ? 'body1' : 'h5'}
+                                        gutterBottom
+                                    >
+                                        {isInvalid ? 'Please enter a valid email' : ''}
+                                    </Typography>
+                                </ErrorMessage>
+                                <Typography variant={isMobileOnly ? 'body1' : 'h5'}>
+                                    <EmailInput
+                                        inputRef={emailInput}
+                                        type="email"
+                                        isInvalid={isInvalid}
+                                        value={email}
+                                        onChange={onEmailChanged}
+                                        onKeyDown={onKeyDown}
+                                        spellCheck={false}
+                                        InputProps={{
+                                            disableUnderline: true,
+                                            style: {
+                                                fontSize: 'inherit',
+                                                fontWeight: 'inherit',
+                                                lineHeight: 'inherit',
+                                            },
+                                        }}
+                                        placeholder="EMAIL"
+                                    />
+                                </Typography>
                             </Grid>
                             <Grid item xs={12}>
                                 <Action>
