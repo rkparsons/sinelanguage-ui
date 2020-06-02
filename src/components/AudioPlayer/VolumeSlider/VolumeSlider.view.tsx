@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 
 import React from 'react'
 import useAudioContext from '~/hooks/useAudioContext'
+import { useMousePosition } from '~/hooks/useMousePosition'
 
 export default () => {
     const noOfBars = 15
@@ -11,6 +12,8 @@ export default () => {
     const [volumeLevel, setVolumeLevel] = useState(0.8)
     const containerRef = useRef<HTMLDivElement>(null)
     const [size, setSize] = useState([0, 0])
+    const [isHover, setIsHover] = useState(false)
+    const { mouseX, mouseY } = useMousePosition()
 
     const { setVolume } = useAudioContext()
 
@@ -25,16 +28,37 @@ export default () => {
         setVolume(volumeLevel)
     }, [volumeLevel])
 
-    function onClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    function getSliderPosition(yPosition: number) {
         if (containerRef.current) {
             const rect = containerRef.current.getBoundingClientRect()
-            const position = Math.abs((100 * (rect.bottom - event.clientY)) / rect.height) / 100.0
-            setVolumeLevel(position)
+            const position = Math.abs((100 * (rect.bottom - yPosition)) / rect.height) / 100.0
+
+            return position
+        } else {
+            return 0
         }
     }
 
+    function onClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+        if (containerRef.current) {
+            setVolumeLevel(getSliderPosition(event.clientY))
+        }
+    }
+
+    function getBarActiveState(index: number) {
+        if (isHover) {
+            return index / noOfBars <= getSliderPosition(mouseY)
+        } else {
+            return index / noOfBars <= volumeLevel
+        }
+    }
     return (
-        <ClickContainer ref={containerRef} onClick={onClick}>
+        <ClickContainer
+            ref={containerRef}
+            onClick={onClick}
+            onMouseEnter={() => setIsHover(true)}
+            onMouseLeave={() => setIsHover(false)}
+        >
             <SVG
                 width={`${size[0]}px`}
                 height={`${size[1]}px`}
@@ -46,7 +70,7 @@ export default () => {
                         key={index}
                         y={`${100 - index * barSpacingPercent}%`}
                         height={`${barWidthPercent}%`}
-                        isActive={index / noOfBars <= volumeLevel}
+                        isActive={getBarActiveState(index)}
                     />
                 ))}
             </SVG>
