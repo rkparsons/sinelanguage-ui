@@ -10,7 +10,7 @@ type ViewProps = {
 }
 
 export default ({ isVisible }: ViewProps) => {
-    const noOfBars = 15
+    const noOfBars = 16
     const barSpacingPercent = 100 / noOfBars
     const barWidthPercent = barSpacingPercent / 3
     const [volumeLevel, setVolumeLevel] = useState(0.8)
