@@ -7,7 +7,7 @@ export const contentOffsetMobile = 28
 export const contentOffsetDesktop = 45
 export const listRowPadding = 1
 export const maxContentWidth = 59
-export const volumeSliderWidth = 5
+export const volumeSliderWidth = 4
 
 export const rowPadding: Record<Breakpoint, GridSpacing> = {
     xs: 10,
