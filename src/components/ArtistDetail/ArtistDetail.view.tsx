@@ -18,16 +18,10 @@ export default ({ artist, releases }: ViewProps) => {
 
     return (
         <Box maxWidth={`${maxContentWidth}rem`}>
-            <Grid container spacing={5}>
-                <Grid item>
-                    <Box display="flex" alignItems="center" height="100%">
-                        <Typography variant="h3">{title.toUpperCase()}</Typography>
-                    </Box>
-                </Grid>
-                <Grid item>
-                    <ContentPlayButton content={artist} trackIndex={0} isLight={true} text="PLAY" />
-                </Grid>
-            </Grid>
+            <Typography variant="h3">{title.toUpperCase()}</Typography>
+            <ContentPlayButton content={artist} trackIndex={0} isLight={true} text="PLAY" />
+            <br />
+            <br />
 
             <Hidden mdUp>
                 <br />
@@ -39,13 +33,21 @@ export default ({ artist, releases }: ViewProps) => {
 
                 <br />
             </Hidden>
-            <Socials urls={socials} />
             <br />
             <RichText json={bio.json} variant="h3" />
+            <br />
             <br />
             <Typography variant="h3">RELEASES</Typography>
             <br />
             <Grid container>{releases}</Grid>
+            <br />
+            {socials && (
+                <>
+                    <Typography variant="h3">FOLLOW {title.toUpperCase()}</Typography>
+                    <br />
+                    <Socials urls={socials} />
+                </>
+            )}
         </Box>
     )
 }
