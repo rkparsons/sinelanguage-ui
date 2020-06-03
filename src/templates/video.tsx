@@ -29,14 +29,12 @@ export default ({ data }: Props) => {
                         </Grid>
                         <Grid item xs={12}>
                             <br />
-                            <Typography variant="h3" align="center" gutterBottom>
-                                {artist.title} - {title}
+                            <Typography variant="h5" align="center">
+                                {artist.title}, <i>{title}</i>
                             </Typography>
-                            <Box whiteSpace="pre-wrap">
-                                <Typography variant="h3" align="center">
-                                    {credits.credits}
-                                </Typography>
-                            </Box>
+                            <Typography variant="h5" align="center">
+                                {credits.credits}
+                            </Typography>
                         </Grid>
                     </FullSizeGrid>
                 </Scrollable>
