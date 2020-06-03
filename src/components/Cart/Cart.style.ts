@@ -2,6 +2,10 @@ import { lightGrey } from '~/styles/colours'
 import styled from 'styled-components'
 
 export const OverrideCartStyles = styled.div`
+    * {
+        animation: none !important;
+    }
+
     .snipcart-modal__container {
         * {
             font-family: 'HelveticaNowText';
