@@ -23,15 +23,12 @@ export default ({ data, location }: Props) => {
     const { __typename, uid, title, description, image, artist } = data.contentfulRelease
     const isCart = location.hash === '#/cart'
 
-    const relatedReleaseThumbnails = sortByDate([
+    const relatedReleases = sortByDate([
         ...(data.contentfulRelease.artist.release || []),
         ...(data.contentfulRelease.artist.video || []),
-    ])
-        .filter(
-            (relatedContent) =>
-                relatedContent.__typename !== __typename || relatedContent.uid !== uid
-        )
-        .map((relatedContent, index) => <ContentThumbnail content={relatedContent} key={index} />)
+    ]).filter(
+        (relatedContent) => relatedContent.__typename !== __typename || relatedContent.uid !== uid
+    )
 
     return (
         <>
@@ -49,7 +46,7 @@ export default ({ data, location }: Props) => {
                         <Scrollable isWithMargin={true}>
                             <ReleaseDetail
                                 release={data.contentfulRelease}
-                                relatedReleaseThumbnails={relatedReleaseThumbnails}
+                                relatedReleases={relatedReleases}
                             />
                         </Scrollable>
                     </Grid>

@@ -1,5 +1,6 @@
 import { Box, Grid, Hidden, Typography } from '@material-ui/core'
 
+import { ContentItem } from '~/types/cms'
 import ContentPlayButton from '~/components/ContentPlayButton'
 import ContentThumbnail from '~/components/ContentThumbnail'
 import Image from 'gatsby-image'
@@ -11,10 +12,10 @@ import { maxContentWidth } from '~/styles/sizes'
 
 type ViewProps = {
     release: Release
-    relatedReleaseThumbnails: JSX.Element[]
+    relatedReleases: ContentItem[]
 }
 
-export default ({ release, relatedReleaseThumbnails }: ViewProps) => {
+export default ({ release, relatedReleases }: ViewProps) => {
     const { artist, title, uid, format, image, tracks, products } = release
 
     return (
@@ -76,7 +77,9 @@ export default ({ release, relatedReleaseThumbnails }: ViewProps) => {
             <br />
             <Grid container>
                 <ContentThumbnail content={artist} />
-                {relatedReleaseThumbnails}
+                {relatedReleases.map((relatedContent, index) => (
+                    <ContentThumbnail content={relatedContent} key={index} />
+                ))}
             </Grid>
         </Box>
     )
