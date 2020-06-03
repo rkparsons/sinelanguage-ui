@@ -1,8 +1,8 @@
 import { Grid, Hidden } from '@material-ui/core'
 
 import Centered from '~/components/Centered'
+import ContentCardMedia from '~/components/ContentCardMedia'
 import Head from '~/components/Head'
-import Image from 'gatsby-image'
 import Overlay from '~/components/Overlay'
 import { Podcast } from '~/cms/types'
 import PodcastDetail from '~/components/PodcastDetail'
@@ -17,7 +17,7 @@ type Props = {
 }
 
 export default ({ data }: Props) => {
-    const { title, description, image } = data.contentfulPodcast
+    const { uid, title, description, image } = data.contentfulPodcast
 
     return (
         <>
@@ -27,7 +27,7 @@ export default ({ data }: Props) => {
                     <Hidden smDown>
                         <Grid item xs={6}>
                             <Centered size={6}>
-                                <Image title={title} alt={title} sizes={{ ...image.fluid }} />
+                                <ContentCardMedia content={data.contentfulPodcast} />
                             </Centered>
                         </Grid>
                     </Hidden>

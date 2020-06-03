@@ -1,13 +1,13 @@
 import { Grid, Hidden } from '@material-ui/core'
 
 import Centered from '~/components/Centered'
+import ContentCardMedia from '~/components/ContentCardMedia'
 import { Event } from '~/cms/types'
 import EventDetail from '~/components/EventDetail'
 import Head from '~/components/Head'
 import Overlay from '~/components/Overlay'
 import React from 'react'
 import Scrollable from '~/components/Scrollable'
-import TeaserVideo from '~/components/TeaserVideo'
 import { graphql } from 'gatsby'
 
 type Props = {
@@ -27,7 +27,7 @@ export default ({ data }: Props) => {
                     <Hidden smDown>
                         <Grid item xs={6}>
                             <Centered size={6}>
-                                <TeaserVideo src={teaserVideo.file.url} />
+                                <ContentCardMedia content={data.contentfulEvent} />
                             </Centered>
                         </Grid>
                     </Hidden>
