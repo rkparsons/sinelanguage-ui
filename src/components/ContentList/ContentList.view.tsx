@@ -1,4 +1,4 @@
-import { Collapse, Grid, Hidden, Typography, withWidth } from '@material-ui/core'
+import { Box, Collapse, Grid, Hidden, Typography, withWidth } from '@material-ui/core'
 import { Fade, HoverImage, ItemRow, TitleRow } from './ContentList.style'
 import React, { useState } from 'react'
 
@@ -54,8 +54,13 @@ export default withWidth()(({ title, items, width, isLargePaddingOnMobile = true
             </Scrollable>
             <Hidden smDown>
                 {items.map((item, index) => (
-                    <HoverImage container alignItems="center" justify="center" key={index}>
-                        <Grid item xs={item.__typename === ContentType.VIDEO ? 8 : 4}>
+                    <HoverImage
+                        display="flex"
+                        justifyContent="center"
+                        alignItems="center"
+                        key={index}
+                    >
+                        <Box width={item.__typename === ContentType.VIDEO ? '80vw' : '40vw'}>
                             <Collapse
                                 in={item === activeItem}
                                 timeout={{
@@ -67,7 +72,7 @@ export default withWidth()(({ title, items, width, isLargePaddingOnMobile = true
                                     <ContentCardMedia content={item} />
                                 </Fade>
                             </Collapse>
-                        </Grid>
+                        </Box>
                     </HoverImage>
                 ))}
                 {/* <BlackBackdrop isVisible={activeItem?.__typename === ContentType.VIDEO} /> */}

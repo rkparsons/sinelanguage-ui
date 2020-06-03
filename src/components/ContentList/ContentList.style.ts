@@ -1,4 +1,4 @@
-import { Grid, GridSpacing } from '@material-ui/core'
+import { Box, Grid, GridSpacing } from '@material-ui/core'
 
 import { marginSide } from '~/styles/sizes'
 import styled from 'styled-components'
@@ -34,7 +34,7 @@ export const ItemRow = styled(Row)<{ padding: GridSpacing }>`
     }
 `
 
-export const HoverImage = styled(Grid)`
+export const HoverImage = styled(Box)`
     position: fixed;
     pointer-events: none;
     top: 0;
@@ -45,7 +45,6 @@ export const HoverImage = styled(Grid)`
     margin: auto;
     width: 100vw;
     height: 100vh;
-    vertical-align: middle;
 `
 
 // export const BlackBackdrop = styled.div<{ isVisible: boolean }>`
