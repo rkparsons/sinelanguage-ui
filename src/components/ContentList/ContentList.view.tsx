@@ -75,7 +75,6 @@ export default withWidth()(({ title, items, width, isLargePaddingOnMobile = true
                         </Box>
                     </HoverImage>
                 ))}
-                {/* <BlackBackdrop isVisible={activeItem?.__typename === ContentType.VIDEO} /> */}
             </Hidden>
         </Overlay>
     )
