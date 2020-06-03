@@ -3,14 +3,12 @@ import { Box, Grid, Hidden, Typography } from '@material-ui/core'
 
 import ArtistDetail from '~/components/ArtistDetail'
 import Centered from '~/components/Centered'
-import ContentThumbnail from '~/components/ContentThumbnail'
 import Head from '~/components/Head'
 import Image from 'gatsby-image'
 import Overlay from '~/components/Overlay'
 import React from 'react'
 import Scrollable from '~/components/Scrollable'
 import { graphql } from 'gatsby'
-import { sortByDate } from '~/utils/content'
 
 type Props = {
     data: {
@@ -20,10 +18,6 @@ type Props = {
 
 export default ({ data }: Props) => {
     const { title, description, image } = data.contentfulArtist
-    const releases = sortByDate([
-        ...(data.contentfulArtist.release || []),
-        ...(data.contentfulArtist.video || []),
-    ]).map((relatedContent, index) => <ContentThumbnail content={relatedContent} key={index} />)
 
     return (
         <Overlay>
@@ -38,7 +32,11 @@ export default ({ data }: Props) => {
                 </Hidden>
                 <Grid item xs={12} md={6}>
                     <Scrollable isWithMargin={true}>
-                        <ArtistDetail artist={data.contentfulArtist} releases={releases} />
+                        <ArtistDetail
+                            artist={data.contentfulArtist}
+                            releases={data.contentfulArtist.release || []}
+                            videos={data.contentfulArtist.video || []}
+                        />
                     </Scrollable>
                 </Grid>
             </Grid>
