@@ -1,4 +1,4 @@
-import { Grid, Typography } from '@material-ui/core'
+import { Box, Grid, Typography } from '@material-ui/core'
 
 import IconLink from './IconLink'
 import React from 'react'
@@ -20,7 +20,9 @@ export default ({ urls }: ViewProps) => {
             {urls.map((url, index) => (
                 <Grid item key={index}>
                     <Typography variant="h3">
-                        <IconLink url={url} />
+                        <Box paddingRight="16px">
+                            <IconLink url={url} />
+                        </Box>
                     </Typography>
                 </Grid>
             ))}

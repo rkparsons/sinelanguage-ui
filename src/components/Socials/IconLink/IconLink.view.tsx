@@ -1,28 +1,39 @@
+import {
+    faBandcamp,
+    faFacebookSquare,
+    faInstagram,
+    faSoundcloud,
+    faSpotify,
+    faTwitter,
+    faYoutube,
+} from '@fortawesome/free-brands-svg-icons'
+
 import ExternalLink from '~/components/ExternalLink'
-import { Icon } from '@material-ui/core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import { Social } from '~/constants/social'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 type ViewProps = {
     url: string
 }
 
 export default ({ url }: ViewProps) => {
-    const iconClass = url.includes(Social.FACEBOOK)
-        ? 'fa fa-facebook-square'
+    const faIcon = url.includes(Social.FACEBOOK)
+        ? faFacebookSquare
         : url.includes(Social.SPOTIFY)
-        ? 'fa fa-spotify'
+        ? faSpotify
         : url.includes(Social.BANDCAMP)
-        ? 'fa fa-bandcamp'
+        ? faBandcamp
         : url.includes(Social.SOUNDCLOUD)
-        ? 'fa fa-soundcloud'
+        ? faSoundcloud
         : url.includes(Social.INSTAGRAM)
-        ? 'fa fa-instagram'
+        ? faInstagram
         : url.includes(Social.TWITTER)
-        ? 'fa fa-twitter'
+        ? faTwitter
         : url.includes(Social.YOUTUBE)
-        ? 'fa fa-youtube'
-        : 'fa fa-user'
+        ? faYoutube
+        : faUser
 
-    return <ExternalLink href={url} icon={<Icon className={iconClass} />} />
+    return <ExternalLink href={url} icon={<FontAwesomeIcon icon={faIcon} />} />
 }
