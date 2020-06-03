@@ -4,7 +4,6 @@ import Centered from '~/components/Centered'
 import { Event } from '~/cms/types'
 import EventDetail from '~/components/EventDetail'
 import Head from '~/components/Head'
-import Image from 'gatsby-image'
 import Overlay from '~/components/Overlay'
 import React from 'react'
 import Scrollable from '~/components/Scrollable'
@@ -27,7 +26,7 @@ export default ({ data }: Props) => {
                 <Grid container>
                     <Hidden smDown>
                         <Grid item xs={6}>
-                            <Centered size={7}>
+                            <Centered size={6}>
                                 <TeaserVideo src={teaserVideo.file.url} />
                             </Centered>
                         </Grid>

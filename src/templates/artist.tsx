@@ -31,7 +31,7 @@ export default ({ data }: Props) => {
             <Grid container>
                 <Hidden smDown>
                     <Grid item xs={6}>
-                        <Centered size={7}>
+                        <Centered size={6}>
                             <Image title={title} alt={title} sizes={{ ...image.fluid }} />
                         </Centered>
                     </Grid>
