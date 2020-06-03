@@ -23,10 +23,11 @@ export default ({ release, relatedReleases }: ViewProps) => {
                 {(release.originalArtist || artist.title).toUpperCase()}, <i>{title}</i>
             </Typography>
             <br />
-            <Typography variant="h3">[{uid}]</Typography>
+            <Typography variant="h3">{uid}</Typography>
             <Typography variant="h3">{format}</Typography>
             <ContentPlayButton content={release} trackIndex={0} isLight={true} text="PLAY" />
 
+            <br />
             <br />
 
             <Hidden mdUp>
@@ -42,6 +43,7 @@ export default ({ release, relatedReleases }: ViewProps) => {
 
             <ReleaseTracks release={release} />
             <br />
+            <br />
 
             <ReleaseProducts
                 title="BUY"
@@ -51,6 +53,7 @@ export default ({ release, relatedReleases }: ViewProps) => {
                 isLight={true}
                 isDescription={true}
             />
+            <br />
             <br />
             <Grid container>
                 <ContentThumbnail content={artist} />

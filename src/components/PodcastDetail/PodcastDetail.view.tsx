@@ -7,7 +7,6 @@ import React from 'react'
 import RichText from '~/components/RichText'
 import Socials from '~/components/Socials'
 import { TrackNumber } from './PodcastDetail.style'
-import { getDurationTimestamp } from '~/utils/date'
 import { maxContentWidth } from '~/styles/sizes'
 
 type ViewProps = {

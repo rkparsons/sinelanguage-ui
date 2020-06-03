@@ -1,10 +1,10 @@
 import { Box, Grid, Typography } from '@material-ui/core'
 import { Release, Track } from '~/cms/types'
+import { TrackNumber, TrackRow } from './TrackRow.style'
 
 import ContentPlayButton from '~/components/ContentPlayButton'
 import ProductMenu from '~/components/ProductMenu'
 import React from 'react'
-import { TrackNumber } from './TrackRow.style'
 import { getDurationTimestamp } from '~/utils/date'
 
 type ViewProps = {
@@ -18,7 +18,7 @@ export default ({ release, track, index }: ViewProps) => {
     const allProductDownloadsAvailable = products && products.every((product) => product.fileGUID)
 
     return (
-        <Box display="flex">
+        <TrackRow display="flex">
             <Box>
                 <TrackNumber>
                     <Typography variant="h3">{index + 1}</Typography>
@@ -26,10 +26,10 @@ export default ({ release, track, index }: ViewProps) => {
             </Box>
             <Box flexGrow={1}>
                 <Grid container key={index} justify="space-between">
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} sm={8} md={9}>
                         <Typography variant="h3">{title}</Typography>
                     </Grid>
-                    <Grid item xs={3} sm={2}>
+                    <Grid item xs={3} sm={2} md={1}>
                         <Typography variant="h3">
                             {getDurationTimestamp(metadata.duration)}
                         </Typography>
@@ -59,6 +59,6 @@ export default ({ release, track, index }: ViewProps) => {
                     </Grid>
                 </Grid>
             </Box>
-        </Box>
+        </TrackRow>
     )
 }
