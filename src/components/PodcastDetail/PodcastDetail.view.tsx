@@ -7,6 +7,7 @@ import React from 'react'
 import RichText from '~/components/RichText'
 import Socials from '~/components/Socials'
 import { TrackNumber } from './PodcastDetail.style'
+import { getDurationTimestamp } from '~/utils/date'
 import { maxContentWidth } from '~/styles/sizes'
 
 type ViewProps = {
@@ -14,26 +15,16 @@ type ViewProps = {
 }
 
 export default ({ podcast }: ViewProps) => {
-    const { title, introduction, image, trackList, socials } = podcast
+    const { uid, title, introduction, image, trackList, socials, track } = podcast
 
     return (
         <Box maxWidth={`${maxContentWidth}rem`}>
-            <Grid container spacing={5}>
-                <Grid item>
-                    <Box display="flex" alignItems="center" height="100%">
-                        <Typography variant="h3">{title.toUpperCase()}</Typography>
-                    </Box>
-                </Grid>
-                <Grid item>
-                    <ContentPlayButton
-                        content={podcast}
-                        trackIndex={0}
-                        isLight={true}
-                        text="PLAY"
-                    />
-                </Grid>
-            </Grid>
-
+            <Typography variant="h3">
+                {title.toUpperCase()}, {uid}
+            </Typography>
+            <ContentPlayButton content={podcast} trackIndex={0} isLight={true} text="PLAY" />
+            <br />
+            <br />
             <Hidden mdUp>
                 <br />
                 <Grid container>
@@ -42,10 +33,11 @@ export default ({ podcast }: ViewProps) => {
                     </Grid>
                 </Grid>
             </Hidden>
-
             <br />
             <RichText json={introduction.json} variant="h3" />
-
+            <br />
+            <br />
+            <Typography variant="h3">TRACKLIST</Typography>
             <br />
             {trackList.map((trackListTrack, index) => (
                 <Box display="flex">
@@ -66,11 +58,12 @@ export default ({ podcast }: ViewProps) => {
                 </Box>
             ))}
             <br />
+            <br />
+            <br />
             {socials && (
                 <>
-                    <Typography variant="h3" gutterBottom>
-                        FOLLOW {title.toUpperCase()}
-                    </Typography>
+                    <Typography variant="h3">FOLLOW {title.toUpperCase()}</Typography>
+                    <br />
                     <Socials urls={socials} />
                 </>
             )}
