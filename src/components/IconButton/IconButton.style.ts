@@ -16,6 +16,9 @@ export const Button = styled.span<{
         cursor: ${isDisabled ? 'auto' : 'pointer'};
         color: ${isLight ? 'white' : 'black'};
         opacity: ${isDisabled ? disabledOpacity : 1};
+        * {            
+            opacity: ${isDisabled ? disabledOpacity : 1};
+        }
         text-shadow: ${isLight ? darkShadow : lightShadow};
 
         ${
