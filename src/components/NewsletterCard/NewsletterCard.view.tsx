@@ -3,6 +3,7 @@ import {
     AspectRatio,
     Content,
     EmailInput,
+    EmailInputContainer,
     ErrorMessage,
     InputGrid,
     Title,
@@ -49,25 +50,29 @@ export default () => {
                                         {isInvalid ? 'Please enter a valid email' : ''}
                                     </Typography>
                                 </ErrorMessage>
-                                <Typography variant={isMobileOnly ? 'body1' : 'h5'}>
-                                    <EmailInput
-                                        inputRef={emailInput}
-                                        type="email"
-                                        isInvalid={isInvalid}
-                                        value={email}
-                                        onChange={onEmailChanged}
-                                        onKeyDown={onKeyDown}
-                                        spellCheck={false}
-                                        InputProps={{
-                                            disableUnderline: true,
-                                            style: {
-                                                fontSize: 'inherit',
-                                                fontWeight: 'inherit',
-                                                lineHeight: 'inherit',
-                                            },
-                                        }}
-                                        placeholder="EMAIL"
-                                    />
+                                <Typography
+                                    variant={isMobileOnly ? 'body1' : 'h5'}
+                                    component="span"
+                                >
+                                    <EmailInputContainer isInvalid={isInvalid}>
+                                        <EmailInput
+                                            inputRef={emailInput}
+                                            type="email"
+                                            value={email}
+                                            onChange={onEmailChanged}
+                                            onKeyDown={onKeyDown}
+                                            spellCheck={false}
+                                            InputProps={{
+                                                disableUnderline: true,
+                                                style: {
+                                                    fontSize: 'inherit',
+                                                    fontWeight: 'inherit',
+                                                    lineHeight: 'inherit',
+                                                },
+                                            }}
+                                            placeholder="EMAIL"
+                                        />
+                                    </EmailInputContainer>
                                 </Typography>
                             </Grid>
                             <Grid item xs={12}>

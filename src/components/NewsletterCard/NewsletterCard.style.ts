@@ -21,7 +21,13 @@ export const InputGrid = styled(Grid)`
     bottom: 0;
 `
 
-export const EmailInput = styled(TextField)<{ isInvalid: boolean }>`
+export const EmailInputContainer = styled.div<{ isInvalid: boolean }>`
+    input {
+        color: ${({ isInvalid }) => (isInvalid ? 'red' : 'black')};
+    }
+`
+
+export const EmailInput = styled(TextField)`
     width: 100%;
 
     label {
@@ -31,7 +37,6 @@ export const EmailInput = styled(TextField)<{ isInvalid: boolean }>`
 
     input {
         background-color: white;
-        color: ${({ isInvalid }) => (isInvalid ? 'red' : 'black')};
         text-shadow: none;
         padding-left: ${({ theme }) => theme.spacing(4)};
 
