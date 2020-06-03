@@ -1,9 +1,10 @@
-import { Box, Grid, Typography } from '@material-ui/core'
-import React, { useEffect, useRef, useState } from 'react'
+import { Grid, Typography } from '@material-ui/core'
 
 import FullSizeGrid from '~/components/FullSizeGrid'
 import Head from '~/components/Head'
 import Overlay from '~/components/Overlay'
+import React from 'react'
+import RichText from '~/components/RichText'
 import Scrollable from '~/components/Scrollable'
 import { Video } from '~/cms/types'
 import YouTubeEmbed from '~/components/YouTubeEmbed'
@@ -32,9 +33,7 @@ export default ({ data }: Props) => {
                             <Typography variant="h5" align="center">
                                 {artist.title}, <i>{title}</i>
                             </Typography>
-                            <Typography variant="h5" align="center">
-                                {credits.credits}
-                            </Typography>
+                            <RichText json={credits.json} variant="h5" align="center" />
                         </Grid>
                     </FullSizeGrid>
                 </Scrollable>

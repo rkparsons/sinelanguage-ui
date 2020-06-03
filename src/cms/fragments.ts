@@ -175,7 +175,7 @@ export const videoFragment = graphql`
             description
         }
 		credits {
-            credits
+            json
         }
 		image {
             fluid(maxWidth: 2400, quality: 90) {

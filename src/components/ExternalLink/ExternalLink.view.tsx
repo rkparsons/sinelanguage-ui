@@ -7,15 +7,16 @@ type ViewProps = {
     href: string
     title?: string
     icon?: ReactNode
+    variant?: 'h3' | 'h5' | 'body1'
 }
 
-export default ({ href, title, icon }: ViewProps) => (
+export default ({ href, title, icon, variant = 'h3' }: ViewProps) => (
     <Link href={href} target="_blank" rel="noopener">
         <Grid container alignItems="center" spacing={2}>
             {icon && <Grid item>{icon}</Grid>}
             {title && (
                 <Grid item>
-                    <Typography variant="h3">{title.toUpperCase()}</Typography>
+                    <Typography variant={variant}>{title}</Typography>
                 </Grid>
             )}
         </Grid>

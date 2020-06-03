@@ -20,6 +20,7 @@ export const VideoContainer = styled.div`
 export const Backdrop = styled.div<{ isVisible: boolean }>`
     position: absolute;
     background-color: black;
+    pointer-events: none;
     top: 0;
     left: 0;
     width: 100%;

@@ -3,11 +3,19 @@ import {
     DateField,
     FluidImageField,
     LinkField,
+    RichTextField,
     SymbolField,
     TextField,
     VideoField,
 } from '../../../cms/models'
-import { imageFileSize, unique, url, videoFileSize } from '../../../cms/validations'
+import {
+    imageFileSize,
+    marks,
+    nodeTypes,
+    unique,
+    url,
+    videoFileSize,
+} from '../../../cms/validations'
 
 import Artist from './artist'
 import { FluidImageType } from '../../../cms/constants'
@@ -46,10 +54,11 @@ export default new ContentfulContentType({
             widgetId: 'multipleLine',
             helpText: 'SEO friendly description used when linking to this release.',
         }),
-        new TextField({
+        new RichTextField({
             name: 'Credits',
-            widgetId: 'multipleLine',
-            helpText: 'Credit any artists involved.',
+            validations: [nodeTypes(['hyperlink']), marks([])],
+            widgetId: 'richTextEditor',
+            helpText: 'Please use a single line in the format: Name1 (Role1), Name2 (Role2)...',
         }),
         new FluidImageField({
             name: 'Image',

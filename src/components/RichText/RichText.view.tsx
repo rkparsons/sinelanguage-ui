@@ -1,23 +1,38 @@
+import { BLOCKS, INLINES } from '@contentful/rich-text-types'
 import { Options, documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
-import { BLOCKS } from '@contentful/rich-text-types'
 import { Document } from '@contentful/rich-text-types/dist/types/types'
+import ExternalLink from '~/components/ExternalLink'
 import React from 'react'
 import { Typography } from '@material-ui/core'
 
-interface ViewProps {
+type ViewProps = {
     json: Document
-    variant: 'h3' | 'body1'
+    variant: 'h3' | 'h5' | 'body1'
+    align?: 'center' | 'left' | 'right'
 }
 
-export default ({ json, variant }: ViewProps) => {
+type HyperLinkContent = {
+    value: string
+}
+
+export default ({ json, variant, align = 'left' }: ViewProps) => {
     const options: Options = {
         renderNode: {
             [BLOCKS.PARAGRAPH]: (node, children) => (
                 <>
-                    <Typography variant={variant}>{children}</Typography>
+                    <Typography variant={variant} align={align}>
+                        {children}
+                    </Typography>
                     <br />
                 </>
+            ),
+            [INLINES.HYPERLINK]: (node) => (
+                <ExternalLink
+                    href={node.data.uri}
+                    title={(node.content[0] as HyperLinkContent).value}
+                    variant={variant}
+                />
             ),
         },
     }

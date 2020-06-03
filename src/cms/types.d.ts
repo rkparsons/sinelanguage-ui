@@ -139,7 +139,7 @@ export type Video = {
         description: string
     }
 	credits: {
-        credits: string
+        json: Document
     }
 	image: {
         fluid: FluidObject

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 export const Link = styled.a`
     cursor: pointer;
     color: white;
-    display: block;
+    display: inline-block;
     width: auto;
 
     &:hover {
