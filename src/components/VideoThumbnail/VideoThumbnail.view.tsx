@@ -1,11 +1,11 @@
-import { Grid, Typography } from '@material-ui/core'
+import { Box, Grid, Typography } from '@material-ui/core'
 
 import MediaLink from '~/components/MediaLink'
 import React from 'react'
 import TeaserVideo from '~/components/TeaserVideo'
+import ThumbnailText from '~/components/ThumbnailText'
 import { Video } from '~/cms/types'
 import { getUrl } from '~/utils/content'
-import moment from 'moment'
 
 type ViewProps = {
     video: Video
@@ -16,9 +16,11 @@ export default ({ video }: ViewProps) => (
         <MediaLink url={getUrl(video)}>
             <TeaserVideo src={video.teaserVideo.file.url} />
         </MediaLink>
-        <Typography variant="body1">
-            <i>{video.title}</i>
-        </Typography>
+        <ThumbnailText>
+            <Typography variant="body1">
+                <i>{video.title}</i>
+            </Typography>
+        </ThumbnailText>
         <br />
     </Grid>
 )
