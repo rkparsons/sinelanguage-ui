@@ -12,6 +12,8 @@ export default ({ url }: ViewProps) => {
         ? 'fa fa-facebook-square'
         : url.includes(Social.SPOTIFY)
         ? 'fa fa-spotify'
+        : url.includes(Social.BANDCAMP)
+        ? 'fa fa-bandcamp'
         : url.includes(Social.SOUNDCLOUD)
         ? 'fa fa-soundcloud'
         : url.includes(Social.INSTAGRAM)

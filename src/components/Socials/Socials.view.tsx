@@ -16,7 +16,7 @@ export default ({ urls }: ViewProps) => {
     }
 
     return (
-        <Grid container spacing={2}>
+        <Grid container>
             {urls.map((url, index) => (
                 <Grid item key={index}>
                     <Typography variant="h3">
