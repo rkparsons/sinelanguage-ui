@@ -1,6 +1,7 @@
-import { Button, Grid, Typography } from '@material-ui/core'
+import { Box, Grid, Typography } from '@material-ui/core'
 import { EmailInput, InputGrid } from './Subscribe.style'
 
+import IconButton from '~/components/IconButton'
 import React from 'react'
 import useMailchimp from '~/hooks/useMailchimp'
 
@@ -23,26 +24,37 @@ export default () => {
             {!isSuccess && (
                 <InputGrid container>
                     <Grid item xs={12}>
-                        <EmailInput
-                            inputRef={emailInput}
-                            label={isInvalid ? 'Please enter a valid email' : 'EMAIL'}
-                            type="email"
-                            value={email}
-                            error={isInvalid}
-                            onChange={onEmailChanged}
-                            onKeyDown={onKeyDown}
-                        />
+                        <Typography variant="h3">
+                            <EmailInput
+                                inputRef={emailInput}
+                                type="email"
+                                value={email}
+                                error={isInvalid}
+                                onChange={onEmailChanged}
+                                onKeyDown={onKeyDown}
+                                InputProps={{
+                                    style: {
+                                        fontSize: 'inherit',
+                                        fontWeight: 'inherit',
+                                        lineHeight: 'inherit',
+                                    },
+                                }}
+                                placeholder="EMAIL"
+                            />
+                        </Typography>
                     </Grid>
-                    <Grid item xs={12} style={{ textAlign: 'right' }}>
-                        <Button
-                            color="secondary"
-                            size="large"
-                            disabled={isInvalid || !email}
+                    <Box display="flex" justifyContent="flex-end" width="100%">
+                        <IconButton
+                            label={
+                                <Typography variant="h3" color="secondary">
+                                    SUBMIT
+                                </Typography>
+                            }
+                            isLight={true}
+                            isDisabled={isInvalid || !email}
                             onClick={onSubmit}
-                        >
-                            SUBMIT
-                        </Button>
-                    </Grid>
+                        />
+                    </Box>
                 </InputGrid>
             )}
             {isSuccess && (
