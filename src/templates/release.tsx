@@ -23,7 +23,7 @@ export default ({ data, location }: Props) => {
     const { __typename, uid, title, description, image, artist } = data.contentfulRelease
     const isCart = location.hash === '#/cart'
 
-    const relatedReleases = sortByDate([
+    const relatedReleaseThumbnails = sortByDate([
         ...(data.contentfulRelease.artist.release || []),
         ...(data.contentfulRelease.artist.video || []),
     ])
@@ -49,7 +49,7 @@ export default ({ data, location }: Props) => {
                         <Scrollable isWithMargin={true}>
                             <ReleaseDetail
                                 release={data.contentfulRelease}
-                                relatedReleases={relatedReleases}
+                                relatedReleaseThumbnails={relatedReleaseThumbnails}
                             />
                         </Scrollable>
                     </Grid>

@@ -5,7 +5,6 @@ import MediaLink from '~/components/MediaLink'
 import React from 'react'
 import { Release } from '~/cms/types'
 import { getUrl } from '~/utils/content'
-import moment from 'moment'
 
 type ViewProps = {
     release: Release
@@ -19,7 +18,6 @@ export default ({ release }: ViewProps) => (
         <Typography variant="body1">
             <i>{release.title}</i>
         </Typography>
-        <Typography variant="body1">{moment(release.date).format('MMM. DD, YYYY')}</Typography>
         <br />
     </Grid>
 )

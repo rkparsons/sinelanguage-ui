@@ -11,10 +11,10 @@ import { maxContentWidth } from '~/styles/sizes'
 
 type ViewProps = {
     release: Release
-    relatedReleases: JSX.Element[]
+    relatedReleaseThumbnails: JSX.Element[]
 }
 
-export default ({ release, relatedReleases }: ViewProps) => {
+export default ({ release, relatedReleaseThumbnails }: ViewProps) => {
     const { artist, title, uid, format, image, tracks, products } = release
 
     return (
@@ -55,17 +55,14 @@ export default ({ release, relatedReleases }: ViewProps) => {
             />
             <br />
             <br />
+            <br />
+
+            <Typography variant="h3">RELATED</Typography>
+            <br />
             <Grid container>
                 <ContentThumbnail content={artist} />
+                {relatedReleaseThumbnails}
             </Grid>
-            <br />
-            {relatedReleases.length > 0 && (
-                <>
-                    <Typography variant="h3">RELATED</Typography>
-                    <br />
-                    <Grid container>{relatedReleases}</Grid>
-                </>
-            )}
         </Box>
     )
 }

@@ -19,7 +19,6 @@ export default ({ video }: ViewProps) => (
         <Typography variant="body1">
             <i>{video.title}</i>
         </Typography>
-        <Typography variant="body1">{moment(video.date).format('MMM. DD, YYYY')}</Typography>
         <br />
     </Grid>
 )
