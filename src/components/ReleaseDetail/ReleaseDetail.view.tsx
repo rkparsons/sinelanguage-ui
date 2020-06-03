@@ -53,6 +53,21 @@ export default ({ release, relatedReleaseThumbnails }: ViewProps) => {
                 isLight={true}
                 isDescription={true}
             />
+
+            <br />
+            <br />
+            <br />
+            <Grid container>
+                {release.products.map((product) =>
+                    product.image ? (
+                        <Grid item xs={4}>
+                            <Image title={title} alt={title} sizes={{ ...product.image.fluid }} />
+                        </Grid>
+                    ) : (
+                        <></>
+                    )
+                )}
+            </Grid>
             <br />
             <br />
             <br />

@@ -85,6 +85,11 @@ export const productFragment = graphql`
             description
         }
 		fileGUID
+		image {
+            fluid(maxWidth: 2400, quality: 90) {
+                ...GatsbyContentfulFluid_withWebp
+            }
+        }
 	}
 `
 

@@ -67,6 +67,7 @@ export const typeDefs = `
 		price: Float
 		description: contentfulProductDescriptionTextNode
 		fileGUID: String
+		image: ContentfulAsset
 	}
 
 	type contentfulReleaseDescriptionTextNode implements Node {

@@ -1,6 +1,14 @@
-import { ContentfulContentType, DecimalField, SymbolField, TextField } from '../../../cms/models'
+import {
+    ContentfulContentType,
+    DecimalField,
+    FluidImageField,
+    SymbolField,
+    TextField,
+} from '../../../cms/models'
 
+import { FluidImageType } from '../../../cms/constants'
 import ProductFormat from '../../constants/productFormat'
+import { imageFileSize } from '../../../cms/validations'
 
 export default new ContentfulContentType({
     id: 'product',
@@ -35,6 +43,14 @@ export default new ContentfulContentType({
             widgetId: 'singleLine',
             helpText: 'The digital download identier located in the Snipcart dashboard',
             required: false,
+        }),
+        new FluidImageField({
+            name: 'Image',
+            validations: [imageFileSize],
+            required: false,
+            maxWidth: 2400,
+            quality: 90,
+            fluidImageType: FluidImageType.WEBP_BLUR_UP,
         }),
     ],
 })

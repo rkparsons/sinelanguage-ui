@@ -71,6 +71,9 @@ export type Product = {
         description: string
     }
 	fileGUID: string
+	image: {
+        fluid: FluidObject
+    }
 }
 
 export type Release = {
