@@ -1,5 +1,5 @@
 import { AddLabel, ProductRow } from './ReleaseProducts.style'
-import { Box, Grid, Typography } from '@material-ui/core'
+import { Box, Grid, Hidden, Typography } from '@material-ui/core'
 import { Product, Release } from '~/cms/types'
 
 import CheckoutButton from '~/components/CheckoutButton'
@@ -47,54 +47,61 @@ export default ({
             )}
 
             {products.map(({ id, title, format, price, description, fileGUID }, index) => (
-                <ProductRow display="flex" width="100%" key={index} alignItems="center">
-                    <Box flexGrow={1} minWidth={isLarge ? '350px' : '200px'}>
-                        <Grid container>
-                            <Grid item xs={isDescription ? 3 : 12}>
-                                <Typography variant={isLarge ? 'h3' : 'body1'}>{format}</Typography>
-                            </Grid>
-                            {isDescription && (
-                                <Grid item xs={9}>
+                <>
+                    <ProductRow display="flex" width="100%" key={index} alignItems="center">
+                        <Box flexGrow={1} minWidth={isLarge ? '350px' : '200px'}>
+                            <Grid container>
+                                <Grid item xs={isDescription ? 3 : 12}>
                                     <Typography variant={isLarge ? 'h3' : 'body1'}>
-                                        {description.description}
+                                        {format}
                                     </Typography>
                                 </Grid>
-                            )}
-                        </Grid>
-                    </Box>
+                                {isDescription && (
+                                    <Grid item xs={9}>
+                                        <Typography variant={isLarge ? 'h3' : 'body1'}>
+                                            {description.description}
+                                        </Typography>
+                                    </Grid>
+                                )}
+                            </Grid>
+                        </Box>
 
-                    <Box
-                        minWidth={isLarge ? '100px' : '75px'}
-                        display="flex"
-                        justifyContent="flex-end"
-                    >
-                        {cart.items.find((cartItem) => cartItem.id === id) ? (
-                            <Typography variant={isLarge ? 'h3' : 'body1'} color="secondary">
-                                ADDED
-                            </Typography>
-                        ) : (
-                            <IconButton
-                                label={
-                                    <Typography variant={isLarge ? 'h3' : 'body1'}>
-                                        <AddLabel price={`£${price.toFixed(2)}`} />
-                                    </Typography>
-                                }
-                                onClick={() => {}}
-                                isLight={isLight}
-                                cartItem={{
-                                    id,
-                                    price,
-                                    url: getUrl(release),
-                                    name: title,
-                                    description: description.description,
-                                    imageUrl: image.fluid.src,
-                                    fileGUID,
-                                }}
-                                className="snipcart-add-item"
-                            />
-                        )}
-                    </Box>
-                </ProductRow>
+                        <Box
+                            minWidth={isLarge ? '100px' : '75px'}
+                            display="flex"
+                            justifyContent="flex-end"
+                        >
+                            {cart.items.find((cartItem) => cartItem.id === id) ? (
+                                <Typography variant={isLarge ? 'h3' : 'body1'} color="secondary">
+                                    ADDED
+                                </Typography>
+                            ) : (
+                                <IconButton
+                                    label={
+                                        <Typography variant={isLarge ? 'h3' : 'body1'}>
+                                            <AddLabel price={`£${price.toFixed(2)}`} />
+                                        </Typography>
+                                    }
+                                    onClick={() => {}}
+                                    isLight={isLight}
+                                    cartItem={{
+                                        id,
+                                        price,
+                                        url: getUrl(release),
+                                        name: title,
+                                        description: description.description,
+                                        imageUrl: image.fluid.src,
+                                        fileGUID,
+                                    }}
+                                    className="snipcart-add-item"
+                                />
+                            )}
+                        </Box>
+                    </ProductRow>
+                    <Hidden smUp>
+                        <br />
+                    </Hidden>
+                </>
             ))}
             {isProductInCart && (
                 <>
