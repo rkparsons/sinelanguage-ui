@@ -1,5 +1,5 @@
 import { Artist, Release, Video } from '~/cms/types'
-import { Grid, Hidden } from '@material-ui/core'
+import { Box, Grid, Hidden } from '@material-ui/core'
 
 import Centered from '~/components/Centered'
 import ContentCardMedia from '~/components/ContentCardMedia'
@@ -36,9 +36,17 @@ export default ({ data, location }: Props) => {
                 <Grid container>
                     <Hidden smDown>
                         <Grid item xs={6}>
-                            <Centered size={6}>
-                                <ContentCardMedia content={data.contentfulRelease} />
-                            </Centered>
+                            <Box
+                                display="flex"
+                                width="100%"
+                                height="100%"
+                                justifyContent="center"
+                                alignItems="center"
+                            >
+                                <Box width="50vh">
+                                    <ContentCardMedia content={data.contentfulRelease} />
+                                </Box>
+                            </Box>
                         </Grid>
                     </Hidden>
                     <Grid item xs={12} md={6}>
