@@ -101,7 +101,7 @@ export default ({ hideTimeout }: ViewProps) => {
                                         <Box height="20%">
                                             <StopButton />
                                         </Box>
-                                        <Box height="80%" paddingTop="15px" paddingBottom="8px">
+                                        <Box height="80%" paddingTop="15px" paddingBottom="12px">
                                             {isFullSizePlayer && (
                                                 <VolumeSlider
                                                     isVisible={
