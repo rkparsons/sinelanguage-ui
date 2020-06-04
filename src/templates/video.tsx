@@ -4,6 +4,7 @@ import FullSizeGrid from '~/components/FullSizeGrid'
 import Head from '~/components/Head'
 import Overlay from '~/components/Overlay'
 import React from 'react'
+import ResponsivePaddingTop from '~/components/ResponsivePaddingTop'
 import RichText from '~/components/RichText'
 import Scrollable from '~/components/Scrollable'
 import { Video } from '~/cms/types'
@@ -23,7 +24,7 @@ export default ({ data }: Props) => {
         <>
             <Head title={title} description={description.description} image={image.fluid.src} />
             <Overlay>
-                <Scrollable isWithMargin={false}>
+                <ResponsivePaddingTop>
                     <FullSizeGrid justify="center">
                         <Grid item xs={12} sm={11} md={10} lg={8} xl={7}>
                             <YouTubeEmbed artist={artist.title} title={title} src={srcURL} />
@@ -36,7 +37,7 @@ export default ({ data }: Props) => {
                             <RichText json={credits.json} variant="h5" align="center" />
                         </Grid>
                     </FullSizeGrid>
-                </Scrollable>
+                </ResponsivePaddingTop>
             </Overlay>
         </>
     )

@@ -30,6 +30,7 @@ export default withWidth()(({ artist, title, width, src }: ViewProps) => {
                 <ReactPlayer
                     url={src}
                     controls={true}
+                    height="auto"
                     playsinline={false}
                     config={{
                         youtube: {

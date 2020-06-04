@@ -1,4 +1,3 @@
-import { Grid } from '@material-ui/core'
 import styled from 'styled-components'
 
 export const VideoContainer = styled.div`
@@ -20,7 +19,7 @@ export const VideoContainer = styled.div`
 export const Backdrop = styled.div<{ isVisible: boolean }>`
     position: absolute;
     background-color: black;
-    pointer-events: none;
+    pointer-events: ${({ isVisible }) => (isVisible ? 'all' : 'none')};
     top: 0;
     left: 0;
     width: 100%;
