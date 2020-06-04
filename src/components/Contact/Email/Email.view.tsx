@@ -13,7 +13,7 @@ type ViewProps = {
 export default ({ title, email }: ViewProps) => (
     <>
         <Hidden mdUp>
-            <Box>
+            <Box display="flex">
                 <ExternalLink href={`mailto:${email}`} title={title} icon={<MailOutline />} />
             </Box>
         </Hidden>

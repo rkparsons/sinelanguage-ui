@@ -1,4 +1,4 @@
-import { Grid, Typography } from '@material-ui/core'
+import { Box, Grid, Typography } from '@material-ui/core'
 import React, { ReactNode } from 'react'
 
 import { Link } from './ExternalLink.style'
@@ -10,15 +10,25 @@ type ViewProps = {
     variant?: 'h3' | 'h5' | 'body1'
 }
 
-export default ({ href, title, icon, variant = 'h3' }: ViewProps) => (
-    <Link href={href} target="_blank" rel="noopener">
-        <Grid container alignItems="center" spacing={2}>
-            {icon && <Grid item>{icon}</Grid>}
-            {title && (
-                <Grid item>
+export default ({ href, title, icon, variant = 'h3' }: ViewProps) => {
+    if (icon) {
+        return (
+            <Link href={href} target="_blank" rel="noopener">
+                <Box display="flex" alignItems="center">
+                    <Box paddingRight="1rem" component="span" display="flex" alignItems="center">
+                        {icon}
+                    </Box>
                     <Typography variant={variant}>{title}</Typography>
-                </Grid>
-            )}
-        </Grid>
-    </Link>
-)
+                </Box>
+            </Link>
+        )
+    }
+
+    return (
+        <>
+            <Link href={href} target="_blank" rel="noopener">
+                <Typography variant={variant}>{title}</Typography>
+            </Link>
+        </>
+    )
+}
