@@ -25,7 +25,9 @@ export default ({ release }: ViewProps) => {
             </MediaLink>
             <ContentCardDetail>
                 <Typography variant="body1">
-                    {release.originalArtist || artist.title}, <i>{title}</i>
+                    <b>
+                        {release.originalArtist || artist.title}, <i>{title}</i>
+                    </b>
                 </Typography>
                 <Grid container spacing={2}>
                     {/* <Grid item xs={1}></Grid> */}

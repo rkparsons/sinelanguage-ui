@@ -8,7 +8,6 @@ type DashboardProps = {
 export const Dashboard = styled.div<DashboardProps>`
     filter: blur(${({ isBlur }) => (isBlur ? 12 : 0)}px);
     transition: ${pageTransition}s filter linear;
-    padding-bottom: ${({ theme }) => theme.spacing(40)};
 
     :after {
         content: ' ';
