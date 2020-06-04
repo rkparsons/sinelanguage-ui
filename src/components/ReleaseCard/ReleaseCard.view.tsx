@@ -41,7 +41,7 @@ export default ({ release }: ViewProps) => {
                             />
                         </Box>
                     </Grid>
-                    {allProductDownloadsAvailable && (
+                    {true && (
                         <Grid item>
                             <ProductMenu
                                 release={release}

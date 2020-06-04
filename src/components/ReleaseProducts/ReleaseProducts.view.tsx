@@ -51,17 +51,22 @@ export default ({
                     <ProductRow display="flex" width="100%" key={index} alignItems="center">
                         <Box flexGrow={1}>
                             <Grid container>
-                                <Grid item xs={isDescription ? 3 : 12}>
+                                <Grid item xs={12} md={isDescription ? 3 : 12}>
                                     <Typography variant={isLarge ? 'h3' : 'body1'}>
-                                        {format}
+                                        {format}{' '}
+                                        {isDescription && (
+                                            <Hidden mdUp>({description.description})</Hidden>
+                                        )}
                                     </Typography>
                                 </Grid>
                                 {isDescription && (
-                                    <Grid item xs={9}>
-                                        <Typography variant={isLarge ? 'h3' : 'body1'}>
-                                            {description.description}
-                                        </Typography>
-                                    </Grid>
+                                    <Hidden smDown>
+                                        <Grid item xs={9}>
+                                            <Typography variant={isLarge ? 'h3' : 'body1'}>
+                                                {description.description}
+                                            </Typography>
+                                        </Grid>
+                                    </Hidden>
                                 )}
                             </Grid>
                         </Box>
