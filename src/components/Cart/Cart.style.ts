@@ -131,7 +131,7 @@ export const OverrideCartStyles = styled.div`
                 display: none;
             }
             :after {
-                content: 'close';
+                content: 'Close';
             }
         }
     }
