@@ -62,7 +62,7 @@ export default ({ release, relatedReleases }: ViewProps) => {
                 {release.products
                     .filter((product) => product.image)
                     .map((product, index) => (
-                        <Grid item xs={4} key={index}>
+                        <Grid item xs={6} sm={4} key={index}>
                             <Image title={title} alt={title} sizes={{ ...product.image.fluid }} />
                         </Grid>
                     ))}

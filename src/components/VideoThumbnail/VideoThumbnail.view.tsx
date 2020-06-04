@@ -12,7 +12,7 @@ type ViewProps = {
 }
 
 export default ({ video }: ViewProps) => (
-    <Grid item xs={8} sm={6} md={4} lg={6}>
+    <Grid item xs={12} sm={8} lg={6}>
         <MediaLink url={getUrl(video)}>
             <TeaserVideo src={video.teaserVideo.file.url} />
         </MediaLink>

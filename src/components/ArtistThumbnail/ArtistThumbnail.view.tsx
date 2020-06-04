@@ -12,7 +12,7 @@ type ViewProps = {
 }
 
 export default ({ artist }: ViewProps) => (
-    <Grid item xs={4} sm={3} md={2} lg={3}>
+    <Grid item xs={6} sm={4} lg={3}>
         <MediaLink url={getUrl(artist)}>
             <Image title={artist.title} alt={artist.title} sizes={{ ...artist.image.fluid }} />
         </MediaLink>
