@@ -60,7 +60,7 @@ export default withWidth()(({ title, items, width, isLargePaddingOnMobile = true
                         alignItems="center"
                         key={index}
                     >
-                        <Box width={item.__typename === ContentType.VIDEO ? '80vw' : '40vw'}>
+                        <Box width={item.__typename === ContentType.VIDEO ? '160vh' : '80vh'}>
                             <Collapse
                                 in={item === activeItem}
                                 timeout={{
