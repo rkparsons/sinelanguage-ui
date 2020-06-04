@@ -11,6 +11,7 @@ export default (isDarkMode = false) =>
             fontFamily: 'HelveticaNowText',
             allVariants: {
                 wordWrap: 'break-word',
+                fontWeight: 'normal',
                 lineHeight: 1.3,
             },
             body1: { ...responsiveFont(15, 15, 13.5, 14, 15), fontWeight: 'bold' },
