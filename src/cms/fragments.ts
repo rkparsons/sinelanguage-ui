@@ -28,8 +28,12 @@ export const eventFragment = graphql`
 		id
 		title
 		uid
+		location
 		description {
             description
+        }
+		details {
+            json
         }
 		artists
 		image {

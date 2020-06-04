@@ -1,10 +1,10 @@
 import { BLOCKS, INLINES } from '@contentful/rich-text-types'
+import { Box, Typography } from '@material-ui/core'
 import { Options, documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import { Document } from '@contentful/rich-text-types/dist/types/types'
 import ExternalLink from '~/components/ExternalLink'
 import React from 'react'
-import { Typography } from '@material-ui/core'
 
 type ViewProps = {
     json: Document
@@ -20,12 +20,12 @@ export default ({ json, variant, align = 'left' }: ViewProps) => {
     const options: Options = {
         renderNode: {
             [BLOCKS.PARAGRAPH]: (node, children) => (
-                <>
+                <Box whiteSpace="pre-wrap">
                     <Typography variant={variant} align={align}>
                         {children}
                     </Typography>
                     <br />
-                </>
+                </Box>
             ),
             [INLINES.HYPERLINK]: (node) => (
                 <ExternalLink

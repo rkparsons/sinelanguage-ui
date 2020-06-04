@@ -24,8 +24,12 @@ export type Event = {
 	id: string
 	title: string
 	uid: string
+	location: string
 	description: {
         description: string
+    }
+	details: {
+        json: Document
     }
 	artists: string[]
 	image: {

@@ -2,6 +2,7 @@ import { Box, Grid, Hidden, Typography } from '@material-ui/core'
 
 import { Event } from '~/cms/types'
 import React from 'react'
+import RichText from '~/components/RichText'
 import TeaserVideo from '~/components/TeaserVideo'
 import { maxContentWidth } from '~/styles/sizes'
 import moment from 'moment'
@@ -11,7 +12,7 @@ type ViewProps = {
 }
 
 export default ({ event }: ViewProps) => {
-    const { title, date, image, description, teaserVideo } = event
+    const { title, date, image, details, teaserVideo } = event
     return (
         <Box maxWidth={`${maxContentWidth}rem`}>
             <Typography variant="h3">{title.toUpperCase()}</Typography>
@@ -29,7 +30,7 @@ export default ({ event }: ViewProps) => {
                 <br />
             </Hidden>
 
-            <Typography variant="h3">{description.description}</Typography>
+            <RichText json={details.json} variant="h3" />
         </Box>
     )
 }

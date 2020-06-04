@@ -10,20 +10,25 @@ type ViewProps = {
 }
 
 export default ({ event }: ViewProps) => {
-    const { date, title, artists } = event
+    const { date, title, artists, location } = event
 
     return (
-        <>
-            <Typography variant="h3">
-                <Date>{moment(date).format('MMM. DD, YYYY')}</Date>
-                <Hidden smDown>
-                    {title} – {artists.join(', ')}
+        <Grid container>
+            <Grid item xs={12} md={9}>
+                <Typography variant="h3">
+                    <Date>{moment(date).format('MMM. DD, YYYY')}</Date>
+                    <Hidden smDown>
+                        {title} – {artists.join(', ')}
+                    </Hidden>
+                </Typography>
+                <Hidden mdUp>
+                    <Typography variant="h3">{title}</Typography>
+                    <Typography variant="h3">{artists.join(', ')}</Typography>
                 </Hidden>
-            </Typography>
-            <Hidden mdUp>
-                <Typography variant="h3">{title}</Typography>
-                <Typography variant="h3">{artists.join(', ')}</Typography>
-            </Hidden>
-        </>
+            </Grid>
+            <Grid item xs={12} md={3}>
+                <Typography variant="h3">{location}</Typography>
+            </Grid>
+        </Grid>
     )
 }

@@ -2,12 +2,13 @@ import {
     ContentfulContentType,
     DateField,
     FluidImageField,
+    RichTextField,
     SymbolArrayField,
     SymbolField,
     TextField,
     VideoField,
 } from '../../../cms/models'
-import { imageFileSize, unique, videoFileSize } from '../../../cms/validations'
+import { imageFileSize, marks, nodeTypes, unique, videoFileSize } from '../../../cms/validations'
 
 import { FluidImageType } from '../../../cms/constants'
 
@@ -27,10 +28,18 @@ export default new ContentfulContentType({
             validations: [unique],
             widgetId: 'slugEditor',
         }),
+        new SymbolField({
+            name: 'Location',
+        }),
         new TextField({
             name: 'Description',
             widgetId: 'multipleLine',
             helpText: 'SEO friendly description used when linking to this event.',
+        }),
+        new RichTextField({
+            name: 'Details',
+            validations: [nodeTypes(['hyperlink']), marks(['italic'])],
+            widgetId: 'richTextEditor',
         }),
         new SymbolArrayField({
             name: 'Artists',

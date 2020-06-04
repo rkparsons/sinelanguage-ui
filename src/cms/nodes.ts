@@ -22,10 +22,17 @@ export const typeDefs = `
         description: String
     }
 
+	type contentfulEventDetailsRichTextNode implements Node {
+        nodeType: String
+        json: JSON
+    }
+
 	type ContentfulEvent implements Node {
 		title: String
 		uid: String
+		location: String
 		description: contentfulEventDescriptionTextNode
+		details: contentfulEventDetailsRichTextNode
 		artists: [String]
 		image: ContentfulAsset
 		teaserVideo: ContentfulAsset
