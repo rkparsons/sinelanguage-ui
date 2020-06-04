@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 
 import Column from '~/components/Column'
 import ContentCardDetail from '~/components/ContentCardDetail'
@@ -20,12 +20,8 @@ export default ({ podcast }: ViewProps) => {
                 <ContentCardMedia content={podcast} />
             </MediaLink>
             <ContentCardDetail>
-                <Typography variant="body1">
-                    <Box fontWeight="fontWeightBold">{podcast.title}, Podcast</Box>
-                </Typography>
-                <Typography variant="body1">
-                    <Box fontWeight="fontWeightBold">{podcast.uid}</Box>
-                </Typography>
+                <Typography variant="body1">{podcast.title}, Podcast</Typography>
+                <Typography variant="body1">{podcast.uid}</Typography>
                 <Grid container spacing={2}>
                     {/* <Grid item xs={1}></Grid> */}
                     <Grid item>

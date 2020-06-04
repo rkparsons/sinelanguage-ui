@@ -15,7 +15,7 @@ type ViewProps = {
 }
 
 export default ({ release }: ViewProps) => {
-    const { title, artist, products } = release
+    const { uid, title, artist, products } = release
     const allProductDownloadsAvailable = products && products.every((product) => product.fileGUID)
 
     return (
@@ -25,10 +25,9 @@ export default ({ release }: ViewProps) => {
             </MediaLink>
             <ContentCardDetail>
                 <Typography variant="body1">
-                    <b>
-                        {release.originalArtist || artist.title}, <i>{title}</i>
-                    </b>
+                    {release.originalArtist || artist.title}, <i>{title}</i>
                 </Typography>
+                <Typography variant="body1">{uid}</Typography>
                 <Grid container spacing={2}>
                     {/* <Grid item xs={1}></Grid> */}
                     <Grid item>
