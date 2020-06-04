@@ -1,3 +1,4 @@
+import { darkShadow } from '~/styles/shadows'
 import { lightGrey } from '~/styles/colours'
 import styled from 'styled-components'
 
@@ -11,7 +12,7 @@ export const OverrideCartStyles = styled.div`
             font-family: 'HelveticaNowText';
         }
         z-index: 1000;
-        background-color: ${lightGrey};
+        background-color: white;
     }
 
     .snipcart-modal,
@@ -20,7 +21,9 @@ export const OverrideCartStyles = styled.div`
     .snipcart-cart__content,
     .snipcart-discount-box,
     .snipcart-cart-button,
-    .snipcart__box--badge-highlight {
+    .snipcart__box--badge-highlight,
+    .snipcart-cart-summary,
+    .snipcart-cart__secondary-header {
         background: none;
     }
 
@@ -34,13 +37,39 @@ export const OverrideCartStyles = styled.div`
     }
 
     .snipcart-featured-payment-methods {
-        border-top: 1px solid grey;
+        border-top: none;
+    }
+
+    .snipcart-cart-summary-fees__notice {
+        display: none;
+    }
+
+    .snipcart-cart__checkout-button {
+        svg {
+            opacity: 0;
+        }
     }
 
     .snipcart-cart-header {
-        justify-content: space-between;
+        display: flex;
+        justify-content: center;
+        max-width: 1440px;
 
         button {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+
+            @media (min-width: 768px) {
+                top: 13px;
+                left: 0px;
+            }
+
+            @media (min-width: 1024px) {
+                top: 29px;
+                left: 0px;
+            }
+
             display: flex;
             align-items: center;
             cursor: pointer;
@@ -49,6 +78,25 @@ export const OverrideCartStyles = styled.div`
                 font-size: ${({ theme }) => theme.spacing(4)};
             }
         }
+
+        .snipcart-cart-header__title {
+            display: none;
+            @media (min-width: 768px) {
+                display: block;
+            }
+        }
+    }
+
+    .snipcart-item-line__container,
+    .snipcart-form,
+    .snipcart-payment,
+    .snipcart__box--gray {
+        box-shadow: 2px 2px 6px #cdcdcd;
+        background-color: white;
+    }
+
+    .snipcart__box--badge {
+        display: none;
     }
 
     .snipcart-item-line__actions {
@@ -64,7 +112,78 @@ export const OverrideCartStyles = styled.div`
         }
     }
 
+    .snipcart-cart__secondary-header {
+        padding-right: 64px;
+        h1 {
+            display: flex;
+            align-items: center;
+            visibility: hidden;
+            :after {
+                display: block;
+                position: absolute;
+                visibility: visible;
+                content: 'Edit Cart';
+            }
+        }
+        button {
+            cursor: pointer;
+            svg {
+                display: none;
+            }
+            :after {
+                content: 'close';
+            }
+        }
+    }
+
+    .snipcart-item-line--cart-edit {
+        border-bottom: none;
+    }
+
+    .snipcart-discount-box__button {
+        border: none;
+        text-align: left;
+    }
+
+    .snipcart-discount-box__form {
+        border: 1px solid black;
+    }
+
+    .snipcart-cart__footer-col {
+        .snipcart-cart__featured-payment-methods-container {
+            display: none;
+        }
+    }
+
+    .snipcart-featured-payment-methods__link {
+        svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+    }
+
+    .snipcart-layout__col--large {
+        margin-left: 16px;
+        @media (min-width: 768px) {
+            margin-left: 0;
+        }
+    }
+
+    .snipcart-payment-methods-list-item__button {
+        display: flex;
+        justify-content: center;
+        height: auto;
+        .snipcart-payment-methods-list-item__arrow {
+            display: none;
+        }
+    }
+
     button {
         outline: none;
+    }
+
+    hr {
+        display: none;
     }
 `

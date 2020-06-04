@@ -1,6 +1,5 @@
 import CartHeader from '../Elements/CartHeader'
 import CloseCartAction from '../Elements/CloseCartAction'
-import Icon from '../Elements/Icon'
 import Media from '../Elements/Media'
 import React from 'react'
 import { Unicode } from '~/constants/unicode'
@@ -15,12 +14,9 @@ export default () => (
                 </span>
             </CloseCartAction>
 
-            <Media name="tablet, large">
-                <h3 className="snipcart-cart-header__title snipcart__font--black snipcart__font--secondary">
-                    Your Items
-                </h3>
-            </Media>
-
+            <h3 className="snipcart-cart-header__title snipcart__font--black snipcart__font--secondary">
+                Your Items
+            </h3>
             <div></div>
         </header>
     </CartHeader>
