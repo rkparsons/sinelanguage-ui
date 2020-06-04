@@ -49,7 +49,7 @@ export default ({
             {products.map(({ id, title, format, price, description, fileGUID }, index) => (
                 <>
                     <ProductRow display="flex" width="100%" key={index} alignItems="center">
-                        <Box flexGrow={1} minWidth={isLarge ? '350px' : '200px'}>
+                        <Box flexGrow={1}>
                             <Grid container>
                                 <Grid item xs={isDescription ? 3 : 12}>
                                     <Typography variant={isLarge ? 'h3' : 'body1'}>
