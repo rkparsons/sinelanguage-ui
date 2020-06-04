@@ -2,6 +2,7 @@ import {
     ContentfulContentType,
     DateField,
     FluidImageField,
+    SymbolArrayField,
     SymbolField,
     TextField,
     VideoField,
@@ -30,6 +31,11 @@ export default new ContentfulContentType({
             name: 'Description',
             widgetId: 'multipleLine',
             helpText: 'SEO friendly description used when linking to this event.',
+        }),
+        new SymbolArrayField({
+            name: 'Artists',
+            itemType: 'Symbol',
+            widgetId: 'tagEditor',
         }),
         new FluidImageField({
             name: 'Image',

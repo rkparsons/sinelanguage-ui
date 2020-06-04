@@ -31,6 +31,7 @@ export const eventFragment = graphql`
 		description {
             description
         }
+		artists
 		image {
             fluid(maxWidth: 2400, quality: 90) {
                 ...GatsbyContentfulFluid_withWebp

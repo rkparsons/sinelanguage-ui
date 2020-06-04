@@ -26,6 +26,7 @@ export const typeDefs = `
 		title: String
 		uid: String
 		description: contentfulEventDescriptionTextNode
+		artists: [String]
 		image: ContentfulAsset
 		teaserVideo: ContentfulAsset
 		date: Date @dateformat

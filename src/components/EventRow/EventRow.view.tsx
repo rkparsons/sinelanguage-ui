@@ -1,4 +1,4 @@
-import { Hidden, Typography } from '@material-ui/core'
+import { Grid, Hidden, Typography } from '@material-ui/core'
 
 import { Date } from './EventRow.style'
 import { Event } from '~/cms/types'
@@ -10,17 +10,22 @@ type ViewProps = {
 }
 
 export default ({ event }: ViewProps) => {
-    const { date, title } = event
+    const { date, title, artists } = event
 
     return (
-        <>
-            <Typography variant="h3">
-                <Date>{moment(date).format('MMM. DD, YYYY')}</Date>
-                <Hidden smDown>{title}</Hidden>
-            </Typography>
-            <Hidden mdUp>
-                <Typography variant="h3">{title}</Typography>
-            </Hidden>
-        </>
+        <Grid container>
+            <Grid item xs={12} md={9}>
+                <Typography variant="h3">
+                    <Date>{moment(date).format('MMM. DD, YYYY')}</Date>
+                    <Hidden smDown>{title}</Hidden>
+                </Typography>
+                <Hidden mdUp>
+                    <Typography variant="h3">{title}</Typography>
+                </Hidden>
+            </Grid>
+            <Grid item xs={12} md={3}>
+                <Typography variant="h3">{artists.join(', ')}</Typography>
+            </Grid>
+        </Grid>
     )
 }

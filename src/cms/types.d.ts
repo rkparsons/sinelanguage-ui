@@ -27,6 +27,7 @@ export type Event = {
 	description: {
         description: string
     }
+	artists: string[]
 	image: {
         fluid: FluidObject
     }
