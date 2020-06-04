@@ -13,19 +13,17 @@ export default ({ event }: ViewProps) => {
     const { date, title, artists } = event
 
     return (
-        <Grid container>
-            <Grid item xs={12} md={9}>
-                <Typography variant="h3">
-                    <Date>{moment(date).format('MMM. DD, YYYY')}</Date>
-                    <Hidden smDown>{title}</Hidden>
-                </Typography>
-                <Hidden mdUp>
-                    <Typography variant="h3">{title}</Typography>
+        <>
+            <Typography variant="h3">
+                <Date>{moment(date).format('MMM. DD, YYYY')}</Date>
+                <Hidden smDown>
+                    {title} – {artists.join(', ')}
                 </Hidden>
-            </Grid>
-            <Grid item xs={12} md={3}>
+            </Typography>
+            <Hidden mdUp>
+                <Typography variant="h3">{title}</Typography>
                 <Typography variant="h3">{artists.join(', ')}</Typography>
-            </Grid>
-        </Grid>
+            </Hidden>
+        </>
     )
 }
