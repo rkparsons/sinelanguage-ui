@@ -1,6 +1,5 @@
-import { Grid, Hidden } from '@material-ui/core'
+import { Box, Grid, Hidden } from '@material-ui/core'
 
-import Centered from '~/components/Centered'
 import ContentCardMedia from '~/components/ContentCardMedia'
 import { Event } from '~/cms/types'
 import EventDetail from '~/components/EventDetail'
@@ -26,9 +25,17 @@ export default ({ data }: Props) => {
                 <Grid container>
                     <Hidden smDown>
                         <Grid item xs={6}>
-                            <Centered size={6}>
-                                <ContentCardMedia content={data.contentfulEvent} />
-                            </Centered>
+                            <Box
+                                display="flex"
+                                width="100%"
+                                height="100%"
+                                justifyContent="center"
+                                alignItems="center"
+                            >
+                                <Box width="50vh">
+                                    <ContentCardMedia content={data.contentfulEvent} />
+                                </Box>
+                            </Box>
                         </Grid>
                     </Hidden>
                     <Grid item xs={12} md={6}>

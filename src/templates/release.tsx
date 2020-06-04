@@ -1,7 +1,6 @@
 import { Artist, Release, Video } from '~/cms/types'
 import { Box, Grid, Hidden } from '@material-ui/core'
 
-import Centered from '~/components/Centered'
 import ContentCardMedia from '~/components/ContentCardMedia'
 import Head from '~/components/Head'
 import Overlay from '~/components/Overlay'

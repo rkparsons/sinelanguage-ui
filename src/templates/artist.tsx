@@ -1,8 +1,7 @@
 import { Artist, Release, Video } from '~/cms/types'
-import { Grid, Hidden } from '@material-ui/core'
+import { Box, Grid, Hidden } from '@material-ui/core'
 
 import ArtistDetail from '~/components/ArtistDetail'
-import Centered from '~/components/Centered'
 import ContentCardMedia from '~/components/ContentCardMedia'
 import Head from '~/components/Head'
 import Overlay from '~/components/Overlay'
@@ -25,9 +24,17 @@ export default ({ data }: Props) => {
             <Grid container>
                 <Hidden smDown>
                     <Grid item xs={6}>
-                        <Centered size={6}>
-                            <ContentCardMedia content={data.contentfulArtist} />
-                        </Centered>
+                        <Box
+                            display="flex"
+                            width="100%"
+                            height="100%"
+                            justifyContent="center"
+                            alignItems="center"
+                        >
+                            <Box width="50vh">
+                                <ContentCardMedia content={data.contentfulArtist} />
+                            </Box>
+                        </Box>
                     </Grid>
                 </Hidden>
                 <Grid item xs={12} md={6}>
