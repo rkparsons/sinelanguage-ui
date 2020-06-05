@@ -1,6 +1,7 @@
 import { AddLabel, ProductRow } from './ReleaseProducts.style'
 import { Box, Grid, Hidden, Typography } from '@material-ui/core'
 import { Product, Release } from '~/cms/types'
+import { getDescription, getPrice, isPhysicalFormat } from '~/utils/product'
 
 import CheckoutButton from '~/components/CheckoutButton'
 import IconButton from '~/components/IconButton'
@@ -8,7 +9,6 @@ import ProductFormat from '~/constants/productFormat'
 import React from 'react'
 import { Unicode } from '~/constants/unicode'
 import { getUrl } from '~/utils/content'
-import { isPhysicalFormat } from '~/utils/product'
 import useCartContext from '~/hooks/useCartContext'
 
 type ViewProps = {
@@ -33,7 +33,8 @@ export default ({
     const { artist, image } = release
     const { cart } = useCartContext()
     const isProductInCart =
-        cart.items.find((cartItem) => products.map((x) => x.id).includes(cartItem.id)) !== undefined
+        cart.items.find((cartItem) => products.map((x) => x.title).includes(cartItem.id)) !==
+        undefined
     const isAnyProductAvailable = products.find(
         (product) => isPhysicalFormat(product) || product.fileGUID
     )
@@ -53,16 +54,16 @@ export default ({
 
             {products
                 .filter((product) => isPhysicalFormat(product) || product.fileGUID)
-                .map(({ id, title, format, price, description, fileGUID }, index) => (
+                .map((product, index) => (
                     <>
                         <ProductRow display="flex" width="100%" key={index} alignItems="center">
                             <Box flexGrow={1}>
                                 <Grid container>
                                     <Grid item xs={12} md={isDescription ? 3 : 12}>
                                         <Typography variant={isLarge ? 'h3' : 'body1'}>
-                                            {format}{' '}
+                                            {product.format}{' '}
                                             {isDescription && (
-                                                <Hidden mdUp>({description.description})</Hidden>
+                                                <Hidden mdUp>({getDescription(product)})</Hidden>
                                             )}
                                         </Typography>
                                     </Grid>
@@ -70,7 +71,7 @@ export default ({
                                         <Hidden smDown>
                                             <Grid item xs={9}>
                                                 <Typography variant={isLarge ? 'h3' : 'body1'}>
-                                                    {description.description}
+                                                    {getDescription(product)}
                                                 </Typography>
                                             </Grid>
                                         </Hidden>
@@ -83,7 +84,7 @@ export default ({
                                 display="flex"
                                 justifyContent="flex-end"
                             >
-                                {cart.items.find((cartItem) => cartItem.id === id) ? (
+                                {cart.items.find((cartItem) => cartItem.id === product.title) ? (
                                     <Typography
                                         variant={isLarge ? 'h3' : 'body1'}
                                         color="secondary"
@@ -94,20 +95,15 @@ export default ({
                                     <IconButton
                                         label={
                                             <Typography variant={isLarge ? 'h3' : 'body1'}>
-                                                <AddLabel price={`£${price.toFixed(2)}`} />
+                                                <AddLabel
+                                                    price={`£${getPrice(product).toFixed(2)}`}
+                                                />
                                             </Typography>
                                         }
                                         onClick={() => {}}
                                         isLight={isLight}
-                                        cartItem={{
-                                            id,
-                                            price,
-                                            url: getUrl(release),
-                                            name: title,
-                                            description: description.description,
-                                            imageUrl: image.fluid.src,
-                                            fileGUID,
-                                        }}
+                                        product={product}
+                                        release={release}
                                         className="snipcart-add-item"
                                     />
                                 )}

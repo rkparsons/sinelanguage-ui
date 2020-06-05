@@ -1,5 +1,6 @@
 import { Product, Release } from '~/cms/types'
 import React, { useRef, useState } from 'react'
+import { getDescription, getImage, getPrice, isPhysicalFormat } from '~/utils/product'
 
 import IconButton from '~/components/IconButton'
 import { Popover } from './ProductMenu.style'
@@ -7,7 +8,6 @@ import ReleaseProducts from '~/components/ReleaseProducts'
 import { Typography } from '@material-ui/core'
 import { Unicode } from '~/constants/unicode'
 import { getUrl } from '~/utils/content'
-import { isPhysicalFormat } from '~/utils/product'
 import useCartContext from '~/hooks/useCartContext'
 
 type Props = {
@@ -26,11 +26,10 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
     const isAnyProductAvailable = products.find(
         (product) => isPhysicalFormat(product) || product.fileGUID
     )
-
-    // todo: refactor cart check into utility method
     const isInBag =
         products &&
-        cart.items.find((cartItem) => products.map((x) => x.id).includes(cartItem.id)) !== undefined
+        cart.items.find((cartItem) => products.map((x) => x.title).includes(cartItem.id)) !==
+            undefined
 
     const handleClick = () => {
         if (popoverTriggerRef.current) {
@@ -64,12 +63,12 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                     key={index}
                     hidden
                     className="snipcart-add-item"
-                    data-item-id={product.id}
-                    data-item-price={product.price}
+                    data-item-id={product.title}
+                    data-item-price={getPrice(product)}
                     data-item-url={getUrl(release)}
                     data-item-name={product.title}
-                    data-item-description={product.description.description}
-                    data-item-image={release.image.fluid.src}
+                    data-item-description={getDescription(product)}
+                    data-item-image={getImage(release, product)}
                     data-item-file-guid={product.fileGUID}
                 >
                     {product.format}

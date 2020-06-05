@@ -32,11 +32,13 @@ export default new ContentfulContentType({
         }),
         new DecimalField({
             name: 'Price',
+            required: false,
         }),
         new TextField({
             name: 'Description',
             widgetId: 'multipleLine',
-            helpText: 'Any additional product info, e.g. 1xLP, Digital download.',
+            required: false,
+            helpText: 'Any additional product info, e.g. 1xLP, 2 Disc, Limited Edition',
         }),
         new SymbolField({
             name: 'File GUID',
