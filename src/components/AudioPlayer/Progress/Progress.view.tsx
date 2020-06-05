@@ -1,5 +1,6 @@
 import { BarContainer, PlayedBar, ProgressBar } from './Progress.style'
 import React, { useRef } from 'react'
+import { isChrome, isSafari, osName } from 'react-device-detect'
 
 import useAudioContext from '~/hooks/useAudioContext'
 
@@ -9,6 +10,7 @@ type ViewProps = {
 
 export default ({ timeMs }: ViewProps) => {
     const progressBarRef = useRef<HTMLDivElement>(null)
+    const isChromeOnMac = isChrome && osName.toLowerCase().includes('mac')
 
     const { durationMs, skipMedia } = useAudioContext()
 
@@ -27,7 +29,7 @@ export default ({ timeMs }: ViewProps) => {
 
     return (
         <BarContainer onClick={skipToTime}>
-            <ProgressBar ref={progressBarRef} />
+            <ProgressBar ref={progressBarRef} isChromeOnMac={isChromeOnMac} />
             {durationMs > 0 && <PlayedBar width={(100 * timeMs) / durationMs} />}
         </BarContainer>
     )
