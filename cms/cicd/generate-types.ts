@@ -6,6 +6,8 @@ import os from 'os'
 
 let file: WriteStream
 
+// todo: account for nullables
+
 export function generateTypes(filePath: string, contentTypes: ContentType[]) {
     clearFile(filePath)
     initFileWriter(filePath)
@@ -26,8 +28,8 @@ function initFileWriter(filePath: string) {
 
 function writeImports(contentTypes: ContentType[]) {
     const imports = flattenDeep<string>(
-        contentTypes.map(contentType =>
-            contentType.fields.map(field => field.getTypeDefinitionImports())
+        contentTypes.map((contentType) =>
+            contentType.fields.map((field) => field.getTypeDefinitionImports())
         )
     )
 
@@ -38,7 +40,7 @@ function writeImports(contentTypes: ContentType[]) {
 }
 
 function writeTypes(contentTypes: ContentType[]) {
-    contentTypes.forEach(contentType => {
+    contentTypes.forEach((contentType) => {
         writeLine(contentType.getTypeDefinition())
     })
 }
