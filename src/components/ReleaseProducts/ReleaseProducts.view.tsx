@@ -4,9 +4,11 @@ import { Product, Release } from '~/cms/types'
 
 import CheckoutButton from '~/components/CheckoutButton'
 import IconButton from '~/components/IconButton'
+import ProductFormat from '~/constants/productFormat'
 import React from 'react'
 import { Unicode } from '~/constants/unicode'
 import { getUrl } from '~/utils/content'
+import { isPhysicalFormat } from '~/utils/product'
 import useCartContext from '~/hooks/useCartContext'
 
 type ViewProps = {
@@ -32,8 +34,10 @@ export default ({
     const { cart } = useCartContext()
     const isProductInCart =
         cart.items.find((cartItem) => products.map((x) => x.id).includes(cartItem.id)) !== undefined
+    const allProductDownloadsAvailable =
+        products && products.every((product) => isPhysicalFormat(product) || product.fileGUID)
 
-    if (!products || !products.length) {
+    if (!products || !products.length || !allProductDownloadsAvailable) {
         return <></>
     }
 
