@@ -26,50 +26,32 @@ export default ({ isFullSizePlayer }: ViewProps) => {
     }
 
     return (
-        <Controls>
-            <Grid container spacing={3}>
-                <Grid item></Grid>
-                {isFullSizePlayer && (
-                    <>
-                        <Grid item>
-                            <IconButton
-                                label={<Typography variant="h5">{Unicode.PREVIOUS}</Typography>}
-                                onClick={previous}
-                                isDisabled={!isPrevious()}
-                                isLight={true}
-                            />
-                        </Grid>
-                        <Box flexGrow={1} />
-                    </>
-                )}
+        <Controls display="flex" justifyContent="space-around" alignItems="center">
+            {isFullSizePlayer && (
+                <IconButton
+                    label={<Typography variant="h5">{Unicode.PREVIOUS}</Typography>}
+                    onClick={previous}
+                    isDisabled={!isPrevious()}
+                    isLight={true}
+                />
+            )}
 
-                <Grid item>
-                    <IconButton
-                        label={
-                            <Typography variant="h5">
-                                {isPlaying ? Unicode.PAUSE : Unicode.PLAY}
-                            </Typography>
-                        }
-                        onClick={onPlayPause}
-                        isLight={true}
-                    />
-                </Grid>
+            <IconButton
+                label={
+                    <Typography variant="h5">{isPlaying ? Unicode.PAUSE : Unicode.PLAY}</Typography>
+                }
+                onClick={onPlayPause}
+                isLight={true}
+            />
 
-                {isFullSizePlayer && (
-                    <>
-                        <Box flexGrow={1} />
-                        <Grid item>
-                            <IconButton
-                                label={<Typography variant="h5">{Unicode.NEXT}</Typography>}
-                                onClick={next}
-                                isDisabled={!isNext()}
-                                isLight={true}
-                            />
-                        </Grid>
-                    </>
-                )}
-                <Grid item></Grid>
-            </Grid>
+            {isFullSizePlayer && (
+                <IconButton
+                    label={<Typography variant="h5">{Unicode.NEXT}</Typography>}
+                    onClick={next}
+                    isDisabled={!isNext()}
+                    isLight={true}
+                />
+            )}
         </Controls>
     )
 }

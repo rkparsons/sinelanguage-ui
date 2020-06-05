@@ -1,6 +1,7 @@
+import { Box } from '@material-ui/core'
 import styled from 'styled-components'
 
-export const Controls = styled.div`
+export const Controls = styled(Box)`
     ${({ theme }) => `            
         padding-top: 0;
 

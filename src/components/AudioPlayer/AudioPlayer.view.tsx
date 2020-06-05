@@ -82,7 +82,7 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
                 <Progress timeMs={timeMs} />
                 <PlayerBody>
                     <Box display="flex">
-                        <Box>
+                        <Box display="flex" flexDirection="column" justifyContent="center">
                             {isFullSizePlayer && (
                                 <ImageContainer>
                                     <SquareImage
