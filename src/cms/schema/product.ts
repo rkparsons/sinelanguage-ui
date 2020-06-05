@@ -19,7 +19,7 @@ export default new ContentfulContentType({
         new SymbolField({
             name: 'Title',
             widgetId: 'singleLine',
-            helpText: 'Use the form: artist - release (format)',
+            helpText: 'Use the form: SINE005 06. Ose - Ellipsis [mp3]',
         }),
         new SymbolField({
             id: 'format',
