@@ -1,8 +1,9 @@
 enum ProductFormat {
-    TWELVE_INCH_VINYL = '12" Vinyl',
+    VINYL12 = '12" Vinyl',
     CD = 'CD',
     CASSETTE = 'Cassette',
-    WAV = 'WAV',
+    WAV16 = '16-bit WAV',
+    WAV24 = '24-bit WAV',
     MP3 = 'MP3',
 }
 

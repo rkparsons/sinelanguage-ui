@@ -7,6 +7,7 @@ import ReleaseProducts from '~/components/ReleaseProducts'
 import { Typography } from '@material-ui/core'
 import { Unicode } from '~/constants/unicode'
 import { getUrl } from '~/utils/content'
+import { isPhysicalFormat } from '~/utils/product'
 import useCartContext from '~/hooks/useCartContext'
 
 type Props = {
@@ -22,6 +23,9 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
     const { cart } = useCartContext()
     const [popoverTrigger, setPopoverTrigger] = useState<HTMLButtonElement>()
     const popoverTriggerRef = useRef<HTMLButtonElement>(null)
+    const isAnyProductAvailable = products.find(
+        (product) => isPhysicalFormat(product) || product.fileGUID
+    )
 
     // todo: refactor cart check into utility method
     const isInBag =
@@ -36,6 +40,10 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
 
     const handleClose = () => {
         setPopoverTrigger(undefined)
+    }
+
+    if (!isAnyProductAvailable) {
+        return <></>
     }
 
     return (

@@ -15,7 +15,6 @@ type ViewProps = {
 
 export default ({ release, track, index }: ViewProps) => {
     const { products, title, metadata } = track
-    const allProductDownloadsAvailable = products && products.every((product) => product.fileGUID)
 
     return (
         <Box display="flex">
@@ -43,15 +42,13 @@ export default ({ release, track, index }: ViewProps) => {
                         </Box>
                     </Hidden>
                     <ContentPlayButton content={release} trackIndex={index} isLight={true} />
-                    {allProductDownloadsAvailable && (
-                        <ProductMenu
-                            release={release}
-                            products={products}
-                            isLight={true}
-                            isLarge={true}
-                            indicateWhenInBag={true}
-                        />
-                    )}
+                    <ProductMenu
+                        release={release}
+                        products={products}
+                        isLight={true}
+                        isLarge={true}
+                        indicateWhenInBag={true}
+                    />
                 </Box>
             </Box>
         </Box>
