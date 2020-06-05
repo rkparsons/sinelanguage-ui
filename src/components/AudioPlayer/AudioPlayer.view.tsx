@@ -1,9 +1,9 @@
 import { AudioPlayer, ImageContainer, PlayerBody, PlayerPanel } from './AudioPlayer.style'
+import { Box, withWidth } from '@material-ui/core'
 import React, { useEffect, useRef, useState } from 'react'
-import { isMobile, isSafari } from 'react-device-detect'
 
 import AudioVisualizer from '~/components/AudioVisualizer'
-import { Box } from '@material-ui/core'
+import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import Controls from './Controls'
 import Label from './Label'
 import { PlayerState } from '~/constants/playerState'
@@ -11,19 +11,22 @@ import Progress from './Progress'
 import SquareImage from '~/components/SquareImage'
 import StopButton from './StopButton'
 import VolumeSlider from './VolumeSlider'
+import { isSafari } from 'react-device-detect'
 import useAnimationFrame from '~/hooks/useAnimationFrame'
 import useAudioContext from '~/hooks/useAudioContext'
 
 type ViewProps = {
     hideTimeout: number
+    width: Breakpoint
 }
 
-export default ({ hideTimeout }: ViewProps) => {
+export default withWidth()(({ width, hideTimeout }: ViewProps) => {
     const [playerState, setPlayerState] = useState(PlayerState.CLOSED)
     const audioPlayer = useRef<HTMLDivElement>(null)
     const [audioData, setAudioData] = useState<number[]>([])
     const [timeMs, setTimeMs] = useState(0)
     const { isPlaying, track, artwork, artistTitle, getTimeMs, getAudioData } = useAudioContext()
+    const isMobile = ['xs', 'sm'].includes(width)
     const isFullSizePlayer = !isMobile && !isSafari
 
     useEffect(() => {
@@ -128,4 +131,4 @@ export default ({ hideTimeout }: ViewProps) => {
     } else {
         return <></>
     }
-}
+})

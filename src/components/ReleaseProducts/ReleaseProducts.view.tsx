@@ -1,12 +1,12 @@
 import { AddLabel, ProductRow } from './ReleaseProducts.style'
 import { Box, Grid, Hidden, Typography } from '@material-ui/core'
 import { Product, Release } from '~/cms/types'
+import React, { Fragment } from 'react'
 import { getDescription, getPrice, isPhysicalFormat } from '~/utils/product'
 
 import CheckoutButton from '~/components/CheckoutButton'
 import IconButton from '~/components/IconButton'
 import ProductFormat from '~/constants/productFormat'
-import React from 'react'
 import { Unicode } from '~/constants/unicode'
 import { getUrl } from '~/utils/content'
 import useCartContext from '~/hooks/useCartContext'
@@ -55,8 +55,8 @@ export default ({
             {products
                 .filter((product) => isPhysicalFormat(product) || product.fileGUID)
                 .map((product, index) => (
-                    <>
-                        <ProductRow display="flex" width="100%" key={index} alignItems="center">
+                    <Fragment key={index}>
+                        <ProductRow display="flex" width="100%" alignItems="center">
                             <Box flexGrow={1}>
                                 <Grid container>
                                     <Grid item xs={12} md={isDescription ? 3 : 12}>
@@ -112,7 +112,7 @@ export default ({
                         <Hidden smUp>
                             <br />
                         </Hidden>
-                    </>
+                    </Fragment>
                 ))}
             {isProductInCart && (
                 <>

@@ -8,16 +8,22 @@ import {
     InputGrid,
     Title,
 } from './NewsletterCard.style'
-import { Grid, Typography } from '@material-ui/core'
+import { Grid, Typography, withWidth } from '@material-ui/core'
 
+import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import Column from '~/components/Column'
 import ContentCardDetail from '~/components/ContentCardDetail'
 import IconButton from '~/components/IconButton'
 import React from 'react'
-import { isMobileOnly } from 'react-device-detect'
 import useMailchimp from '~/hooks/useMailchimp'
 
-export default () => {
+type ViewProps = {
+    width: Breakpoint
+}
+
+export default withWidth()(({ width }: ViewProps) => {
+    // todo: write context and hook for width
+    const isMobile = ['xs', 'sm'].includes(width)
     const {
         isSuccess,
         isInvalid,
@@ -33,7 +39,7 @@ export default () => {
             <AspectRatio>
                 <Content>
                     <Title>
-                        <Typography variant={isMobileOnly ? 'body1' : 'h5'}>
+                        <Typography variant={isMobile ? 'body1' : 'h5'}>
                             {isSuccess
                                 ? 'THANKS FOR SUBSCRIBING!'
                                 : 'WANT TO HEAR FROM US ABOUT NEW RELEASES?'}
@@ -43,17 +49,11 @@ export default () => {
                         <InputGrid container>
                             <Grid item xs={12}>
                                 <ErrorMessage>
-                                    <Typography
-                                        variant={isMobileOnly ? 'body1' : 'h5'}
-                                        gutterBottom
-                                    >
+                                    <Typography variant={isMobile ? 'body1' : 'h5'} gutterBottom>
                                         {isInvalid ? 'Please enter a valid email' : ''}
                                     </Typography>
                                 </ErrorMessage>
-                                <Typography
-                                    variant={isMobileOnly ? 'body1' : 'h5'}
-                                    component="span"
-                                >
+                                <Typography variant={isMobile ? 'body1' : 'h5'} component="span">
                                     <EmailInputContainer isInvalid={isInvalid}>
                                         <EmailInput
                                             inputRef={emailInput}
@@ -79,7 +79,7 @@ export default () => {
                                 <Action>
                                     <IconButton
                                         label={
-                                            <Typography variant={isMobileOnly ? 'body1' : 'h5'}>
+                                            <Typography variant={isMobile ? 'body1' : 'h5'}>
                                                 JOIN THE MAILING LIST
                                             </Typography>
                                         }
@@ -99,4 +99,4 @@ export default () => {
             </ContentCardDetail>
         </Column>
     )
-}
+})
