@@ -15,7 +15,7 @@ export default (isDarkMode = false) =>
             },
             body1: { ...responsiveFont(15, 15, 13.5, 14, 15) },
             h5: responsiveFont(18, 23, 18, 20, 21),
-            h3: responsiveFont(20, 25, 20, 23, 25),
+            h3: responsiveFont(20, 25, 19, 23, 25),
             h1: responsiveFont(22, 27, 22, 24, 25),
         },
         spacing: (factor) => `${0.25 * factor}rem`,

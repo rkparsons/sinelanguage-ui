@@ -50,6 +50,15 @@ export const OverrideCartStyles = styled.div`
         }
     }
 
+    .snipcart__font--subtitle {
+        padding-bottom: 15px;
+    }
+
+    .snipcart__font--slim,
+    .snipcart__font--xlarge {
+        line-height: 1.3;
+    }
+
     .snipcart-cart-header {
         display: flex;
         justify-content: center;
