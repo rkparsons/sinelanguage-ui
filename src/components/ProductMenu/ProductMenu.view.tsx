@@ -50,9 +50,10 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
             <IconButton
                 buttonRef={popoverTriggerRef}
                 label={
-                    <Typography variant={isLarge ? 'h3' : 'body1'}>{`${Unicode.CART_LEFT_ALIGN} ${
-                        text ? text : ''
-                    }`}</Typography>
+                    <Typography
+                        variant={isLarge ? 'h3' : 'body1'}
+                        color={isInBag && indicateWhenInBag ? 'secondary' : 'inherit'}
+                    >{`${Unicode.CART_LEFT_ALIGN} ${text ? text : ''}`}</Typography>
                 }
                 onClick={handleClick}
                 isLight={isLight}
