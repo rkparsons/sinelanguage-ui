@@ -36,7 +36,7 @@ export default ({ children }: ViewProps) => {
                                 {children}
                                 <Dashboard />
                             </main>
-                            <AudioPlayer hideTimeout={5000} />
+                            <AudioPlayer />
                         </AppContainer>
                     </AudioProvider>
                 </CartProvider>

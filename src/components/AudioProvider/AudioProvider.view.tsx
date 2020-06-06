@@ -1,5 +1,5 @@
 import { Artist, Podcast, Release, Track } from '~/cms/types'
-import React, { ReactNode, useCallback, useEffect, useRef, useState } from 'react'
+import React, { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { isMobile, isSafari } from 'react-device-detect'
 
 import AudioContext from '~/contexts/audioContext'
@@ -163,26 +163,48 @@ export default ({ children }: ViewProps) => {
 
     return (
         <AudioContext.Provider
-            value={{
-                isPlaying,
-                tracks,
-                trackIndex,
-                artwork,
-                artistTitle,
-                durationMs,
-                isPrevious,
-                isNext,
-                previous,
-                next,
-                loadMedia,
-                stopMedia,
-                playMedia,
-                pauseMedia,
-                skipMedia,
-                setVolume,
-                getTimeMs,
-                getAudioData,
-            }}
+            value={useMemo(
+                () => ({
+                    isPlaying,
+                    tracks,
+                    trackIndex,
+                    artwork,
+                    artistTitle,
+                    durationMs,
+                    isPrevious,
+                    isNext,
+                    previous,
+                    next,
+                    loadMedia,
+                    stopMedia,
+                    playMedia,
+                    pauseMedia,
+                    skipMedia,
+                    setVolume,
+                    getTimeMs,
+                    getAudioData,
+                }),
+                [
+                    isPlaying,
+                    tracks,
+                    trackIndex,
+                    artwork,
+                    artistTitle,
+                    durationMs,
+                    isPrevious,
+                    isNext,
+                    previous,
+                    next,
+                    loadMedia,
+                    stopMedia,
+                    playMedia,
+                    pauseMedia,
+                    skipMedia,
+                    setVolume,
+                    getTimeMs,
+                    getAudioData,
+                ]
+            )}
         >
             <audio ref={audioRef} preload="auto" crossOrigin="anonymous" />
             {children}

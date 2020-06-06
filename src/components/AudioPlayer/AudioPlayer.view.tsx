@@ -1,6 +1,6 @@
 import { AudioPlayer, ImageContainer, PlayerBody, PlayerPanel } from './AudioPlayer.style'
 import { Box, useMediaQuery, useTheme } from '@material-ui/core'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
 
 import AudioVisualizer from '~/components/AudioVisualizer'
 import Controls from './Controls'
@@ -14,11 +14,7 @@ import { isSafari } from 'react-device-detect'
 import useAnimationFrame from '~/hooks/useAnimationFrame'
 import useAudioContext from '~/hooks/useAudioContext'
 
-type ViewProps = {
-    hideTimeout: number
-}
-
-export default ({ hideTimeout }: ViewProps) => {
+export default memo(() => {
     const [playerState, setPlayerState] = useState(PlayerState.CLOSED)
     const audioPlayer = useRef<HTMLDivElement>(null)
     const [audioData, setAudioData] = useState<number[]>([])
@@ -34,6 +30,7 @@ export default ({ hideTimeout }: ViewProps) => {
     } = useAudioContext()
     const isMobile = useMediaQuery(useTheme().breakpoints.down('sm'))
     const isFullSizePlayer = !isMobile && !isSafari
+    const hideTimeout = 5000
 
     useEffect(() => {
         if (tracks[trackIndex]) {
@@ -137,4 +134,4 @@ export default ({ hideTimeout }: ViewProps) => {
     } else {
         return <></>
     }
-}
+})
