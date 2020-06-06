@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef } from 'react'
+import { RefObject, useCallback, useEffect, useRef } from 'react'
 
 export default (audioRef: RefObject<HTMLAudioElement>, isActive: boolean) => {
     const audioContext = useRef<AudioContext>()
@@ -26,7 +26,7 @@ export default (audioRef: RefObject<HTMLAudioElement>, isActive: boolean) => {
         }
     }, [])
 
-    function getAudioData() {
+    const getAudioData = useCallback(() => {
         if (!audioAnalyser.current) {
             return []
         } else {
@@ -34,7 +34,7 @@ export default (audioRef: RefObject<HTMLAudioElement>, isActive: boolean) => {
             audioAnalyser.current.getByteTimeDomainData(dataArray)
             return Array.from(dataArray).map((y) => y - 128)
         }
-    }
+    }, [])
 
     return { getAudioData, audioContext }
 }

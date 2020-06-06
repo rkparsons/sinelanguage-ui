@@ -1,5 +1,5 @@
 import { Artist, Podcast, Release, Track } from '~/cms/types'
-import React, { ReactNode, useEffect, useRef, useState } from 'react'
+import React, { ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import { isMobile, isSafari } from 'react-device-detect'
 
 import AudioContext from '~/contexts/audioContext'
@@ -36,70 +36,91 @@ export default ({ children }: ViewProps) => {
         }
     }, [tracks, trackIndex])
 
+    const loadSrc = useCallback(
+        (src: string) => {
+            if (audioRef.current) {
+                audioRef.current.src = `${src}?client_id=${clientId}`
+                audioRef.current.load()
+            }
+        },
+        [audioRef.current]
+    )
+    const playMedia = useCallback(() => {
+        setIsPlaying(true)
+        audioRef.current?.play()
+    }, [setIsPlaying, audioRef.current])
+
     // todo: separate out logic for audio ref from selectedmedia
-    function isPrevious() {
-        return trackIndex > 0
-    }
+    const isPrevious = useCallback(() => trackIndex > 0, [trackIndex])
 
-    function isNext() {
-        return trackIndex < tracks.length - 1
-    }
+    const isNext = useCallback(() => trackIndex < tracks.length - 1, [trackIndex, tracks])
 
-    function previous() {
+    const previous = useCallback(() => {
         if (isPrevious()) {
             setTrackIndex(trackIndex - 1)
             loadSrc(tracks[trackIndex - 1].metadata.streamUrl)
             playMedia()
         }
-    }
+    }, [isPrevious, setTrackIndex, trackIndex, loadSrc, tracks, trackIndex, playMedia])
 
-    function next() {
+    const next = useCallback(() => {
         if (isNext()) {
             setTrackIndex(trackIndex + 1)
             loadSrc(tracks[trackIndex + 1].metadata.streamUrl)
             playMedia()
         }
-    }
+    }, [isNext, setTrackIndex, trackIndex, loadSrc, tracks, playMedia])
 
-    function getTracks(content: Artist | Podcast | Release) {
-        return content.__typename === ContentType.ARTIST
-            ? []
-            : content.__typename === ContentType.PODCAST
-            ? [(content as Podcast).track]
-            : content.__typename === ContentType.RELEASE
-            ? (content as Release).tracks
-            : []
-    }
+    const getTracks = useCallback(
+        (content: Artist | Podcast | Release) =>
+            content.__typename === ContentType.ARTIST
+                ? []
+                : content.__typename === ContentType.PODCAST
+                ? [(content as Podcast).track]
+                : content.__typename === ContentType.RELEASE
+                ? (content as Release).tracks
+                : [],
+        []
+    )
 
-    function getArtistTitle(content: Artist | Podcast | Release) {
-        return content.__typename === ContentType.ARTIST
-            ? (content as Artist).title
-            : content.__typename === ContentType.PODCAST
-            ? (content as Podcast).title
-            : content.__typename === ContentType.RELEASE
-            ? (content as Release).artist.title
-            : ''
-    }
+    const getArtistTitle = useCallback(
+        (content: Artist | Podcast | Release) =>
+            content.__typename === ContentType.ARTIST
+                ? (content as Artist).title
+                : content.__typename === ContentType.PODCAST
+                ? (content as Podcast).title
+                : content.__typename === ContentType.RELEASE
+                ? (content as Release).artist.title
+                : '',
+        []
+    )
 
-    function loadMedia(content: Artist | Podcast | Release, newTrackIndex: number = 0) {
-        const newTracks = getTracks(content)
-        setArtwork(content.image.fluid)
-        setArtistTitle(getArtistTitle(content))
-        setTracks(newTracks)
-        setTrackIndex(newTrackIndex)
-        loadSrc(newTracks[newTrackIndex].metadata.streamUrl)
-        playMedia()
-        audioContext.current?.resume()
-    }
+    // todo: split up methods with so many deps
+    const loadMedia = useCallback(
+        (content: Artist | Podcast | Release, newTrackIndex: number = 0) => {
+            const newTracks = getTracks(content)
+            setArtwork(content.image.fluid)
+            setArtistTitle(getArtistTitle(content))
+            setTracks(newTracks)
+            setTrackIndex(newTrackIndex)
+            loadSrc(newTracks[newTrackIndex].metadata.streamUrl)
+            playMedia()
+            audioContext.current?.resume()
+        },
+        [
+            getTracks,
+            setArtwork,
+            setArtistTitle,
+            getArtistTitle,
+            setTracks,
+            setTrackIndex,
+            loadSrc,
+            playMedia,
+            audioContext.current,
+        ]
+    )
 
-    function loadSrc(src: string) {
-        if (audioRef.current) {
-            audioRef.current.src = `${src}?client_id=${clientId}`
-            audioRef.current.load()
-        }
-    }
-
-    function stopMedia() {
+    const stopMedia = useCallback(() => {
         setTracks([])
         setTrackIndex(0)
         setArtwork(undefined)
@@ -108,35 +129,37 @@ export default ({ children }: ViewProps) => {
         if (audioRef.current) {
             audioRef.current.pause()
         }
-    }
+    }, [setTracks, setTrackIndex, setArtwork, setIsPlaying, audioRef.current])
 
-    function playMedia() {
-        setIsPlaying(true)
-        audioRef.current?.play()
-    }
-
-    function pauseMedia() {
+    const pauseMedia = useCallback(() => {
         setIsPlaying(false)
         audioRef.current?.pause()
-    }
+    }, [setIsPlaying, audioRef.current])
 
-    function skipMedia(newTimeMs: number) {
-        if (audioRef.current) {
-            audioRef.current.currentTime = newTimeMs / 1000
-        }
+    const skipMedia = useCallback(
+        (newTimeMs: number) => {
+            if (audioRef.current) {
+                audioRef.current.currentTime = newTimeMs / 1000
+            }
 
-        setIsPlaying(true)
-    }
+            setIsPlaying(true)
+        },
+        [audioRef.current, setIsPlaying]
+    )
 
-    function setVolume(volume: number) {
-        if (audioRef.current) {
-            audioRef.current.volume = volume
-        }
-    }
+    const setVolume = useCallback(
+        (volume: number) => {
+            if (audioRef.current) {
+                audioRef.current.volume = volume
+            }
+        },
+        [audioRef.current]
+    )
 
-    function getTimeMs() {
-        return audioRef.current ? audioRef.current.currentTime * 1000 : 0
-    }
+    const getTimeMs = useCallback(
+        () => (audioRef.current ? audioRef.current.currentTime * 1000 : 0),
+        [audioRef.current]
+    )
 
     return (
         <AudioContext.Provider
