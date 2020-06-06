@@ -30,8 +30,6 @@ export default (audioRef: RefObject<HTMLAudioElement>, isActive: boolean) => {
             audioSource.current.connect(audioAnalyser.current)
             audioSource.current.connect(audioContext.destination)
 
-            console.log('init')
-
             removeUserInteractionListeners()
         }
     }
