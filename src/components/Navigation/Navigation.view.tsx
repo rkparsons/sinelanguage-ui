@@ -1,9 +1,7 @@
-import { Add, Close } from '@material-ui/icons'
-import { Grid, Typography, withWidth } from '@material-ui/core'
+import { Grid, Typography, useMediaQuery, useTheme } from '@material-ui/core'
 import { Header, ToggleMobileMenu } from './Navigation.style'
 import React, { useState } from 'react'
 
-import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import IconButton from '~/components/IconButton'
 import Links from './Links'
 import NavItem from '~/components/NavItem'
@@ -12,13 +10,12 @@ import { Unicode } from '~/constants/unicode'
 import { navigate } from 'gatsby'
 
 type ViewProps = {
-    width: Breakpoint
     location: Location
 }
 
-export default withWidth()(({ width, location }: ViewProps) => {
+export default ({ location }: ViewProps) => {
     const isMenuOpen = location.pathname === '/menu'
-    const isMobile = ['xs', 'sm'].includes(width)
+    const isMobile = useMediaQuery(useTheme().breakpoints.down('sm'))
     const [previousLocation, setPreviousLocation] = useState<string>()
 
     function handleMenuClick() {
@@ -74,4 +71,4 @@ export default withWidth()(({ width, location }: ViewProps) => {
             )} */}
         </Header>
     )
-})
+}

@@ -1,18 +1,13 @@
-import { Grid, withWidth } from '@material-ui/core'
+import { Grid, useMediaQuery, useTheme } from '@material-ui/core'
 
-import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import Links from '~/components/Navigation/Links'
 import { Menu } from './Menu.style'
 import Overlay from '~/components/Overlay'
 import React from 'react'
 import ResponsivePaddingTop from '~/components/ResponsivePaddingTop'
 
-type ViewProps = {
-    width: Breakpoint
-}
-
-export default withWidth()(({ width }: ViewProps) => {
-    const isMobile = ['xs', 'sm'].includes(width)
+export default () => {
+    const isMobile = useMediaQuery(useTheme().breakpoints.down('sm'))
 
     if (!isMobile) {
         return <></>
@@ -22,11 +17,11 @@ export default withWidth()(({ width }: ViewProps) => {
         <Overlay>
             <ResponsivePaddingTop>
                 <Menu>
-                    <Grid container spacing={isMobile ? 10 : 0} justify="space-between">
-                        <Links isMobile={isMobile} />
+                    <Grid container spacing={10} justify="space-between">
+                        <Links isMobile={true} />
                     </Grid>
                 </Menu>
             </ResponsivePaddingTop>
         </Overlay>
     )
-})
+}

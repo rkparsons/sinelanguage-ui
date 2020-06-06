@@ -8,22 +8,16 @@ import {
     InputGrid,
     Title,
 } from './NewsletterCard.style'
-import { Grid, Typography, withWidth } from '@material-ui/core'
+import { Grid, Typography, useMediaQuery, useTheme } from '@material-ui/core'
 
-import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import Column from '~/components/Column'
 import ContentCardDetail from '~/components/ContentCardDetail'
 import IconButton from '~/components/IconButton'
 import React from 'react'
 import useMailchimp from '~/hooks/useMailchimp'
 
-type ViewProps = {
-    width: Breakpoint
-}
-
-export default withWidth()(({ width }: ViewProps) => {
-    // todo: write context and hook for width
-    const isMobile = ['xs', 'sm'].includes(width)
+export default () => {
+    const isMobile = useMediaQuery(useTheme().breakpoints.down('sm'))
     const {
         isSuccess,
         isInvalid,
@@ -99,4 +93,4 @@ export default withWidth()(({ width }: ViewProps) => {
             </ContentCardDetail>
         </Column>
     )
-})
+}
