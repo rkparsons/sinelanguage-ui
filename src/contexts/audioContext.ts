@@ -5,7 +5,8 @@ import { createContext } from 'react'
 
 type AudioContext = {
     isPlaying: boolean
-    track: Track | undefined
+    tracks: Track[]
+    trackIndex: number
     artwork: FluidObject | undefined
     artistTitle: string
     durationMs: number

@@ -23,17 +23,25 @@ export default ({ hideTimeout }: ViewProps) => {
     const audioPlayer = useRef<HTMLDivElement>(null)
     const [audioData, setAudioData] = useState<number[]>([])
     const [timeMs, setTimeMs] = useState(0)
-    const { isPlaying, track, artwork, artistTitle, getTimeMs, getAudioData } = useAudioContext()
+    const {
+        isPlaying,
+        tracks,
+        trackIndex,
+        artwork,
+        artistTitle,
+        getTimeMs,
+        getAudioData,
+    } = useAudioContext()
     const isMobile = useMediaQuery(useTheme().breakpoints.down('sm'))
     const isFullSizePlayer = !isMobile && !isSafari
 
     useEffect(() => {
-        if (track) {
+        if (tracks[trackIndex]) {
             setPlayerState(PlayerState.OPEN_AUTO)
         } else {
             setPlayerState(PlayerState.CLOSED)
         }
-    }, [track])
+    }, [tracks, trackIndex])
 
     useEffect(() => {
         if (playerState === PlayerState.OPEN_AUTO && isFullSizePlayer) {
@@ -68,7 +76,7 @@ export default ({ hideTimeout }: ViewProps) => {
         }
     }
 
-    if (track && artwork) {
+    if (tracks[trackIndex] && artwork) {
         return (
             <AudioPlayer
                 ref={audioPlayer}
@@ -84,7 +92,7 @@ export default ({ hideTimeout }: ViewProps) => {
                             {isFullSizePlayer && (
                                 <ImageContainer>
                                     <SquareImage
-                                        title={`${artistTitle} - ${track.title}`}
+                                        title={`${artistTitle} - ${tracks[trackIndex].title}`}
                                         image={artwork}
                                     />
                                 </ImageContainer>

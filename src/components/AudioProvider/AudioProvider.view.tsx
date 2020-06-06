@@ -142,7 +142,8 @@ export default ({ children }: ViewProps) => {
         <AudioContext.Provider
             value={{
                 isPlaying,
-                track: tracks[trackIndex],
+                tracks,
+                trackIndex,
                 artwork,
                 artistTitle,
                 durationMs,

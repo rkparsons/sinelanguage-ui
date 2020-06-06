@@ -10,12 +10,12 @@ type ViewProps = {
 }
 
 export default ({ timeMs }: ViewProps) => {
-    const { track, artistTitle, durationMs } = useAudioContext()
+    const { tracks, trackIndex, artistTitle, durationMs } = useAudioContext()
 
     return (
         <Label>
             <Typography variant="h5">
-                {artistTitle.toUpperCase()}, <i>{track?.title}</i>
+                {artistTitle.toUpperCase()}, <i>{tracks[trackIndex]?.title}</i>
             </Typography>
             <Typography variant="h5">
                 {getTimestamp(timeMs, durationMs)} / {getTimestamp(durationMs, durationMs)}
