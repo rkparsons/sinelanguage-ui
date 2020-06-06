@@ -22,7 +22,7 @@ export default ({ children }: ViewProps) => {
     const [durationMs, setDurationMs] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
     const isAnalysisAvailable = !isMobile && !isSafari
-    const getAudioData = useAudioAnalyser(audioRef, isAnalysisAvailable)
+    const { getAudioData, audioContext } = useAudioAnalyser(audioRef, isAnalysisAvailable)
 
     useEffect(() => {
         if (audioRef.current) {
@@ -83,12 +83,15 @@ export default ({ children }: ViewProps) => {
 
     function loadMedia(content: Artist | Podcast | Release, newTrackIndex: number = 0) {
         const newTracks = getTracks(content)
-        setArtwork(content.image.fluid)
-        setArtistTitle(getArtistTitle(content))
-        setTracks(newTracks)
-        setTrackIndex(newTrackIndex)
-        loadSrc(newTracks[newTrackIndex].metadata.streamUrl)
-        playMedia()
+        audioContext.current?.resume().then(() => {
+            console.log(audioContext.current?.state)
+            setArtwork(content.image.fluid)
+            setArtistTitle(getArtistTitle(content))
+            setTracks(newTracks)
+            setTrackIndex(newTrackIndex)
+            loadSrc(newTracks[newTrackIndex].metadata.streamUrl)
+            playMedia()
+        })
     }
 
     function loadSrc(src: string) {

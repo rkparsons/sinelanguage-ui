@@ -61,5 +61,5 @@ export default (audioRef: RefObject<HTMLAudioElement>, isActive: boolean) => {
         }
     }
 
-    return getAudioData
+    return { getAudioData, audioContext }
 }
