@@ -28,7 +28,7 @@ export default ({
     product,
     release,
     className = '',
-    disabledOpacity = 0.3,
+    disabledOpacity = 0.5,
 }: ViewProps) => (
     <Button
         ref={buttonRef}
