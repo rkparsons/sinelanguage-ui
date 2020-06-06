@@ -16,7 +16,7 @@ export default ({ title, description, image, url, siteMetadata }: ViewProps) => 
     const seoImage = image || `${siteMetadata.image.file.url}`
 
     return (
-        <Helmet>
+        <Helmet htmlAttributes={{ lang: 'en' }}>
             <title>{seoTitle}</title>
             <meta name="title" content={seoTitle} />
             <meta name="description" content={seoDescription} />
