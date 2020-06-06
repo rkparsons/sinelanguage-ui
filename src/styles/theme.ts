@@ -4,8 +4,7 @@ import { createMuiTheme } from '@material-ui/core/styles'
 import { darkShadow } from './shadows'
 import palette from './palette'
 
-// todo: use less font files
-export default (isDarkMode = false) =>
+export default () =>
     createMuiTheme({
         typography: {
             fontFamily: 'HelveticaNowText',

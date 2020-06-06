@@ -1,7 +1,8 @@
 import 'font-awesome/css/font-awesome.css'
 
 import { AppContainer, GlobalStyle } from './Layout.style'
-import React, { ReactNode } from 'react'
+import { ThemeProvider as MuiThemeProvider, Theme } from '@material-ui/core/styles'
+import React, { ReactNode, useEffect, useRef } from 'react'
 
 import AudioPlayer from '~/components/AudioPlayer'
 import AudioProvider from '~/components/AudioProvider'
@@ -9,21 +10,20 @@ import CartProvider from '~/components/CartProvider'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Dashboard from '~/components/Dashboard'
 import { Location } from '@reach/router'
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
 import Navigation from '~/components/Navigation'
 import { ThemeProvider as ScThemeProvider } from 'styled-components'
-import theme from '~/styles/theme'
+import useTheme from '~/hooks/useTheme'
 
 type ViewProps = {
-    isDarkMode: boolean
-    setIsDarkMode: (isDarkMode: boolean) => void
     children: ReactNode
 }
 
-export default ({ isDarkMode, setIsDarkMode, children }: ViewProps) => (
-    <>
-        <MuiThemeProvider theme={theme(isDarkMode)}>
-            <ScThemeProvider theme={theme(isDarkMode)}>
+export default ({ children }: ViewProps) => {
+    const theme = useTheme()
+
+    return (
+        <MuiThemeProvider theme={theme}>
+            <ScThemeProvider theme={theme}>
                 <CartProvider>
                     <AudioProvider>
                         <CssBaseline />
@@ -42,5 +42,5 @@ export default ({ isDarkMode, setIsDarkMode, children }: ViewProps) => (
                 </CartProvider>
             </ScThemeProvider>
         </MuiThemeProvider>
-    </>
-)
+    )
+}
