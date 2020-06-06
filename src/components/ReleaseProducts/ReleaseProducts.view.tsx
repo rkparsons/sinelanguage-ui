@@ -114,9 +114,6 @@ export default ({
                                 )}
                             </Box>
                         </ProductRow>
-                        <Hidden smUp>
-                            <br />
-                        </Hidden>
                     </Fragment>
                 ))}
             {isProductInCart && (
