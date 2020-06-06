@@ -26,6 +26,7 @@ export default (audioRef: RefObject<HTMLAudioElement>, isActive: boolean) => {
     function initAudioContext(e: Event) {
         if (!audioContext.current) {
             audioContext.current = new (window.AudioContext || (window as any).webkitAudioContext)()
+            audioContext.current.createGain()
             console.log('1. creating audio context', audioContext.current.state)
         } else if (audioRef.current) {
             audioContext.current.resume()
