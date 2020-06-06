@@ -5,6 +5,7 @@ export default (audioRef: RefObject<HTMLAudioElement>, isActive: boolean) => {
     const audioSource = useRef<MediaElementAudioSourceNode>()
     const isWindow = typeof window !== `undefined`
     const isAudioContext = isWindow && ('AudioContext' in window || 'webkitAudioContext' in window)
+    const userInteractionEvents = ['touchstart', 'click', 'mousemove']
 
     useEffect(() => {
         if (isActive && audioRef.current && isAudioContext && !audioSource.current) {
@@ -29,20 +30,20 @@ export default (audioRef: RefObject<HTMLAudioElement>, isActive: boolean) => {
             audioSource.current.connect(audioAnalyser.current)
             audioSource.current.connect(audioContext.destination)
 
+            console.log('init')
+
             removeUserInteractionListeners()
         }
     }
 
     function createUserInteractionListeners() {
-        document.addEventListener('touchstart', initAudioContext)
-        document.addEventListener('click', initAudioContext)
-        document.addEventListener('mousemove', initAudioContext)
+        userInteractionEvents.forEach((event) => document.addEventListener(event, initAudioContext))
     }
 
     function removeUserInteractionListeners() {
-        document.removeEventListener('touchstart', initAudioContext)
-        document.removeEventListener('click', initAudioContext)
-        document.removeEventListener('mousemove', initAudioContext)
+        userInteractionEvents.forEach((event) =>
+            document.removeEventListener(event, initAudioContext)
+        )
     }
 
     function getAudioData() {
