@@ -8,11 +8,7 @@ export default (audioRef: RefObject<HTMLAudioElement>, isActive: boolean) => {
 
     useEffect(() => {
         if (isActive && audioRef.current && isAudioContext && !audioSource.current) {
-            const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
-            audioAnalyser.current = audioContext.createAnalyser()
-            audioSource.current = audioContext.createMediaElementSource(audioRef.current)
-            audioSource.current.connect(audioAnalyser.current)
-            audioSource.current.connect(audioContext.destination)
+            createUserInteractionListeners()
         }
     }, [isActive, audioRef.current, audioSource.current])
 
@@ -24,6 +20,30 @@ export default (audioRef: RefObject<HTMLAudioElement>, isActive: boolean) => {
             audioSource.current = undefined
         }
     }, [])
+
+    function initAudioContext(e: Event) {
+        if (isActive && audioRef.current && isAudioContext && !audioSource.current) {
+            const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
+            audioAnalyser.current = audioContext.createAnalyser()
+            audioSource.current = audioContext.createMediaElementSource(audioRef.current)
+            audioSource.current.connect(audioAnalyser.current)
+            audioSource.current.connect(audioContext.destination)
+
+            removeUserInteractionListeners()
+        }
+    }
+
+    function createUserInteractionListeners() {
+        document.addEventListener('touchstart', initAudioContext)
+        document.addEventListener('click', initAudioContext)
+        document.addEventListener('mousemove', initAudioContext)
+    }
+
+    function removeUserInteractionListeners() {
+        document.removeEventListener('touchstart', initAudioContext)
+        document.removeEventListener('click', initAudioContext)
+        document.removeEventListener('mousemove', initAudioContext)
+    }
 
     function getAudioData() {
         if (!audioAnalyser.current) {
