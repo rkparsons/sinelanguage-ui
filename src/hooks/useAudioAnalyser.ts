@@ -24,7 +24,9 @@ export default (audioRef: RefObject<HTMLAudioElement>, isActive: boolean) => {
 
     function initAudioContext(e: Event) {
         if (isActive && audioRef.current && isAudioContext && !audioSource.current) {
+            console.log(`initAudioContext, isTrusted: ${e.isTrusted}`)
             const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
+            console.log('audioContext.state', audioContext.state)
             audioAnalyser.current = audioContext.createAnalyser()
             audioSource.current = audioContext.createMediaElementSource(audioRef.current)
             audioSource.current.connect(audioAnalyser.current)
@@ -35,10 +37,12 @@ export default (audioRef: RefObject<HTMLAudioElement>, isActive: boolean) => {
     }
 
     function createUserInteractionListeners() {
+        console.log('createUserInteractionListeners')
         userInteractionEvents.forEach((event) => document.addEventListener(event, initAudioContext))
     }
 
     function removeUserInteractionListeners() {
+        console.log('removeUserInteractionListeners')
         userInteractionEvents.forEach((event) =>
             document.removeEventListener(event, initAudioContext)
         )
