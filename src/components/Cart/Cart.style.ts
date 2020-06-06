@@ -59,6 +59,19 @@ export const OverrideCartStyles = styled.div`
         line-height: 1.3;
     }
 
+    .snipcart-item-line__header {
+        .snipcart-item-line__title {
+            font-size: 14px;
+            width: 100%;
+            @media (min-width: 1024px) {
+                font-size: 16px;
+            }
+        }
+        img {
+            display: none;
+        }
+    }
+
     .snipcart-cart-header {
         display: flex;
         justify-content: center;
