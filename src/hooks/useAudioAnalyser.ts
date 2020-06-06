@@ -6,11 +6,14 @@ export default (audioRef: RefObject<HTMLAudioElement>, isActive: boolean) => {
     const audioSource = useRef<MediaElementAudioSourceNode>()
     const isWindow = typeof window !== `undefined`
     const isAudioContext = isWindow && ('AudioContext' in window || 'webkitAudioContext' in window)
-    const userInteractionEvents = ['touchstart', 'click', 'mousemove']
 
     useEffect(() => {
         if (isActive && audioRef.current && isAudioContext && !audioSource.current) {
-            createUserInteractionListeners()
+            audioContext.current = new (window.AudioContext || (window as any).webkitAudioContext)()
+            audioAnalyser.current = audioContext.current.createAnalyser()
+            audioSource.current = audioContext.current.createMediaElementSource(audioRef.current)
+            audioSource.current.connect(audioAnalyser.current)
+            audioSource.current.connect(audioContext.current.destination)
         }
     }, [isActive, audioRef.current, audioSource.current])
 
@@ -22,34 +25,6 @@ export default (audioRef: RefObject<HTMLAudioElement>, isActive: boolean) => {
             audioSource.current = undefined
         }
     }, [])
-
-    function initAudioContext(e: Event) {
-        if (!audioContext.current) {
-            audioContext.current = new (window.AudioContext || (window as any).webkitAudioContext)()
-            audioContext.current.createGain()
-            console.log('1. creating audio context', audioContext.current.state)
-        } else if (audioRef.current) {
-            audioContext.current.resume()
-            console.log('2. resuming audio context', audioContext.current.state)
-            audioAnalyser.current = audioContext.current.createAnalyser()
-            audioSource.current = audioContext.current.createMediaElementSource(audioRef.current)
-            audioSource.current.connect(audioAnalyser.current)
-            audioSource.current.connect(audioContext.current.destination)
-            removeUserInteractionListeners()
-        }
-    }
-
-    function createUserInteractionListeners() {
-        console.log('createUserInteractionListeners')
-        userInteractionEvents.forEach((event) => document.addEventListener(event, initAudioContext))
-    }
-
-    function removeUserInteractionListeners() {
-        console.log('removeUserInteractionListeners')
-        userInteractionEvents.forEach((event) =>
-            document.removeEventListener(event, initAudioContext)
-        )
-    }
 
     function getAudioData() {
         if (!audioAnalyser.current) {
