@@ -1,9 +1,8 @@
 import { AudioPlayer, ImageContainer, PlayerBody, PlayerPanel } from './AudioPlayer.style'
-import { Box, withWidth } from '@material-ui/core'
+import { Box, useMediaQuery, useTheme } from '@material-ui/core'
 import React, { useEffect, useRef, useState } from 'react'
 
 import AudioVisualizer from '~/components/AudioVisualizer'
-import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import Controls from './Controls'
 import Label from './Label'
 import { PlayerState } from '~/constants/playerState'
@@ -17,16 +16,15 @@ import useAudioContext from '~/hooks/useAudioContext'
 
 type ViewProps = {
     hideTimeout: number
-    width: Breakpoint
 }
 
-export default withWidth()(({ width, hideTimeout }: ViewProps) => {
+export default ({ hideTimeout }: ViewProps) => {
     const [playerState, setPlayerState] = useState(PlayerState.CLOSED)
     const audioPlayer = useRef<HTMLDivElement>(null)
     const [audioData, setAudioData] = useState<number[]>([])
     const [timeMs, setTimeMs] = useState(0)
     const { isPlaying, track, artwork, artistTitle, getTimeMs, getAudioData } = useAudioContext()
-    const isMobile = ['xs', 'sm'].includes(width)
+    const isMobile = useMediaQuery(useTheme().breakpoints.down('sm'))
     const isFullSizePlayer = !isMobile && !isSafari
 
     useEffect(() => {
@@ -131,4 +129,4 @@ export default withWidth()(({ width, hideTimeout }: ViewProps) => {
     } else {
         return <></>
     }
-})
+}
