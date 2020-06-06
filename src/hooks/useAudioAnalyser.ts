@@ -1,6 +1,7 @@
 import { RefObject, useEffect, useRef } from 'react'
 
 export default (audioRef: RefObject<HTMLAudioElement>, isActive: boolean) => {
+    const audioContext = useRef<AudioContext>()
     const audioAnalyser = useRef<AnalyserNode>()
     const audioSource = useRef<MediaElementAudioSourceNode>()
     const isWindow = typeof window !== `undefined`
@@ -23,15 +24,16 @@ export default (audioRef: RefObject<HTMLAudioElement>, isActive: boolean) => {
     }, [])
 
     function initAudioContext(e: Event) {
-        if (isActive && audioRef.current && isAudioContext && !audioSource.current) {
-            console.log(`initAudioContext, isTrusted: ${e.isTrusted}`)
-            const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
-            console.log('audioContext.state', audioContext.state)
-            audioAnalyser.current = audioContext.createAnalyser()
-            audioSource.current = audioContext.createMediaElementSource(audioRef.current)
+        if (!audioContext.current) {
+            audioContext.current = new (window.AudioContext || (window as any).webkitAudioContext)()
+            console.log('1. creating audio context', audioContext.current.state)
+        } else if (audioRef.current) {
+            audioContext.current.resume()
+            console.log('2. resuming audio context', audioContext.current.state)
+            audioAnalyser.current = audioContext.current.createAnalyser()
+            audioSource.current = audioContext.current.createMediaElementSource(audioRef.current)
             audioSource.current.connect(audioAnalyser.current)
-            audioSource.current.connect(audioContext.destination)
-
+            audioSource.current.connect(audioContext.current.destination)
             removeUserInteractionListeners()
         }
     }
