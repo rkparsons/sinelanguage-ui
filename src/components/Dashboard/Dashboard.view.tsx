@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, memo } from 'react'
 
 import ContentCard from '~/components/ContentCard'
 import { Dashboard } from './Dashboard.style'
@@ -10,7 +10,7 @@ import NewsletterCard from '~/components/NewsletterCard'
 import PlaylistCard from '~/components/PlaylistCard'
 import useDashboardItems from '~/hooks/useDashboardItems'
 
-export default () => {
+export default memo(() => {
     const items = useDashboardItems()
     const newsletterIndex = 12
     const playlistIndex = 8
@@ -45,4 +45,4 @@ export default () => {
             )}
         </Location>
     )
-}
+})
