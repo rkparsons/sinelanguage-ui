@@ -56,7 +56,12 @@ export default ({
                 .filter((product) => isPhysicalFormat(product) || product.fileGUID)
                 .map((product, index) => (
                     <Fragment key={index}>
-                        <ProductRow display="flex" width="100%" alignItems="center">
+                        <ProductRow
+                            display="flex"
+                            width="100%"
+                            alignItems="center"
+                            isLarge={isLarge}
+                        >
                             <Box flexGrow={1}>
                                 <Grid container>
                                     <Grid item xs={12} md={isDescription ? 3 : 12}>
