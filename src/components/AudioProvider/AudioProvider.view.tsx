@@ -83,15 +83,13 @@ export default ({ children }: ViewProps) => {
 
     function loadMedia(content: Artist | Podcast | Release, newTrackIndex: number = 0) {
         const newTracks = getTracks(content)
-        audioContext.current?.resume().then(() => {
-            console.log(audioContext.current?.state)
-            setArtwork(content.image.fluid)
-            setArtistTitle(getArtistTitle(content))
-            setTracks(newTracks)
-            setTrackIndex(newTrackIndex)
-            loadSrc(newTracks[newTrackIndex].metadata.streamUrl)
-            playMedia()
-        })
+        setArtwork(content.image.fluid)
+        setArtistTitle(getArtistTitle(content))
+        setTracks(newTracks)
+        setTrackIndex(newTrackIndex)
+        loadSrc(newTracks[newTrackIndex].metadata.streamUrl)
+        playMedia()
+        audioContext.current?.resume()
     }
 
     function loadSrc(src: string) {
