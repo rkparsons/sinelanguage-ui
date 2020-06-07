@@ -17,8 +17,6 @@ export default ({ location }: ViewProps) => {
     const isMenuOpen = location.pathname === '/menu'
     const [previousLocation, setPreviousLocation] = useState<string>()
 
-    console.log('navigation')
-
     function handleMenuClick() {
         if (isMenuOpen) {
             navigate(previousLocation || '/')
