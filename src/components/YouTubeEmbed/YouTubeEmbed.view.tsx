@@ -1,6 +1,5 @@
 import { Backdrop, VideoContainer } from './YouTubeEmbed.style'
 import React, { useState } from 'react'
-import { useMediaQuery, useTheme } from '@material-ui/core'
 
 import ReactPlayer from 'react-player'
 import useAudioContext from '~/hooks/useAudioContext'
@@ -12,7 +11,6 @@ type ViewProps = {
 }
 
 export default ({ artist, title, src }: ViewProps) => {
-    const isMobile = useMediaQuery(useTheme().breakpoints.down('sm'))
     const [isPlaying, setIsPlaying] = useState(false)
     const { stopMedia } = useAudioContext()
 
@@ -23,7 +21,7 @@ export default ({ artist, title, src }: ViewProps) => {
 
     return (
         <>
-            <Backdrop isVisible={isPlaying && isMobile} />
+            <Backdrop isPlaying={isPlaying} />
             <VideoContainer onClick={stopMedia}>
                 <ReactPlayer
                     url={src}
