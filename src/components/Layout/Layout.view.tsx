@@ -4,7 +4,6 @@ import { AppContainer, GlobalStyle } from './Layout.style'
 import { ThemeProvider as MuiThemeProvider, Theme } from '@material-ui/core/styles'
 import React, { ReactNode, useEffect, useRef } from 'react'
 
-import AudioPlayer from '~/components/AudioPlayer'
 import AudioProvider from '~/components/AudioProvider'
 import CartProvider from '~/components/CartProvider'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -36,7 +35,6 @@ export default ({ children }: ViewProps) => {
                                 {children}
                                 <Dashboard />
                             </main>
-                            <AudioPlayer />
                         </AppContainer>
                     </AudioProvider>
                 </CartProvider>
