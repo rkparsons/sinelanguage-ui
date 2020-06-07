@@ -1,4 +1,4 @@
-import { Box, Grid } from '@material-ui/core'
+import { Box, Grid, Hidden } from '@material-ui/core'
 
 import ContentCardMedia from '~/components/ContentCardMedia'
 import Desktop from '~/components/Desktop'
@@ -42,6 +42,9 @@ export default ({ data }: Props) => {
                     </Desktop>
                     <Grid item xs={12} md={6}>
                         <Scrollable isWithMargin={true}>
+                            <Hidden lgDown>
+                                <br />
+                            </Hidden>
                             <EventDetail event={data.contentfulEvent} />
                         </Scrollable>
                     </Grid>

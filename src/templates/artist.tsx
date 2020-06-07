@@ -1,5 +1,5 @@
 import { Artist, Release, Video } from '~/cms/types'
-import { Box, Grid } from '@material-ui/core'
+import { Box, Grid, Hidden } from '@material-ui/core'
 
 import ArtistDetail from '~/components/ArtistDetail'
 import ContentCardMedia from '~/components/ContentCardMedia'
@@ -41,6 +41,9 @@ export default ({ data }: Props) => {
                 </Desktop>
                 <Grid item xs={12} md={6}>
                     <Scrollable isWithMargin={true}>
+                        <Hidden lgDown>
+                            <br />
+                        </Hidden>
                         <ArtistDetail
                             artist={data.contentfulArtist}
                             releases={data.contentfulArtist.release || []}
