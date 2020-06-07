@@ -1,4 +1,4 @@
-import { Grid, Typography, useMediaQuery, useTheme } from '@material-ui/core'
+import { Grid, Hidden, Typography, useMediaQuery, useTheme } from '@material-ui/core'
 import { Header, ToggleMobileMenu } from './Navigation.style'
 import React, { useState } from 'react'
 
@@ -15,8 +15,9 @@ type ViewProps = {
 
 export default ({ location }: ViewProps) => {
     const isMenuOpen = location.pathname === '/menu'
-    const isMobile = useMediaQuery(useTheme().breakpoints.down('sm'))
     const [previousLocation, setPreviousLocation] = useState<string>()
+
+    console.log('navigation')
 
     function handleMenuClick() {
         if (isMenuOpen) {
@@ -29,14 +30,16 @@ export default ({ location }: ViewProps) => {
 
     return (
         <Header>
-            <Grid container spacing={isMobile ? 10 : 0} justify="space-between">
-                <Grid item xs={isMobile ? 9 : 6}>
-                    <NavItem
-                        to={Route.NEWS}
-                        title={isMobile ? 'SINE LANGUAGE' : 'SINE LANGUAGE RECORDS'}
-                    />
+            <Grid container justify="space-between">
+                <Grid item xs={9} md={6}>
+                    <Hidden mdUp>
+                        <NavItem to={Route.NEWS} title="SINE LANGUAGE" />
+                    </Hidden>
+                    <Hidden smDown>
+                        <NavItem to={Route.NEWS} title="SINE LANGUAGE RECORDS" />
+                    </Hidden>
                 </Grid>
-                {isMobile && (
+                <Hidden mdUp>
                     <Grid item>
                         <ToggleMobileMenu>
                             <IconButton
@@ -50,8 +53,10 @@ export default ({ location }: ViewProps) => {
                             />
                         </ToggleMobileMenu>
                     </Grid>
-                )}
-                {!isMobile && <Links isMobile={isMobile} />}
+                </Hidden>
+                <Hidden smDown>
+                    <Links />
+                </Hidden>
             </Grid>
 
             {/* {isAuthenticated() ? (

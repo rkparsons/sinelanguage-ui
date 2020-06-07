@@ -5,13 +5,9 @@ import React from 'react'
 import { Route } from '~/constants/route'
 import { Unicode } from '~/constants/unicode'
 
-type ViewProps = {
-    isMobile: boolean
-}
-
-export default ({ isMobile }: ViewProps) => (
+export default () => (
     <>
-        <Grid item xs={isMobile ? 12 : 3}>
+        <Grid item xs={12} md={3}>
             <Grid container direction="column">
                 <Grid item>
                     <NavItem to={Route.RELEASES} title="RELEASES" partiallyActive={true} />
@@ -24,7 +20,7 @@ export default ({ isMobile }: ViewProps) => (
                 </Grid>
             </Grid>
         </Grid>
-        <Grid item xs={isMobile ? 12 : 3}>
+        <Grid item xs={12} md={3}>
             <Grid container direction="column">
                 <Grid item>
                     <NavItem to={Route.EVENTS} title="EVENTS" partiallyActive={true} />
