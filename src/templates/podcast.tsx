@@ -1,6 +1,7 @@
-import { Box, Grid, Hidden } from '@material-ui/core'
+import { Box, Grid } from '@material-ui/core'
 
 import ContentCardMedia from '~/components/ContentCardMedia'
+import Desktop from '~/components/Desktop'
 import Head from '~/components/Head'
 import Overlay from '~/components/Overlay'
 import { Podcast } from '~/cms/types'
@@ -23,7 +24,7 @@ export default ({ data }: Props) => {
             <Head title={title} description={description.description} image={image.fluid.src} />
             <Overlay>
                 <Grid container>
-                    <Hidden smDown>
+                    <Desktop>
                         <Grid item xs={6}>
                             <Box
                                 display="flex"
@@ -37,7 +38,7 @@ export default ({ data }: Props) => {
                                 </Box>
                             </Box>
                         </Grid>
-                    </Hidden>
+                    </Desktop>
                     <Grid item xs={12} md={6}>
                         <Scrollable isWithMargin={true}>
                             <PodcastDetail podcast={data.contentfulPodcast} />

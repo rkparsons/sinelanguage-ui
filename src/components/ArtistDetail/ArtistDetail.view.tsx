@@ -1,9 +1,10 @@
 import { Artist, Release, Video } from '~/cms/types'
-import { Box, Grid, Hidden, Typography } from '@material-ui/core'
+import { Box, Grid, Typography } from '@material-ui/core'
 
 import ContentPlayButton from '~/components/ContentPlayButton'
 import ContentThumbnail from '~/components/ContentThumbnail'
 import Image from 'gatsby-image'
+import Mobile from '~/components/Mobile'
 import React from 'react'
 import RichText from '~/components/RichText'
 import Socials from '~/components/Socials'
@@ -29,7 +30,7 @@ export default ({ artist, releases, videos }: ViewProps) => {
             <br />
             <br />
 
-            <Hidden mdUp>
+            <Mobile>
                 <br />
                 <Grid container>
                     <Grid item xs={12} sm={8}>
@@ -38,7 +39,7 @@ export default ({ artist, releases, videos }: ViewProps) => {
                 </Grid>
 
                 <br />
-            </Hidden>
+            </Mobile>
             <br />
             <RichText json={bio.json} variant="h3" />
             <br />

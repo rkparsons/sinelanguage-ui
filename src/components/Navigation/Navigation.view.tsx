@@ -1,9 +1,11 @@
-import { Grid, Hidden, Typography, useMediaQuery, useTheme } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 import { Header, ToggleMobileMenu } from './Navigation.style'
 import React, { useState } from 'react'
 
+import Desktop from '~/components/Desktop'
 import IconButton from '~/components/IconButton'
 import Links from './Links'
+import Mobile from '~/components/Mobile'
 import NavItem from '~/components/NavItem'
 import { Route } from '~/constants/route'
 import { Unicode } from '~/constants/unicode'
@@ -30,14 +32,14 @@ export default ({ location }: ViewProps) => {
         <Header>
             <Grid container justify="space-between">
                 <Grid item xs={9} md={6}>
-                    <Hidden mdUp>
+                    <Mobile>
                         <NavItem to={Route.NEWS} title="SINE LANGUAGE" />
-                    </Hidden>
-                    <Hidden smDown>
+                    </Mobile>
+                    <Desktop>
                         <NavItem to={Route.NEWS} title="SINE LANGUAGE RECORDS" />
-                    </Hidden>
+                    </Desktop>
                 </Grid>
-                <Hidden mdUp>
+                <Mobile>
                     <Grid item>
                         <ToggleMobileMenu>
                             <IconButton
@@ -51,10 +53,10 @@ export default ({ location }: ViewProps) => {
                             />
                         </ToggleMobileMenu>
                     </Grid>
-                </Hidden>
-                <Hidden smDown>
+                </Mobile>
+                <Desktop>
                     <Links />
-                </Hidden>
+                </Desktop>
             </Grid>
 
             {/* {isAuthenticated() ? (

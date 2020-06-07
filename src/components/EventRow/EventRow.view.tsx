@@ -1,7 +1,9 @@
-import { Grid, Hidden, Typography } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 
 import { Date } from './EventRow.style'
+import Desktop from '~/components/Desktop'
 import { Event } from '~/cms/types'
+import Mobile from '~/components/Mobile'
 import React from 'react'
 import moment from 'moment'
 
@@ -17,14 +19,14 @@ export default ({ event }: ViewProps) => {
             <Grid item xs={12} md={9}>
                 <Typography variant="h3">
                     <Date>{moment(date).format('MMM. DD, YYYY')}</Date>
-                    <Hidden smDown>
+                    <Desktop>
                         {title} – {artists.join(', ')}
-                    </Hidden>
+                    </Desktop>
                 </Typography>
-                <Hidden mdUp>
+                <Mobile>
                     <Typography variant="h3">{title}</Typography>
                     <Typography variant="h3">{artists.join(', ')}</Typography>
-                </Hidden>
+                </Mobile>
             </Grid>
             <Grid item xs={12} md={3}>
                 <Typography variant="h3">{location}</Typography>

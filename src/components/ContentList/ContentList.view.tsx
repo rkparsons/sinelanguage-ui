@@ -1,4 +1,4 @@
-import { Box, Collapse, Grid, Hidden, Typography, withWidth } from '@material-ui/core'
+import { Box, Collapse, Grid, Typography, withWidth } from '@material-ui/core'
 import { Fade, HoverImage, ItemRow, TitleRow } from './ContentList.style'
 import React, { useState } from 'react'
 
@@ -7,6 +7,7 @@ import ContentCardMedia from '~/components/ContentCardMedia'
 import { ContentItem } from '~/types/cms'
 import ContentRow from '~/components/ContentRow'
 import { ContentType } from '~/constants/contentType'
+import Desktop from '~/components/Desktop'
 import InvertOnHover from '~/components/InvertOnHover'
 import { Link } from 'gatsby'
 import Overlay from '~/components/Overlay'
@@ -52,7 +53,7 @@ export default withWidth()(({ title, items, width, isLargePaddingOnMobile = true
                     ))}
                 </Grid>
             </Scrollable>
-            <Hidden smDown>
+            <Desktop>
                 {items.map((item, index) => (
                     <HoverImage
                         display="flex"
@@ -75,7 +76,7 @@ export default withWidth()(({ title, items, width, isLargePaddingOnMobile = true
                         </Box>
                     </HoverImage>
                 ))}
-            </Hidden>
+            </Desktop>
         </Overlay>
     )
 })

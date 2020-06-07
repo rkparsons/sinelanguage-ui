@@ -1,7 +1,9 @@
-import { Box, Grid, Hidden, Typography } from '@material-ui/core'
+import { Box, Typography } from '@material-ui/core'
 import { Release, Track } from '~/cms/types'
 
 import ContentPlayButton from '~/components/ContentPlayButton'
+import Desktop from '~/components/Desktop'
+import Mobile from '~/components/Mobile'
 import ProductMenu from '~/components/ProductMenu'
 import React from 'react'
 import { TrackNumber } from './TrackRow.style'
@@ -26,21 +28,21 @@ export default ({ release, track, index }: ViewProps) => {
             <Box flexGrow={1}>
                 <Typography variant="h3">
                     {title}{' '}
-                    <Hidden mdUp>
+                    <Mobile>
                         <br />
                         {getDurationTimestamp(metadata.duration)}
-                    </Hidden>
+                    </Mobile>
                 </Typography>
             </Box>
             <Box>
                 <Box display="flex" width="100%" justifyContent="flex-end" alignItems="center">
-                    <Hidden smDown>
+                    <Desktop>
                         <Box paddingRight="20px">
                             <Typography variant="h3">
                                 {getDurationTimestamp(metadata.duration)}
                             </Typography>
                         </Box>
-                    </Hidden>
+                    </Desktop>
                     <ContentPlayButton content={release} trackIndex={index} isLight={true} />
                     <ProductMenu
                         release={release}

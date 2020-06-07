@@ -1,7 +1,8 @@
-import { Box, Grid, Hidden, Typography } from '@material-ui/core'
+import { Box, Grid, Typography } from '@material-ui/core'
 
 import ContentPlayButton from '~/components/ContentPlayButton'
 import Image from 'gatsby-image'
+import Mobile from '~/components/Mobile'
 import { Podcast } from '~/cms/types'
 import React from 'react'
 import RichText from '~/components/RichText'
@@ -24,14 +25,14 @@ export default ({ podcast }: ViewProps) => {
             <ContentPlayButton content={podcast} trackIndex={0} isLight={true} text="PLAY" />
             <br />
             <br />
-            <Hidden mdUp>
+            <Mobile>
                 <br />
                 <Grid container>
                     <Grid item xs={12} sm={8} md={6}>
                         <Image title={title} alt={title} sizes={{ ...image.fluid }} />
                     </Grid>
                 </Grid>
-            </Hidden>
+            </Mobile>
             <br />
             <RichText json={introduction.json} variant="h3" />
             <br />

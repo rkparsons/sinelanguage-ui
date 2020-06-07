@@ -1,6 +1,7 @@
-import { Box, Grid, Hidden, Typography } from '@material-ui/core'
+import { Box, Grid, Typography } from '@material-ui/core'
 
 import { Event } from '~/cms/types'
+import Mobile from '~/components/Mobile'
 import React from 'react'
 import RichText from '~/components/RichText'
 import TeaserVideo from '~/components/TeaserVideo'
@@ -21,14 +22,14 @@ export default ({ event }: ViewProps) => {
             </Typography>
             <br />
 
-            <Hidden mdUp>
+            <Mobile>
                 <Grid container>
                     <Grid item xs={12} sm={8} md={6}>
                         <TeaserVideo src={teaserVideo.file.url} />
                     </Grid>
                 </Grid>
                 <br />
-            </Hidden>
+            </Mobile>
 
             <RichText json={details.json} variant="h3" />
         </Box>

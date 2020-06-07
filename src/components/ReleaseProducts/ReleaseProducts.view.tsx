@@ -1,14 +1,14 @@
 import { AddLabel, ProductRow } from './ReleaseProducts.style'
-import { Box, Grid, Hidden, Typography } from '@material-ui/core'
+import { Box, Grid, Typography } from '@material-ui/core'
 import { Product, Release } from '~/cms/types'
 import React, { Fragment } from 'react'
 import { getDescription, getPrice, isPhysicalFormat } from '~/utils/product'
 
 import CheckoutButton from '~/components/CheckoutButton'
+import Desktop from '~/components/Desktop'
 import IconButton from '~/components/IconButton'
-import ProductFormat from '~/constants/productFormat'
+import Mobile from '~/components/Mobile'
 import { Unicode } from '~/constants/unicode'
-import { getUrl } from '~/utils/content'
 import useCartContext from '~/hooks/useCartContext'
 
 type ViewProps = {
@@ -64,20 +64,18 @@ export default ({
                                             <Typography variant={isLarge ? 'h3' : 'body1'}>
                                                 {product.format}{' '}
                                                 {isDescription && (
-                                                    <Hidden mdUp>
-                                                        ({getDescription(product)})
-                                                    </Hidden>
+                                                    <Mobile>({getDescription(product)})</Mobile>
                                                 )}
                                             </Typography>
                                         </Grid>
                                         {isDescription && (
-                                            <Hidden smDown>
+                                            <Desktop>
                                                 <Grid item xs={9}>
                                                     <Typography variant={isLarge ? 'h3' : 'body1'}>
                                                         {getDescription(product)}
                                                     </Typography>
                                                 </Grid>
-                                            </Hidden>
+                                            </Desktop>
                                         )}
                                     </Grid>
                                 </Box>

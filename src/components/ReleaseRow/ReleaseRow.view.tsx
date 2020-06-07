@@ -1,6 +1,8 @@
-import { Grid, Hidden, Typography } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 import { Release, Video } from '~/cms/types'
 
+import Desktop from '~/components/Desktop'
+import Mobile from '~/components/Mobile'
 import React from 'react'
 import { ReleaseId } from './ReleaseRow.style'
 import moment from 'moment'
@@ -15,16 +17,16 @@ export default ({ release, format }: ViewProps) => {
 
     return (
         <Grid container justify="space-between" alignItems="flex-start">
-            <Hidden mdUp>
+            <Mobile>
                 <Typography variant="h3">
                     <ReleaseId>{uid}</ReleaseId>
                 </Typography>
-            </Hidden>
+            </Mobile>
             <Grid item xs={12} md={9}>
                 <Typography variant="h3">
-                    <Hidden smDown>
+                    <Desktop>
                         <ReleaseId>{uid}</ReleaseId>
-                    </Hidden>
+                    </Desktop>
                     {(originalArtist || artist.title).toUpperCase()}, <i>{title}</i>
                 </Typography>
             </Grid>

@@ -1,7 +1,6 @@
-import { Hidden, Typography } from '@material-ui/core'
-import React, { useRef } from 'react'
-
 import { Label } from './Label.style'
+import React from 'react'
+import { Typography } from '@material-ui/core'
 import { getTimestamp } from '~/utils/date'
 import useAudioContext from '~/hooks/useAudioContext'
 

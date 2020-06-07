@@ -1,5 +1,7 @@
-import { Grid, Hidden, Typography } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 
+import Desktop from '~/components/Desktop'
+import Mobile from '~/components/Mobile'
 import { Podcast } from '~/cms/types'
 import { PodcastId } from './PodcastRow.style'
 import React from 'react'
@@ -16,13 +18,13 @@ export default ({ podcast }: ViewProps) => {
         <Grid container justify="space-between">
             <Grid item xs={12} md={9}>
                 <Typography variant="h3">
-                    <Hidden smDown>
+                    <Desktop>
                         <PodcastId>{uid}</PodcastId>
-                    </Hidden>
+                    </Desktop>
                     {title.toUpperCase()}
-                    <Hidden mdUp>
+                    <Mobile>
                         , <PodcastId>{uid}</PodcastId>
-                    </Hidden>
+                    </Mobile>
                 </Typography>
             </Grid>
             <Grid item xs={6} md={2}>

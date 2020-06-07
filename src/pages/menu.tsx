@@ -1,9 +1,9 @@
-import { Hidden } from '@material-ui/core'
 import Menu from '~/components/Menu'
+import Mobile from '~/components/Mobile'
 import React from 'react'
 
 export default () => (
-    <Hidden mdUp>
+    <Mobile>
         <Menu />
-    </Hidden>
+    </Mobile>
 )
