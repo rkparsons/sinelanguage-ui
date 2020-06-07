@@ -8,6 +8,7 @@ import Overlay from '~/components/Overlay'
 import React from 'react'
 import ReleaseDetail from '~/components/ReleaseDetail'
 import Scrollable from '~/components/Scrollable'
+import { detailImageSize } from '~/styles/sizes'
 import { graphql } from 'gatsby'
 import { sortByDate } from '~/utils/content'
 
@@ -43,7 +44,7 @@ export default ({ data, location }: Props) => {
                                 justifyContent="center"
                                 alignItems="center"
                             >
-                                <Box width="50vh">
+                                <Box width={`${detailImageSize}vh`} maxWidth="80%">
                                     <ContentCardMedia content={data.contentfulRelease} />
                                 </Box>
                             </Box>

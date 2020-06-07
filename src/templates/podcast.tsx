@@ -8,6 +8,7 @@ import { Podcast } from '~/cms/types'
 import PodcastDetail from '~/components/PodcastDetail'
 import React from 'react'
 import Scrollable from '~/components/Scrollable'
+import { detailImageSize } from '~/styles/sizes'
 import { graphql } from 'gatsby'
 
 type Props = {
@@ -33,7 +34,7 @@ export default ({ data }: Props) => {
                                 justifyContent="center"
                                 alignItems="center"
                             >
-                                <Box width="50vh">
+                                <Box width={`${detailImageSize}vh`} maxWidth="80%">
                                     <ContentCardMedia content={data.contentfulPodcast} />
                                 </Box>
                             </Box>
