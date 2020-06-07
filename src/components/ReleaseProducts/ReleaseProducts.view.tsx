@@ -56,62 +56,63 @@ export default ({
                 .filter((product) => isPhysicalFormat(product) || product.fileGUID)
                 .map((product, index) => (
                     <Fragment key={index}>
-                        <ProductRow
-                            display="flex"
-                            width="100%"
-                            alignItems="center"
-                            isLarge={isLarge}
-                        >
-                            <Box flexGrow={1}>
-                                <Grid container>
-                                    <Grid item xs={12} md={isDescription ? 3 : 12}>
-                                        <Typography variant={isLarge ? 'h3' : 'body1'}>
-                                            {product.format}{' '}
-                                            {isDescription && (
-                                                <Hidden mdUp>({getDescription(product)})</Hidden>
-                                            )}
-                                        </Typography>
-                                    </Grid>
-                                    {isDescription && (
-                                        <Hidden smDown>
-                                            <Grid item xs={9}>
-                                                <Typography variant={isLarge ? 'h3' : 'body1'}>
-                                                    {getDescription(product)}
-                                                </Typography>
-                                            </Grid>
-                                        </Hidden>
-                                    )}
-                                </Grid>
-                            </Box>
-
-                            <Box
-                                minWidth={isLarge ? '100px' : '75px'}
-                                display="flex"
-                                justifyContent="flex-end"
-                            >
-                                {cart.items.find((cartItem) => cartItem.id === product.title) ? (
-                                    <Typography
-                                        variant={isLarge ? 'h3' : 'body1'}
-                                        color="secondary"
-                                    >
-                                        ADDED
-                                    </Typography>
-                                ) : (
-                                    <IconButton
-                                        label={
+                        <ProductRow isLarge={isLarge}>
+                            <Box display="flex" width="100%" alignItems="center">
+                                <Box flexGrow={1}>
+                                    <Grid container>
+                                        <Grid item xs={12} md={isDescription ? 3 : 12}>
                                             <Typography variant={isLarge ? 'h3' : 'body1'}>
-                                                <AddLabel
-                                                    price={`£${getPrice(product).toFixed(2)}`}
-                                                />
+                                                {product.format}{' '}
+                                                {isDescription && (
+                                                    <Hidden mdUp>
+                                                        ({getDescription(product)})
+                                                    </Hidden>
+                                                )}
                                             </Typography>
-                                        }
-                                        onClick={() => {}}
-                                        isLight={isLight}
-                                        product={product}
-                                        release={release}
-                                        className="snipcart-add-item"
-                                    />
-                                )}
+                                        </Grid>
+                                        {isDescription && (
+                                            <Hidden smDown>
+                                                <Grid item xs={9}>
+                                                    <Typography variant={isLarge ? 'h3' : 'body1'}>
+                                                        {getDescription(product)}
+                                                    </Typography>
+                                                </Grid>
+                                            </Hidden>
+                                        )}
+                                    </Grid>
+                                </Box>
+
+                                <Box
+                                    minWidth={isLarge ? '100px' : '75px'}
+                                    display="flex"
+                                    justifyContent="flex-end"
+                                >
+                                    {cart.items.find(
+                                        (cartItem) => cartItem.id === product.title
+                                    ) ? (
+                                        <Typography
+                                            variant={isLarge ? 'h3' : 'body1'}
+                                            color="secondary"
+                                        >
+                                            ADDED
+                                        </Typography>
+                                    ) : (
+                                        <IconButton
+                                            label={
+                                                <Typography variant={isLarge ? 'h3' : 'body1'}>
+                                                    <AddLabel
+                                                        price={`£${getPrice(product).toFixed(2)}`}
+                                                    />
+                                                </Typography>
+                                            }
+                                            onClick={() => {}}
+                                            isLight={isLight}
+                                            product={product}
+                                            release={release}
+                                            className="snipcart-add-item"
+                                        />
+                                    )}
+                                </Box>
                             </Box>
                         </ProductRow>
                     </Fragment>
