@@ -1,7 +1,8 @@
-import { Hidden, Typography } from '@material-ui/core'
-
+import Desktop from '~/components/Desktop'
+import Mobile from '~/components/Mobile'
 import React from 'react'
 import { ReactNode } from 'react'
+import { Typography } from '@material-ui/core'
 
 type ViewProps = {
     children: ReactNode
@@ -12,15 +13,15 @@ type ViewProps = {
 
 export default ({ children, mobile, desktop, gutterBottom = false }: ViewProps) => (
     <>
-        <Hidden mdUp>
+        <Mobile>
             <Typography variant={mobile} gutterBottom={gutterBottom}>
                 {children}
             </Typography>
-        </Hidden>
-        <Hidden smDown>
+        </Mobile>
+        <Desktop>
             <Typography variant={desktop} gutterBottom={gutterBottom}>
                 {children}
             </Typography>
-        </Hidden>
+        </Desktop>
     </>
 )
