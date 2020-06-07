@@ -8,16 +8,16 @@ import {
     InputGrid,
     Title,
 } from './NewsletterCard.style'
-import { Grid, Typography, useMediaQuery, useTheme } from '@material-ui/core'
 
 import Column from '~/components/Column'
 import ContentCardDetail from '~/components/ContentCardDetail'
+import { Grid } from '@material-ui/core'
 import IconButton from '~/components/IconButton'
 import React from 'react'
+import ResponsiveTypography from '~/components/ResponsiveTypography'
 import useMailchimp from '~/hooks/useMailchimp'
 
 export default () => {
-    const isMobile = useMediaQuery(useTheme().breakpoints.down('sm'))
     const {
         isSuccess,
         isInvalid,
@@ -33,49 +33,51 @@ export default () => {
             <AspectRatio>
                 <Content>
                     <Title>
-                        <Typography variant={isMobile ? 'body1' : 'h5'}>
+                        <ResponsiveTypography mobile="body1" desktop="h5">
                             {isSuccess
                                 ? 'THANKS FOR SUBSCRIBING!'
                                 : 'WANT TO HEAR FROM US ABOUT NEW RELEASES?'}
-                        </Typography>
+                        </ResponsiveTypography>
                     </Title>
                     {!isSuccess && (
                         <InputGrid container>
                             <Grid item xs={12}>
                                 <ErrorMessage>
-                                    <Typography variant={isMobile ? 'body1' : 'h5'} gutterBottom>
+                                    <ResponsiveTypography
+                                        mobile="body1"
+                                        desktop="h5"
+                                        gutterBottom={true}
+                                    >
                                         {isInvalid ? 'Please enter a valid email' : ''}
-                                    </Typography>
+                                    </ResponsiveTypography>
                                 </ErrorMessage>
-                                <Typography variant={isMobile ? 'body1' : 'h5'} component="span">
-                                    <EmailInputContainer isInvalid={isInvalid}>
-                                        <EmailInput
-                                            inputRef={emailInput}
-                                            type="email"
-                                            value={email}
-                                            onChange={onEmailChanged}
-                                            onKeyDown={onKeyDown}
-                                            spellCheck={false}
-                                            InputProps={{
-                                                disableUnderline: true,
-                                                style: {
-                                                    fontSize: 'inherit',
-                                                    fontWeight: 'inherit',
-                                                    lineHeight: 'inherit',
-                                                },
-                                            }}
-                                            placeholder="EMAIL"
-                                        />
-                                    </EmailInputContainer>
-                                </Typography>
+                                <EmailInputContainer isInvalid={isInvalid}>
+                                    <EmailInput
+                                        inputRef={emailInput}
+                                        type="email"
+                                        value={email}
+                                        onChange={onEmailChanged}
+                                        onKeyDown={onKeyDown}
+                                        spellCheck={false}
+                                        InputProps={{
+                                            disableUnderline: true,
+                                            style: {
+                                                fontSize: 'inherit',
+                                                fontWeight: 'inherit',
+                                                lineHeight: 'inherit',
+                                            },
+                                        }}
+                                        placeholder="EMAIL"
+                                    />
+                                </EmailInputContainer>
                             </Grid>
                             <Grid item xs={12}>
                                 <Action>
                                     <IconButton
                                         label={
-                                            <Typography variant={isMobile ? 'body1' : 'h5'}>
+                                            <ResponsiveTypography mobile="body1" desktop="h5">
                                                 JOIN THE MAILING LIST
-                                            </Typography>
+                                            </ResponsiveTypography>
                                         }
                                         onClick={onSubmit}
                                         isLight={false}

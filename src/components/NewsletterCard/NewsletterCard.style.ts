@@ -1,5 +1,6 @@
 import { Grid, TextField } from '@material-ui/core'
 
+import { responsiveFont } from '~/utils/font'
 import styled from 'styled-components'
 
 export const AspectRatio = styled.div`
@@ -29,6 +30,10 @@ export const EmailInputContainer = styled.div<{ isInvalid: boolean }>`
 
 export const EmailInput = styled(TextField)`
     width: 100%;
+
+    * {
+        ${responsiveFont(15, 15, 18, 20, 21)}
+    }
 
     label {
         color: grey;
