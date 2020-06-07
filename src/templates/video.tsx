@@ -1,12 +1,11 @@
-import { Grid, Typography } from '@material-ui/core'
+import { Box, Typography } from '@material-ui/core'
 
-import FullSizeGrid from '~/components/FullSizeGrid'
+import Desktop from '~/components/Desktop'
 import Head from '~/components/Head'
+import Mobile from '~/components/Mobile'
 import Overlay from '~/components/Overlay'
 import React from 'react'
-import ResponsivePaddingTop from '~/components/ResponsivePaddingTop'
 import RichText from '~/components/RichText'
-import Scrollable from '~/components/Scrollable'
 import { Video } from '~/cms/types'
 import YouTubeEmbed from '~/components/YouTubeEmbed'
 import { graphql } from 'gatsby'
@@ -24,20 +23,33 @@ export default ({ data }: Props) => {
         <>
             <Head title={title} description={description.description} image={image.fluid.src} />
             <Overlay>
-                <ResponsivePaddingTop>
-                    <FullSizeGrid justify="center">
-                        <Grid item xs={12} sm={11} md={10} lg={8} xl={7}>
+                <Box
+                    display="flex"
+                    width="100%"
+                    height="100%"
+                    flexDirection="column"
+                    justifyContent="center"
+                    alignItems="center"
+                >
+                    <Box height="5vh"></Box>
+                    <Mobile>
+                        <Box width="100%">
                             <YouTubeEmbed artist={artist.title} title={title} src={srcURL} />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <br />
-                            <Typography variant="h5" align="center">
-                                {artist.title}, <i>{title}</i>
-                            </Typography>
-                            <RichText json={credits.json} variant="h5" align="center" />
-                        </Grid>
-                    </FullSizeGrid>
-                </ResponsivePaddingTop>
+                        </Box>
+                    </Mobile>
+                    <Desktop>
+                        <Box width="60%">
+                            <YouTubeEmbed artist={artist.title} title={title} src={srcURL} />
+                        </Box>
+                    </Desktop>
+                    <Box height="5vh">
+                        <br />
+                        <Typography variant="h5" align="center">
+                            {artist.title}, <i>{title}</i>
+                        </Typography>
+                        <RichText json={credits.json} variant="h5" align="center" />
+                    </Box>
+                </Box>
             </Overlay>
         </>
     )
