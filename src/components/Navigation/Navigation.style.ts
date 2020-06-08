@@ -13,13 +13,18 @@ export const Header = styled.header`
 
     ${({ theme }) => `
         padding-top: ${theme.spacing(marginTop)};
+    `}
+`
+
+export const Title = styled.div`
+    ${({ theme }) => `
         padding-left: ${theme.spacing(marginSide)};
-        padding-right: ${theme.spacing(marginSide)};
     `}
 `
 
 export const ToggleMobileMenu = styled.div`
     ${({ theme }) => `
         pointer-events: all;
+        padding-right: ${theme.spacing(marginSide)};
     `}
 `

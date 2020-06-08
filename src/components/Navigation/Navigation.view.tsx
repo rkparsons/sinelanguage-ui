@@ -1,5 +1,5 @@
 import { Grid, Typography } from '@material-ui/core'
-import { Header, ToggleMobileMenu } from './Navigation.style'
+import { Header, Title, ToggleMobileMenu } from './Navigation.style'
 import React, { useState } from 'react'
 
 import Desktop from '~/components/Desktop'
@@ -33,10 +33,14 @@ export default ({ location }: ViewProps) => {
             <Grid container justify="space-between">
                 <Grid item xs={9} md={6}>
                     <Mobile>
-                        <NavItem to={Route.NEWS} title="SINE LANGUAGE" />
+                        <Title>
+                            <NavItem to={Route.NEWS} title="SINE LANGUAGE" />
+                        </Title>
                     </Mobile>
                     <Desktop>
-                        <NavItem to={Route.NEWS} title="SINE LANGUAGE RECORDS" />
+                        <Title>
+                            <NavItem to={Route.NEWS} title="SINE LANGUAGE RECORDS" />
+                        </Title>
                     </Desktop>
                 </Grid>
                 <Mobile>
