@@ -38,6 +38,18 @@ export default new ContentfulContentType({
             name: 'Weight Grams',
             required: false,
         }),
+        new DecimalField({
+            name: 'Width Centimeters',
+            required: false,
+        }),
+        new DecimalField({
+            name: 'Length Centimeters',
+            required: false,
+        }),
+        new DecimalField({
+            name: 'Height Centimeters',
+            required: false,
+        }),
         new TextField({
             name: 'Description',
             widgetId: 'multipleLine',

@@ -73,6 +73,9 @@ export type Product = {
 	format: string
 	price: number
 	weightGrams: number
+	widthCentimeters: number
+	lengthCentimeters: number
+	heightCentimeters: number
 	description: {
         description: string
     }

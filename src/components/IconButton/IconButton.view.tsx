@@ -45,6 +45,9 @@ export default ({
         data-item-image={release && product ? getImage(release, product) : ''}
         data-item-file-guid={product?.fileGUID}
         data-item-weight={product?.weightGrams}
+        data-item-width={product?.widthCentimeters}
+        data-item-length={product?.lengthCentimeters}
+        data-item-height={product?.heightCentimeters}
     >
         {label}
     </Button>
