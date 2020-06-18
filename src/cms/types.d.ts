@@ -72,6 +72,7 @@ export type Product = {
 	title: string
 	format: string
 	price: number
+	weightGrams: number
 	description: {
         description: string
     }

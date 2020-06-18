@@ -34,6 +34,10 @@ export default new ContentfulContentType({
             name: 'Price',
             required: false,
         }),
+        new DecimalField({
+            name: 'Weight Grams',
+            required: false,
+        }),
         new TextField({
             name: 'Description',
             widgetId: 'multipleLine',

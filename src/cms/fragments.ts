@@ -86,6 +86,7 @@ export const productFragment = graphql`
 		title
 		format
 		price
+		weightGrams
 		description {
             description
         }

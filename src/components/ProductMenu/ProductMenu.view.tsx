@@ -71,6 +71,7 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                     data-item-description={getDescription(product)}
                     data-item-image={getImage(release, product)}
                     data-item-file-guid={product.fileGUID}
+                    data-item-weight={product.weightGrams}
                 >
                     {product.format}
                 </button>

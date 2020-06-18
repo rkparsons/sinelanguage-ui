@@ -73,6 +73,7 @@ export const typeDefs = `
 		title: String
 		format: String
 		price: Float
+		weightGrams: Float
 		description: contentfulProductDescriptionTextNode
 		fileGUID: String
 		image: ContentfulAsset
