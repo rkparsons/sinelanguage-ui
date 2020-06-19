@@ -6,6 +6,7 @@ export const Link = styled.a`
     color: white;
     display: inline-block;
     width: auto;
+    padding-left: 3px;
 
     &:hover {
         color: black;
