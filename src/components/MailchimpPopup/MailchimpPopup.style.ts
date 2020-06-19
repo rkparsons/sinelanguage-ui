@@ -1,4 +1,4 @@
-import { Grid, Paper, TextField } from '@material-ui/core'
+import { Paper, TextField } from '@material-ui/core'
 
 import styled from 'styled-components'
 
@@ -18,10 +18,6 @@ export const PopupContainer = styled(Paper)`
         background-color: rgba(255, 255, 255, 0.5);
         backdrop-filter: blur(12px);
     }
-`
-
-export const InputGrid = styled(Grid)`
-    max-width: ${({ theme }) => theme.spacing(160)};
 `
 
 export const EmailInput = styled(TextField)`

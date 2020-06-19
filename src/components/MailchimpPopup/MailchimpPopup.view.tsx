@@ -1,5 +1,5 @@
-import { Box, Grid, Slide, Typography } from '@material-ui/core'
-import { EmailInput, EmailInputContainer, InputGrid, PopupContainer } from './MailchimpPopup.style'
+import { Box, Slide, Typography } from '@material-ui/core'
+import { EmailInput, EmailInputContainer, PopupContainer } from './MailchimpPopup.style'
 import React, { useEffect, useRef, useState } from 'react'
 
 import IconButton from '~/components/IconButton'
@@ -7,7 +7,6 @@ import { Unicode } from '~/constants/unicode'
 import useMailchimp from '~/hooks/useMailchimp'
 
 export default () => {
-    const containerRef = useRef<HTMLDivElement>(null)
     const [isActive, setIsActive] = useState(true)
     const {
         isSuccess,
