@@ -6,20 +6,22 @@ import styled from 'styled-components'
 export const Button = styled.span<{
     isLight: boolean
     isDisabled: boolean
+    isInactiveShadow: boolean
     disabledOpacity: number
 }>`
     h3 {
         text-align: center;
     }
 
-    ${({ isLight, isDisabled, disabledOpacity }) => `    
+    ${({ isLight, isDisabled, isInactiveShadow, disabledOpacity }) => `    
         cursor: ${isDisabled ? 'auto' : 'pointer'};
         color: ${isLight ? 'white' : 'black'};
         opacity: ${isDisabled ? disabledOpacity : 1};
         * {            
             opacity: ${isDisabled ? disabledOpacity : 1};
         }
-        text-shadow: ${isLight ? darkShadow : lightShadow};
+
+        text-shadow: ${!isInactiveShadow ? 'none' : isLight ? darkShadow : lightShadow};        
 
         ${
             !isDisabled &&

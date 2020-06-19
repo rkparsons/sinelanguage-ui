@@ -39,11 +39,7 @@ export default () => {
     }
 
     return (
-        <Slide
-            direction="left"
-            in={isActive}
-            style={{ transitionDelay: isActive ? '3000ms' : '0ms' }}
-        >
+        <Slide direction="left" in={isActive} style={{ transitionDelay: isActive ? '0ms' : '0ms' }}>
             <PopupContainer elevation={3}>
                 <Box display="flex">
                     <Typography variant="h5" gutterBottom>
@@ -54,6 +50,7 @@ export default () => {
                             label={<Typography variant="h5">{Unicode.CLOSE}</Typography>}
                             isLight={false}
                             onClick={dismissPopup}
+                            isInactiveShadow={false}
                         />
                     </Box>
                 </Box>
@@ -86,6 +83,7 @@ export default () => {
                             <IconButton
                                 label={<Typography variant="h5">JOIN THE MAILING LIST</Typography>}
                                 isLight={false}
+                                isInactiveShadow={false}
                                 isDisabled={isInvalid || !email}
                                 onClick={onSubmit}
                             />

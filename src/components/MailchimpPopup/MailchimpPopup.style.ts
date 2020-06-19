@@ -28,5 +28,10 @@ export const EmailInputContainer = styled.div<{ isInvalid: boolean }>`
     input {
         color: ${({ isInvalid }) => (isInvalid ? 'red' : 'black')};
         text-shadow: none;
+
+        &::placeholder {
+            color: black;
+            opacity: 0.3;
+        }
     }
 `

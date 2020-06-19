@@ -17,6 +17,7 @@ type ViewProps = {
     release?: Release
     className?: string
     disabledOpacity?: number
+    isInactiveShadow?: boolean
 }
 
 export default ({
@@ -29,6 +30,7 @@ export default ({
     release,
     className = '',
     disabledOpacity = 0.5,
+    isInactiveShadow = true,
 }: ViewProps) => (
     <Button
         ref={buttonRef}
@@ -36,6 +38,7 @@ export default ({
         isLight={isLight}
         isDisabled={isDisabled}
         disabledOpacity={disabledOpacity}
+        isInactiveShadow={isInactiveShadow}
         className={className}
         data-item-id={product?.title}
         data-item-price={product ? getPrice(product) : ''}
