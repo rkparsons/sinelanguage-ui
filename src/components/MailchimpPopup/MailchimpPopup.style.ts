@@ -11,11 +11,12 @@ export const PopupContainer = styled(Paper)`
     padding: ${({ theme }) => theme.spacing(3)};
     border-radius: 8px;
     max-width: ${({ theme }) => theme.spacing(100)};
+    height: ${({ theme }) => theme.spacing(50)};
 
     background-color: rgba(255, 255, 255, 0.8);
 
     @supports (backdrop-filter: blur(12px)) {
-        background-color: rgba(255, 255, 255, 0.5);
+        background-color: rgba(255, 255, 255, 0.15);
         backdrop-filter: blur(12px);
     }
 `
