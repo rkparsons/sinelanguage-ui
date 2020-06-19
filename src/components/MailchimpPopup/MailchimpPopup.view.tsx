@@ -46,12 +46,12 @@ export default () => {
         >
             <PopupContainer elevation={3}>
                 <Box display="flex">
-                    <Typography variant="h3" gutterBottom>
-                        Want to hear from us about new releases, mixes and live events?
+                    <Typography variant="h5" gutterBottom>
+                        WANT TO HEAR FROM US ABOUT NEW RELEASES, MIXES AND LIVE EVENTS?
                     </Typography>
                     <Box marginLeft="20px">
                         <IconButton
-                            label={<Typography variant="h3">{Unicode.CLOSE}</Typography>}
+                            label={<Typography variant="h5">{Unicode.CLOSE}</Typography>}
                             isLight={false}
                             onClick={dismissPopup}
                         />
@@ -60,7 +60,7 @@ export default () => {
                 <br />
                 {!isSuccess && (
                     <>
-                        <Typography variant="h3">
+                        <Typography variant="h5">
                             <EmailInputContainer isInvalid={isInvalid}>
                                 <EmailInput
                                     inputRef={emailInput}
@@ -82,9 +82,9 @@ export default () => {
                                 />
                             </EmailInputContainer>
                         </Typography>
-                        <Box display="flex" justifyContent="flex-end" width="100%" paddingTop={2}>
+                        <Box display="flex" justifyContent="flex-start" width="100%" paddingTop={2}>
                             <IconButton
-                                label={<Typography variant="h3">Join the mailing list</Typography>}
+                                label={<Typography variant="h5">JOIN THE MAILING LIST</Typography>}
                                 isLight={false}
                                 isDisabled={isInvalid || !email}
                                 onClick={onSubmit}
@@ -93,8 +93,8 @@ export default () => {
                     </>
                 )}
                 {isSuccess && (
-                    <Typography variant="h3" gutterBottom>
-                        Thanks for subscribing!
+                    <Typography variant="h5" gutterBottom>
+                        THANKS FOR SUBSCRIBING!
                     </Typography>
                 )}
             </PopupContainer>

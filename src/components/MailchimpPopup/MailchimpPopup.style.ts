@@ -10,7 +10,7 @@ export const PopupContainer = styled(Paper)`
     z-index: 1000;
     padding: ${({ theme }) => theme.spacing(3)};
     border-radius: 8px;
-    max-width: ${({ theme }) => theme.spacing(120)};
+    max-width: ${({ theme }) => theme.spacing(100)};
 
     background-color: rgba(255, 255, 255, 0.8);
 
