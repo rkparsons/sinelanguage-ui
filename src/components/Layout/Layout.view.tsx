@@ -9,6 +9,7 @@ import CartProvider from '~/components/CartProvider'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Dashboard from '~/components/Dashboard'
 import { Location } from '@reach/router'
+import MailchimpPopup from '~/components/MailchimpPopup'
 import Navigation from '~/components/Navigation'
 import { ThemeProvider as ScThemeProvider } from 'styled-components'
 import useTheme from '~/hooks/useTheme'
@@ -35,6 +36,7 @@ export default ({ children }: ViewProps) => {
                                 {children}
                                 <Dashboard />
                             </main>
+                            <MailchimpPopup />
                         </AppContainer>
                     </AudioProvider>
                 </CartProvider>
