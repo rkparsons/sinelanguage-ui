@@ -95,7 +95,6 @@ export const OverrideCartStyles = styled.div`
 
             display: flex;
             align-items: center;
-            cursor: pointer;
 
             .snipcart-modal__close-icon {
                 font-size: ${({ theme }) => theme.spacing(4)};
@@ -149,7 +148,6 @@ export const OverrideCartStyles = styled.div`
             }
         }
         button {
-            cursor: pointer;
             svg {
                 display: none;
             }
@@ -203,6 +201,7 @@ export const OverrideCartStyles = styled.div`
     }
 
     button {
+        cursor: pointer;
         outline: none;
     }
 
