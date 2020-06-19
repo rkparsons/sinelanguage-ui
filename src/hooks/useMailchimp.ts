@@ -22,6 +22,7 @@ export default () => {
                 setIsSuccess(true)
             } else {
                 setIsInvalid(true)
+                console.log(msg)
                 emailInput.current?.focus()
             }
         })
