@@ -4,6 +4,7 @@ import {
     faInstagram,
     faSoundcloud,
     faSpotify,
+    faTwitch,
     faTwitter,
     faYoutube,
 } from '@fortawesome/free-brands-svg-icons'
@@ -33,6 +34,8 @@ export default ({ url }: ViewProps) => {
         ? faTwitter
         : url.includes(Social.YOUTUBE)
         ? faYoutube
+        : url.includes(Social.TWITCH)
+        ? faTwitch
         : faUser
 
     return <ExternalLink href={url} icon={<FontAwesomeIcon icon={faIcon} />} />

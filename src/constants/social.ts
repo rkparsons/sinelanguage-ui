@@ -6,4 +6,5 @@ export enum Social {
     INSTAGRAM = 'instagram',
     TWITTER = 'twitter',
     YOUTUBE = 'youtube',
+    TWITCH = 'twitch',
 }
