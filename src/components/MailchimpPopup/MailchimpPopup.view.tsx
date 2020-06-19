@@ -2,12 +2,15 @@ import { Box, Slide, Typography } from '@material-ui/core'
 import { EmailInput, EmailInputContainer, PopupContainer } from './MailchimpPopup.style'
 import React, { useEffect, useRef, useState } from 'react'
 
+import Cookies from 'universal-cookie'
 import IconButton from '~/components/IconButton'
 import { Unicode } from '~/constants/unicode'
+import moment from 'moment'
 import useMailchimp from '~/hooks/useMailchimp'
 
 export default () => {
-    const [isActive, setIsActive] = useState(true)
+    const cookieResult = new Cookies().get('mailinglist')
+    const [isActive, setIsActive] = useState(cookieResult === undefined)
     const {
         isSuccess,
         isInvalid,
@@ -22,11 +25,24 @@ export default () => {
         if (isSuccess) {
             const hideOnSuccess = setTimeout(() => {
                 setIsActive(false)
+                saveResponse(true)
             }, 2000)
 
             return () => clearTimeout(hideOnSuccess)
         }
     }, [isSuccess])
+
+    function saveResponse(response: boolean) {
+        new Cookies().set('mailinglist', response, {
+            path: '/',
+            expires: moment().add(1, 'years').toDate(),
+        })
+    }
+
+    function dismissPopup() {
+        setIsActive(false)
+        saveResponse(false)
+    }
 
     return (
         <Slide
@@ -43,7 +59,7 @@ export default () => {
                         <IconButton
                             label={<Typography variant="h3">{Unicode.CLOSE}</Typography>}
                             isLight={false}
-                            onClick={() => setIsActive(false)}
+                            onClick={dismissPopup}
                         />
                     </Box>
                 </Box>
