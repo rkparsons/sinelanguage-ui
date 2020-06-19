@@ -5,6 +5,7 @@ import FeaturedPaymentMethods from './Templates/FeaturedPaymentMethods'
 import Header from './Templates/Header'
 import { Helmet } from 'react-helmet'
 import { OverrideCartStyles } from './Cart.style'
+import Summary from './Templates/Summary'
 
 type ViewProps = {
     version: string
@@ -42,6 +43,7 @@ export default memo(
                         <Header />
                         <Billing />
                         <FeaturedPaymentMethods />
+                        <Summary />
                     </div>
                 </OverrideCartStyles>
             </>

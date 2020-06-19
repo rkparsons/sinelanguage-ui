@@ -23,7 +23,8 @@ export const OverrideCartStyles = styled.div`
     .snipcart-cart-button,
     .snipcart__box--badge-highlight,
     .snipcart-cart-summary,
-    .snipcart-cart__secondary-header {
+    .snipcart-cart__secondary-header,
+    .snipcart-featured-payment-methods__title {
         background: none;
     }
 
