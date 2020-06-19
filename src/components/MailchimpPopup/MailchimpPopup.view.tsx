@@ -3,6 +3,7 @@ import { EmailInput, EmailInputContainer, InputGrid, PopupContainer } from './Ma
 import React, { useEffect, useRef, useState } from 'react'
 
 import IconButton from '~/components/IconButton'
+import { Unicode } from '~/constants/unicode'
 import useMailchimp from '~/hooks/useMailchimp'
 
 export default () => {
@@ -19,20 +20,6 @@ export default () => {
     } = useMailchimp()
 
     useEffect(() => {
-        function handleClickOutside(event: MouseEvent) {
-            if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-                setIsActive(false)
-            }
-        }
-
-        document.addEventListener('mousedown', handleClickOutside)
-
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside)
-        }
-    }, [containerRef])
-
-    useEffect(() => {
         if (isSuccess) {
             const hideOnSuccess = setTimeout(() => {
                 setIsActive(false)
@@ -43,65 +30,65 @@ export default () => {
     }, [isSuccess])
 
     return (
-        <div ref={containerRef}>
-            <Slide
-                direction="left"
-                in={isActive}
-                style={{ transitionDelay: isActive ? '1000ms' : '0ms' }}
-            >
-                <PopupContainer elevation={3}>
-                    <Typography variant="h5" gutterBottom>
+        <Slide
+            direction="left"
+            in={isActive}
+            style={{ transitionDelay: isActive ? '3000ms' : '0ms' }}
+        >
+            <PopupContainer elevation={3}>
+                <Box display="flex">
+                    <Typography variant="h3" gutterBottom>
                         Want to hear from us about new releases, mixes and live events?
                     </Typography>
-                    {!isSuccess && (
-                        <InputGrid container>
-                            <Grid item xs={12}>
-                                <Typography variant="h5">
-                                    <EmailInputContainer isInvalid={isInvalid}>
-                                        <EmailInput
-                                            inputRef={emailInput}
-                                            type="email"
-                                            value={email}
-                                            error={isInvalid}
-                                            onChange={onEmailChanged}
-                                            onKeyDown={onKeyDown}
-                                            InputProps={{
-                                                color: 'primary',
-                                                style: {
-                                                    fontSize: 'inherit',
-                                                    fontWeight: 'inherit',
-                                                    lineHeight: 'inherit',
-                                                },
-                                            }}
-                                            placeholder="EMAIL"
-                                        />
-                                    </EmailInputContainer>
-                                </Typography>
-                            </Grid>
-                            <Box
-                                display="flex"
-                                justifyContent="flex-end"
-                                width="100%"
-                                paddingTop={2}
-                            >
-                                <IconButton
-                                    label={
-                                        <Typography variant="h5">Join the mailing list</Typography>
-                                    }
-                                    isLight={false}
-                                    isDisabled={isInvalid || !email}
-                                    onClick={onSubmit}
+                    <Box marginLeft="20px">
+                        <IconButton
+                            label={<Typography variant="h3">{Unicode.CLOSE}</Typography>}
+                            isLight={false}
+                            onClick={() => setIsActive(false)}
+                        />
+                    </Box>
+                </Box>
+                <br />
+                {!isSuccess && (
+                    <>
+                        <Typography variant="h3">
+                            <EmailInputContainer isInvalid={isInvalid}>
+                                <EmailInput
+                                    inputRef={emailInput}
+                                    type="email"
+                                    value={email}
+                                    error={isInvalid}
+                                    onChange={onEmailChanged}
+                                    onKeyDown={onKeyDown}
+                                    spellCheck={false}
+                                    InputProps={{
+                                        color: 'primary',
+                                        style: {
+                                            fontSize: 'inherit',
+                                            fontWeight: 'inherit',
+                                            lineHeight: 'inherit',
+                                        },
+                                    }}
+                                    placeholder="EMAIL"
                                 />
-                            </Box>
-                        </InputGrid>
-                    )}
-                    {isSuccess && (
-                        <Typography variant="h5" gutterBottom>
-                            Thanks for subscribing!
+                            </EmailInputContainer>
                         </Typography>
-                    )}
-                </PopupContainer>
-            </Slide>
-        </div>
+                        <Box display="flex" justifyContent="flex-end" width="100%" paddingTop={2}>
+                            <IconButton
+                                label={<Typography variant="h3">Join the mailing list</Typography>}
+                                isLight={false}
+                                isDisabled={isInvalid || !email}
+                                onClick={onSubmit}
+                            />
+                        </Box>
+                    </>
+                )}
+                {isSuccess && (
+                    <Typography variant="h3" gutterBottom>
+                        Thanks for subscribing!
+                    </Typography>
+                )}
+            </PopupContainer>
+        </Slide>
     )
 }

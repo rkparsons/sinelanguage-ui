@@ -32,6 +32,7 @@ export default () => {
                                 error={isInvalid}
                                 onChange={onEmailChanged}
                                 onKeyDown={onKeyDown}
+                                spellCheck={false}
                                 InputProps={{
                                     style: {
                                         fontSize: 'inherit',
