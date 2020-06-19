@@ -6,11 +6,12 @@ import Cookies from 'universal-cookie'
 import IconButton from '~/components/IconButton'
 import { Unicode } from '~/constants/unicode'
 import moment from 'moment'
+import useCookies from '~/hooks/useCookies'
 import useMailchimp from '~/hooks/useMailchimp'
 
 export default () => {
-    const cookieResult = new Cookies().get('mailinglist')
-    const [isActive, setIsActive] = useState(cookieResult === undefined)
+    const { getMailingListCookie, setMailingListCookie } = useCookies()
+    const [isActive, setIsActive] = useState(getMailingListCookie() === undefined)
     const {
         isSuccess,
         isInvalid,
@@ -25,23 +26,16 @@ export default () => {
         if (isSuccess) {
             const hideOnSuccess = setTimeout(() => {
                 setIsActive(false)
-                saveResponse(true)
+                setMailingListCookie(true)
             }, 2000)
 
             return () => clearTimeout(hideOnSuccess)
         }
     }, [isSuccess])
 
-    function saveResponse(response: boolean) {
-        new Cookies().set('mailinglist', response, {
-            path: '/',
-            expires: moment().add(1, 'years').toDate(),
-        })
-    }
-
     function dismissPopup() {
         setIsActive(false)
-        saveResponse(false)
+        setMailingListCookie(false)
     }
 
     return (
