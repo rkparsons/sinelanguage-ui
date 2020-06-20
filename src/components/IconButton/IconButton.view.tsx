@@ -1,7 +1,6 @@
-import { Box, Grid } from '@material-ui/core'
 import { Product, Release } from '~/cms/types'
 import React, { ReactNode, RefObject } from 'react'
-import { getDescription, getImage, getPrice } from '~/utils/product'
+import { getDescription, getImage, getPrice, isPhysicalFormat } from '~/utils/product'
 
 import { Button } from './IconButton.style'
 import { getUrl } from '~/utils/content'
@@ -47,7 +46,7 @@ export default ({
         data-item-description={product ? getDescription(product) : ''}
         data-item-image={release && product ? getImage(release, product) : ''}
         data-item-file-guid={product?.fileGUID}
-        data-item-metadata='{"testKey": "testValue"}'
+        data-item-shippable={product ? isPhysicalFormat(product) : ''}
     >
         {label}
     </Button>
