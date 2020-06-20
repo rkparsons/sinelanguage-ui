@@ -94,27 +94,12 @@ export function handler(event, context, callback) {
     try {
         let countryCode = JSON.parse(event.body).content.shippingAddressCountry
 
-        if (countryCode === 'UK') {
-            returnRate([
-                {
-                    cost: 3,
-                    description: 'UK Shipping (3-5 days)',
-                },
-            ])
+        if (countryCode === 'GB') {
+            returnRate(callback, 3, 'UK Shipping (3-5 days)')
         } else if (isInEurope(countryCode)) {
-            returnRates([
-                {
-                    cost: 5.5,
-                    description: 'EU Shipping (3-5 days)',
-                },
-            ])
+            returnRate(callback, 5.5, 'EU Shipping (3-5 days)')
         } else {
-            returnRates([
-                {
-                    cost: 9,
-                    description: 'Worldwide Shipping (5-7 days)',
-                },
-            ])
+            returnRate(callback, 9, 'Worldwide Shipping (1-2 weeks)')
         }
     } catch {
         returnRate(callback)
