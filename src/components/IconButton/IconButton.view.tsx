@@ -47,6 +47,7 @@ export default ({
         data-item-description={product ? getDescription(product) : ''}
         data-item-image={release && product ? getImage(release, product) : ''}
         data-item-file-guid={product?.fileGUID}
+        data-item-metadata='{"testKey": "testValue"}'
     >
         {label}
     </Button>
