@@ -25,7 +25,7 @@ export default ({ release, track, index }: ViewProps) => {
                     <Typography variant="h3">{index + 1}</Typography>
                 </TrackNumber>
             </Box>
-            <Box flexGrow={1}>
+            <Box flexGrow={1} paddingRight={3}>
                 <Typography variant="h3">
                     {title}{' '}
                     <Mobile>
@@ -43,7 +43,9 @@ export default ({ release, track, index }: ViewProps) => {
                             </Typography>
                         </Box>
                     </Desktop>
-                    <ContentPlayButton content={release} trackIndex={index} isLight={true} />
+                    <Box paddingRight={2}>
+                        <ContentPlayButton content={release} trackIndex={index} isLight={true} />
+                    </Box>
                     <ProductMenu
                         release={release}
                         products={products}
