@@ -19,7 +19,7 @@ export default () => {
     return (
         <>
             <Typography variant="h3" gutterBottom>
-                NEWSLETTER
+                MAILING LIST
             </Typography>
             {!isSuccess && (
                 <InputGrid container>
