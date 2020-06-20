@@ -79,9 +79,11 @@
         "universal-cookie": "^4.0.3"
     },
     "devDependencies": {
+        "@babel/preset-typescript": "^7.10.1",
         "@contentful/rich-text-types": "^14.1.0",
         "@hot-loader/react-dom": "^16.9.0",
         "@types/auth0-js": "^9.10.6",
+        "@types/aws-lambda": "^8.10.56",
         "@types/dotenv-safe": "^8.1.0",
         "@types/lodash.flattendeep": "^4.4.6",
         "@types/material-ui": "^0.21.7",
