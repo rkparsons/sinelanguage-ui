@@ -69,18 +69,20 @@ function returnNullRate(callback: Callback) {
 }
 
 function returnRate(callback: Callback, cost: number, description: string) {
+    const rates = [
+        {
+            cost,
+            description,
+        },
+    ]
+
     callback(null, {
         statusCode: 200,
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            rates: [
-                {
-                    cost,
-                    description,
-                },
-            ],
+            rates,
         }),
     })
 }
@@ -91,7 +93,6 @@ function isInEurope(countryCode: string) {
 
 export const handler: Handler = (event, context, callback) => {
     try {
-        console.log('shipping request', event.body)
         if (!event.body) {
             throw new Error('No request body.')
         }
