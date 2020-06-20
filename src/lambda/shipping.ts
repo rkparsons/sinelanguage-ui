@@ -84,11 +84,8 @@ function isInEurope(countryCode: string) {
 }
 
 export const handler: Handler = (event, context, callback) => {
-    if (!event.body) {
-        returnNullRate(callback)
-    }
-
     try {
+        console.log('shipping request', event.body)
         if (!event.body) {
             throw new Error('No request body.')
         }
