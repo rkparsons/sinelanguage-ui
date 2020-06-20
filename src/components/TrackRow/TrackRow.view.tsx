@@ -43,7 +43,7 @@ export default ({ release, track, index }: ViewProps) => {
                             </Typography>
                         </Box>
                     </Desktop>
-                    <Box paddingRight={2}>
+                    <Box paddingRight={1}>
                         <ContentPlayButton content={release} trackIndex={index} isLight={true} />
                     </Box>
                     <ProductMenu

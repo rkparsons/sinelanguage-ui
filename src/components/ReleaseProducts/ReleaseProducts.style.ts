@@ -2,6 +2,8 @@ import { Box } from '@material-ui/core'
 import styled from 'styled-components'
 
 export const ProductRow = styled.div<{ isLarge: boolean }>`
+    padding-right: 2px;
+
     ${({ theme }) => theme.breakpoints.up('md')} {
         min-width: ${({ isLarge }) => (isLarge ? 300 : 200)}px;
     }

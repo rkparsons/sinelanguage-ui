@@ -62,10 +62,7 @@ export default ({
                                     <Grid container>
                                         <Grid item xs={12} md={isDescription ? 3 : 12}>
                                             <Typography variant={isLarge ? 'h3' : 'body1'}>
-                                                {product.format}{' '}
-                                                {isDescription && (
-                                                    <Mobile>({getDescription(product)})</Mobile>
-                                                )}
+                                                {product.format}
                                             </Typography>
                                         </Grid>
                                         {isDescription && (
