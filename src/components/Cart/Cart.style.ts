@@ -42,7 +42,14 @@ export const OverrideCartStyles = styled.div`
     }
 
     .snipcart-cart-summary-fees__notice {
-        display: none;
+        margin-bottom: 8px;
+        visibility: hidden;
+
+        &:after {
+            visibility: visible;
+            display: block;
+            content: 'Shipping: enter an address to see shipping fees to your region.';
+        }
     }
 
     .snipcart-cart__checkout-button {
