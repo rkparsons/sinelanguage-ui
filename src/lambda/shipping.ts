@@ -59,6 +59,9 @@ const euCountryCodes = [
 function returnNullRate(callback: Callback) {
     callback(null, {
         statusCode: 200,
+        headers: {
+            'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
             rates: [],
         }),
@@ -68,6 +71,9 @@ function returnNullRate(callback: Callback) {
 function returnRate(callback: Callback, cost: number, description: string) {
     callback(null, {
         statusCode: 200,
+        headers: {
+            'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
             rates: [
                 {
