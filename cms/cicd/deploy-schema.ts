@@ -1,9 +1,12 @@
-import { contentfulManagementToken, contentfulSpaceId } from '../../env-variables'
+import {
+    contentfulEnvironment,
+    contentfulManagementToken,
+    contentfulSpaceId,
+} from '../../env-variables'
 
 import { ContentFields } from 'contentful-management/typings/contentFields'
 import { ContentType } from 'contentful-management/typings/contentType'
 import { ContentfulContentType } from '../models'
-import ContentfulField from '../models/contentfulField'
 import { Environment } from 'contentful-management/typings/environment'
 import { Space } from 'contentful-management/typings/space'
 import { createClient } from 'contentful-management'
@@ -26,7 +29,7 @@ const deploySpace = (space: Space, name: string, contentTypeModels: ContentfulCo
     console.log(`Deploying CMS space: ${name}`)
 
     return space
-        .getEnvironment('master')
+        .getEnvironment(contentfulEnvironment)
         .then((environment) =>
             environment.getContentTypes().then((contentTypes) => ({ contentTypes, environment }))
         )
