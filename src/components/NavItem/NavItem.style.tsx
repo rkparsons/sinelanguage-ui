@@ -24,5 +24,11 @@ export default styled((props: GatsbyLinkProps<{}>) => (
         float: left;
         clear: left;
         pointer-events: all;
+
+        ${({ theme }) => `       
+            ${theme.breakpoints.up('md')} {
+                line-height: 1.2;
+            }
+        `}
     }
 `
