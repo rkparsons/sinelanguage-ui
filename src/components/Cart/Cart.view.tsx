@@ -14,14 +14,6 @@ type ViewProps = {
 
 export default memo(
     ({ version, openCartOnAdd }: ViewProps) => {
-        useEffect(() => {
-            document.addEventListener('snipcart.ready', configureCart)
-
-            return () => document.removeEventListener('snipcart.ready', configureCart)
-        }, [])
-
-        function configureCart() {}
-
         const dependencies = [
             React.createElement('link', {
                 key: 'snipcart-style',
