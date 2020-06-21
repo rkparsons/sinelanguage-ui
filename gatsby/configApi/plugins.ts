@@ -8,6 +8,15 @@ import { Plugins } from '../types/plugins'
 
 export const plugins: Plugins = [
     {
+        resolve: `gatsby-plugin-google-analytics`,
+        options: {
+            trackingId: 'UA-170097416-1',
+            head: true,
+            anonymize: true,
+            respectDNT: true,
+        },
+    },
+    {
         resolve: `gatsby-plugin-typescript`,
         options: {
             isTSX: true,
@@ -57,20 +66,4 @@ export const plugins: Plugins = [
                 'https://sinelanguage.us19.list-manage.com/subscribe/post?u=f74d66b167e9f79b3c1aaf8fa&amp;id=de52cdc35f',
         },
     },
-    // {
-    //     resolve: `gatsby-plugin-snipcart-advanced`,
-    //     options: {
-    //         version: '3.0.13',
-    //         defaultLang: 'en',
-    //         currency: 'gbp',
-    //         openCartOnAdd: true,
-    //         locales: {
-    //             en: {
-    //                 actions: {
-    //                     checkout: 'Continue browsing',
-    //                 },
-    //             },
-    //         },
-    //     },
-    // },
 ]
