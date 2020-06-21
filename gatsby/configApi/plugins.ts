@@ -2,6 +2,8 @@ import {
     contentfulAccessToken,
     contentfulEnvironment,
     contentfulSpaceId,
+    googleAnalyticsId,
+    mailchimpUrl,
 } from '../../env-variables'
 
 import { Plugins } from '../types/plugins'
@@ -10,7 +12,7 @@ export const plugins: Plugins = [
     {
         resolve: `gatsby-plugin-google-analytics`,
         options: {
-            trackingId: 'UA-170097416-1',
+            trackingId: googleAnalyticsId,
             head: true,
             anonymize: true,
             respectDNT: true,
@@ -45,14 +47,6 @@ export const plugins: Plugins = [
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
     {
-        resolve: 'gatsby-plugin-mailchimp',
-        options: {
-            endpoint:
-                // todo: move to env var and use new link
-                'https://sinelanguage.us19.list-manage.com/subscribe/post?u=f74d66b167e9f79b3c1aaf8fa&amp;id=de52cdc35f',
-        },
-    },
-    {
         resolve: `gatsby-plugin-layout`,
         options: {
             component: require.resolve(`../../src/components/Layout`),
@@ -62,8 +56,7 @@ export const plugins: Plugins = [
         resolve: 'gatsby-plugin-mailchimp',
         options: {
             // todo: move to env var
-            endpoint:
-                'https://sinelanguage.us19.list-manage.com/subscribe/post?u=f74d66b167e9f79b3c1aaf8fa&amp;id=de52cdc35f',
+            endpoint: mailchimpUrl,
         },
     },
 ]
