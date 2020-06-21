@@ -1,11 +1,9 @@
 import { Box, Slide, Typography } from '@material-ui/core'
-import { EmailInput, EmailInputContainer, PopupContainer } from './MailchimpPopup.style'
+import { BoxShadow, EmailInput, EmailInputContainer, PopupContainer } from './MailchimpPopup.style'
 import React, { useEffect, useRef, useState } from 'react'
 
-import Cookies from 'universal-cookie'
 import IconButton from '~/components/IconButton'
 import { Unicode } from '~/constants/unicode'
-import moment from 'moment'
 import useCookies from '~/hooks/useCookies'
 import useMailchimp from '~/hooks/useMailchimp'
 
@@ -39,11 +37,7 @@ export default () => {
     }
 
     return (
-        <Slide
-            direction="left"
-            in={isActive}
-            style={{ transitionDelay: isActive ? '5000ms' : '0ms' }}
-        >
+        <Slide direction="left" in={isActive} style={{ transitionDelay: isActive ? '0ms' : '0ms' }}>
             <PopupContainer elevation={3}>
                 <Box display="flex" flexDirection="column" height="100%">
                     <Box display="flex" flexGrow={1}>
@@ -107,6 +101,7 @@ export default () => {
                         {isSuccess && <Typography variant="h5">THANKS FOR SUBSCRIBING!</Typography>}
                     </Box>
                 </Box>
+                <BoxShadow />
             </PopupContainer>
         </Slide>
     )

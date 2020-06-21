@@ -1,5 +1,6 @@
 import { Paper, TextField } from '@material-ui/core'
 
+import { darkShadow } from '~/styles/shadows'
 import styled from 'styled-components'
 
 export const PopupContainer = styled(Paper)`
@@ -20,6 +21,18 @@ export const PopupContainer = styled(Paper)`
         background-color: rgba(255, 255, 255, 0.15);
         backdrop-filter: blur(12px);
     }
+`
+
+export const BoxShadow = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    z-index: -1;
+    box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14),
+        0px 1px 8px 0px rgba(0, 0, 0, 0.12);
 `
 
 export const EmailInput = styled(TextField)`
