@@ -108,27 +108,11 @@ export default () => {
                 >
                     <defs>
                         <filter id="f1" x="0" y="0" width="200%" height="200%">
-                            <feColorMatrix
-                                type="matrix"
-                                values="1 0 0 0 0 
-                                       0 1 0 0 0 
-                                       0 0 1 0 0 
-                                       0 0 0 100 0"
-                                result="boostedInput"
-                            />
-
                             <feGaussianBlur stdDeviation="5" />
-                            <feComposite operator="out" in2="boostedInput" />
+                            <feComposite operator="out" in2="SourceGraphic" />
                         </filter>
                     </defs>
-                    <rect
-                        width="400"
-                        height="200"
-                        rx="8"
-                        fill="black"
-                        fill-opacity="0.01"
-                        filter="url(#f1)"
-                    />
+                    <rect width="400" height="200" rx="8" fill="black" filter="url(#f1)" />
                 </svg>
             </PopupContainer>
         </Slide>
