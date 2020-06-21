@@ -13,10 +13,8 @@ export const PopupContainer = styled(Paper)`
     border-radius: 8px;
     max-width: ${({ theme }) => theme.spacing(100)};
     height: ${({ theme }) => theme.spacing(50)};
-
-    background-color: rgba(255, 255, 255, 0.8);
     box-shadow: none;
-
+    background-color: rgba(255, 255, 255, 0.8);
     @supports (backdrop-filter: blur(12px)) {
         background-color: rgba(255, 255, 255, 0.15);
         backdrop-filter: blur(12px);
@@ -25,12 +23,13 @@ export const PopupContainer = styled(Paper)`
 
 export const BoxShadow = styled.div`
     position: absolute;
-    top: 0;
     left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
     border-radius: 8px;
-    z-index: -1;
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    border-right: 1px solid rgba(0, 0, 0, 0.3); */
     box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14),
         0px 1px 8px 0px rgba(0, 0, 0, 0.12);
 `

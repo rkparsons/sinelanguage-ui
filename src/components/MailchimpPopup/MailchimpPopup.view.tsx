@@ -1,6 +1,6 @@
 import { Box, Slide, Typography } from '@material-ui/core'
 import { BoxShadow, EmailInput, EmailInputContainer, PopupContainer } from './MailchimpPopup.style'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import IconButton from '~/components/IconButton'
 import { Unicode } from '~/constants/unicode'
