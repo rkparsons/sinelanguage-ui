@@ -45,7 +45,7 @@ export default () => {
             style={{ transitionDelay: isActive ? '5000ms' : '0ms' }}
         >
             <PopupContainer elevation={3}>
-                <Box display="flex" flexDirection="column" height="100%">
+                <Box display="flex" flexDirection="column" height="100%" padding={3}>
                     <Box display="flex" flexGrow={1}>
                         <Typography variant="h5" gutterBottom>
                             WANT TO HEAR FROM US ABOUT NEW RELEASES, MIXES AND LIVE EVENTS?
