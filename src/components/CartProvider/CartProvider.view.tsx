@@ -41,7 +41,7 @@ export default ({ children }: ViewProps) => {
             }}
         >
             {children}
-            <Cart version="3.0.13" openCartOnAdd={false} />
+            <Cart version="3.0.15" openCartOnAdd={false} />
         </CartContext.Provider>
     )
 }
