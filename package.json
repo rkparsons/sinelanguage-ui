@@ -15,6 +15,7 @@
         "build": "run-p build:**",
         "build:app": "gatsby clean && gatsby build",
         "build:lambda": "netlify-lambda build src/lambda",
+        "gen:cms-prod": "cross-env NODE_ENV=production ts-node generate-cms.ts",
         "gen:cms": "ts-node generate-cms.ts",
         "gen:types": "ts-node generate-types.ts",
         "gen:fragments": "ts-node generate-fragments.ts",

@@ -1,4 +1,8 @@
-import { contentfulAccessToken, contentfulSpaceId } from '../../env-variables'
+import {
+    contentfulAccessToken,
+    contentfulEnvironment,
+    contentfulSpaceId,
+} from '../../env-variables'
 
 import { Plugins } from '../types/plugins'
 
@@ -25,6 +29,7 @@ export const plugins: Plugins = [
         options: {
             spaceId: contentfulSpaceId,
             accessToken: contentfulAccessToken,
+            environment: contentfulEnvironment,
         },
     },
     `gatsby-transformer-sharp`,

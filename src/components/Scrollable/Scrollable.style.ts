@@ -7,6 +7,7 @@ export const Scrollable = styled.div<{ isWithMargin: boolean }>`
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     mask-image: linear-gradient(transparent 5%, rgba(0, 0, 0, 1) 15%);
+    padding-bottom: ${({ theme }) => theme.spacing(15)};
 
     ${({ theme, isWithMargin }) => `  
         margin: 0 ${theme.spacing(isWithMargin ? marginSide : 0)};      
