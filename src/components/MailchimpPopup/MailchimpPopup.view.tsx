@@ -42,7 +42,7 @@ export default () => {
         <Slide
             direction="left"
             in={isActive}
-            style={{ transitionDelay: isActive ? '3000ms' : '0ms' }}
+            style={{ transitionDelay: isActive ? '5000ms' : '0ms' }}
         >
             <PopupContainer elevation={3}>
                 <Box display="flex" flexDirection="column" height="100%">
