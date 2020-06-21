@@ -5,5 +5,5 @@ type ViewProps = {
 }
 
 export default ({ children }: ViewProps) => {
-    return React.createElement('cart-summary', { hidden: true }, children)
+    return React.createElement('cart-summary', {}, children)
 }

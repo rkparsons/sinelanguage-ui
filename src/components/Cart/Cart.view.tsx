@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 
 import Billing from './Templates/Billing'
 import FeaturedPaymentMethods from './Templates/FeaturedPaymentMethods'
@@ -14,21 +14,25 @@ type ViewProps = {
 
 export default memo(
     ({ version, openCartOnAdd }: ViewProps) => {
-        const dependencies = [
-            React.createElement('link', {
-                key: 'snipcart-style',
-                rel: 'stylesheet',
-                href: `https://cdn.snipcart.com/themes/v${version}/default/snipcart.css`,
-                as: 'style',
-            }),
-            React.createElement('script', {
-                key: 'snipcart-script',
-                defer: true,
-                rel: 'preload',
-                as: 'script',
-                src: `https://cdn.snipcart.com/themes/v${version}/default/snipcart.js`,
-            }),
-        ]
+        const [dependencies, setDependencies] = useState<any>()
+
+        useEffect(() => {
+            setDependencies([
+                React.createElement('link', {
+                    key: 'snipcart-style',
+                    rel: 'stylesheet',
+                    href: `https://cdn.snipcart.com/themes/v${version}/default/snipcart.css`,
+                    as: 'style',
+                }),
+                React.createElement('script', {
+                    key: 'snipcart-script',
+                    defer: true,
+                    rel: 'preload',
+                    as: 'script',
+                    src: `https://cdn.snipcart.com/themes/v${version}/default/snipcart.js`,
+                }),
+            ])
+        }, [])
 
         return (
             <>

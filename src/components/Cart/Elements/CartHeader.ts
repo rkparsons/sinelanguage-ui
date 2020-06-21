@@ -5,5 +5,5 @@ type ViewProps = {
 }
 
 export default ({ children }: ViewProps) => {
-    return React.createElement('cart-header', { hidden: true }, children)
+    return React.createElement('cart-header', {}, children)
 }

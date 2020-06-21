@@ -1,6 +1,5 @@
 import CartHeader from '../Elements/CartHeader'
 import CloseCartAction from '../Elements/CloseCartAction'
-import Media from '../Elements/Media'
 import React from 'react'
 import { Unicode } from '~/constants/unicode'
 
