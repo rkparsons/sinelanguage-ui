@@ -8,7 +8,8 @@ export const PopupContainer = styled(Paper)`
     right: ${({ theme }) => theme.spacing(6)};
     margin-left: ${({ theme }) => theme.spacing(6)};
     z-index: 1000;
-    border-radius: 0px;
+    padding: ${({ theme }) => theme.spacing(3)};
+    border-radius: 8px;
     max-width: ${({ theme }) => theme.spacing(100)};
     height: ${({ theme }) => theme.spacing(50)};
 
