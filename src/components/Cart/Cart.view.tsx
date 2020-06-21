@@ -33,19 +33,17 @@ export default memo(
         return (
             <>
                 <Helmet>{dependencies}</Helmet>
-                <OverrideCartStyles>
-                    <div
-                        hidden
-                        id="snipcart"
-                        data-api-key={process.env.GATSBY_SNIPCART_API_KEY}
-                        data-config-add-product-behavior={openCartOnAdd === false ? 'none' : null}
-                    >
-                        <Header />
-                        <Billing />
-                        <FeaturedPaymentMethods />
-                        <Summary />
-                    </div>
-                </OverrideCartStyles>
+                <div
+                    hidden
+                    id="snipcart"
+                    data-api-key={process.env.GATSBY_SNIPCART_API_KEY}
+                    data-config-add-product-behavior={openCartOnAdd === false ? 'none' : null}
+                >
+                    <Header />
+                    <Billing />
+                    <FeaturedPaymentMethods />
+                    <Summary />
+                </div>
             </>
         )
     },
