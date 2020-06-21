@@ -48,7 +48,7 @@ export default memo(() => {
                     </Dashboard>
                 )}
             </Location>
-            {tracks.length && <AudioPlayer />}
+            {tracks.length > 0 && <AudioPlayer />}
         </>
     )
 })
