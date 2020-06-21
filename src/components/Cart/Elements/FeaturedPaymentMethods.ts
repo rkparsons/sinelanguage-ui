@@ -5,5 +5,5 @@ type ViewProps = {
 }
 
 export default ({ children }: ViewProps) => {
-    return React.createElement('featured-payment-methods', {}, children)
+    return React.createElement('featured-payment-methods', { hidden: true }, children)
 }

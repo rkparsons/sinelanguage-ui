@@ -6,5 +6,5 @@ type ViewProps = {
 }
 
 export default ({ children, section }: ViewProps) => {
-    return React.createElement('billing', { section, is: 'x3d' }, children)
+    return React.createElement('billing', { section, is: 'x3d', hidden: true }, children)
 }
