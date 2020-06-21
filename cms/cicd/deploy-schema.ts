@@ -16,7 +16,7 @@ const contentfulApi = createClient({
     accessToken: contentfulManagementToken,
 })
 
-// todo: fix error when adding a new field with a control (currently it has to be run twice to add field and control)
+// todo: fix error when adding a new field with a control - currently it has to be run twice to add field and control
 
 export const deployCMS = (spaceName: string, contentTypeModels: ContentfulContentType[]) => {
     return contentfulApi
