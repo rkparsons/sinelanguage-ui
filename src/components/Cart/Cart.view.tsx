@@ -40,10 +40,10 @@ export default memo(
                         data-api-key={process.env.GATSBY_SNIPCART_API_KEY}
                         data-config-add-product-behavior={openCartOnAdd === false ? 'none' : null}
                     >
-                        <Header />
+                        {/* <Header />
                         <Billing />
                         <FeaturedPaymentMethods />
-                        <Summary />
+                        <Summary /> */}
                     </div>
                 </OverrideCartStyles>
             </>
