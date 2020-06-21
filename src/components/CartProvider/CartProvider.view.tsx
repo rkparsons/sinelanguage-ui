@@ -8,7 +8,7 @@ type ViewProps = {
 }
 
 export default ({ children }: ViewProps) => {
-    const [cart, setCart] = useState({ items: [], total: 0 })
+    const [cart, setCart] = useState({ items: [] })
 
     function getCartState() {
         const { Snipcart } = window as any
@@ -16,7 +16,9 @@ export default ({ children }: ViewProps) => {
         if (Snipcart) {
             const { cart } = Snipcart.store.getState()
 
-            setCart(cart)
+            setCart({
+                items: cart.items.items,
+            })
         }
     }
 

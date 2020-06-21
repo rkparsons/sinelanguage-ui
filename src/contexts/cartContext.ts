@@ -7,7 +7,6 @@ type CartItem = {
 
 type Cart = {
     items: CartItem[]
-    total: number
 }
 
 type CartContext = {
