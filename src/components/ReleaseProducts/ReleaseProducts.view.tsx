@@ -32,9 +32,6 @@ export default ({
 }: ViewProps) => {
     const { artist, image } = release
     const { cart } = useCartContext()
-    const isProductInCart =
-        cart.items.find((cartItem) => products.map((x) => x.title).includes(cartItem.id)) !==
-        undefined
     const isAnyProductAvailable = products.find(
         (product) => isPhysicalFormat(product) || product.fileGUID
     )
@@ -122,7 +119,7 @@ export default ({
                         isWithCount={false}
                         isLarge={isLarge}
                         isLight={isLight}
-                        isDisabled={!isProductInCart}
+                        isDisabled={cart.items.length === 0}
                         onClick={onCheckoutClick}
                     />
                 </Grid>
