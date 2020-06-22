@@ -102,7 +102,7 @@ export default () => {
                         {isSuccess && <Typography variant="h5">THANKS FOR SUBSCRIBING!</Typography>}
                     </Box>
                 </Box>
-                <SVGBoxShadow />
+                <SVGBoxShadow radius={8} size={3} offset={1} opacity={0.3} />
             </PopupContainer>
         </Slide>
     )

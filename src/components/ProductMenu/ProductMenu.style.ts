@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 export const Popover = styled(MuiPopover)`
     .MuiPopover-paper {
+        overflow: visible;
         padding: ${({ theme }) => theme.spacing(2)};
         background-color: rgba(255, 255, 255, 0.8);
 

@@ -35,5 +35,10 @@ export default () =>
                     color: 'white',
                 },
             },
+            MuiPopover: {
+                paper: {
+                    boxShadow: 'none',
+                },
+            },
         },
     })

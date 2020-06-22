@@ -5,6 +5,7 @@ import { getDescription, getImage, getPrice, isPhysicalFormat } from '~/utils/pr
 import IconButton from '~/components/IconButton'
 import { Popover } from './ProductMenu.style'
 import ReleaseProducts from '~/components/ReleaseProducts'
+import SVGBoxShadow from '~/components/SVGBoxShadow'
 import { Typography } from '@material-ui/core'
 import { Unicode } from '~/constants/unicode'
 import { getUrl } from '~/utils/content'
@@ -85,6 +86,7 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                     isDescription={false}
                     onCheckoutClick={handleClose}
                 />
+                <SVGBoxShadow radius={4} size={2} offset={2} opacity={0.3} />
             </Popover>
         </>
     )

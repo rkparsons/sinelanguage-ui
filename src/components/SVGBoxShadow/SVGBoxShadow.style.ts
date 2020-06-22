@@ -1,4 +1,3 @@
-import { TextField } from '@material-ui/core'
 import styled from 'styled-components'
 
 export const SVG = styled.svg`
@@ -8,10 +7,10 @@ export const SVG = styled.svg`
     overflow: visible;
     width: 100%;
     height: 100%;
+    z-index: -1;
 
     rect {
         width: 100%;
         height: 100%;
-        filter: url(#shadow);
     }
 `
