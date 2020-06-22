@@ -7,7 +7,7 @@ export const SVG = styled.svg`
     overflow: visible;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    pointer-events: none;
 
     rect {
         width: 100%;
