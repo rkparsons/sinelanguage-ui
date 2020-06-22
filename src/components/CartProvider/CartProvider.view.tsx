@@ -17,7 +17,7 @@ export default ({ children }: ViewProps) => {
             const { cart } = Snipcart.store.getState()
 
             setCart({
-                items: cart.items.items,
+                items: cart.items,
             })
         }
     }
@@ -43,7 +43,7 @@ export default ({ children }: ViewProps) => {
             }}
         >
             {children}
-            <Cart version="3.0.15" openCartOnAdd={false} />
+            <Cart version="3.0.13" openCartOnAdd={false} />
         </CartContext.Provider>
     )
 }
