@@ -112,24 +112,21 @@ export default ({
                         </ProductRow>
                     </Fragment>
                 ))}
-            {isProductInCart && (
-                <>
-                    <Typography variant={isLarge ? 'h3' : 'body1'}>
-                        <br />
-                    </Typography>
-                    <Grid container justify="flex-end">
-                        <Grid item>
-                            <CheckoutButton
-                                text={`GO TO CHECKOUT ${Unicode.UP}`}
-                                isWithCount={false}
-                                isLarge={isLarge}
-                                isLight={isLight}
-                                onClick={onCheckoutClick}
-                            />
-                        </Grid>
-                    </Grid>
-                </>
-            )}
+            <Typography variant={isLarge ? 'h3' : 'body1'}>
+                <br />
+            </Typography>
+            <Grid container justify="flex-end">
+                <Grid item>
+                    <CheckoutButton
+                        text={`GO TO CHECKOUT ${Unicode.UP}`}
+                        isWithCount={false}
+                        isLarge={isLarge}
+                        isLight={isLight}
+                        isDisabled={!isProductInCart}
+                        onClick={onCheckoutClick}
+                    />
+                </Grid>
+            </Grid>
         </>
     )
 }

@@ -12,10 +12,19 @@ type ViewProps = {
     isWithCount: boolean
     isLight: boolean
     isLarge: boolean
+    isDisabled: boolean
     onClick?: () => void
 }
 
-export default ({ text, icon, isWithCount, isLight, isLarge, onClick = () => {} }: ViewProps) => {
+export default ({
+    text,
+    icon,
+    isWithCount,
+    isLight,
+    isLarge,
+    isDisabled,
+    onClick = () => {},
+}: ViewProps) => {
     const { cart } = useCartContext()
 
     return (
@@ -30,6 +39,7 @@ export default ({ text, icon, isWithCount, isLight, isLarge, onClick = () => {} 
                 }
                 onClick={onClick}
                 isLight={isLight}
+                isDisabled={isDisabled}
             />
         </CheckoutButton>
     )

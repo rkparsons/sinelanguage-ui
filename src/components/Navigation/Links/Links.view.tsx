@@ -34,6 +34,7 @@ export default () => (
                         isWithCount={true}
                         isLarge={true}
                         isLight={true}
+                        isDisabled={false}
                     />
                 </Grid>
             </Grid>
