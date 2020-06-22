@@ -38,7 +38,11 @@ export default () => {
     }
 
     return (
-        <Slide direction="left" in={isActive} style={{ transitionDelay: isActive ? '0ms' : '0ms' }}>
+        <Slide
+            direction="left"
+            in={isActive}
+            style={{ transitionDelay: isActive ? '5000ms' : '0ms' }}
+        >
             <PopupContainer elevation={3}>
                 <Box display="flex" flexDirection="column" height="100%">
                     <Box display="flex" flexGrow={1}>
