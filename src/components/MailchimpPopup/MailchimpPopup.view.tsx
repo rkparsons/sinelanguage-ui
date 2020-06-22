@@ -1,8 +1,9 @@
 import { Box, Slide, Typography } from '@material-ui/core'
-import { BoxShadow, EmailInput, EmailInputContainer, PopupContainer } from './MailchimpPopup.style'
+import { EmailInput, EmailInputContainer, PopupContainer } from './MailchimpPopup.style'
 import React, { useEffect, useState } from 'react'
 
 import IconButton from '~/components/IconButton'
+import SVGBoxShadow from '~/components/SVGBoxShadow'
 import { Unicode } from '~/constants/unicode'
 import useCookies from '~/hooks/useCookies'
 import useMailchimp from '~/hooks/useMailchimp'
@@ -101,19 +102,7 @@ export default () => {
                         {isSuccess && <Typography variant="h5">THANKS FOR SUBSCRIBING!</Typography>}
                     </Box>
                 </Box>
-                <svg
-                    width="533"
-                    height="267"
-                    style={{ position: 'absolute', left: 0, top: 0, zIndex: -1 }}
-                >
-                    <defs>
-                        <filter id="f1" x="0" y="0" width="200%" height="200%">
-                            <feGaussianBlur stdDeviation="5" />
-                            <feComposite operator="out" in2="SourceGraphic" />
-                        </filter>
-                    </defs>
-                    <rect width="400" height="200" rx="8" fill="black" filter="url(#f1)" />
-                </svg>
+                <SVGBoxShadow />
             </PopupContainer>
         </Slide>
     )
