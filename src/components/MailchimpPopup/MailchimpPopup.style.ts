@@ -17,7 +17,7 @@ export const PopupContainer = styled(Paper)`
     background-color: rgba(255, 255, 255, 0.8);
     @supports (backdrop-filter: blur(12px)) {
         background-color: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(1px);
+        backdrop-filter: blur(12px);
     }
 `
 
