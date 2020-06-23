@@ -1,11 +1,12 @@
+import { Blur, Content, Popover } from './ProductMenu.style'
+import { Fade, Typography } from '@material-ui/core'
 import { Product, Release } from '~/cms/types'
 import React, { useRef, useState } from 'react'
 import { getDescription, getImage, getPrice, isPhysicalFormat } from '~/utils/product'
 
-import GlassPanel from '~/components/GlassPanel'
 import IconButton from '~/components/IconButton'
 import ReleaseProducts from '~/components/ReleaseProducts'
-import { Typography } from '@material-ui/core'
+import SVGBoxShadow from '~/components/SVGBoxShadow'
 import { Unicode } from '~/constants/unicode'
 import { getUrl } from '~/utils/content'
 import useCartContext from '~/hooks/useCartContext'
@@ -76,9 +77,8 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                     {product.format}
                 </button>
             ))}
-
-            <div style={{ position: 'absolute', zIndex: 1000 }}>
-                <GlassPanel elevation={3} borderRadius={4}>
+            <Popover open={Boolean(popoverTrigger)} anchorEl={popoverTrigger} onClose={handleClose}>
+                <Content elevation={3}>
                     <ReleaseProducts
                         release={release}
                         products={products}
@@ -87,8 +87,11 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                         isDescription={false}
                         onCheckoutClick={handleClose}
                     />
-                </GlassPanel>
-            </div>
+                </Content>
+                <Fade in={true} timeout={700} style={{ transitionDelay: '200ms' }}>
+                    <Blur />
+                </Fade>
+            </Popover>
         </>
     )
 }
