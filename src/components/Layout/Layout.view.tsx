@@ -1,4 +1,5 @@
 import 'font-awesome/css/font-awesome.css'
+import 'ie-string-startswith-polyfill'
 
 import { AppContainer, GlobalStyle } from './Layout.style'
 import { ThemeProvider as MuiThemeProvider, Theme } from '@material-ui/core/styles'
