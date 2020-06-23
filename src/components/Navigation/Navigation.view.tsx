@@ -39,7 +39,14 @@ export default ({ location }: ViewProps) => {
                     </Mobile>
                     <Desktop>
                         <Title>
-                            <NavItem to={Route.NEWS} title="SINE LANGUAGE RECORDS" />
+                            <NavItem
+                                to={Route.NEWS}
+                                title={
+                                    location.pathname === `/`
+                                        ? `SINE LANGUAGE RECORDS`
+                                        : `${Unicode.LEFT}  SINE LANGUAGE RECORDS`
+                                }
+                            />
                         </Title>
                     </Desktop>
                 </Grid>

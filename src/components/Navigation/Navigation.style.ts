@@ -17,6 +17,8 @@ export const Header = styled.header`
 `
 
 export const Title = styled.div`
+    white-space: pre;
+
     ${({ theme }) => `
         padding-left: ${theme.spacing(marginSide)};
     `}
