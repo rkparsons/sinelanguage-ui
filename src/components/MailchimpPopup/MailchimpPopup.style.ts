@@ -1,6 +1,5 @@
 import { Paper, TextField } from '@material-ui/core'
 
-import { darkShadow } from '~/styles/shadows'
 import styled from 'styled-components'
 
 export const AbsoluteContainer = styled.div`
