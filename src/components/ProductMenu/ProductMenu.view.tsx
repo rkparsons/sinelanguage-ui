@@ -2,10 +2,9 @@ import { Product, Release } from '~/cms/types'
 import React, { useRef, useState } from 'react'
 import { getDescription, getImage, getPrice, isPhysicalFormat } from '~/utils/product'
 
+import GlassPanel from '~/components/GlassPanel'
 import IconButton from '~/components/IconButton'
-import { Popover } from './ProductMenu.style'
 import ReleaseProducts from '~/components/ReleaseProducts'
-import SVGBoxShadow from '~/components/SVGBoxShadow'
 import { Typography } from '@material-ui/core'
 import { Unicode } from '~/constants/unicode'
 import { getUrl } from '~/utils/content'
@@ -77,17 +76,19 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                     {product.format}
                 </button>
             ))}
-            <Popover open={Boolean(popoverTrigger)} anchorEl={popoverTrigger} onClose={handleClose}>
-                <ReleaseProducts
-                    release={release}
-                    products={products}
-                    isLarge={isLarge}
-                    isLight={false}
-                    isDescription={false}
-                    onCheckoutClick={handleClose}
-                />
-                <SVGBoxShadow radius={4} size={2} offset={2} opacity={0.3} />
-            </Popover>
+
+            <div style={{ position: 'absolute', zIndex: 1000 }}>
+                <GlassPanel elevation={3} borderRadius={4}>
+                    <ReleaseProducts
+                        release={release}
+                        products={products}
+                        isLarge={isLarge}
+                        isLight={false}
+                        isDescription={false}
+                        onCheckoutClick={handleClose}
+                    />
+                </GlassPanel>
+            </div>
         </>
     )
 }
