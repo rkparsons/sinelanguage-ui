@@ -39,7 +39,7 @@ export default () => {
     }
 
     return (
-        <Popup>
+        <Popup isActive={isActive}>
             <GlassPanel elevation={3} borderRadius={8} height={50}>
                 <Box display="flex" flexDirection="column" height="100%">
                     <Box display="flex" flexGrow={1}>

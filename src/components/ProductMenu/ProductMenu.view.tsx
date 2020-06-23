@@ -1,12 +1,11 @@
 import { Blur, Content, Popover } from './ProductMenu.style'
-import { Fade, Typography } from '@material-ui/core'
+import { Grow, Typography } from '@material-ui/core'
 import { Product, Release } from '~/cms/types'
 import React, { useRef, useState } from 'react'
 import { getDescription, getImage, getPrice, isPhysicalFormat } from '~/utils/product'
 
 import IconButton from '~/components/IconButton'
 import ReleaseProducts from '~/components/ReleaseProducts'
-import SVGBoxShadow from '~/components/SVGBoxShadow'
 import { Unicode } from '~/constants/unicode'
 import { getUrl } from '~/utils/content'
 import useCartContext from '~/hooks/useCartContext'
@@ -77,20 +76,27 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                     {product.format}
                 </button>
             ))}
-            <Popover open={Boolean(popoverTrigger)} anchorEl={popoverTrigger} onClose={handleClose}>
-                <Content elevation={3}>
-                    <ReleaseProducts
-                        release={release}
-                        products={products}
-                        isLarge={isLarge}
-                        isLight={false}
-                        isDescription={false}
-                        onCheckoutClick={handleClose}
-                    />
-                </Content>
-                <Fade in={true} timeout={700} style={{ transitionDelay: '200ms' }}>
+            <Popover
+                open={Boolean(popoverTrigger)}
+                anchorEl={popoverTrigger}
+                onClose={handleClose}
+                transitionDuration={0}
+            >
+                <Grow in={true} timeout={200} style={{ transformOrigin: '0 0 0' }}>
+                    <Content elevation={3}>
+                        <ReleaseProducts
+                            release={release}
+                            products={products}
+                            isLarge={isLarge}
+                            isLight={false}
+                            isDescription={false}
+                            onCheckoutClick={handleClose}
+                        />
+                    </Content>
+                </Grow>
+                <Grow in={true} timeout={200} style={{ transformOrigin: '0 0 0' }}>
                     <Blur />
-                </Fade>
+                </Grow>
             </Popover>
         </>
     )

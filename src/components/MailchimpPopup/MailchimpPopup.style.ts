@@ -1,7 +1,7 @@
 import { TextField } from '@material-ui/core'
 import styled from 'styled-components'
 
-export const Popup = styled.div`
+export const Popup = styled.div<{ isActive: boolean }>`
     position: fixed;
     bottom: ${({ theme }) => theme.spacing(6)};
     right: ${({ theme }) => theme.spacing(6)};
