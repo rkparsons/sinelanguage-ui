@@ -21,6 +21,8 @@ type Props = {
 
 export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }: Props) => {
     const { cart } = useCartContext()
+    const timeout = 200
+    const transformOrigin = '0 0 0'
     const [popoverTrigger, setPopoverTrigger] = useState<HTMLButtonElement>()
     const popoverTriggerRef = useRef<HTMLButtonElement>(null)
     const isAnyProductAvailable = products.find(
@@ -82,7 +84,7 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                 onClose={handleClose}
                 transitionDuration={0}
             >
-                <Grow in={true} timeout={200} style={{ transformOrigin: '0 0 0' }}>
+                <Grow in={true} timeout={timeout} style={{ transformOrigin }}>
                     <Content elevation={3}>
                         <ReleaseProducts
                             release={release}
@@ -94,7 +96,7 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                         />
                     </Content>
                 </Grow>
-                <Grow in={true} timeout={200} style={{ transformOrigin: '0 0 0' }}>
+                <Grow in={true} timeout={timeout} style={{ transformOrigin }}>
                     <Blur />
                 </Grow>
             </Popover>
