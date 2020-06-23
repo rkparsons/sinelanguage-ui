@@ -1,11 +1,11 @@
-import { Grow, Typography } from '@material-ui/core'
+import { ButtonContainer, Popup } from './ProductMenu.style'
+import { ClickAwayListener, Grow, Typography } from '@material-ui/core'
 import { Product, Release } from '~/cms/types'
 import React, { useEffect, useRef, useState } from 'react'
 import { getDescription, getImage, getPrice, isPhysicalFormat } from '~/utils/product'
 
 import GlassPanel from '~/components/GlassPanel'
 import IconButton from '~/components/IconButton'
-import { Popup } from './ProductMenu.style'
 import ReleaseProducts from '~/components/ReleaseProducts'
 import { Unicode } from '~/constants/unicode'
 import { getUrl } from '~/utils/content'
@@ -21,11 +21,8 @@ type Props = {
 }
 
 export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }: Props) => {
+    const [isActive, setIsActive] = useState(false)
     const { cart } = useCartContext()
-    const timeout = 200
-    const transformOrigin = '0 0 0'
-    const [popoverTrigger, setPopoverTrigger] = useState<HTMLButtonElement>()
-    const popoverTriggerRef = useRef<HTMLButtonElement>(null)
     const isAnyProductAvailable = products.find(
         (product) => isPhysicalFormat(product) || product.fileGUID
     )
@@ -34,34 +31,12 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
         cart.items.find((cartItem) => products.map((x) => x.title).includes(cartItem.id)) !==
             undefined
 
-    useEffect(() => {
-        return enableScroll
-    }, [])
-
-    const blockScroll = () => {
-        document.getElementsByTagName('html')[0].style.overflow = 'hidden'
-        document.ontouchmove = function (e) {
-            e.preventDefault()
-        }
-    }
-
-    const enableScroll = () => {
-        document.getElementsByTagName('html')[0].style.overflow = 'scroll'
-        document.ontouchmove = function (e) {
-            return true
-        }
-    }
-
     const handleClick = () => {
-        if (popoverTriggerRef.current) {
-            setPopoverTrigger(popoverTriggerRef.current)
-            blockScroll()
-        }
+        setIsActive(true)
     }
 
     const handleClose = () => {
-        setPopoverTrigger(undefined)
-        enableScroll()
+        setIsActive(false)
     }
 
     if (!isAnyProductAvailable) {
@@ -70,18 +45,38 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
 
     return (
         <>
-            <IconButton
-                buttonRef={popoverTriggerRef}
-                label={
-                    <Typography
-                        variant={isLarge ? 'h3' : 'body1'}
-                        color={isInBag && indicateWhenInBag ? 'secondary' : 'inherit'}
-                    >{`${Unicode.CART_LEFT_ALIGN} ${text ? text : ''}`}</Typography>
-                }
-                onClick={handleClick}
-                isLight={isLight}
-                isDisabled={!products}
-            />
+            <div style={{ position: 'relative' }}>
+                <ButtonContainer isBlur={isActive}>
+                    <IconButton
+                        label={
+                            <Typography
+                                variant={isLarge ? 'h3' : 'body1'}
+                                color={isInBag && indicateWhenInBag ? 'secondary' : 'inherit'}
+                            >{`${Unicode.CART_LEFT_ALIGN} ${text ? text : ''}`}</Typography>
+                        }
+                        onClick={handleClick}
+                        isLight={isLight}
+                        isDisabled={!products}
+                    />
+                </ButtonContainer>
+                {isActive && (
+                    <ClickAwayListener onClickAway={handleClose}>
+                        <Popup>
+                            <GlassPanel elevation={3} borderRadius={4}>
+                                <ReleaseProducts
+                                    release={release}
+                                    products={products}
+                                    isLarge={isLarge}
+                                    isLight={false}
+                                    isDescription={false}
+                                    onCheckoutClick={handleClose}
+                                />
+                            </GlassPanel>
+                        </Popup>
+                    </ClickAwayListener>
+                )}
+            </div>
+
             {products.map((product, index) => (
                 <button
                     key={index}
@@ -99,19 +94,6 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                     {product.format}
                 </button>
             ))}
-
-            <Popup>
-                <GlassPanel elevation={3} borderRadius={4}>
-                    <ReleaseProducts
-                        release={release}
-                        products={products}
-                        isLarge={isLarge}
-                        isLight={false}
-                        isDescription={false}
-                        onCheckoutClick={handleClose}
-                    />
-                </GlassPanel>
-            </Popup>
         </>
     )
 }
