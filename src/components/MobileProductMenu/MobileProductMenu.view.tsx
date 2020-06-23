@@ -40,13 +40,13 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
 
     const handleClose = () => {
         setPopoverTrigger(undefined)
-        document.removeEventListener('touchmove', handleClose)
+        window.removeEventListener('touchmove', handleClose)
     }
 
     useEffect(() => {
-        document.addEventListener('touchmove', handleClose)
+        window.addEventListener('touchmove', handleClose)
 
-        return () => document.removeEventListener('touchmove', handleClose)
+        return () => window.removeEventListener('touchmove', handleClose)
     }, [])
 
     if (!isAnyProductAvailable) {
