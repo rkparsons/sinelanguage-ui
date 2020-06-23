@@ -5,6 +5,7 @@ import ContentCardDetail from '~/components/ContentCardDetail'
 import ContentCardMedia from '~/components/ContentCardMedia'
 import ContentPlayButton from '~/components/ContentPlayButton'
 import MediaLink from '~/components/MediaLink'
+import MobileProductMenu from '~/components/MobileProductMenu'
 import ProductMenu from '~/components/ProductMenu'
 import React from 'react'
 import { Release } from '~/cms/types'
@@ -41,7 +42,7 @@ export default ({ release }: ViewProps) => {
                         </Box>
                     </Grid>
                     <Grid item>
-                        <ProductMenu
+                        <MobileProductMenu
                             release={release}
                             products={release.products}
                             isLight={false}
