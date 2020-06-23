@@ -84,21 +84,23 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                 onClose={handleClose}
                 transitionDuration={0}
             >
-                <Grow in={true} timeout={timeout} style={{ transformOrigin }}>
-                    <Content elevation={3}>
-                        <ReleaseProducts
-                            release={release}
-                            products={products}
-                            isLarge={isLarge}
-                            isLight={false}
-                            isDescription={false}
-                            onCheckoutClick={handleClose}
-                        />
-                    </Content>
-                </Grow>
-                <Grow in={true} timeout={timeout} style={{ transformOrigin }}>
-                    <Blur />
-                </Grow>
+                <div>
+                    <Grow in={true} timeout={timeout} style={{ transformOrigin }}>
+                        <Content elevation={3}>
+                            <ReleaseProducts
+                                release={release}
+                                products={products}
+                                isLarge={isLarge}
+                                isLight={false}
+                                isDescription={false}
+                                onCheckoutClick={handleClose}
+                            />
+                        </Content>
+                    </Grow>
+                    <Grow in={true} timeout={timeout} style={{ transformOrigin }}>
+                        <Blur />
+                    </Grow>
+                </div>
             </Popover>
         </>
     )
