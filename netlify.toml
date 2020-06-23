@@ -4,4 +4,5 @@
     publish = "public"
 
 [context.staging]
+    GATSBY_CTF_ENVIRONMENT = "staging"
     GATSBY_SNIPCART_API_KEY = "YTcxMzhkNmEtOGYyMS00ZjQxLWIzZWEtMTk0NGQ2ZTRlOWMyNjM3MDk2NjQxMjI3ODU3NzY5"
