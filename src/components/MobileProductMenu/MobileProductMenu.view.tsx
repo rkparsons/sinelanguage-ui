@@ -81,6 +81,7 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                 anchorEl={popoverTrigger}
                 onClose={handleClose}
                 elevation={3}
+                transitionDuration={0}
             >
                 <Shadow elevation={3}>
                     <ReleaseProducts

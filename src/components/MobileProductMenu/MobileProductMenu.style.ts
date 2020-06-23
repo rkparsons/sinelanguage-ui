@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 export const Popover = styled(MuiPopover)`
     .MuiPopover-paper {
-        box-shadow: none;
         background: none;
     }
 `
