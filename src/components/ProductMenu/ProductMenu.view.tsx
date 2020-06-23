@@ -98,27 +98,22 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                     {product.format}
                 </button>
             ))}
-            <Popover
-                open={Boolean(popoverTrigger)}
-                anchorEl={popoverTrigger}
-                onClose={handleClose}
-                transitionDuration={0}
-            >
-                <Grow in={true} timeout={timeout} style={{ transformOrigin }}>
-                    <Content elevation={3}>
-                        <ReleaseProducts
-                            release={release}
-                            products={products}
-                            isLarge={isLarge}
-                            isLight={false}
-                            isDescription={false}
-                            onCheckoutClick={handleClose}
-                        />
-                    </Content>
-                </Grow>
-                <Grow in={true} timeout={timeout} style={{ transformOrigin }}>
-                    <Blur />
-                </Grow>
+            <Popover open={Boolean(popoverTrigger)} anchorEl={popoverTrigger} onClose={handleClose}>
+                {/* <Grow in={true} timeout={timeout} style={{ transformOrigin }}> */}
+                <Content elevation={3}>
+                    <ReleaseProducts
+                        release={release}
+                        products={products}
+                        isLarge={isLarge}
+                        isLight={false}
+                        isDescription={false}
+                        onCheckoutClick={handleClose}
+                    />
+                </Content>
+                {/* </Grow> */}
+                {/* <Grow in={true} timeout={timeout} style={{ transformOrigin }}> */}
+                <Blur />
+                {/* </Grow> */}
             </Popover>
         </>
     )
