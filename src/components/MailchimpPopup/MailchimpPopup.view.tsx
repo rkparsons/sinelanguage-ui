@@ -1,17 +1,17 @@
-import { Box, Slide, Typography } from '@material-ui/core'
+import { Box, Typography } from '@material-ui/core'
 import { EmailInput, EmailInputContainer, Popup } from './MailchimpPopup.style'
-import React, { ReactNode, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import GlassPanel from '~/components/GlassPanel'
 import IconButton from '~/components/IconButton'
 import { Unicode } from '~/constants/unicode'
-import styled from 'styled-components'
 import useCookies from '~/hooks/useCookies'
 import useMailchimp from '~/hooks/useMailchimp'
 
 export default () => {
     const { getMailingListCookie, setMailingListCookie } = useCookies()
-    const [isActive, setIsActive] = useState(getMailingListCookie() === undefined)
+    const timeout = 2000
+    const [isActive, setIsActive] = useState(false)
     const {
         isSuccess,
         isInvalid,
@@ -23,13 +23,21 @@ export default () => {
     } = useMailchimp()
 
     useEffect(() => {
+        const slideIn = setTimeout(() => {
+            setIsActive(getMailingListCookie() === undefined)
+        }, timeout)
+
+        return () => clearTimeout(slideIn)
+    }, [])
+
+    useEffect(() => {
         if (isSuccess) {
-            const hideOnSuccess = setTimeout(() => {
+            const slideOut = setTimeout(() => {
                 setIsActive(false)
                 setMailingListCookie(true)
-            }, 2000)
+            }, timeout)
 
-            return () => clearTimeout(hideOnSuccess)
+            return () => clearTimeout(slideOut)
         }
     }, [isSuccess])
 
