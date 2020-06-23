@@ -1,7 +1,7 @@
 import { Blur, Content, Popover } from './ProductMenu.style'
 import { Grow, Typography } from '@material-ui/core'
 import { Product, Release } from '~/cms/types'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { getDescription, getImage, getPrice, isPhysicalFormat } from '~/utils/product'
 
 import IconButton from '~/components/IconButton'
@@ -33,16 +33,34 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
         cart.items.find((cartItem) => products.map((x) => x.title).includes(cartItem.id)) !==
             undefined
 
+    useEffect(() => {
+        return enableScroll
+    }, [])
+
+    const blockScroll = () => {
+        document.getElementsByTagName('html')[0].style.overflow = 'hidden'
+        document.ontouchmove = function (e) {
+            e.preventDefault()
+        }
+    }
+
+    const enableScroll = () => {
+        document.getElementsByTagName('html')[0].style.overflow = 'scroll'
+        document.ontouchmove = function (e) {
+            return true
+        }
+    }
+
     const handleClick = () => {
         if (popoverTriggerRef.current) {
             setPopoverTrigger(popoverTriggerRef.current)
-            document.getElementsByTagName('html')[0].style.overflow = 'hidden'
+            blockScroll()
         }
     }
 
     const handleClose = () => {
         setPopoverTrigger(undefined)
-        document.getElementsByTagName('html')[0].style.overflow = 'scroll'
+        enableScroll()
     }
 
     if (!isAnyProductAvailable) {
