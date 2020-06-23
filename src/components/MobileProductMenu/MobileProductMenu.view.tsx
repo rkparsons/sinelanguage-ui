@@ -1,7 +1,6 @@
 import { Blur, Popover, Shadow } from './MobileProductMenu.style'
 import { Product, Release } from '~/cms/types'
 import React, { useEffect, useRef, useState } from 'react'
-import { clearAllBodyScrollLocks, disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import { getDescription, getImage, getPrice, isPhysicalFormat } from '~/utils/product'
 
 import IconButton from '~/components/IconButton'
@@ -33,29 +32,22 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
         cart.items.find((cartItem) => products.map((x) => x.title).includes(cartItem.id)) !==
             undefined
 
-    useEffect(() => {
-        return enableScroll
-    }, [])
-
-    const blockScroll = () => {
-        document.documentElement.style.overflow = 'hidden'
-    }
-
-    const enableScroll = () => {
-        document.documentElement.style.overflow = 'visible'
-    }
-
     const handleClick = () => {
         if (popoverTriggerRef.current) {
             setPopoverTrigger(popoverTriggerRef.current)
-            blockScroll()
         }
     }
 
     const handleClose = () => {
         setPopoverTrigger(undefined)
-        enableScroll()
+        document.removeEventListener('touchmove', handleClose)
     }
+
+    useEffect(() => {
+        document.addEventListener('touchmove', handleClose)
+
+        return () => document.removeEventListener('touchmove', handleClose)
+    }, [])
 
     if (!isAnyProductAvailable) {
         return <></>
