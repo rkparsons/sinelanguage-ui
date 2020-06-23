@@ -36,11 +36,13 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
     const handleClick = () => {
         if (popoverTriggerRef.current) {
             setPopoverTrigger(popoverTriggerRef.current)
+            document.getElementsByTagName('html')[0].style.overflow = 'hidden'
         }
     }
 
     const handleClose = () => {
         setPopoverTrigger(undefined)
+        document.getElementsByTagName('html')[0].style.overflow = 'scroll'
     }
 
     if (!isAnyProductAvailable) {
