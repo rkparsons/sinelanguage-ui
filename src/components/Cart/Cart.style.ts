@@ -1,3 +1,4 @@
+import { Unicode } from '~/constants/unicode'
 import { darkShadow } from '~/styles/shadows'
 import { lightGrey } from '~/styles/colours'
 import styled from 'styled-components'
@@ -69,10 +70,12 @@ export const OverrideCartStyles = styled.div`
 
     .snipcart-item-line__header {
         .snipcart-item-line__title {
-            font-size: 14px;
+            font-size: 16px;
             width: 100%;
+            font-weight: normal;
+
             @media (min-width: 1024px) {
-                font-size: 16px;
+                font-weight: 600;
             }
         }
         img {
@@ -135,7 +138,7 @@ export const OverrideCartStyles = styled.div`
                 display: none;
             }
             :after {
-                content: 'x';
+                content: '${Unicode.CLOSE}';
                 font-size: ${({ theme }) => theme.spacing(5)};
             }
         }
