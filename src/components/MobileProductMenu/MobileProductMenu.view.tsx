@@ -1,11 +1,14 @@
+import { ClickAwayListener, Grow, Typography } from '@material-ui/core'
 import { Product, Release } from '~/cms/types'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { getDescription, getImage, getPrice, isPhysicalFormat } from '~/utils/product'
 
+import Desktop from '~/components/Desktop'
+import GlassPanel from '~/components/GlassPanel'
 import IconButton from '~/components/IconButton'
-import { Popover } from './ProductMenu.style'
+import Mobile from '~/components/Mobile'
+import { Popup } from './MobileProductMenu.style'
 import ReleaseProducts from '~/components/ReleaseProducts'
-import { Typography } from '@material-ui/core'
 import { Unicode } from '~/constants/unicode'
 import { getUrl } from '~/utils/content'
 import useCartContext from '~/hooks/useCartContext'
@@ -20,9 +23,8 @@ type Props = {
 }
 
 export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }: Props) => {
+    const [isActive, setIsActive] = useState(false)
     const { cart } = useCartContext()
-    const [popoverTrigger, setPopoverTrigger] = useState<HTMLButtonElement>()
-    const popoverTriggerRef = useRef<HTMLButtonElement>(null)
     const isAnyProductAvailable = products.find(
         (product) => isPhysicalFormat(product) || product.fileGUID
     )
@@ -32,13 +34,11 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
             undefined
 
     const handleClick = () => {
-        if (popoverTriggerRef.current) {
-            setPopoverTrigger(popoverTriggerRef.current)
-        }
+        setIsActive(true)
     }
 
     const handleClose = () => {
-        setPopoverTrigger(undefined)
+        setIsActive(false)
     }
 
     if (!isAnyProductAvailable) {
@@ -47,18 +47,36 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
 
     return (
         <>
-            <IconButton
-                buttonRef={popoverTriggerRef}
-                label={
-                    <Typography
-                        variant={isLarge ? 'h3' : 'body1'}
-                        color={isInBag && indicateWhenInBag ? 'secondary' : 'inherit'}
-                    >{`${Unicode.CART_LEFT_ALIGN} ${text ? text : ''}`}</Typography>
-                }
-                onClick={handleClick}
-                isLight={isLight}
-                isDisabled={!products}
-            />
+            <div style={{ position: 'relative' }}>
+                <IconButton
+                    label={
+                        <Typography
+                            variant={isLarge ? 'h3' : 'body1'}
+                            color={isInBag && indicateWhenInBag ? 'secondary' : 'inherit'}
+                        >{`${Unicode.CART_LEFT_ALIGN} ${text ? text : ''}`}</Typography>
+                    }
+                    onClick={handleClick}
+                    isLight={isLight}
+                    isDisabled={!products}
+                />
+                {isActive && (
+                    <ClickAwayListener onClickAway={handleClose}>
+                        <Popup>
+                            <GlassPanel elevation={3} borderRadius={4}>
+                                <ReleaseProducts
+                                    release={release}
+                                    products={products}
+                                    isLarge={isLarge}
+                                    isLight={false}
+                                    isDescription={false}
+                                    onCheckoutClick={handleClose}
+                                />
+                            </GlassPanel>
+                        </Popup>
+                    </ClickAwayListener>
+                )}
+            </div>
+
             {products.map((product, index) => (
                 <button
                     key={index}
@@ -76,21 +94,6 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                     {product.format}
                 </button>
             ))}
-            <Popover
-                open={Boolean(popoverTrigger)}
-                anchorEl={popoverTrigger}
-                onClose={handleClose}
-                elevation={3}
-            >
-                <ReleaseProducts
-                    release={release}
-                    products={products}
-                    isLarge={isLarge}
-                    isLight={false}
-                    isDescription={false}
-                    onCheckoutClick={handleClose}
-                />
-            </Popover>
         </>
     )
 }

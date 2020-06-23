@@ -1,13 +1,13 @@
+import { Popover as MuiPopover } from '@material-ui/core'
 import styled from 'styled-components'
 
-export const Popup = styled.div`
-    all: revert;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 3000;
-`
-
-export const ButtonContainer = styled.div<{ isBlur: boolean }>`
-    filter: blur(${({ isBlur }) => (isBlur ? 6 : 0)}px);
+export const Popover = styled(MuiPopover)`
+    .MuiPopover-paper {
+        padding: ${({ theme }) => theme.spacing(2)};
+        background-color: rgba(255, 255, 255, 0.8);
+        @supports (backdrop-filter: blur(12px)) {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+        }
+    }
 `
