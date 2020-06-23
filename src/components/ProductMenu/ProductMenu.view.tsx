@@ -1,10 +1,11 @@
-import { Blur, Content, Popover } from './ProductMenu.style'
 import { Grow, Typography } from '@material-ui/core'
 import { Product, Release } from '~/cms/types'
 import React, { useEffect, useRef, useState } from 'react'
 import { getDescription, getImage, getPrice, isPhysicalFormat } from '~/utils/product'
 
+import GlassPanel from '~/components/GlassPanel'
 import IconButton from '~/components/IconButton'
+import { Popup } from './ProductMenu.style'
 import ReleaseProducts from '~/components/ReleaseProducts'
 import { Unicode } from '~/constants/unicode'
 import { getUrl } from '~/utils/content'
@@ -98,28 +99,19 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                     {product.format}
                 </button>
             ))}
-            <Popover
-                open={Boolean(popoverTrigger)}
-                anchorEl={popoverTrigger}
-                onClose={handleClose}
-                transitionDuration={0}
-            >
-                <Grow in={true} timeout={timeout} style={{ transformOrigin }}>
-                    <Content elevation={3}>
-                        <ReleaseProducts
-                            release={release}
-                            products={products}
-                            isLarge={isLarge}
-                            isLight={false}
-                            isDescription={false}
-                            onCheckoutClick={handleClose}
-                        />
-                    </Content>
-                </Grow>
-                <Grow in={true} timeout={timeout} style={{ transformOrigin }}>
-                    <Blur />
-                </Grow>
-            </Popover>
+
+            <Popup>
+                <GlassPanel elevation={3} borderRadius={4}>
+                    <ReleaseProducts
+                        release={release}
+                        products={products}
+                        isLarge={isLarge}
+                        isLight={false}
+                        isDescription={false}
+                        onCheckoutClick={handleClose}
+                    />
+                </GlassPanel>
+            </Popup>
         </>
     )
 }
