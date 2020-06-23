@@ -3,7 +3,6 @@ import { Popover as MuiPopover, Paper } from '@material-ui/core'
 import styled from 'styled-components'
 
 export const Popover = styled(MuiPopover)`
-    transition: none;
     .MuiPopover-paper {
         overflow: visible;
         box-shadow: none;
