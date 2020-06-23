@@ -1,14 +1,10 @@
 import { Product, Release } from '~/cms/types'
-import React, { useRef, useState } from 'react'
-import { getDescription, getImage, getPrice, isPhysicalFormat } from '~/utils/product'
 
-import IconButton from '~/components/IconButton'
-import { Popover } from './ProductMenu.style'
-import ReleaseProducts from '~/components/ReleaseProducts'
-import { Typography } from '@material-ui/core'
-import { Unicode } from '~/constants/unicode'
-import { getUrl } from '~/utils/content'
-import useCartContext from '~/hooks/useCartContext'
+import Desktop from '~/components/Desktop'
+import DesktopProductMenu from '~/components/DesktopProductMenu'
+import Mobile from '~/components/Mobile'
+import MobileProductMenu from '~/components/MobileProductMenu'
+import React from 'react'
 
 type Props = {
     release: Release
@@ -19,78 +15,27 @@ type Props = {
     indicateWhenInBag: boolean
 }
 
-export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }: Props) => {
-    const { cart } = useCartContext()
-    const [popoverTrigger, setPopoverTrigger] = useState<HTMLButtonElement>()
-    const popoverTriggerRef = useRef<HTMLButtonElement>(null)
-    const isAnyProductAvailable = products.find(
-        (product) => isPhysicalFormat(product) || product.fileGUID
-    )
-    const isInBag =
-        products &&
-        cart.items.find((cartItem) => products.map((x) => x.title).includes(cartItem.id)) !==
-            undefined
-
-    const handleClick = () => {
-        if (popoverTriggerRef.current) {
-            setPopoverTrigger(popoverTriggerRef.current)
-        }
-    }
-
-    const handleClose = () => {
-        setPopoverTrigger(undefined)
-    }
-
-    if (!isAnyProductAvailable) {
-        return <></>
-    }
-
-    return (
-        <>
-            <IconButton
-                buttonRef={popoverTriggerRef}
-                label={
-                    <Typography
-                        variant={isLarge ? 'h3' : 'body1'}
-                        color={isInBag && indicateWhenInBag ? 'secondary' : 'inherit'}
-                    >{`${Unicode.CART_LEFT_ALIGN} ${text ? text : ''}`}</Typography>
-                }
-                onClick={handleClick}
+export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }: Props) => (
+    <>
+        <Mobile>
+            <MobileProductMenu
+                release={release}
+                products={products}
                 isLight={isLight}
-                isDisabled={!products}
+                isLarge={isLarge}
+                text={text}
+                indicateWhenInBag={indicateWhenInBag}
             />
-            {products.map((product, index) => (
-                <button
-                    key={index}
-                    hidden
-                    className="snipcart-add-item"
-                    data-item-id={product.title}
-                    data-item-price={getPrice(product)}
-                    data-item-url={getUrl(release)}
-                    data-item-name={product.title}
-                    data-item-description={getDescription(product)}
-                    data-item-image={getImage(release, product)}
-                    data-item-file-guid={product.fileGUID}
-                    data-item-shippable={isPhysicalFormat(product)}
-                >
-                    {product.format}
-                </button>
-            ))}
-            <Popover
-                open={Boolean(popoverTrigger)}
-                anchorEl={popoverTrigger}
-                onClose={handleClose}
-                elevation={3}
-            >
-                <ReleaseProducts
-                    release={release}
-                    products={products}
-                    isLarge={isLarge}
-                    isLight={false}
-                    isDescription={false}
-                    onCheckoutClick={handleClose}
-                />
-            </Popover>
-        </>
-    )
-}
+        </Mobile>
+        <Desktop>
+            <DesktopProductMenu
+                release={release}
+                products={products}
+                isLight={isLight}
+                isLarge={isLarge}
+                text={text}
+                indicateWhenInBag={indicateWhenInBag}
+            />
+        </Desktop>
+    </>
+)
