@@ -40,6 +40,8 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
 
     const handleClose = () => {
         setPopoverTrigger(undefined)
+
+        alert('scrolled')
         window.removeEventListener('touchmove', handleClose)
     }
 
