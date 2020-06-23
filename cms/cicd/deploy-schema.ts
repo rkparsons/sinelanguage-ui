@@ -46,7 +46,7 @@ const deploySpace = (space: Space, name: string, contentTypeModels: ContentfulCo
         )
 }
 
-// todo: abstract with class
+// todo: abstract this with class
 const deployContentType = (
     environment: Environment,
     contentTypeModel: ContentfulContentType,
