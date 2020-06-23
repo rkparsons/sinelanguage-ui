@@ -1,6 +1,7 @@
 import { Blur, Popover, Shadow } from './MobileProductMenu.style'
 import { Product, Release } from '~/cms/types'
 import React, { useEffect, useRef, useState } from 'react'
+import { clearAllBodyScrollLocks, disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import { getDescription, getImage, getPrice, isPhysicalFormat } from '~/utils/product'
 
 import IconButton from '~/components/IconButton'
@@ -37,19 +38,11 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
     }, [])
 
     const blockScroll = () => {
-        document.body.style.overflow = 'hidden'
         document.documentElement.style.overflow = 'hidden'
-        document.ontouchmove = function (e) {
-            e.preventDefault()
-        }
     }
 
     const enableScroll = () => {
-        document.body.style.overflow = 'visible'
         document.documentElement.style.overflow = 'visible'
-        document.ontouchmove = function (e) {
-            return true
-        }
     }
 
     const handleClick = () => {
