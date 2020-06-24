@@ -1,8 +1,7 @@
+import { Blur, Content, EmailInput, EmailInputContainer, Popup } from './MailchimpPopup.style'
 import { Box, Typography } from '@material-ui/core'
-import { EmailInput, EmailInputContainer, Popup } from './MailchimpPopup.style'
 import React, { useEffect, useState } from 'react'
 
-import GlassPanel from '~/components/GlassPanel'
 import IconButton from '~/components/IconButton'
 import { Unicode } from '~/constants/unicode'
 import useCookies from '~/hooks/useCookies'
@@ -10,7 +9,6 @@ import useMailchimp from '~/hooks/useMailchimp'
 
 export default () => {
     const { getMailingListCookie, setMailingListCookie } = useCookies()
-    const timeout = 2000
     const [isActive, setIsActive] = useState(false)
     const {
         isSuccess,
@@ -25,7 +23,7 @@ export default () => {
     useEffect(() => {
         const slideIn = setTimeout(() => {
             setIsActive(getMailingListCookie() === undefined)
-        }, timeout)
+        }, 10000)
 
         return () => clearTimeout(slideIn)
     }, [])
@@ -35,7 +33,7 @@ export default () => {
             const slideOut = setTimeout(() => {
                 setIsActive(false)
                 setMailingListCookie(true)
-            }, timeout)
+            }, 2000)
 
             return () => clearTimeout(slideOut)
         }
@@ -48,7 +46,7 @@ export default () => {
 
     return (
         <Popup isActive={isActive}>
-            <GlassPanel elevation={3} borderRadius={8} height={50}>
+            <Content elevation={3} height={50}>
                 <Box display="flex" flexDirection="column" height="100%">
                     <Box display="flex" flexGrow={1}>
                         <Typography variant="h5" gutterBottom>
@@ -111,7 +109,8 @@ export default () => {
                         {isSuccess && <Typography variant="h5">THANKS FOR SUBSCRIBING!</Typography>}
                     </Box>
                 </Box>
-            </GlassPanel>
+            </Content>
+            <Blur />
         </Popup>
     )
 }
