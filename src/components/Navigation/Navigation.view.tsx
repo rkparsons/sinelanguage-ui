@@ -34,7 +34,14 @@ export default ({ location }: ViewProps) => {
                 <Grid item xs={9} md={6}>
                     <Mobile>
                         <Title>
-                            <NavItem to={Route.NEWS} title="SINE LANGUAGE" />
+                            <NavItem
+                                to={Route.NEWS}
+                                title={
+                                    location.pathname === `/` || location.pathname === `/menu`
+                                        ? `SINE LANGUAGE`
+                                        : `${Unicode.LEFT}  SINE LANGUAGE`
+                                }
+                            />
                         </Title>
                     </Mobile>
                     <Desktop>
