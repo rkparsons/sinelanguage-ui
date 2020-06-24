@@ -9,6 +9,8 @@ import Head from '~/components/Head'
 import { Location } from '@reach/router'
 import NewsletterCard from '~/components/NewsletterCard'
 import PlaylistCard from '~/components/PlaylistCard'
+import SlideInOnView from '~/components/SlideInOnView'
+import { isMobile } from 'react-device-detect'
 import useAudioContext from '~/hooks/useAudioContext'
 import useDashboardItems from '~/hooks/useDashboardItems'
 
@@ -17,6 +19,14 @@ export default memo(() => {
     const items = useDashboardItems()
     const newsletterIndex = 12
     const playlistIndex = 8
+
+    function getTimeout(index: number) {
+        if (isMobile) {
+            return index > 1 ? 400 : 0
+        } else {
+            return index > 10 ? 400 : 0
+        }
+    }
 
     return (
         <>
@@ -29,16 +39,28 @@ export default memo(() => {
                                 <Fragment key={index}>
                                     {index === newsletterIndex && (
                                         <Grid item>
-                                            <NewsletterCard />
+                                            <SlideInOnView
+                                                timeout={getTimeout(index)}
+                                                threshold={0.3}
+                                            >
+                                                <NewsletterCard />
+                                            </SlideInOnView>
                                         </Grid>
                                     )}
                                     {index === playlistIndex && (
                                         <Grid item>
-                                            <PlaylistCard />
+                                            <SlideInOnView
+                                                timeout={getTimeout(index)}
+                                                threshold={0.3}
+                                            >
+                                                <PlaylistCard />
+                                            </SlideInOnView>
                                         </Grid>
                                     )}
                                     <Grid item>
-                                        <ContentCard content={item} />
+                                        <SlideInOnView timeout={getTimeout(index)} threshold={0.3}>
+                                            <ContentCard content={item} />
+                                        </SlideInOnView>
                                     </Grid>
                                 </Fragment>
                             ))}
