@@ -1,8 +1,8 @@
 import { Artist, Release, Video } from '~/cms/types'
-import { Box, Grid, Hidden } from '@material-ui/core'
+import { Box, Grid, Hidden, withWidth } from '@material-ui/core'
 
+import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import ContentCardMedia from '~/components/ContentCardMedia'
-import Desktop from '~/components/Desktop'
 import Head from '~/components/Head'
 import Overlay from '~/components/Overlay'
 import React from 'react'
@@ -16,12 +16,12 @@ type Props = {
     data: {
         contentfulRelease: Release & { artist: Artist & { release?: Release[]; video?: Video[] } }
     }
-    location: Location
+    width: Breakpoint
 }
 
-export default ({ data, location }: Props) => {
+export default withWidth()(({ data, width }: Props) => {
     const { __typename, uid, title, description, image, artist } = data.contentfulRelease
-    const isCart = location.hash === '#/cart'
+    const isDesktop = !['xs', 'sm'].includes(width)
 
     const relatedReleases = sortByDate([
         ...(data.contentfulRelease.artist.release || []),
@@ -35,8 +35,8 @@ export default ({ data, location }: Props) => {
             <Head title={title} description={description.description} image={image.fluid.src} />
             <Overlay>
                 <Grid container>
-                    <Desktop>
-                        <Grid item xs={6}>
+                    {isDesktop && (
+                        <Grid item md={6}>
                             <Box
                                 display="flex"
                                 width="100%"
@@ -49,7 +49,7 @@ export default ({ data, location }: Props) => {
                                 </Box>
                             </Box>
                         </Grid>
-                    </Desktop>
+                    )}
                     <Grid item xs={12} md={6}>
                         <Scrollable isWithMargin={true}>
                             <Hidden lgDown>
@@ -65,7 +65,7 @@ export default ({ data, location }: Props) => {
             </Overlay>
         </>
     )
-}
+})
 
 export const query = graphql`
     query($uid: String!) {

@@ -1,7 +1,7 @@
-import { Box, Grid, Hidden } from '@material-ui/core'
+import { Box, Grid, Hidden, withWidth } from '@material-ui/core'
 
+import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import ContentCardMedia from '~/components/ContentCardMedia'
-import Desktop from '~/components/Desktop'
 import Head from '~/components/Head'
 import Overlay from '~/components/Overlay'
 import { Podcast } from '~/cms/types'
@@ -15,18 +15,20 @@ type Props = {
     data: {
         contentfulPodcast: Podcast
     }
+    width: Breakpoint
 }
 
-export default ({ data }: Props) => {
-    const { uid, title, description, wideImage } = data.contentfulPodcast
+export default withWidth()(({ data, width }: Props) => {
+    const { title, description, wideImage } = data.contentfulPodcast
+    const isDesktop = !['xs', 'sm'].includes(width)
 
     return (
         <>
             <Head title={title} description={description.description} image={wideImage.file.url} />
             <Overlay>
                 <Grid container>
-                    <Desktop>
-                        <Grid item xs={6}>
+                    {isDesktop && (
+                        <Grid item md={6}>
                             <Box
                                 display="flex"
                                 width="100%"
@@ -39,7 +41,7 @@ export default ({ data }: Props) => {
                                 </Box>
                             </Box>
                         </Grid>
-                    </Desktop>
+                    )}
                     <Grid item xs={12} md={6}>
                         <Scrollable isWithMargin={true}>
                             <Hidden lgDown>
@@ -52,7 +54,7 @@ export default ({ data }: Props) => {
             </Overlay>
         </>
     )
-}
+})
 
 export const query = graphql`
     query($uid: String!) {

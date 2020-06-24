@@ -1,7 +1,7 @@
-import { Box, Grid, Hidden } from '@material-ui/core'
+import { Box, Grid, Hidden, withWidth } from '@material-ui/core'
 
+import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import ContentCardMedia from '~/components/ContentCardMedia'
-import Desktop from '~/components/Desktop'
 import { Event } from '~/cms/types'
 import EventDetail from '~/components/EventDetail'
 import Head from '~/components/Head'
@@ -15,17 +15,19 @@ type Props = {
     data: {
         contentfulEvent: Event
     }
+    width: Breakpoint
 }
 
-export default ({ data }: Props) => {
+export default withWidth()(({ data, width }: Props) => {
     const { title, description, image, teaserVideo } = data.contentfulEvent
+    const isDesktop = !['xs', 'sm'].includes(width)
 
     return (
         <>
             <Head title={title} description={description.description} image={image.fluid.src} />
             <Overlay>
                 <Grid container>
-                    <Desktop>
+                    {isDesktop && (
                         <Grid item xs={6}>
                             <Box
                                 display="flex"
@@ -39,7 +41,7 @@ export default ({ data }: Props) => {
                                 </Box>
                             </Box>
                         </Grid>
-                    </Desktop>
+                    )}
                     <Grid item xs={12} md={6}>
                         <Scrollable isWithMargin={true}>
                             <Hidden lgDown>
@@ -52,7 +54,7 @@ export default ({ data }: Props) => {
             </Overlay>
         </>
     )
-}
+})
 
 export const query = graphql`
     query($uid: String!) {
