@@ -59,6 +59,7 @@ export const typeDefs = `
 		description: contentfulPodcastDescriptionTextNode
 		introduction: contentfulPodcastIntroductionRichTextNode
 		image: ContentfulAsset
+		wideImage: ContentfulAsset
 		date: Date @dateformat
 		track: ContentfulTrack
 		trackList: [contentfulPodcastTrackListJsonNode]

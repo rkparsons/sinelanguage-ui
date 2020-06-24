@@ -67,6 +67,11 @@ export const podcastFragment = graphql`
                 ...GatsbyContentfulFluid_withWebp
             }
         }
+		wideImage {
+            file {
+                url
+            }
+        }
 		date
 		track {
             ...trackFragment

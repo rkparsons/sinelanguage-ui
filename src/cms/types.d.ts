@@ -57,6 +57,11 @@ export type Podcast = {
 	image: {
         fluid: FluidObject
     }
+	wideImage: {
+        file: {
+            url: string
+        }
+    }
 	date: Date
 	track: Track
 	trackList: {

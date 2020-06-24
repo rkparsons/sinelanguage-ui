@@ -18,11 +18,11 @@ type Props = {
 }
 
 export default ({ data }: Props) => {
-    const { uid, title, description, image } = data.contentfulPodcast
+    const { uid, title, description, wideImage } = data.contentfulPodcast
 
     return (
         <>
-            <Head title={title} description={description.description} image={image.fluid.src} />
+            <Head title={title} description={description.description} image={wideImage.file.url} />
             <Overlay>
                 <Grid container>
                     <Desktop>

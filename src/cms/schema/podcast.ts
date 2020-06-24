@@ -2,6 +2,7 @@ import {
     ContentfulContentType,
     DateField,
     FluidImageField,
+    ImageField,
     LinkField,
     RichTextField,
     SymbolArrayField,
@@ -49,6 +50,9 @@ export default new ContentfulContentType({
             maxWidth: 2400,
             quality: 90,
             fluidImageType: FluidImageType.WEBP_BLUR_UP,
+        }),
+        new ImageField({
+            name: 'Wide Image',
         }),
         new DateField({
             name: 'Date',
