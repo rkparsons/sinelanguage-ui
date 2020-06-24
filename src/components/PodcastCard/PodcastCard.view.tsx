@@ -14,16 +14,16 @@ type ViewProps = {
 }
 
 export default ({ podcast }: ViewProps) => {
+    const { title } = podcast
+
     return (
         <Column widthMultiplier={1}>
             <MediaLink url={getUrl(podcast)}>
                 <ContentCardMedia content={podcast} />
             </MediaLink>
             <ContentCardDetail>
-                <Typography variant="body1">{podcast.title}, Podcast</Typography>
-                <Typography variant="body1">{podcast.uid}</Typography>
+                <Typography variant="body1">{title}, Podcast</Typography>
                 <Grid container spacing={2}>
-                    {/* <Grid item xs={1}></Grid> */}
                     <Grid item>
                         <ContentPlayButton
                             content={podcast}

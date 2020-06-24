@@ -12,6 +12,8 @@ type ViewProps = {
 }
 
 export default ({ video }: ViewProps) => {
+    const { title, artist } = video
+
     return (
         <Column widthMultiplier={2}>
             <MediaLink url={getUrl(video)}>
@@ -19,9 +21,8 @@ export default ({ video }: ViewProps) => {
             </MediaLink>
             <ContentCardDetail>
                 <Typography variant="body1">
-                    {video.artist.title}, <i>{video.title}</i>, Video
+                    {artist.title}, <i>{title}</i>, Video
                 </Typography>
-                <Typography variant="body1">{video.uid}</Typography>
             </ContentCardDetail>
         </Column>
     )

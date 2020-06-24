@@ -15,7 +15,7 @@ type ViewProps = {
 }
 
 export default ({ release }: ViewProps) => {
-    const { uid, title, artist, products } = release
+    const { title, artist, products, originalArtist } = release
 
     return (
         <Column widthMultiplier={1}>
@@ -24,11 +24,9 @@ export default ({ release }: ViewProps) => {
             </MediaLink>
             <ContentCardDetail>
                 <Typography variant="body1">
-                    {release.originalArtist || artist.title}, <i>{title}</i>
+                    {originalArtist || artist.title}, <i>{title}</i>
                 </Typography>
-                <Typography variant="body1">{uid}</Typography>
                 <Grid container spacing={2}>
-                    {/* <Grid item xs={1}></Grid> */}
                     <Grid item>
                         <Box paddingRight={1}>
                             <ContentPlayButton
@@ -43,7 +41,7 @@ export default ({ release }: ViewProps) => {
                     <Grid item>
                         <ProductMenu
                             release={release}
-                            products={release.products}
+                            products={products}
                             isLight={false}
                             isLarge={false}
                             text="BUY"
