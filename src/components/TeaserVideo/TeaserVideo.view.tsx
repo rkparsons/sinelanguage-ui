@@ -9,7 +9,7 @@ type ViewProps = {
 
 export default ({ src }: ViewProps) => {
     const videoRef = useRef<HTMLVideoElement>(null)
-    const [containerRef, inView, entry] = useInView({ threshold: 0.1 })
+    const [containerRef, inView, entry] = useInView({ threshold: 0.1, triggerOnce: true })
 
     useEffect(() => {
         if (videoRef.current) {
