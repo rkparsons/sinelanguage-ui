@@ -7,6 +7,15 @@ import { responsiveFont } from '~/utils/font'
 
 export default () =>
     createMuiTheme({
+        breakpoints: {
+            values: {
+                xs: 0,
+                sm: 600,
+                md: 960,
+                lg: 1800,
+                xl: 1920,
+            },
+        },
         typography: {
             fontFamily: 'HelveticaNowText',
             allVariants: {
