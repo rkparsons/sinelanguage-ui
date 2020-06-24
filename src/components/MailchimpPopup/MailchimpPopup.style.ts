@@ -6,9 +6,13 @@ export const Popup = styled.div<{ isActive: boolean }>`
     position: fixed;
     bottom: ${({ theme }) => theme.spacing(6)};
     right: ${({ theme, isActive }) => (isActive ? theme.spacing(6) : theme.spacing(-100))};
-    transition: right 200ms;
+    transition: right 300ms;
     margin-left: ${({ theme }) => theme.spacing(6)};
-    max-width: ${({ theme }) => theme.spacing(100)};
+
+    ${({ theme }) => `    
+        max-width: min(${theme.spacing(100)}, 100vw - ${theme.spacing(12)});
+    `}
+
     z-index: 3000;
 
     * {
