@@ -19,12 +19,16 @@ type Props = {
 }
 
 export default withWidth()(({ data, width }: Props) => {
-    const { title, description, wideImage } = data.contentfulPodcast
+    const { uid, title, description, wideImage } = data.contentfulPodcast
     const isDesktop = !['xs', 'sm'].includes(width)
 
     return (
         <>
-            <Head title={title} description={description.description} image={wideImage.file.url} />
+            <Head
+                title={`${uid} - ${title}`}
+                description={description.description}
+                image={wideImage.file.url}
+            />
             <Overlay>
                 <Grid container>
                     {isDesktop && (
