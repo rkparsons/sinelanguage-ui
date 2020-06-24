@@ -1,5 +1,6 @@
 import ContentList from '~/components/ContentList'
 import { Event } from '~/cms/types'
+import Head from '~/components/Head'
 import React from 'react'
 import { graphql } from 'gatsby'
 
@@ -12,7 +13,10 @@ type ViewProps = {
 }
 
 export default ({ data }: ViewProps) => (
-    <ContentList title="EVENTS" items={data.allContentfulEvent.nodes} />
+    <>
+        <Head title="Events" />
+        <ContentList title="EVENTS" items={data.allContentfulEvent.nodes} />
+    </>
 )
 
 export const query = graphql`

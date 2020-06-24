@@ -6,7 +6,6 @@ export default () => {
     const context = useContext(CartContext)
 
     if (context === undefined) {
-        console.log('undefined context')
         throw new Error('useCartContext must be used within a CartProvider')
     }
 

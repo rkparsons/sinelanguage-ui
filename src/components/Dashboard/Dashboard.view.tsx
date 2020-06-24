@@ -37,7 +37,7 @@ export default memo(
                 <Location>
                     {({ location }) => (
                         <Dashboard isBlur={location.pathname !== '/'}>
-                            <Head title="News" />
+                            {location.pathname === '/' && <Head title="News" />}
                             <Grid container>
                                 {items.map((item, index) => {
                                     const isVideo = item && item.__typename === ContentType.VIDEO

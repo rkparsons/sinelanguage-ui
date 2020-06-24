@@ -13,7 +13,7 @@ interface ViewProps {
 export default ({ title, description, image, url, siteMetadata }: ViewProps) => {
     const seoTitle = `${title} | ${siteMetadata.title}`
     const seoDescription = description || `${siteMetadata.description.description}`
-    const seoImage = image || `${siteMetadata.image.file.url}`
+    const seoImage = (image ? image : `${siteMetadata.image.file.url}`).replace(/^\/\//, 'http://')
 
     return (
         <Helmet htmlAttributes={{ lang: 'en' }}>

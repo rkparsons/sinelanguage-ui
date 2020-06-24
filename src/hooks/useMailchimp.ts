@@ -16,13 +16,11 @@ export default () => {
 
     function subscribe() {
         addToMailchimp(email).then(({ msg, result }: MailChimpResponse) => {
-            console.log(msg, result)
             if (result === 'success' || msg.includes('already subscribed')) {
                 setEmail('')
                 setIsSuccess(true)
             } else {
                 setIsInvalid(true)
-                console.log(msg)
                 emailInput.current?.focus()
             }
         })

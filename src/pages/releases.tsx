@@ -1,6 +1,7 @@
 import { Release, Video } from '~/cms/types'
 
 import ContentList from '~/components/ContentList'
+import Head from '~/components/Head'
 import React from 'react'
 import { graphql } from 'gatsby'
 import { sortByDate } from '~/utils/content'
@@ -19,7 +20,12 @@ type ViewProps = {
 export default ({ data }: ViewProps) => {
     const items = sortByDate([...data.allContentfulRelease.nodes, ...data.allContentfulVideo.nodes])
 
-    return <ContentList title="RELEASES" items={items} />
+    return (
+        <>
+            <Head title="Releases" />
+            <ContentList title="RELEASES" items={items} />
+        </>
+    )
 }
 
 export const query = graphql`
