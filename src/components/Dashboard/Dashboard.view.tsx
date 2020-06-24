@@ -19,12 +19,15 @@ export default memo(() => {
     const items = useDashboardItems()
     const newsletterIndex = 12
     const playlistIndex = 8
+    const timeout = 400
 
     function getTimeout(index: number) {
+        const noise = (Math.random() * timeout) / 8
+
         if (isMobile) {
-            return index > 1 ? 400 : 0
+            return index > 1 ? timeout + noise : 0
         } else {
-            return index > 10 ? 400 : 0
+            return index > 10 ? timeout + noise : 0
         }
     }
 
