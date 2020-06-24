@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 
 import { VideoContainer } from './TeaserVideo.style'
+import { useInView } from 'react-intersection-observer'
 
 type ViewProps = {
     src: string
@@ -8,6 +9,7 @@ type ViewProps = {
 
 export default ({ src }: ViewProps) => {
     const videoRef = useRef<HTMLVideoElement>(null)
+    const [containerRef, inView, entry] = useInView({ threshold: 0.1 })
 
     useEffect(() => {
         if (videoRef.current) {
@@ -16,9 +18,9 @@ export default ({ src }: ViewProps) => {
     }, [videoRef.current])
 
     return (
-        <VideoContainer>
+        <VideoContainer ref={containerRef}>
             <video ref={videoRef} muted autoPlay loop playsInline>
-                <source src={src} type="video/mp4" />
+                {inView && <source src={src} type="video/mp4" />}
             </video>
         </VideoContainer>
     )
