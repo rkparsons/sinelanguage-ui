@@ -40,7 +40,7 @@ export default ({ podcast }: ViewProps) => {
             <Typography variant="h3">TRACKLIST</Typography>
             <br />
             {trackList.map((trackListTrack, index) => (
-                <Box display="flex">
+                <Box display="flex" key={index}>
                     <Box>
                         <TrackNumber>
                             <Typography variant="h3">{`0${index + 1}`.slice(-2)}</Typography>
