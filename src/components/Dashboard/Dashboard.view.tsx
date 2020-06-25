@@ -26,7 +26,7 @@ export default memo(
         const { tracks } = useAudioContext()
         const items = useDashboardItems() as (ContentItem | undefined)[]
         const playlistIndex = 8
-        const newsletterIndex = 12
+        const newsletterIndex = 13
         items.splice(playlistIndex, 0, undefined)
         items.splice(newsletterIndex, 0, undefined)
         const baseTimeout = 500
