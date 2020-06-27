@@ -30,7 +30,6 @@ export const ItemRow = styled(Row)<{ padding: GridSpacing }>`
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-        padding-right: ${({ theme }) => theme.spacing(3)};
     }
 `
 
