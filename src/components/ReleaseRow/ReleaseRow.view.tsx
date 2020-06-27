@@ -1,10 +1,11 @@
-import { Grid, Typography } from '@material-ui/core'
+import { Box, Grid, Typography } from '@material-ui/core'
+import { Format, ReleaseId } from './ReleaseRow.style'
 import { Release, Video } from '~/cms/types'
 
 import Desktop from '~/components/Desktop'
 import Mobile from '~/components/Mobile'
 import React from 'react'
-import { ReleaseId } from './ReleaseRow.style'
+import { marginSide } from '~/styles/sizes'
 import moment from 'moment'
 
 type ViewProps = {
@@ -18,25 +19,33 @@ export default ({ release, format }: ViewProps) => {
     return (
         <Grid container justify="space-between" alignItems="flex-start">
             <Mobile>
-                <Typography variant="h3">
-                    <ReleaseId>{uid}</ReleaseId>
-                </Typography>
+                <Box paddingLeft={marginSide}>
+                    <Typography variant="h3">
+                        <ReleaseId>{uid}</ReleaseId>
+                    </Typography>
+                </Box>
             </Mobile>
             <Grid item xs={12} md={9}>
-                <Typography variant="h3">
-                    <Desktop>
-                        <ReleaseId>{uid}</ReleaseId>
-                    </Desktop>
-                    {(originalArtist || artist.title).toUpperCase()}, <i>{title}</i>
-                </Typography>
+                <Box paddingLeft={marginSide} paddingRight={marginSide}>
+                    <Typography variant="h3">
+                        <Desktop>
+                            <ReleaseId>{uid}</ReleaseId>
+                        </Desktop>
+                        {(originalArtist || artist.title).toUpperCase()}, <i>{title}</i>
+                    </Typography>
+                </Box>
             </Grid>
             <Grid item xs={6} md={2}>
-                <Typography variant="h3">{format}</Typography>
+                <Format>
+                    <Typography variant="h3">{format}</Typography>
+                </Format>
             </Grid>
             <Grid item xs={6} md={1}>
-                <Typography variant="h3" align="right">
-                    {moment(date).format(`YYYY`)}
-                </Typography>
+                <Box paddingRight={marginSide}>
+                    <Typography variant="h3" align="right">
+                        {moment(date).format(`YYYY`)}
+                    </Typography>
+                </Box>
             </Grid>
         </Grid>
     )

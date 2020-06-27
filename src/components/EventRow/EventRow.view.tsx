@@ -1,10 +1,11 @@
-import { Grid, Typography } from '@material-ui/core'
+import { Box, Grid, Typography } from '@material-ui/core'
+import { Date, Location } from './EventRow.style'
 
-import { Date } from './EventRow.style'
 import Desktop from '~/components/Desktop'
 import { Event } from '~/cms/types'
 import Mobile from '~/components/Mobile'
 import React from 'react'
+import { marginSide } from '~/styles/sizes'
 import moment from 'moment'
 
 type ViewProps = {
@@ -17,19 +18,23 @@ export default ({ event }: ViewProps) => {
     return (
         <Grid container>
             <Grid item xs={12} md={9}>
-                <Typography variant="h3">
-                    <Date>{moment(date).format('MMM. DD, YYYY')}</Date>
-                    <Desktop>
-                        {title} – {artists.join(', ')}
-                    </Desktop>
-                </Typography>
-                <Mobile>
-                    <Typography variant="h3">{title}</Typography>
-                    <Typography variant="h3">{artists.join(', ')}</Typography>
-                </Mobile>
+                <Box paddingLeft={marginSide} paddingRight={marginSide}>
+                    <Typography variant="h3">
+                        <Date>{moment(date).format('MMM. DD, YYYY')}</Date>
+                        <Desktop>
+                            {title} – {artists.join(', ')}
+                        </Desktop>
+                    </Typography>
+                    <Mobile>
+                        <Typography variant="h3">{title}</Typography>
+                        <Typography variant="h3">{artists.join(', ')}</Typography>
+                    </Mobile>
+                </Box>
             </Grid>
             <Grid item xs={12} md={3}>
-                <Typography variant="h3">{location}</Typography>
+                <Location>
+                    <Typography variant="h3">{location}</Typography>
+                </Location>
             </Grid>
         </Grid>
     )
