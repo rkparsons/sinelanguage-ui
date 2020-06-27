@@ -9,13 +9,15 @@ type ViewProps = {
 
 export default ({ src }: ViewProps) => {
     const videoRef = useRef<HTMLVideoElement>(null)
-    const [containerRef, inView, entry] = useInView({ threshold: 0.1, triggerOnce: true })
+    const [containerRef, inView, entry] = useInView({ triggerOnce: true })
 
     useEffect(() => {
         if (videoRef.current) {
             videoRef.current.setAttribute('muted', '1')
         }
     }, [videoRef.current])
+
+    console.log(inView, src)
 
     return (
         <VideoContainer ref={containerRef}>
