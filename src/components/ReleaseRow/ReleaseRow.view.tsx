@@ -4,6 +4,7 @@ import { Release, Video } from '~/cms/types'
 
 import Desktop from '~/components/Desktop'
 import Mobile from '~/components/Mobile'
+import OverflowEllipsis from '~/components/OverflowEllipsis'
 import React from 'react'
 import { marginSide } from '~/styles/sizes'
 import moment from 'moment'
@@ -27,12 +28,14 @@ export default ({ release, format }: ViewProps) => {
             </Mobile>
             <Grid item xs={12} md={9}>
                 <Box paddingLeft={marginSide} paddingRight={marginSide}>
-                    <Typography variant="h3">
-                        <Desktop>
-                            <ReleaseId>{uid}</ReleaseId>
-                        </Desktop>
-                        {(originalArtist || artist.title).toUpperCase()}, <i>{title}</i>
-                    </Typography>
+                    <OverflowEllipsis>
+                        <Typography variant="h3">
+                            <Desktop>
+                                <ReleaseId>{uid}</ReleaseId>
+                            </Desktop>
+                            {(originalArtist || artist.title).toUpperCase()}, <i>{title}</i>
+                        </Typography>
+                    </OverflowEllipsis>
                 </Box>
             </Grid>
             <Grid item xs={6} md={2}>

@@ -25,12 +25,6 @@ export const ItemRow = styled(Row)<{ padding: GridSpacing }>`
     ${({ theme, padding }) => `    
         padding: ${theme.spacing(padding * 0.4)} 0;
     `}
-
-    h3 {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
 `
 
 export const HoverImage = styled(Box)`

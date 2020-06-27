@@ -3,6 +3,7 @@ import { Duration, PodcastId } from './PodcastRow.style'
 
 import Desktop from '~/components/Desktop'
 import Mobile from '~/components/Mobile'
+import OverflowEllipsis from '~/components/OverflowEllipsis'
 import { Podcast } from '~/cms/types'
 import React from 'react'
 import { getDurationTimestamp } from '~/utils/date'
@@ -19,15 +20,17 @@ export default ({ podcast }: ViewProps) => {
         <Grid container justify="space-between">
             <Grid item xs={12} md={9}>
                 <Box paddingLeft={marginSide}>
-                    <Typography variant="h3">
-                        <Desktop>
-                            <PodcastId>{uid}</PodcastId>
-                        </Desktop>
-                        {title.toUpperCase()}
-                        <Mobile>
-                            , <PodcastId>{uid}</PodcastId>
-                        </Mobile>
-                    </Typography>
+                    <OverflowEllipsis>
+                        <Typography variant="h3">
+                            <Desktop>
+                                <PodcastId>{uid}</PodcastId>
+                            </Desktop>
+                            {title.toUpperCase()}
+                            <Mobile>
+                                , <PodcastId>{uid}</PodcastId>
+                            </Mobile>
+                        </Typography>
+                    </OverflowEllipsis>
                 </Box>
             </Grid>
             <Grid item xs={6} md={2}>

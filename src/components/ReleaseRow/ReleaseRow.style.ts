@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 export const ReleaseId = styled.span`
     display: inline-block;
+    vertical-align: bottom;
 
     ${({ theme }) => `   
             width: ${theme.spacing(40)};
