@@ -65,6 +65,7 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
             {products.map((product, index) => (
                 <button
                     key={index}
+                    hidden
                     className="snipcart-add-item"
                     data-item-id={product.title}
                     data-item-price={getPrice(product)}
