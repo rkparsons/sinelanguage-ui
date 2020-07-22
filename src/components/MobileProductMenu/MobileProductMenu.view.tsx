@@ -74,7 +74,6 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                     data-item-image={getImage(release, product)}
                     data-item-file-guid={product.fileGUID}
                     data-item-shippable={isPhysicalFormat(product)}
-                    style={{ display: 'none' }}
                 >
                     {product.format}
                 </button>
