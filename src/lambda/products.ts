@@ -27,10 +27,6 @@ function getPrice(fields: any) {
 }
 
 export const handler: Handler = (event, context, callback) => {
-    if (!event.body) {
-        throw new Error('No request body.')
-    }
-
     contentfulApi
         .getSpace(process.env.GATSBY_CTF_SPACE_ID!)
         .then((space) => space.getEnvironment(process.env.GATSBY_CTF_ENVIRONMENT!))
