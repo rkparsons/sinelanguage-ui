@@ -4,11 +4,11 @@ import {
     contentfulSpaceId,
 } from '../../env-variables'
 
-import { ContentFields } from 'contentful-management/typings/contentFields'
-import { ContentType } from 'contentful-management/typings/contentType'
+import { ContentFields } from 'contentful-management/dist/typings/entities/content-type-fields'
+import { ContentType } from 'contentful-management/dist/typings/entities/content-type'
 import { ContentfulContentType } from '../models'
-import { Environment } from 'contentful-management/typings/environment'
-import { Space } from 'contentful-management/typings/space'
+import { Environment } from 'contentful-management/dist/typings/entities/environment'
+import { Space } from 'contentful-management/dist/typings/entities/space'
 import { createClient } from 'contentful-management'
 import isDeepEqual from 'fast-deep-equal'
 

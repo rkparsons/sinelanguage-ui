@@ -1,4 +1,4 @@
-import { ContentFields } from 'contentful-management/typings/contentFields'
+import { ContentFields } from 'contentful-management/dist/typings/entities/content-type-fields'
 import { Control } from '../types/control'
 import Field from './field'
 import { FieldProps } from '../types/fieldProps'

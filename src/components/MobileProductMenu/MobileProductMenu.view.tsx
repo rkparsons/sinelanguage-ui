@@ -7,6 +7,7 @@ import IconButton from '~/components/IconButton'
 import ReleaseProducts from '~/components/ReleaseProducts'
 import { Typography } from '@material-ui/core'
 import { Unicode } from '~/constants/unicode'
+import { apiProductsUrl } from 'env-variables'
 import { getUrl } from '~/utils/content'
 import { isIOS } from 'react-device-detect'
 import useCartContext from '~/hooks/useCartContext'
@@ -62,23 +63,6 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                 isLight={isLight}
                 isDisabled={!products}
             />
-            {products.map((product, index) => (
-                <button
-                    key={index}
-                    hidden
-                    className="snipcart-add-item"
-                    data-item-id={product.title}
-                    data-item-price={getPrice(product)}
-                    data-item-url={getUrl(release)}
-                    data-item-name={product.title}
-                    data-item-description={getDescription(product)}
-                    data-item-image={getImage(release, product)}
-                    data-item-file-guid={product.fileGUID}
-                    data-item-shippable={isPhysicalFormat(product)}
-                >
-                    {product.format}
-                </button>
-            ))}
             <Popover
                 open={Boolean(popoverTrigger)}
                 anchorEl={popoverTrigger}
