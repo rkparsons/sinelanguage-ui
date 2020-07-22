@@ -4,4 +4,4 @@
     publish = "public"
 
 [context.staging]       
-    environment = { GATSBY_CTF_ENVIRONMENT = "staging", GATSBY_SNIPCART_API_KEY = "YTcxMzhkNmEtOGYyMS00ZjQxLWIzZWEtMTk0NGQ2ZTRlOWMyNjM3MDk2NjQxMjI3ODU3NzY5" }
+    environment = { GATSBY_CTF_ENVIRONMENT = "staging", GATSBY_SNIPCART_API_KEY = "YTcxMzhkNmEtOGYyMS00ZjQxLWIzZWEtMTk0NGQ2ZTRlOWMyNjM3MDk2NjQxMjI3ODU3NzY5", GATSBY_API_PRODUCTS_URL = "https://staging.sinelanguage.net/.netlify/functions/products" }
