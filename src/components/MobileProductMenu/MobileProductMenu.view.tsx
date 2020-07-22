@@ -65,7 +65,6 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
             {products.map((product, index) => (
                 <button
                     key={index}
-                    hidden
                     className="snipcart-add-item"
                     data-item-id={product.title}
                     data-item-price={getPrice(product)}
@@ -75,6 +74,7 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                     data-item-image={getImage(release, product)}
                     data-item-file-guid={product.fileGUID}
                     data-item-shippable={isPhysicalFormat(product)}
+                    style={{ display: 'none' }}
                 >
                     {product.format}
                 </button>
