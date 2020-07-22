@@ -23,3 +23,5 @@ export const contentfulEnvironment = process.env['GATSBY_CTF_ENVIRONMENT']!
 export const snipcartApiKey = process.env['GATSBY_SNIPCART_API_KEY']!
 
 export const mailchimpUrl = process.env['GATSBY_MAILCHIMP_URL']!
+
+export const apiProductsUrl = process.env['GATSBY_API_PRODUCTS_URL']!

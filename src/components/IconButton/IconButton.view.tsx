@@ -3,6 +3,7 @@ import React, { ReactNode, RefObject } from 'react'
 import { getDescription, getImage, getPrice, isPhysicalFormat } from '~/utils/product'
 
 import { Button } from './IconButton.style'
+import { apiProductsUrl } from 'env-variables'
 import { getUrl } from '~/utils/content'
 
 // todo: create separate component from icon button for buy button
@@ -41,7 +42,7 @@ export default ({
         className={className}
         data-item-id={product?.title}
         data-item-price={product ? getPrice(product) : ''}
-        data-item-url={release ? getUrl(release) : ''}
+        data-item-url={apiProductsUrl}
         data-item-name={product?.title}
         data-item-description={product ? getDescription(product) : ''}
         data-item-image={release && product ? getImage(release, product) : ''}

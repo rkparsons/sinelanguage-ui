@@ -11,7 +11,7 @@
         "develop": "gatsby develop",
         "start": "run-p start:**",
         "start:app": "npm run develop",
-        "start:lambda": "netlify-lambda serve src/lambda --config ./webpack.functions.js",
+        "start:lambda": "netlify-lambda serve src/lambda --config webpack.functions.js",
         "build": "run-p build:**",
         "build:app": "gatsby clean && gatsby build",
         "build:lambda": "netlify-lambda build src/lambda",
