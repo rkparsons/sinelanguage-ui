@@ -2,11 +2,12 @@ import {
     faBandcamp,
     faFacebookSquare,
     faInstagram,
+    faMixcloud,
     faSoundcloud,
     faSpotify,
     faTwitch,
     faTwitter,
-    faYoutube,
+    faYoutube
 } from '@fortawesome/free-brands-svg-icons'
 
 import ExternalLink from '~/components/ExternalLink'
@@ -28,6 +29,8 @@ export default ({ url }: ViewProps) => {
         ? faBandcamp
         : url.includes(Social.SOUNDCLOUD)
         ? faSoundcloud
+        : url.includes(Social.MIXCLOUD)
+        ? faMixcloud
         : url.includes(Social.INSTAGRAM)
         ? faInstagram
         : url.includes(Social.TWITTER)

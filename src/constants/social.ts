@@ -3,6 +3,7 @@ export enum Social {
     BANDCAMP = 'bandcamp',
     SPOTIFY = 'spotify',
     SOUNDCLOUD = 'soundcloud',
+    MIXCLOUD = 'mixcloud',
     INSTAGRAM = 'instagram',
     TWITTER = 'twitter',
     YOUTUBE = 'youtube',
