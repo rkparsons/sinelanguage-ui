@@ -16,6 +16,7 @@ type ViewProps = {
     relatedReleases: ContentItem[]
 }
 
+// todo: replace line breaks with spacing system
 export default ({ release, relatedReleases }: ViewProps) => {
     const { artist, title, uid, format, image, tracks, products } = release
 
