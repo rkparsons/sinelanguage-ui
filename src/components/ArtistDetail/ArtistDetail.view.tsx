@@ -4,8 +4,8 @@ import { Box, Grid, Typography } from '@material-ui/core'
 import ContentPlayButton from '~/components/ContentPlayButton'
 import ContentThumbnail from '~/components/ContentThumbnail'
 import Image from 'gatsby-image'
-import Mobile from '~/components/Mobile'
 import React from 'react'
+import ResponsiveGrid from '~/components/ResponsiveGrid'
 import RichText from '~/components/RichText'
 import Socials from '~/components/Socials'
 import { maxContentWidth } from '~/styles/sizes'
@@ -29,17 +29,14 @@ export default ({ artist, releases, videos }: ViewProps) => {
             <ContentPlayButton content={latestRelease} trackIndex={0} isLight={true} text="PLAY" />
             <br />
             <br />
-
-            <Mobile>
+            <ResponsiveGrid container isDesktop={false}>
                 <br />
-                <Grid container>
                     <Grid item xs={12} sm={8}>
                         <Image title={title} alt={title} sizes={{ ...image.fluid }} />
                     </Grid>
-                </Grid>
-
                 <br />
-            </Mobile>
+            </ResponsiveGrid>
+
             <br />
             <RichText json={bio.json} variant="h3" />
             <br />

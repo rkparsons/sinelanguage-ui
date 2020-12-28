@@ -1,12 +1,12 @@
 import { Artist, Release, Video } from '~/cms/types'
-import { Box, Grid, Hidden, withWidth } from '@material-ui/core'
+import { Box, Grid, Hidden } from '@material-ui/core'
 
-import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import ContentCardMedia from '~/components/ContentCardMedia'
 import Head from '~/components/Head'
 import Overlay from '~/components/Overlay'
 import React from 'react'
 import ReleaseDetail from '~/components/ReleaseDetail'
+import ResponsiveGrid from '~/components/ResponsiveGrid'
 import Scrollable from '~/components/Scrollable'
 import { detailImageSize } from '~/styles/sizes'
 import { graphql } from 'gatsby'
@@ -16,12 +16,10 @@ type Props = {
     data: {
         contentfulRelease: Release & { artist: Artist & { release?: Release[]; video?: Video[] } }
     }
-    width: Breakpoint
 }
 
-export default withWidth()(({ data, width }: Props) => {
+export default ({ data }: Props) => {
     const { __typename, uid, title, description, image, artist } = data.contentfulRelease
-    const isDesktop = !['xs', 'sm'].includes(width)
 
     const relatedReleases = sortByDate([
         ...(data.contentfulRelease.artist.release || []),
@@ -35,21 +33,19 @@ export default withWidth()(({ data, width }: Props) => {
             <Head title={title} description={description.description} image={image.fluid.src} />
             <Overlay>
                 <Grid container>
-                    {isDesktop && (
-                        <Grid item md={6}>
-                            <Box
-                                display="flex"
-                                width="100%"
-                                height="100%"
-                                justifyContent="center"
-                                alignItems="center"
-                            >
-                                <Box width={`${detailImageSize}vh`} maxWidth="80%">
-                                    <ContentCardMedia content={data.contentfulRelease} />
-                                </Box>
+                    <ResponsiveGrid item md={6} isDesktop={true}>                        
+                        <Box
+                            display="flex"
+                            width="100%"
+                            height="100%"
+                            justifyContent="center"
+                            alignItems="center"
+                        >
+                            <Box width={`${detailImageSize}vh`} maxWidth="80%">
+                                <ContentCardMedia content={data.contentfulRelease} />
                             </Box>
-                        </Grid>
-                    )}
+                        </Box>
+                    </ResponsiveGrid>
                     <Grid item xs={12} md={6}>
                         <Scrollable isWithMargin={true}>
                             <Hidden lgDown>
@@ -65,7 +61,7 @@ export default withWidth()(({ data, width }: Props) => {
             </Overlay>
         </>
     )
-})
+}
 
 export const query = graphql`
     query($uid: String!) {
