@@ -1,5 +1,5 @@
 import { Grid, withWidth } from '@material-ui/core'
-import React, { Fragment, memo } from 'react'
+import React, { memo } from 'react'
 
 import AudioPlayer from '~/components/AudioPlayer'
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'

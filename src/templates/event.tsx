@@ -1,6 +1,5 @@
-import { Box, Grid, Hidden, withWidth } from '@material-ui/core'
+import { Box, Grid, Hidden } from '@material-ui/core'
 
-import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import ContentCardMedia from '~/components/ContentCardMedia'
 import { Event } from '~/cms/types'
 import EventDetail from '~/components/EventDetail'
