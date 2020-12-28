@@ -1,4 +1,4 @@
-import { Box, Grid, Hidden } from '@material-ui/core'
+import { Box, Grid } from '@material-ui/core'
 
 import ContentCardMedia from '~/components/ContentCardMedia'
 import Head from '~/components/Head'
@@ -7,6 +7,7 @@ import { Podcast } from '~/cms/types'
 import PodcastDetail from '~/components/PodcastDetail'
 import React from 'react'
 import ResponsiveGrid from '~/components/ResponsiveGrid'
+import ResponsiveLineBreak from '~/components/ResponsiveLineBreak'
 import Scrollable from '~/components/Scrollable'
 import { detailImageSize } from '~/styles/sizes'
 import { graphql } from 'gatsby'
@@ -44,9 +45,7 @@ export default ({ data }: Props) => {
                     </ResponsiveGrid>
                     <Grid item xs={12} md={6}>
                         <Scrollable isWithMargin={true}>
-                            <Hidden lgDown>
-                                <br />
-                            </Hidden>
+                            <ResponsiveLineBreak isDesktop={true} />
                             <PodcastDetail podcast={data.contentfulPodcast} />
                         </Scrollable>
                     </Grid>

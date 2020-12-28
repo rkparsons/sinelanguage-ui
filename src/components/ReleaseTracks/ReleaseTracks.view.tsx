@@ -1,8 +1,8 @@
-import { Box, Hidden, Typography } from '@material-ui/core'
+import { Box, Typography } from '@material-ui/core'
 
-import InvertOnHover from '~/components/InvertOnHover'
 import React from 'react'
 import { Release } from '~/cms/types'
+import ResponsiveLineBreak from '~/components/ResponsiveLineBreak'
 import TrackRow from '~/components/TrackRow'
 
 type ViewProps = {
@@ -23,10 +23,8 @@ export default ({ release }: ViewProps) => {
             <br />
             {tracks.map((track, index) => (
                 <Box key={index}>
-                    <TrackRow release={release} track={track} index={index} />
-                    <Hidden smUp>
-                        <br />
-                    </Hidden>
+                    <TrackRow release={release} track={track} index={index} />                    
+                    <ResponsiveLineBreak isDesktop={false} />
                 </Box>
             ))}
             <br />
