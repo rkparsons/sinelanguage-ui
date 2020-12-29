@@ -19,16 +19,18 @@ export default ({ event }: ViewProps) => {
         <Grid container>
             <Grid item xs={12} md={9}>
                 <Box paddingLeft={marginSide} paddingRight={marginSide}>
-                    <Typography variant="h3">
-                        <Date>{moment(date).format('MMM. DD, YYYY')}</Date>
-                        <Desktop>
-                            {title} – {artists.join(', ')}
-                        </Desktop>
-                    </Typography>
                     <Mobile>
+                        <Typography variant="h3"><Date>{moment(date).format('MMM. DD, YYYY')}</Date></Typography>
                         <Typography variant="h3">{title}</Typography>
                         <Typography variant="h3">{artists.join(', ')}</Typography>
                     </Mobile>
+                    <Desktop>
+                        <Typography variant="h3">
+                            <Date>{moment(date).format('MMM. DD, YYYY')}</Date>
+                            
+                            {title} – {artists.join(', ')}
+                        </Typography>                        
+                    </Desktop>
                 </Box>
             </Grid>
             <Grid item xs={12} md={3}>
