@@ -2,9 +2,9 @@ import { Box, Grid, Typography } from '@material-ui/core'
 
 import ContentPlayButton from '~/components/ContentPlayButton'
 import Image from 'gatsby-image'
+import Mobile from '~/components/Mobile'
 import { Podcast } from '~/cms/types'
 import React from 'react'
-import ResponsiveGrid from '~/components/ResponsiveGrid'
 import RichText from '~/components/RichText'
 import Socials from '~/components/Socials'
 import { TrackNumber } from './PodcastDetail.style'
@@ -25,12 +25,14 @@ export default ({ podcast }: ViewProps) => {
             <ContentPlayButton content={podcast} trackIndex={0} isLight={true} text="PLAY" />
             <br />
             <br />
-            <ResponsiveGrid container isDesktop={false}>
+            <Mobile>
                 <br />
-                <Grid item xs={12} sm={8} md={6}>
-                    <Image title={title} alt={title} sizes={{ ...image.fluid }} />
+                <Grid container>
+                    <Grid item xs={12} sm={8} md={6}>
+                        <Image title={title} alt={title} sizes={{ ...image.fluid }} />
+                    </Grid>
                 </Grid>
-            </ResponsiveGrid>
+            </Mobile>
             <br />
             <RichText json={introduction.json} variant="h3" />
             <br />
