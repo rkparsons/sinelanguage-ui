@@ -1,10 +1,11 @@
 import { Box, Grid, Typography } from '@material-ui/core'
 import { Duration, PodcastId } from './PodcastRow.style'
 
+import Desktop from '~/components/Desktop'
+import Mobile from '~/components/Mobile'
 import OverflowEllipsis from '~/components/OverflowEllipsis'
 import { Podcast } from '~/cms/types'
 import React from 'react'
-import ResponsiveBox from '~/components/ResponsiveBox'
 import { getDurationTimestamp } from '~/utils/date'
 import { marginSide } from '~/styles/sizes'
 import moment from 'moment'
@@ -20,15 +21,17 @@ export default ({ podcast }: ViewProps) => {
             <Grid item xs={12} md={9}>
                 <Box paddingLeft={marginSide}>
                     <OverflowEllipsis>
-                        <Typography variant="h3">
-                            <ResponsiveBox isDesktop={true}>
+                        <Mobile>
+                            <Typography variant="h3">
+                                {title.toUpperCase()}, <PodcastId>{uid}</PodcastId>
+                            </Typography>
+                        </Mobile>
+                        <Desktop>
+                            <Typography variant="h3">                
                                 <PodcastId>{uid}</PodcastId>
-                            </ResponsiveBox>
-                            {title.toUpperCase()}                            
-                            <ResponsiveBox isDesktop={false}>
-                                , <PodcastId>{uid}</PodcastId>
-                            </ResponsiveBox>
-                        </Typography>
+                                {title.toUpperCase()}
+                            </Typography>
+                        </Desktop>
                     </OverflowEllipsis>
                 </Box>
             </Grid>
