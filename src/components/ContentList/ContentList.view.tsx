@@ -1,4 +1,4 @@
-import { Box, Collapse, Grid, Typography, withWidth } from '@material-ui/core'
+import { Box, Collapse, Grid, Typography } from '@material-ui/core'
 import { Fade, HoverImage, ItemRow, TitleRow } from './ContentList.style'
 import React, { useState } from 'react'
 
