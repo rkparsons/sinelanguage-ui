@@ -1,4 +1,3 @@
-import { Grid, withWidth } from '@material-ui/core'
 import React, { memo } from 'react'
 
 import AudioPlayer from '~/components/AudioPlayer'
@@ -8,21 +7,17 @@ import { ContentItem } from '~/types/cms'
 import { ContentType } from '~/constants/contentType'
 import { Dashboard } from './Dashboard.style'
 import Footer from '~/components/Footer'
+import { Grid } from '@material-ui/core'
 import Head from '~/components/Head'
 import { Location } from '@reach/router'
 import NewsletterCard from '~/components/NewsletterCard'
 import PlaylistCard from '~/components/PlaylistCard'
 import SlideInOnView from '~/components/SlideInOnView'
-import { columns } from '~/styles/sizes'
 import useAudioContext from '~/hooks/useAudioContext'
 import useDashboardItems from '~/hooks/useDashboardItems'
 
-type ViewProps = {
-    width: Breakpoint
-}
-
 export default memo(
-    withWidth()(({ width }: ViewProps) => {
+    () => {
         const { tracks } = useAudioContext()
         const items = useDashboardItems() as (ContentItem | undefined)[]
         const playlistIndex = 8
@@ -45,15 +40,12 @@ export default memo(
 
                                     count += itemWidth
 
-                                    const timeout =
-                                        count > 2 * columns[width]
-                                            ? baseTimeout + (Math.random() * baseTimeout) / 8
-                                            : 0
+                                    const timeout = baseTimeout + (Math.random() * baseTimeout) / 8
 
                                     if (index === playlistIndex) {
                                         return (
                                             <Grid item key={index}>
-                                                <SlideInOnView timeout={timeout} threshold={0.3}>
+                                                <SlideInOnView count={count} timeout={timeout} threshold={0.3}>
                                                     <PlaylistCard />
                                                 </SlideInOnView>
                                             </Grid>
@@ -63,7 +55,7 @@ export default memo(
                                     if (index === newsletterIndex) {
                                         return (
                                             <Grid item key={index}>
-                                                <SlideInOnView timeout={timeout} threshold={0.3}>
+                                                <SlideInOnView count={count} timeout={timeout} threshold={0.3}>
                                                     <NewsletterCard />
                                                 </SlideInOnView>
                                             </Grid>
@@ -73,7 +65,7 @@ export default memo(
                                     if (item !== undefined) {
                                         return (
                                             <Grid item key={index}>
-                                                <SlideInOnView timeout={timeout} threshold={0.3}>
+                                                <SlideInOnView count={count} timeout={timeout} threshold={0.3}>
                                                     <ContentCard content={item} />
                                                 </SlideInOnView>
                                             </Grid>
@@ -91,5 +83,5 @@ export default memo(
                 {tracks.length > 0 && <AudioPlayer />}
             </>
         )
-    })
+    }
 )

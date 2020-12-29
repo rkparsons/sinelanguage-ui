@@ -1,5 +1,4 @@
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
-import { GridSpacing } from '@material-ui/core'
 
 export const marginSide = 4
 export const marginTop = 4

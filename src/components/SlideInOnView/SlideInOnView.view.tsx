@@ -1,25 +1,24 @@
 import React, { ReactNode } from 'react'
 
-import { Slide } from '@material-ui/core'
+import { Slide } from './SlideInOnView.style'
 import { useInView } from 'react-intersection-observer'
 
 type ViewProps = {
     children: ReactNode
     timeout: number
     threshold: number
+    count: number
 }
 
-export default ({ children, timeout, threshold }: ViewProps) => {
-    const [containerRef, inView, entry] = useInView({
+export default ({ children, timeout, threshold, count }: ViewProps) => {
+    const [containerRef, isInView] = useInView({
         triggerOnce: true,
         threshold,
     })
 
     return (
         <div ref={containerRef}>
-            <Slide in={inView} direction="up" timeout={timeout}>
-                <div>{children}</div>
-            </Slide>
+            <Slide isInView={isInView} timeout={timeout} count={count}>{children}</Slide>
         </div>
     )
 }
