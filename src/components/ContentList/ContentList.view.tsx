@@ -7,10 +7,10 @@ import ContentCardMedia from '~/components/ContentCardMedia'
 import { ContentItem } from '~/types/cms'
 import ContentRow from '~/components/ContentRow'
 import { ContentType } from '~/constants/contentType'
-import Desktop from '~/components/Desktop'
 import InvertOnHover from '~/components/InvertOnHover'
 import { Link } from 'gatsby'
 import Overlay from '~/components/Overlay'
+import ResponsiveBox from '~/components/ResponsiveBox'
 import Scrollable from '~/components/Scrollable'
 import { getUrl } from '~/utils/content'
 import { rowPadding } from '~/styles/sizes'
@@ -53,7 +53,7 @@ export default withWidth()(({ title, items, width, isLargePaddingOnMobile = true
                     ))}
                 </Grid>
             </Scrollable>
-            <Desktop>
+            <ResponsiveBox isDesktop={true}>
                 {items.map((item, index) => (
                     <HoverImage
                         display="flex"
@@ -76,7 +76,7 @@ export default withWidth()(({ title, items, width, isLargePaddingOnMobile = true
                         </Box>
                     </HoverImage>
                 ))}
-            </Desktop>
+            </ResponsiveBox>
         </Overlay>
     )
 })

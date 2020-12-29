@@ -14,7 +14,7 @@ import ContentCardDetail from '~/components/ContentCardDetail'
 import { Grid } from '@material-ui/core'
 import IconButton from '~/components/IconButton'
 import React from 'react'
-import ResponsiveTypography from '~/components/ResponsiveTypography'
+import VariantResponsiveTypography from '~/components/VariantResponsiveTypography'
 import useMailchimp from '~/hooks/useMailchimp'
 
 export default () => {
@@ -33,23 +33,23 @@ export default () => {
             <AspectRatio>
                 <Content>
                     <Title>
-                        <ResponsiveTypography mobile="body1" desktop="h5">
+                        <VariantResponsiveTypography mobile="body1" desktop="h5">
                             {isSuccess
                                 ? 'THANKS FOR SUBSCRIBING!'
                                 : 'WANT TO HEAR FROM US ABOUT NEW RELEASES?'}
-                        </ResponsiveTypography>
+                        </VariantResponsiveTypography>
                     </Title>
                     {!isSuccess && (
                         <InputGrid container>
                             <Grid item xs={12}>
                                 <ErrorMessage>
-                                    <ResponsiveTypography
+                                    <VariantResponsiveTypography
                                         mobile="body1"
                                         desktop="h5"
                                         gutterBottom={true}
                                     >
                                         {isInvalid ? 'Please enter a valid email' : ''}
-                                    </ResponsiveTypography>
+                                    </VariantResponsiveTypography>
                                 </ErrorMessage>
                                 <EmailInputContainer isInvalid={isInvalid}>
                                     <EmailInput
@@ -75,9 +75,9 @@ export default () => {
                                 <Action>
                                     <IconButton
                                         label={
-                                            <ResponsiveTypography mobile="body1" desktop="h5">
+                                            <VariantResponsiveTypography mobile="body1" desktop="h5">
                                                 JOIN THE MAILING LIST
-                                            </ResponsiveTypography>
+                                            </VariantResponsiveTypography>
                                         }
                                         onClick={onSubmit}
                                         isLight={false}

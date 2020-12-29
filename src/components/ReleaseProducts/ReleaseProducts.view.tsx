@@ -5,9 +5,8 @@ import React, { Fragment } from 'react'
 import { getDescription, getPrice, isPhysicalFormat } from '~/utils/product'
 
 import CheckoutButton from '~/components/CheckoutButton'
-import Desktop from '~/components/Desktop'
 import IconButton from '~/components/IconButton'
-import Mobile from '~/components/Mobile'
+import ResponsiveGrid from '~/components/ResponsiveGrid'
 import { Unicode } from '~/constants/unicode'
 import useCartContext from '~/hooks/useCartContext'
 
@@ -63,13 +62,11 @@ export default ({
                                             </Typography>
                                         </Grid>
                                         {isDescription && (
-                                            <Desktop>
-                                                <Grid item xs={9}>
-                                                    <Typography variant={isLarge ? 'h3' : 'body1'}>
-                                                        {getDescription(product)}
-                                                    </Typography>
-                                                </Grid>
-                                            </Desktop>
+                                            <ResponsiveGrid item xs={9} isDesktop={true}>
+                                                <Typography variant={isLarge ? 'h3' : 'body1'}>
+                                                    {getDescription(product)}
+                                                </Typography>
+                                            </ResponsiveGrid>
                                         )}
                                     </Grid>
                                 </Box>

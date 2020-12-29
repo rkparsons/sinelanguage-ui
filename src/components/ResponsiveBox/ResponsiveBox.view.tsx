@@ -1,13 +1,14 @@
+import React, { ComponentProps } from 'react'
+
 import { Box } from './ResponsiveBox.style'
-import React from 'react'
 import { ReactNode } from 'react'
 
-type ViewProps = {
+type ViewProps = ComponentProps<typeof Box> & {
     children: ReactNode
-    isDesktop: boolean
+    isDesktop: boolean    
 }
 
-export default ({ children, isDesktop }: ViewProps) => 
-    <Box isDesktop={isDesktop}>
+export default ({ children, isDesktop, ...props }: ViewProps) => 
+    <Box isDesktop={isDesktop} {...props}>
         {children}
     </Box>

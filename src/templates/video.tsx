@@ -1,10 +1,10 @@
 import { Box, Typography } from '@material-ui/core'
 
-import Desktop from '~/components/Desktop'
 import Head from '~/components/Head'
 import Mobile from '~/components/Mobile'
 import Overlay from '~/components/Overlay'
 import React from 'react'
+import ResponsiveBox from '~/components/ResponsiveBox'
 import RichText from '~/components/RichText'
 import { Video } from '~/cms/types'
 import YouTubeEmbed from '~/components/YouTubeEmbed'
@@ -32,16 +32,12 @@ export default ({ data }: Props) => {
                     alignItems="center"
                 >
                     <Box height="5vh"></Box>
-                    <Mobile>
-                        <Box width="100%">
-                            <YouTubeEmbed artist={artist.title} title={title} src={srcURL} />
-                        </Box>
-                    </Mobile>
-                    <Desktop>
-                        <Box width="60%">
-                            <YouTubeEmbed artist={artist.title} title={title} src={srcURL} />
-                        </Box>
-                    </Desktop>
+                    <ResponsiveBox width="100%" isDesktop={false}>
+                        <YouTubeEmbed artist={artist.title} title={title} src={srcURL} />
+                    </ResponsiveBox>
+                    <ResponsiveBox width="60%" isDesktop={true}>
+                        <YouTubeEmbed artist={artist.title} title={title} src={srcURL} />
+                    </ResponsiveBox>
                     <Box height="5vh">
                         <br />
                         <Typography variant="h5" align="center">

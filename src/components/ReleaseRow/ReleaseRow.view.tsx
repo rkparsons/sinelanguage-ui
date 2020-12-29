@@ -2,10 +2,10 @@ import { Box, Grid, Typography } from '@material-ui/core'
 import { Format, ReleaseId } from './ReleaseRow.style'
 import { Release, Video } from '~/cms/types'
 
-import Desktop from '~/components/Desktop'
 import Mobile from '~/components/Mobile'
 import OverflowEllipsis from '~/components/OverflowEllipsis'
 import React from 'react'
+import ResponsiveBox from '~/components/ResponsiveBox'
 import { marginSide } from '~/styles/sizes'
 import moment from 'moment'
 
@@ -19,20 +19,18 @@ export default ({ release, format }: ViewProps) => {
 
     return (
         <Grid container justify="space-between" alignItems="flex-start">
-            <Mobile>
-                <Box paddingLeft={marginSide}>
-                    <Typography variant="h3">
-                        <ReleaseId>{uid}</ReleaseId>
-                    </Typography>
-                </Box>
-            </Mobile>
+            <ResponsiveBox isDesktop={false} paddingLeft={marginSide}>
+                <Typography variant="h3">
+                    <ReleaseId>{uid}</ReleaseId>
+                </Typography>
+            </ResponsiveBox>
             <Grid item xs={12} md={9}>
                 <Box paddingLeft={marginSide} paddingRight={marginSide}>
                     <OverflowEllipsis>
                         <Typography variant="h3">
-                            <Desktop>
+                            <ResponsiveBox isDesktop={true}>
                                 <ReleaseId>{uid}</ReleaseId>
-                            </Desktop>
+                            </ResponsiveBox>
                             {(originalArtist || artist.title).toUpperCase()}, <i>{title}</i>
                         </Typography>
                     </OverflowEllipsis>

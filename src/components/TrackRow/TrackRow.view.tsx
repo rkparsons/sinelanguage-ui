@@ -2,10 +2,10 @@ import { Box, Typography } from '@material-ui/core'
 import { Release, Track } from '~/cms/types'
 
 import ContentPlayButton from '~/components/ContentPlayButton'
-import Desktop from '~/components/Desktop'
 import Mobile from '~/components/Mobile'
 import ProductMenu from '~/components/ProductMenu'
 import React from 'react'
+import ResponsiveBox from '~/components/ResponsiveBox'
 import { TrackNumber } from './TrackRow.style'
 import { getDurationTimestamp } from '~/utils/date'
 
@@ -36,13 +36,11 @@ export default ({ release, track, index }: ViewProps) => {
             </Box>
             <Box>
                 <Box display="flex" width="100%" justifyContent="flex-end" alignItems="center">
-                    <Desktop>
-                        <Box paddingRight="20px">
-                            <Typography variant="h3">
-                                {getDurationTimestamp(metadata.duration)}
-                            </Typography>
-                        </Box>
-                    </Desktop>
+                    <ResponsiveBox paddingRight="20px" isDesktop={true}>
+                        <Typography variant="h3">
+                            {getDurationTimestamp(metadata.duration)}
+                        </Typography>
+                    </ResponsiveBox>
                     <Box paddingRight={1}>
                         <ContentPlayButton content={release} trackIndex={index} isLight={true} />
                     </Box>

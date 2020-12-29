@@ -1,7 +1,6 @@
-import Desktop from '~/components/Desktop'
-import Mobile from '~/components/Mobile'
 import React from 'react'
 import { ReactNode } from 'react'
+import ResponsiveBox from '~/components/ResponsiveBox'
 import { Typography } from '@material-ui/core'
 
 type ViewProps = {
@@ -13,15 +12,15 @@ type ViewProps = {
 
 export default ({ children, mobile, desktop, gutterBottom = false }: ViewProps) => (
     <>
-        <Mobile>
+        <ResponsiveBox isDesktop={false}>
             <Typography variant={mobile} gutterBottom={gutterBottom}>
                 {children}
             </Typography>
-        </Mobile>
-        <Desktop>
+        </ResponsiveBox>
+        <ResponsiveBox isDesktop={true}>
             <Typography variant={desktop} gutterBottom={gutterBottom}>
                 {children}
             </Typography>
-        </Desktop>
+        </ResponsiveBox>
     </>
 )

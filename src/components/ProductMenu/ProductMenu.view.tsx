@@ -1,10 +1,9 @@
 import { Product, Release } from '~/cms/types'
 
-import Desktop from '~/components/Desktop'
 import DesktopProductMenu from '~/components/DesktopProductMenu'
-import Mobile from '~/components/Mobile'
 import MobileProductMenu from '~/components/MobileProductMenu'
 import React from 'react'
+import ResponsiveBox from '~/components/ResponsiveBox'
 
 type Props = {
     release: Release
@@ -17,7 +16,7 @@ type Props = {
 
 export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }: Props) => (
     <>
-        <Mobile>
+        <ResponsiveBox isDesktop={false}>
             <MobileProductMenu
                 release={release}
                 products={products}
@@ -26,8 +25,8 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                 text={text}
                 indicateWhenInBag={indicateWhenInBag}
             />
-        </Mobile>
-        <Desktop>
+        </ResponsiveBox>
+        <ResponsiveBox isDesktop={true}>
             <DesktopProductMenu
                 release={release}
                 products={products}
@@ -36,6 +35,6 @@ export default ({ release, products, isLarge, isLight, text, indicateWhenInBag }
                 text={text}
                 indicateWhenInBag={indicateWhenInBag}
             />
-        </Desktop>
+        </ResponsiveBox>
     </>
 )
