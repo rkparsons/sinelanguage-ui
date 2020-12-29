@@ -1,9 +1,9 @@
 import Menu from '~/components/Menu'
+import Mobile from '~/components/Mobile'
 import React from 'react'
-import ResponsiveBox from '~/components/ResponsiveBox'
 
 export default () => (
-    <ResponsiveBox isDesktop={false}>
+    <Mobile>
         <Menu />        
-    </ResponsiveBox>
+    </Mobile>
 )
