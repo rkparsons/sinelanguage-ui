@@ -1,8 +1,8 @@
 import { Box, Typography } from '@material-ui/core'
 
+import Mobile from '~/components/Mobile'
 import React from 'react'
 import { Release } from '~/cms/types'
-import ResponsiveLineBreak from '~/components/ResponsiveLineBreak'
 import TrackRow from '~/components/TrackRow'
 
 type ViewProps = {
@@ -24,7 +24,9 @@ export default ({ release }: ViewProps) => {
             {tracks.map((track, index) => (
                 <Box key={index}>
                     <TrackRow release={release} track={track} index={index} />                    
-                    <ResponsiveLineBreak isDesktop={false} />
+                    <Mobile>
+                        <br />
+                    </Mobile>
                 </Box>
             ))}
             <br />
