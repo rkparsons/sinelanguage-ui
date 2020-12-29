@@ -2,17 +2,12 @@ import CheckoutButton from '~/components/CheckoutButton'
 import { Grid } from '@material-ui/core'
 import NavItem from '~/components/NavItem'
 import React from 'react'
-import ResponsiveGrid from '~/components/ResponsiveGrid'
 import { Route } from '~/constants/route'
 import { Unicode } from '~/constants/unicode'
 
-type ViewProps = {
-    isDesktop: boolean
-}
-
-export default ({ isDesktop }: ViewProps) => (
+export default () => (
     <>
-        <ResponsiveGrid item xs={12} md={3} isDesktop={isDesktop}>
+        <Grid item xs={12} md={3}>
             <Grid container direction="column">
                 <Grid item>
                     <NavItem to={Route.RELEASES} title="RELEASES" partiallyActive={true} />
@@ -24,8 +19,8 @@ export default ({ isDesktop }: ViewProps) => (
                     <NavItem to={Route.ARTISTS} title="ARTISTS" partiallyActive={true} />
                 </Grid>
             </Grid>
-        </ResponsiveGrid>
-        <ResponsiveGrid item xs={12} md={3} isDesktop={isDesktop}>
+        </Grid>
+        <Grid item xs={12} md={3}>
             <Grid container direction="column">
                 <Grid item>
                     <NavItem to={Route.EVENTS} title="EVENTS" partiallyActive={true} />
@@ -43,6 +38,6 @@ export default ({ isDesktop }: ViewProps) => (
                     />
                 </Grid>
             </Grid>
-        </ResponsiveGrid>
+        </Grid>
     </>
 )
