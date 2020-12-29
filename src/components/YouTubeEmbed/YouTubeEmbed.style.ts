@@ -1,5 +1,15 @@
 import styled from 'styled-components'
 
+export const Root = styled.div`
+    ${({ theme }) => `    
+        width: 100%;
+        
+        ${theme.breakpoints.up('md')} {
+            width: 60%;
+        }
+    `}
+`
+
 export const VideoContainer = styled.div`
     position: relative;
     width: 100%;

@@ -1,4 +1,4 @@
-import { Backdrop, VideoContainer } from './YouTubeEmbed.style'
+import { Backdrop, Root, VideoContainer } from './YouTubeEmbed.style'
 import React, { useState } from 'react'
 
 import ReactPlayer from 'react-player'
@@ -20,7 +20,7 @@ export default ({ artist, title, src }: ViewProps) => {
     }
 
     return (
-        <>
+        <Root>
             <Backdrop isPlaying={isPlaying} />
             <VideoContainer onClick={stopMedia}>
                 <ReactPlayer
@@ -36,6 +36,6 @@ export default ({ artist, title, src }: ViewProps) => {
                     onPlay={onPlay}
                 />
             </VideoContainer>
-        </>
+        </Root>
     )
 }

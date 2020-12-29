@@ -31,12 +31,7 @@ export default ({ data }: Props) => {
                     alignItems="center"
                 >
                     <Box height="5vh"></Box>
-                    <ResponsiveBox width="100%" isDesktop={false}>
-                        <YouTubeEmbed artist={artist.title} title={title} src={srcURL} />
-                    </ResponsiveBox>
-                    <ResponsiveBox width="60%" isDesktop={true}>
-                        <YouTubeEmbed artist={artist.title} title={title} src={srcURL} />
-                    </ResponsiveBox>
+                    <YouTubeEmbed artist={artist.title} title={title} src={srcURL} />
                     <Box height="5vh">
                         <br />
                         <Typography variant="h5" align="center">
