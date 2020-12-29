@@ -25,10 +25,10 @@ export default ({ podcast }: ViewProps) => {
                             <ResponsiveBox isDesktop={true}>
                                 <PodcastId>{uid}</PodcastId>
                             </ResponsiveBox>
-                            {title.toUpperCase()}
-                            <Mobile>
+                            {title.toUpperCase()}                            
+                            <ResponsiveBox isDesktop={false}>
                                 , <PodcastId>{uid}</PodcastId>
-                            </Mobile>
+                            </ResponsiveBox>
                         </Typography>
                     </OverflowEllipsis>
                 </Box>

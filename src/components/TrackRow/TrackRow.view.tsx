@@ -28,10 +28,10 @@ export default ({ release, track, index }: ViewProps) => {
             <Box flexGrow={1} paddingRight={3}>
                 <Typography variant="h3">
                     {title}{' '}
-                    <Mobile>
+                    <ResponsiveBox isDesktop={false}>
                         <br />
                         {getDurationTimestamp(metadata.duration)}
-                    </Mobile>
+                    </ResponsiveBox>
                 </Typography>
             </Box>
             <Box>
