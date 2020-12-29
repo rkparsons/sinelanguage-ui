@@ -5,5 +5,6 @@ type ViewProps = {
     isDesktop: boolean
 }
 
+// todo: remove component
 export default ({ isDesktop }: ViewProps) => 
     <LineBreak isDesktop={isDesktop} />
