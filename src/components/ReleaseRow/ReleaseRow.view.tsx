@@ -2,7 +2,6 @@ import { Box, Grid, Typography } from '@material-ui/core'
 import { Format, ReleaseId } from './ReleaseRow.style'
 import { Release, Video } from '~/cms/types'
 
-import Mobile from '~/components/Mobile'
 import OverflowEllipsis from '~/components/OverflowEllipsis'
 import React from 'react'
 import ResponsiveBox from '~/components/ResponsiveBox'

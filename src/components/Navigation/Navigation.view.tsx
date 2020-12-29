@@ -2,7 +2,6 @@ import { Grid, Typography } from '@material-ui/core'
 import { Header, Title, ToggleMobileMenu } from './Navigation.style'
 import React, { useState } from 'react'
 
-import Desktop from '~/components/Desktop'
 import IconButton from '~/components/IconButton'
 import Links from './Links'
 import NavItem from '~/components/NavItem'

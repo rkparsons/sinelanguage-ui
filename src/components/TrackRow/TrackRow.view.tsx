@@ -2,7 +2,6 @@ import { Box, Typography } from '@material-ui/core'
 import { Release, Track } from '~/cms/types'
 
 import ContentPlayButton from '~/components/ContentPlayButton'
-import Mobile from '~/components/Mobile'
 import ProductMenu from '~/components/ProductMenu'
 import React from 'react'
 import ResponsiveBox from '~/components/ResponsiveBox'

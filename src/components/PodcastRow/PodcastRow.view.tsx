@@ -1,7 +1,6 @@
 import { Box, Grid, Typography } from '@material-ui/core'
 import { Duration, PodcastId } from './PodcastRow.style'
 
-import Mobile from '~/components/Mobile'
 import OverflowEllipsis from '~/components/OverflowEllipsis'
 import { Podcast } from '~/cms/types'
 import React from 'react'

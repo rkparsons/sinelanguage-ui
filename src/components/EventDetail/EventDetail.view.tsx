@@ -1,7 +1,6 @@
 import { Box, Grid, Typography } from '@material-ui/core'
 
 import { Event } from '~/cms/types'
-import Mobile from '~/components/Mobile'
 import React from 'react'
 import ResponsiveGrid from '~/components/ResponsiveGrid'
 import RichText from '~/components/RichText'
