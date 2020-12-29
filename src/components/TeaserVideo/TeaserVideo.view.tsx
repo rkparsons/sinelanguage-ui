@@ -17,8 +17,6 @@ export default ({ src }: ViewProps) => {
         }
     }, [videoRef.current])
 
-    console.log(inView, src)
-
     return (
         <VideoContainer ref={containerRef}>
             <video ref={videoRef} muted autoPlay loop playsInline>
