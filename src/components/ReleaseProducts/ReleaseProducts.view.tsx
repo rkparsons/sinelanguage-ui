@@ -5,8 +5,9 @@ import React, { Fragment } from 'react'
 import { getDescription, getPrice, isPhysicalFormat } from '~/utils/product'
 
 import CheckoutButton from '~/components/CheckoutButton'
+import Desktop from '~/components/Desktop'
 import IconButton from '~/components/IconButton'
-import ResponsiveGrid from '~/components/ResponsiveGrid'
+import Mobile from '~/components/Mobile'
 import { Unicode } from '~/constants/unicode'
 import useCartContext from '~/hooks/useCartContext'
 
@@ -55,20 +56,34 @@ export default ({
                         <ProductRow isLarge={isLarge}>
                             <Box display="flex" width="100%" alignItems="center">
                                 <Box flexGrow={1}>
-                                    <Grid container>
-                                        <Grid item xs={12} md={isDescription ? 3 : 12}>
-                                            <Typography variant={isLarge ? 'h3' : 'body1'}>
-                                                {product.format}
-                                            </Typography>
-                                        </Grid>
-                                        {isDescription && (
-                                            <ResponsiveGrid item xs={9} isDesktop={true}>
+
+                                    <Mobile>
+                                        <Grid container>
+                                            <Grid item xs={12}>
                                                 <Typography variant={isLarge ? 'h3' : 'body1'}>
-                                                    {getDescription(product)}
+                                                    {product.format}
                                                 </Typography>
-                                            </ResponsiveGrid>
-                                        )}
-                                    </Grid>
+                                            </Grid>
+                                        </Grid>
+                                    </Mobile>
+
+                                    <Desktop>
+                                        <Grid container>
+                                            <Grid item md={isDescription ? 3 : 12}>
+                                                <Typography variant={isLarge ? 'h3' : 'body1'}>
+                                                    {product.format}
+                                                </Typography>
+                                            </Grid>
+                                            {isDescription && (
+                                                <Grid item md={9}>
+                                                    <Typography variant={isLarge ? 'h3' : 'body1'}>
+                                                        {getDescription(product)}
+                                                    </Typography>
+                                                </Grid>
+                                            )}
+                                        </Grid>
+                                    </Desktop>
+                                    
                                 </Box>
 
                                 <Box
