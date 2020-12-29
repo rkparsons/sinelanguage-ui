@@ -1,10 +1,10 @@
 import { Box, Grid, Typography } from '@material-ui/core'
 import { Date, Location } from './EventRow.style'
 
+import Desktop from '~/components/Desktop'
 import { Event } from '~/cms/types'
+import Mobile from '~/components/Mobile'
 import React from 'react'
-import ResponsiveBox from '~/components/ResponsiveBox'
-import ResponsiveTypography from '~/components/ResponsiveTypography'
 import { marginSide } from '~/styles/sizes'
 import moment from 'moment'
 
@@ -21,12 +21,14 @@ export default ({ event }: ViewProps) => {
                 <Box paddingLeft={marginSide} paddingRight={marginSide}>
                     <Typography variant="h3">
                         <Date>{moment(date).format('MMM. DD, YYYY')}</Date>
-                        <ResponsiveBox isDesktop={true}>
+                        <Desktop>
                             {title} – {artists.join(', ')}
-                        </ResponsiveBox>
+                        </Desktop>
                     </Typography>
-                    <ResponsiveTypography isDesktop={false} variant="h3">{title}</ResponsiveTypography>
-                    <ResponsiveTypography isDesktop={false} variant="h3">{artists.join(', ')}</ResponsiveTypography>
+                    <Mobile>
+                        <Typography variant="h3">{title}</Typography>
+                        <Typography variant="h3">{artists.join(', ')}</Typography>
+                    </Mobile>
                 </Box>
             </Grid>
             <Grid item xs={12} md={3}>
