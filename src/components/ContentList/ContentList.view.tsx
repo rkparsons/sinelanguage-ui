@@ -2,7 +2,6 @@ import { Box, Collapse, Grid, Typography, withWidth } from '@material-ui/core'
 import { Fade, HoverImage, ItemRow, TitleRow } from './ContentList.style'
 import React, { useState } from 'react'
 
-import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 import ContentCardMedia from '~/components/ContentCardMedia'
 import { ContentItem } from '~/types/cms'
 import ContentRow from '~/components/ContentRow'
@@ -17,11 +16,10 @@ import { getUrl } from '~/utils/content'
 type ViewProps = {
     title: string
     items: ContentItem[]
-    width: Breakpoint
     isLargePaddingOnMobile?: boolean
 }
 
-export default withWidth()(({ title, items, width, isLargePaddingOnMobile = true }: ViewProps) => {
+export default ({ title, items, isLargePaddingOnMobile = true }: ViewProps) => {
     const [activeItem, setActiveItem] = useState<ContentItem>()
 
     return (
@@ -78,4 +76,4 @@ export default withWidth()(({ title, items, width, isLargePaddingOnMobile = true
             </ResponsiveBox>
         </Overlay>
     )
-})
+}
