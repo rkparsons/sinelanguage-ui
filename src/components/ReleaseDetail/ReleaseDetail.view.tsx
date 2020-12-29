@@ -40,6 +40,7 @@ export default ({ release, relatedReleases }: ViewProps) => {
                     </Grid>
                     <br />
                 </Grid>
+                <br />
             </Mobile>
             <br />
 
