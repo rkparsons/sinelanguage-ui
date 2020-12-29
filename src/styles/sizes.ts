@@ -10,13 +10,8 @@ export const maxContentWidth = 59
 export const volumeSliderWidth = 4
 export const detailImageSize = 65
 
-export const rowPadding: Record<Breakpoint, GridSpacing> = {
-    xs: 10,
-    sm: 10,
-    md: 1,
-    lg: 1,
-    xl: 1,
-}
+export const smallRowPadding = 0.4
+export const largeRowPadding = 4
 
 export const columns: Record<Breakpoint, number> = {
     xs: 1,

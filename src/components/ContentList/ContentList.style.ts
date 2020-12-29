@@ -1,6 +1,6 @@
-import { Box, Grid, GridSpacing } from '@material-ui/core'
+import { largeRowPadding, marginSide, smallRowPadding } from '~/styles/sizes'
 
-import { marginSide } from '~/styles/sizes'
+import { Box } from '@material-ui/core'
 import styled from 'styled-components'
 
 const Row = styled.div`
@@ -19,11 +19,15 @@ export const TitleRow = styled(Row)`
     `}
 `
 
-export const ItemRow = styled(Row)<{ padding: GridSpacing }>`
+export const ItemRow = styled(Row)<{ isLargePaddingOnMobile: boolean }>`
     cursor: pointer;
 
-    ${({ theme, padding }) => `    
-        padding: ${theme.spacing(padding * 0.4)} 0;
+    ${({ theme, isLargePaddingOnMobile }) => `
+        padding: ${theme.spacing(isLargePaddingOnMobile ? largeRowPadding : smallRowPadding)} 0;
+
+        ${theme.breakpoints.up('md')} {
+            padding: ${theme.spacing(smallRowPadding)} 0;
+        }
     `}
 `
 

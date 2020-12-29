@@ -13,7 +13,6 @@ import Overlay from '~/components/Overlay'
 import ResponsiveBox from '~/components/ResponsiveBox'
 import Scrollable from '~/components/Scrollable'
 import { getUrl } from '~/utils/content'
-import { rowPadding } from '~/styles/sizes'
 
 type ViewProps = {
     title: string
@@ -43,7 +42,7 @@ export default withWidth()(({ title, items, width, isLargePaddingOnMobile = true
                                     <ItemRow
                                         onMouseEnter={() => setActiveItem(item)}
                                         onMouseLeave={() => setActiveItem(undefined)}
-                                        padding={isLargePaddingOnMobile ? rowPadding[width] : 1}
+                                        isLargePaddingOnMobile={isLargePaddingOnMobile}
                                     >
                                         <ContentRow content={item} />
                                     </ItemRow>
