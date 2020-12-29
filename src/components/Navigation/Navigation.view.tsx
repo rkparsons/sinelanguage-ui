@@ -5,8 +5,9 @@ import React, { useState } from 'react'
 import Desktop from '~/components/Desktop'
 import IconButton from '~/components/IconButton'
 import Links from './Links'
-import Mobile from '~/components/Mobile'
 import NavItem from '~/components/NavItem'
+import ResponsiveBox from '~/components/ResponsiveBox'
+import ResponsiveGrid from '~/components/ResponsiveGrid'
 import { Route } from '~/constants/route'
 import { Unicode } from '~/constants/unicode'
 import { navigate } from 'gatsby'
@@ -32,7 +33,7 @@ export default ({ location }: ViewProps) => {
         <Header>
             <Grid container justify="space-between">
                 <Grid item xs={9} md={6}>
-                    <Mobile>
+                    <ResponsiveBox isDesktop={false} >
                         <Title>
                             <NavItem
                                 to={Route.NEWS}
@@ -42,9 +43,9 @@ export default ({ location }: ViewProps) => {
                                         : `${Unicode.LEFT}  SINE LANGUAGE`
                                 }
                             />
-                        </Title>
-                    </Mobile>
-                    <Desktop>
+                        </Title>                        
+                    </ResponsiveBox>
+                    <ResponsiveBox isDesktop={true}>
                         <Title>
                             <NavItem
                                 to={Route.NEWS}
@@ -54,27 +55,23 @@ export default ({ location }: ViewProps) => {
                                         : `${Unicode.LEFT}  SINE LANGUAGE RECORDS`
                                 }
                             />
-                        </Title>
-                    </Desktop>
+                        </Title>                        
+                    </ResponsiveBox>
                 </Grid>
-                <Mobile>
-                    <Grid item>
-                        <ToggleMobileMenu>
-                            <IconButton
-                                label={
-                                    <Typography variant="h1" align="center">
-                                        {isMenuOpen ? Unicode.CLOSE : '+'}
-                                    </Typography>
-                                }
-                                onClick={handleMenuClick}
-                                isLight={true}
-                            />
-                        </ToggleMobileMenu>
-                    </Grid>
-                </Mobile>
-                <Desktop>
-                    <Links />
-                </Desktop>
+                <ResponsiveGrid item isDesktop={false}>
+                    <ToggleMobileMenu>
+                        <IconButton
+                            label={
+                                <Typography variant="h1" align="center">
+                                    {isMenuOpen ? Unicode.CLOSE : '+'}
+                                </Typography>
+                            }
+                            onClick={handleMenuClick}
+                            isLight={true}
+                        />
+                    </ToggleMobileMenu>
+                </ResponsiveGrid>
+                <Links isDesktop={true}/>
             </Grid>
 
             {/* {isAuthenticated() ? (

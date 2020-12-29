@@ -10,7 +10,7 @@ export default () => (
         <ResponsivePaddingTop>
             <Menu>
                 <Grid container spacing={10} justify="space-between">
-                    <Links />
+                    <Links isDesktop={false} />
                 </Grid>
             </Menu>
         </ResponsivePaddingTop>

@@ -8,6 +8,7 @@ type ViewProps = ComponentProps<typeof Box> & {
     isDesktop: boolean    
 }
 
+// todo: pass mobile and desktop versions as render props
 export default ({ children, isDesktop, ...props }: ViewProps) => 
     <Box isDesktop={isDesktop} {...props}>
         {children}
