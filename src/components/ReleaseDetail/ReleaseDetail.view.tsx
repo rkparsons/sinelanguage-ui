@@ -4,11 +4,11 @@ import { ContentItem } from '~/types/cms'
 import ContentPlayButton from '~/components/ContentPlayButton'
 import ContentThumbnail from '~/components/ContentThumbnail'
 import Image from 'gatsby-image'
+import Mobile from '~/components/Mobile'
 import React from 'react'
 import { Release } from '~/cms/types'
 import ReleaseProducts from '~/components/ReleaseProducts'
 import ReleaseTracks from '~/components/ReleaseTracks'
-import ResponsiveGrid from '~/components/ResponsiveGrid'
 import { maxContentWidth } from '~/styles/sizes'
 
 type ViewProps = {
@@ -32,13 +32,15 @@ export default ({ release, relatedReleases }: ViewProps) => {
 
             <br />
             <br />
-
-            <ResponsiveGrid container isDesktop={false}>
-                <Grid item xs={12} sm={8} md={6}>
-                    <Image title={title} alt={title} sizes={{ ...image.fluid }} />
-                </Grid>
+            <Mobile>
                 <br />
-            </ResponsiveGrid>
+                <Grid container>
+                    <Grid item xs={12} sm={8} md={6}>
+                        <Image title={title} alt={title} sizes={{ ...image.fluid }} />
+                    </Grid>
+                    <br />
+                </Grid>
+            </Mobile>
             <br />
 
             <ReleaseTracks release={release} />
