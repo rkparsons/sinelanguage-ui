@@ -22,12 +22,15 @@ export default ({ artist, releases, videos }: ViewProps) => {
 
     const relatedReleases = sortByDate([...releases, ...videos])
     const latestRelease = sortByDate(releases)[0] as Release
+    const hasRelatedReleases = relatedReleases.length > 0
 
     return (
         <Box maxWidth={`${maxContentWidth}rem`}>
             <Typography variant="h3">{title.toUpperCase()}</Typography>
-            <ContentPlayButton content={latestRelease} trackIndex={0} isLight={true} text="PLAY" />
-            <br />
+            {latestRelease && <>
+                                <ContentPlayButton content={latestRelease} trackIndex={0} isLight={true} text="PLAY" />
+                                <br />
+                            </>}
             <br />
             <Mobile>
                 <br />
@@ -43,8 +46,8 @@ export default ({ artist, releases, videos }: ViewProps) => {
             <RichText json={bio.json} variant="h3" />
             <br />
             <br />
-            <Typography variant="h3">RELEASES</Typography>
-            <br />
+            {hasRelatedReleases && <><Typography variant="h3">RELEASES</Typography><br /></>}
+            
             <Grid container>
                 {relatedReleases.map((relatedContent, index) => (
                     <ContentThumbnail content={relatedContent} key={index} />
