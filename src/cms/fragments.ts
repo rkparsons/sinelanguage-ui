@@ -55,6 +55,9 @@ export const podcastFragment = graphql`
 		__typename
 		id
 		title
+		relatedArtist {
+            ...artistFragment
+        }
 		uid
 		description {
             description

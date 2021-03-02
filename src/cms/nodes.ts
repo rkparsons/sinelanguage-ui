@@ -55,6 +55,7 @@ export const typeDefs = `
 
 	type ContentfulPodcast implements Node {
 		title: String
+		relatedArtist: ContentfulArtist
 		uid: String
 		description: contentfulPodcastDescriptionTextNode
 		introduction: contentfulPodcastIntroductionRichTextNode

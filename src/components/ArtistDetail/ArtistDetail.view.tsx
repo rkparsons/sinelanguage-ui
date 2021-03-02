@@ -1,4 +1,4 @@
-import { Artist, Release, Video } from '~/cms/types'
+import { Artist, Podcast, Release, Video } from '~/cms/types'
 import { Box, Grid, Typography } from '@material-ui/core'
 
 import ContentPlayButton from '~/components/ContentPlayButton'
@@ -15,12 +15,13 @@ type ViewProps = {
     artist: Artist
     releases: Release[]
     videos: Video[]
+    podcasts: Podcast[]
 }
 
-export default ({ artist, releases, videos }: ViewProps) => {
+export default ({ artist, releases, videos, podcasts }: ViewProps) => {
     const { title, image, socials, bio } = artist
 
-    const relatedReleases = sortByDate([...releases, ...videos])
+    const relatedReleases = sortByDate([...releases, ...videos, ...podcasts])
     const latestRelease = sortByDate(releases)[0] as Release
     const hasRelatedReleases = relatedReleases.length > 0
 

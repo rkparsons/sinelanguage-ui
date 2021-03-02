@@ -1,4 +1,4 @@
-import { Artist, Release, Video } from '~/cms/types'
+import { Artist, Podcast, Release, Video } from '~/cms/types'
 import { Box, Grid } from '@material-ui/core'
 
 import ArtistDetail from '~/components/ArtistDetail'
@@ -14,7 +14,7 @@ import { graphql } from 'gatsby'
 
 type Props = {
     data: {
-        contentfulArtist: Artist & { release?: Release[]; video?: Video[] }
+        contentfulArtist: Artist & { release?: Release[]; video?: Video[]; podcast?: Podcast[] }
     }
 }
 
@@ -34,6 +34,7 @@ export default ({ data }: Props) => {
                                     artist={data.contentfulArtist}
                                     releases={data.contentfulArtist.release || []}
                                     videos={data.contentfulArtist.video || []}
+                                    podcasts={data.contentfulArtist.podcast || []}
                                 />
                             </Scrollable>
                         </Grid>
@@ -63,6 +64,7 @@ export default ({ data }: Props) => {
                                     artist={data.contentfulArtist}
                                     releases={data.contentfulArtist.release || []}
                                     videos={data.contentfulArtist.video || []}
+                                    podcasts={data.contentfulArtist.podcast || []}
                                 />
                             </Scrollable>
                         </Grid>
@@ -83,6 +85,9 @@ export const query = graphql`
             }
             video {
                 ...videoFragment
+            }
+            podcast {
+                ...podcastFragment
             }
         }
     }

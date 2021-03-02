@@ -12,6 +12,7 @@ import {
 } from '../../../cms/models'
 import { imageFileSize, marks, nodeTypes, unique, url } from '../../../cms/validations'
 
+import Artist from './artist'
 import { FluidImageType } from '../../../cms/constants'
 import Track from './track'
 
@@ -24,6 +25,12 @@ export default new ContentfulContentType({
         new SymbolField({
             id: 'title',
             name: 'Artist',
+        }),
+        new LinkField({
+            name: 'Related Artist',
+            widgetId: 'entryCardEditor',
+            link: Artist,
+            required: false
         }),
         new SymbolField({
             id: 'uid',

@@ -47,6 +47,7 @@ export type Podcast = {
 	__typename: string
 	id: string
 	title: string
+	relatedArtist: Artist
 	uid: string
 	description: {
         description: string
